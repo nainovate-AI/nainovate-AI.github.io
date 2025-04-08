@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/output.css"> <!-- Corrected path -->
     <link rel="stylesheet" href="./styles/spotlight-effect.css">
+    <link rel="stylesheet" href="./styles/enhanced-features-cards.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <title>GenAI Startup</title>
 </head>
@@ -27,7 +27,7 @@
                 <li><a href="#cta" class="hover:underline">Get Started</a></li>
             </ul>
         </nav>
-        <a href="#cta" class="hidden md:block bg-gradient-to-r from-gray-800 to-black text-blue-600 px-4 py-2 rounded-lg shadow hover:from-gray-700 hover:to-gray-900">Sign Up</a>
+        <a href="#cta" class="hidden md:block bg-gradient-to-r from-gray-800 to-black text-blue-600 px-4 py-2 rounded-lg shadow hover:from-gray-700 hover:to-gray-900">Mail Us</a>
     </header>
     <main class="p-6">
         <!-- Hero Section -->
@@ -47,28 +47,48 @@
                     Request a Demo
                 </a>
             </div>
+        </section>        
+        
+        <!-- Platform Overview Section -->
+        <section class="mb-8">
+            <div class="p-6 card-spotlight-premium">
+                <div class="card-spotlight-content">
+                    <h2 class="text-2xl font-semibold">Platform Overview</h2>
+                    <p class="mt-4">Our platform integrates seamlessly with your existing workflows, offering:</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>API integrations for custom workflows.</li>
+                        <li>Scalable infrastructure for enterprise needs.</li>
+                        <li>Comprehensive analytics and reporting tools.</li>
+                        <li>Fine-tuning capabilities for domain-specific model adaptation.</li>
+                        <li>Real-time inference with parameter control for dynamic output generation.</li>
+                        <li>Modular deployment options — choose from managed cloud, on-premise, or hybrid setups.</li>
+                    </ul>
+                    <p class="mt-4">Whether you're running lightweight experiments or managing full-scale production deployments, our platform adapts to your workflow and scales with your ambitions.</p>
+                </div>
+            </div>
         </section>
+        
 
         <!-- Engine Features Section -->
         <section id="features" class="mb-8">
-            <h2 class="text-3xl font-semibold text-center font-special border-b-4 border-blue-500 inline-block">N1 Series</h2>
+            <h2 class="text-3xl text-gray-100 font-semibold text-center font-special border-b-4 border-blue-500 inline-block">N1 Series</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                 <div class="p-4 card-spotlight-special">
                     <div class="card-spotlight-content">
-                        <h3 class="text-xl font-bold">N1</h3>
-                        <p class="mt-2">Core AI runtime & backend, organization & spaces setup, model, prompt & inference configuration, and task automation with AI agents.</p>
+                        <h3 class="text-xl text-gray-100 font-bold">N1</h3>
+                        <p class="mt-2 text-gray-100">Core AI runtime & backend, organization & spaces setup, model, prompt & inference configuration, and task automation with AI agents.</p>
                     </div>
                 </div>
                 <div class="p-4 card-spotlight-special">
                     <div class="card-spotlight-content">
-                        <h3 class="text-xl font-bold">N1 Pro</h3>
-                        <p class="mt-2">Includes all N1 features plus fine-tuning with adapters, hyperparameter optimization, and quantization. RLHF for preference collection, reward modeling, and behavior optimization.</p>
+                        <h3 class="text-xl text-gray-100 font-bold">N1 Pro</h3>
+                        <p class="mt-2 text-gray-100">Includes all N1 features plus fine-tuning with adapters, hyperparameter optimization, and quantization. RLHF for preference collection, reward modeling, and behavior optimization.</p>
                     </div>
                 </div>
                 <div class="p-4 card-spotlight-special">
                     <div class="card-spotlight-content">
-                        <h3 class="text-xl font-bold">N1 Max</h3>
-                        <p class="mt-2">Includes all N1 Pro features plus EDA, seed data generation, and data augmentation.</p>
+                        <h3 class="text-xl text-gray-100 font-bold">N1 Max</h3>
+                        <p class="mt-2 text-gray-100">Includes all N1 Pro features plus EDA, seed data generation, and data augmentation.</p>
                     </div>
                 </div>
             </div>
@@ -77,11 +97,9 @@
         <!-- Enhanced Features Section -->
         <section id="features-duplicate" class="mb-8 max-w-full">
             <h2 class="text-2xl font-semibold">Platform Capabilities</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
-                <div class="container">
-                    <div class="card card-fine-tuning">
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">                <div class="container">
+                    <div class="card">
                         <div class="front">
-                            <div class="front__img"></div>
                             <div class="front__content">
                                 <div class="front__content--header">Fine-Tuning</div>
                                 <div class="front__content--add">Easily fine-tune LLMs for your specific use cases.</div>
@@ -89,15 +107,14 @@
                         </div>
                         <div class="back">
                             <div class="back__content">
+                                <div class="front__content--header">Fine-Tuning</div>
                                 <p>Fine-tune models to adapt to unique business needs, ensuring optimal performance for specific tasks.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="card card-deployment">
+                </div>                <div class="container">
+                    <div class="card">
                         <div class="front">
-                            <div class="front__img"></div>
                             <div class="front__content">
                                 <div class="front__content--header">Deployment</div>
                                 <div class="front__content--add">Deploy AI models seamlessly with enterprise-grade tools.</div>
@@ -105,15 +122,14 @@
                         </div>
                         <div class="back">
                             <div class="back__content">
+                                <div class="front__content--header">Deployment</div>
                                 <p>Streamline deployment processes for AI solutions, ensuring scalability and reliability.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="card card-monitoring">
+                </div>                <div class="container">
+                    <div class="card">
                         <div class="front">
-                            <div class="front__img"></div>
                             <div class="front__content">
                                 <div class="front__content--header">Monitoring</div>
                                 <div class="front__content--add">Track and optimize model performance in real-time.</div>
@@ -121,15 +137,14 @@
                         </div>
                         <div class="back">
                             <div class="back__content">
+                                <div class="front__content--header">Monitoring</div>
                                 <p>Monitor AI models to ensure they meet performance benchmarks and adapt to changing requirements.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="card card-rlhf">
+                </div>                <div class="container">
+                    <div class="card">
                         <div class="front">
-                            <div class="front__img"></div>
                             <div class="front__content">
                                 <div class="front__content--header">RLHF</div>
                                 <div class="front__content--add">Reinforcement Learning with Human Feedback for model optimization.</div>
@@ -137,15 +152,14 @@
                         </div>
                         <div class="back">
                             <div class="back__content">
+                                <div class="front__content--header">RLHF</div>
                                 <p>Leverage human feedback to refine AI behavior and improve decision-making accuracy.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="card card-rag">
+                </div>                <div class="container">
+                    <div class="card">
                         <div class="front">
-                            <div class="front__img"></div>
                             <div class="front__content">
                                 <div class="front__content--header">RAG</div>
                                 <div class="front__content--add">Retrieve and Generate for knowledge-intensive tasks.</div>
@@ -153,15 +167,14 @@
                         </div>
                         <div class="back">
                             <div class="back__content">
+                                <div class="front__content--header">RAG</div>
                                 <p>Combine retrieval and generation techniques to handle complex, knowledge-driven tasks effectively.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="card card-prompt-engineering">
+                </div>                <div class="container">
+                    <div class="card">
                         <div class="front">
-                            <div class="front__img"></div>
                             <div class="front__content">
                                 <div class="front__content--header">Prompt Engineering</div>
                                 <div class="front__content--add">Design and optimize prompts for better AI responses.</div>
@@ -175,11 +188,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div class="card card-agent">
+                </div>                <div class="container">
+                    <div class="card">
                         <div class="front">
-                            <div class="front__img"></div>
                             <div class="front__content">
                                 <div class="front__content--header">Agent</div>
                                 <div class="front__content--add">Deploy autonomous agents for task automation.</div>
@@ -195,7 +206,7 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="card card-data-generation-basic">
+                    <div class="card">
                         <div class="front">
                             <div class="front__content">
                                 <div class="front__content--header">Data Generation</div>
@@ -220,12 +231,12 @@
             <!-- Real-World Applications Card -->
             <div class="p-6 card-spotlight-no-hover">
                 <div class="card-spotlight-content">
-                    <h2 class="text-2xl font-semibold">Real-World Applications</h2>
-                    <p class="mt-4">Discover how our platform is transforming industries:</p>
-                    <ul class="list-disc list-inside mt-2">
-                        <li class="hover:text-blue-600 transition-colors duration-300">Automating customer support with AI chatbots.</li>
-                        <li class="hover:text-blue-600 transition-colors duration-300">Generating personalized marketing content.</li>
-                        <li class="hover:text-blue-600 transition-colors duration-300">Streamlining data analysis for business insights.</li>
+                    <h2 class="text-2xl font-semibold text-blue-200">Real-World Applications</h2>
+                    <p class="mt-4 text-gray-100">Discover how our platform is transforming industries:</p>
+                    <ul class="list-disc list-inside mt-2 text-gray-100">
+                        <li class="hover:text-blue-400 transition-colors duration-300">Automating customer support with AI chatbots.</li>
+                        <li class="hover:text-blue-400 transition-colors duration-300">Generating personalized marketing content.</li>
+                        <li class="hover:text-blue-400 transition-colors duration-300">Streamlining data analysis for business insights.</li>
                     </ul>
                 </div>
             </div>
@@ -233,16 +244,18 @@
             <!-- Technical Overview Card -->
             <div class="p-6 card-spotlight-no-hover">
                 <div class="card-spotlight-content">
-                    <h2 class="text-2xl font-semibold">Technical Overview</h2>
-                    <p class="mt-4">Our platform integrates seamlessly with your existing workflows, offering:</p>
-                    <ul class="list-disc list-inside mt-2">
-                        <li class="hover:text-blue-600 transition-colors duration-300">API integrations for custom workflows.</li>
-                        <li class="hover:text-blue-600 transition-colors duration-300">Scalable infrastructure for enterprise needs.</li>
-                        <li class="hover:text-blue-600 transition-colors duration-300">Comprehensive analytics and reporting tools.</li>
+                    <h2 class="text-2xl font-semibold text-blue-200">Technical Overview</h2>
+                    <p class="mt-4 text-gray-100">Built for developers and ML teams, our platform provides a robust technical foundation designed for flexibility, performance, and security:</p>
+                    <ul class="list-disc list-inside mt-2 text-gray-100">
+                        <li class="hover:text-blue-400 transition-colors duration-300">Real-time inference via GPU-accelerated endpoints.</li>
+                        <li class="hover:text-blue-400 transition-colors duration-300">Secure data storage using encryption at rest and in transit.</li>
+                        <li class="hover:text-blue-400 transition-colors duration-300">Monitoring and detailed system health logs.</li>
+                        <li class="hover:text-blue-400 transition-colors duration-300">Support for RAG pipelines with vector search (ChromaDB, Weaviate, FAISS).</li>
                     </ul>
+                    <p class="mt-4 text-gray-100">Our platform abstracts the heavy lifting so your team can focus on rapid prototyping, deployment, and scaling — with the tools and flexibility to suit any MLOps workflow.</p>
                 </div>
             </div>
-        </section>
+
 
         <!-- Enhanced Testimonials Section -->
         <section id="testimonials" class="mb-8">
@@ -347,9 +360,9 @@
         <!-- CTA Section -->
         <section id="cta" class="bg-blue-600 text-white p-8 rounded-lg shadow-md text-center">
             <h2 class="text-3xl font-bold">Get Started with GenAI</h2>
-            <p class="mt-4">Sign up today or request a demo to see how we can transform your business.</p>
+            <p class="mt-4">Mail Us today or request a demo to see how we can transform your business.</p>
             <div class="mt-6"></div>
-                <a href="#signup" class="bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100">Sign Up</a>
+                <a href="#signup" class="bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100">Mail Us</a>
                 <a href="#demo" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">Request a Demo</a>
             </div>
         </section>

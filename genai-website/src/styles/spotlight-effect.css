@@ -50,7 +50,7 @@
     border: 2px solid #555;
     border-radius: 1rem;
     padding: 2.5rem;
-    color: #e0e0e0;
+    color: #60A5FA;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -73,6 +73,85 @@
 }
 .card-spotlight-special:hover::before {
     transform: translate(-50%, -50%) scale(1);
+}
+
+/* Custom styles for the top Technical Overview card */
+.card-spotlight-premium {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2A2D3E, #1E2132);
+    border: 2px solid #3B4252;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    color: #E5E9F0;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s;
+}
+
+.card-spotlight-premium::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%;
+    height: 250%;
+    background: radial-gradient(circle, rgba(129, 161, 193, 0.25) 20%, transparent 80%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.card-spotlight-premium:hover {
+    transform: translateY(-5px) scale(0.98);
+    box-shadow: 0px 0px 30px 1px rgba(136, 192, 208, 0.3);
+    border-radius: 20px;
+}
+
+.card-spotlight-premium:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.card-spotlight-premium {
+    position: relative;
+    z-index: 1;
+}
+
+.card-spotlight-premium::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px; /* Controls border thickness */
+    border-radius: inherit;
+    background: linear-gradient(163deg, #88C0D0 0%, #5E81AC 100%);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.card-spotlight-premium:hover::after {
+    opacity: 1;
+}
+
+.card-spotlight-premium h2 {
+    color: #88C0D0;
+    font-weight: 700;
+}
+
+.card-spotlight-premium ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(129, 161, 193, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.card-spotlight-premium ul li:hover {
+    transform: translateX(5px);
+    color: #88C0D0;
 }
 
 /* Reveal animation styles */
@@ -174,7 +253,7 @@
 /* Updated styles for the card */
 .card {
     position: relative;
-    width: 300px;
+    width: 380px;
     height: 300px;
     perspective: 1000px;
     /*background-color: #1a1a1a; /* Dark background color */
@@ -249,76 +328,46 @@
     background: transparent;
 }
 
-/* Unique animation for RLHF card */
+/* Standardized RLHF card to match Data Generation */
 .card-rlhf {
-    position: absolute; /* Position the card absolutely within the placeholder */
-    top: 70%; /* Positioned below the navbar */
-    left: 50%;
-    height: 200px; /* Reduced height */
-    transform: translate(-50%, -50%) scale(0.8); /* Slightly smaller initial scale */
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a; /* Same as Data Generation */
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: none; /* Removed hover effects */
 }
 
 .card-rlhf:hover {
-    transform: translate(-50%, -50%) scale(1.1) rotate(3deg); /* Expand and animate on hover */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+    transform: none; /* Disabled hover scaling */
+    box-shadow: none; /* Disabled hover shadow */
 }
 
 .card-rlhf::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150%; /* Reduced glowing circle size */
-    height: 150%; /* Reduced glowing circle size */
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 80%);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    pointer-events: none;
-    opacity: 0.9;
+    content: none; /* Removed pseudo-element */
 }
 
-.card-rlhf:hover::before {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* Unique animation for Monitoring card */
+/* Standardized Monitoring card to match Data Generation */
 .card-monitoring {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #0d47a1, #42a5f5);
-    border: 2px solid #1e88e5;
-    border-radius: 1rem;
-    padding: 2.5rem;
-    color: #ffffff;
+    background: #1a1a1a; /* Same as Data Generation */
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    color: #e0e0e0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transition: none; /* Removed hover effects */
 }
 
 .card-monitoring:hover {
-    transform: scale(1.15) rotate(-2deg);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+    transform: none; /* Disabled hover scaling */
+    box-shadow: none; /* Disabled hover shadow */
 }
 
 .card-monitoring::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 250%;
-    height: 250%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 80%);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    pointer-events: none;
-    opacity: 0.9;
-}
-
-.card-monitoring:hover::before {
-    transform: translate(-50%, -50%) scale(1);
+    content: none; /* Removed pseudo-element */
 }
 
 /* Styles for Data Generation card */
