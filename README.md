@@ -1,4 +1,4 @@
-# Gen-X Startup Website (Internal)
+# Gen-X Platform Website (Internal)
 
 This is the internal repository for the Gen-X's platform website. It contains the source code for the landing page and UI components used to present our platform offerings.
 
