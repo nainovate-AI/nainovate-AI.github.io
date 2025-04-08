@@ -40,6 +40,160 @@
     animation: reveal 0.6s ease-out 0.5s forwards;
 }
 
+/* Data Privacy and Flow Section */
+/* Section Wrapper */
+.feature-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  /*background-color: #000; /* match your site theme */
+  color: #fff;
+}
+
+/* Each Column */
+.feature-columns .column {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Icon Grid */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Each Icon Box - Base Styles */
+.icon-grid img,
+.icon-grid .icon {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  aspect-ratio: 1/1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+  background-blend-mode: normal;
+  opacity: 1;
+  transition: transform 0.2s ease;
+}
+
+/* Cloud Provider Icons */
+.icon-aws {
+  background-image: url('../assets/icons/aws-icon.png');
+}
+
+.icon-azure {
+  background-image: url('../assets/icons/azure-icon.png');
+}
+
+.icon-gcp {
+  background-image: url('../assets/icons/gcp-icon.png');
+}
+
+.icon-oracle {
+  background-image: url('../assets/icons/oracle-icon.png');
+}
+
+.icon-ibm {
+  background-image: url('../assets/icons/ibm-icon.png');
+}
+
+.icon-cloudflare {
+  background-image: url('../assets/icons/cloudflare-icon.png');
+}
+
+/* Storage Icons */
+.icon-drive {
+  background-image: url('../assets/icons/drive-icon.png');
+}
+
+.icon-s3 {
+  background-image: url('../assets/icons/s3-icon.png');
+}
+
+.icon-cloud {
+  background-image: url('../assets/icons/cloud-icon.png');
+}
+
+/* AI Model Icons */
+.icon-gpt4 {
+  background-image: url('../assets/icons/gpt4-icon.png');
+}
+
+.icon-claude {
+  background-image: url('../assets/icons/claude-icon.png');
+}
+
+.icon-gemini {
+  background-image: url('../assets/icons/gemini-icon.png');
+}
+
+.icon-cohere {
+  background-image: url('../assets/icons/cohere-icon.png');
+}
+
+.icon-llama {
+  background-image: url('../assets/icons/llama-icon.png');
+}
+
+.icon-mistral {
+  background-image: url('../assets/icons/mistral-icon.png');
+}
+
+.icon-grid img:hover,
+.icon-grid .icon:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+/* Heading */
+.feature-columns .column h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+/* Description */
+.feature-columns .column p {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+/* Special for cloud graphic (centered image style) */
+.icon-image {
+  width: 100%;
+  max-width: 280px;
+  margin-bottom: 1.5rem;
+}
+
+.icon-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+
 /* ===== Spotlight effect styles ===== */
 .card-spotlight {
     position: relative;
