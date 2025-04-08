@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/output.css"> <!-- Corrected path -->
+    <link rel="stylesheet" href="./styles/spotlight-effect.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>GenAI Startup</title>
+</head>
+<body class="dark-gradient text-gray-200">
+    <header id="navbar" class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex justify-between items-center rounded-lg w-full z-50 transition-all duration-300">
+        <div class="flex items-center">
+            <img src="assets/favicon.ico" alt="GenX Logo" class="h-8 w-8 mr-2">
+            <h1 class="text-3xl font-bold">GenX</h1>
+        </div>
+        <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+        <nav id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-4">
+            <ul class="flex flex-col md:flex-row md:space-x-4">
+                <li><a href="#features" class="hover:underline">Features</a></li>
+                <li><a href="#use-cases-technical" class="hover:underline">Use Cases</a></li>
+                <li><a href="#testimonials" class="hover:underline">Testimonials</a></li>
+                <li><a href="#cta" class="hover:underline">Get Started</a></li>
+            </ul>
+        </nav>
+        <a href="#cta" class="hidden md:block bg-gradient-to-r from-gray-800 to-black text-blue-600 px-4 py-2 rounded-lg shadow hover:from-gray-700 hover:to-gray-900">Sign Up</a>
+    </header>
+    <main class="p-6">
+        <!-- Hero Section -->
+        <section class="hero-section-card">
+            <h2 class="text-4xl font-bold text-hover-effect">
+                Empowering AI Innovation
+            </h2>
+        <br></br>
+            <p class="text-lg mt-4 text-hover-effect">
+                Fine-tune, deploy, and monitor LLMs for custom AI workflows.
+            </p>
+            <div class="mt-6 flex justify-center">
+                <a href="#features" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700">
+                    Explore Features
+                </a>
+                <a href="#cta" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">
+                    Request a Demo
+                </a>
+            </div>
+        </section>
+
+        <!-- Engine Features Section -->
+        <section id="features" class="mb-8">
+            <h2 class="text-3xl font-semibold text-center font-special border-b-4 border-blue-500 inline-block">N1 Series</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                <div class="p-4 card-spotlight-special">
+                    <div class="card-spotlight-content">
+                        <h3 class="text-xl font-bold">N1</h3>
+                        <p class="mt-2">Core AI runtime & backend, organization & spaces setup, model, prompt & inference configuration, and task automation with AI agents.</p>
+                    </div>
+                </div>
+                <div class="p-4 card-spotlight-special">
+                    <div class="card-spotlight-content">
+                        <h3 class="text-xl font-bold">N1 Pro</h3>
+                        <p class="mt-2">Includes all N1 features plus fine-tuning with adapters, hyperparameter optimization, and quantization. RLHF for preference collection, reward modeling, and behavior optimization.</p>
+                    </div>
+                </div>
+                <div class="p-4 card-spotlight-special">
+                    <div class="card-spotlight-content">
+                        <h3 class="text-xl font-bold">N1 Max</h3>
+                        <p class="mt-2">Includes all N1 Pro features plus EDA, seed data generation, and data augmentation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Features Section -->
+        <section id="features-duplicate" class="mb-8 max-w-full">
+            <h2 class="text-2xl font-semibold">Platform Capabilities</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+                <div class="container">
+                    <div class="card card-fine-tuning">
+                        <div class="front">
+                            <div class="front__img"></div>
+                            <div class="front__content">
+                                <div class="front__content--header">Fine-Tuning</div>
+                                <div class="front__content--add">Easily fine-tune LLMs for your specific use cases.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <p>Fine-tune models to adapt to unique business needs, ensuring optimal performance for specific tasks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card card-deployment">
+                        <div class="front">
+                            <div class="front__img"></div>
+                            <div class="front__content">
+                                <div class="front__content--header">Deployment</div>
+                                <div class="front__content--add">Deploy AI models seamlessly with enterprise-grade tools.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <p>Streamline deployment processes for AI solutions, ensuring scalability and reliability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card card-monitoring">
+                        <div class="front">
+                            <div class="front__img"></div>
+                            <div class="front__content">
+                                <div class="front__content--header">Monitoring</div>
+                                <div class="front__content--add">Track and optimize model performance in real-time.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <p>Monitor AI models to ensure they meet performance benchmarks and adapt to changing requirements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card card-rlhf">
+                        <div class="front">
+                            <div class="front__img"></div>
+                            <div class="front__content">
+                                <div class="front__content--header">RLHF</div>
+                                <div class="front__content--add">Reinforcement Learning with Human Feedback for model optimization.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <p>Leverage human feedback to refine AI behavior and improve decision-making accuracy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card card-rag">
+                        <div class="front">
+                            <div class="front__img"></div>
+                            <div class="front__content">
+                                <div class="front__content--header">RAG</div>
+                                <div class="front__content--add">Retrieve and Generate for knowledge-intensive tasks.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <p>Combine retrieval and generation techniques to handle complex, knowledge-driven tasks effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card card-prompt-engineering">
+                        <div class="front">
+                            <div class="front__img"></div>
+                            <div class="front__content">
+                                <div class="front__content--header">Prompt Engineering</div>
+                                <div class="front__content--add">Design and optimize prompts for better AI responses.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <div class="front__content--header">Prompt Engineering</div>
+                                <p>Create and refine prompts to guide AI models in generating accurate and relevant outputs.</p>
+                                <p>Utilize advanced techniques to enhance prompt effectiveness, ensuring optimal model performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card card-agent">
+                        <div class="front">
+                            <div class="front__img"></div>
+                            <div class="front__content">
+                                <div class="front__content--header">Agent</div>
+                                <div class="front__content--add">Deploy autonomous agents for task automation.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <div class="front__content--header">Agent</div>
+                                <p>Utilize AI agents to automate repetitive tasks, enhancing productivity and efficiency.</p>
+                                <p>Integrate AI agents into workflows to handle routine tasks, freeing up human resources for strategic initiatives.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="card card-data-generation-basic">
+                        <div class="front">
+                            <div class="front__content">
+                                <div class="front__content--header">Data Generation</div>
+                                <div class="front__content--add">Generate synthetic data for training and testing models.</div>
+                            </div>
+                        </div>
+                        <div class="back">
+                            <div class="back__content">
+                                <div class="front__content--header">Data Generation</div>
+                                <p>Generate synthetic data for training and testing models.</p>
+                                <p>Enhance model training with synthetic data generation, ensuring diverse and comprehensive datasets.</p>
+                                <p>Utilize advanced techniques to create high-quality synthetic datasets that improve model robustness.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Use Cases and Technical Overview Section -->
+        <section id="use-cases-technical" class="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Real-World Applications Card -->
+            <div class="p-6 card-spotlight-no-hover">
+                <div class="card-spotlight-content">
+                    <h2 class="text-2xl font-semibold">Real-World Applications</h2>
+                    <p class="mt-4">Discover how our platform is transforming industries:</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li class="hover:text-blue-600 transition-colors duration-300">Automating customer support with AI chatbots.</li>
+                        <li class="hover:text-blue-600 transition-colors duration-300">Generating personalized marketing content.</li>
+                        <li class="hover:text-blue-600 transition-colors duration-300">Streamlining data analysis for business insights.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Technical Overview Card -->
+            <div class="p-6 card-spotlight-no-hover">
+                <div class="card-spotlight-content">
+                    <h2 class="text-2xl font-semibold">Technical Overview</h2>
+                    <p class="mt-4">Our platform integrates seamlessly with your existing workflows, offering:</p>
+                    <ul class="list-disc list-inside mt-2">
+                        <li class="hover:text-blue-600 transition-colors duration-300">API integrations for custom workflows.</li>
+                        <li class="hover:text-blue-600 transition-colors duration-300">Scalable infrastructure for enterprise needs.</li>
+                        <li class="hover:text-blue-600 transition-colors duration-300">Comprehensive analytics and reporting tools.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Testimonials Section -->
+        <section id="testimonials" class="mb-8">
+            <h2 class="text-2xl font-semibold">What Our Clients Say</h2>
+            <div class="mt-4 overflow-hidden p-4 rounded-lg transparent-bg">
+                <div class="flex space-x-6 animate-scroll">
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"GenAI's platform has revolutionized our AI workflows. It's fast, reliable, and easy to use!"</p>
+                            <footer class="mt-2 text-right">- Jane Doe, CEO of AI Solutions</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"The deployment tools are seamless and saved us countless hours."</p>
+                            <footer class="mt-2 text-right">- John Smith, CTO of Tech Innovators</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"The fine-tuning capabilities are unmatched. Our models perform better than ever."</p>
+                            <footer class="mt-2 text-right">- Sarah Lee, Data Scientist</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"GenAI's customer support is top-notch. They helped us every step of the way."</p>
+                            <footer class="mt-2 text-right">- Michael Brown, Project Manager</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"The analytics tools provided deep insights into our AI models."</p>
+                            <footer class="mt-2 text-right">- Emily Davis, AI Analyst</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"We achieved faster deployment times thanks to GenAI's platform."</p>
+                            <footer class="mt-2 text-right">- Chris Wilson, DevOps Engineer</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"The platform's scalability is perfect for our growing business needs."</p>
+                            <footer class="mt-2 text-right">- Laura Martinez, COO</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center"></blockquote>
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"GenAI's RLHF feature improved our model's decision-making significantly."</p>
+                            <footer class="mt-2 text-right">- Kevin Johnson, AI Researcher</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"The user-friendly interface made it easy for our team to adapt quickly."</p>
+                            <footer class="mt-2 text-right">- Rachel Green, Product Manager</footer>
+                        </div>
+                    </blockquote>
+                    <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
+                        <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
+                        <div class="card-spotlight-content">
+                            <p class="italic">"GenAI's data generation tools saved us time and resources."</p>
+                            <footer class="mt-2 text-right">- David Clark, AI Engineer</footer>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+
+        <style>
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-100% - 1rem)); }
+            }
+
+            .animate-scroll {
+                display: flex;
+                animation: scroll 30s linear infinite;
+            }
+
+            .card-spotlight {
+                min-width: 400px; /* Increased width for a more rectangular shape */
+                max-width: 400px; /* Increased width for a more rectangular shape */
+                background-color: #1a202c; /* Darker shade closer to black */
+                color: #e2e8f0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 8px; /* Ensures rectangular shape */
+            }
+        </style>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta" class="bg-blue-600 text-white p-8 rounded-lg shadow-md text-center">
+            <h2 class="text-3xl font-bold">Get Started with GenAI</h2>
+            <p class="mt-4">Sign up today or request a demo to see how we can transform your business.</p>
+            <div class="mt-6"></div>
+                <a href="#signup" class="bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100">Sign Up</a>
+                <a href="#demo" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">Request a Demo</a>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; 2025 GenAI. All rights reserved.</p>
+        <div class="mt-2">
+            <a href="#" class="hover:underline">Privacy Policy</a> | <a href="#" class="hover:underline">Terms of Service</a> | <a href="#" class="hover:underline">Contact Us</a>
+        </div>
+    </footer>
+    <script>
+        // Add entry animation for text-hover-effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.text-hover-effect');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            });
+
+            // Floating navbar on scroll functionality
+            const navbar = document.getElementById('navbar');
+            const navbarHeight = navbar.offsetHeight;
+            let isFloating = false;
+            
+            // Create a placeholder to prevent content jump when navbar becomes fixed
+            const placeholder = document.createElement('div');
+            placeholder.style.height = `${navbarHeight}px`;
+            placeholder.style.display = 'none';
+            document.body.insertBefore(placeholder, navbar.nextSibling);
+            
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                
+                // When scrolled past threshold, make navbar floating
+                if (scrollPosition > 50 && !isFloating) {
+                    navbar.classList.add('fixed', 'top-0', 'shadow-lg');
+                    navbar.classList.remove('w-full');
+                    navbar.classList.add('w-11/12', 'left-1/2', 'transform', '-translate-x-1/2');
+                    placeholder.style.display = 'block';
+                    isFloating = true;
+                } 
+                // When scrolled back to top, revert to normal
+                else if (scrollPosition <= 50 && isFloating) {
+                    navbar.classList.remove('fixed', 'top-0', 'shadow-lg', 'left-1/2', 'transform', '-translate-x-1/2');
+                    navbar.classList.remove('w-11/12');
+                    navbar.classList.add('w-full');
+                    placeholder.style.display = 'none';
+                    isFloating = false;
+                }
+            });
+        });
+
+        // Add fading effect that follows the mouse
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.querySelector('.hero-section-card');
+
+            if (heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    let fadingText = document.querySelector('.fading-text');
+
+                    if (!fadingText) {
+                        fadingText = document.createElement('div');
+                        fadingText.classList.add('fading-text');
+                        fadingText.textContent = ''; // No dynamic text, just the effect
+                        heroSection.appendChild(fadingText);
+                    }
+
+                    fadingText.style.left = `${x}px`;
+                    fadingText.style.top = `${y}px`;
+                    fadingText.style.opacity = '1';
+                    fadingText.style.transform = 'translate(-50%, -50%) scale(1)';
+
+                    clearTimeout(fadingText.timeout);
+                    fadingText.timeout = setTimeout(() => {
+                        fadingText.style.opacity = '0';
+                        fadingText.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                    }, 500);
+                });
+            }
+        });
+
+        // Add circular fading effect that follows the mouse
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.querySelector('.hero-section-card');
+
+            if (heroSection) {
+                heroSection.addEventListener('mousemove', (e) => {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    let fadingCircle = document.querySelector('.fading-circle');
+
+                    if (!fadingCircle) {
+                        fadingCircle = document.createElement('div');
+                        fadingCircle.classList.add('fading-circle');
+                        heroSection.appendChild(fadingCircle);
+                    }
+
+                    fadingCircle.style.left = `${x}px`;
+                    fadingCircle.style.top = `${y}px`;
+                    fadingCircle.style.opacity = '1';
+                    fadingCircle.style.transform = 'translate(-50%, -50%) scale(1)';
+
+                    clearTimeout(fadingCircle.timeout);
+                    fadingCircle.timeout = setTimeout(() => {
+                        fadingCircle.style.opacity = '0';
+                        fadingCircle.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                    }, 500);
+                });
+            }
+        });
+
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

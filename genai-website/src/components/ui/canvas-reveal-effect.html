@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Reveal Effect</title>
+    <link href="../../styles/output.css" rel="stylesheet">
+    <link href="../../styles/spotlight-effect.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <!-- Hero Section Card Component -->
+    <div class="hero-section-card">
+        <!-- Content of the hero section card -->
+        <div class="relative h-full w-full bg-black">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 to-transparent"></div>
+            <div class="grid grid-cols-10 gap-1 p-4">
+                <!-- Dot matrix effect using HTML and CSS -->
+                <div class="h-2 w-2 bg-blue-500"></div>
+                <div class="h-2 w-2 bg-purple-500"></div>
+                <div class="h-2 w-2 bg-green-500"></div>
+                <div class="h-2 w-2 bg-red-500"></div>
+                <div class="h-2 w-2 bg-yellow-500"></div>
+                <div class="h-2 w-2 bg-pink-500"></div>
+                <div class="h-2 w-2 bg-indigo-500"></div>
+                <div class="h-2 w-2 bg-blue-300"></div>
+                <div class="h-2 w-2 bg-purple-300"></div>
+                <div class="h-2 w-2 bg-green-300"></div>
+                <!-- More dots would go here -->
+            </div>
+            <div class="p-6 relative z-10 text-white">
+                <h2 class="text-2xl font-bold mb-4">Interactive Hero Section</h2>
+                <p class="text-gray-300">Move your mouse over this card to see the reveal effect in action.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.hero-section-card');
+            const circle = document.createElement('div');
+            circle.className = 'fading-circle';
+            card.appendChild(circle);
+
+            const handleMouseMove = (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                circle.style.left = `${x}px`;
+                circle.style.top = `${y}px`;
+            };
+
+            card.addEventListener('mousemove', handleMouseMove);
+        });
+    </script>
+</body>
+</html>

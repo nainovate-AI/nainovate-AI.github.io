@@ -1,0 +1,344 @@
+/* Spotlight effect styles */
+.card-spotlight {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    color: white;
+    transition: box-shadow 0.3s ease;
+}
+.card-spotlight::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 30%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+.card-spotlight:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+.card-spotlight-no-hover {
+    position: relative;
+    overflow: hidden;
+    background: #000; /* Preserve card color */
+    border: 1px solid #333; /* Preserve card border */
+    border-radius: 0.5rem;
+    padding: 2rem;
+    color: white;
+    transition: none; /* Remove hover effect */
+}
+.card-spotlight-no-hover::before {
+    content: none; /* Disable hover spotlight effect */
+}
+.card-spotlight-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* New class for a special feel effect */
+.card-spotlight-special {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    border: 2px solid #555;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-spotlight-special::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%;
+    height: 250%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 80%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    pointer-events: none;
+    opacity: 0.8;
+}
+.card-spotlight-special:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+.card-spotlight-special:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Reveal animation styles */
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.reveal {
+    opacity: 0;
+    animation: reveal 0.6s ease-out forwards;
+}
+
+/* Add text-hover-effect styles */
+.text-hover-effect {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.text-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #4F46E5, #3B82F6);
+    transition: top 0.3s ease;
+}
+
+.text-hover-effect:hover::before {
+    top: 0;
+}
+
+/* Updated hero-section-card styles */
+.hero-section-card {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: #000; /* Solid black background */
+    color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.hero-section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.05) 1px, transparent 1px),
+                radial-gradient(circle, rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+                radial-gradient(circle, rgba(0, 0, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-blend-mode: screen;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-section-card .fading-circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(0, 0, 0, 0) 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.hero-section-card:hover .fading-circle {
+    opacity: 1;
+}
+
+/* New card effect styles */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Updated styles for the card */
+.card {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    /*background-color: #1a1a1a; /* Dark background color */
+    color: #e0e0e0; /* Light text color for dark theme */
+}
+
+.card:hover .front {
+    transform: rotateY(180deg);
+}
+
+.card:hover .back {
+    transform: rotateY(360deg);
+}
+
+/* Updated styles for the card front */
+.front {
+    background-color: #000; /* Black background for the front of the card */
+    color: #fff; /* White text color for better readability */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.front__img {
+    display: none; /* Remove the image from the front of the card */
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: all 0.9s;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 2px rgba(190, 190, 190, 0.4);
+}
+
+.front__content {
+    height: 100%;
+    text-align: center; /* Center-align text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center text */
+    align-items: center; /* Horizontally center text */
+}
+
+.front__content--add {
+    font-size: 12px;
+    color: #949494;
+}
+
+.front__content--header {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 7px 0;
+}
+
+.back {
+    background-color: #333;
+    color: #fff;
+    transform: rotateY(180deg);
+}
+
+.back__content {
+    padding: 20px;
+}
+
+/* New transparent background class */
+.transparent-bg {
+    background: transparent;
+}
+
+/* Unique animation for RLHF card */
+.card-rlhf {
+    position: absolute; /* Position the card absolutely within the placeholder */
+    top: 70%; /* Positioned below the navbar */
+    left: 50%;
+    height: 200px; /* Reduced height */
+    transform: translate(-50%, -50%) scale(0.8); /* Slightly smaller initial scale */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-rlhf:hover {
+    transform: translate(-50%, -50%) scale(1.1) rotate(3deg); /* Expand and animate on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+}
+
+.card-rlhf::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%; /* Reduced glowing circle size */
+    height: 150%; /* Reduced glowing circle size */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 80%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.card-rlhf:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Unique animation for Monitoring card */
+.card-monitoring {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0d47a1, #42a5f5);
+    border: 2px solid #1e88e5;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-monitoring:hover {
+    transform: scale(1.15) rotate(-2deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+}
+
+.card-monitoring::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%;
+    height: 250%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 80%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.card-monitoring:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Styles for Data Generation card */
+.card-data-generation {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a; /* Simplified solid background */
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: none; /* Removed hover effects */
+}
+
+.card-data-generation::before {
+    content: none; /* Removed pseudo-element */
+}
+
+.card-data-generation:hover {
+    transform: none; /* Disabled hover scaling */
+    box-shadow: none; /* Disabled hover shadow */
+}

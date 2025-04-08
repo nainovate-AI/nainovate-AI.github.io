@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .dark-gradient {
+    background: linear-gradient(to bottom, #000000, #1a1a1a);
+  }
+}
+
+@layer components {
+  .card-spotlight {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card-spotlight::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 30%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .card-spotlight:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .card-spotlight-no-hover {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    color: white;
+    /* Removed hover effect on the card */
+  }
+
+  .card-spotlight-no-hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 30%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none; /* Disabled hover effect */
+  }
+
+  .card-spotlight-no-hover .card-spotlight-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-spotlight-no-hover .card-spotlight-content:hover {
+    color: #4F46E5; /* Retain text hover effect */
+  }
+
+  /* Hero Section Styles */
+  .hero-section-card {
+    @apply bg-black p-8 rounded-lg shadow-md text-center;
+  }
+}
