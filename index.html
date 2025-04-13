@@ -4,32 +4,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link rel="stylesheet" href="styles/output.css"> <!-- Corrected path -->    <link rel="stylesheet" href="./styles/combined-styles.css">
     <link rel="stylesheet" href="./styles/enhanced-features-cards.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <title>Gen-X Startup</title>
+    <title>GenX Startup</title>
 </head>
 <body class="dark-gradient text-gray-200">
     <header id="navbar" class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex justify-between items-center rounded-lg w-full z-50 transition-all duration-300">        <div class="flex items-center">
-            <img src="assets/icons/genX-icon.png" alt="Gen-X Logo" class="h-8 w-8 mr-2">
-            <h1 class="text-3xl font-bold">Gen-X</h1>
+            <img src="assets/icons/genX-icon.png" alt="GenX Logo" class="h-8 w-8 mr-2">
+            <h1 class="text-3xl font-bold">GenX</h1>
         </div>
         <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
-        </button>
-        <nav id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-4">
+        </button>        <nav id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 md:items-center">
             <ul class="flex flex-col md:flex-row md:space-x-4">
                 <li><a href="#features" class="hover:underline">Features</a></li>
                 <li><a href="#use-cases-technical" class="hover:underline">Use Cases</a></li>
                 <li><a href="#testimonials" class="hover:underline">Testimonials</a></li>
                 <li><a href="#cta" class="hover:underline">Get Started</a></li>
             </ul>
+            <!-- Simple contact button that matches nav style -->
+            <a href="#" class="hover:underline contact-button">Contact Us</a>
         </nav>
-        <button class="cssbuttons-io">
-            <span>
-              <img src="assets/icons/mail-icon.png" alt="Mail Icon" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 8px;" />
-              Contact Us
-            </span>
-          </button>
           
     </header>
     <main class="p-6">
@@ -50,22 +45,52 @@
                     Request a Demo
                 </a>
             </div>
-        </section>        
-          <!-- Platform Overview Section -->
+        </section>
+
+        
+
+          <!-- Why Choose Us -->
         <section class="mb-8">
             <div class="platform-overview">
-                <span class="platform-overview-tag">Why Us</span>
-                <h2 class="platform-overview-title">Tailoring smart Intelligence for driving impactful results</h2> <!-- Added a new line for better readability -->
+                <span class="platform-overview-tag">Why Choose Us</span>
+                <h2 class="platform-overview-title">Tailoring smart Intelligence for driving impactful Results</h2> <!-- Added a new line for better readability -->
                 <p class="platform-overview-text">
                     Unlock peak performance for your most critical applications using domain-aware LLM optimization. From advanced RAG workflows to precision evaluation tools, we equip your models to our Engines, delivering impactful, production-grade outcomes.
                 </p>
             </div>
         </section>
+
+          <!-- What do we offer -->
+          <section class="mb-8">
+            <div class="platform-overview">
+                <span class="platform-overview-tag">What do we offer</span>
+                <h2 class="platform-overview-title">Empowering AI Workflows from Prototype to Production</h2> 
+                <p class="platform-overview-text">
+                    GenX delivers an end-to-end platform for building, deploying, and optimizing Large Language Models. From fine-tuning and RAG pipelines to real-time inference and RLHF, we provide everything you need to turn your ideas into production-ready AI applications at scale, with speed, and with precision.
+                </p>
+                <!-- <br></br> -->
+                <!-- <p class="platform-overview-tag lowercase">Our GenX Engine is available in three powerful configurations:</p> -->
+                
+            </div>
+        </section>        
         
+        
+        <!-- image with hover effect -->
+        <div class="image-card">
+            <img src="assets/images/workflow-image.png" alt="Transparent Feature" />
+        </div>
+          
+          
+        <!-- what do we do-->
 
         <!-- Engine Features Section -->
         <section id="features" class="mb-8">
-            <h2 class="text-3xl text-gray-100 font-semibold text-center font-special border-b-4 border-blue-500 inline-block">N1 Series</h2>
+            <div class="text-center">
+                <h2 class="text-3xl text-gray-100 font-semibold font-special border-b-4 border-blue-500 inline-block mb-4">
+                  Product Tiers
+                </h2>
+                <p class="platform-overview-text mt-7">Our GenX Engine is available in three powerful configurations:</p>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                 <div class="p-4 card-spotlight-special">
                     <div class="card-spotlight-content">
@@ -90,19 +115,25 @@
 
         <!-- Enhanced Features Section -->
         <section id="features-duplicate" class="mb-8 max-w-full">
-            <h2 class="text-2xl font-semibold">Platform Capabilities</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">                <div class="container">
+            <div class="text-center">
+                <h2 class="text-3xl text-gray-100 font-semibold font-special border-b-4 border-blue-500 inline-block mb-4">
+                  Platform Functionalities
+                </h2>
+                <p class="platform-overview-text mt-4 mb-4">We support cutting edge technologies that enhance AI capabilities and streamline workflows, we believe in continuous innovation as we adapt ourselves to how the AI regime changes. Some of our core functionalities include:</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">                
+                <div class="container">
                     <div class="card">
                         <div class="front">
                             <div class="front__content">
                                 <div class="front__content--header">Fine-Tuning</div>
-                                <div class="front__content--add">Easily fine-tune LLMs for your specific use cases.</div>
+                                <div class="front__content--add">Efficiently customize LLMs for your domain-specific needs.</div>
                             </div>
                         </div>
                         <div class="back">
                             <div class="back__content">
                                 <div class="front__content--header">Fine-Tuning</div>
-                                <p>Fine-tune models to adapt to unique business needs, ensuring optimal performance for specific tasks.</p>
+                                <p>Adapt pre-trained models with lightweight tuning for targeted performance and fast deployment.</p>
                             </div>
                         </div>
                     </div>
@@ -110,14 +141,14 @@
                     <div class="card">
                         <div class="front">
                             <div class="front__content">
-                                <div class="front__content--header">Deployment</div>
-                                <div class="front__content--add">Deploy AI models seamlessly with enterprise-grade tools.</div>
+                                <div class="front__content--header">Inference</div>
+                                <div class="front__content--add">Launch models to production-grade endpoints seamlessly.</div>
                             </div>
                         </div>
                         <div class="back">
                             <div class="back__content">
-                                <div class="front__content--header">Deployment</div>
-                                <p>Streamline deployment processes for AI solutions, ensuring scalability and reliability.</p>
+                                <div class="front__content--header">Inference</div>
+                                <p>Deploy models with low-latency inference, scaling effortlessly with enterprise demands.</p>
                             </div>
                         </div>
                     </div>
@@ -126,13 +157,13 @@
                         <div class="front">
                             <div class="front__content">
                                 <div class="front__content--header">Monitoring</div>
-                                <div class="front__content--add">Track and optimize model performance in real-time.</div>
+                                <div class="front__content--add">Track model health, usage, and performance metrics in real time.</div>
                             </div>
                         </div>
                         <div class="back">
                             <div class="back__content">
                                 <div class="front__content--header">Monitoring</div>
-                                <p>Monitor AI models to ensure they meet performance benchmarks and adapt to changing requirements.</p>
+                                <p>Get visibility into your AI operations and ensure models stay performant, safe, and aligned.</p>
                             </div>
                         </div>
                     </div>
@@ -141,13 +172,13 @@
                         <div class="front">
                             <div class="front__content">
                                 <div class="front__content--header">RLHF</div>
-                                <div class="front__content--add">Reinforcement Learning with Human Feedback for model optimization.</div>
+                                <div class="front__content--add">Optimize model behavior using human preferences.</div>
                             </div>
                         </div>
                         <div class="back">
                             <div class="back__content">
                                 <div class="front__content--header">RLHF</div>
-                                <p>Leverage human feedback to refine AI behavior and improve decision-making accuracy.</p>
+                                <p>Leverage Reinforcement Learning with Human Feedback to refine AI behavior and improve decision-making accuracy.</p>
                             </div>
                         </div>
                     </div>
@@ -156,13 +187,13 @@
                         <div class="front">
                             <div class="front__content">
                                 <div class="front__content--header">RAG</div>
-                                <div class="front__content--add">Retrieve and Generate for knowledge-intensive tasks.</div>
+                                <div class="front__content--add">Answer complex queries by combining retrieval and generation.</div>
                             </div>
                         </div>
                         <div class="back">
                             <div class="back__content">
                                 <div class="front__content--header">RAG</div>
-                                <p>Combine retrieval and generation techniques to handle complex, knowledge-driven tasks effectively.</p>
+                                <p>Enhance model accuracy on knowledge-intensive tasks by grounding outputs in relevant documents.</p>
                             </div>
                         </div>
                     </div>
@@ -171,14 +202,13 @@
                         <div class="front">
                             <div class="front__content">
                                 <div class="front__content--header">Prompt Engineering</div>
-                                <div class="front__content--add">Design and optimize prompts for better AI responses.</div>
+                                <div class="front__content--add">Craft powerful prompts for precise model outputs.</div>
                             </div>
                         </div>
                         <div class="back">
                             <div class="back__content">
                                 <div class="front__content--header">Prompt Engineering</div>
-                                <p>Create and refine prompts to guide AI models in generating accurate and relevant outputs.</p>
-                                <p>Utilize advanced techniques to enhance prompt effectiveness, ensuring optimal model performance.</p>
+                                <p>Design and test prompt templates that steer LLM behavior and improve reliability.</p>
                             </div>
                         </div>
                     </div>
@@ -194,7 +224,7 @@
                             <div class="back__content">
                                 <div class="front__content--header">Agent</div>
                                 <p>Utilize AI agents to automate repetitive tasks, enhancing productivity and efficiency.</p>
-                                <p>Integrate AI agents into workflows to handle routine tasks, freeing up human resources for strategic initiatives.</p>
+                                <p>Manage workflows, trigger actions, and reduce human load.</p>
                             </div>
                         </div>
                     </div>
@@ -210,15 +240,25 @@
                         <div class="back">
                             <div class="back__content">
                                 <div class="front__content--header">Data Generation</div>
-                                <p>Generate synthetic data for training and testing models.</p>
+                                <p>Generate synthetic data for training and testing models used in Agents.</p>
                                 <p>Enhance model training with synthetic data generation, ensuring diverse and comprehensive datasets.</p>
-                                <p>Utilize advanced techniques to create high-quality synthetic datasets that improve model robustness.</p>
+                                <p>Create high-fidelity synthetic data to fill gaps, boost diversity, and improve model robustness.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+            <!-- <div class="text-center">
+            <br></br>
+
+            <h2 class="text-purple-400 platform-overview-title">
+                Get to the bottom of the page, for a special surprise!
+            </h2>
+        </div> -->
+
+        
+
 
         <!-- Usecase Overview Section -->
         <section class="mb-8">
@@ -325,57 +365,21 @@
     </div>
 </section>
 
-
-
-
-
-
+   
         
-        <!-- Enhanced Use Cases and Technical Overview Section
-        <section id="use-cases-technical" class="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            Real-World Applications Card
-            
-            <div class="p-6 card-spotlight-no-hover">
-                <div class="card-spotlight-content">
-                    <h2 class="text-2xl font-semibold text-blue-200">Real-World Applications</h2>
-                    <p class="mt-4 text-gray-100">Discover how our platform is transforming industries:</p>
-                    <ul class="list-disc list-inside mt-2 text-gray-100">
-                        <li class="hover:text-blue-400 transition-colors duration-300">Automating customer support with AI chatbots.</li>
-                        <li class="hover:text-blue-400 transition-colors duration-300">Generating personalized marketing content.</li>
-                        <li class="hover:text-blue-400 transition-colors duration-300">Streamlining data analysis for business insights.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            Technical Overview Card            
-            <div class="p-6 card-spotlight-no-hover">
-                <div class="card-spotlight-content">
-                    <h2 class="text-2xl font-semibold text-blue-200">Technical Overview</h2>
-                    <p class="mt-4 text-gray-100">Built for developers and ML teams, our platform provides a robust technical foundation designed for flexibility, performance, and security:</p>
-                    <ul class="list-disc list-inside mt-2 text-gray-100">
-                        <li class="hover:text-blue-400 transition-colors duration-300">Real-time inference via GPU-accelerated endpoints.</li>
-                        <li class="hover:text-blue-400 transition-colors duration-300">Secure data storage using encryption at rest and in transit.</li>
-                        <li class="hover:text-blue-400 transition-colors duration-300">Monitoring and detailed system health logs.</li>
-                        <li class="hover:text-blue-400 transition-colors duration-300">Support for RAG pipelines with vector search (ChromaDB, Weaviate, FAISS).</li>
-                    </ul>
-                    <p class="mt-4 text-gray-100">Our platform abstracts the heavy lifting so your team can focus on rapid prototyping, deployment, and scaling — with the tools and flexibility to suit any MLOps workflow.</p>
-                </div>
-            </div>
-        </section>
-        -->
         <!-- -Data Privacy and Flow Section -->
         <section id="data-privacy" class="feature-columns mb-8">
             <div class="column">
                 <div class="icon-grid">
-                    <div class="icon icon-aws"></div>
-                    <div class="icon icon-azure"></div>
-                    <div class="icon icon-gcp"></div>
-                    <div class="icon icon-drive"></div>
-                    <div class="icon icon-s3"></div>
-                    <div class="icon icon-cloud"></div>
+                    <div class="icon icon-car-manufacturing"></div>
+                    <div class="icon icon-cloud-computing"></div>
+                    <div class="icon icon-crane-house"></div>
+                    <div class="icon icon-customer-service"></div>
+                    <div class="icon icon-product-manufacturing"></div>
+                    <div class="icon icon-wind-energy"></div>
                 </div>
                 <h3>Domain Agnostic</h3>
-                <p>We prioritize data privacy with seamless compatibility across major cloud storage platforms and support for 1000+ data sources.</p>
+                <p>GenXflow is domain agnostic, empowering teams to create scalable AI workflows that seamlessly adapt to any industry or use case</p>
             </div>
 
             <div class="column">
@@ -394,9 +398,9 @@
             <div class="column">
                 <div class="icon-grid">
                     <div class="icon icon-aws"></div>
-                    <div class="icon icon-azure"></div>
-                    <div class="icon icon-gcp"></div>
-                    <div class="icon icon-oracle"></div>
+                    <div class="icon icon-nvidia"></div>
+                    <div class="icon icon-apple"></div>
+                    <div class="icon icon-amd"></div>
                     <div class="icon icon-ibm"></div>
                     <div class="icon icon-cloudflare"></div>
                 </div>
@@ -413,7 +417,7 @@
                     <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
                         <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
                         <div class="card-spotlight-content">
-                            <p class="italic">"Gen-X's platform has revolutionized our AI workflows. It's fast, reliable, and easy to use!"</p>
+                            <p class="italic">"GenX's platform has revolutionized our AI workflows. It's fast, reliable, and easy to use!"</p>
                             <footer class="mt-2 text-right">- Jane Doe, CEO of AI Solutions</footer>
                         </div>
                     </blockquote>
@@ -434,7 +438,7 @@
                     <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
                         <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
                         <div class="card-spotlight-content">
-                            <p class="italic">"Gen-X's customer support is top-notch. They helped us every step of the way."</p>
+                            <p class="italic">"GenX's customer support is top-notch. They helped us every step of the way."</p>
                             <footer class="mt-2 text-right">- Neurulus</footer>
                         </div>
                     </blockquote>
@@ -448,7 +452,7 @@
                     <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
                         <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
                         <div class="card-spotlight-content">
-                            <p class="italic">"We achieved faster deployment times thanks to Gen-X's platform."</p>
+                            <p class="italic">"We achieved faster deployment times thanks to GenX's platform."</p>
                             <footer class="mt-2 text-right">- Chris Wilson, DevOps Engineer</footer>
                         </div>
                     </blockquote>
@@ -462,7 +466,7 @@
                     <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center"></blockquote>
                         <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
                         <div class="card-spotlight-content">
-                            <p class="italic">"Gen-X's RLHF feature improved our model's decision-making significantly."</p>
+                            <p class="italic">"GenX's RLHF feature improved our model's decision-making significantly."</p>
                             <footer class="mt-2 text-right">- Kevin Johnson, AI Researcher</footer>
                         </div>
                     </blockquote>
@@ -476,7 +480,7 @@
                     <blockquote class="p-4 card-spotlight rounded-lg bg-gray-900 flex items-center">
                         <img src="assets/favicon.ico" alt="Logo" class="h-6 w-6 mr-4">
                         <div class="card-spotlight-content">
-                            <p class="italic">"Gen-X's data generation tools saved us time and resources."</p>
+                            <p class="italic">"GenX's data generation tools saved us time and resources."</p>
                             <footer class="mt-2 text-right">- David Clark, AI Engineer</footer>
                         </div>
                     </blockquote>
@@ -507,21 +511,89 @@
 
         <!-- CTA Section -->
         <section id="cta" class="bg-blue-600 text-white p-8 rounded-lg shadow-md text-center">
-            <h2 class="text-3xl font-bold">Get Started with Gen-X</h2>
+            <h2 class="text-3xl font-bold">Get Started with GenX</h2>
             <p class="mt-4">Mail Us today or request a demo to see how we can transform your business.</p>
             <div class="mt-6"></div>
                 <a href="#signup" class="bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100">Mail Us</a>
                 <a href="#demo" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">Request a Demo</a>
             </div>
         </section>
+
+
+        <section data-parallax-layers class="parallax-feature">
+            <div class="footer-visuals">
+              <img src="assets/images/genXflow-footer-background.png" alt="Footer Background" class="footer-bg" data-parallax-layer="1" />
+              <div class="footer-overlay" data-parallax-layer="2">
+                <h2 class="platform-overview-title">Sneak Peek into GenXflow</h2>
+                <div class="footer-content-row">
+                  <img src="assets/images/genXflow-footer-logo.png" alt="GenX Logo" class="footer-logo" />
+                  <p class="platform-overview-text">
+                    GenXflow brings a visual edge to your AI stack—designed to orchestrate LLM workflows through an intuitive drag-and-drop interface. From fine-tuning to inference and beyond, it's a canvas built for creators, developers, and teams looking to move faster without losing flexibility. Welcome to a new era of AI design, reimagined.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          
     </main>
-    <footer class="bg-gray-800 text-white p-4 text-center">
-        <p>&copy; 2025 Gen-X. All rights reserved.</p>
-        <div class="mt-2">
-            <a href="#" class="hover:underline">Privacy Policy</a> | <a href="#" class="hover:underline">Terms of Service</a> | <a href="#" class="hover:underline">Contact Us</a>
-        </div>
-    </footer>
+
+    <section data-parallax-layers>
+        <footer class="simple-footer">
+            <div class="footer-links">
+              <a href="#" class="footer-link">Privacy Policy</a>
+              <span>|</span>
+              <a href="#" class="footer-link">Terms of Service</a>
+              <span>|</span>
+              <a href="#" class="footer-link">Contact Us</a>
+            </div>
+          </footer>
+          
+      </section>
+      
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.37/bundled/lenis.min.js"></script>
+
     <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.querySelectorAll('[data-parallax-layers]').forEach((triggerElement) => {
+            let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: triggerElement,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.5,
+            }
+            });
+
+            const layers = [
+            { layer: "1", yPercent: 30 },
+            { layer: "2", yPercent: 10 }
+            ];
+
+            layers.forEach((layerObj, idx) => {
+            tl.to(
+                triggerElement.querySelectorAll(`[data-parallax-layer="${layerObj.layer}"]`),
+                {
+                yPercent: layerObj.yPercent,
+                ease: "none"
+                },
+                idx === 0 ? undefined : "<"
+            );
+            });
+        });
+        });
+
+        const lenis = new Lenis();
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
         // Add entry animation for text-hover-effect
         document.addEventListener('DOMContentLoaded', () => {
             const elements = document.querySelectorAll('.text-hover-effect');
@@ -567,6 +639,8 @@
                 }
             });
         });
+
+
 
         // Add fading effect that follows the mouse
         document.addEventListener('DOMContentLoaded', () => {
@@ -631,11 +705,18 @@
                     }, 500);
                 });
             }
-        });
-
-        document.getElementById('menu-toggle').addEventListener('click', function() {
+        });        document.getElementById('menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('menu');
+            const navbar = document.getElementById('navbar');
+            
             menu.classList.toggle('hidden');
+            
+            // Add/remove class for targeting mobile menu state in CSS
+            if (!menu.classList.contains('hidden')) {
+                navbar.classList.add('mobile-menu-open');
+            } else {
+                navbar.classList.remove('mobile-menu-open');
+            }
         });
     </script>
 </body>
