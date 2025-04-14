@@ -719,6 +719,166 @@ border-radius: 1rem;
   text-decoration: underline;
 }
 
+.cta-section {
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+  background-color: #2563eb; /* fallback for blue-600 */
+  color: white;
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-weight: 600;
+  transition: background 0.3s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.mail-btn {
+  background-color: white;
+  color: #2563eb;
+}
+
+.mail-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.demo-btn {
+  background-color: #1f2937;
+  color: white;
+}
+
+.demo-btn:hover {
+  background-color: #111827;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .cta-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cta-btn {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.technical-overview-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  color: white;
+}
+
+.technical-overview-platform {
+  flex: 1;
+  min-width: 280px;
+  max-width: 600px;
+}
+
+.technical-overview-platform-tag {
+  display: block;
+  color: #66c7f4;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.technical-overview-platform-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.technical-overview-platform-text {
+  font-size: 1.125rem;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+.technical-overview-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  flex: 1;
+  max-width: 700px;
+}
+
+.technical-overview-tile {
+  text-align: center;
+  flex: 0 1 200px;
+}
+
+.technical-overview-tile img {
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.technical-overview-tile img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.technical-overview-tile h3 {
+  color: white;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+
+@media (max-width: 768px) {
+  .technical-overview-section {
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+  }
+
+  .technical-overview-tiles {
+    justify-content: center;
+  }
+
+  .technical-overview-tile {
+    flex: 1 1 100%;
+    max-width: 300px;
+  }
+
+  .technical-overview-platform-title {
+    font-size: 1.5rem;
+  }
+
+  .technical-overview-platform-text {
+    font-size: 1rem;
+  }
+}
 
 /* Mobile menu styling */
 @media screen and (max-width: 768px) {
@@ -768,3 +928,34 @@ border-radius: 1rem;
   }
 }
 
+@media (max-width: 768px) {
+  .footer-visuals {
+    height: auto;
+    min-height: 400px;
+  }
+
+  .footer-overlay {
+    padding: 2rem 1rem;
+  }
+
+  .footer-content-row {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .footer-logo {
+    width: 40%;
+    max-width: 150px;
+  }
+
+  .platform-overview-title {
+    font-size: 1.5rem;
+  }
+
+  .platform-overview-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}

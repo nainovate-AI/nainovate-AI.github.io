@@ -302,54 +302,35 @@
             </div>
         </section>
 
-        <!-- Technical Overview Section -->
-<section id="technical-overview" class="feature-columns mb-8" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap;">
-
-    <!-- Left-aligned platform overview -->
-    <div class="platform-overview" style="flex: 1; min-width: 300px; max-width: 600px;">
-        <span class="platform-overview-tag" style="display: block; color: #66c7f4; font-weight: bold; margin-bottom: 8px;">Inside Engine</span>
-        <h2 class="platform-overview-title" style="font-size: 32px; margin-bottom: 10px;">Technical Overview</h2>
-        <p class="platform-overview-text" style="font-size: 18px; color: #ddd;">
-            Our engine is built on a foundation of modularity, scalability, and efficiency. This architecture empowers developers and enterprises to build, scale, and optimize AI workflows with confidence.
-        </p>            
-    </div>
-
-    <!-- Right-aligned tiles container -->
-    <div style="display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 20px; max-width: 700px;">
-
-        <div class="column" style="text-align: center;">
-            <img 
-            src="assets/images/docker-img.png" 
-            alt="Containerized Architecture" 
-            style="margin: 10px; width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 18px rgba(0, 0, 0, 0.4)';"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.3)';"
-            />
-            <h3 style="color: white;">Containerized Architecture</h3>
-        
-        </div>          
-        
-        <div class="column" style="text-align: center;">
-            <img 
-            src="assets/images/adaptive-orchestration.png" 
-            alt="Adaptive Orchestration" 
-            style="margin: 10px; width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 18px rgba(0, 0, 0, 0.4)';"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.3)';"
-            />
-            <h3 style="color: white;">Adaptive Orchestration</h3>
-        </div>
-
-        <div class="column" style="text-align: center;">
-            <img 
-            src="assets/images/data-abstraction.png" 
-            alt="Data Abstraction Layer" 
-            style="margin: 10px; width: 200px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 18px rgba(0, 0, 0, 0.4)';"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.3)';"
-            />
-            <h3 style="color: white;">Data Abstraction Layer</h3>
-        </div>
+        <section class="technical-overview-section">
+            <!-- Left-aligned platform overview -->
+            <div class="technical-overview-platform">
+              <span class="technical-overview-platform-tag">Inside Engine</span>
+              <h2 class="technical-overview-platform-title">Technical Overview</h2>
+              <p class="technical-overview-platform-text">
+                Our engine is built on a foundation of modularity, scalability, and efficiency. This architecture empowers developers and enterprises to build, scale, and optimize AI workflows with confidence.
+              </p>
+            </div>
+          
+            <!-- Right-aligned tiles container -->
+            <div class="technical-overview-tiles">
+              <div class="technical-overview-tile">
+                <img src="assets/images/docker-img.png" alt="Containerized Architecture" />
+                <h3>Containerized Architecture</h3>
+              </div>
+          
+              <div class="technical-overview-tile">
+                <img src="assets/images/adaptive-orchestration.png" alt="Adaptive Orchestration" />
+                <h3>Adaptive Orchestration</h3>
+              </div>
+          
+              <div class="technical-overview-tile">
+                <img src="assets/images/data-abstraction.png" alt="Data Abstraction Layer" />
+                <h3>Data Abstraction Layer</h3>
+              </div>
+            </div>
+          </section>
+          
         <!--
         <div class="column" style="text-align: center;">
             <img 
@@ -367,7 +348,7 @@
 
    
         
-        <!-- -Data Privacy and Flow Section -->
+        <!-- Flow Section -->
         <section id="data-privacy" class="feature-columns mb-8">
             <div class="column">
                 <div class="icon-grid">
@@ -510,16 +491,17 @@
         </section>
 
         <!-- CTA Section -->
-        <section id="cta" class="bg-blue-600 text-white p-8 rounded-lg shadow-md text-center">
+        <section id="cta" class="cta-section bg-blue-600 text-white p-8 rounded-lg shadow-md text-center">
             <h2 class="text-3xl font-bold">Get Started with GenX</h2>
             <p class="mt-4">Mail Us today or request a demo to see how we can transform your business.</p>
-            <div class="mt-6"></div>
-                <a href="#signup" class="bg-white text-blue-600 px-6 py-3 rounded-lg shadow hover:bg-gray-100">Mail Us</a>
-                <a href="#demo" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">Request a Demo</a>
+            <div class="mt-6 cta-buttons">
+            <a href="#signup" class="cta-btn mail-btn">Mail Us</a>
+            <a href="#demo" class="cta-btn demo-btn">Request a Demo</a>
             </div>
         </section>
+        
 
-
+        <!--GenXflow section-->
         <section data-parallax-layers class="parallax-feature">
             <div class="footer-visuals">
               <img src="assets/images/genXflow-footer-background.png" alt="Footer Background" class="footer-bg" data-parallax-layer="1" />
@@ -557,7 +539,6 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.37/bundled/lenis.min.js"></script>
 
     <script>
-
         document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -593,7 +574,9 @@
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => { lenis.raf(time * 1000); });
         gsap.ticker.lagSmoothing(0);
+    </script>
 
+    <script>
         // Add entry animation for text-hover-effect
         document.addEventListener('DOMContentLoaded', () => {
             const elements = document.querySelectorAll('.text-hover-effect');
@@ -639,9 +622,8 @@
                 }
             });
         });
-
-
-
+    </script>
+    <script>
         // Add fading effect that follows the mouse
         document.addEventListener('DOMContentLoaded', () => {
             const heroSection = document.querySelector('.hero-section-card');
