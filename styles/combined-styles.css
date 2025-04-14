@@ -995,37 +995,49 @@ border-radius: 1rem;
 }
 
 @media (max-width: 768px) {
-  .footer-visuals {
-    height: auto;
-    min-height: 400px;
+  .parallax-feature .footer-visuals {
+    height: 500px; /* Keep enough space for background image */
+    position: relative;
   }
 
-  .footer-overlay {
+  .parallax-feature .footer-overlay {
     padding: 2rem 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7));
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .footer-content-row {
+  .parallax-feature .footer-content-row {
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
     padding: 0 1rem;
+    width: 100%;
   }
 
-  .footer-logo {
+  .parallax-feature .footer-logo {
     width: 40%;
     max-width: 150px;
   }
 
-  .platform-overview-title {
+  .parallax-feature .platform-overview-title {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
-  .platform-overview-text {
+  .parallax-feature .platform-overview-text {
     font-size: 0.95rem;
     line-height: 1.6;
+    max-width: 90%;
+    margin: 0 auto;
+    word-break: break-word;
   }
 }
-
-
-
-
