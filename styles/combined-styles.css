@@ -201,6 +201,27 @@ background-image: url('../assets/icons/llama-icon.png');
 background-image: url('../assets/icons/mistral-icon.png');
 }
 
+/* Usecase Icons */
+.icon-recruitment {
+background-image: url('../assets/icons/recruitment-icon.png');
+}
+
+.icon-boq {
+background-image: url('../assets/icons/boq-icon.png');
+}
+
+.icon-medical {
+background-image: url('../assets/icons/medical-icon.png');
+}
+
+.icon-edutech {
+background-image: url('../assets/icons/edutech-icon.png');
+}
+
+.icon-realestate {
+  background-image: url('../assets/icons/realestate-icon.png');
+  }
+  
 .icon-grid img:hover,
 .icon-grid .icon:hover {
 transform: scale(1.05);
@@ -1039,5 +1060,106 @@ border-radius: 1rem;
     max-width: 90%;
     margin: 0 auto;
     word-break: break-word;
+  }
+}
+
+/* Usecase Cards Section */
+.usecase-cards-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 1rem;
+}
+
+.usecase-cards-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: max-content;
+}
+
+.usecase-cards-container.no-transition {
+  transition: none;
+}
+
+.scroll-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  padding: 0 0.5rem;
+  z-index: 10;
+}
+
+.scroll-button {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.scroll-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.scroll-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.usecase-card {
+  flex: 0 0 300px;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #e0e0e0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.usecase-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.usecase-card .icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.usecase-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.usecase-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .usecase-card {
+    flex: 0 0 280px;
   }
 }

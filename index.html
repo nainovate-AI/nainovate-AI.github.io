@@ -8,7 +8,7 @@
 </head>
 <body class="dark-gradient text-gray-200">
     <header id="navbar" class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex justify-between items-center rounded-lg w-full z-50 transition-all duration-300">        <div class="flex items-center">
-            <img src="assets/icons/genX-icon.png" alt="GenX Logo" class="h-8 w-8 mr-2">
+            <img src="assets/icons/genx-logo.svg" alt="GenX Logo" class="h-8 w-8 mr-2">
             <h1 class="text-3xl font-bold">GenX</h1>
         </div>
         <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
@@ -270,37 +270,51 @@
                 </p>
             </div>
         </section>
-        <section id="data-privacy" class="feature-columns mb-8">
-            <div class="column">
-                <div class="icon icon-aws"></div>
-                <h3>Recruitment Intelligence</h3>
-                <p>We streamline talent acquisition by leveraging AI to analyze resumes, match candidates to job roles, and optimize hiring pipelines across various platforms while ensuring data security and compliance.</p>
+        <div class="usecase-cards-wrapper">
+            <div class="usecase-cards-container" id="usecaseCards">
+                <div class="usecase-card">
+                    <div class="icon icon-recruitment"></div>
+                    <h3>Recruitment Intelligence</h3>
+                    <p>We streamline talent acquisition by leveraging AI to analyze resumes, match candidates to job roles, and optimize hiring pipelines across various platforms while ensuring data security and compliance.</p>
+                </div>
+            
+                <div class="usecase-card">
+                    <div class="icon icon-boq"></div>
+                    <h3>BOQ Intelligence</h3>
+                    <p>Our AI models automate Bill of Quantities generation, verification, and optimization, significantly reducing manual effort, increasing accuracy, and enabling real-time updates across engineering and construction workflows.</p>
+                </div>
+            
+                <div class="usecase-card">
+                    <div class="icon icon-medical"></div>
+                    <h3>Medical Intelligence</h3>
+                    <p>We provide clinical decision support, medical document analysis, and patient data summarization powered by LLMs, with strict adherence to healthcare compliance standards and deployment flexibility across hospital infrastructure.</p>
+                </div>
+            
+                <div class="usecase-card">
+                    <div class="icon icon-edutech"></div>
+                    <h3>EDUtech Intelligence</h3>
+                    <p>We provide an AI-powered platform for auto-evaluating student answers with consistency and objectivity-eliminating bias while supporting various exam formats and ensuring scalability across institutions.</p>
+                </div>
+            
+                <div class="usecase-card">
+                    <div class="icon icon-realestate"></div>
+                    <h3>Real Estate Intelligence</h3>
+                    <p>We automate cost and timeline estimations based on building plans, permits, and inspection data-delivering insights directly to your team through integrations with Slack, email, and other collaboration tools.</p>
+                </div>
             </div>
-        
-            <div class="column">
-                <div class="icon icon-gpt4"></div>
-                <h3>BOQ Intelligence</h3>
-                <p>Our AI models automate Bill of Quantities generation, verification, and optimization, significantly reducing manual effort, increasing accuracy, and enabling real-time updates across engineering and construction workflows.</p>
+            <div class="scroll-controls">
+                <button class="scroll-button" id="scrollLeft" onclick="scrollCards('left')" aria-label="Scroll left" title="Scroll left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button class="scroll-button" id="scrollRight" onclick="scrollCards('right')" aria-label="Scroll right" title="Scroll right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
             </div>
-        
-            <div class="column">
-                <div class="icon icon-aws"></div>
-                <h3>Medical Intelligence</h3>
-                <p>We provide clinical decision support, medical document analysis, and patient data summarization powered by LLMs, with strict adherence to healthcare compliance standards and deployment flexibility across hospital infrastructure.</p>
-            </div>
-        
-            <div class="column">
-                <div class="icon icon-aws"></div>
-                <h3>EDUtech Intelligence</h3>
-                <p>We provide an AI-powered platform for auto-evaluating student answers with consistency and objectivity-eliminating bias while supporting various exam formats and ensuring scalability across institutions.</p>
-            </div>
-        
-            <div class="column">
-                <div class="icon icon-aws"></div>
-                <h3>Real Estate Intelligence</h3>
-                <p>We automate cost and timeline estimations based on building plans, permits, and inspection data-delivering insights directly to your team through integrations with Slack, email, and other collaboration tools.</p>
-            </div>
-        </section>
+        </div>
 
         <section class="technical-overview-section">
             <!-- Left-aligned platform overview -->
@@ -716,6 +730,110 @@
                 navbar.classList.remove('mobile-menu-open');
             }
         });
+    </script>
+    <script>
+        // Initialize usecase cards scrolling
+        function initUsecaseCardsScroll() {
+            const cardsContainer = document.getElementById('usecaseCards');
+            const scrollLeftBtn = document.getElementById('scrollLeft');
+            const scrollRightBtn = document.getElementById('scrollRight');
+            const cardWidth = 320; // Card width + gap
+            let currentIndex = 0;
+            let isAutoScrolling = true;
+            let autoScrollInterval;
+
+            // Get total number of cards
+            function getTotalCards() {
+                return cardsContainer ? cardsContainer.children.length : 0;
+            }
+
+            // Update transform with smooth transition
+            function updateTransform(index) {
+                if (!cardsContainer) return;
+                const totalCards = getTotalCards();
+                if (totalCards === 0) return;
+
+                // Normalize index to stay within bounds
+                currentIndex = ((index % totalCards) + totalCards) % totalCards;
+                const translateX = -(currentIndex * cardWidth);
+                cardsContainer.style.transform = `translateX(${translateX}px)`;
+                updateScrollButtons();
+            }
+
+            // Function to check if we can scroll further
+            function updateScrollButtons() {
+                if (!scrollLeftBtn || !scrollRightBtn) return;
+                // Always enable buttons for circular scrolling
+                scrollLeftBtn.disabled = false;
+                scrollRightBtn.disabled = false;
+            }
+
+            // Manual scroll function
+            function scrollCards(direction) {
+                if (!cardsContainer) return;
+                stopAutoScroll();
+                
+                const totalCards = getTotalCards();
+                if (direction === 'left') {
+                    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                } else {
+                    currentIndex = (currentIndex + 1) % totalCards;
+                }
+                
+                updateTransform(currentIndex);
+            }
+
+            // Auto scroll function
+            function autoScroll() {
+                if (!isAutoScrolling || !cardsContainer) return;
+                const totalCards = getTotalCards();
+                if (totalCards === 0) return;
+
+                currentIndex = (currentIndex + 1) % totalCards;
+                updateTransform(currentIndex);
+            }
+
+            // Start auto-scrolling
+            function startAutoScroll() {
+                if (!autoScrollInterval) {
+                    isAutoScrolling = true;
+                    autoScrollInterval = setInterval(autoScroll, 3000);
+                }
+            }
+
+            // Stop auto-scrolling
+            function stopAutoScroll() {
+                isAutoScrolling = false;
+                if (autoScrollInterval) {
+                    clearInterval(autoScrollInterval);
+                    autoScrollInterval = null;
+                }
+            }
+
+            // Add event listeners
+            if (cardsContainer) {
+                cardsContainer.addEventListener('mouseenter', stopAutoScroll);
+                cardsContainer.addEventListener('mouseleave', startAutoScroll);
+            }
+
+            if (scrollLeftBtn) {
+                scrollLeftBtn.addEventListener('click', () => scrollCards('left'));
+            }
+
+            if (scrollRightBtn) {
+                scrollRightBtn.addEventListener('click', () => scrollCards('right'));
+            }
+
+            // Initialize
+            updateScrollButtons();
+            startAutoScroll();
+
+            // Make scrollCards function available globally
+            window.scrollCards = scrollCards;
+        }
+
+        // Call initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initUsecaseCardsScroll);
     </script>
 </body>
 </html>
