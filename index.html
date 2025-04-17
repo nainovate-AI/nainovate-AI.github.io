@@ -64,9 +64,9 @@
           <section class="mb-8">
             <div class="platform-overview">
                 <span class="platform-overview-tag">What do we offer</span>
-                <h2 class="platform-overview-title">Empowering AI Workflows from Prototype to Production</h2> 
+                <h2 class="platform-overview-title">AI Workflows, from Prototype to Production</h2> 
                 <p class="platform-overview-text">
-                    GenX delivers an end-to-end platform for building, deploying, and optimizing Large Language Models. From fine-tuning and RAG pipelines to real-time inference and RLHF, we provide everything you need to turn your ideas into production-ready AI applications at scale, with speed, and with precision.
+                    GenX delivers an end-to-end platform for building, deploying, and optimizing Large Language Models. From fine-tuning and RAG pipelines to real-time inference and RLHF, we provide every tool you need, to turn your ideas into production-ready AI applications at scale, with speed, and with precision.
                 </p>
                 <!-- <br></br> -->
                 <!-- <p class="platform-overview-tag lowercase">Our GenX Engine is available in three powerful configurations:</p> -->
@@ -266,7 +266,7 @@
                 <span class="platform-overview-tag">Usecases</span>
                 <h2 class="platform-overview-title">Applications we've built</h2>
                 <p class="platform-overview-text">
-                    Our platform is revolutionizing various sectors by automating customer support through intelligent AI chatbots, hese real-world applications empower organizations to operate more efficiently, make smarter decisions, and enhance customer engagement like never before.
+                    Our platform has transformed multiple industries by deploying intelligent AI chatbots that automate customer support. These real-world solutions have enabled organizations to improve operational efficiency, reduce costs, and deliver enhanced customer experiences at scale.
                 </p>
             </div>
         </section>
@@ -275,31 +275,31 @@
                 <div class="usecase-card">
                     <div class="icon icon-recruitment"></div>
                     <h3>Recruitment Intelligence</h3>
-                    <p>We streamline talent acquisition by leveraging AI to analyze resumes, match candidates to job roles, and optimize hiring pipelines across various platforms while ensuring data security and compliance.</p>
+                    <p>We deployed an AI-driven recruitment assistant that analyzed over 100,000 resumes and matched candidates to roles with 85% accuracy. This cut hiring cycles by 40% and reduced HR costs by 30% across client platforms.</p>
                 </div>
-            
+
                 <div class="usecase-card">
                     <div class="icon icon-boq"></div>
                     <h3>BOQ Intelligence</h3>
-                    <p>Our AI models automate Bill of Quantities generation, verification, and optimization, significantly reducing manual effort, increasing accuracy, and enabling real-time updates across engineering and construction workflows.</p>
+                    <p>We implemented AI solutions that automated Bill of Quantities generation and validation across large-scale construction projects. This eliminated manual bottlenecks, improved accuracy by 90%, and saved over 2,000 man-hours annually.</p>
                 </div>
-            
+
                 <div class="usecase-card">
                     <div class="icon icon-medical"></div>
                     <h3>Medical Intelligence</h3>
-                    <p>We provide clinical decision support, medical document analysis, and patient data summarization powered by LLMs, with strict adherence to healthcare compliance standards and deployment flexibility across hospital infrastructure.</p>
+                    <p>We built LLM-powered tools to extract insights from medical records and support clinical decisions, reducing document review time by 60%. This improved patient triaging and cut administrative costs in hospitals by 25%.</p>
                 </div>
-            
+
                 <div class="usecase-card">
                     <div class="icon icon-edutech"></div>
                     <h3>EDUtech Intelligence</h3>
-                    <p>We provide an AI-powered platform for auto-evaluating student answers with consistency and objectivity-eliminating bias while supporting various exam formats and ensuring scalability across institutions.</p>
+                    <p>We developed an AI-based answer evaluation system used by institutions to assess thousands of student responses. It improved grading consistency, reduced evaluation time by 70%, and enabled scaling across nationwide exams.</p>
                 </div>
-            
+
                 <div class="usecase-card">
                     <div class="icon icon-realestate"></div>
                     <h3>Real Estate Intelligence</h3>
-                    <p>We automate cost and timeline estimations based on building plans, permits, and inspection data-delivering insights directly to your team through integrations with Slack, email, and other collaboration tools.</p>
+                    <p>We created AI tools that analyzed building plans and regulatory documents to estimate project costs and timelines. This reduced planning effort by 50% and helped firms deliver accurate insights within minutes instead of days.</p>
                 </div>
             </div>
             <div class="scroll-controls">
@@ -315,6 +315,7 @@
                 </button>
             </div>
         </div>
+
 
         <section class="technical-overview-section">
             <!-- Left-aligned platform overview -->
@@ -737,64 +738,123 @@
             const cardsContainer = document.getElementById('usecaseCards');
             const scrollLeftBtn = document.getElementById('scrollLeft');
             const scrollRightBtn = document.getElementById('scrollRight');
-            const cardWidth = 320; // Card width + gap
             let currentIndex = 0;
             let isAutoScrolling = true;
             let autoScrollInterval;
-
-            // Get total number of cards
-            function getTotalCards() {
-                return cardsContainer ? cardsContainer.children.length : 0;
+            
+            // Check if we're on a mobile device
+            function isMobileDevice() {
+                return window.innerWidth < 768;
+            }
+            
+            // Configure desktop cards
+            function setupDesktopCards() {
+                if (!cardsContainer) return;
+                
+                const cards = Array.from(cardsContainer.children);
+                
+                // Apply desktop styling
+                cardsContainer.style.transform = ''; // Reset any existing transform
+                cardsContainer.style.transition = 'transform 0.5s ease';
+                
+                // Apply proper styles to each card
+                cards.forEach((card, index) => {
+                    card.style.width = '320px';
+                    card.style.marginRight = index < cards.length - 1 ? '20px' : '0';
+                });
+                
+                // Update transform to show current card
+                updateTransform(currentIndex);
+            }
+            
+            // Calculate the position for desktop scrolling
+            function getCardPosition(index) {
+                if (!cardsContainer || !cardsContainer.children.length) return 0;
+                
+                const cards = Array.from(cardsContainer.children);
+                
+                if (index < 0) index = 0;
+                if (index >= cards.length) index = cards.length - 1;
+                
+                // Desktop: Standard positioning
+                let position = 0;
+                
+                // Calculate position by adding up widths of previous cards
+                for (let i = 0; i < index; i++) {
+                    position += cards[i].offsetWidth + 
+                               parseInt(getComputedStyle(cards[i]).marginRight, 10);
+                }
+                
+                return position;
             }
 
-            // Update transform with smooth transition
+            // Update transform with smooth transition (desktop only)
             function updateTransform(index) {
-                if (!cardsContainer) return;
-                const totalCards = getTotalCards();
+                if (!cardsContainer || isMobileDevice()) return;
+                
+                const totalCards = cardsContainer.children.length;
                 if (totalCards === 0) return;
-
+                
                 // Normalize index to stay within bounds
-                currentIndex = ((index % totalCards) + totalCards) % totalCards;
-                const translateX = -(currentIndex * cardWidth);
-                cardsContainer.style.transform = `translateX(${translateX}px)`;
+                currentIndex = Math.max(0, Math.min(index, totalCards - 1));
+                
+                const position = getCardPosition(currentIndex);
+                cardsContainer.style.transform = `translateX(-${position}px)`;
+                
                 updateScrollButtons();
             }
 
-            // Function to check if we can scroll further
+            // Function to update button states (desktop only)
             function updateScrollButtons() {
-                if (!scrollLeftBtn || !scrollRightBtn) return;
-                // Always enable buttons for circular scrolling
-                scrollLeftBtn.disabled = false;
-                scrollRightBtn.disabled = false;
+                if (!scrollLeftBtn || !scrollRightBtn || isMobileDevice()) return;
+                
+                const totalCards = cardsContainer ? cardsContainer.children.length : 0;
+                
+                // Enable/disable buttons based on current index
+                scrollLeftBtn.disabled = currentIndex === 0;
+                scrollLeftBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                
+                scrollRightBtn.disabled = currentIndex === totalCards - 1;
+                scrollRightBtn.style.opacity = currentIndex === totalCards - 1 ? '0.5' : '1';
             }
 
-            // Manual scroll function
+            // Manual scroll function (desktop only)
             function scrollCards(direction) {
-                if (!cardsContainer) return;
+                if (!cardsContainer || isMobileDevice()) return;
                 stopAutoScroll();
                 
-                const totalCards = getTotalCards();
                 if (direction === 'left') {
-                    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                    // When moving left, decrease index (but don't go below 0)
+                    currentIndex = Math.max(0, currentIndex - 1);
                 } else {
-                    currentIndex = (currentIndex + 1) % totalCards;
+                    // When moving right, increase index (but don't exceed card count)
+                    currentIndex = Math.min(cardsContainer.children.length - 1, currentIndex + 1);
                 }
                 
                 updateTransform(currentIndex);
             }
 
-            // Auto scroll function
+            // Auto scroll function (desktop only)
             function autoScroll() {
-                if (!isAutoScrolling || !cardsContainer) return;
-                const totalCards = getTotalCards();
+                if (!isAutoScrolling || !cardsContainer || isMobileDevice()) return;
+                const totalCards = cardsContainer.children.length;
                 if (totalCards === 0) return;
 
-                currentIndex = (currentIndex + 1) % totalCards;
+                // Auto scroll moves one card to the right
+                if (currentIndex >= totalCards - 1) {
+                    // Reset to first card if we're at the end
+                    currentIndex = 0;
+                } else {
+                    currentIndex++;
+                }
+                
                 updateTransform(currentIndex);
             }
 
-            // Start auto-scrolling
+            // Start auto-scrolling (desktop only)
             function startAutoScroll() {
+                if (isMobileDevice()) return;
+                
                 if (!autoScrollInterval) {
                     isAutoScrolling = true;
                     autoScrollInterval = setInterval(autoScroll, 3000);
@@ -810,10 +870,41 @@
                 }
             }
 
+            // Handle window resize event
+            function handleResize() {
+                const wasMobile = !isAutoScrolling;
+                const isMobile = isMobileDevice();
+                
+                // If changing between mobile and desktop view
+                if (wasMobile !== isMobile) {
+                    if (isMobile) {
+                        // Switching to mobile - remove any transforms
+                        if (cardsContainer) {
+                            cardsContainer.style.transform = '';
+                            cardsContainer.style.transition = 'none';
+                        }
+                        stopAutoScroll();
+                    } else {
+                        // Switching to desktop - setup desktop cards
+                        setupDesktopCards();
+                        startAutoScroll();
+                    }
+                } else if (!isMobile) {
+                    // Just a resize within desktop view - recalculate positions
+                    updateTransform(currentIndex);
+                }
+            }
+
             // Add event listeners
             if (cardsContainer) {
-                cardsContainer.addEventListener('mouseenter', stopAutoScroll);
-                cardsContainer.addEventListener('mouseleave', startAutoScroll);
+                // Desktop mouse events
+                cardsContainer.addEventListener('mouseenter', () => {
+                    if (!isMobileDevice()) stopAutoScroll();
+                });
+                
+                cardsContainer.addEventListener('mouseleave', () => {
+                    if (!isMobileDevice()) startAutoScroll();
+                });
             }
 
             if (scrollLeftBtn) {
@@ -824,9 +915,21 @@
                 scrollRightBtn.addEventListener('click', () => scrollCards('right'));
             }
 
+            // Listen for window resize to adjust between mobile and desktop
+            window.addEventListener('resize', handleResize);
+
             // Initialize
-            updateScrollButtons();
-            startAutoScroll();
+            if (isMobileDevice()) {
+                // Mobile: remove transform to allow native scrolling
+                if (cardsContainer) {
+                    cardsContainer.style.transform = '';
+                    cardsContainer.style.transition = 'none';
+                }
+            } else {
+                // Desktop: setup cards and start auto-scroll
+                setupDesktopCards();
+                startAutoScroll();
+            }
 
             // Make scrollCards function available globally
             window.scrollCards = scrollCards;

@@ -495,6 +495,106 @@ border-radius: 1rem;
   align-items: center;
 }
 
+/* Usecase cards responsive styles */
+.usecase-cards-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.usecase-cards-container {
+  display: flex;
+  gap: 0;
+}
+
+.usecase-card {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Mobile-specific styles - uses native scrolling */
+@media (max-width: 767px) {
+  .usecase-cards-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 0;
+  }
+  
+  .usecase-cards-container {
+    width: auto;
+    padding: 0 1rem;
+    transition: none; /* Remove transition for native scrolling */
+  }
+  
+  .usecase-card {
+    width: 85vw;
+    margin-right: 1rem;
+    scroll-snap-align: center;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    border: 1px solid #333;
+    border-radius: 12px;
+  }
+  
+  .usecase-card:last-child {
+    margin-right: 1rem; /* Add right margin to last card */
+  }
+  
+  /* Hide scroll controls on mobile */
+  .scroll-controls {
+    display: none !important;
+  }
+}
+
+/* Desktop styles - uses JS controlled scrolling */
+@media (min-width: 768px) {
+  .usecase-cards-wrapper {
+    overflow: hidden; /* Hide scrollbars on desktop */
+  }
+  
+  .usecase-cards-container {
+    transition: transform 0.5s ease;
+  }
+  
+  .usecase-card {
+    width: 320px;
+    margin-right: 20px;
+  }
+  
+  .scroll-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    z-index: 10;
+  }
+  
+  .scroll-button {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(30, 41, 59, 0.8);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .scroll-button:hover {
+    background-color: rgba(30, 41, 59, 1);
+  }
+}
+
 .card {
   position: relative;
   width: 380px;
@@ -1063,62 +1163,9 @@ border-radius: 1rem;
   }
 }
 
-/* Usecase Cards Section */
-.usecase-cards-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 0 1rem;
-}
-
-.usecase-cards-container {
-  display: flex;
-  gap: 2rem;
-  padding: 2rem 0;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  width: max-content;
-}
-
-.usecase-cards-container.no-transition {
-  transition: none;
-}
-
-.scroll-controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-  padding: 0 0.5rem;
-  z-index: 10;
-}
-
-.scroll-button {
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-}
-
-.scroll-button:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.scroll-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+/* Usecase Cards Section - OVERRIDDEN BY RESPONSIVE STYLES */
+/* These styles are intentionally kept as reference but may be overridden by the 
+responsive styles section above to fix mobile display issues */
 
 .usecase-card {
   flex: 0 0 300px;
@@ -1163,3 +1210,4 @@ border-radius: 1rem;
     flex: 0 0 280px;
   }
 }
+
