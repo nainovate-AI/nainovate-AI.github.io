@@ -261,7 +261,7 @@
 
 
         <!-- Usecase Overview Section -->
-        <section class="mb-8">
+        <section id="use-cases-technical" class="mb-8">
             <div class="platform-overview">
                 <span class="platform-overview-tag">Usecases</span>
                 <h2 class="platform-overview-title">Applications we've built</h2>
@@ -569,6 +569,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.37/bundled/lenis.min.js"></script>
 
+    <style>
+        /* Add scroll margin to section targets to prevent header overlap */
+        section[id] {
+            scroll-margin-top: 120px; /* Adjust this value based on your header height plus extra space */
+            scroll-behavior: smooth;
+        }
+    </style>
+    
     <script>
         document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
