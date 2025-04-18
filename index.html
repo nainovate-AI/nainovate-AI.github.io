@@ -808,7 +808,29 @@
                                parseInt(getComputedStyle(cards[i]).marginRight, 10);
                 }
                 
-                return position;
+                // Calculate the maximum possible scroll position
+                const containerWidth = cardsContainer.parentElement.offsetWidth;
+                const totalCardsWidth = calculateTotalCardsWidth();
+                const maxPosition = Math.max(0, totalCardsWidth - containerWidth);
+                
+                // Ensure we don't scroll beyond showing the last card at the right edge
+                return Math.min(position, maxPosition);
+            }
+            
+            // Calculate the total width of all cards including margins
+            function calculateTotalCardsWidth() {
+                if (!cardsContainer) return 0;
+                const cards = Array.from(cardsContainer.children);
+                let totalWidth = 0;
+                
+                cards.forEach((card, index) => {
+                    totalWidth += card.offsetWidth;
+                    if (index < cards.length - 1) {
+                        totalWidth += parseInt(getComputedStyle(card).marginRight, 10);
+                    }
+                });
+                
+                return totalWidth;
             }
 
             // Update transform with smooth transition (desktop only)
@@ -831,14 +853,22 @@
             function updateScrollButtons() {
                 if (!scrollLeftBtn || !scrollRightBtn || isMobileDevice()) return;
                 
-                const totalCards = cardsContainer ? cardsContainer.children.length : 0;
+                // Check if we've reached the beginning or maximum scroll position
+                const isAtBeginning = currentIndex === 0;
                 
-                // Enable/disable buttons based on current index
-                scrollLeftBtn.disabled = currentIndex === 0;
-                scrollLeftBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                // Calculate if we've reached the maximum scroll position where the last card is at the right edge
+                const containerWidth = cardsContainer.parentElement.offsetWidth;
+                const totalCardsWidth = calculateTotalCardsWidth();
+                const currentPosition = getCardPosition(currentIndex);
+                const maxPosition = Math.max(0, totalCardsWidth - containerWidth);
+                const isAtMaxScroll = currentPosition >= maxPosition;
                 
-                scrollRightBtn.disabled = currentIndex === totalCards - 1;
-                scrollRightBtn.style.opacity = currentIndex === totalCards - 1 ? '0.5' : '1';
+                // Enable/disable buttons based on scroll position
+                scrollLeftBtn.disabled = isAtBeginning;
+                scrollLeftBtn.style.opacity = isAtBeginning ? '0.5' : '1';
+                
+                scrollRightBtn.disabled = isAtMaxScroll;
+                scrollRightBtn.style.opacity = isAtMaxScroll ? '0.5' : '1';
             }
 
             // Manual scroll function (desktop only)
