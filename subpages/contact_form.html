@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="../styles/combined-styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  
+</head>
+<body>
+
+  <section class="contact-section">
+    <div class="contact-intro">
+      <h2 class="contact-title">Request a Demo</h2>
+      <p class="contact-description">
+        Fill out the form below and we'll get back to you as soon as possible.
+      </p>
+    </div>
+
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+      <input type="hidden" name="access_key" value="ce3c5815-b92c-484d-b4f3-0232a1989b6d" />
+      <input type="hidden" name="subject" value="New Contact Form Submission from Nainovate.ai" />
+      <input type="hidden" name="from_name" value="nainovate.ai website" />
+
+      <div class="form-group-container">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone" class="form-label">Phone</label>
+          <input id="phone" name="phone" class="form-input" placeholder="+91 248163264" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="company" class="form-label">Company <span style="color: #6b7280; font-weight: normal;">(optional)</span></label>
+          <input id="company" name="company" class="form-input" placeholder="Company name (optional)" type="text" />
+        </div>
+        <div class="form-group">
+          <label for="message" class="form-label">Message <span style="color: #6b7280; font-weight: normal;">(optional)</span></label>
+          <input id="message" name="message" class="form-textarea" placeholder="Any comments or queries" type="text" />
+        
+        </div>
+      </div>
+      <button class="form-submit" type="submit">Send Message</button>
+    </form>
+
+    <a href="../index.html" class="inline-block mt-8 px-6 py-2 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
+  ← Back to Homepage
+</a>
+
+
+  </section>
+
+</body>
+</html>
