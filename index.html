@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link rel="stylesheet" href="styles/output.css"> <!-- Corrected path -->    <link rel="stylesheet" href="./styles/combined-styles.css">
-    <link rel="stylesheet" href="./styles/enhanced-features-cards.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="styles/output.css">
+    <link rel="stylesheet" href="./styles/combined-styles.css">
+    <link rel="stylesheet" href="styles/tailwind.css">
     <link rel="icon" href="assets/icons/genX-lightmode-logo.svg" type="image/x-icon">
     <title>GenX</title>
 </head>
@@ -23,7 +25,7 @@
                 <li><a href="#cta" class="hover:underline">Get Started</a></li>
             </ul>
             <!-- Simple contact button that matches nav style -->
-            <a href="#" class="hover:underline contact-button">Contact Us</a>
+            <a href="#cta" class="hover:underline contact-button">Contact Us</a>
         </nav>
           
     </header>
@@ -347,19 +349,18 @@
             </div>
         </div>
 
-
-        <section class="technical-overview-section">
+        <section class="mb-8">
             <!-- Left-aligned platform overview -->
-            <div class="technical-overview-platform">
-              <span class="technical-overview-platform-tag">Inside Engine</span>
-              <h2 class="technical-overview-platform-title">Technical Overview</h2>
-              <p class="technical-overview-platform-text">
+            <div class="platform-overview">
+              <span class="platform-overview-tag">Inside Engine</span>
+              <h2 class="platform-overview-title">Technical Overview</h2>
+              <p class="platform-overview-text">
                 Our engine is built on a foundation of modularity, scalability, and efficiency. This architecture empowers developers and enterprises to build, scale, and optimize AI workflows with confidence.
               </p>
             </div>
           
             <!-- Right-aligned tiles container -->
-            <div class="technical-overview-tiles">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div class="technical-overview-tile">
                 <h3>Containerized Architecture</h3>
                 <img src="assets/images/docker-img.png" alt="Containerized Architecture" />
@@ -375,7 +376,7 @@
                 <img src="assets/images/data-abstraction.png" alt="Data Abstraction Layer" />
               </div>
             </div>
-          </section>
+        </section>
           
         <!--
         <div class="column" style="text-align: center;">
@@ -389,8 +390,6 @@
             <h3 style="color: white;">Continuous Optimization</h3>
         </div>
         -->
-    </div>
-</section>
 
    
         
