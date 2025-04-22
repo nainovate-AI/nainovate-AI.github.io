@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 @layer utilities {
   .dark-gradient {
     background: linear-gradient(to bottom, #000000, #1a1a1a);
@@ -69,6 +71,11 @@
 
   /* Hero Section Styles */
   .hero-section-card {
-    @apply bg-black p-8 rounded-lg shadow-md text-center;
-  }
+  background-color: #000;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
 }

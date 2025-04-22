@@ -1366,3 +1366,62 @@ responsive styles section above to fix mobile display issues */
 .form-submit:hover {
   background-color: #4338ca;
 }
+
+
+/* Testing Gradient Blobs */
+.blurry-section {
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 2rem;
+  border-radius: 2rem;
+  color: white;
+  z-index: 0;
+}
+
+.gradient-blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px; /* Bigger for impact */
+  height: 400px;
+  background: radial-gradient(circle at center, #ff6ec4, #7873f5);
+  transform: translate(-50%, -50%);
+  filter: blur(150px); /* More blur for glow */
+  opacity: 0.65; /* Slightly stronger visibility */
+  z-index: -1;
+  border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%;
+  animation: floatBlob 10s ease-in-out infinite, morphBlob 8s ease-in-out infinite;
+}
+
+@keyframes floatBlob {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-30%, -82%) scale(1.5);
+  }
+}
+
+@keyframes morphBlob {
+  0% {
+    border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%;
+  }
+  25% {
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  }
+  50% {
+    border-radius: 30% 70% 60% 40% / 60% 30% 70% 40%;
+  }
+  75% {
+    border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%;
+  }
+  100% {
+    border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
