@@ -15,30 +15,30 @@
     <link rel="stylesheet" href="styles/output.css">
     <link rel="stylesheet" href="./styles/combined-styles.css">
     <link rel="stylesheet" href="styles/tailwind.css">
-    <link rel="icon" href="assets/icons/genX-lightmode-logo.svg" type="image/x-icon">
+    <link rel="icon" href="assets/icons/genX-darkmode-logo.svg" type="image/x-icon">
     <title>GenX</title>
 </head>
 <body class="dark-gradient text-gray-200">
-    <header id="navbar" class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex justify-between items-center rounded-lg w-full z-50 transition-all duration-300">        <div class="flex items-center">
-        <h1 class="text-3xl font-bold mr-1">Gen</h1>
-        <img src="assets/icons/genX-lightmode-logo.svg" alt="GenX Logo" class="h-8 w-8 mr-2">    
+    <header id="navbar" class="text-white p-2 flex justify-between items-center rounded-lg w-full z-50 transition-all duration-300">
+        <div class="flex items-center">
+          <img src="assets/icons/genx-darkmode-logo.png" alt="GenX Logo" class="h-20 w-20 mr-2">
         </div>
-        <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-        </button>        <nav id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 md:items-center">
-            <ul class="flex flex-col md:flex-row md:space-x-4">
-                <li><a href="#features" class="hover:underline">Features</a></li>
-                <li><a href="#use-cases-technical" class="hover:underline">Use Cases</a></li>
-                <li><a href="#testimonials" class="hover:underline">Testimonials</a></li>
-                <li><a href="#cta" class="hover:underline">Get Started</a></li>
-            </ul>
-            <!-- Simple contact button that matches nav style -->
-            <a href="#cta" class="hover:underline contact-button">Contact Us</a>
+        <button id="menu-toggle" class="block md:hidden text-white focus:outline-none" aria-label="Toggle navigation" aria-expanded="false">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+        <nav id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 md:items-center">
+          <ul class="flex flex-col md:flex-row md:space-x-4">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#use-cases-technical">Use Cases</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#cta">Get Started</a></li>
+          </ul>
+          <a href="#cta">Contact Us</a>
         </nav>
-          
     </header>
+      
     <main class="p-6">
         <!-- Hero Section -->
         <section class="hero-section-card">
@@ -674,29 +674,25 @@
             const navbar = document.getElementById('navbar');
             const navbarHeight = navbar.offsetHeight;
             let isFloating = false;
-            
+
             // Create a placeholder to prevent content jump when navbar becomes fixed
             const placeholder = document.createElement('div');
             placeholder.style.height = `${navbarHeight}px`;
             placeholder.style.display = 'none';
             document.body.insertBefore(placeholder, navbar.nextSibling);
-            
+
             window.addEventListener('scroll', () => {
                 const scrollPosition = window.scrollY;
-                
-                // When scrolled past threshold, make navbar floating
+
+                // When scrolled past threshold, make navbar sticky
                 if (scrollPosition > 50 && !isFloating) {
                     navbar.classList.add('fixed', 'top-0', 'shadow-lg');
-                    navbar.classList.remove('w-full');
-                    navbar.classList.add('w-11/12', 'left-1/2', 'transform', '-translate-x-1/2');
                     placeholder.style.display = 'block';
                     isFloating = true;
                 } 
                 // When scrolled back to top, revert to normal
                 else if (scrollPosition <= 50 && isFloating) {
-                    navbar.classList.remove('fixed', 'top-0', 'shadow-lg', 'left-1/2', 'transform', '-translate-x-1/2');
-                    navbar.classList.remove('w-11/12');
-                    navbar.classList.add('w-full');
+                    navbar.classList.remove('fixed', 'top-0', 'shadow-lg');
                     placeholder.style.display = 'none';
                     isFloating = false;
                 }
@@ -767,14 +763,17 @@
                     }, 500);
                 });
             }
-        });        document.getElementById('menu-toggle').addEventListener('click', function() {
+        });        
+        document.getElementById('menu-toggle').addEventListener('click', function () {
             const menu = document.getElementById('menu');
             const navbar = document.getElementById('navbar');
-            
+            const toggleButton = this;
+
             menu.classList.toggle('hidden');
-            
-            // Add/remove class for targeting mobile menu state in CSS
-            if (!menu.classList.contains('hidden')) {
+            const isExpanded = !menu.classList.contains('hidden');
+            toggleButton.setAttribute('aria-expanded', isExpanded);
+
+            if (isExpanded) {
                 navbar.classList.add('mobile-menu-open');
             } else {
                 navbar.classList.remove('mobile-menu-open');
