@@ -664,7 +664,7 @@ border-radius: 1rem;
 }
 
 .front {
-  background-color: #000; /* Black background for the front of the card */
+  background: linear-gradient(135deg, #000000, #222222); /* Same gradient as back */
   color: #fff; /* White text color for better readability */
   display: flex;
   flex-direction: column;
