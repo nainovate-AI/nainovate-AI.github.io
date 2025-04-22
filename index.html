@@ -21,7 +21,7 @@
 <body class="dark-gradient text-gray-200">
     <header id="navbar" class="text-white p-2 flex justify-between items-center rounded-lg w-full z-50 transition-all duration-300">
         <div class="flex items-center">
-          <img src="assets/icons/genx-darkmode-logo.png" alt="GenX Logo" class="h-20 w-20 mr-2">
+          <img src="assets/icons/genx-darkmode-logo.png" alt="GenX Logo" class="h-24 w-24 mr-2">
         </div>
         <button id="menu-toggle" class="block md:hidden text-white focus:outline-none" aria-label="Toggle navigation" aria-expanded="false">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,7 +37,7 @@
           </ul>
           <a href="#cta">Contact Us</a>
         </nav>
-    </header>
+    </header>  
       
     <main class="p-6">
         <!-- Hero Section -->
@@ -765,19 +765,19 @@
             }
         });        
         document.getElementById('menu-toggle').addEventListener('click', function () {
-            const menu = document.getElementById('menu');
-            const navbar = document.getElementById('navbar');
-            const toggleButton = this;
+        const menu = document.getElementById('menu');
+        const navbar = document.getElementById('navbar');
+        const toggleButton = this;
 
-            menu.classList.toggle('hidden');
-            const isExpanded = !menu.classList.contains('hidden');
-            toggleButton.setAttribute('aria-expanded', isExpanded);
+        menu.classList.toggle('hidden');
+        const isExpanded = !menu.classList.contains('hidden');
+        toggleButton.setAttribute('aria-expanded', isExpanded);
 
-            if (isExpanded) {
-                navbar.classList.add('mobile-menu-open');
-            } else {
-                navbar.classList.remove('mobile-menu-open');
-            }
+        if (isExpanded) {
+            navbar.classList.add('mobile-menu-open');
+        } else {
+            navbar.classList.remove('mobile-menu-open');
+        }
         });
     </script>
     <script>
