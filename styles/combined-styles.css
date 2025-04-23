@@ -151,11 +151,11 @@ transition: transform 0.2s ease;
 
 /* Industry Icons */
 .icon-car-manufacturing {
-  background-image: url('../assets/icons/car-manufacturing_icon.png');
+  background-image: url('../assets/icons/car_manufacturing_icon.png');
 }
 
 .icon-cloud-computing {
-  background-image: url('../assets/icons/cloud-computing_icon.png');
+  background-image: url('../assets/icons/cloud_computing_icon.png');
 }
 
 .icon-crane-house {
@@ -163,7 +163,7 @@ transition: transform 0.2s ease;
 }
 
 .icon-customer-service {
-  background-image: url('../assets/icons/customer-service_icon.png');
+  background-image: url('../assets/icons/customer_service_icon.png');
 }
 
 .icon-product-manufacturing {
@@ -171,7 +171,7 @@ transition: transform 0.2s ease;
 }
 
 .icon-wind-energy {
-  background-image: url('../assets/icons/wind-energy_icon.png');
+  background-image: url('../assets/icons/wind_energy_icon.png');
 }
 
 /* Cloud Provider Icons */
