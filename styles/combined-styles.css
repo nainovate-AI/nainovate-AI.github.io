@@ -151,127 +151,127 @@ transition: transform 0.2s ease;
 
 /* Industry Icons */
 .icon-car-manufacturing {
-  background-image: url('../assets/icons/car-manufacturing-icon.png');
+  background-image: url('../assets/icons/car-manufacturing_icon.png');
 }
 
 .icon-cloud-computing {
-  background-image: url('../assets/icons/cloud-computing-icon.png');
+  background-image: url('../assets/icons/cloud-computing_icon.png');
 }
 
 .icon-crane-house {
-  background-image: url('../assets/icons/crane_house-icon.png');
+  background-image: url('../assets/icons/crane_house_icon.png');
 }
 
 .icon-customer-service {
-  background-image: url('../assets/icons/customer-service-icon.png');
+  background-image: url('../assets/icons/customer-service_icon.png');
 }
 
 .icon-product-manufacturing {
-  background-image: url('../assets/icons/product_manufacturing-icon.png');
+  background-image: url('../assets/icons/product_manufacturing_icon.png');
 }
 
 .icon-wind-energy {
-  background-image: url('../assets/icons/wind-energy-icon.png');
+  background-image: url('../assets/icons/wind-energy_icon.png');
 }
 
 /* Cloud Provider Icons */
 .icon-apple {
-background-image: url('../assets/icons/apple-icon.png');
+background-image: url('../assets/icons/apple_icon.png');
 }
 
 .icon-apple {
-  background-image: url('../assets/icons/apple-icon.png');
+  background-image: url('../assets/icons/apple_icon.png');
   }
 
 .icon-amd {
-    background-image: url('../assets/icons/amd-icon.png');
+    background-image: url('../assets/icons/amd_icon.png');
 }  
 
 .icon-nvidia {
-  background-image: url('../assets/icons/nvidia-icon.png');
+  background-image: url('../assets/icons/nvidia_icon.png');
 }
 
 .icon-aws {
-background-image: url('../assets/icons/aws-icon.png');
+background-image: url('../assets/icons/aws_icon.png');
 }
 
 .icon-azure {
-background-image: url('../assets/icons/azure-icon.png');
+background-image: url('../assets/icons/azure_icon.png');
 }
 
 .icon-gcp {
-background-image: url('../assets/icons/gcp-icon.png');
+background-image: url('../assets/icons/gcp_icon.png');
 }
 
 .icon-oracle {
-background-image: url('../assets/icons/oracle-icon.png');
+background-image: url('../assets/icons/oracle_icon.png');
 }
 
 .icon-ibm {
-background-image: url('../assets/icons/ibm-icon.png');
+background-image: url('../assets/icons/ibm_icon.png');
 }
 
 .icon-cloudflare {
-background-image: url('../assets/icons/cloudflare-icon.png');
+background-image: url('../assets/icons/cloudflare_icon.png');
 }
 
 /* Storage Icons */
 .icon-drive {
-background-image: url('../assets/icons/drive-icon.png');
+background-image: url('../assets/icons/drive_icon.png');
 }
 
 .icon-s3 {
-background-image: url('../assets/icons/s3-icon.png');
+background-image: url('../assets/icons/s3_icon.png');
 }
 
 .icon-cloud {
-background-image: url('../assets/icons/cloud-icon.png');
+background-image: url('../assets/icons/cloud_icon.png');
 }
 
 /* AI Model Icons */
 .icon-gpt4 {
-background-image: url('../assets/icons/gpt4-icon.png');
+background-image: url('../assets/icons/gpt4_icon.png');
 }
 
 .icon-claude {
-background-image: url('../assets/icons/claude-icon.png');
+background-image: url('../assets/icons/claude_icon.png');
 }
 
 .icon-gemini {
-background-image: url('../assets/icons/gemini-icon.png');
+background-image: url('../assets/icons/gemini_icon.png');
 }
 
 .icon-cohere {
-background-image: url('../assets/icons/cohere-icon.png');
+background-image: url('../assets/icons/cohere_icon.png');
 }
 
 .icon-llama {
-background-image: url('../assets/icons/llama-icon.png');
+background-image: url('../assets/icons/llama_icon.png');
 }
 
 .icon-mistral {
-background-image: url('../assets/icons/mistral-icon.png');
+background-image: url('../assets/icons/mistral_icon.png');
 }
 
 /* Usecase Icons */
 .icon-recruitment {
-background-image: url('../assets/icons/recruitment-icon.png');
+background-image: url('../assets/icons/recruitment_icon.png');
 }
 
 .icon-boq {
-background-image: url('../assets/icons/boq-icon.png');
+background-image: url('../assets/icons/boq_icon.png');
 }
 
 .icon-medical {
-background-image: url('../assets/icons/medical-icon.png');
+background-image: url('../assets/icons/medical_icon.png');
 }
 
 .icon-edutech {
-background-image: url('../assets/icons/edutech-icon.png');
+background-image: url('../assets/icons/edutech_icon.png');
 }
 
 .icon-realestate {
-  background-image: url('../assets/icons/realestate-icon.png');
+  background-image: url('../assets/icons/realestate_icon.png');
   }
   
 .icon-grid img:hover,
