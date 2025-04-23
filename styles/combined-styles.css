@@ -1,3 +1,9 @@
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
 /* Style for navigation links */
 #menu a {
   position: relative;
@@ -1375,7 +1381,7 @@ responsive styles section above to fix mobile display issues */
 }
 
 /*gradient blobs*/
-/* Testing Gradient Blobs */
+/* Default styles for larger screens */
 .blurry-section {
   position: relative;
   overflow: hidden;
@@ -1389,8 +1395,8 @@ responsive styles section above to fix mobile display issues */
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 350px;  /* Reduced from 600px */
-  height: 350px;
+  width: 250px;
+  height: 250px;
   background: radial-gradient(circle at center, #ff6ec4, #7873f5);
   transform: translate(-50%, -50%);
   filter: blur(120px);  /* Slightly reduced blur to match new size */
@@ -1400,13 +1406,13 @@ responsive styles section above to fix mobile display issues */
   animation: floatBlob 10s ease-in-out infinite, morphBlob 8s ease-in-out infinite;
 }
 
-
+/* Keyframes for blob animation */
 @keyframes floatBlob {
   0%, 100% {
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    transform: translate(-28%, -82%) scale(1.08);
+    transform: translate(-20%, -80%) scale(1.08);
   }
 }
 
@@ -1425,6 +1431,18 @@ responsive styles section above to fix mobile display issues */
   }
   100% {
     border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%;
+  }
+}
+
+/* Disable the blob animation on mobile devices */
+@media screen and (max-width: 767px) {
+  .gradient-blob {
+    animation: none;  /* Disable animations */
+    filter: blur(120px);  /* Keep the blur effect */
+    opacity: 0.75;       /* Keep the opacity */
+    width: 250px;        /* Adjust size for mobile */
+    height: 800px;       /* Adjust size for mobile */
+    transform: translate(-50%, -50%);  /* Keep it centered */
   }
 }
 
