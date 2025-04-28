@@ -1276,22 +1276,46 @@ responsive styles section above to fix mobile display issues */
   }
 }
 
-/* Contact Form */
-/* Base container */
-.contact-section {
-  width: 100%;
+/* Grid Wrapper for sections */
+.grid-section-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: stretch;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* Each Section inside the Grid */
+.grid-section {
+  flex: 1 1 45%;
+  min-width: 300px;
   max-width: 40rem;
-  margin-left: auto;
-  margin-right: auto;
   padding: 3rem 1.5rem;
   background: rgba(17, 24, 39, 0.6); /* dark with transparency */
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 1rem;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   color: #f3f4f6;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
 }
+
+/* Stack sections vertically on small screens */
+@media (max-width: 768px) {
+  .grid-section-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .grid-section-wrapper > .grid-section {
+    flex: none;
+    width: 90%;
+    max-width: 30rem;
+  }
+}
+
 
 
 /* Intro spacing */
@@ -1380,6 +1404,30 @@ responsive styles section above to fix mobile display issues */
   background-color: #4338ca;
 }
 
+.back-home-button {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  color: #f3f4f6;
+  background: rgba(17, 24, 39, 0.6); /* matching dark translucent background */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* same faint border */
+  border-radius: 0.5rem;
+  width: 90%; /* minimum width */
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* soft dark shadow */
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.back-home-button:hover {
+  background: #4f46e5; /* slight darken on hover */
+  transform: scale(1.01);
+  color: #e0e7ff;
+}
+
 /*gradient blobs*/
 /* Default styles for larger screens */
 .blurry-section {
@@ -1404,6 +1452,31 @@ responsive styles section above to fix mobile display issues */
   z-index: -1;
   border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%;
   animation: floatBlob 10s ease-in-out infinite, morphBlob 8s ease-in-out infinite;
+}
+
+/* Multi Blob Base */
+.multi-blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  filter: blur(120px);
+  opacity: 0.7;
+  border-radius: 45% 55% 65% 35% / 35% 45% 55% 65%;
+  z-index: -1;
+}
+
+/* First Blob Animation */
+.multi-blob-1 {
+  top: 20%;
+  left: 30%;
+  animation: floatBlobOne 12s ease-in-out infinite alternate, morphBlob 8s ease-in-out infinite alternate;
+}
+
+/* Second Blob Animation */
+.multi-blob-2 {
+  top: 60%;
+  left: 65%;
+  animation: floatBlobTwo 14s ease-in-out infinite alternate, morphBlob 9s ease-in-out infinite alternate;
 }
 
 /* Keyframes for blob animation */
@@ -1434,6 +1507,32 @@ responsive styles section above to fix mobile display issues */
   }
 }
 
+/* Floating movement for blob 1 */
+@keyframes floatBlobOne {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  50% {
+    transform: translate(60%, -80%) scale(1.1);
+  }
+  100% {
+    transform: translate(-40%, 40%) scale(1.05);
+  }
+}
+
+@keyframes floatBlobTwo {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  50% {
+    transform: translate(-80%, 60%) scale(1.15);
+  }
+  100% {
+    transform: translate(70%, -50%) scale(1.08);
+  }
+}
+
+
 /* Disable the blob animation on mobile devices */
 @media screen and (max-width: 767px) {
   .gradient-blob {
@@ -1443,6 +1542,13 @@ responsive styles section above to fix mobile display issues */
     width: 250px;        /* Adjust size for mobile */
     height: 800px;       /* Adjust size for mobile */
     transform: translate(-50%, -50%);  /* Keep it centered */
+  }
+
+  .multi-blob {
+    animation: none;
+    filter: blur(100px);
+    width: 200px;
+    height: 200px;
   }
 }
 
