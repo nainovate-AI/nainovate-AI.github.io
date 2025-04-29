@@ -19,63 +19,145 @@
 
   
 </head>
-<body class="dark-gradient">
+<body class="dark-gradient blurry-section">
 
-  <section class="contact-section">
-    <div class="contact-intro">
-      <h2 class="contact-title">Request a Demo</h2>
-      <p class="contact-description">
-        Fill out the form below and we'll get back to you as soon as possible.
-      </p>
+  <div class="multi-blob multi-blob-1" style="background: radial-gradient(circle at center, #0cc0df, #4e9bff); opacity: 1;"></div>
+  <div class="multi-blob multi-blob-2" style="background: radial-gradient(circle at center, #a66cff, #7873f5); opacity: 1;"></div>
+
+  <section class="grid-section-wrapper">
+
+      <!-- Multi-Blob Setup -->
+
+    <div class="grid-section"> 
+      <div class="contact-intro">
+        <h2 class="contact-title">Request a Demo // Contact Us</h2>
+        <p class="contact-description">
+          Fill out the form below and we'll get back to you as soon as possible.
+        </p>
+      </div>
+
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="ce3c5815-b92c-484d-b4f3-0232a1989b6d" />
+        <input type="hidden" name="subject" value="New Contact Form Submission from Nainovate.ai" />
+        <input type="hidden" name="from_name" value="nainovate.ai website" />
+
+        <div class="form-group-container">
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone</label>
+            <input id="phone" name="phone" class="form-input" placeholder="+91 0000000000" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="company" class="form-label">Company <span style="color: #6b7280; font-weight: normal;">(optional)</span></label>
+            <input id="company" name="company" class="form-input" placeholder="Company name (optional)" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="message" class="form-label">Message <span style="color: #6b7280; font-weight: normal;">(optional)</span></label>
+            <input id="message" name="message" class="form-textarea" placeholder="Any comments or queries" type="text" />
+          </div>
+        </div>
+        <button class="form-submit" type="submit">Send Message</button>
+      </form>
+
+      <style>
+        body {
+          font-family: Tahoma, sans-serif;
+          background: linear-gradient(135deg, #1b1b1b, #131313, #000000);
+          min-height: 100vh;
+          padding: 2rem;
+          color: #e5e7eb;
+        }
+      </style>
     </div>
 
-    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-
-      <input type="hidden" name="access_key" value="ce3c5815-b92c-484d-b4f3-0232a1989b6d" />
-      <input type="hidden" name="subject" value="New Contact Form Submission from Nainovate.ai" />
-      <input type="hidden" name="from_name" value="nainovate.ai website" />
-
-      <div class="form-group-container">
-        <div class="form-group">
-          <label for="name" class="form-label">Name</label>
-          <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required />
-        </div>
-        <div class="form-group">
-          <label for="email" class="form-label">Email</label>
-          <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required />
-        </div>
-        <div class="form-group">
-          <label for="phone" class="form-label">Phone</label>
-          <input id="phone" name="phone" class="form-input" placeholder="+91 248163264" type="text" required />
-        </div>
-        <div class="form-group">
-          <label for="company" class="form-label">Company <span style="color: #6b7280; font-weight: normal;">(optional)</span></label>
-          <input id="company" name="company" class="form-input" placeholder="Company name (optional)" type="text" />
-        </div>
-        <div class="form-group">
-          <label for="message" class="form-label">Message <span style="color: #6b7280; font-weight: normal;">(optional)</span></label>
-          <input id="message" name="message" class="form-textarea" placeholder="Any comments or queries" type="text" />
+    <div class="grid-section">
+      <div class="contact-intro">
+        <h2 class="contact-title font-mono" style="font-size: 2rem; text-transform: uppercase;">Nainovate Technologies Pvt Ltd</h2>
         
+        <p class="contact-description" style="font-size: 1.125rem; margin-top: 1rem;">
+          17.415901, 78.354863<br />
+          Harsha Icon, 11th Floor<br/>
+          Nanakramguda, Hyderabad, 500032
+        </p>
+        
+        <div style="margin-top: 1.5rem; border-radius: 0.75rem; overflow: hidden;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d285.68738659408604!2d78.35496013003575!3d17.41612050366792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb952200059677%3A0xac28e1d107bc3e57!2sAVK%20SRI%20Harsha%20Icon!5e0!3m2!1sen!2sin!4v1745865385672!5m2!1sen!2sin"
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Nainovate Technologies Location"
+          ></iframe>
         </div>
+        
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+          <a href="https://maps.apple.com/directions?destination=(17.415901%2C%2078.354863)" 
+            class="form-submit px-6 py-2 font-medium text-center">
+            Apple Maps
+          </a>
+          <!--Bhuvan Button-->
+          <!-- <a href="https://bhuvan.nrsc.gov.in/ngmaps?mode=Hybrid&sid=nmi&nmi_poi=%0ANarsingi+Nanakramguda+Service+Road%2C+Financial+District%2C+Nanakramguda%2C+Hyderabad%2C+Telangana%2C+500032&nmi_place=Sri+Harsha+Icon&cpoint=%5B17.4159010000001%2C78.3548630000001%5D#16/17.415901/78.35261" 
+            class="form-submit px-6 py-2 font-medium text-center">
+            Bhuvan - Govt. of India
+          </a> -->
+          <a href="https://maps.app.goo.gl/iyfGc5FhFic2wdB78" 
+            class="form-submit px-6 py-2 font-medium text-center">
+            Google Maps (alt)
+          </a>
+        </div>
+
+        <!---Moved in the place of bhuvan--->
+        <!-- <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-2">
+          <a href="https://maps.app.goo.gl/iyfGc5FhFic2wdB78" 
+            class="form-submit px-6 py-2 font-medium text-center">
+            Google Maps (alt)
+          </a>
+
+        </div> -->
+        <p>
+            These sites are not affiliated with Nainovate Technologies Pvt Ltd. They redirect to the respective map services.
+        </p>
       </div>
-      <button class="form-submit" type="submit">Send Message</button>
-    </form>
-
-    <a href="../index.html" class="inline-block mt-8 px-6 py-2 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-md hover:bg-indigo-600 hover:text-white transition duration-300">
-  ← Back to Homepage
-</a>
-  <style>
- body {
-  font-family: Tahoma, sans-serif;
-  background: linear-gradient(135deg, #000000, #181829, #24243d);
-  min-height: 100vh;
-  padding: 2rem;
-  color: #e5e7eb;
-}
-
-</style>
-
+    </div>
+    
   </section>
+
+  <section class="grid-section-wrapper">
+      <section>
+        <div class="flex justify-center w-full">
+          <a href="../index.html"
+            class="grid-section w-full max-w-2xl px-18 py-6 text-2xl font-bold text-purple-300 backdrop-blur-lg border border-purple-400/30 rounded-2xl text-center hover:bg-purple-400/10 hover:scale-105 transition-all duration-300 transform">
+            Back to Homepage
+          </a>
+        </div>
+      </section>
+  </section>
+
+
+<!-- Test Footer Section -->
+<!-- <br>
+<section data-parallax-layers>
+    <footer class="simple-footer" style="background-color: transparent; border: 1px solid #d978ff84; border-radius: 1rem; backdrop-filter: blur(50px);">
+        <div class="footer-links">
+            <a href="../subpages/terms_and_privacy_policy.html#privacy-policy" class="footer-link">Privacy Policy</a>
+            <span>|</span>
+            <a href="../subpages/terms_and_privacy_policy.html#terms-of-service" class="footer-link">Terms of Service</a>
+            <span>|</span>
+            <a href="../subpages/contact_form.html" class="footer-link">Contact Us</a>
+        </div>
+    </footer>
+</section> -->
+
 
 </body>
 </html>
