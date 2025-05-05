@@ -909,7 +909,7 @@ border-radius: 1rem;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 1rem rgba(0,0,0,0.2);
-  background-color: #2563eb; /* fallback for blue-600 */
+  background-color: #0d224e; /* fallback for blue-600 */
   color: white;
   text-align: center;
 }
@@ -943,12 +943,12 @@ border-radius: 1rem;
 }
 
 .demo-btn {
-  background-color: #1f2937;
+  background-color: #111827;
   color: white;
 }
 
 .demo-btn:hover {
-  background-color: #111827;
+  background-color: #1f2937;
 }
 
 /* Mobile Optimizations */
@@ -1313,6 +1313,7 @@ responsive styles section above to fix mobile display issues */
     flex-direction: column;
     align-items: center;
     padding: 0 1rem; /* Add safe side padding */
+    padding-top: 50px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -1327,6 +1328,70 @@ responsive styles section above to fix mobile display issues */
   }
 }
 
+
+/* Back to Home Page Button */
+.back_to_homepage {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  background-color: #c084fc1a; 
+  border: 1px solid #c084fc4d; /* purple-400/30 */
+  color: #d8b4fe; /* text-purple-300 */
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+}
+
+.back_to_homepage:hover {
+  background-color: #c084fc; /* hover:bg-purple-400/10 */
+  color: #d7c9e5;
+  transform: scale(1.05);
+}
+
+.back_to_homepage svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.back_to_homepage .tooltip-text {
+  position: absolute;
+  left: 3.5rem;
+  white-space: nowrap;
+  background-color: #c084fc1a; /* dark semi-transparent background */
+  color: #f3f4f6;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: translateY(0.25rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.back_to_homepage:hover .tooltip-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .back_to_homepage {
+    top: 15px;   /* Adjust top margin for mobile */
+    left: 15px;  /* Adjust left margin for mobile */
+    width: 50px; /* Adjust button size */
+    height: 50px; /* Adjust button size */
+    padding: 8px 10px; /* Adjust padding for mobile */
+  }
+
+  .back_to_homepage svg {
+    width: 40px;  /* Adjust icon size */
+    height: 40px; /* Adjust icon size */
+  }
+}
 
 
 /* Intro spacing */
