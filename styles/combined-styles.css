@@ -1391,6 +1391,10 @@ responsive styles section above to fix mobile display issues */
     width: 40px;  /* Adjust icon size */
     height: 40px; /* Adjust icon size */
   }
+
+  .tooltip-text {
+    display: none; /* Hide tooltip on mobile */
+  }
 }
 
 
