@@ -19,12 +19,13 @@
     <title>GenX Platform | Homepage</title>
 </head>
 <body class="dark-gradient text-gray-200">
-    <header id="navbar" class="text-white p-2 flex justify-between items-center rounded-lg w-full z-50 transition-all duration-300">
-        <div class="flex items-center space-x-4 pl-9">
+    <div id="navbar-placeholder" style="height: 80px;"></div>
+    <header id="navbar" class="text-white flex justify-between items-center w-full z-50 transition-all duration-300 header-blur fixed top-0 shadow-lg">
+        <div class="flex items-center space-x-4 pl-0 md:pl-9 h-full">
             <!-- Logos -->
-            <img src="./assets/images/nainovate_logo_ws.png" alt="Nainovate Logo" style="width: 280px;">
+            <img src="./assets/images/nainovate_logo_ws_c.svg" alt="Nainovate Logo" style="height: 100%; width: auto; max-width: none; max-height: 25px;">
             <div class="h-7 w-px bg-gray-400"></div>
-            <img src="./assets/icons/genx_darkmode_logo_u.png" alt="GenX Logo" style="height: 24px; padding-top: 3px;">
+            <img src="./assets/icons/genx_darkmode_logo_u.svg" alt="GenX Logo" style="height: 100%; max-height: 40px;" class="pr-4">
             
         </div>
 
@@ -33,15 +34,17 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
         </button>
-        <nav id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 md:items-center">
-          <ul class="flex flex-col md:flex-row md:space-x-4">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#use-cases-technical">Use Cases</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#cta">Get Started</a></li>
-          </ul>
-          <a href="#cta">Contact Us</a>
+        <nav id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 md:items-center 
+            bg-black/40 backdrop-blur-lg rounded-xl shadow-lg p-4 text-white">
+            <ul class="flex flex-col md:flex-row md:space-x-4">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#use-cases-technical">Use Cases</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#cta">Get Started</a></li>
+            </ul>
+            <a href="#cta">Contact Us</a>
         </nav>
+
     </header>  
       
     <main class="p-6">
@@ -708,33 +711,33 @@
                 }, 100);
             });
 
-            // Floating navbar on scroll functionality
-            const navbar = document.getElementById('navbar');
-            const navbarHeight = navbar.offsetHeight;
-            let isFloating = false;
+            // // Floating navbar on scroll functionality
+            // const navbar = document.getElementById('navbar');
+            // const navbarHeight = navbar.offsetHeight;
+            // let isFloating = false;
 
-            // Create a placeholder to prevent content jump when navbar becomes fixed
-            const placeholder = document.createElement('div');
-            placeholder.style.height = `${navbarHeight}px`;
-            placeholder.style.display = 'none';
-            document.body.insertBefore(placeholder, navbar.nextSibling);
+            // // Create a placeholder to prevent content jump when navbar becomes fixed
+            // const placeholder = document.createElement('div');
+            // placeholder.style.height = `${navbarHeight}px`;
+            // placeholder.style.display = 'none';
+            // document.body.insertBefore(placeholder, navbar.nextSibling);
 
-            window.addEventListener('scroll', () => {
-                const scrollPosition = window.scrollY;
+            // window.addEventListener('scroll', () => {
+            //     const scrollPosition = window.scrollY;
 
-                // When scrolled past threshold, make navbar sticky
-                if (scrollPosition > 50 && !isFloating) {
-                    navbar.classList.add('fixed', 'top-0', 'shadow-lg');
-                    placeholder.style.display = 'block';
-                    isFloating = true;
-                } 
-                // When scrolled back to top, revert to normal
-                else if (scrollPosition <= 50 && isFloating) {
-                    // navbar.classList.remove('fixed', 'top-0', 'shadow-lg');
-                    // placeholder.style.display = 'none';
-                    // isFloating = false;
-                }
-            });
+            //     // When scrolled past threshold, make navbar sticky
+            //     // if (scrollPosition > 50 && !isFloating) {
+            //     //     navbar.classList.add('fixed', 'top-0', 'shadow-lg');
+            //     //     placeholder.style.display = 'block';
+            //     //     isFloating = true;
+            //     // } 
+            //     // // When scrolled back to top, revert to normal
+            //     // else if (scrollPosition <= 50 && isFloating) {
+            //     //     // navbar.classList.remove('fixed', 'top-0', 'shadow-lg');
+            //     //     // placeholder.style.display = 'none';
+            //     //     // isFloating = false;
+            //     // }
+            // });
         });
     </script>
     <script>
