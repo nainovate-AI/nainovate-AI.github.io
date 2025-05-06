@@ -56,7 +56,18 @@ html, body {
   text-align: right;
 }
 
-/* Combined styles from platform-overview.css and spotlight-effect.css */
+.header-blur {
+    background-color: rgba(0, 0, 0, 0.4);   /* Black with 40% opacity */
+    backdrop-filter: blur(12px);            /* Blur strength */
+    -webkit-backdrop-filter: blur(12px);    /* Safari support */
+    border-radius: 0.5rem;                  /* Rounded corners (lg) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    padding: 0.5rem;                        /* Same as p-2 */
+    color: white;
+    border: 1px solid #1a1a1a;              /* Very dark grey border */
+    transition: all 0.3s ease;
+    will-change: transform;
+}
 
 /* ===== Platform Overview Section styles ===== */
 .platform-overview {
