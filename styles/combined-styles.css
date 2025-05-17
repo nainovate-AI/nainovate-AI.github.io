@@ -498,10 +498,167 @@ border-radius: 1rem;
 }
 
 /* Hero section card styles */
+
+/* Artificial glassmorphism effect for hero buttons (no blur) */
+.hero-section-card a.bg-blue-600 {
+  background: linear-gradient(120deg, rgba(59,130,246,0.85) 60%, rgba(96,165,250,0.85) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 24px 0 rgba(59,130,246,0.18);
+  border-radius: 0.75rem;
+  border: 1.5px solid rgba(120,130,150,0.18);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+  /* Simulated glass shine */
+}
+.hero-section-card a.bg-blue-600::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.18) 10%, rgba(255,255,255,0.08) 60%, rgba(255,255,255,0.01) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+.hero-section-card a.bg-blue-600:hover {
+  background: linear-gradient(120deg, rgba(37,99,235,0.95) 60%, rgba(96,165,250,0.95) 100%);
+  box-shadow: 0 8px 32px 0 rgba(59,130,246,0.28);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.hero-section-card a.bg-gray-800 {
+  background: linear-gradient(120deg, rgba(36,39,46,0.65) 60%, rgba(60,63,70,0.65) 100%);
+  color: #e0e0e0;
+  border: none;
+  box-shadow: 0 2px 12px 0 rgba(80,80,90,0.10);
+  border-radius: 0.75rem;
+  border: 1.5px solid rgba(120,130,150,0.13);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.hero-section-card a.bg-gray-800::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.13) 10%, rgba(255,255,255,0.06) 60%, rgba(255,255,255,0.01) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+.hero-section-card a.bg-gray-800:hover {
+  background: linear-gradient(120deg, rgba(36,39,46,0.85) 60%, rgba(60,63,70,0.85) 100%);
+  box-shadow: 0 6px 24px 0 rgba(80,80,90,0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+/* Hero video gradient border */
+.hero-video-gradient-border {
+  position: relative;
+  border: 4px solid transparent;
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(#181a1b, #181a1b) padding-box,
+    linear-gradient(120deg, #23272f 0%, #444950 40%, #888b92 60%, #23272f 100%) border-box;
+  box-shadow:
+    0 2px 16px 2px rgba(40,40,50,0.45),
+    0 0 0 2px rgba(30,30,30,0.7),
+    0 8px 32px 0 rgba(0,0,0,0.7);
+  transition: box-shadow 0.3s, background-position 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  /* For Safari */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.hero-video-gradient-border:hover {
+  background-position: 100% 50%;
+  box-shadow:
+    0 4px 32px 4px rgba(40,40,50,0.55),
+    0 0 0 4px rgba(80,60,180,0.5),
+    0 12px 48px 0 rgba(0,0,0,0.8);
+}
+/* Custom font for hero heading */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+.hero-section-card h2 {
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+
+/* Lighter subtitle for hierarchy */
+.hero-section-card p.text-lg {
+  font-weight: 300;
+  color: #d1d5db;
+}
+
+@media (max-width: 768px) {
+  .hero-flex-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .hero-content, .hero-video-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    margin-top: 1.5rem;
+  }
+
+  
+  .hero-video-gradient-border {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block !important;
+    margin: 0 auto;
+    border-radius: 1rem;
+    box-sizing: border-box;
+  }
+  .hero-section-card {
+    padding: 1rem 0.5rem;
+    min-height: 0;
+    height: auto;
+  }
+  .hero-content {
+    padding: 0 0.5rem;
+  }
+  .hero-video-wrapper {
+    padding: 0;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-video-wrapper,
+  .hero-video-gradient-border,
+  .hero-video-gradient-border video,
+  .hero-video-gradient-border img {
+    display: none !important;
+  }
+}
+
+/* Hero section card styles */
 .hero-section-card {
   position: relative;
   width: 100%;
-  height: 400px;
+  min-height: 220px;
+  height: auto;
   background: #000; /* Solid black background */
   color: #fff;
   padding: 2rem;
