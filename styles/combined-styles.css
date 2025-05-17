@@ -558,6 +558,22 @@ border-radius: 1rem;
   box-shadow: 0 6px 24px 0 rgba(80,80,90,0.18);
   transform: translateY(-2px) scale(1.04);
 }
+
+.hero-video-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(59,130,246,0.18) 10%, rgba(96,165,250,0.08) 60%, rgba(255,255,255,0.08) 100%);
+  border: 1.5px solid rgba(120,130,150,0.18);
+  box-shadow: 0 4px 24px 0 rgba(59,130,246,0.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
 /* Hero video gradient border */
 .hero-video-gradient-border {
   position: relative;
@@ -657,7 +673,7 @@ border-radius: 1rem;
 .hero-section-card {
   position: relative;
   width: 100%;
-  min-height: 220px;
+  min-height: 420px;
   height: auto;
   background: #000; /* Solid black background */
   color: #fff;
@@ -665,7 +681,6 @@ border-radius: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  cursor: pointer;
   /* Create a stacking context for proper layering */
   display: flex;
   flex-direction: column;
