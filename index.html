@@ -67,16 +67,32 @@
                         Fine-tune, deploy, and monitor LLMs for custom AI workflows.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 w-full justify-end items-end">
-                        <a href="#features" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 text-center">
+                        <!-- <a href="#features" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 text-center">
+                            Explore Features
+                        </a> -->
+                        <!-- <a href="#cta" class="bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900 text-center">
+                            Early Access
+                        </a> -->
+                        <a href="#features" class="bg-blue-700 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-900">
                             Explore Features
                         </a>
-                        <a href="#cta" class="bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900 text-center">
+                        <a href="#cta" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">
                             Early Access
                         </a>
                     </div>
                 </div>
                 <div class="hero-video-wrapper flex-1 flex items-center justify-center w-full md:w-1/2 mt-8 md:mt-0">
-                    <video class="hero-video-gradient-border" src="assets/videos/Aiengineer.mp4" autoplay loop muted playsinline style="width: 100%; max-width: 520px; min-width: 320px; aspect-ratio: 16/9; border-radius: 1rem; display: block;"></video>
+                    <!-- <video class="hero-video-gradient-border" src="assets/videos/hero_video.mp4" autoplay loop muted playsinline style="width: 100%; max-width: 520px; min-width: 320px; aspect-ratio: 16/9; border-radius: 1rem; display: block;"></video> -->
+                    <div class="hero-video-wrapper flex-1 flex items-center justify-center w-full md:w-1/2 mt-8 md:mt-0">
+                        <video
+                            src="assets/videos/hero_video.mp4"
+                            class="hero-video-gradient-border"
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                        ></video>
+                    </div>
                 </div>
             </div>
         </section>
@@ -753,7 +769,7 @@
             // });
         });
     </script>
-    <!-- <script>
+    <script>
         // Add fading effect that follows the mouse
         document.addEventListener('DOMContentLoaded', () => {
             const heroSection = document.querySelector('.hero-section-card');
@@ -833,7 +849,7 @@
             navbar.classList.remove('mobile-menu-open');
         }
         });
-    </script> -->
+    </script>   
     <script>
         // Initialize usecase cards scrolling
         function initUsecaseCardsScroll() {

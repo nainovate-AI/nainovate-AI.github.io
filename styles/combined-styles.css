@@ -500,7 +500,7 @@ border-radius: 1rem;
 /* Hero section card styles */
 
 /* Artificial glassmorphism effect for hero buttons (no blur) */
-.hero-section-card a.bg-blue-600 {
+/* .hero-section-card a.bg-blue-600 {
   background: linear-gradient(120deg, rgba(59,130,246,0.85) 60%, rgba(96,165,250,0.85) 100%);
   color: #fff;
   border: none;
@@ -510,7 +510,6 @@ border-radius: 1rem;
   transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
   position: relative;
   overflow: hidden;
-  /* Simulated glass shine */
 }
 .hero-section-card a.bg-blue-600::before {
   content: '';
@@ -557,7 +556,7 @@ border-radius: 1rem;
   background: linear-gradient(120deg, rgba(36,39,46,0.85) 60%, rgba(60,63,70,0.85) 100%);
   box-shadow: 0 6px 24px 0 rgba(80,80,90,0.18);
   transform: translateY(-2px) scale(1.04);
-}
+} */
 
 .hero-video-gradient-border::before {
   content: '';
@@ -572,6 +571,20 @@ border-radius: 1rem;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition: background 0.2s, box-shadow 0.2s;
+}
+
+.hero-video-wrapper {
+  display: flex;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  align-items: center;
+  width: 100%;
+}
+
+.hero-video-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 /* Hero video gradient border */
@@ -591,6 +604,13 @@ border-radius: 1rem;
   background-position: 0% 50%;
   /* For Safari */
   -webkit-mask-image: -webkit-radial-gradient(white, black);
+  margin-left: 0;
+  margin-right: auto;
+  max-width: 600px;   /* Adjust as needed */
+  min-width: 320px;
+  height: auto;
+  aspect-ratio: 16/9;
+  box-sizing: border-box;
 }
 
 .hero-video-gradient-border:hover {
@@ -600,6 +620,19 @@ border-radius: 1rem;
     0 0 0 4px rgba(80,60,180,0.5),
     0 12px 48px 0 rgba(0,0,0,0.8);
 }
+
+.hero-video-wrapper video {
+  width: 100%;
+  max-width: 600px;   /* Adjust as needed */
+  min-width: 320px;
+  height: auto;
+  aspect-ratio: 16/9;
+  border-radius: 1.5rem;
+  margin-left: 0;   /* Remove auto-centering */
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
 /* Custom font for hero heading */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
