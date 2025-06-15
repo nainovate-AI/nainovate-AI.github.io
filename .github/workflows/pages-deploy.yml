@@ -1,22 +1,29 @@
-name: Deploy to GitHub Pages
+name: Deploy Static HTML to GitHub Pages
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Upload site files
+      - name: List files (debug)
+        run: ls -la
+
+      - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./  # Root folder
+          path: .  # or ./public if you moved your HTML files
 
   deploy:
     needs: build
