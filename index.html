@@ -33,11 +33,8 @@
     <div id="navbar-placeholder" style="height: 80px;"></div>
     <header id="navbar" class="text-white flex justify-between items-center w-full z-50 transition-all duration-300 header-blur fixed top-0 shadow-lg">
         <div class="flex items-center space-x-4 pl-3 md:pl-9 h-full p-4 md:p-0">
-            <!-- Logos -->
-            <img src="./assets/images/nainovate_logo_ws_c.svg" alt="Nainovate Logo" style="height: 100%; width: auto; max-width: none; max-height: 25px;">
-            <div class="h-7 w-px bg-gray-400"></div>
-            <img src="./assets/icons/genx_darkmode_logo_u.svg" alt="GenX Logo" style="height: 100%; max-height: 40px;" class="pr-4">
-            
+            <!-- Single Combined Logo -->
+            <img src="./assets/images/Nainovate_GenX_Logo.svg" alt="Nainovate GenX Logo" style="height: 55px; width: auto; max-width: 280px;" class="pr-4">
         </div>
 
         <button id="menu-toggle" class="block md:hidden text-white focus:outline-none" aria-label="Toggle navigation" aria-expanded="false">
@@ -61,21 +58,23 @@
     <main class="p-6">
         <!-- Hero Section -->
         <section class="hero-section-card">
-            <br></br>
-            <h2 class="text-4xl font-bold text-hover-effect">
-                Accelerating AI Journey
-            </h2>
-            <br></br>
-            <p class="text-lg text-hover-effect">
-                Fine-tune, deploy, and monitor LLMs for custom AI workflows.
-            </p>
-            <div class="mt-6 flex justify-center">
-                <a href="#features" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700">
-                    Explore Features
-                </a>
-                <a href="#cta" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">
-                    Request a Demo
-                </a>
+            <div class="hero-flex-wrapper flex flex-col md:flex-row items-center justify-center h-full w-full gap-8 mt-24">
+                <div class="hero-content flex-1 flex flex-col items-center justify-center text-center w-full md:w-1/2">
+                    <h2 class="text-4xl font-bold text-hover-effect mb-4">
+                        Accelerating AI Journey
+                    </h2>
+                    <p class="text-lg text-hover-effect mb-6">
+                        Fine-tune, deploy, and monitor LLMs for custom AI workflows.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
+                        <a href="#features" class="bg-blue-700 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-900">
+                            Explore Features
+                        </a>
+                        <a href="#cta" class="ml-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-900">
+                            Early Access
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -109,7 +108,7 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-x-6 sm:space-y-0">
-                    <img src="./assets/images/nainovate_logo.png" alt="Nainovate Logo" class="w-48 h-auto object-contain" />
+                    <img src="./assets/images/nainovate_logo.svg" alt="Nainovate Logo" class="w-48 h-auto object-contain" />
                     <img src="./assets/images/nvidia_inception_badge.png" alt="NVIDIA Inception Program Partner" class="w-48 h-auto object-contain" />
                 </div>
             </div>
@@ -630,7 +629,7 @@
                 <h2 class="platform-overview-title">Sneak Peek into GenX flow</h2>
                 <div class="footer-content-row">
                   <img src="assets/images/genx_flow_footer_logo.png" alt="GenX Logo" class="footer-logo" />
-                  <p class="platform-overview-text">
+                  <p class="platform-overview-text text-justify">
                     GenX flow brings a visual edge to your AI stack-designed to orchestrate LLM workflows through an intuitive drag-and-drop interface. From fine-tuning to inference and beyond, it's a canvas built for creators, developers, and teams looking to move faster without losing flexibility. Welcome to a new era of AI design, reimagined.
                   </p>
                 </div>
@@ -831,7 +830,7 @@
             navbar.classList.remove('mobile-menu-open');
         }
         });
-    </script>
+    </script>   
     <script>
         // Initialize usecase cards scrolling
         function initUsecaseCardsScroll() {
