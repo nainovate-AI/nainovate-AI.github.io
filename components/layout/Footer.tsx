@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid md:grid-cols-5 gap-16 mb-16">
           <div className="md:col-span-2">
             <img
-              src="/images/Nainovate_Dark_mode.svg"
+              src="/images/Nainovate_Dark_Mode.svg"
               alt="Nainovate Logo"
               className="h-10 mb-4"
             />
