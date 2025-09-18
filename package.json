@@ -9,7 +9,7 @@
     "start": "npx serve@latest out",
     "lint": "eslint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out -b gh-pages"
+    "deploy": "gh-pages -d out -b gh-pages -t true"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.16.2",

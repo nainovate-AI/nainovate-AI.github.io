@@ -1,3 +1,5 @@
+import { base } from "framer-motion/client"
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
@@ -5,7 +7,8 @@ const nextConfig = {
     unoptimized: true
   },
   trailingSlash: true,
-  assetPrefix: './',
+  // assetPrefix: './',
+  basePath: '',
 }
 
 module.exports = nextConfig
