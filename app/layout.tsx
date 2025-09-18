@@ -6,6 +6,7 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import Script from "next/script";
 import { PageTracker } from "@/components/tracking/PageTracker";
 import { Suspense } from "react";
+import { inter } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Nainovate | Enterprise AI Platform",
@@ -18,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <body
-        className="bg-black text-white antialiased"
+        className="`${inter.className} bg-black text-white antialiased"
         suppressHydrationWarning={true}
       >
         <Script
