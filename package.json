@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve@latest out",
     "lint": "eslint",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out -b gh-pages"
