@@ -1,0 +1,210 @@
+import { Button } from '@/components/ui/Button';
+import Link from 'next/link';
+import { Target } from 'lucide-react';
+
+export default function AboutPage() {
+  return (
+    <main className="bg-black pt-20">
+      {/* Hero */}
+      <section className="min-h-[80vh] flex items-center">
+        <div className="max-w-[1400px] mx-auto px-8 w-full">
+          <div className="max-w-4xl">
+            <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+              ABOUT
+            </p>
+            <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+              <span className="block">BUILDING THE</span>
+              <span className="block text-gray">FUTURE OF AI</span>
+            </h1>
+            <p className="text-xl text-gray max-w-3xl">
+              Nainovate transforms businesses with intelligent AI agents. 
+              We believe AI should be accessible, powerful, and tailored to your needs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission */}
+      <section className="py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-5xl font-bold mb-8">OUR MISSION</h2>
+              <p className="text-xl text-gray mb-8">
+                To democratize AI by making it accessible to every business, 
+                regardless of technical expertise or resources.
+              </p>
+              <p className="text-gray mb-8">
+                We believe that AI should augment human capabilities, not replace them. 
+                Our GenX platform empowers organizations to build intelligent agents 
+                that understand their unique challenges and deliver real results.
+              </p>
+              <p className="text-gray">
+                Currently focused on governance, healthcare, and manufacturing sectors, 
+                we&apos;re developing AI solutions that address complex operational challenges with measurable outcomes.
+              </p>
+            </div>
+            <div className="relative h-[400px]">
+               <div className="absolute inset-0 flex items-center justify-center">
+                <Target className="w-40 h-40 text-white/30" strokeWidth={1.5} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Story */}
+      <section className="py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <h2 className="text-5xl font-bold mb-20">OUR STORY</h2>
+          
+          <div className="space-y-16">
+            <div className="grid lg:grid-cols-3 gap-8">
+              <div className="text-6xl font-bold text-gray">2023</div>
+              <div className="lg:col-span-2">
+                <h3 className="text-2xl font-bold mb-4">BUILDING IN STEALTH</h3>
+                <p className="text-gray">
+                  Began operations in stealth mode, conducting extensive research and development. 
+                  Laid the technical foundation for the GenX platform through rigorous market analysis and prototype development.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              <div className="text-6xl font-bold text-gray">2024</div>
+              <div className="lg:col-span-2">
+                <h3 className="text-2xl font-bold mb-4">PROVING THE CONCEPT</h3>
+                <p className="text-gray">
+                  Completed GenX platform development and validation.
+                  Delivered over 20 proof-of-concept implementations across various industries, refining our approach based on real-world feedback.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              <div className="text-6xl font-bold text-gray">2025</div>
+              <div className="lg:col-span-2">
+                <h3 className="text-2xl font-bold mb-4">SCALING GLOBALLY</h3>
+                <ul className="text-gray text-lg space-y-2">
+                  <li>• Signed MoU with strategic partner in Oman</li>
+                  <li>• Established partnership with Indian medical device manufacturer</li>
+                  <li>• Expanding proof-of-concepts to GCC, North America, and Australia</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <h2 className="text-5xl font-bold mb-20">OUR VALUES</h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+              <div className="text-4xl font-bold mb-4">01</div>
+              <h3 className="text-xl font-bold mb-2">ENTERPRISE SECURITY</h3>
+              <p className="text-gray text-sm">
+                On-premise deployment ensures complete data sovereignty and regulatory compliance
+              </p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-4">02</div>
+              <h3 className="text-xl font-bold mb-2">RAPID IMPLEMENTATION</h3>
+              <p className="text-gray text-sm">
+                Visual workflow builders enable production deployment within days
+              </p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-4">03</div>
+              <h3 className="text-xl font-bold mb-2">ROI - DRIVEN SOLUTIONS</h3>
+              <p className="text-gray text-sm">
+                Guaranteed performance metrics with average 300% ROI in year one
+              </p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold mb-4">04</div>
+              <h3 className="text-xl font-bold mb-2">COLLABURATIVE GROWTH</h3>
+              <p className="text-gray text-sm">
+                Success-based partnerships aligned with your business outcomes
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team
+      <section className="py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <h2 className="text-5xl font-bold mb-20">LEADERSHIP</h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-white/10 to-white/5 rounded-full"></div>
+              <h3 className="text-xl font-bold mb-2">FOUNDER NAME</h3>
+              <p className="text-gray mb-2">Chief Executive Officer</p>
+              <p className="text-sm text-gray">Former AI lead at Tech Giant</p>
+            </div>
+            <div className="text-center">
+              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-white/10 to-white/5 rounded-full"></div>
+              <h3 className="text-xl font-bold mb-2">CTO NAME</h3>
+              <p className="text-gray mb-2">Chief Technology Officer</p>
+              <p className="text-sm text-gray">PhD in Machine Learning</p>
+            </div>
+            <div className="text-center">
+              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-white/10 to-white/5 rounded-full"></div>
+              <h3 className="text-xl font-bold mb-2">CPO NAME</h3>
+              <p className="text-gray mb-2">Chief Product Officer</p>
+              <p className="text-sm text-gray">Built AI products at scale</p>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      {/* Partners */}
+      <section className="py-32 border-t border-white/10" id="partners">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <h2 className="text-5xl font-bold mb-20">PARTNERS & INVESTORS</h2>
+          
+          <div className="grid md:grid-cols-4 gap-16 items-center opacity-60">
+            <div className="text-center">
+              <p className="text-xl font-bold">NVIDIA</p>
+              <p className="text-sm text-gray">Inception Partner</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-bold">Walnut</p>
+              <p className="text-sm text-gray">Strategic Investor</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-bold">Brillius</p>
+              <p className="text-sm text-gray">Implementation Partner</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-8 text-center">
+          <h2 className="text-6xl font-bold mb-8">
+            JOIN OUR MISSION
+          </h2>
+          <p className="text-xl text-gray mb-12 max-w-2xl mx-auto">
+            Be part of the team that&apos;s making AI accessible to everyone.
+          </p>
+          <div className="flex gap-8 justify-center">
+            {/* <Button className="bg-white text-black hover:bg-gray-200 px-12 py-6 text-lg">
+              View Careers →
+            </Button> */}
+            <Link href="contact">
+              <Button className="border border-white/20 hover:bg-white/10 px-12 py-6 text-lg">
+                Contact Us
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
