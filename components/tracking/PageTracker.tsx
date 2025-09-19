@@ -9,7 +9,7 @@ export function PageTracker(){
 
   useEffect(() => {
     if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
-      window.gtag("config", "G-25GNHQWPRS", {
+      window.gtag("config", "G-Z1HV8SD1NH", {
         page_path: pathname + (searchParams.toString() ? `?${searchParams}` : ""),
       });
     }
