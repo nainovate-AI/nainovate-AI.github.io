@@ -9,8 +9,25 @@ import { Suspense } from "react";
 import { inter } from "./fonts";
 
 export const metadata: Metadata = {
-  title: "Nainovate | Enterprise AI Platform",
-  description: "Build production-ready AI agents with GenX.",
+  metadataBase: new URL('https://www.nainovate.ai'),
+  title: {
+    default: 'Nainovate | Enterprise AI Platform - Build AI Agents Without Code',
+    template: '%s | Nainovate AI Platform'
+  },
+  description: 'Build production-ready AI agents in days with Nainovate\'s GenX platform. No-code enterprise AI automation for healthcare, construction, real estate. Deploy intelligent agents instantly.',
+  keywords: 'AI agents, enterprise AI platform, no-code AI, GenX, AI automation, BOQ automation, NIA chatbot, AI workflow orchestration',
+  authors: [{ name: 'Nainovate Technologies' }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  verification: {
+    google: '1fBZJ2dFhVpdyOUx9sismAz9zZwW1G_Wa9hfZykfyDY',
+  }
 };
 
 export default function RootLayout({

@@ -1,5 +1,17 @@
 import { Button } from '@/components/ui/Button';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Real Estate AI Solutions - Property Intelligence Platform | Nainovate',
+  description: 'AI for real estate: 50% faster valuations, 92% market prediction accuracy. Automate property analysis, lead qualification, document processing. 3x conversion rates.',
+  keywords: 'real estate AI, property valuation AI, market analysis AI, lead qualification automation, real estate technology',
+  openGraph: {
+    title: 'Real Estate AI Solutions - Intelligent Property Decisions',
+    description: 'Make faster, data-driven real estate decisions with AI. 50% faster closings.'
+  },
+};
+
 export default function RealEstateSolutionPage() {
   return (
     <main className="bg-black pt-20">

@@ -2,6 +2,18 @@ import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Flow - AI Workflow Orchestration Platform | Nainovate',
+  description: 'Design complex AI workflows connecting multiple agents. Sequential, parallel, conditional patterns. Pre-built templates for BOQ, RFP, contracts. Enterprise-grade orchestration.',
+  keywords: 'AI workflow orchestration, Flow platform, AI automation, workflow builder, process automation, enterprise orchestration',
+  openGraph: {
+    title: 'Flow - Orchestrate Complex AI Workflows',
+    description: 'Connect multiple AI agents and automate entire business processes.'
+  },
+};
+
 export default function OrchestratePage() {
   return (
     <main className="pt-20 relative z-10">

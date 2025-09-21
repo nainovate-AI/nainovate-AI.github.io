@@ -1,5 +1,17 @@
 import { Button } from '@/components/ui/Button';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Construction AI Solutions - BOQ Automation & Project Intelligence | Nainovate',
+  description: 'AI for construction: 90% BOQ accuracy, 30% faster project delivery. Automate bill of quantities, compliance checking, project planning. Save $5M average per project.',
+  keywords: 'construction AI, BOQ automation, bill of quantities AI, construction project AI, compliance automation, construction technology',
+  openGraph: {
+    title: 'Construction AI Solutions - Build Smarter',
+    description: 'Automate BOQ generation and ensure 100% compliance with AI. 90% error reduction.'
+  },
+};
+
 export default function ConstructionSolutionPage() {
   return (
     <main className="bg-black pt-20">

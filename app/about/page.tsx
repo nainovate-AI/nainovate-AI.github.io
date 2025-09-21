@@ -1,6 +1,17 @@
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import { Target } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Nainovate - Leading Enterprise AI Platform Company',
+  description: 'Learn about Nainovate\'s mission to democratize AI. Founded in 2023, we help enterprises build intelligent agents. NVIDIA Inception partner. Operating in India, GCC, and North America.',
+  keywords: 'about Nainovate, AI company, enterprise AI platform, NVIDIA partner, AI solutions provider, Hyderabad AI company',
+  openGraph: {
+    title: 'About Nainovate - Building the Future of AI',
+    description: 'Discover how Nainovate is transforming businesses with accessible, powerful AI solutions.',
+  },
+};
 
 export default function AboutPage() {
   return (

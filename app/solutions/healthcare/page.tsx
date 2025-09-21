@@ -1,5 +1,16 @@
 import { Button } from '@/components/ui/Button';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Healthcare AI Solutions - Medical Intelligence Platform | Nainovate',
+  description: 'AI agents for healthcare: 60% faster diagnosis, 95% accuracy. Automate medical records, diagnosis assistance, patient monitoring. HIPAA compliant. ROI in 6 months.',
+  keywords: 'healthcare AI, medical AI agents, diagnosis AI, HIPAA compliant AI, medical record automation, clinical decision support',
+  openGraph: {
+    title: 'Healthcare AI Solutions - Transform Patient Care',
+    description: 'Reduce diagnosis time by 60% with AI agents that understand medical context. HIPAA compliant.',
+  },
+};
 export default function HealthcareSolutionPage() {
   return (
     <main className="bg-black pt-20">

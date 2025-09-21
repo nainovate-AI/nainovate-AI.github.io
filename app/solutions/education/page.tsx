@@ -1,5 +1,16 @@
 import { Button } from '@/components/ui/Button';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Education AI Solutions - Automated Grading & Personalized Learning | Nainovate',
+  description: 'Transform education with AI: 70% time savings on grading, 40% better retention. Automated grading, personalized learning paths, student analytics. FERPA compliant.',
+  keywords: 'education AI, automated grading, personalized learning AI, student analytics, FERPA compliant AI, edutech AI solutions',
+  openGraph: {
+    title: 'Education AI Solutions - Transform Learning Outcomes',
+    description: 'Save 70% time on grading. Create personalized learning experiences with AI.'
+  },
+};
 export default function EducationSolutionPage() {
   return (
     <main className="bg-black pt-20">
