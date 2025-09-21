@@ -1,10 +1,99 @@
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import { Target } from 'lucide-react';
+import { Metadata } from 'next';
+import JsonLd from '@/components/seo/JsonLd';
+
+
+export const metadata: Metadata = {
+  title: 'About Nainovate - Leading Enterprise AI Platform Company',
+  description: 'Learn about Nainovate\'s mission to democratize AI. Founded in 2023, we help enterprises build intelligent agents. NVIDIA Inception partner. Operating in India, GCC, and North America.',
+  keywords: 'about Nainovate, AI company, enterprise AI platform, NVIDIA partner, AI solutions provider, Hyderabad AI company',
+  openGraph: {
+    title: 'About Nainovate - Building the Future of AI',
+    description: 'Discover how Nainovate is transforming businesses with accessible, powerful AI solutions.',
+  },
+};
 
 export default function AboutPage() {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Nainovate Technologies",
+      "foundingDate": "2023",
+      "description": "Nainovate transforms businesses with intelligent AI agents",
+      "mission": "To democratize AI by making it accessible to every business, regardless of technical expertise or resources",
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Enterprise Software",
+        "No-code Development",
+        "AI Agents"
+      ],
+      "memberOf": [
+        {
+          "@type": "ProgramMembership",
+          "programName": "NVIDIA Inception Program",
+          "membershipNumber": "NVIDIA Partner"
+        }
+      ],
+      "partner": [
+        {
+          "@type": "Organization",
+          "name": "Walnut"
+        },
+        {
+          "@type": "Organization",
+          "name": "Brillius"
+        }
+      ]
+    }
+  };
+
+  const timelineSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Event",
+          "name": "Building in Stealth",
+          "startDate": "2023",
+          "description": "Began operations in stealth mode, conducting extensive research and development"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Event",
+          "name": "Proving the Concept",
+          "startDate": "2024",
+          "description": "Completed GenX platform development and delivered 20+ proof-of-concepts"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Event",
+          "name": "Scaling Globally",
+          "startDate": "2025",
+          "description": "Signed MoU with Oman partner, expanding to GCC, North America, and Australia"
+        }
+      }
+    ]
+  };
+
   return (
     <main className="bg-black pt-20">
+      <JsonLd data={aboutSchema} />
+      <JsonLd data={timelineSchema} />
+
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
@@ -17,7 +106,7 @@ export default function AboutPage() {
               <span className="block text-gray">FUTURE OF AI</span>
             </h1>
             <p className="text-xl text-gray max-w-3xl">
-              Nainovate transforms businesses with intelligent AI agents. 
+              Nainovate transforms businesses with intelligent AI agents.
               We believe AI should be accessible, powerful, and tailored to your needs.
             </p>
           </div>
@@ -31,21 +120,21 @@ export default function AboutPage() {
             <div>
               <h2 className="text-5xl font-bold mb-8">OUR MISSION</h2>
               <p className="text-xl text-gray mb-8">
-                To democratize AI by making it accessible to every business, 
+                To democratize AI by making it accessible to every business,
                 regardless of technical expertise or resources.
               </p>
               <p className="text-gray mb-8">
-                We believe that AI should augment human capabilities, not replace them. 
-                Our GenX platform empowers organizations to build intelligent agents 
+                We believe that AI should augment human capabilities, not replace them.
+                Our GenX platform empowers organizations to build intelligent agents
                 that understand their unique challenges and deliver real results.
               </p>
               <p className="text-gray">
-                Currently focused on governance, healthcare, and manufacturing sectors, 
+                Currently focused on governance, healthcare, and manufacturing sectors,
                 we&apos;re developing AI solutions that address complex operational challenges with measurable outcomes.
               </p>
             </div>
             <div className="relative h-[400px]">
-               <div className="absolute inset-0 flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center justify-center">
                 <Target className="w-40 h-40 text-white/30" strokeWidth={1.5} />
               </div>
             </div>
@@ -57,14 +146,14 @@ export default function AboutPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">OUR STORY</h2>
-          
+
           <div className="space-y-16">
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="text-6xl font-bold text-gray">2023</div>
               <div className="lg:col-span-2">
                 <h3 className="text-2xl font-bold mb-4">BUILDING IN STEALTH</h3>
                 <p className="text-gray">
-                  Began operations in stealth mode, conducting extensive research and development. 
+                  Began operations in stealth mode, conducting extensive research and development.
                   Laid the technical foundation for the GenX platform through rigorous market analysis and prototype development.
                 </p>
               </div>
@@ -100,7 +189,7 @@ export default function AboutPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">OUR VALUES</h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <div className="text-4xl font-bold mb-4">01</div>
@@ -166,7 +255,7 @@ export default function AboutPage() {
       <section className="py-32 border-t border-white/10" id="partners">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">PARTNERS & INVESTORS</h2>
-          
+
           <div className="grid md:grid-cols-4 gap-16 items-center opacity-60">
             <div className="text-center">
               <p className="text-xl font-bold">NVIDIA</p>
@@ -178,7 +267,11 @@ export default function AboutPage() {
             </div>
             <div className="text-center">
               <p className="text-xl font-bold">Brillius</p>
-              <p className="text-sm text-gray">Implementation Partner</p>
+              <p className="text-sm text-gray">Strategic Investor</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-bold">Al Tomouh IT</p>
+              <p className="text-sm text-gray">Strategic Investor | Suhail Bahwan Group</p>
             </div>
           </div>
         </div>

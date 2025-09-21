@@ -1,10 +1,80 @@
 import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
+import JsonLd from '@/components/seo/JsonLd';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Flow - AI Workflow Orchestration Platform | Nainovate',
+  description: 'Design complex AI workflows connecting multiple agents. Sequential, parallel, conditional patterns. Pre-built templates for BOQ, RFP, contracts. Enterprise-grade orchestration.',
+  keywords: 'AI workflow orchestration, Flow platform, AI automation, workflow builder, process automation, enterprise orchestration',
+  openGraph: {
+    title: 'Flow - Orchestrate Complex AI Workflows',
+    description: 'Connect multiple AI agents and automate entire business processes.'
+  },
+};
 
 export default function OrchestratePage() {
+  const flowSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Flow",
+    "alternateName": "Flow AI Orchestration",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "Workflow Automation",
+    "operatingSystem": "Web-based",
+    "description": "Design complex AI workflows that connect multiple agents and automate business processes",
+    "url": "https://www.nainovate.ai/products/orchestrate",
+    "featureList": [
+      "Sequential Workflows",
+      "Parallel Processing",
+      "Conditional Logic",
+      "Loop & Iteration",
+      "Event-based Triggers",
+      "API Integrations",
+      "Real-time Monitoring",
+      "Pre-built Templates"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "Contact for pricing",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
+  const workflowTemplatesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "AI Workflow Templates",
+    "description": "Pre-built templates for common business processes",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "BOQ Generation",
+        "description": "Automatically generate Bills of Quantities"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "RFP Generation",
+        "description": "Create comprehensive Request for Proposals"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Vendor Evaluation",
+        "description": "Compare and score vendors automatically"
+      }
+    ]
+  };
+
   return (
     <main className="pt-20 relative z-10">
+      <JsonLd data={flowSchema} />
+      <JsonLd data={workflowTemplatesSchema} />
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
@@ -17,7 +87,7 @@ export default function OrchestratePage() {
               <span className="block text-gray">WORKFLOWS</span>
             </h1>
             <p className="text-xl text-gray max-w-3xl mb-12">
-              Design complex AI workflows that connect multiple agents, integrate 
+              Design complex AI workflows that connect multiple agents, integrate
               with your systems, and automate entire business processes.
             </p>
             <div className="flex gap-8">
@@ -40,14 +110,14 @@ export default function OrchestratePage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">WORKFLOW PATTERNS</h2>
-          
+
           <div className="space-y-16">
             <AnimatedSection>
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div>
                   <h3 className="text-3xl font-bold mb-4">SEQUENTIAL</h3>
                   <p className="text-gray mb-6">
-                    Chain multiple AI agents in sequence. Output from one becomes 
+                    Chain multiple AI agents in sequence. Output from one becomes
                     input for the next. Perfect for multi-step processes.
                   </p>
                   <ul className="text-sm text-gray space-y-2">
@@ -57,34 +127,34 @@ export default function OrchestratePage() {
                   </ul>
                 </div>
                 <div className="h-[200px] bg-gradient-to-br from-white/5 to-white/10 rounded-lg flex items-center justify-center p-8">
-                <div className="flex items-center gap-4 w-full">
-                  <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-1">1</div>
-                  <div className="flex-1 h-0.5 bg-cyan-500/20"></div>
-                  <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-2">2</div>
-                  <div className="flex-1 h-0.5 bg-cyan-500/20"></div>
-                  <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-3">3</div>
+                  <div className="flex items-center gap-4 w-full">
+                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-1">1</div>
+                    <div className="flex-1 h-0.5 bg-cyan-500/20"></div>
+                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-2">2</div>
+                    <div className="flex-1 h-0.5 bg-cyan-500/20"></div>
+                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-3">3</div>
+                  </div>
                 </div>
-              </div>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div className="h-[200px] bg-gradient-to-br from-white/5 to-white/10 rounded-lg flex items-center justify-center p-8">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold">IN</div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-1"></div>
-                    <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-2"></div>
-                    <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-3"></div>
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold">IN</div>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-1"></div>
+                      <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-2"></div>
+                      <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-3"></div>
+                    </div>
+                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold">OUT</div>
                   </div>
-                  <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold">OUT</div>
                 </div>
-              </div>
                 <div className="order-1 lg:order-2">
                   <h3 className="text-3xl font-bold mb-4">PARALLEL</h3>
                   <p className="text-gray mb-6">
-                    Run multiple agents simultaneously. Aggregate results for 
+                    Run multiple agents simultaneously. Aggregate results for
                     comprehensive analysis and faster processing.
                   </p>
                   <ul className="text-sm text-gray space-y-2">
@@ -101,7 +171,7 @@ export default function OrchestratePage() {
                 <div>
                   <h3 className="text-3xl font-bold mb-4">CONDITIONAL</h3>
                   <p className="text-gray mb-6">
-                    Dynamic workflows that adapt based on conditions. Different 
+                    Dynamic workflows that adapt based on conditions. Different
                     paths for different scenarios.
                   </p>
                   <ul className="text-sm text-gray space-y-2">
@@ -135,7 +205,7 @@ export default function OrchestratePage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20 text-center">POWERFUL FEATURES</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-20 h-20 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
@@ -187,33 +257,33 @@ export default function OrchestratePage() {
       <section id="templates" className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">START WITH TEMPLATES</h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">BOQ Generation</h3>
               <p className="text-sm text-gray mb-4">Automatically generate Bills of Quantities from architectural drawings and specifications</p>
             </div>
-            
+
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">RFP Generation</h3>
               <p className="text-sm text-gray mb-4">Create comprehensive Request for Proposals with all technical specifications</p>
             </div>
-            
+
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">Purchase Order</h3>
               <p className="text-sm text-gray mb-4">Generate purchase orders with automated item descriptions and pricing</p>
             </div>
-            
+
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">Vendor Evaluation</h3>
               <p className="text-sm text-gray mb-4">Compare and score vendors based on multiple criteria and past performance</p>
             </div>
-            
+
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">Contract Analysis</h3>
               <p className="text-sm text-gray mb-4">Extract key terms, identify risks, and summarize contract obligations</p>
             </div>
-            
+
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">Cost Estimation</h3>
               <p className="text-sm text-gray mb-4">Generate detailed cost breakdowns for projects with market rates</p>

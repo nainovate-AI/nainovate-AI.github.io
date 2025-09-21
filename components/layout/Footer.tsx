@@ -50,7 +50,6 @@ export function Footer() {
             <h4 className="font-medium mb-6">COMPANY</h4>
             <div className="space-y-3">
               <Link href="/about" className="block text-gray hover:text-white transition-colors">About</Link>
-              <Link href="/careers" className="block text-gray hover:text-white transition-colors">Careers</Link>
               <Link href="/contact" className="block text-gray hover:text-white transition-colors">Contact</Link>
             </div>
           </div>

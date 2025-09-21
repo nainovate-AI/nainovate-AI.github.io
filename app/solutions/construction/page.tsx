@@ -1,8 +1,64 @@
 import { Button } from '@/components/ui/Button';
+import JsonLd from '@/components/seo/JsonLd';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Construction AI Solutions - BOQ Automation & Project Intelligence | Nainovate',
+  description: 'AI for construction: 90% BOQ accuracy, 30% faster project delivery. Automate bill of quantities, compliance checking, project planning. Save $5M average per project.',
+  keywords: 'construction AI, BOQ automation, bill of quantities AI, construction project AI, compliance automation, construction technology',
+  openGraph: {
+    title: 'Construction AI Solutions - Build Smarter',
+    description: 'Automate BOQ generation and ensure 100% compliance with AI. 90% error reduction.'
+  },
+};
 
 export default function ConstructionSolutionPage() {
+  const constructionSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Construction Technology",
+    "name": "Construction AI Solutions",
+    "description": "AI agents that automate BOQ, ensure compliance, and optimize project planning",
+    "provider": {
+      "@type": "Organization",
+      "name": "Nainovate Technologies"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Construction AI Services",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "name": "BOQ Automation",
+          "description": "Generate accurate bill of quantities from plans in minutes",
+          "serviceOutput": "90% accuracy improvement"
+        },
+        {
+          "@type": "Service",
+          "name": "Compliance Checking",
+          "description": "Automated verification against building codes",
+          "serviceOutput": "100% compliance rate"
+        },
+        {
+          "@type": "Service",
+          "name": "Project Planning",
+          "description": "AI-optimized scheduling and resource allocation",
+          "serviceOutput": "30% faster completion"
+        },
+        {
+          "@type": "Service",
+          "name": "Cost Estimation",
+          "description": "Accurate cost predictions based on historical data",
+          "serviceOutput": "95% estimate accuracy"
+        }
+      ]
+    }
+  };
+
   return (
     <main className="bg-black pt-20">
+      <JsonLd data={constructionSchema} />
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
@@ -15,7 +71,7 @@ export default function ConstructionSolutionPage() {
               <span className="block text-gray">INTELLIGENCE</span>
             </h1>
             <p className="text-xl text-gray max-w-3xl mb-12">
-              AI agents that automate bill of quantities, ensure compliance, and 
+              AI agents that automate bill of quantities, ensure compliance, and
               optimize project planning. Build smarter, faster, safer.
             </p>
             <div className="flex gap-8">
@@ -34,12 +90,12 @@ export default function ConstructionSolutionPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">USE CASES</h2>
-          
+
           <div className="grid md:grid-cols-2 gap-16">
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">BOQ Automation</h3>
               <p className="text-gray mb-6">
-                Generate accurate bill of quantities from plans in minutes. 
+                Generate accurate bill of quantities from plans in minutes.
                 Reduce errors and ensure nothing is missed.
               </p>
               <p className="text-sm text-gray">→ 90% accuracy improvement</p>
@@ -48,7 +104,7 @@ export default function ConstructionSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Compliance Checking</h3>
               <p className="text-gray mb-6">
-                Automated verification against building codes, safety standards, 
+                Automated verification against building codes, safety standards,
                 and environmental regulations.
               </p>
               <p className="text-sm text-gray">→ 100% compliance rate</p>
@@ -57,7 +113,7 @@ export default function ConstructionSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Project Planning</h3>
               <p className="text-gray mb-6">
-                AI-optimized scheduling, resource allocation, and risk assessment 
+                AI-optimized scheduling, resource allocation, and risk assessment
                 for complex construction projects.
               </p>
               <p className="text-sm text-gray">→ 30% faster completion</p>
@@ -66,7 +122,7 @@ export default function ConstructionSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Cost Estimation</h3>
               <p className="text-gray mb-6">
-                Accurate cost predictions based on historical data, market rates, 
+                Accurate cost predictions based on historical data, market rates,
                 and project specifications.
               </p>
               <p className="text-sm text-gray">→ 95% estimate accuracy</p>
@@ -79,7 +135,7 @@ export default function ConstructionSolutionPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">KEY FEATURES</h2>
-          
+
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="space-y-4">
               <h3 className="text-xl font-bold">BIM Integration</h3>
@@ -116,14 +172,14 @@ export default function ConstructionSolutionPage() {
             <div>
               <h2 className="text-5xl font-bold mb-8">PROVEN IMPACT</h2>
               <p className="text-xl text-gray mb-12">
-                Construction companies using our AI complete projects faster, 
+                Construction companies using our AI complete projects faster,
                 reduce errors, and improve safety records significantly.
               </p>
               <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4">
                 Calculate Your ROI →
               </Button>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-8">
               <div className="text-center">
                 <p className="text-5xl font-bold mb-2">90%</p>
