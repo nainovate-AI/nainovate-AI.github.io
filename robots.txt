@@ -1,0 +1,45 @@
+# Robots.txt for www.nainovate.ai
+User-agent: *
+Allow: /
+
+# Crawl-delay for being nice to servers
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.nainovate.ai/sitemap.xml
+
+# Block development files
+Disallow: /.git
+Disallow: /node_modules
+Disallow: /.next
+Disallow: /api/
+Disallow: /_next/static/
+Allow: /_next/static/css/
+Allow: /_next/static/js/
+
+# Block duplicate content
+Disallow: /*?
+Disallow: /*#
+
+# Allow search engine bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: GPTBot
+Disallow: /
