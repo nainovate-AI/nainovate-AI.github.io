@@ -4,6 +4,7 @@ import { Features } from '@/components/sections/Features';
 import { Industries } from '@/components/sections/Industries';
 import { Stats } from '@/components/sections/Stats';
 import { CTA } from '@/components/sections/CTA';
+import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Enterprise AI Platform - Build & Deploy AI Agents in Days',
@@ -12,8 +13,65 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const homepageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://www.nainovate.ai",
+    "name": "Nainovate - Enterprise AI Platform",
+    "description": "Build production-ready AI agents in days with Nainovate's no-code platform",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nainovate Technologies",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.nainovate.ai/images/Nainovate_Dark_mode.svg"
+      }
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.nainovate.ai/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  // Also add this for the hero section
+  const heroSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Nainovate AI Platform",
+    "description": "Enterprise AI platform for building, deploying, and orchestrating intelligent agents",
+    "brand": {
+      "@type": "Brand",
+      "name": "Nainovate"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "offerCount": "3",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "GenX Build",
+          "description": "No-code AI agent builder"
+        },
+        {
+          "@type": "Offer",
+          "name": "NIA Deploy",
+          "description": "Intelligent chatbot interface"
+        },
+        {
+          "@type": "Offer",
+          "name": "Flow Orchestrate",
+          "description": "AI workflow automation"
+        }
+      ]
+    }
+  };
   return (
     <main className="bg-black">
+      <JsonLd data={homepageSchema} />
+      <JsonLd data={heroSchema} />
       <Hero />
       <Features />
       <Industries />

@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/Button';
-
+import JsonLd from '@/components/seo/JsonLd';
 import { Metadata } from 'next';
+
 
 export const metadata: Metadata = {
   title: 'Education AI Solutions - Automated Grading & Personalized Learning | Nainovate',
@@ -12,8 +13,63 @@ export const metadata: Metadata = {
   },
 };
 export default function EducationSolutionPage() {
+  const educationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Education Technology",
+    "name": "Education AI Solutions",
+    "description": "Transform education with AI that personalizes learning and automates grading",
+    "provider": {
+      "@type": "Organization",
+      "name": "Nainovate Technologies"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Education AI Services",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "name": "Automated Grading",
+          "description": "Grade essays, assignments, and exams in seconds",
+          "serviceOutput": "70% time reduction"
+        },
+        {
+          "@type": "Service",
+          "name": "Personalized Learning",
+          "description": "AI agents adapt to each student's learning style and pace",
+          "serviceOutput": "40% better retention"
+        },
+        {
+          "@type": "Service",
+          "name": "Student Analytics",
+          "description": "Track performance and predict outcomes",
+          "serviceOutput": "85% prediction accuracy"
+        },
+        {
+          "@type": "Service",
+          "name": "Content Generation",
+          "description": "Create quizzes and study materials automatically",
+          "serviceOutput": "10x faster creation"
+        }
+      ]
+    }
+  };
+
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "AI-Powered Learning with Nainovate",
+    "description": "Educational institutions using Nainovate AI for better outcomes",
+    "provider": {
+      "@type": "Organization",
+      "name": "Nainovate Technologies"
+    }
+  };
   return (
     <main className="bg-black pt-20">
+      <JsonLd data={educationSchema} />
+      <JsonLd data={courseSchema} />
+
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
@@ -26,7 +82,7 @@ export default function EducationSolutionPage() {
               <span className="block text-gray">INTELLIGENCE</span>
             </h1>
             <p className="text-xl text-gray max-w-3xl mb-12">
-              Transform education with AI that personalizes learning, automates grading, 
+              Transform education with AI that personalizes learning, automates grading,
               and provides actionable insights. Save 70% of administrative time.
             </p>
             <div className="flex gap-8">
@@ -45,12 +101,12 @@ export default function EducationSolutionPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">USE CASES</h2>
-          
+
           <div className="grid md:grid-cols-2 gap-16">
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Automated Grading</h3>
               <p className="text-gray mb-6">
-                Grade essays, assignments, and exams in seconds. Provide detailed 
+                Grade essays, assignments, and exams in seconds. Provide detailed
                 feedback and maintain consistency across thousands of submissions.
               </p>
               <p className="text-sm text-gray">→ 70% time reduction</p>
@@ -59,7 +115,7 @@ export default function EducationSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Personalized Learning</h3>
               <p className="text-gray mb-6">
-                AI agents adapt to each student&apos;s learning style, pace, and needs. 
+                AI agents adapt to each student&apos;s learning style, pace, and needs.
                 Create custom learning paths that maximize outcomes.
               </p>
               <p className="text-sm text-gray">→ 40% better retention</p>
@@ -68,7 +124,7 @@ export default function EducationSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Student Analytics</h3>
               <p className="text-gray mb-6">
-                Track performance, predict outcomes, and identify at-risk students 
+                Track performance, predict outcomes, and identify at-risk students
                 early. Real-time dashboards for educators and administrators.
               </p>
               <p className="text-sm text-gray">→ 85% prediction accuracy</p>
@@ -77,7 +133,7 @@ export default function EducationSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Content Generation</h3>
               <p className="text-gray mb-6">
-                Create quizzes, study materials, and lesson plans automatically. 
+                Create quizzes, study materials, and lesson plans automatically.
                 Align content with curriculum standards and learning objectives.
               </p>
               <p className="text-sm text-gray">→ 10x faster creation</p>
@@ -90,7 +146,7 @@ export default function EducationSolutionPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">KEY FEATURES</h2>
-          
+
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="space-y-4">
               <h3 className="text-xl font-bold">LMS Integration</h3>
@@ -127,14 +183,14 @@ export default function EducationSolutionPage() {
             <div>
               <h2 className="text-5xl font-bold mb-8">PROVEN IMPACT</h2>
               <p className="text-xl text-gray mb-12">
-                Educational institutions using our AI see improved student outcomes 
+                Educational institutions using our AI see improved student outcomes
                 and dramatic efficiency gains across all operations.
               </p>
               <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4">
                 Calculate Your ROI →
               </Button>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-8">
               <div className="text-center">
                 <p className="text-5xl font-bold mb-2">70%</p>

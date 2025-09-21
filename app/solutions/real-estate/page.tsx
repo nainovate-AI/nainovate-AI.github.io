@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/Button';
-
+import JsonLd from '@/components/seo/JsonLd';
 import { Metadata } from 'next';
+
 
 export const metadata: Metadata = {
   title: 'Real Estate AI Solutions - Property Intelligence Platform | Nainovate',
@@ -13,8 +14,60 @@ export const metadata: Metadata = {
 };
 
 export default function RealEstateSolutionPage() {
+  const realEstateSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Real Estate Technology",
+    "name": "Real Estate AI Solutions",
+    "description": "AI agents that analyze properties, predict market trends, and automate valuations",
+    "provider": {
+      "@type": "Organization",
+      "name": "Nainovate Technologies"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Real Estate AI Services",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "name": "Property Valuation",
+          "description": "Instant, accurate property valuations based on market data",
+          "serviceOutput": "50% faster valuations"
+        },
+        {
+          "@type": "Service",
+          "name": "Market Analysis",
+          "description": "Real-time market insights and trend predictions",
+          "serviceOutput": "92% prediction accuracy"
+        },
+        {
+          "@type": "Service",
+          "name": "Document Processing",
+          "description": "Automate lease agreements and purchase contracts",
+          "serviceOutput": "80% time reduction"
+        },
+        {
+          "@type": "Service",
+          "name": "Lead Qualification",
+          "description": "AI agents that qualify leads and match properties",
+          "serviceOutput": "3x conversion rate"
+        }
+      ]
+    }
+  };
+
+  const realEstateListingSchema = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Nainovate Real Estate AI",
+    "description": "AI-powered real estate solutions provider"
+  };
+
+
   return (
     <main className="bg-black pt-20">
+      <JsonLd data={realEstateSchema} />
+      <JsonLd data={realEstateListingSchema} />
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
@@ -27,7 +80,7 @@ export default function RealEstateSolutionPage() {
               <span className="block text-gray">INTELLIGENCE</span>
             </h1>
             <p className="text-xl text-gray max-w-3xl mb-12">
-              AI agents that analyze properties, predict market trends, and automate 
+              AI agents that analyze properties, predict market trends, and automate
               valuations. Make faster, data-driven real estate decisions.
             </p>
             <div className="flex gap-8">
@@ -46,12 +99,12 @@ export default function RealEstateSolutionPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">USE CASES</h2>
-          
+
           <div className="grid md:grid-cols-2 gap-16">
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Property Valuation</h3>
               <p className="text-gray mb-6">
-                Instant, accurate property valuations based on market data, 
+                Instant, accurate property valuations based on market data,
                 comparable sales, and predictive analytics.
               </p>
               <p className="text-sm text-gray">→ 50% faster valuations</p>
@@ -60,7 +113,7 @@ export default function RealEstateSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Market Analysis</h3>
               <p className="text-gray mb-6">
-                Real-time market insights, trend predictions, and investment 
+                Real-time market insights, trend predictions, and investment
                 opportunities identification across regions.
               </p>
               <p className="text-sm text-gray">→ 92% prediction accuracy</p>
@@ -69,7 +122,7 @@ export default function RealEstateSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Document Processing</h3>
               <p className="text-gray mb-6">
-                Automate lease agreements, purchase contracts, and compliance 
+                Automate lease agreements, purchase contracts, and compliance
                 documents. Extract key terms instantly.
               </p>
               <p className="text-sm text-gray">→ 80% time reduction</p>
@@ -78,7 +131,7 @@ export default function RealEstateSolutionPage() {
             <div className="border-l border-white/20 pl-8">
               <h3 className="text-2xl font-bold mb-4">Lead Qualification</h3>
               <p className="text-gray mb-6">
-                AI agents that qualify leads, match properties to buyers, 
+                AI agents that qualify leads, match properties to buyers,
                 and prioritize high-value opportunities.
               </p>
               <p className="text-sm text-gray">→ 3x conversion rate</p>
@@ -91,7 +144,7 @@ export default function RealEstateSolutionPage() {
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">KEY FEATURES</h2>
-          
+
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="space-y-4">
               <h3 className="text-xl font-bold">MLS Integration</h3>
@@ -128,14 +181,14 @@ export default function RealEstateSolutionPage() {
             <div>
               <h2 className="text-5xl font-bold mb-8">PROVEN RESULTS</h2>
               <p className="text-xl text-gray mb-12">
-                Real estate firms using our AI close deals faster, reduce operational 
+                Real estate firms using our AI close deals faster, reduce operational
                 costs, and make better investment decisions.
               </p>
               <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4">
                 Calculate Your ROI →
               </Button>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-8">
               <div className="text-center">
                 <p className="text-5xl font-bold mb-2">50%</p>
