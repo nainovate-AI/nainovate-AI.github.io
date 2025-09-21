@@ -267,7 +267,11 @@ export default function AboutPage() {
             </div>
             <div className="text-center">
               <p className="text-xl font-bold">Brillius</p>
-              <p className="text-sm text-gray">Implementation Partner</p>
+              <p className="text-sm text-gray">Strategic Investor</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-bold">Al Tomouh IT</p>
+              <p className="text-sm text-gray">Strategic Investor | Suhail Bahwan Group</p>
             </div>
           </div>
         </div>

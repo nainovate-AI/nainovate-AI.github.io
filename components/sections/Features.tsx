@@ -2,7 +2,7 @@ export function Features() {
   const features = [
     { title: "VISUAL BUILDER", desc: "No-code interface" },
     { title: "INSTANT SCALE", desc: "0 to millions" },
-    { title: "REAL-TIME AI", desc: "15ms response" },
+    { title: "REAL-TIME AI", desc: "Designed for immediate insights" },
     { title: "ENTERPRISE SECURITY", desc: "SOC2, HIPAA" },
   ];
 
