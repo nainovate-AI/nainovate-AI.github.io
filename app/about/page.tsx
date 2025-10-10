@@ -291,7 +291,7 @@ export default function AboutPage() {
               View Careers →
             </Button> */}
             <Link href="contact">
-              <Button className="border border-white/20 hover:bg-white/10 px-12 py-6 text-lg">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-12 py-6 text-lg">
                 Contact Us
               </Button>
             </Link>

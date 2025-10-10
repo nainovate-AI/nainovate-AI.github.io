@@ -4,36 +4,33 @@ import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { Metadata } from 'next';
 
-
 export const metadata: Metadata = {
-  title: 'Flow - AI Workflow Orchestration Platform | Nainovate',
-  description: 'Design complex AI workflows connecting multiple agents. Sequential, parallel, conditional patterns. Pre-built templates for BOQ, RFP, contracts. Enterprise-grade orchestration.',
-  keywords: 'AI workflow orchestration, Flow platform, AI automation, workflow builder, process automation, enterprise orchestration',
+  title: 'FLOW - AI Workflow Automation Engine | Nainovate GenX',
+  description: 'Design complex AI workflows connecting multiple agents. Sequential, parallel, conditional patterns. Part of the GenX integrated platform.',
+  keywords: 'FLOW automation, GenX FLOW, AI workflow orchestration, workflow builder, process automation, enterprise orchestration',
   openGraph: {
-    title: 'Flow - Orchestrate Complex AI Workflows',
-    description: 'Connect multiple AI agents and automate entire business processes.'
+    title: 'FLOW - The Automation Engine | Nainovate GenX',
+    description: 'Orchestrate complex workflows with multiple AI agents.',
+    images: ['/og-flow.png'],
   },
 };
 
-export default function OrchestratePage() {
+export default function FlowPage() {
   const flowSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Flow",
-    "alternateName": "Flow AI Orchestration",
-    "applicationCategory": "BusinessApplication",
-    "applicationSubCategory": "Workflow Automation",
-    "operatingSystem": "Web-based",
-    "description": "Design complex AI workflows that connect multiple agents and automate business processes",
-    "url": "https://www.nainovate.ai/products/orchestrate",
+    "name": "GenX FLOW",
+    "alternateName": "FLOW Automation Engine",
+    "applicationCategory": "Workflow Automation Platform",
+    "description": "AI workflow automation engine for orchestrating complex multi-agent processes",
+    "url": "https://www.nainovate.ai/products/flow",
     "featureList": [
       "Sequential Workflows",
       "Parallel Processing",
       "Conditional Logic",
-      "Loop & Iteration",
-      "Event-based Triggers",
-      "API Integrations",
+      "Multi-agent Orchestration",
       "Real-time Monitoring",
+      "Enterprise Integrations",
       "Pre-built Templates"
     ],
     "offers": {
@@ -44,60 +41,33 @@ export default function OrchestratePage() {
     }
   };
 
-  const workflowTemplatesSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "AI Workflow Templates",
-    "description": "Pre-built templates for common business processes",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "BOQ Generation",
-        "description": "Automatically generate Bills of Quantities"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "RFP Generation",
-        "description": "Create comprehensive Request for Proposals"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Vendor Evaluation",
-        "description": "Compare and score vendors automatically"
-      }
-    ]
-  };
-
   return (
     <main className="pt-20 relative z-10">
       <JsonLd data={flowSchema} />
-      <JsonLd data={workflowTemplatesSchema} />
+      
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
-              ORCHESTRATE WITH FLOW
+              GENX FLOW • ORCHESTRATE WITH FLOW
             </p>
             <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               <span className="block">AI</span>
               <span className="block text-gray">WORKFLOWS</span>
             </h1>
             <p className="text-xl text-gray max-w-3xl mb-12">
-              Design complex AI workflows that connect multiple agents, integrate
-              with your systems, and automate entire business processes.
+              Design complex AI workflows that connect multiple agents. Integrate your
+              systems, and automate entire business processes.
             </p>
             <div className="flex gap-8">
               <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                   Create Workflow
                 </Button>
               </Link>
               <a href="#templates">
-                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                   Browse Templates
                 </Button>
               </a>
@@ -271,7 +241,7 @@ export default function OrchestratePage() {
 
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">Purchase Order</h3>
-              <p className="text-sm text-gray mb-4">Generate purchase orders with automated item descriptions and pricing</p>
+              <p className="text-sm text-gray mb-4">Generate purchase orders with item validation from descriptions and pricing</p>
             </div>
 
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
@@ -281,7 +251,7 @@ export default function OrchestratePage() {
 
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
               <h3 className="text-xl font-bold mb-2">Contract Analysis</h3>
-              <p className="text-sm text-gray mb-4">Extract key terms, identify risks, and summarize contract obligations</p>
+              <p className="text-sm text-gray mb-4">Extract key terms, identify risks, and summarize complex legal documents</p>
             </div>
 
             <div className="border border-white/10 rounded-lg p-6 hover:border-white/20 transition-colors">
@@ -292,7 +262,7 @@ export default function OrchestratePage() {
 
           <div className="text-center mt-12">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                 Request Custom Template
               </Button>
             </Link>
@@ -310,7 +280,7 @@ export default function OrchestratePage() {
             Build workflows that transform how your business operates.
           </p>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 px-12 py-6 text-lg">
+            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-12 py-6 text-lg">
               Start Building Workflows →
             </Button>
           </Link>
