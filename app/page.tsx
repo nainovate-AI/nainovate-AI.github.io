@@ -34,12 +34,12 @@ export default function Home() {
     }
   };
 
-  // Also add this for the hero section
+  // Updated schema with CORE/NIA/FLOW
   const heroSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "Nainovate AI Platform",
-    "description": "Enterprise AI platform for building, deploying, and orchestrating intelligent agents",
+    "name": "Nainovate GenX Platform",
+    "description": "Enterprise AI platform with integrated CORE, NIA, and FLOW components",
     "brand": {
       "@type": "Brand",
       "name": "Nainovate"
@@ -52,22 +52,23 @@ export default function Home() {
       "offers": [
         {
           "@type": "Offer",
-          "name": "GenX Build",
-          "description": "No-code AI agent builder"
+          "name": "CORE - AI Engine",
+          "description": "Create intelligent AI agents"
         },
         {
           "@type": "Offer",
-          "name": "NIA Deploy",
-          "description": "Intelligent chatbot interface"
+          "name": "NIA - Interface Layer",
+          "description": "Deploy conversational AI"
         },
         {
           "@type": "Offer",
-          "name": "Flow Orchestrate",
-          "description": "AI workflow automation"
+          "name": "FLOW - Automation Engine",
+          "description": "Orchestrate AI workflows"
         }
       ]
     }
   };
+  
   return (
     <main className="bg-black">
       <JsonLd data={homepageSchema} />

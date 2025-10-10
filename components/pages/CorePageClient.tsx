@@ -7,29 +7,28 @@ import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 
 
-export default function BuildPageClient() {
-    const genxSchema = {
+export default function CorePageClient() {
+    const coreSchema = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "GenX",
-        "alternateName": "GenX AI Builder",
+        "name": "GenX CORE",
+        "alternateName": "CORE AI Engine",
         "applicationCategory": "DeveloperApplication",
         "applicationSubCategory": "AI Development Platform",
         "operatingSystem": "Web-based",
-        "description": "No-code AI agent builder platform for enterprises. Create production-ready AI agents with visual workflows.",
-        "url": "https://www.nainovate.ai/products/build",
+        "description": "AI engine for creating specialized agents. Part of the GenX integrated platform.",
+        "url": "https://www.nainovate.ai/products/core",
         "screenshot": [
-            "https://www.nainovate.ai/images/genx-screenshot-1.png",
-            "https://www.nainovate.ai/images/genx-screenshot-2.png"
+            "https://www.nainovate.ai/images/core-screenshot-1.png",
+            "https://www.nainovate.ai/images/core-screenshot-2.png"
         ],
         "featureList": [
-            "Visual Workflow Builder",
             "CONTEXTA - RAG Pipeline Integration",
             "FINETUNE - RLHF Fine-tuning",
             "MODELA - Model Evaluation",
             "INFERENCE - Production Pipelines",
-            "No-code Development",
-            "Instant Deployment"
+            "Domain-Specific Agent Creation",
+            "Advanced Model Optimization"
         ],
         "softwareRequirements": "Modern web browser with JavaScript enabled",
         "offers": {
@@ -61,14 +60,14 @@ export default function BuildPageClient() {
                 "@type": "Person",
                 "name": "Enterprise Customer"
             },
-            "reviewBody": "GenX transformed our AI development. We deployed our first agent in just 3 days."
+            "reviewBody": "CORE transformed our AI development. We deployed our first agent in just 3 days."
         }
     };
 
     const howToSchema = {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to Build an AI Agent with GenX",
+        "name": "How to Build an AI Agent with CORE",
         "description": "Step-by-step guide to create your first AI agent",
         "step": [
             {
@@ -84,14 +83,14 @@ export default function BuildPageClient() {
             {
                 "@type": "HowToStep",
                 "name": "Deploy",
-                "text": "Launch your agent instantly to NIA chatbot"
+                "text": "Launch your agent instantly to NIA interface"
             }
         ]
     };
 
     return (
         <main className="pt-20 relative z-10">
-            <JsonLd data={genxSchema} />
+            <JsonLd data={coreSchema} />
             <JsonLd data={howToSchema} />
 
             {/* Hero */}
@@ -99,15 +98,15 @@ export default function BuildPageClient() {
                 <div className="max-w-[1400px] mx-auto px-8 w-full">
                     <div className="max-w-4xl">
                         <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
-                            BUILD WITH GENX
+                            GENX CORE • AI ENGINE
                         </p>
                         <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
                             <span className="block">CREATE AI</span>
                             <span className="block text-gray">AGENTS</span>
                         </h1>
                         <p className="text-xl text-gray max-w-3xl mb-12">
-                            Build production-ready AI agents with our visual workflow builder.
-                            No code required. Deploy in days, not months.
+                            Build production-ready AI agents with our advanced engine.
+                            Domain-specific. Purpose-built. Deploy in days.
                         </p>
                         <div className="flex gap-8">
                             <Link href="/contact">
@@ -115,18 +114,15 @@ export default function BuildPageClient() {
                                     Start Building
                                 </Button>
                             </Link>
-                            {/* <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
-                Watch Demo
-              </Button> */}
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Modules */}
+            {/* CORE Modules */}
             <section className="py-32 border-t border-white/10">
                 <div className="max-w-[1400px] mx-auto px-8">
-                    <h2 className="text-5xl font-bold mb-20">GENX MODULES</h2>
+                    <h2 className="text-5xl font-bold mb-20">CORE MODULES</h2>
 
                     <div className="grid md:grid-cols-2 gap-16">
                         <AnimatedSection>
@@ -153,7 +149,7 @@ export default function BuildPageClient() {
                                 </p>
                                 <ul className="text-sm text-gray space-y-2">
                                     <li>→ RLHF implementation</li>
-                                    <li>→ Custom dataset preparation</li>
+                                    <li>→ Domain dataset preparation</li>
                                     <li>→ Performance benchmarking</li>
                                 </ul>
                             </div>
@@ -192,17 +188,18 @@ export default function BuildPageClient() {
                 </div>
             </section>
 
-            {/* Agent Creation */}
-            <section className="py-32 border-t border-white/10">
+            {/* Build Agents for Any Use Case */}
+            <section className="py-32 bg-white/[0.02] border-y border-white/10">
                 <div className="max-w-[1400px] mx-auto px-8">
-                    <div className="mb-20">
-                        <h2 className="text-6xl font-bold mb-8">
-                            BUILD AGENTS FOR<br />
-                            <span className="text-gray">ANY USE CASE</span>
-                        </h2>
-                        <p className="text-xl text-gray max-w-3xl">
+                    <h2 className="text-[clamp(3rem,6vw,5rem)] font-bold mb-8 leading-[0.9]">
+                        <span className="block">BUILD AGENTS FOR</span>
+                        <span className="block text-gray">ANY USE CASE</span>
+                    </h2>
+
+                    <div className="max-w-3xl mb-20">
+                        <p className="text-xl text-gray leading-relaxed">
                             Create specialized AI agents tailored to your exact business needs.
-                            GenX empowers you to build intelligent agents that understand your
+                            CORE empowers you to build intelligent agents that understand your
                             domain, speak your language, and solve your specific challenges.
                         </p>
                     </div>
@@ -229,7 +226,7 @@ export default function BuildPageClient() {
                             <div className="border-l border-white/20 pl-8">
                                 <h3 className="text-2xl font-bold mb-4">Rapid Iteration</h3>
                                 <p className="text-gray leading-relaxed">
-                                    Test, refine, and deploy agents in days with our visual development environment.
+                                    Test, refine, and deploy agents in days with our advanced development environment.
                                     No coding required.
                                 </p>
                             </div>
@@ -282,7 +279,6 @@ export default function BuildPageClient() {
                             </div>
                         </div>
                     </div>
-
                     <div className="mt-16 flex gap-8">
                         <Link href="/contact">
                             <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
@@ -297,16 +293,14 @@ export default function BuildPageClient() {
             </section>
 
             {/* CTA */}
-            <section className="py-32 border-t border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8 text-center">
-                    <h2 className="text-6xl font-bold mb-8">
-                        START BUILDING TODAY
-                    </h2>
-                    <p className="text-xl text-gray mb-12 max-w-2xl mx-auto">
+            <section className="py-32">
+                <div className="max-w-[800px] mx-auto px-8 text-center">
+                    <h2 className="text-5xl font-bold mb-8">START BUILDING TODAY</h2>
+                    <p className="text-xl text-gray mb-10">
                         Transform your business with AI agents designed for your specific needs.
                     </p>
                     <Link href="/contact">
-                        <Button className="border border-white/20 hover:bg-white/10  hover:text-white px-12 py-6 text-lg ">
+                        <Button size="lg" className="mx-auto">
                             Schedule a Demo →
                         </Button>
                     </Link>

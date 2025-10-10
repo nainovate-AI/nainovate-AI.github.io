@@ -6,16 +6,16 @@ import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 
 
-export default function DeployPageClient() {
+export default function NiaPageClient() {
   const niaSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "NIA",
-    "alternateName": "NIA Chatbot Interface",
+    "name": "GenX NIA",
+    "alternateName": "NIA Interface Layer",
     "applicationCategory": "ChatApplication",
     "operatingSystem": "Web-based",
-    "description": "Intelligent conversational interface where GenX-built agents interact with users",
-    "url": "https://www.nainovate.ai/products/deploy",
+    "description": "Intelligent conversational interface where GenX CORE agents interact with users",
+    "url": "https://www.nainovate.ai/products/nia",
     "featureList": [
       "Multi-agent Support",
       "Contextual Intelligence",
@@ -42,7 +42,7 @@ export default function DeployPageClient() {
     "@context": "https://schema.org",
     "@type": "Action",
     "name": "Chat with NIA",
-    "description": "Interact with AI agents through NIA chatbot",
+    "description": "Interact with AI agents through NIA interface",
     "target": {
       "@type": "EntryPoint",
       "urlTemplate": "https://chat.nainovate.ai",
@@ -128,24 +128,24 @@ export default function DeployPageClient() {
 
     return () => clearInterval(candidateInterval);
   }, [candidateMessage]);
-
   return (
     <main className="pt-20 relative z-10">
       <JsonLd data={niaSchema} />
       <JsonLd data={chatActionSchema} />
+      
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
-              NIA CHATBOT INTERFACE
+              GENX NIA • INTERFACE LAYER
             </p>
             <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               <span className="block">WHERE AGENTS</span>
               <span className="block text-gray">COME TO LIFE</span>
             </h1>
             <p className="text-xl text-gray max-w-3xl mb-12">
-              NIA is the conversational interface where your GenX-built agents
+              NIA is the conversational interface where your CORE-built agents
               interact with users. Deploy once, engage everywhere.
             </p>
             <div className="flex gap-8">
@@ -159,22 +159,17 @@ export default function DeployPageClient() {
         </div>
       </section>
 
-      {/* First Demo Section - Support Agent */}
-      <section className="py-32 border-t border-white/10">
+      {/* Live Demo Section */}
+      <section className="py-32 border-t border-white/10 bg-gradient-to-b from-transparent to-white/[0.02]">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">SEE NIA IN ACTION</h2>
-
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            {/* Description Left */}
-            <div className="space-y-8">
-              <h3 className="text-4xl font-bold">
-                Intelligent hiring<br />
-                <span className="text-gray">decisions</span>
-              </h3>
-
-              <p className="text-xl text-gray leading-relaxed">
-                Evaluate candidates objectively with AI-powered assessment.
-                Match skills, analyze fit, and make data-driven hiring decisions.
+          
+          {/* First Demo - HR Agent */}
+          <div className="grid lg:grid-cols-2 gap-24 items-center mb-32">
+            <div>
+              <h3 className="text-3xl font-bold mb-8">Intelligent hiring decisions</h3>
+              <p className="text-xl text-gray mb-8">
+                Evaluate candidates objectively with AI-powered assessment. Match skills, analyze experience, and make data-driven hiring decisions.
               </p>
 
               <div className="space-y-6 pt-4">
@@ -184,7 +179,7 @@ export default function DeployPageClient() {
                 </div>
                 <div className="border-l border-white/20 pl-6">
                   <h4 className="text-lg font-semibold mb-2">Skills Gap Analysis</h4>
-                  <p className="text-gray">Identify matched skills and development areas</p>
+                  <p className="text-gray">Identify training needs and development areas</p>
                 </div>
                 <div className="border-l border-white/20 pl-6">
                   <h4 className="text-lg font-semibold mb-2">Interview Intelligence</h4>
@@ -194,8 +189,9 @@ export default function DeployPageClient() {
             </div>
 
             {/* Chat Demo Right */}
-            <div>
-              <div className="bg-black border border-white/10 rounded-lg overflow-hidden max-w-md mx-auto">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-white/5 to-transparent blur-xl"></div>
+              <div className="relative bg-black border border-white/10 rounded-lg overflow-hidden max-w-md">
                 <div className="border-b border-white/10 p-4 flex items-center gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
@@ -269,13 +265,8 @@ export default function DeployPageClient() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-
-      {/* Second Demo Section - Analytics Agent (Reversed) */}
-      <section className="py-32">
-        <div className="max-w-[1400px] mx-auto px-8">
+          {/* Second Demo Section - BOQ Agent (Reversed) */}
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             {/* Chat Demo Left */}
             <div className="order-2 lg:order-1">
@@ -353,15 +344,11 @@ export default function DeployPageClient() {
               </div>
             </div>
 
-            {/* Description Right */}
-            <div className="space-y-8 order-1 lg:order-2">
-              <h3 className="text-4xl font-bold">
-                Instant BOQ<br />
-                <span className="text-gray">intelligence</span>
-              </h3>
-
-              <p className="text-xl text-gray leading-relaxed">
-                Get detailed specifications, pricing, and material information instantly.
+            {/* Content Right */}
+            <div className="order-1 lg:order-2">
+              <h3 className="text-3xl font-bold mb-8">Instant BOQ intelligence</h3>
+              <p className="text-xl text-gray mb-8">
+                Get detailed specifications, pricing, and material information instantly. 
                 Your AI-powered construction assistant knows every detail.
               </p>
 
@@ -384,6 +371,20 @@ export default function DeployPageClient() {
         </div>
       </section>
 
+      {/* BOQ message animation */}
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          setInterval(() => {
+            const boqMessages = document.querySelectorAll('.boq-message');
+            if (boqMessages.length > 0) {
+              const currentIndex = Array.from(boqMessages).findIndex(msg => !msg.classList.contains('hidden'));
+              boqMessages[currentIndex].classList.add('hidden');
+              boqMessages[(currentIndex + 1) % boqMessages.length].classList.remove('hidden');
+            }
+          }, 4000);
+        `
+      }} />
+
       {/* Features */}
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
@@ -391,7 +392,6 @@ export default function DeployPageClient() {
 
           <div className="grid md:grid-cols-2 gap-24">
             <div className="space-y-12">
-
               <div className="border-l border-white/20 pl-8">
                 <h3 className="text-2xl font-bold mb-4">Contextual Intelligence</h3>
                 <p className="text-gray leading-relaxed">
@@ -403,7 +403,7 @@ export default function DeployPageClient() {
               <div className="border-l border-white/20 pl-8">
                 <h3 className="text-2xl font-bold mb-4">Unified Interface</h3>
                 <p className="text-gray leading-relaxed">
-                  All your GenX agents accessible through one intelligent chatbot interface.
+                  All your CORE agents accessible through one intelligent chatbot interface.
                   Seamless switching between different agent capabilities.
                 </p>
               </div>
