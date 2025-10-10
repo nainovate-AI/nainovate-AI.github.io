@@ -150,7 +150,7 @@ export default function DeployPageClient() {
             </p>
             <div className="flex gap-8">
               <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                   Try Live Demo
                 </Button>
               </Link>
@@ -455,7 +455,7 @@ export default function DeployPageClient() {
             See how intelligent conversations can transform your business operations.
           </p>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 px-12 py-6 text-lg">
+            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-12 py-6 text-lg">
               See NIA in Action →
             </Button>
           </Link>

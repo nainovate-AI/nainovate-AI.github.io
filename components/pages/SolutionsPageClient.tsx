@@ -321,7 +321,7 @@ export default function SolutionsPageClient() {
           </p>
           <div className="flex gap-6 justify-center">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                 Schedule a Demo
               </Button>
             </Link>

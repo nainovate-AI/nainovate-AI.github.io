@@ -78,7 +78,7 @@ export default function ConstructionSolutionPage() {
               <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4">
                 Request Demo
               </Button>
-              <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                 View Case Studies
               </Button>
             </div>

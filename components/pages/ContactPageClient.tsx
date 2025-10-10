@@ -261,7 +261,7 @@ export default function ContactPageClient() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="border border-white/20 hover:bg-white/10 px-8 py-4"
+                  className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message →'}
                 </Button>

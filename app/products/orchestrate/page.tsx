@@ -92,12 +92,12 @@ export default function OrchestratePage() {
             </p>
             <div className="flex gap-8">
               <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                   Create Workflow
                 </Button>
               </Link>
               <a href="#templates">
-                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                   Browse Templates
                 </Button>
               </a>
@@ -292,7 +292,7 @@ export default function OrchestratePage() {
 
           <div className="text-center mt-12">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                 Request Custom Template
               </Button>
             </Link>
@@ -310,7 +310,7 @@ export default function OrchestratePage() {
             Build workflows that transform how your business operates.
           </p>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 px-12 py-6 text-lg">
+            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-12 py-6 text-lg">
               Start Building Workflows →
             </Button>
           </Link>

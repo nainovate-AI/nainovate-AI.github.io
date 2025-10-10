@@ -23,6 +23,24 @@ const OrchestrateIcon = () => (
   </svg>
 );
 
+const InfoIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
+const ChartIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  </svg>
+);
+
+const ContactIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
+
 // Type definitions
 interface DropdownItem {
   name: string;
@@ -85,8 +103,24 @@ export function Header() {
       href: '/about',
       isDropdown: true,
       dropdownItems: [
-        { name: 'About', href: '/about' },
-        { name: 'Contact', href: '/contact' },
+        { 
+          name: 'About', 
+          href: '/about',
+          icon: <InfoIcon />,
+          description: 'Our mission and values'
+        },
+        { 
+          name: 'AI Report 2025', 
+          href: '/ai-readiness-report',
+          icon: <ChartIcon />,
+          description: 'Industry insights & trends'
+        },
+        { 
+          name: 'Contact', 
+          href: '/contact',
+          icon: <ContactIcon />,
+          description: 'Get in touch with us'
+        },
       ]
     },
   ];
@@ -168,6 +202,8 @@ export function Header() {
                 )}
               </div>
             ))}
+
+
             <Link href="/contact">
               <button className="text-sm font-medium px-6 py-2 border border-white hover:bg-white hover:text-black transition-all">
                 GET STARTED
@@ -228,6 +264,7 @@ export function Header() {
                 )}
               </div>
             ))}
+            
             <button className="mt-4 w-full text-sm font-medium px-6 py-2 border border-white hover:bg-white hover:text-black transition-all">
               GET STARTED
             </button>

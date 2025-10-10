@@ -111,11 +111,11 @@ export default function BuildPageClient() {
                         </p>
                         <div className="flex gap-8">
                             <Link href="/contact">
-                                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                                     Start Building
                                 </Button>
                             </Link>
-                            {/* <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                            {/* <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                 Watch Demo
               </Button> */}
                         </div>
@@ -285,11 +285,11 @@ export default function BuildPageClient() {
 
                     <div className="mt-16 flex gap-8">
                         <Link href="/contact">
-                            <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                                 Start Building
                             </Button>
                         </Link>
-                        {/* <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                        {/* <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                 View Documentation
             </Button> */}
                     </div>
@@ -306,7 +306,7 @@ export default function BuildPageClient() {
                         Transform your business with AI agents designed for your specific needs.
                     </p>
                     <Link href="/contact">
-                        <Button className="border border-white/20 hover:bg-white/10  px-12 py-6 text-lg ">
+                        <Button className="border border-white/20 hover:bg-white/10  hover:text-white px-12 py-6 text-lg ">
                             Schedule a Demo →
                         </Button>
                     </Link>
