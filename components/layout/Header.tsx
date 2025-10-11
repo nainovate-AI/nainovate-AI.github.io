@@ -144,7 +144,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/Nainovate_GenX_Dark_mode.svg"
+              src="/images/Nainovate_GenX_Dark_Mode.svg"
               alt="Nainovate"
               width={150}
               height={40}
