@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from "next";
 import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
@@ -300,7 +299,7 @@ export default function CorePageClient() {
                         Transform your business with AI agents designed for your specific needs.
                     </p>
                     <Link href="/contact">
-                        <Button size="lg" className="mx-auto">
+                        <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
                             Schedule a Demo →
                         </Button>
                     </Link>

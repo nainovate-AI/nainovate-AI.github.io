@@ -27,7 +27,7 @@ export function Footer() {
           </div>
 
           {/* Right 4 Columns */}
-          <div className="md:col-span-3 grid grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="md:col-span-3 grid grid-cols-2 lg:grid-cols-4 gap-10">
             {/* PRODUCTS */}
             <div>
               <h4 className="font-medium mb-6">PRODUCTS</h4>
@@ -49,7 +49,7 @@ export function Footer() {
                 <Link href="/solutions#execution" className="block text-gray hover:text-white transition-colors">Execution</Link>
               </div>
             </div>
-
+      
             {/* RESOURCES
             <div>
               <h4 className="font-medium mb-6">RESOURCES</h4>
@@ -57,6 +57,13 @@ export function Footer() {
                 <Link href="/ai-readiness-report" className="block text-gray hover:text-white transition-colors">AI Report 2025</Link>
               </div>
             </div> */}
+            <div>
+              <h4 className="font-medium mb-6">SERVICES</h4>
+              <div className="space-y-3">
+                <Link href="/ai-center-of-excellence" className="block text-gray hover:text-white transition-colors">AI CoE</Link>
+                {/* Space for future services */}
+              </div>
+            </div>
 
             {/* COMPANY */}
             <div>
