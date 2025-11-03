@@ -321,3 +321,72 @@ button:hover ~ .custom-cursor {
 .animate-spin-slow {
   animation: spin-slow 30s linear infinite;
 }
+
+
+
+
+/* Add these to your app/globals.css file */
+
+/* Dashboard Animations */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count {
+  animation: countUp 0.6s ease-out forwards;
+}
+
+/* Progress Bar Animation */
+@keyframes fillProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+.progress-fill {
+  animation: fillProgress 1.5s ease-out forwards;
+}
+
+/* Pulse Animation for CTAs */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.pulse-subtle {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Hover Reveal Animation */
+.hover-reveal {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.hover-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dashboard Grid Background */
+.dashboard-grid {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
