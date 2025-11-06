@@ -263,15 +263,15 @@ export default function AboutPage() {
             </div>
             <div className="text-center">
               <p className="text-xl font-bold">Walnut</p>
-              <p className="text-sm text-gray">Strategic Investor</p>
+              <p className="text-sm text-gray">Strategic Partner</p>
             </div>
             <div className="text-center">
               <p className="text-xl font-bold">Brillius</p>
-              <p className="text-sm text-gray">Strategic Investor</p>
+              <p className="text-sm text-gray">Strategic Partner</p>
             </div>
             <div className="text-center">
               <p className="text-xl font-bold">Al Tomouh IT</p>
-              <p className="text-sm text-gray">Strategic Investor | Suhail Bahwan Group</p>
+              <p className="text-sm text-gray">Strategic Partner | Suhail Bahwan Group</p>
             </div>
           </div>
         </div>
@@ -290,7 +290,7 @@ export default function AboutPage() {
             {/* <Button className="bg-white text-black hover:bg-gray-200 px-12 py-6 text-lg">
               View Careers →
             </Button> */}
-            <Link href="contact">
+            <Link href="/contact">
               <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-12 py-6 text-lg">
                 Contact Us
               </Button>

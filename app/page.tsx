@@ -57,7 +57,7 @@ export default function Home() {
         },
         {
           "@type": "Offer",
-          "name": "NIA - Interface Layer",
+          "name": "NIA - Interface",
           "description": "Deploy conversational AI"
         },
         {

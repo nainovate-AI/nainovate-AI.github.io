@@ -41,6 +41,11 @@ const ContactIcon = () => (
   </svg>
 );
 
+const TrendingIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+  </svg>
+);
 // Type definitions
 interface DropdownItem {
   name: string;
@@ -79,7 +84,7 @@ export function Header() {
           description: 'Create intelligent agents'
         },
         {
-          name: 'NIA - Interface Layer',
+          name: 'NIA - Interface',
           href: '/products/nia',
           icon: <NiaIcon />,
           description: 'Deploy conversational AI'
@@ -117,7 +122,7 @@ export function Header() {
     //   ]
     // },
     {
-      name: 'Company',
+      name: 'Resources',
       href: '#',
       isDropdown: true,
       dropdownItems: [
@@ -126,6 +131,12 @@ export function Header() {
           href: '/about',
           icon: <InfoIcon />,
           description: 'Our mission'
+        },
+        {
+          name: 'Reports & Research',
+          href: '/reports',
+          icon: <TrendingIcon />, // Using existing ChartIcon
+          description: '2025 Research Reports'
         },
         {
           name: 'Contact',
@@ -171,17 +182,16 @@ export function Header() {
                     >
                       {item.name}
                     </button>
-                    
+
                     {/* Enhanced Dropdown with Icons */}
-                    <div 
-                      className={`absolute left-0 top-full pt-2 ${
-                        activeDropdown === item.name ? 'block' : 'hidden'
-                      }`}
+                    <div
+                      className={`absolute left-0 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
+                        }`}
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
                       <div className="absolute -top-2 left-0 right-0 h-2" />
-                      
+
                       <div className="bg-black/90 backdrop-blur-md border border-white/10 rounded-lg py-2 min-w-[250px]">
                         {item.dropdownItems?.map((dropdownItem) => (
                           <Link
@@ -296,3 +306,4 @@ export function Header() {
     </header>
   );
 }
+

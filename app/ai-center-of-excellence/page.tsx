@@ -314,6 +314,28 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke }: HubAndSpokeProps) 
   const centerY = 250;
   const radius = 180;
   
+  // Helper: split a short title into up to `maxLines` lines by breaking at a space
+  // keeps lines reasonably sized so SVG <text>/<tspan> can render them without overflow
+  function splitLines(text: string, maxLen: number, maxLines = 2) {
+    if (!text) return [];
+    if (text.length <= maxLen) return [text];
+
+    const firstCut = text.slice(0, maxLen);
+    const lastSpace = firstCut.lastIndexOf(' ');
+    const line1 = lastSpace > -1 ? firstCut.slice(0, lastSpace) : firstCut;
+    let rest = text.slice(line1.length).trim();
+
+    if (!rest) return [line1];
+
+    if (rest.length > maxLen) {
+      rest = rest.slice(0, maxLen - 3).trim() + '...';
+    }
+
+    const lines = [line1];
+    if (lines.length < maxLines && rest) lines.push(rest);
+    return lines.slice(0, maxLines);
+  }
+  
   return (
     <svg width="500" height="500" viewBox="0 0 500 500" className="w-full h-full">
       {/* Outer rotating circle */}
@@ -394,7 +416,15 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke }: HubAndSpokeProps) 
         const angle = (idx * 60 - 90) * (Math.PI / 180);
         const x = centerX + radius * Math.cos(angle);
         const y = centerY + radius * Math.sin(angle);
-        
+        // prepare wrapped title lines for tooltip (max 2 lines)
+        const titleLines = splitLines(spoke.title, 20, 2);
+        const rectWidth = 160;
+        const rectPadding = 12; // vertical padding
+        const lineHeight = 16;
+        const rectHeight = rectPadding + titleLines.length * lineHeight + 8; // extra padding
+        const rectX = x - rectWidth / 2;
+        const rectY = y + 40;
+
         return (
           <g
             key={spoke.id}
@@ -420,33 +450,29 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke }: HubAndSpokeProps) 
               {spoke.icon}
             </text>
             
-            {/* Tooltip */}
+            {/* Tooltip (title wrapped to up to 2 lines) */}
             {activeSpoke === spoke.id && (
               <g>
                 <rect
-                  x={x - 80}
-                  y={y + 40}
-                  width="160"
-                  height="50"
+                  x={rectX}
+                  y={rectY}
+                  width={rectWidth}
+                  height={rectHeight}
                   rx="8"
                   fill="rgba(0,0,0,0.9)"
                   stroke="rgba(255,255,255,0.2)"
                 />
                 <text
                   x={x}
-                  y={y + 60}
+                  y={rectY + 18}
                   textAnchor="middle"
                   className="fill-white text-xs font-medium"
                 >
-                  {spoke.title}
-                </text>
-                <text
-                  x={x}
-                  y={y + 75}
-                  textAnchor="middle"
-                  className="fill-gray text-xs"
-                >
-                  {spoke.description.substring(0, 25)}...
+                  {titleLines.map((line, i) => (
+                    <tspan key={i} x={x} dy={i === 0 ? '0' : String(lineHeight)}>
+                      {line}
+                    </tspan>
+                  ))}
                 </text>
               </g>
             )}
