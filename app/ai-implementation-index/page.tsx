@@ -47,7 +47,6 @@ export default function AIImplementationIndexPage() {
         name: '',
         email: '',
         company: '',
-        role: ''
     });
 
     const dashboardStats = [
@@ -112,17 +111,81 @@ export default function AIImplementationIndexPage() {
         }
     };
 
-    const handleQuickDownload = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleQuickDownload = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Download initiated:', formData);
-        setShowForm(false);
-        // Trigger download
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+        setErrorMessage('');
+
+        try {
+            // Dynamically import the report download library
+            const { validateFormData, submitReportDownload, trackDownloadEvent } = await import('@/lib/reportDownload');
+
+            // Validate form
+            const validation = validateFormData(
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    company: formData.company,
+                },
+                'implementation-index'
+            );
+
+            if (!validation.valid) {
+                setErrorMessage(validation.errors.join(', '));
+                setSubmitStatus('error');
+                setIsSubmitting(false);
+                return;
+            }
+
+            // Submit to backend
+            const response = await submitReportDownload({
+                name: formData.name,
+                email: formData.email,
+                company: formData.company,
+                report_type: 'implementation-index',
+            });
+
+            if (response.result === 'success') {
+                setSubmitStatus('success');
+                trackDownloadEvent('implementation-index');
+
+                // Reset form and close modal after 4 seconds
+                setTimeout(() => {
+                    setShowForm(false);
+                    setFormData({ name: '', email: '', company: '' });
+                    setSubmitStatus('idle');
+                }, 4000);
+            } else {
+                setSubmitStatus('error');
+                setErrorMessage(response.message || 'Failed to submit request. Please try again.');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setSubmitStatus('error');
+            setErrorMessage('An unexpected error occurred. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <main className="bg-black min-h-screen pt-20">
             <JsonLd data={reportSchema} />
 
+            {/* Back Button */}
+            <div className="max-w-[1400px] mx-auto px-8 pt-8">
+                <Link href="/reports" className="inline-flex items-center gap-2 text-gray hover:text-white transition-colors group">
+                    <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span className="text-sm uppercase tracking-wider">Back to Reports</span>
+                </Link>
+            </div>
             {/* Hero Dashboard Section */}
             <section className="min-h-[90vh] relative overflow-hidden">
                 {/* Subtle grid background */}
@@ -141,7 +204,7 @@ export default function AIImplementationIndexPage() {
                                 2025 AI IMPLEMENTATION INDEX
                             </p>
                             <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold mb-4">
-                                Your AI pilots are dying. Here's why.
+                                Your AI pilots are dying. Here&apos;s why.
                             </h1>
                         </div>
                     </AnimatedSection>
@@ -323,11 +386,11 @@ export default function AIImplementationIndexPage() {
                 </div>
             </section>
 
-            {/* Simplified Download Form */}
+            {/* Download Form Modal */}
             {showForm && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-8">
                     <AnimatedSection>
-                        <div className="bg-black border border-white/20 p-8 max-w-md w-full">
+                        <div className="bg-black border border-white/20 p-8 max-w-md w-full relative">
                             <h3 className="text-2xl font-bold mb-6">
                                 Download Implementation Index
                             </h3>
@@ -335,51 +398,84 @@ export default function AIImplementationIndexPage() {
                                 Get instant access to the 2025 Enterprise AI Implementation Index
                             </p>
 
-                            <form onSubmit={handleQuickDownload} className="space-y-4">
-                                <input
-                                    type="text"
-                                    placeholder="Name"
-                                    required
-                                    className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                />
-
-                                <input
-                                    type="email"
-                                    placeholder="Work Email"
-                                    required
-                                    className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                />
-
-                                <input
-                                    type="text"
-                                    placeholder="Company"
-                                    required
-                                    className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
-                                    value={formData.company}
-                                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                />
-
-                                <div className="flex gap-4 pt-4">
-                                    <button
-                                        type="submit"
-                                        className="flex-1 bg-white text-black px-6 py-3 font-medium hover:bg-gray-light transition-colors"
-                                    >
-                                        SEND REPORT
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowForm(false)}
-                                        className="px-6 py-3 text-gray hover:text-white transition-colors"
-                                    >
-                                        Cancel
-                                    </button>
+                            {submitStatus === 'success' ? (
+                                <div className="py-8">
+                                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="text-xl font-bold text-center mb-2">Success!</h4>
+                                    <p className="text-center text-gray">
+                                        Check your email for the download link. We&apos;ve sent the Implementation Index to <strong>{formData.email}</strong>
+                                    </p>
                                 </div>
-                            </form>
+                            ) : (
+                                <form onSubmit={handleQuickDownload} className="space-y-4">
+                                    <input
+                                        type="text"
+                                        placeholder="Name*"
+                                        required
+                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        disabled={isSubmitting}
+                                    />
+
+                                    <input
+                                        type="email"
+                                        placeholder="Work Email*"
+                                        required
+                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        disabled={isSubmitting}
+                                    />
+
+                                    <input
+                                        type="text"
+                                        placeholder="Company*"
+                                        required
+                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        value={formData.company}
+                                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                                        disabled={isSubmitting}
+                                    />
+
+                                    {submitStatus === 'error' && (
+                                        <div className="p-3 bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+                                            {errorMessage || 'Something went wrong. Please try again.'}
+                                        </div>
+                                    )}
+
+                                    <div className="flex gap-4 pt-4">
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="flex-1 bg-white text-black px-6 py-3 font-medium hover:bg-gray-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            {isSubmitting ? 'SENDING...' : 'GET REPORT'}
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setShowForm(false);
+                                                setSubmitStatus('idle');
+                                                setErrorMessage('');
+                                            }}
+                                            disabled={isSubmitting}
+                                            className="px-6 py-3 text-gray hover:text-white transition-colors disabled:opacity-50"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+
+                                    <p className="text-xs text-gray text-center mt-4">
+                                        By downloading, you agree to receive AI insights and updates from Nainovate.
+                                    </p>
+                                </form>
+                            )}
                         </div>
                     </AnimatedSection>
                 </div>

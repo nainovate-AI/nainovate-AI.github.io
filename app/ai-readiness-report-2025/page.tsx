@@ -85,17 +85,83 @@ export default function AIReadinessReport2025Page() {
         }
     };
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        setShowForm(false);
-        // Trigger download
-    };
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+        setErrorMessage('');
 
+        try {
+            // Dynamically import the report download library
+            const { validateFormData, submitReportDownload, trackDownloadEvent } = await import('@/lib/reportDownload');
+
+            // Validate form
+            const validation = validateFormData(
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    company: formData.company,
+                    role: formData.role,
+                    region: formData.region,
+                },
+                'readiness-report'
+            );
+
+            if (!validation.valid) {
+                setErrorMessage(validation.errors.join(', '));
+                setSubmitStatus('error');
+                setIsSubmitting(false);
+                return;
+            }
+
+            // Submit to backend
+            const response = await submitReportDownload({
+                name: formData.name,
+                email: formData.email,
+                company: formData.company,
+                role: formData.role,
+                region: formData.region,
+                report_type: 'readiness-report',
+            });
+
+            if (response.result === 'success') {
+                setSubmitStatus('success');
+                trackDownloadEvent('readiness-report');
+
+                // Reset form and close modal after 4 seconds
+                setTimeout(() => {
+                    setShowForm(false);
+                    setFormData({ name: '', email: '', company: '', role: '', region: '' });
+                    setSubmitStatus('idle');
+                }, 4000);
+            } else {
+                setSubmitStatus('error');
+                setErrorMessage(response.message || 'Failed to submit request. Please try again.');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setSubmitStatus('error');
+            setErrorMessage('An unexpected error occurred. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
     return (
         <main className="bg-black min-h-screen pt-20">
             <JsonLd data={reportSchema} />
 
+            {/* Back Button */}
+            <div className="max-w-[1400px] mx-auto px-8 pt-8">
+                <Link href="/reports" className="inline-flex items-center gap-2 text-gray hover:text-white transition-colors group">
+                    <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span className="text-sm uppercase tracking-wider">Back to Reports</span>
+                </Link>
+            </div>
             {/* Hero Section - Authoritative */}
             <section className="min-h-[70vh] flex items-center relative overflow-hidden">
                 {/* Subtle grid pattern */}
@@ -215,7 +281,7 @@ export default function AIReadinessReport2025Page() {
                     <AnimatedSection delay={0.5}>
                         <div className="bg-black border border-white/10 p-6 text-center">
                             <p className="text-lg font-medium">
-                                "AI readiness in 2025 is defined not by how much AI you use — but by how responsibly you use it."
+                                &ldquo;AI readiness in 2025 is defined not by how much AI you use — but by how responsibly you use it.&rdquo;
                             </p>
                         </div>
                     </AnimatedSection>
@@ -409,87 +475,120 @@ export default function AIReadinessReport2025Page() {
             {showForm && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-8">
                     <AnimatedSection>
-                        <div className="bg-black border border-white/20 p-8 max-w-md w-full">
+                        <div className="bg-black border border-white/20 p-8 max-w-md w-full relative">
                             <h3 className="text-2xl font-bold mb-6">
                                 Access AI Readiness Report 2025
                             </h3>
 
-                            <form onSubmit={handleFormSubmit} className="space-y-4">
-                                <input
-                                    type="text"
-                                    placeholder="Full Name*"
-                                    required
-                                    className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                />
-
-                                <input
-                                    type="email"
-                                    placeholder="Work Email*"
-                                    required
-                                    className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                />
-
-                                <input
-                                    type="text"
-                                    placeholder="Company*"
-                                    required
-                                    className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
-                                    value={formData.company}
-                                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                />
-
-                                <select
-                                    required
-                                    className="w-full bg-black border border-white/20 p-3 text-white focus:border-white/40 transition-colors"
-                                    value={formData.role}
-                                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                                >
-                                    <option value="">Select Role*</option>
-                                    <option value="c-suite">C-Suite</option>
-                                    <option value="compliance">Compliance/Legal</option>
-                                    <option value="it-director">IT Director</option>
-                                    <option value="ai-lead">AI/ML Lead</option>
-                                    <option value="other">Other</option>
-                                </select>
-
-                                <select
-                                    className="w-full bg-black border border-white/20 p-3 text-white focus:border-white/40 transition-colors"
-                                    value={formData.region}
-                                    onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-                                >
-                                    <option value="">Select Region</option>
-                                    <option value="europe">Europe</option>
-                                    <option value="india">India</option>
-                                    <option value="gcc">GCC</option>
-                                    <option value="americas">Americas</option>
-                                    <option value="apac">APAC</option>
-                                </select>
-
-                                <div className="flex gap-4 pt-4">
-                                    <button
-                                        type="submit"
-                                        className="flex-1 bg-white text-black px-6 py-3 font-medium hover:bg-gray-light transition-colors"
-                                    >
-                                        ACCESS REPORT
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowForm(false)}
-                                        className="flex-1 border border-white/20 px-6 py-3 font-medium hover:bg-white/10 transition-colors"
-                                    >
-                                        CANCEL
-                                    </button>
+                            {submitStatus === 'success' ? (
+                                <div className="py-8">
+                                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="text-xl font-bold text-center mb-2">Success!</h4>
+                                    <p className="text-center text-gray">
+                                        Check your email for the download link. We&apos;ve sent the AI Readiness Report to <strong>{formData.email}</strong>
+                                    </p>
                                 </div>
-                            </form>
+                            ) : (
+                                <form onSubmit={handleFormSubmit} className="space-y-4">
+                                    <input
+                                        type="text"
+                                        placeholder="Full Name*"
+                                        required
+                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        disabled={isSubmitting}
+                                    />
 
-                            <p className="text-xs text-gray mt-4 text-center">
-                                By downloading, you agree to receive updates on AI compliance and governance.
-                            </p>
+                                    <input
+                                        type="email"
+                                        placeholder="Work Email*"
+                                        required
+                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        disabled={isSubmitting}
+                                    />
+
+                                    <input
+                                        type="text"
+                                        placeholder="Company*"
+                                        required
+                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        value={formData.company}
+                                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                                        disabled={isSubmitting}
+                                    />
+
+                                    <select
+                                        required
+                                        className="w-full bg-black border border-white/20 p-3 text-white focus:border-white/40 transition-colors cursor-pointer"
+                                        value={formData.role}
+                                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                                        disabled={isSubmitting}
+                                    >
+                                        <option value="" disabled>Select Role*</option>
+                                        <option value="c-level">C-Level Executive (CEO, CTO, CFO)</option>
+                                        <option value="vp-director">VP / Director</option>
+                                        <option value="manager">Manager</option>
+                                        <option value="engineer">Engineer / Developer</option>
+                                        <option value="consultant">Consultant</option>
+                                        <option value="other">Other</option>
+                                    </select>
+
+                                    <select
+                                        required
+                                        className="w-full bg-black border border-white/20 p-3 text-white focus:border-white/40 transition-colors cursor-pointer"
+                                        value={formData.region}
+                                        onChange={(e) => setFormData({ ...formData, region: e.target.value })}
+                                        disabled={isSubmitting}
+                                    >
+                                        <option value="" disabled>Select Region*</option>
+                                        <option value="europe">Europe</option>
+                                        <option value="india">India</option>
+                                        <option value="gcc">GCC (Middle East)</option>
+                                        <option value="americas">Americas</option>
+                                        <option value="apac">Asia Pacific</option>
+                                    </select>
+
+                                    {submitStatus === 'error' && (
+                                        <div className="p-3 bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+                                            {errorMessage || 'Something went wrong. Please try again.'}
+                                        </div>
+                                    )}
+
+                                    <div className="flex gap-4 pt-4">
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="flex-1 bg-white text-black px-6 py-3 font-medium hover:bg-gray-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            {isSubmitting ? 'SENDING...' : 'ACCESS REPORT'}
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setShowForm(false);
+                                                setSubmitStatus('idle');
+                                                setErrorMessage('');
+                                            }}
+                                            disabled={isSubmitting}
+                                            className="flex-1 border border-white/20 px-6 py-3 font-medium hover:bg-white/10 transition-colors disabled:opacity-50"
+                                        >
+                                            CANCEL
+                                        </button>
+                                    </div>
+
+                                    <p className="text-xs text-gray mt-4 text-center">
+                                        By downloading, you agree to receive updates on AI compliance and governance.
+                                    </p>
+                                </form>
+                            )}
                         </div>
                     </AnimatedSection>
                 </div>

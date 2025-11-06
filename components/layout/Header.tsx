@@ -84,7 +84,7 @@ export function Header() {
           description: 'Create intelligent agents'
         },
         {
-          name: 'NIA - Interface Layer',
+          name: 'NIA - Interface',
           href: '/products/nia',
           icon: <NiaIcon />,
           description: 'Deploy conversational AI'

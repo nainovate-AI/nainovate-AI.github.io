@@ -54,7 +54,7 @@ export default function ReportsPage() {
 
                                         {/* What's inside */}
                                         <div className="mb-8">
-                                            <p className="font-medium mb-4">What you'll learn:</p>
+                                            <p className="font-medium mb-4">What you&apos;ll learn:</p>
                                             <ul className="space-y-2 text-sm text-gray">
                                                 <li className="flex items-start gap-2">
                                                     <span className="text-white mt-0.5">→</span>
@@ -108,7 +108,7 @@ export default function ReportsPage() {
 
                                         {/* What's inside */}
                                         <div className="mb-8">
-                                            <p className="font-medium mb-4">What you'll learn:</p>
+                                            <p className="font-medium mb-4">What you&apos;ll learn:</p>
                                             <ul className="space-y-2 text-sm text-gray">
                                                 <li className="flex items-start gap-2">
                                                     <span className="text-white mt-0.5">→</span>
@@ -183,7 +183,7 @@ export default function ReportsPage() {
                             Reports Are Just the Beginning
                         </h2>
                         <p className="text-gray mb-8">
-                            Ready to move from insight to action? Let's build your AI success story together.
+                            Ready to move from insight to action? Let&apos;s build your AI success story together.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -6,7 +6,7 @@ import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'GenX Platform - Integrated AI Automation System | Nainovate',
-  description: 'GenX combines CORE (AI Engine), NIA (Interface Layer), and FLOW (Automation) into one powerful platform. Build, interact, and automate with AI agents.',
+  description: 'GenX combines CORE (AI Engine), NIA (Interface), and FLOW (Automation) into one powerful platform. Build, interact, and automate with AI agents.',
   keywords: 'GenX platform, AI automation, CORE, NIA, FLOW, enterprise AI platform',
   openGraph: {
     title: 'GenX Platform - Complete AI Automation System',
@@ -34,7 +34,7 @@ export default function ProductsPage() {
         },
         {
           "@type": "Offer",
-          "name": "NIA - Interface Layer",
+          "name": "NIA - Interface",
           "description": "Intelligent conversational interface"
         },
         {
@@ -141,7 +141,7 @@ export default function ProductsPage() {
                   </div>
                   
                   <h3 className="text-2xl font-bold mb-4">NIA</h3>
-                  <p className="text-gray mb-6">The interface layer where agents come alive through conversational AI.</p>
+                  <p className="text-gray mb-6">The interface where agents come alive through conversational AI.</p>
                   
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start gap-2">
@@ -351,7 +351,7 @@ export default function ProductsPage() {
                     <div className="flex items-center gap-8">
                       <span className="text-5xl font-bold text-gray group-hover:text-black/30">02</span>
                       <div>
-                        <h3 className="text-2xl font-bold mb-1">NIA - INTERFACE LAYER</h3>
+                        <h3 className="text-2xl font-bold mb-1">NIA - INTERFACE</h3>
                         <p className="text-gray group-hover:text-black/60">Deploy intelligent conversations across any channel</p>
                       </div>
                     </div>

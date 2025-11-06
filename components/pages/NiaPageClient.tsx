@@ -11,7 +11,7 @@ export default function NiaPageClient() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "GenX NIA",
-    "alternateName": "NIA Interface Layer",
+    "alternateName": "NIA Interface",
     "applicationCategory": "ChatApplication",
     "operatingSystem": "Web-based",
     "description": "Intelligent conversational interface where GenX CORE agents interact with users",
@@ -138,7 +138,7 @@ export default function NiaPageClient() {
         <div className="max-w-[1400px] mx-auto px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
-              GENX NIA • INTERFACE LAYER
+              GENX NIA • INTERFACE
             </p>
             <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               <span className="block">WHERE AGENTS</span>
