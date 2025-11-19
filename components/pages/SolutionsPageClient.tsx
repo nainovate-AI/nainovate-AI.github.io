@@ -3,14 +3,55 @@
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
+import { useState } from 'react';
 
+// Icons for the three solutions
+const OperationsIcon = ({ large = false }: { large?: boolean }) => (
+  <svg className={large ? "w-32 h-32" : "w-12 h-12"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+  </svg>
+);
+
+const EngagementIcon = ({ large = false }: { large?: boolean }) => (
+  <svg className={large ? "w-32 h-32" : "w-12 h-12"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>
+);
+
+const IntelligenceIcon = ({ large = false }: { large?: boolean }) => (
+  <svg className={large ? "w-32 h-32" : "w-12 h-12"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  </svg>
+);
+
+// Icons for delivery formats
+const ChatIcon = ({ large = false }: { large?: boolean }) => (
+  <svg className={large ? "w-16 h-16" : "w-8 h-8"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+  </svg>
+);
+
+const DashboardIcon = ({ large = false }: { large?: boolean }) => (
+  <svg className={large ? "w-16 h-16" : "w-8 h-8"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  </svg>
+);
+
+const WorkflowIcon = ({ large = false }: { large?: boolean }) => (
+  <svg className={large ? "w-16 h-16" : "w-8 h-8"} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+  </svg>
+);
 
 export default function SolutionsPageClient() {
+  const [activeTab, setActiveTab] = useState<'operations' | 'engagement' | 'intelligence'>('operations');
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
   const solutionsSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "AI Solutions for Every Business Stage",
-    "description": "Industry-agnostic AI solutions that transform planning, procurement, and execution",
+    "name": "AI Solutions for Enterprise Operations",
+    "description": "Comprehensive AI solutions for operations, engagement, and intelligence across all industries",
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": [
@@ -19,9 +60,8 @@ export default function SolutionsPageClient() {
           "position": 1,
           "item": {
             "@type": "Service",
-            "name": "Planning Solutions",
-            "description": "AI-powered document generation, BOQ automation, and project planning",
-            "serviceOutput": "70% faster delivery"
+            "name": "AI for Operations",
+            "description": "Automate internal workflows and accelerate decision-making"
           }
         },
         {
@@ -29,9 +69,8 @@ export default function SolutionsPageClient() {
           "position": 2,
           "item": {
             "@type": "Service",
-            "name": "Procurement Solutions",
-            "description": "Intelligent vendor management, price optimization, and contract analysis",
-            "serviceOutput": "60% cost reduction"
+            "name": "AI for Engagement",
+            "description": "Scale customer interactions and deliver exceptional experiences"
           }
         },
         {
@@ -39,290 +78,365 @@ export default function SolutionsPageClient() {
           "position": 3,
           "item": {
             "@type": "Service",
-            "name": "Execution Solutions",
-            "description": "Real-time monitoring, quality assurance, and performance analytics",
-            "serviceOutput": "90% accuracy increase"
+            "name": "AI for Intelligence",
+            "description": "Transform data into insights and optimize operations"
           }
         }
       ]
     }
   };
 
+  const solutionTabs = {
+    operations: {
+      title: 'AI for Operations',
+      subtitle: 'Automate internal workflows. Accelerate decision-making. Empower your workforce.',
+      icon: <OperationsIcon large />,
+      features: [
+        'HR Screening & Selection',
+        'BOQ Generation',
+        'Document Processing',
+        'Enterprise Search',
+        'LMS Integration',
+        'Internal Automation'
+      ],
+      accelerators: ['HR', 'Construction', 'Enterprise Ops'],
+      link: '/solutions/operations'
+    },
+    engagement: {
+      title: 'AI for Engagement',
+      subtitle: 'Deliver exceptional experiences. Scale customer interactions. Build lasting relationships.',
+      icon: <EngagementIcon large />,
+      features: [
+        'Customer Service Bots',
+        'Citizen Portals',
+        'Multi-Channel Support',
+        'Service Quality',
+        'Proactive Outreach',
+        'Client Portals'
+      ],
+      accelerators: ['Retail & Hospitality', 'Government Services', 'Client Support'],
+      link: '/solutions/engagement'
+    },
+    intelligence: {
+      title: 'AI for Intelligence',
+      subtitle: 'Transform data into insights. Ensure compliance. Optimize operations.',
+      icon: <IntelligenceIcon large />,
+      features: [
+        'Analytics Dashboards',
+        'Process Monitoring',
+        'Compliance Tracking',
+        'Quality Assurance',
+        'Predictive Analytics',
+        'Performance Reporting'
+      ],
+      accelerators: ['Manufacturing', 'Government Compliance', 'Quality Control'],
+      link: '/solutions/intelligence'
+    }
+  };
+
+  const currentSolution = solutionTabs[activeTab];
 
   return (
     <main className="pt-20 relative z-10">
       <JsonLd data={solutionsSchema} />
-      {/* Hero */}
-      <section className="min-h-[80vh] flex items-center">
+
+      {/* Hero - CENTERED */}
+      <section className="min-h-[70vh] flex items-center border-b border-white/10">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
               AI SOLUTIONS
             </p>
-            <h1 className="text-[clamp(4rem,5vw,8rem)] font-bold leading-[0.85] tracking-[0.02em] mb-8">
-              <span className="block">TRANSFORM EVERY STAGE</span>
-              <span className="block mt-4">OF YOUR BUSINESS</span>
+            <h1 className="text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+              <span className="block">ENTERPRISE AI</span>
+              <span className="block">SOLUTIONS</span>
             </h1>
-            <p className="text-xl text-gray max-w-3xl mx-auto leading-relaxed">
-              From strategic planning to smart procurement to flawless execution —
-              our AI agents revolutionize how businesses operate, regardless of industry.
+            <p className="text-xl text-gray max-w-2xl mx-auto leading-relaxed">
+              Deploy intelligent AI agents across operations, customer engagement, and business intelligence.
+              Built for enterprise scale. Delivered in days.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Three Pillars */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20 text-center">
-            COMPLETE BUSINESS TRANSFORMATION
-          </h2>
-
-          <div className="grid lg:grid-cols-3 gap-px bg-white/10">
-            {/* Planning */}
-            <div id="planning" className="bg-black p-12 group hover:bg-white/[0.02] transition-colors">
-              <div className="mb-8">
-                <div className="text-6xl font-bold text-gray/20 mb-4">01</div>
-                <h3 className="text-3xl font-bold mb-4">PLANNING</h3>
-                <p className="text-gray text-lg mb-8">
-                  Streamline your planning phase with AI-powered document generation and analysis
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-2">BOQ Generation Agent</h4>
-                  <p className="text-sm text-gray">Automatically generate Bills of Quantities from architectural drawings and specifications</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Project Planning Agent</h4>
-                  <p className="text-sm text-gray">Create detailed project timelines and milestone tracking</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Document Analysis Agent</h4>
-                  <p className="text-sm text-gray">Extract key insights from RFPs, contracts, and planning documents</p>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <Button className="text-sm group-hover:bg-white group-hover:text-black transition-all">
-                  Explore Planning Solutions →
-                </Button>
-              </div>
-            </div>
-
-            {/* Procurement */}
-            <div id="procurement" className="bg-black p-12 group hover:bg-white/[0.02] transition-colors">
-              <div className="mb-8">
-                <div className="text-6xl font-bold text-gray/20 mb-4">02</div>
-                <h3 className="text-3xl font-bold mb-4">PROCUREMENT</h3>
-                <p className="text-gray text-lg mb-8">
-                  Optimize sourcing and procurement with intelligent vendor management
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-2">Vendor Intelligence Agent</h4>
-                  <p className="text-sm text-gray">Evaluate and rank suppliers based on performance metrics</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Price Optimization Agent</h4>
-                  <p className="text-sm text-gray">Negotiate better deals with market intelligence</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Contract Analysis Agent</h4>
-                  <p className="text-sm text-gray">Review contracts and identify risks automatically</p>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <Button className="text-sm group-hover:bg-white group-hover:text-black transition-all">
-                  Explore Procurement Solutions →
-                </Button>
-              </div>
-            </div>
-
-            {/* Execution */}
-            <div id="execution" className="bg-black p-12 group hover:bg-white/[0.02] transition-colors">
-              <div className="mb-8">
-                <div className="text-6xl font-bold text-gray/20 mb-4">03</div>
-                <h3 className="text-3xl font-bold mb-4">EXECUTION</h3>
-                <p className="text-gray text-lg mb-8">
-                  Deliver excellence with AI-powered operations and quality control
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-2">Operations Monitoring Agent</h4>
-                  <p className="text-sm text-gray">Track KPIs and alert on anomalies in real-time</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Quality Assurance Agent</h4>
-                  <p className="text-sm text-gray">Maintain standards with automated quality checks</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Performance Analytics Agent</h4>
-                  <p className="text-sm text-gray">Measure impact and optimize continuously</p>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <Button className="text-sm group-hover:bg-white group-hover:text-black transition-all">
-                  Explore Execution Solutions →
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Industry Applications */}
+      {/* Tabbed Solution Cards */}
       <section className="py-32">
         <div className="max-w-[1400px] mx-auto px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold mb-6">PROVEN ACROSS INDUSTRIES</h2>
-            <p className="text-xl text-gray max-w-3xl mx-auto">
-              Our planning, procurement, and execution solutions adapt to any vertical,
-              delivering transformative results across diverse sectors.
+
+          {/* Tabs */}
+          <div className="flex justify-center gap-2 mb-16">
+            <button
+              onClick={() => setActiveTab('operations')}
+              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'operations'
+                ? 'text-white border-b-2 border-white'
+                : 'text-gray hover:text-white border-b-2 border-transparent'
+                }`}
+            >
+              OPERATIONS
+            </button>
+            <button
+              onClick={() => setActiveTab('engagement')}
+              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'engagement'
+                ? 'text-white border-b-2 border-white'
+                : 'text-gray hover:text-white border-b-2 border-transparent'
+                }`}
+            >
+              ENGAGEMENT
+            </button>
+            <button
+              onClick={() => setActiveTab('intelligence')}
+              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'intelligence'
+                ? 'text-white border-b-2 border-white'
+                : 'text-gray hover:text-white border-b-2 border-transparent'
+                }`}
+            >
+              INTELLIGENCE
+            </button>
+          </div>
+
+          {/* Split View Content */}
+          <div className="grid lg:grid-cols-5 gap-16 items-center">
+
+            {/* Left: Animated Visual */}
+            <div className="lg:col-span-2">
+              <div className="relative h-96 border border-white/10 rounded-lg flex items-center justify-center bg-black overflow-hidden">
+                {/* Gradient Blobs - Different per tab */}
+                {activeTab === 'operations' && (
+                  <>
+                    <div className="absolute top-10 left-10 w-40 h-40 bg-blue-500/30 rounded-full blur-3xl animate-blob-1"></div>
+                    <div className="absolute bottom-10 right-10 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl animate-blob-2"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-400/25 rounded-full blur-2xl animate-blob-3"></div>
+                  </>
+                )}
+                {activeTab === 'engagement' && (
+                  <>
+                    <div className="absolute top-10 left-10 w-40 h-40 bg-purple-500/30 rounded-full blur-3xl animate-blob-1"></div>
+                    <div className="absolute bottom-10 right-10 w-48 h-48 bg-pink-500/20 rounded-full blur-3xl animate-blob-2"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-purple-400/25 rounded-full blur-2xl animate-blob-3"></div>
+                  </>
+                )}
+                {activeTab === 'intelligence' && (
+                  <>
+                    <div className="absolute top-10 left-10 w-40 h-40 bg-green-500/30 rounded-full blur-3xl animate-blob-1"></div>
+                    <div className="absolute bottom-10 right-10 w-48 h-48 bg-teal-500/20 rounded-full blur-3xl animate-blob-2"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-emerald-400/25 rounded-full blur-2xl animate-blob-3"></div>
+                  </>
+                )}
+
+                {/* Icon Overlay */}
+                <div className="relative z-10 text-white/40">
+                  {currentSolution.icon}
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div className="lg:col-span-3">
+              <h2 className="text-5xl font-bold mb-6">{currentSolution.title}</h2>
+              <p className="text-xl text-gray mb-10 leading-relaxed">
+                {currentSolution.subtitle}
+              </p>
+
+              <div className="mb-10">
+                <p className="text-xs font-semibold text-gray-400 mb-6 tracking-wider">FEATURES</p>
+                <div className="grid grid-cols-2 gap-4">
+                  {currentSolution.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <span className="text-white/40 mt-1">→</span>
+                      <span className="text-gray">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-10 pb-10 border-b border-white/10">
+                <p className="text-xs font-semibold text-gray-400 mb-4 tracking-wider">PRE-BUILT ACCELERATORS</p>
+                <div className="flex flex-wrap gap-3">
+                  {currentSolution.accelerators.map((acc, idx) => (
+                    <span key={idx} className="text-sm px-4 py-2 bg-white/5 rounded-full border border-white/10">
+                      {acc}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <Link href={currentSolution.link}>
+                <Button className="px-8 py-4 bg-white text-black hover:bg-white/90">
+                  LEARN MORE →
+                </Button>
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Delivery Formats - EXPANDING CARDS */}
+      <section className="py-32 border-t border-white/10 bg-white/[0.01]">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <div className="max-w-3xl mx-auto text-center mb-20">
+            <h2 className="text-5xl font-bold mb-6">
+              CHOOSE YOUR DELIVERY FORMAT
+            </h2>
+            <p className="text-xl text-gray">
+              Every solution can be delivered through conversational AI, intelligence dashboards,
+              or workflow automation—or all three combined.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-white/5 rounded-2xl flex items-center justify-center">
-                <span className="text-2xl text-white/60">⚕</span>
+          <div className="flex gap-4 min-h-[360px]">
+            {/* Conversational AI */}
+            <div
+              className={`relative border border-white/10 rounded-lg bg-black overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
+                ${hoveredCard === 'chat' || hoveredCard === null
+                  ? hoveredCard === 'chat'
+                    ? 'flex-[1.6]'
+                    : 'flex-1'
+                  : 'flex-[0.5] opacity-50'
+                }`}
+              onMouseEnter={() => setHoveredCard('chat')}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {/* Expanded Content */}
+              <div className={`absolute inset-0 p-10 flex flex-col justify-center transition-opacity duration-300
+                ${hoveredCard === 'chat' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                <div className="max-w-lg mx-auto">
+                  <div className="text-gray-400 mb-6">
+                    <ChatIcon large />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-4">Conversational AI</h3>
+                  <p className="text-gray leading-relaxed mb-6">
+                    Interactive Q&A agents for HR screening, customer service, internal support,
+                    and knowledge retrieval.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">HR Bots</span>
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Customer Service</span>
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Internal Support</span>
+                  </div>
+                </div>
               </div>
-              <p className="text-sm">Healthcare</p>
+
+              {/* Collapsed Content */}
+              <div className={`absolute inset-0 p-8 flex flex-col items-center justify-center transition-opacity duration-300
+                ${hoveredCard === 'chat' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+                <div className="text-gray-400 mb-4">
+                  <ChatIcon />
+                </div>
+                <h3 className="text-lg font-bold text-center">Conversational AI</h3>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-white/5 rounded-2xl flex items-center justify-center">
-                <span className="text-2xl text-white/60">⚙</span>
+
+            {/* Intelligence Dashboards */}
+            <div
+              className={`relative border rounded-lg bg-black overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
+                ${hoveredCard === 'dashboard' || hoveredCard === null
+                  ? hoveredCard === 'dashboard'
+                    ? 'flex-[1.8] border-blue-500/30'
+                    : 'flex-1 border-white/10'
+                  : 'flex-[0.5] opacity-50 border-white/10'
+                }`}
+              onMouseEnter={() => setHoveredCard('dashboard')}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {/* OUR SPECIALTY Badge */}
+              <div className={`absolute top-4 right-4 z-10 transition-opacity duration-300
+                ${hoveredCard === 'dashboard' ? 'opacity-100' : 'opacity-0'}`}>
+                <span className="text-xs px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full border border-blue-500/30">
+                  OUR SPECIALTY
+                </span>
               </div>
-              <p className="text-sm">Manufacturing</p>
+
+              {/* Expanded Content */}
+              <div className={`absolute inset-0 p-10 flex flex-col justify-center transition-opacity duration-300
+                ${hoveredCard === 'dashboard' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                <div className="max-w-xl mx-auto">
+                  <div className="text-gray-400 mb-6">
+                    <DashboardIcon large />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-4">Intelligence Dashboards</h3>
+                  <p className="text-gray leading-relaxed mb-6">
+                    Chat meets analytics. Ask questions in natural language, see visual insights instantly.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Building Permits</span>
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Compliance</span>
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Executive Insights</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Collapsed Content */}
+              <div className={`absolute inset-0 p-8 flex flex-col items-center justify-center transition-opacity duration-300
+                ${hoveredCard === 'dashboard' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+                <div className="text-gray-400 mb-4">
+                  <DashboardIcon />
+                </div>
+                <h3 className="text-lg font-bold text-center">Intelligence Dashboards</h3>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-white/5 rounded-2xl flex items-center justify-center">
-                <span className="text-2xl text-white/60">◈</span>
+
+            {/* Workflow Automation */}
+            <div
+              className={`relative border border-white/10 rounded-lg bg-black overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
+                ${hoveredCard === 'workflow' || hoveredCard === null
+                  ? hoveredCard === 'workflow'
+                    ? 'flex-[1.6]'
+                    : 'flex-1'
+                  : 'flex-[0.5] opacity-50'
+                }`}
+              onMouseEnter={() => setHoveredCard('workflow')}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {/* Expanded Content */}
+              <div className={`absolute inset-0 p-10 flex flex-col justify-center transition-opacity duration-300
+                ${hoveredCard === 'workflow' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                <div className="max-w-lg mx-auto">
+                  <div className="text-gray-400 mb-6">
+                    <WorkflowIcon large />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-4">Workflow Automation</h3>
+                  <p className="text-gray leading-relaxed mb-6">
+                    Build end-to-end processes with AI guidance. Visual workflow builder with agent support.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Procurement</span>
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Approvals</span>
+                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Onboarding</span>
+                  </div>
+                </div>
               </div>
-              <p className="text-sm">Retail</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-white/5 rounded-2xl flex items-center justify-center">
-                <span className="text-2xl text-white/60">▭</span>
+
+              {/* Collapsed Content */}
+              <div className={`absolute inset-0 p-8 flex flex-col items-center justify-center transition-opacity duration-300
+                ${hoveredCard === 'workflow' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+                <div className="text-gray-400 mb-4">
+                  <WorkflowIcon />
+                </div>
+                <h3 className="text-lg font-bold text-center">Workflow Automation</h3>
               </div>
-              <p className="text-sm">Construction</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-white/5 rounded-2xl flex items-center justify-center">
-                <span className="text-2xl text-white/60">◉</span>
-              </div>
-              <p className="text-sm">Finance</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-white/5 rounded-2xl flex items-center justify-center">
-                <span className="text-2xl text-white/60">◆</span>
-              </div>
-              <p className="text-sm">Logistics</p>
             </div>
           </div>
         </div>
       </section>
-
-      {/* How It Works */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1200px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20 text-center">THE NAINOVATE APPROACH</h2>
-
-          <div className="space-y-24">
-            {/* The Nainovate Approach section */}
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="text-6xl font-bold text-gray/20 mb-6">01</div>
-                <h3 className="text-3xl font-bold mb-4">Industry Agnostic</h3>
-                <p className="text-gray text-lg">
-                  Our AI agents understand business fundamentals, not just industry jargon.
-                  They adapt to your specific context while leveraging cross-industry best practices.
-                </p>
-              </div>
-              {/* Industry Agnostic */}
-              <div className="h-64 flex items-center justify-center">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-60 h-60 object-contain"
-                >
-                  <source src="/videos/Industry_Agnostic.webm" type="video/webm" />
-                </video>
-              </div>
-            </div>
-
-            {/* End-to-End Integration */}
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="h-64 flex items-center justify-center">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-50 h-60 object-contain"
-                >
-                  <source src="/videos/Integration.webm" type="video/webm" />
-                </video>
-              </div>
-              <div className="order-1 md:order-2">
-                <div className="text-6xl font-bold text-gray/20 mb-6">02</div>
-                <h3 className="text-3xl font-bold mb-4">End-to-End Integration</h3>
-                <p className="text-gray text-lg">
-                  Connect planning insights directly to procurement decisions,
-                  and procurement data seamlessly to execution metrics. One unified AI ecosystem.
-                </p>
-              </div>
-            </div>
-
-            {/* Continuous Learning */}
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="text-6xl font-bold text-gray/20 mb-6">03</div>
-                <h3 className="text-3xl font-bold mb-4">Continuous Learning</h3>
-                <p className="text-gray text-lg">
-                  Your AI agents get smarter with every interaction, learning from your business
-                  patterns and continuously optimizing their recommendations.
-                </p>
-              </div>
-              <div className="h-64 flex items-center justify-center">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-80 h-80 object-contain"
-                >
-                  <source src="/videos/Continuous_Learning.webm" type="video/webm" />
-                </video>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[800px] mx-auto px-8 text-center">
           <h2 className="text-5xl font-bold mb-8">
-            Ready to transform your business?
+            READY TO DEPLOY AI SOLUTIONS?
           </h2>
           <p className="text-xl text-gray mb-12 leading-relaxed">
-            See how our AI solutions can revolutionize your planning,
-            procurement, and execution processes.
+            See how our AI solutions can transform your operations, engagement, and intelligence capabilities.
           </p>
           <div className="flex gap-6 justify-center">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white hover:text-black px-8 py-4">
                 Schedule a Demo
+              </Button>
+            </Link>
+            <Link href="/products">
+              <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+                Explore Platform
               </Button>
             </Link>
           </div>

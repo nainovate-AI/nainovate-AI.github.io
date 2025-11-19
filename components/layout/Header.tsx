@@ -46,6 +46,25 @@ const TrendingIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
   </svg>
 );
+
+const OperationsIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+  </svg>
+);
+
+const EngagementIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>
+);
+
+const IntelligenceIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  </svg>
+);
+
 // Type definitions
 interface DropdownItem {
   name: string;
@@ -54,11 +73,22 @@ interface DropdownItem {
   description?: string;
 }
 
+interface SolutionCard {
+  title: string;
+  href: string;
+  icon: React.ReactNode;
+  subtitle: string;
+  features: string[];
+  accelerators: string[];
+}
+
 interface NavItem {
   name: string;
   href: string;
   isDropdown: boolean;
+  isSolutionsMega?: boolean;
   dropdownItems?: DropdownItem[];
+  solutionCards?: SolutionCard[];
 }
 
 export function Header() {
@@ -100,27 +130,55 @@ export function Header() {
     {
       name: 'Solutions',
       href: '/solutions',
-      isDropdown: false,
+      isDropdown: true,
+      isSolutionsMega: true,
+      solutionCards: [
+        {
+          title: 'AI for Operations',
+          href: '/solutions/operations',
+          icon: <OperationsIcon />,
+          subtitle: 'Automate internal workflows. Accelerate decision-making. Empower your workforce.',
+          features: [
+            'HR Screening & Selection',
+            'BOQ Generation',
+            'Document Processing',
+            'Enterprise Search'
+          ],
+          accelerators: ['HR', 'Construction', 'Enterprise Ops']
+        },
+        {
+          title: 'AI for Engagement',
+          href: '/solutions/engagement',
+          icon: <EngagementIcon />,
+          subtitle: 'Deliver exceptional experiences. Scale customer interactions. Build lasting relationships.',
+          features: [
+            'Customer Service Bots',
+            'Citizen Portals',
+            'Multi-Channel Support',
+            'Service Quality'
+          ],
+          accelerators: ['Retail & Hospitality', 'Government Services', 'Client Support']
+        },
+        {
+          title: 'AI for Intelligence',
+          href: '/solutions/intelligence',
+          icon: <IntelligenceIcon />,
+          subtitle: 'Transform data into insights. Ensure compliance. Optimize operations.',
+          features: [
+            'Analytics Dashboards',
+            'Process Monitoring',
+            'Compliance Tracking',
+            'Quality Assurance'
+          ],
+          accelerators: ['Manufacturing', 'Government Compliance', 'Quality Control']
+        }
+      ]
     },
-    // ADD THIS NEW ITEM HERE
     {
       name: 'AI CoE',
       href: '/ai-center-of-excellence',
       isDropdown: false,
     },
-    // {
-    //   name: 'Resources',
-    //   href: '#',
-    //   isDropdown: true,
-    //   dropdownItems: [
-    //     {
-    //       name: 'AI Readiness',
-    //       href: '/ai-readiness-report',
-    //       icon: <InfoIcon />,
-    //       description: 'Industry report'
-    //     }
-    //   ]
-    // },
     {
       name: 'Resources',
       href: '#',
@@ -135,7 +193,7 @@ export function Header() {
         {
           name: 'Reports & Research',
           href: '/reports',
-          icon: <TrendingIcon />, // Using existing ChartIcon
+          icon: <TrendingIcon />,
           description: '2025 Research Reports'
         },
         {
@@ -174,51 +232,113 @@ export function Header() {
                 {item.isDropdown ? (
                   <>
                     <button
-                      className="text-sm hover:text-gray transition-colors py-2 uppercase tracking-wider"
+                      className="text-sm hover:text-gray transition-colors py-2 uppercase tracking-wider flex items-center gap-1"
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onClick={() => {
                         if (item.name === 'Products') window.location.href = item.href;
+                        if (item.name === 'Solutions') window.location.href = item.href;
                       }}
                     >
                       {item.name}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
                     </button>
 
-                    {/* Enhanced Dropdown with Icons */}
-                    <div
-                      className={`absolute left-0 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
-                        }`}
-                      onMouseEnter={() => setActiveDropdown(item.name)}
-                      onMouseLeave={() => setActiveDropdown(null)}
-                    >
-                      <div className="absolute -top-2 left-0 right-0 h-2" />
+                    {/* Solutions Mega Dropdown */}
+                    {item.isSolutionsMega ? (
+                      <div
+                        className={`absolute left-1/2 -translate-x-1/2 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
+                          }`}
+                        onMouseEnter={() => setActiveDropdown(item.name)}
+                        onMouseLeave={() => setActiveDropdown(null)}
+                      >
+                        <div className="absolute -top-2 left-0 right-0 h-2" />
 
-                      <div className="bg-black/90 backdrop-blur-md border border-white/10 rounded-lg py-2 min-w-[250px]">
-                        {item.dropdownItems?.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.name}
-                            href={dropdownItem.href}
-                            className="flex items-start gap-3 px-6 py-3 hover:bg-white/5 transition-colors group"
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            {dropdownItem.icon && (
-                              <span className="text-gray-400 group-hover:text-white transition-colors mt-1">
-                                {dropdownItem.icon}
-                              </span>
-                            )}
-                            <div className="flex-1">
-                              <span className="block text-sm text-white group-hover:text-white transition-colors">
-                                {dropdownItem.name}
-                              </span>
-                              {dropdownItem.description && (
-                                <span className="block text-xs text-gray-500 mt-1">
-                                  {dropdownItem.description}
+                        <div className="bg-black/95 backdrop-blur-md border border-white/10 rounded-lg p-8 w-[900px]">
+                          <div className="grid grid-cols-3 gap-6">
+                            {item.solutionCards?.map((card) => (
+                              <Link
+                                key={card.title}
+                                href={card.href}
+                                className="group p-6 rounded-lg hover:bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+                                onClick={() => setActiveDropdown(null)}
+                              >
+                                <div className="flex items-center gap-3 mb-4">
+                                  <div className="text-gray-400 group-hover:text-white transition-colors">
+                                    {card.icon}
+                                  </div>
+                                  <h3 className="text-lg font-bold">{card.title}</h3>
+                                </div>
+
+                                <p className="text-xs text-gray mb-4 leading-relaxed">
+                                  {card.subtitle}
+                                </p>
+
+                                <div className="mb-4">
+                                  <p className="text-xs font-semibold text-gray-400 mb-2">FEATURES</p>
+                                  {card.features.slice(0, 3).map((feature, idx) => (
+                                    <p key={idx} className="text-xs text-gray-500 mb-1">{feature}</p>
+                                  ))}
+                                </div>
+
+                                <div>
+                                  <p className="text-xs font-semibold text-gray-400 mb-2">PRE-BUILT ACCELERATORS</p>
+                                  <div className="flex flex-wrap gap-2">
+                                    {card.accelerators.map((acc, idx) => (
+                                      <span key={idx} className="text-xs px-2 py-1 bg-white/5 rounded">
+                                        {acc}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                <button className="mt-4 text-xs font-medium text-white group-hover:text-white transition-colors">
+                                  LEARN MORE →
+                                </button>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Regular Dropdown */
+                      <div
+                        className={`absolute left-0 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
+                          }`}
+                        onMouseEnter={() => setActiveDropdown(item.name)}
+                        onMouseLeave={() => setActiveDropdown(null)}
+                      >
+                        <div className="absolute -top-2 left-0 right-0 h-2" />
+
+                        <div className="bg-black/90 backdrop-blur-md border border-white/10 rounded-lg py-2 min-w-[250px]">
+                          {item.dropdownItems?.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              href={dropdownItem.href}
+                              className="flex items-start gap-3 px-6 py-3 hover:bg-white/5 transition-colors group"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              {dropdownItem.icon && (
+                                <span className="text-gray-400 group-hover:text-white transition-colors mt-1">
+                                  {dropdownItem.icon}
                                 </span>
                               )}
-                            </div>
-                          </Link>
-                        ))}
+                              <div className="flex-1">
+                                <span className="block text-sm text-white group-hover:text-white transition-colors">
+                                  {dropdownItem.name}
+                                </span>
+                                {dropdownItem.description && (
+                                  <span className="block text-xs text-gray-500 mt-1">
+                                    {dropdownItem.description}
+                                  </span>
+                                )}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </>
                 ) : (
                   <Link
@@ -282,6 +402,16 @@ export function Header() {
                           {dropdownItem.name}
                         </Link>
                       ))}
+                      {item.solutionCards?.map((card) => (
+                        <Link
+                          key={card.title}
+                          href={card.href}
+                          className="block py-2 text-sm hover:text-gray transition-colors"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {card.title}
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 ) : (
@@ -306,4 +436,3 @@ export function Header() {
     </header>
   );
 }
-
