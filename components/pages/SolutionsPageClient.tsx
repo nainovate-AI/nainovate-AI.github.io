@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
+import UnifiedChatBot from '@/components/ui/UnifiedChatBot';
 
 // Icons for the three solutions
 const OperationsIcon = ({ large = false }: { large?: boolean }) => (
@@ -419,6 +420,43 @@ export default function SolutionsPageClient() {
           </div>
         </div>
       </section>
+
+      {/* NEW SECTION: Try It Yourself - Add this BEFORE the CTA */}
+      <section className="py-32 border-t border-white/10 bg-gradient-to-b from-transparent to-white/[0.02]">
+        <div className="max-w-[1200px] mx-auto px-8">
+          <div className="text-center mb-16">
+            <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-4">
+              INTERACTIVE DEMO
+            </p>
+            <h2 className="text-5xl font-bold mb-6">
+              TRY IT YOURSELF
+            </h2>
+            <p className="text-xl text-gray max-w-2xl mx-auto leading-relaxed">
+              Experience NIA in action. Ask about HR screening, BOQ generation, analytics,
+              compliance, or any business operation. Our AI understands context and routes
+              to the right capability automatically.
+            </p>
+          </div>
+
+          {/* Unified Chat Bot */}
+          <UnifiedChatBot />
+
+          {/* Quick Links Below Chat */}
+          <div className="mt-12 flex justify-center gap-4">
+            <Link href="/try-demo">
+              <Button className="border border-white/20 hover:bg-white/10 px-6 py-3">
+                Open Full Demo Page →
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button className="bg-white text-black hover:bg-gray-200 px-6 py-3">
+                Schedule Live Demo
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[800px] mx-auto px-8 text-center">

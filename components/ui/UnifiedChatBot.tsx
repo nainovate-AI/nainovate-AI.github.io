@@ -3,22 +3,22 @@
 import { useState, useEffect, useRef } from 'react';
 
 interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-  capability?: string;
+    role: 'user' | 'assistant';
+    content: string;
+    timestamp: Date;
+    capability?: string;
 }
 
 const WELCOME_MESSAGE = "Hi! I'm NIA, your unified AI assistant. I can help with HR screening, BOQ generation, customer service, analytics, compliance, and more. What would you like to explore?";
 
 // Intelligent response system that routes to appropriate capability
 const getIntelligentResponse = (userMessage: string): { content: string; capability: string } => {
-  const msg = userMessage.toLowerCase();
-  
-  // HR & Recruitment
-  if (msg.includes('candidate') || msg.includes('hire') || msg.includes('recruit') || msg.includes('resume') || msg.includes('job')) {
-    return {
-      content: `I can help with that! For candidate C-1247 applying to Senior Developer role (J-589):
+    const msg = userMessage.toLowerCase();
+
+    // HR & Recruitment
+    if (msg.includes('candidate') || msg.includes('hire') || msg.includes('recruit') || msg.includes('resume') || msg.includes('job')) {
+        return {
+            content: `I can help with that! For candidate C-1247 applying to Senior Developer role (J-589):
 
 **Match Analysis:**
 - Overall Match: 87%
@@ -38,14 +38,14 @@ const getIntelligentResponse = (userMessage: string): { content: string; capabil
 **Recommendation:** Proceed to technical interview. High potential for success.
 
 Would you like me to schedule interviews or analyze other candidates?`,
-      capability: 'HR Screening'
-    };
-  }
-  
-  // BOQ & Construction
-  if (msg.includes('boq') || msg.includes('quantity') || msg.includes('construction') || msg.includes('material') || msg.includes('estimate')) {
-    return {
-      content: `I've analyzed the architectural drawings. Here's the BOQ breakdown:
+            capability: 'HR Screening'
+        };
+    }
+
+    // BOQ & Construction
+    if (msg.includes('boq') || msg.includes('quantity') || msg.includes('construction') || msg.includes('material') || msg.includes('estimate')) {
+        return {
+            content: `I've analyzed the architectural drawings. Here's the BOQ breakdown:
 
 **Foundation & Structure:**
 - Concrete M25: 45 cubic meters
@@ -66,14 +66,14 @@ Would you like me to schedule interviews or analyze other candidates?`,
 **Material Lead Time:** 3-4 weeks
 
 Need detailed breakdown for any specific item?`,
-      capability: 'BOQ Generation'
-    };
-  }
-  
-  // Customer Service
-  if (msg.includes('order') || msg.includes('track') || msg.includes('delivery') || msg.includes('refund') || msg.includes('customer')) {
-    return {
-      content: `Let me check order #ORD-89234 for you:
+            capability: 'BOQ Generation'
+        };
+    }
+
+    // Customer Service
+    if (msg.includes('order') || msg.includes('track') || msg.includes('delivery') || msg.includes('refund') || msg.includes('customer')) {
+        return {
+            content: `Let me check order #ORD-89234 for you:
 
 **Order Status:** Out for Delivery
 **Current Location:** Distribution Hub - Sector 15
@@ -92,14 +92,14 @@ Need detailed breakdown for any specific item?`,
 → Out for Delivery (Nov 19, 11:45 AM)
 
 Would you like to modify delivery address or contact the driver?`,
-      capability: 'Customer Service'
-    };
-  }
-  
-  // Building Permits & Government
-  if (msg.includes('permit') || msg.includes('building') || msg.includes('approval') || msg.includes('government') || msg.includes('citizen')) {
-    return {
-      content: `Checking building permit BP-2024-1247:
+            capability: 'Customer Service'
+        };
+    }
+
+    // Building Permits & Government
+    if (msg.includes('permit') || msg.includes('building') || msg.includes('approval') || msg.includes('government') || msg.includes('citizen')) {
+        return {
+            content: `Checking building permit BP-2024-1247:
 
 **Application Status:** Under Review - Stage 3 of 4
 **Current Department:** Fire Safety Clearance
@@ -122,14 +122,14 @@ Would you like to modify delivery address or contact the driver?`,
 **Estimated Permit Date:** November 26, 2024
 
 You can track real-time updates or schedule a meeting with the fire safety inspector. What would you like to do?`,
-      capability: 'Citizen Services'
-    };
-  }
-  
-  // Analytics & Intelligence
-  if (msg.includes('analytic') || msg.includes('dashboard') || msg.includes('report') || msg.includes('metric') || msg.includes('data') || msg.includes('insight')) {
-    return {
-      content: `Here's your real-time analytics overview:
+            capability: 'Citizen Services'
+        };
+    }
+
+    // Analytics & Intelligence
+    if (msg.includes('analytic') || msg.includes('dashboard') || msg.includes('report') || msg.includes('metric') || msg.includes('data') || msg.includes('insight')) {
+        return {
+            content: `Here's your real-time analytics overview:
 
 **Permit Processing Performance (Last 30 Days):**
 
@@ -157,14 +157,14 @@ You can track real-time updates or schedule a meeting with the fire safety inspe
 3. Setback requirements (18%)
 
 Would you like detailed breakdown by district or inspector performance metrics?`,
-      capability: 'Analytics Dashboard'
-    };
-  }
-  
-  // Compliance & Governance
-  if (msg.includes('complian') || msg.includes('regulation') || msg.includes('audit') || msg.includes('policy') || msg.includes('risk')) {
-    return {
-      content: `Compliance Status Report - Multi-Jurisdiction:
+            capability: 'Analytics Dashboard'
+        };
+    }
+
+    // Compliance & Governance
+    if (msg.includes('complian') || msg.includes('regulation') || msg.includes('audit') || msg.includes('policy') || msg.includes('risk')) {
+        return {
+            content: `Compliance Status Report - Multi-Jurisdiction:
 
 **Overall Compliance Score:** 94%
 
@@ -197,14 +197,14 @@ Would you like detailed breakdown by district or inspector performance metrics?`
 3. Update DPO contact info for GCC
 
 Need detailed audit trail for any jurisdiction?`,
-      capability: 'Compliance Tracking'
-    };
-  }
-  
-  // Multi-channel Support
-  if (msg.includes('channel') || msg.includes('email') || msg.includes('chat') || msg.includes('sms') || msg.includes('conversation')) {
-    return {
-      content: `Unified conversation history for Customer #C-45892:
+            capability: 'Compliance Tracking'
+        };
+    }
+
+    // Multi-channel Support
+    if (msg.includes('channel') || msg.includes('email') || msg.includes('chat') || msg.includes('sms') || msg.includes('conversation')) {
+        return {
+            content: `Unified conversation history for Customer #C-45892:
 
 **Communication Timeline:**
 
@@ -235,14 +235,14 @@ Initial: 😠 Frustrated → Current: 😊 Satisfied
 **Suggested Action:** Send follow-up satisfaction survey
 
 All channels synchronized in real-time. Need transcript from any specific interaction?`,
-      capability: 'Multi-Channel Support'
-    };
-  }
-  
-  // Quality Assurance
-  if (msg.includes('quality') || msg.includes('defect') || msg.includes('inspection') || msg.includes('testing') || msg.includes('manufacturing')) {
-    return {
-      content: `Manufacturing Quality Report - Production Line A:
+            capability: 'Multi-Channel Support'
+        };
+    }
+
+    // Quality Assurance
+    if (msg.includes('quality') || msg.includes('defect') || msg.includes('inspection') || msg.includes('testing') || msg.includes('manufacturing')) {
+        return {
+            content: `Manufacturing Quality Report - Production Line A:
 
 **Today's Metrics (Shift 1):**
 - Units Produced: 2,847
@@ -271,14 +271,14 @@ All channels synchronized in real-time. Need transcript from any specific intera
 ✓ Quarantined defective batch for review
 
 Need detailed defect images or recommendation for process optimization?`,
-      capability: 'Quality Assurance'
-    };
-  }
-  
-  // Workflow Automation
-  if (msg.includes('workflow') || msg.includes('process') || msg.includes('automation') || msg.includes('approval') || msg.includes('routing')) {
-    return {
-      content: `Automated workflow status for Invoice Processing:
+            capability: 'Quality Assurance'
+        };
+    }
+
+    // Workflow Automation
+    if (msg.includes('workflow') || msg.includes('process') || msg.includes('automation') || msg.includes('approval') || msg.includes('routing')) {
+        return {
+            content: `Automated workflow status for Invoice Processing:
 
 **Current Pipeline:**
 
@@ -312,14 +312,14 @@ Need detailed defect images or recommendation for process optimization?`,
 • Generate audit trail report
 
 Want to modify approval thresholds or add new routing rules?`,
-      capability: 'Workflow Automation'
-    };
-  }
-  
-  // Enterprise Search
-  if (msg.includes('search') || msg.includes('find') || msg.includes('document') || msg.includes('policy') || msg.includes('knowledge')) {
-    return {
-      content: `Enterprise search results for your query:
+            capability: 'Workflow Automation'
+        };
+    }
+
+    // Enterprise Search
+    if (msg.includes('search') || msg.includes('find') || msg.includes('document') || msg.includes('policy') || msg.includes('knowledge')) {
+        return {
+            content: `Enterprise search results for your query:
 
 **Found 127 relevant documents across 8 systems**
 
@@ -355,13 +355,13 @@ Relevance: 82% | Status: In Progress
 Slack (23 conversations), Email (34 threads), Google Drive (18 files)
 
 Need me to summarize any specific document or search within a particular system?`,
-      capability: 'Enterprise Search'
-    };
-  }
-  
-  // Default response if no match
-  return {
-    content: `I can help you with:
+            capability: 'Enterprise Search'
+        };
+    }
+
+    // Default response if no match
+    return {
+        content: `I can help you with:
 
 **Operations:**
 • HR & Recruitment - Candidate screening, job matching
@@ -382,187 +382,200 @@ Need me to summarize any specific document or search within a particular system?
 • Quality Control - Defect tracking, predictive maintenance
 
 What would you like to explore?`,
-    capability: 'General'
-  };
+        capability: 'General'
+    };
 };
 
 export default function UnifiedChatBot() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: WELCOME_MESSAGE,
-      timestamp: new Date()
-    }
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+    const [messages, setMessages] = useState<Message[]>([
+        {
+            role: 'assistant',
+            content: WELCOME_MESSAGE,
+            timestamp: new Date()
+        }
+    ]);
+    const [inputValue, setInputValue] = useState('');
+    const [isTyping, setIsTyping] = useState(false);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, isTyping]);
-
-  const handleSend = async () => {
-    if (!inputValue.trim()) return;
-
-    const userMessage: Message = {
-      role: 'user',
-      content: inputValue,
-      timestamp: new Date()
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputValue('');
-    setIsTyping(true);
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages, isTyping]);
 
-    // Simulate processing time
-    setTimeout(() => {
-      const response = getIntelligentResponse(inputValue);
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: response.content,
-        timestamp: new Date(),
-        capability: response.capability
-      };
+    const handleSend = async () => {
+        if (!inputValue.trim()) return;
 
-      setMessages(prev => [...prev, assistantMessage]);
-      setIsTyping(false);
-    }, 1500);
-  };
+        const userMessage: Message = {
+            role: 'user',
+            content: inputValue,
+            timestamp: new Date()
+        };
 
-  const handleExampleClick = (example: string) => {
-    setInputValue(example);
-    setTimeout(() => handleSend(), 100);
-  };
+        setMessages(prev => [...prev, userMessage]);
+        setInputValue('');
+        setIsTyping(true);
 
-  const exampleQuestions = [
-    "Analyze candidate C-1247 for job J-589",
-    "Generate BOQ for architectural drawings",
-    "Track order #ORD-89234",
-    "Check building permit BP-2024-1247",
-    "Show permit processing analytics",
-    "Compliance status across jurisdictions"
-  ];
+        // Simulate processing time
+        setTimeout(() => {
+            const response = getIntelligentResponse(inputValue);
+            const assistantMessage: Message = {
+                role: 'assistant',
+                content: response.content,
+                timestamp: new Date(),
+                capability: response.capability
+            };
 
-  return (
-    <div className="max-w-4xl mx-auto">
-      <div className="bg-black border border-white/10 rounded-lg overflow-hidden">
-        {/* Header */}
-        <div className="border-b border-white/10 p-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium">NIA - Unified AI Assistant</span>
-            <span className="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Online</span>
-          </div>
-          <div className="flex gap-2">
-            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-          </div>
-        </div>
+            setMessages(prev => [...prev, assistantMessage]);
+            setIsTyping(false);
+        }, 1500);
+    };
 
-        {/* Messages */}
-        <div className="h-[500px] overflow-y-auto p-6 space-y-4">
-          {messages.map((message, idx) => (
-            <div
-              key={idx}
-              className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-            >
-              {message.role === 'assistant' && (
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-blue-500/20 border border-blue-500/30">
-                  <span className="text-xs font-bold">NIA</span>
+    const handleExampleClick = (example: string) => {
+        setInputValue(example);
+        setTimeout(() => handleSend(), 100);
+    };
+
+    const exampleQuestions = [
+        "Analyze candidate C-1247 for job J-589",
+        "Generate BOQ for architectural drawings",
+        "Track order #ORD-89234",
+        "Check building permit BP-2024-1247",
+        "Show permit processing analytics",
+        "Compliance status across jurisdictions"
+    ];
+
+    return (
+        <div className="max-w-4xl mx-auto">
+            <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+
+            <div className="bg-black border border-white/10 rounded-lg overflow-hidden">
+                {/* Header */}
+                <div className="border-b border-white/10 p-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-sm font-medium">NIA - Unified AI Assistant</span>
+                        <span className="text-xs text-gray-400 bg-white/5 px-2 py-1 rounded">Online</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    </div>
                 </div>
-              )}
-              
-              <div
-                className={`max-w-[75%] rounded-lg p-4 ${
-                  message.role === 'user'
-                    ? 'bg-white/10 border border-white/20'
-                    : 'bg-blue-500/10 border border-blue-500/20'
-                }`}
-              >
-                {message.capability && message.capability !== 'General' && (
-                  <div className="text-xs text-blue-400 font-medium mb-2">
-                    {message.capability}
-                  </div>
+
+                {/* Messages */}
+                <div className="h-[500px] overflow-y-auto scrollbar-hide p-6 space-y-4">
+                    {messages.map((message, idx) => (
+                        <div
+                            key={idx}
+                            className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                        >
+                            {message.role === 'assistant' && (
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-blue-500/20 border border-blue-500/30">
+                                    <img
+                                        src="/images/N_Dark_Mode.png"
+                                        alt="NIA"
+                                        className="w-6 h-6 object-contain"
+                                    />
+                                </div>
+                            )}
+
+                            <div
+                                className={`max-w-[75%] rounded-lg p-4 ${message.role === 'user'
+                                        ? 'bg-white/10 border border-white/20'
+                                        : 'bg-blue-500/10 border border-blue-500/20'
+                                    }`}
+                            >
+                                {message.capability && message.capability !== 'General' && (
+                                    <div className="text-xs text-blue-400 font-medium mb-2">
+                                        {message.capability}
+                                    </div>
+                                )}
+                                <div className="text-sm whitespace-pre-line leading-relaxed">
+                                    {message.content}
+                                </div>
+                                <div className="text-xs text-gray-500 mt-2">
+                                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </div>
+                            </div>
+
+                            {message.role === 'user' && (
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-white/10 border border-white/20">
+                                    <span className="text-xs">👤</span>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+
+                    {isTyping && (
+                        <div className="flex gap-3 justify-start">
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-blue-500/20 border border-blue-500/30">
+                                <span className="text-xs font-bold">NIA</span>
+                            </div>
+                            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                                <div className="flex gap-1">
+                                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+                                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div ref={messagesEndRef} />
+                </div>
+
+                {/* Example Questions - Show after every assistant response */}
+                {!isTyping && messages[messages.length - 1]?.role === 'assistant' && (
+                    <div className="border-t border-white/10 p-4 bg-white/[0.02]">
+                        <p className="text-xs text-gray-400 mb-3">Try asking:</p>
+                        <div className="flex flex-wrap gap-2">
+                            {exampleQuestions.map((question, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => handleExampleClick(question)}
+                                    className="text-xs px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors"
+                                >
+                                    {question}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 )}
-                <div className="text-sm whitespace-pre-line leading-relaxed">
-                  {message.content}
-                </div>
-                <div className="text-xs text-gray-500 mt-2">
-                  {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </div>
-              </div>
 
-              {message.role === 'user' && (
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-white/10 border border-white/20">
-                  <span className="text-xs">👤</span>
+                {/* Input */}
+                <div className="border-t border-white/10 p-4">
+                    <div className="flex gap-3">
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                            placeholder="Ask me anything about HR, BOQ, analytics, compliance..."
+                            className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 transition-colors"
+                        />
+                        <button
+                            onClick={handleSend}
+                            disabled={!inputValue.trim()}
+                            className="px-6 py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-white/5 disabled:text-gray-500 rounded-lg text-sm font-medium transition-colors"
+                        >
+                            Send
+                        </button>
+                    </div>
                 </div>
-              )}
             </div>
-          ))}
-
-          {isTyping && (
-            <div className="flex gap-3 justify-start">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 bg-blue-500/20 border border-blue-500/30">
-                <span className="text-xs font-bold">NIA</span>
-              </div>
-              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div ref={messagesEndRef} />
         </div>
-
-        {/* Example Questions */}
-        {messages.length === 1 && (
-          <div className="border-t border-white/10 p-4 bg-white/[0.02]">
-            <p className="text-xs text-gray-400 mb-3">Try asking:</p>
-            <div className="flex flex-wrap gap-2">
-              {exampleQuestions.map((question, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleExampleClick(question)}
-                  className="text-xs px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors"
-                >
-                  {question}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Input */}
-        <div className="border-t border-white/10 p-4">
-          <div className="flex gap-3">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask me anything about HR, BOQ, analytics, compliance..."
-              className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500/50 transition-colors"
-            />
-            <button
-              onClick={handleSend}
-              disabled={!inputValue.trim()}
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-white/5 disabled:text-gray-500 rounded-lg text-sm font-medium transition-colors"
-            >
-              Send
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
