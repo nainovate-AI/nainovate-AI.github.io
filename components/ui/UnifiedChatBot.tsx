@@ -9,6 +9,16 @@ interface Message {
     capability?: string;
 }
 
+// Format time consistently for SSR/client hydration
+const formatTime = (date: Date): string => {
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${displayHours}:${displayMinutes} ${ampm}`;
+};
+
 const WELCOME_MESSAGE = "Hi! I'm NIA, your unified AI assistant. I can help with HR screening, BOQ generation, customer service, analytics, compliance, and more. What would you like to explore?";
 
 // Intelligent response system that routes to appropriate capability
@@ -507,7 +517,7 @@ export default function UnifiedChatBot() {
                                     {message.content}
                                 </div>
                                 <div className="text-xs text-gray-500 mt-2">
-                                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    {formatTime(message.timestamp)}
                                 </div>
                             </div>
 

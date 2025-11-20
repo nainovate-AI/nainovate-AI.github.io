@@ -4,75 +4,114 @@ export function Footer() {
   return (
     <footer className="border-t border-gray-dark">
       <div className="max-w-[1400px] mx-auto px-8 py-16">
-        {/* Top Section */}
-        <div className="grid md:grid-cols-5 gap-16 mb-16">
-          {/* Left Logo & QR */}
-          <div className="md:col-span-2">
+        {/* Top Section - Multi-Column Layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 mb-16">
+          
+          {/* COLUMN 1: GET STARTED */}
+          <div>
+            <h4 className="font-medium mb-6 text-sm">GET STARTED</h4>
+            <div className="space-y-3">
+              <Link href="/solutions/operations" className="block text-gray hover:text-white transition-colors text-sm">AI for Operations</Link>
+              <Link href="/solutions/engagement" className="block text-gray hover:text-white transition-colors text-sm">AI for Engagement</Link>
+              <Link href="/solutions/intelligence" className="block text-gray hover:text-white transition-colors text-sm">AI for Intelligence</Link>
+              <Link href="/ai-center-of-excellence" className="block text-gray hover:text-white transition-colors text-sm">AI CoE Services</Link>
+            </div>
+          </div>
+
+          {/* COLUMN 2: GENX PLATFORM */}
+          <div>
+            <h4 className="font-medium mb-6 text-sm">GENX PLATFORM</h4>
+            <div className="space-y-3">
+              <Link href="/products" className="block text-gray hover:text-white transition-colors text-sm">Platform Overview</Link>
+              <Link href="/products/core" className="block text-gray hover:text-white transition-colors text-sm">CORE - AI Engine</Link>
+              <Link href="/products/nia" className="block text-gray hover:text-white transition-colors text-sm">NIA - Interface</Link>
+              <Link href="/products/flow" className="block text-gray hover:text-white transition-colors text-sm">FLOW - Automation</Link>
+              <Link href="/platform/integrations" className="block text-gray hover:text-white transition-colors text-sm">Integrations</Link>
+              <Link href="/platform/security-governance" className="block text-gray hover:text-white transition-colors text-sm">Security & Governance</Link>
+            </div>
+          </div>
+
+          {/* COLUMN 3: ACCELERATORS (Industries) */}
+          <div>
+            <h4 className="font-medium mb-6 text-sm">ACCELERATORS</h4>
+            <div className="space-y-3">
+              <Link href="/solutions/operations" className="block text-gray hover:text-white transition-colors text-sm">Construction</Link>
+              <Link href="/solutions/operations" className="block text-gray hover:text-white transition-colors text-sm">Manufacturing</Link>
+              <Link href="/solutions/engagement" className="block text-gray hover:text-white transition-colors text-sm">Government</Link>
+              <Link href="/solutions/intelligence" className="block text-gray hover:text-white transition-colors text-sm">Healthcare</Link>
+              <Link href="/solutions/engagement" className="block text-gray hover:text-white transition-colors text-sm">Retail & Hospitality</Link>
+              <Link href="/solutions/operations" className="block text-gray hover:text-white transition-colors text-sm">Real Estate</Link>
+            </div>
+          </div>
+
+          {/* COLUMN 4: COMPANY */}
+          <div>
+            <h4 className="font-medium mb-6 text-sm">COMPANY</h4>
+            <div className="space-y-3">
+              <Link href="/about" className="block text-gray hover:text-white transition-colors text-sm">About Nainovate</Link>
+              <Link href="/about#leadership" className="block text-gray hover:text-white transition-colors text-sm">Leadership</Link>
+              <Link href="/about#partners" className="block text-gray hover:text-white transition-colors text-sm">Partners</Link>
+              <Link href="/contact" className="block text-gray hover:text-white transition-colors text-sm">Contact Us</Link>
+            </div>
+          </div>
+
+          {/* COLUMN 5: RESOURCES */}
+          <div>
+            <h4 className="font-medium mb-6 text-sm">RESOURCES</h4>
+            <div className="space-y-3">
+              <Link href="/reports" className="block text-gray hover:text-white transition-colors text-sm">Reports & Research</Link>
+              <Link href="/reports#implementation-index" className="block text-gray hover:text-white transition-colors text-sm">Implementation Index</Link>
+              <Link href="/reports#readiness-report" className="block text-gray hover:text-white transition-colors text-sm">Readiness Report</Link>
+              <Link href="/try-demo" className="block text-gray hover:text-white transition-colors text-sm">Try Demo</Link>
+            </div>
+          </div>
+
+          {/* COLUMN 6: CTA BOX (Like Kore.ai's "Let's work together") */}
+          <div className="border border-white/20 rounded-lg p-6 bg-white/5">
+            <div className="mb-4">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h4 className="font-bold mb-2 text-sm">Let's work together</h4>
+            <p className="text-xs text-gray mb-4">
+              Get answers and a customized quote for your projects
+            </p>
+            <Link href="/contact">
+              <button className="w-full text-xs font-medium px-4 py-2 border border-white hover:bg-white hover:text-black transition-all">
+                SCHEDULE DEMO →
+              </button>
+            </Link>
+          </div>
+
+        </div>
+
+        {/* Middle Section - Logo + QR Code */}
+        <div className="flex flex-col md:flex-row items-center justify-between py-8 border-t border-b border-gray-dark mb-8">
+          <div className="flex items-center gap-4 mb-4 md:mb-0">
             <img
               src="/images/Nainovate_Dark_Mode.svg"
               alt="Nainovate Logo"
-              className="h-10 mb-4"
+              className="h-8"
             />
-            <p className="text-gray max-w-md">
-              Enterprise AI agents that deliver results.<br /> Built with GenX.
+            <p className="text-sm text-gray">
+              Enterprise AI agents that deliver results. Built with GenX.
             </p>
-
-            <div className="mt-6">
-              <img
-                src="/images/QR Code.png"
-                alt="Nainovate QR Code"
-                className="w-20 h-20 bg-white p-1 rounded"
-              />
-            </div>
           </div>
-
-          {/* Right 4 Columns */}
-          <div className="md:col-span-3 grid grid-cols-2 lg:grid-cols-4 gap-10">
-            {/* PRODUCTS */}
-            <div>
-              <h4 className="font-medium mb-6">PRODUCTS</h4>
-              <div className="space-y-3">
-                <Link href="/products" className="block text-gray hover:text-white transition-colors text-sm">GenX Platform</Link>
-                <Link href="/products/core" className="block text-gray hover:text-white transition-colors text-sm">CORE - AI Engine</Link>
-                <Link href="/products/nia" className="block text-gray hover:text-white transition-colors text-sm">NIA - Interface</Link>
-                <Link href="/products/flow" className="block text-gray hover:text-white transition-colors text-sm">FLOW - Automation</Link>
-              </div>
-            </div>
-
-            {/* SOLUTIONS */}
-            <div>
-              <h4 className="font-medium mb-6">SOLUTIONS</h4>
-              <div className="space-y-3">
-                <Link href="/solutions" className="block text-gray hover:text-white transition-colors text-sm">AI Solutions</Link>
-                <Link href="/solutions#planning" className="block text-gray hover:text-white transition-colors text-sm">Planning</Link>
-                <Link href="/solutions#procurement" className="block text-gray hover:text-white transition-colors text-sm">Procurement</Link>
-                <Link href="/solutions#execution" className="block text-gray hover:text-white transition-colors text-sm">Execution</Link>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-medium mb-6">SERVICES</h4>
-              <div className="space-y-3">
-                <Link href="/ai-center-of-excellence" className="block text-gray hover:text-white transition-colors text-sm">AI CoE</Link>
-                {/* Space for future services */}
-              </div>
-            </div>
-
-            {/* COMPANY */}
-            <div>
-              <h4 className="font-medium mb-6">RESOURCES</h4>
-              <div className="space-y-3">
-                <Link href="/about" className="block text-gray hover:text-white transition-colors text-sm">About</Link>
-                <Link href="/contact" className="block text-gray hover:text-white transition-colors text-sm">Contact</Link>
-                <Link href="/reports" className="block text-gray hover:text-white transition-colors text-sm">Reports & Research</Link>
-              </div>
-            </div>
+          <div>
+            <img
+              src="/images/QR Code.png"
+              alt="Nainovate QR Code"
+              className="w-16 h-16 bg-white p-1 rounded"
+            />
           </div>
         </div>
 
-        {/* Bottom Line */}
-        <div className="flex justify-between items-center pt-8 border-t border-gray-dark">
-          <p className="text-sm text-gray">© 2025 Nainovate. All rights reserved.</p>
+        {/* Bottom Section - Copyright + Social */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-gray">
+            © 2025 Nainovate. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
