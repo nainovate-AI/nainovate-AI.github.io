@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function ProductsPageClient() {
-    const [activeFeature, setActiveFeature] = useState<string | null>(null);
     const [activeSpoke, setActiveSpoke] = useState<number | null>(null);
     const [sliderPosition, setSliderPosition] = useState(50);
     const [isDragging, setIsDragging] = useState(false);
