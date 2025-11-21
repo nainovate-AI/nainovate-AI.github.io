@@ -441,9 +441,6 @@ export function Header() {
                             {/* AI FOR OPERATIONS Column */}
                             <div className="min-w-[280px] relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10"></div>
-                              <div className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                                AI FOR OPERATIONS
-                              </div>
                               <div className="py-2">
                                 <Link
                                   href="/solutions#operations"
@@ -482,9 +479,6 @@ export function Header() {
                             {/* AI FOR ENGAGEMENT Column */}
                             <div className="min-w-[280px] relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10"></div>
-                              <div className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                                AI FOR ENGAGEMENT
-                              </div>
                               <div className="py-2">
                                 <Link
                                   href="/solutions#engagement"
@@ -523,9 +517,6 @@ export function Header() {
                             {/* AI FOR INTELLIGENCE Column */}
                             <div className="min-w-[280px] relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10"></div>
-                              <div className="px-6 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                                AI FOR INTELLIGENCE
-                              </div>
                               <div className="py-2">
                                 <Link
                                   href="/solutions#intelligence"
