@@ -437,6 +437,20 @@ export function Header() {
                         <div className="absolute -top-2 left-0 right-0 h-2" />
 
                         <div className="bg-black/95 backdrop-blur-md border-2 border-white/10 rounded-lg shadow-2xl overflow-hidden">
+
+                          {/* TRY DEMO BANNER */}
+                          <Link
+                            href="/demo"
+                            className="flex items-center justify-center gap-3 px-6 py-4 border-b border-white/10 hover:bg-white/5 transition-all group"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            <span className="text-lg">🖐️</span>
+                            <span className="text-sm text-gray-400 group-hover:text-white transition-colors">
+                              Try it Live — Experience our AI solutions hands-on
+                            </span>
+                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                          </Link>
+
                           <div className="flex">
                             {/* AI FOR OPERATIONS Column */}
                             <div className="min-w-[280px] relative">
@@ -603,6 +617,14 @@ export function Header() {
                 )}
               </div>
             ))}
+
+            <Link
+              href="/demo"
+              className="relative text-sm font-medium px-4 py-2 text-white hover:text-gray-300 transition-colors group"
+            >
+              <span>Try Demo</span>
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            </Link>
 
             <Link href="/contact">
               <button className="text-sm font-medium px-6 py-2 border-2 border-white hover:bg-white hover:text-black transition-all">

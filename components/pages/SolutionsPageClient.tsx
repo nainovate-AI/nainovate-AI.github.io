@@ -443,7 +443,7 @@ export default function SolutionsPageClient() {
 
           {/* Quick Links Below Chat */}
           <div className="mt-12 flex justify-center gap-4">
-            <Link href="/try-demo">
+            <Link href="/demo">
               <Button className="border border-white/20 hover:bg-white/10 px-6 py-3">
                 Open Full Demo Page →
               </Button>
