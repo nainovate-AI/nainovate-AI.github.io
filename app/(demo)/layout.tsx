@@ -14,8 +14,8 @@ export default function DemoLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} antialiased bg-black`}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${inter.className} antialiased bg-black`} suppressHydrationWarning>
         <CustomCursor />
         {children}
       </body>

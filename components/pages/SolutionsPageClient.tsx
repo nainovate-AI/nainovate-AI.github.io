@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
-import UnifiedChatBot from '@/components/ui/UnifiedChatBot';
+
 
 // Icons for the three solutions
 const OperationsIcon = ({ large = false }: { large?: boolean }) => (
@@ -421,8 +421,8 @@ export default function SolutionsPageClient() {
         </div>
       </section>
 
-      {/* NEW SECTION: Try It Yourself - Add this BEFORE the CTA */}
-      <section className="py-32 border-t border-white/10 bg-gradient-to-b from-transparent to-white/[0.02]">
+      {/* Try It Yourself Section */}
+      <section className="py-32 border-t border-white/10">
         <div className="max-w-[1200px] mx-auto px-8">
           <div className="text-center mb-16">
             <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-4">
@@ -432,25 +432,44 @@ export default function SolutionsPageClient() {
               TRY IT YOURSELF
             </h2>
             <p className="text-xl text-gray max-w-2xl mx-auto leading-relaxed">
-              Experience NIA in action. Ask about HR screening, BOQ generation, analytics,
-              compliance, or any business operation. Our AI understands context and routes
-              to the right capability automatically.
+              Experience our AI solutions hands-on. See how we deliver through
+              conversational AI, analytics dashboards, and workflow automation.
             </p>
           </div>
 
-          {/* Unified Chat Bot */}
-          <UnifiedChatBot />
+          {/* Three Delivery Format Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-white/10 rounded-lg p-8 text-center hover:border-white/20 transition-colors">
+              <div className="text-4xl mb-4">💬</div>
+              <h3 className="text-lg font-bold mb-2">Conversational AI</h3>
+              <p className="text-sm text-gray">
+                Ask questions, get instant answers with context-aware responses
+              </p>
+            </div>
 
-          {/* Quick Links Below Chat */}
-          <div className="mt-12 flex justify-center gap-4">
+            <div className="border border-white/10 rounded-lg p-8 text-center hover:border-white/20 transition-colors">
+              <div className="text-4xl mb-4">📊</div>
+              <h3 className="text-lg font-bold mb-2">Analytics Dashboard</h3>
+              <p className="text-sm text-gray">
+                Request data visualizations and build dashboards through chat
+              </p>
+            </div>
+
+            <div className="border border-white/10 rounded-lg p-8 text-center hover:border-white/20 transition-colors">
+              <div className="text-4xl mb-4">⚙️</div>
+              <h3 className="text-lg font-bold mb-2">Workflow Automation</h3>
+              <p className="text-sm text-gray">
+                Automate complex processes with AI-guided workflows
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center">
             <Link href="/demo">
-              <Button className="border border-white/20 hover:bg-white/10 px-6 py-3">
-                Open Full Demo Page →
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button className="bg-white text-black hover:bg-gray-200 px-6 py-3">
-                Schedule Live Demo
+              <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4 text-lg inline-flex items-center gap-3">
+                <span>🖐️</span>
+                Launch Interactive Demo
               </Button>
             </Link>
           </div>
