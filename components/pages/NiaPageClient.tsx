@@ -15,7 +15,7 @@ export default function NiaPageClient() {
     "applicationCategory": "ChatApplication",
     "operatingSystem": "Web-based",
     "description": "Intelligent conversational interface where GenX CORE agents interact with users",
-    "url": "https://www.nainovate.ai/products/nia",
+    "url": "https://www.nainovate.ai/platform/nia",
     "featureList": [
       "Multi-agent Support",
       "Contextual Intelligence",

@@ -137,7 +137,7 @@ export function Header() {
   const navigation: NavItem[] = [
     {
       name: 'Platform',
-      href: '/products',
+      href: '/platform',
       isDropdown: true,
       isPlatformMega: true,
     },
@@ -271,7 +271,7 @@ export function Header() {
                             <div>
                               <p className="text-xs text-gray-400 uppercase tracking-wider mb-4">PRODUCTS</p>
                               <Link
-                                href="/products"
+                                href="/platform"
                                 className="flex items-start gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group mb-2"
                                 onClick={() => setActiveDropdown(null)}
                               >
@@ -291,7 +291,7 @@ export function Header() {
                               <div className="border-t border-white/10 my-3"></div>
 
                               <Link
-                                href="/products/core"
+                                href="/platform/core"
                                 className="flex items-start gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
                                 onClick={() => setActiveDropdown(null)}
                               >
@@ -305,7 +305,7 @@ export function Header() {
                               </Link>
 
                               <Link
-                                href="/products/nia"
+                                href="/platform/nia"
                                 className="flex items-start gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
                                 onClick={() => setActiveDropdown(null)}
                               >
@@ -319,7 +319,7 @@ export function Header() {
                               </Link>
 
                               <Link
-                                href="/products/flow"
+                                href="/platform/flow"
                                 className="flex items-start gap-3 px-4 py-3 rounded-lg hover:bg-white/5 transition-colors group"
                                 onClick={() => setActiveDropdown(null)}
                               >
@@ -457,7 +457,7 @@ export function Header() {
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10"></div>
                               <div className="py-2">
                                 <Link
-                                  href="/solutions#operations"
+                                  href="/solutions/operations"
                                   className="flex items-start gap-3 px-6 py-3 hover:bg-white/5 transition-colors group"
                                   onClick={() => setActiveDropdown(null)}
                                 >
@@ -495,7 +495,7 @@ export function Header() {
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10"></div>
                               <div className="py-2">
                                 <Link
-                                  href="/solutions#engagement"
+                                  href="/solutions/engagement"
                                   className="flex items-start gap-3 px-6 py-3 hover:bg-white/5 transition-colors group"
                                   onClick={() => setActiveDropdown(null)}
                                 >
@@ -533,7 +533,7 @@ export function Header() {
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10"></div>
                               <div className="py-2">
                                 <Link
-                                  href="/solutions#intelligence"
+                                  href="/solutions/intelligence"
                                   className="flex items-start gap-3 px-6 py-3 hover:bg-white/5 transition-colors group"
                                   onClick={() => setActiveDropdown(null)}
                                 >
@@ -669,10 +669,10 @@ export function Header() {
                     {item.isPlatformMega ? (
                       <div className="pl-4">
                         <p className="text-xs text-gray-400 uppercase pt-3">Products</p>
-                        <Link href="/products" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>GenX Platform</Link>
-                        <Link href="/products/core" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>CORE - AI Engine</Link>
-                        <Link href="/products/nia" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>NIA - Interface</Link>
-                        <Link href="/products/flow" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>FLOW - Automation</Link>
+                        <Link href="/platform" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>GenX Platform</Link>
+                        <Link href="/platform/core" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>CORE - AI Engine</Link>
+                        <Link href="/platform/nia" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>NIA - Interface</Link>
+                        <Link href="/platform/flow" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>FLOW - Automation</Link>
                         <p className="text-xs text-gray-400 uppercase pt-3">Features</p>
                         <Link href="/platform/ai-engineering-tools" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>AI Engineering Tools</Link>
                         <Link href="/platform/search-data-ai" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Search + Data AI</Link>

@@ -5,51 +5,54 @@ import { useRouter } from 'next/navigation';
 export function Industries() {
   const router = useRouter();
   
-  const stages = [
+  const solutions = [
     {
       number: "01",
-      name: "PLANNING",
-      metric: "70% faster delivery",
-      description: "AI-powered document generation, BOQ automation, and project planning.",
+      name: "OPERATIONS",
+      metric: "Automate workflows",
+      description: "AI agents for HR screening, document processing, BOQ generation, and enterprise search.",
+      link: "/solutions/operations"
     },
     {
       number: "02", 
-      name: "PROCUREMENT",
-      metric: "60% cost reduction",
-      description: "Intelligent vendor management, price optimization, and contract analysis.",
+      name: "ENGAGEMENT",
+      metric: "Scale interactions",
+      description: "Customer service bots, citizen portals, multi-channel support, and quality assurance.",
+      link: "/solutions/engagement"
     },
     {
       number: "03",
-      name: "EXECUTION",
-      metric: "90% accuracy increase",
-      description: "Real-time monitoring, quality assurance, and performance analytics.",
+      name: "INTELLIGENCE",
+      metric: "Transform data",
+      description: "Analytics dashboards, compliance tracking, quality control, and process monitoring.",
+      link: "/solutions/intelligence"
     },
   ];
 
   return (
-    <section className="min-h-screen py-32">
+    <section className="min-h-screen py-32 border-t border-white/10">
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="mb-20">
           <h2 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em]">
-            <span className="text-gray">SOLUTIONS FOR</span><br/>
-            <span>EVERY STAGE</span>
+            <span className="text-gray">AI SOLUTIONS</span><br/>
+            <span>FOR EVERY NEED</span>
           </h2>
         </div>
 
         <div className="space-y-0">
-          {stages.map((stage, i) => (
+          {solutions.map((solution, i) => (
             <div 
               key={i} 
-              className="group border-t border-gray-dark hover:bg-white hover:text-black transition-all duration-500 cursor-pointer"
-              onClick={() => router.push(`/solutions#${stage.name.toLowerCase()}`)}
+              className="group border-t border-white/10 hover:bg-white hover:text-black transition-all duration-500 cursor-pointer"
+              onClick={() => router.push(solution.link)}
             >
               <div className="py-12 grid md:grid-cols-3 gap-8 items-center">
                 <div className="flex items-center gap-4">
-                  <span className="text-6xl font-bold text-gray group-hover:text-black/30">{stage.number}</span>
-                  <h3 className="text-2xl font-medium">{stage.name}</h3>
+                  <span className="text-6xl font-bold text-gray group-hover:text-black/30">{solution.number}</span>
+                  <h3 className="text-2xl font-medium">{solution.name}</h3>
                 </div>
-                <p className="text-4xl font-bold">{stage.metric}</p>
-                <p className="text-gray group-hover:text-black/60">{stage.description}</p>
+                <p className="text-4xl font-bold">{solution.metric}</p>
+                <p className="text-gray group-hover:text-black/60">{solution.description}</p>
               </div>
             </div>
           ))}

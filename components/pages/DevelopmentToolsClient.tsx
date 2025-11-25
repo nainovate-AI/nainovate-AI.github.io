@@ -14,27 +14,24 @@ export default function DevelopmentToolsClient() {
             <div className="mb-6">
               <span className="text-gray-400 uppercase tracking-[0.2em] text-sm">GenX Platform / Development Tools</span>
             </div>
-            
+
             <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
-              NO-CODE +<br/>
-              PRO-CODE<br/>
+              NO-CODE +<br />
+              PRO-CODE<br />
               TOOLS
             </h1>
-            
+
             <p className="text-xl text-gray-300 max-w-3xl mb-12">
-              Build AI agents your way. Visual drag-and-drop for business users. Comprehensive 
+              Build AI agents your way. Visual drag-and-drop for business users. Comprehensive
               SDKs for developers. One unified platform with integrated testing and deployment.
             </p>
-            
+
             <div className="flex gap-6 flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
                   Start Building
                 </Button>
               </Link>
-              <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
-                View Documentation
-              </Button>
             </div>
           </AnimatedSection>
         </div>
@@ -49,9 +46,9 @@ export default function DevelopmentToolsClient() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <AnimatedSection delay={0.1}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                   </svg>
                 </div>
@@ -61,9 +58,9 @@ export default function DevelopmentToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </div>
@@ -73,9 +70,9 @@ export default function DevelopmentToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                   </svg>
                 </div>
@@ -85,9 +82,9 @@ export default function DevelopmentToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.4}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                 </div>
@@ -109,7 +106,7 @@ export default function DevelopmentToolsClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Visual No-Code Builder</h2>
                   <p className="text-xl text-gray-300">
-                    Empower business users to build sophisticated AI workflows without writing a single 
+                    Empower business users to build sophisticated AI workflows without writing a single
                     line of code. Drag, drop, and deploy.
                   </p>
                 </div>
@@ -123,7 +120,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Drag-and-Drop Canvas</h3>
                       <p className="text-gray-400">
-                        Build AI workflows visually by connecting agents, tools, and integrations with visual blocks. 
+                        Build AI workflows visually by connecting agents, tools, and integrations with visual blocks.
                         Real-time preview of agent behavior with instant validation and error detection.
                       </p>
                     </div>
@@ -137,7 +134,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">75+ Pre-Built Templates</h3>
                       <p className="text-gray-400">
-                        Industry-specific workflow templates for HR, Finance, and Operations. Use case accelerators 
+                        Industry-specific workflow templates for HR, Finance, and Operations. Use case accelerators
                         for Document Processing, Customer Service, and Analytics with customizable starting points.
                       </p>
                     </div>
@@ -151,7 +148,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Business User Empowerment</h3>
                       <p className="text-gray-400">
-                        Enable non-technical teams to build AI solutions with role-based access controls for safe 
+                        Enable non-technical teams to build AI solutions with role-based access controls for safe
                         experimentation. Approval workflows for production deployment with training programs available.
                       </p>
                     </div>
@@ -160,7 +157,7 @@ export default function DevelopmentToolsClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -211,7 +208,7 @@ export default function DevelopmentToolsClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Comprehensive SDKs</h2>
                   <p className="text-xl text-gray-300">
-                    Full-featured SDKs for professional developers. Write custom logic, extend platform 
+                    Full-featured SDKs for professional developers. Write custom logic, extend platform
                     capabilities, and integrate with your existing tech stack.
                   </p>
                 </div>
@@ -225,7 +222,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Multi-Language Support</h3>
                       <p className="text-gray-400">
-                        Python SDK for ML/AI developers with full-featured capabilities. JavaScript SDK for browser 
+                        Python SDK for ML/AI developers with full-featured capabilities. JavaScript SDK for browser
                         and Node.js. REST APIs for language-agnostic integration with complete documentation.
                       </p>
                     </div>
@@ -239,7 +236,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Custom Function Development</h3>
                       <p className="text-gray-400">
-                        Write custom logic in Python or JavaScript that executes within agent workflows seamlessly. 
+                        Write custom logic in Python or JavaScript that executes within agent workflows seamlessly.
                         Access platform services and data. Package and reuse across multiple agents.
                       </p>
                     </div>
@@ -253,7 +250,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Open Standards & Extensibility</h3>
                       <p className="text-gray-400">
-                        Agent Protocol for multi-agent communication. Standard interfaces for tools and memory. 
+                        Agent Protocol for multi-agent communication. Standard interfaces for tools and memory.
                         Plugin architecture for extending capabilities with community-contributed extensions.
                       </p>
                     </div>
@@ -262,7 +259,7 @@ export default function DevelopmentToolsClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -283,7 +280,7 @@ export default function DevelopmentToolsClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Integrated Testing & Debugging</h2>
                   <p className="text-xl text-gray-300">
-                    Monitor, troubleshoot, and optimize AI agents across their entire lifecycle. 
+                    Monitor, troubleshoot, and optimize AI agents across their entire lifecycle.
                     Built-in tools for testing, debugging, and performance analysis.
                   </p>
                 </div>
@@ -297,7 +294,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">End-to-End Agent Tracing</h3>
                       <p className="text-gray-400">
-                        View complete execution flow from input to output. Track agent decisions and tool usage. 
+                        View complete execution flow from input to output. Track agent decisions and tool usage.
                         Identify bottlenecks and failures quickly with performance metrics at every step.
                       </p>
                     </div>
@@ -311,7 +308,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Interactive Debugging</h3>
                       <p className="text-gray-400">
-                        Set breakpoints in visual workflows and inspect variables with agent state visibility. 
+                        Set breakpoints in visual workflows and inspect variables with agent state visibility.
                         Step through execution logic with hot-reload for rapid iteration.
                       </p>
                     </div>
@@ -325,7 +322,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Automated Testing Framework</h3>
                       <p className="text-gray-400">
-                        Create test scenarios for agent behaviors with regression testing for production changes. 
+                        Create test scenarios for agent behaviors with regression testing for production changes.
                         Load testing for scale validation and CI/CD pipeline integration.
                       </p>
                     </div>
@@ -334,7 +331,7 @@ export default function DevelopmentToolsClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -385,7 +382,7 @@ export default function DevelopmentToolsClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Deployment & Lifecycle Management</h2>
                   <p className="text-xl text-gray-300">
-                    Deploy instantly with confidence. Built-in version control, automated rollback, 
+                    Deploy instantly with confidence. Built-in version control, automated rollback,
                     and comprehensive monitoring for production AI agents.
                   </p>
                 </div>
@@ -399,7 +396,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">One-Click Deployment</h3>
                       <p className="text-gray-400">
-                        Deploy from development to production instantly with environment-specific configurations. 
+                        Deploy from development to production instantly with environment-specific configurations.
                         Blue-green deployment for zero downtime with automatic scaling based on load.
                       </p>
                     </div>
@@ -413,7 +410,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Version Control & Rollback</h3>
                       <p className="text-gray-400">
-                        Git integration for workflow versioning. Compare versions side-by-side with instant 
+                        Git integration for workflow versioning. Compare versions side-by-side with instant
                         rollback to previous versions. Complete audit trail of all changes.
                       </p>
                     </div>
@@ -427,7 +424,7 @@ export default function DevelopmentToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Lifecycle Monitoring</h3>
                       <p className="text-gray-400">
-                        Real-time performance dashboards with usage analytics and cost tracking. Automated 
+                        Real-time performance dashboards with usage analytics and cost tracking. Automated
                         alerts for issues with health checks and uptime monitoring.
                       </p>
                     </div>
@@ -436,7 +433,7 @@ export default function DevelopmentToolsClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -447,62 +444,54 @@ export default function DevelopmentToolsClient() {
         </div>
       </section>
 
-      {/* AI CoE Integration Section */}
+      {/* Built with AI CoE Governance */}
       <section className="py-32 border-t border-white/10 bg-white/[0.02]">
-        <div className="max-w-[1400px] mx-auto px-8">
+        <div className="max-w-[1400px] mx-auto px-8 text-center">
           <AnimatedSection>
-            <div className="text-center mb-16">
-              <div className="inline-block px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-6">
-                <span className="text-sm font-medium">AI CENTER OF EXCELLENCE</span>
+            <div className="mb-12">
+              <svg className="w-16 h-16 mx-auto mb-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <h2 className="text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
+            </div>
+
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-16">
+              Whether you build with no-code or pro-code, AI CoE governance is automatically
+              enforced. Quality, security, and compliance from development to production.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div>
+                <div className="mb-4">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold mb-2">Secure by Design</h3>
+                <p className="text-sm text-gray-400">Sandboxed environments with automatic security scanning</p>
               </div>
-              <h2 className="text-4xl font-bold mb-6">BUILT-IN DEVELOPMENT GOVERNANCE</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Whether you build with no-code or pro-code, AI CoE governance is automatically 
-                enforced. Quality, security, and compliance from development to production.
-              </p>
+
+              <div>
+                <div className="mb-4">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <h3 className="font-bold mb-2">Quality Gates</h3>
+                <p className="text-sm text-gray-400">Mandatory testing with performance benchmarks enforced</p>
+              </div>
+
+              <div>
+                <div className="mb-4">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold mb-2">Best Practices Enforced</h3>
+                <p className="text-sm text-gray-400">Linting, code standards, and documentation requirements</p>
+              </div>
             </div>
           </AnimatedSection>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <AnimatedSection delay={0.1}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">🔒</span>
-                </div>
-                <h3 className="text-xl font-bold mb-4">Secure by Design</h3>
-                <p className="text-gray-400">
-                  All custom code runs in sandboxed environments. Automatic security scanning for 
-                  vulnerabilities with compliance checks before deployment.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">📋</span>
-                </div>
-                <h3 className="text-xl font-bold mb-4">Quality Gates</h3>
-                <p className="text-gray-400">
-                  Mandatory testing before production with code review workflows for team collaboration. 
-                  Performance benchmarks automatically enforced.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">🎯</span>
-                </div>
-                <h3 className="text-xl font-bold mb-4">Best Practices Enforced</h3>
-                <p className="text-gray-400">
-                  Linting and code standards automatically applied. Design patterns recommended by 
-                  AI CoE with documentation requirements for maintainability.
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
         </div>
       </section>
 
@@ -515,8 +504,12 @@ export default function DevelopmentToolsClient() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection delay={0.1}>
-              <div className="p-8 border-2 border-blue-500/20 rounded-lg bg-blue-500/5">
-                <div className="text-4xl mb-4">🎨</div>
+              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                  </svg>
+                </div>
                 <h3 className="text-2xl font-bold mb-4">No-Code Path</h3>
                 <div className="space-y-3 text-sm text-gray-400 mb-6">
                   <p>1. Choose template</p>
@@ -529,8 +522,12 @@ export default function DevelopmentToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="p-8 border-2 border-green-500/20 rounded-lg bg-green-500/5">
-                <div className="text-4xl mb-4">💻</div>
+              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
                 <h3 className="text-2xl font-bold mb-4">Pro-Code Path</h3>
                 <div className="space-y-3 text-sm text-gray-400 mb-6">
                   <p>1. Install SDK</p>
@@ -543,8 +540,12 @@ export default function DevelopmentToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <div className="p-8 border-2 border-purple-500/20 rounded-lg bg-purple-500/5">
-                <div className="text-4xl mb-4">🔧</div>
+              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                  </svg>
+                </div>
                 <h3 className="text-2xl font-bold mb-4">Hybrid Path</h3>
                 <div className="space-y-3 text-sm text-gray-400 mb-6">
                   <p>1. Build workflow visually</p>
@@ -638,13 +639,10 @@ export default function DevelopmentToolsClient() {
             </p>
             <div className="flex gap-6 justify-center flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
                   Try No-Code Builder
                 </Button>
               </Link>
-              <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
-                Access Developer Docs
-              </Button>
             </div>
           </AnimatedSection>
         </div>

@@ -14,26 +14,20 @@ export default function SecurityGovernanceClient() {
             <div className="mb-6">
               <span className="text-gray-400 uppercase tracking-[0.2em] text-sm">GenX Platform / Security & Governance</span>
             </div>
-            
+
             <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
-              SECURITY &<br/>
+              SECURITY &<br />
               GOVERNANCE
             </h1>
-            
+
             <p className="text-xl text-gray-300 max-w-3xl mb-12">
-              Deploy AI with confidence. Built-in compliance, role-based access control, and comprehensive 
+              Deploy AI with confidence. Built-in compliance, role-based access control, and comprehensive
               audit trails. Meet global regulations out of the box.
             </p>
-            
+
             <div className="flex gap-6 flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
-                  Schedule Security Demo
-                </Button>
-              </Link>
-              <Link href="/products">
-                <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
-                  Back to Platform
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">                  Schedule Security Demo
                 </Button>
               </Link>
             </div>
@@ -50,9 +44,9 @@ export default function SecurityGovernanceClient() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <AnimatedSection delay={0.1}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
@@ -62,9 +56,9 @@ export default function SecurityGovernanceClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                 </div>
@@ -74,9 +68,9 @@ export default function SecurityGovernanceClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                   </svg>
                 </div>
@@ -86,9 +80,9 @@ export default function SecurityGovernanceClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.4}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
@@ -110,7 +104,7 @@ export default function SecurityGovernanceClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Data Security & Encryption</h2>
                   <p className="text-xl text-gray-300">
-                    Your data never leaves your control. Every byte is encrypted, isolated, and protected 
+                    Your data never leaves your control. Every byte is encrypted, isolated, and protected
                     with enterprise-grade security from training to deployment.
                   </p>
                 </div>
@@ -124,7 +118,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">End-to-End Encryption</h3>
                       <p className="text-gray-400">
-                        Data encrypted at rest (AES-256) and in transit (TLS 1.3). Customer-managed encryption 
+                        Data encrypted at rest (AES-256) and in transit (TLS 1.3). Customer-managed encryption
                         keys (CMEK) option with secure key rotation and zero-knowledge architecture for sensitive data.
                       </p>
                     </div>
@@ -138,7 +132,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Data Isolation</h3>
                       <p className="text-gray-400">
-                        Tenant-specific data segregation with private cloud deployment options. Virtual private cloud 
+                        Tenant-specific data segregation with private cloud deployment options. Virtual private cloud
                         (VPC) support and dedicated infrastructure for enterprise clients.
                       </p>
                     </div>
@@ -152,7 +146,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Secure Model Training</h3>
                       <p className="text-gray-400">
-                        Training data never leaves your environment. Differential privacy for sensitive datasets, 
+                        Training data never leaves your environment. Differential privacy for sensitive datasets,
                         federated learning capabilities, and model encryption with secure storage.
                       </p>
                     </div>
@@ -161,7 +155,7 @@ export default function SecurityGovernanceClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -212,7 +206,7 @@ export default function SecurityGovernanceClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Access Control & Identity</h2>
                   <p className="text-xl text-gray-300">
-                    Granular permission management that scales with your organization. Control who can 
+                    Granular permission management that scales with your organization. Control who can
                     access what, when, and how with enterprise SSO integration.
                   </p>
                 </div>
@@ -226,7 +220,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Role-Based Access Control</h3>
                       <p className="text-gray-400">
-                        Granular permission management with pre-built enterprise roles (Admin, Developer, Analyst, 
+                        Granular permission management with pre-built enterprise roles (Admin, Developer, Analyst,
                         Viewer). Custom role creation and attribute-based access control (ABAC) support.
                       </p>
                     </div>
@@ -240,7 +234,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Enterprise SSO Integration</h3>
                       <p className="text-gray-400">
-                        SAML 2.0 and OAuth 2.0 support with Active Directory / LDAP integration. Compatible with 
+                        SAML 2.0 and OAuth 2.0 support with Active Directory / LDAP integration. Compatible with
                         Okta, Azure AD, Google Workspace with multi-factor authentication (MFA) enforcement.
                       </p>
                     </div>
@@ -254,7 +248,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Agent-Level Security</h3>
                       <p className="text-gray-400">
-                        Per-agent access policies with API key management and rotation. Rate limiting, throttling, 
+                        Per-agent access policies with API key management and rotation. Rate limiting, throttling,
                         and IP whitelisting for production agents ensure secure operations.
                       </p>
                     </div>
@@ -263,7 +257,7 @@ export default function SecurityGovernanceClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -284,7 +278,7 @@ export default function SecurityGovernanceClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Compliance & Governance</h2>
                   <p className="text-xl text-gray-300">
-                    Built to meet global regulatory requirements. Deploy AI confidently knowing you're 
+                    Built to meet global regulatory requirements. Deploy AI confidently knowing you're
                     compliant from day one with comprehensive audit trails.
                   </p>
                 </div>
@@ -298,7 +292,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Regulatory Compliance</h3>
                       <p className="text-gray-400">
-                        GDPR compliance built-in with data subject rights and right to deletion. HIPAA-ready for 
+                        GDPR compliance built-in with data subject rights and right to deletion. HIPAA-ready for
                         healthcare, SOC 2-ready infrastructure, plus CCPA, PIPEDA, and LGPD support.
                       </p>
                     </div>
@@ -312,7 +306,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Data Governance</h3>
                       <p className="text-gray-400">
-                        Complete data lineage tracking from source to model to output. Automated PII detection and 
+                        Complete data lineage tracking from source to model to output. Automated PII detection and
                         redaction, retention policies, and data residency controls for EU, US, India, and GCC regions.
                       </p>
                     </div>
@@ -326,7 +320,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Audit Trails & Reporting</h3>
                       <p className="text-gray-400">
-                        Complete activity logs tracking who accessed what and when. Automated compliance reports 
+                        Complete activity logs tracking who accessed what and when. Automated compliance reports
                         (quarterly, annual) with real-time monitoring dashboards and exportable logs for external audits.
                       </p>
                     </div>
@@ -335,7 +329,7 @@ export default function SecurityGovernanceClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -386,7 +380,7 @@ export default function SecurityGovernanceClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">AI-Specific Security</h2>
                   <p className="text-xl text-gray-300">
-                    Protection against AI-specific threats. From prompt injection to model extraction, 
+                    Protection against AI-specific threats. From prompt injection to model extraction,
                     comprehensive security for your AI operations.
                   </p>
                 </div>
@@ -400,7 +394,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Prompt Injection Protection</h3>
                       <p className="text-gray-400">
-                        Built-in input validation with malicious prompt detection. Sanitization of user inputs and 
+                        Built-in input validation with malicious prompt detection. Sanitization of user inputs and
                         context-aware filtering to prevent prompt injection attacks.
                       </p>
                     </div>
@@ -414,7 +408,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Model Security</h3>
                       <p className="text-gray-400">
-                        Protection against model extraction attacks with watermarking for proprietary models. 
+                        Protection against model extraction attacks with watermarking for proprietary models.
                         Adversarial robustness testing and secure model versioning with rollback capabilities.
                       </p>
                     </div>
@@ -428,7 +422,7 @@ export default function SecurityGovernanceClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Output Monitoring</h3>
                       <p className="text-gray-400">
-                        Real-time hallucination detection with bias and toxicity monitoring. Sensitive data leak 
+                        Real-time hallucination detection with bias and toxicity monitoring. Sensitive data leak
                         prevention and content policy enforcement for safe AI outputs.
                       </p>
                     </div>
@@ -437,7 +431,7 @@ export default function SecurityGovernanceClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -448,65 +442,56 @@ export default function SecurityGovernanceClient() {
         </div>
       </section>
 
-      {/* AI CoE Integration Section */}
+      {/* Built with AI CoE Governance */}
       <section className="py-32 border-t border-white/10 bg-white/[0.02]">
-        <div className="max-w-[1400px] mx-auto px-8">
+        <div className="max-w-[1400px] mx-auto px-8 text-center">
           <AnimatedSection>
-            <div className="text-center mb-16">
-              <div className="inline-block px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-6">
-                <span className="text-sm font-medium">AI CENTER OF EXCELLENCE</span>
+            <div className="mb-12">
+              <svg className="w-16 h-16 mx-auto mb-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <h2 className="text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
+            </div>
+
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-16">
+              Unlike platforms that bolt on security as an afterthought, GenX has enterprise governance
+              built into every layer. Security and compliance from day one.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div>
+                <div className="mb-4">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold mb-2">Security by Default</h3>
+                <p className="text-sm text-gray-400">Zero-trust architecture with automatic compliance validation</p>
               </div>
-              <h2 className="text-4xl font-bold mb-6">BUILT-IN GOVERNANCE FRAMEWORK</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Unlike platforms that bolt on security as an afterthought, GenX has enterprise governance 
-                built into every layer. Security and compliance from day one.
-              </p>
+
+              <div>
+                <div className="mb-4">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
+                <h3 className="font-bold mb-2">Continuous Compliance</h3>
+                <p className="text-sm text-gray-400">Real-time policy enforcement with automated audit preparation</p>
+              </div>
+
+              <div>
+                <div className="mb-4">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="font-bold mb-2">Risk Management</h3>
+                <p className="text-sm text-gray-400">AI-specific threat detection with bias and fairness monitoring</p>
+              </div>
             </div>
           </AnimatedSection>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <AnimatedSection delay={0.1}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">🔒</span>
-                </div>
-                <h3 className="text-xl font-bold mb-4">Security by Default</h3>
-                <p className="text-gray-400">
-                  Every agent inherits platform-level security policies. Zero-trust architecture from 
-                  day one with automatic compliance validation.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">📋</span>
-                </div>
-                <h3 className="text-xl font-bold mb-4">Continuous Compliance</h3>
-                <p className="text-gray-400">
-                  Real-time policy enforcement with automated audit preparation. Regulatory updates 
-                  pushed automatically to maintain compliance.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
-                  <span className="text-2xl">🎯</span>
-                </div>
-                <h3 className="text-xl font-bold mb-4">Risk Management</h3>
-                <p className="text-gray-400">
-                  AI-specific threat detection with bias and fairness monitoring. Built-in incident 
-                  response workflows for rapid remediation.
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
         </div>
       </section>
-
       {/* Platform Features Grid */}
       <section className="py-32 border-t border-white/10">
         <div className="max-w-[1400px] mx-auto px-8">
@@ -586,13 +571,10 @@ export default function SecurityGovernanceClient() {
             </p>
             <div className="flex gap-6 justify-center flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
                   Schedule Security Review
                 </Button>
               </Link>
-              <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
-                Download Security Whitepaper
-              </Button>
             </div>
           </AnimatedSection>
         </div>

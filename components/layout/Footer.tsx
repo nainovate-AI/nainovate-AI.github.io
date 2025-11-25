@@ -22,10 +22,10 @@ export function Footer() {
           <div>
             <h4 className="font-medium mb-6 text-sm">PLATFORM</h4>
             <div className="space-y-3">
-              <Link href="/products" className="block text-gray hover:text-white transition-colors text-sm">GenX Platform</Link>
-              <Link href="/products/core" className="block text-gray hover:text-white transition-colors text-sm">CORE - AI Engine</Link>
-              <Link href="/products/nia" className="block text-gray hover:text-white transition-colors text-sm">NIA - Interface</Link>
-              <Link href="/products/flow" className="block text-gray hover:text-white transition-colors text-sm">FLOW - Automation</Link>
+              <Link href="/platform" className="block text-gray hover:text-white transition-colors text-sm">GenX Platform</Link>
+              <Link href="/platform/core" className="block text-gray hover:text-white transition-colors text-sm">CORE - AI Engine</Link>
+              <Link href="/platform/nia" className="block text-gray hover:text-white transition-colors text-sm">NIA - Interface</Link>
+              <Link href="/platform/flow" className="block text-gray hover:text-white transition-colors text-sm">FLOW - Automation</Link>
             </div>
           </div>
 
@@ -58,6 +58,7 @@ export function Footer() {
             <div className="space-y-3">
               <Link href="/reports" className="block text-gray hover:text-white transition-colors text-sm">Reports & Research</Link>
               <Link href="/ai-implementation-index" className="block text-gray hover:text-white transition-colors text-sm">Implementation Index</Link>
+              <Link href="/ai-readiness-report-2025" className="block text-gray hover:text-white transition-colors text-sm">AI Readiness Report</Link>
               <Link href="/demo" className="inline-flex items-center gap-2 text-gray hover:text-white transition-colors text-sm">
                 Try Demo
                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>

@@ -282,7 +282,7 @@ export default function AICenterOfExcellencePage() {
               <Link href="/contact">
                 <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">Schedule Consultation →</Button>
               </Link>
-              <Link href="/products">
+              <Link href="/platform">
                 <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">Explore GenX Platform</Button>
               </Link>
             </div>

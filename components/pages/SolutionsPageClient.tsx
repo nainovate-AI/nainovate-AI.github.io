@@ -491,7 +491,7 @@ export default function SolutionsPageClient() {
                 Schedule a Demo
               </Button>
             </Link>
-            <Link href="/products">
+            <Link href="/platform">
               <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
                 Explore Platform
               </Button>

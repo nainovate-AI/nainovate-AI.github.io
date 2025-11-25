@@ -14,27 +14,24 @@ export default function SearchDataAIClient() {
             <div className="mb-6">
               <span className="text-gray-400 uppercase tracking-[0.2em] text-sm">GenX Platform / Search + Data</span>
             </div>
-            
+
             <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
-              SEARCH + DATA<br/>
+              SEARCH + DATA<br />
               AI
             </h1>
-            
+
             <p className="text-xl text-gray-300 max-w-3xl mb-12">
-              Retrieve accurate, real-time insights with agentic RAG, hybrid vector search, 
+              Retrieve accurate, real-time insights with agentic RAG, hybrid vector search,
               and 100+ enterprise connectors. Transform scattered data into unified knowledge.
             </p>
-            
+
             <div className="flex gap-6 flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
                   Schedule Demo
                 </Button>
               </Link>
-              <Link href="/products">
-                <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
-                  Back to Platform
-                </Button>
+              <Link href="/platform">
               </Link>
             </div>
           </AnimatedSection>
@@ -50,9 +47,9 @@ export default function SearchDataAIClient() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <AnimatedSection delay={0.1}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
@@ -62,9 +59,9 @@ export default function SearchDataAIClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
                   </svg>
                 </div>
@@ -74,9 +71,9 @@ export default function SearchDataAIClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
@@ -86,9 +83,9 @@ export default function SearchDataAIClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.4}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
                   </svg>
                 </div>
@@ -110,7 +107,7 @@ export default function SearchDataAIClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Enterprise Search Engine</h2>
                   <p className="text-xl text-gray-300">
-                    Ask questions in natural language. Get accurate answers grounded in your enterprise 
+                    Ask questions in natural language. Get accurate answers grounded in your enterprise
                     data. No more keyword searches or buried documents.
                   </p>
                 </div>
@@ -125,7 +122,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Natural Language Queries</h3>
                       <p className="text-gray-400">
-                        Ask questions like you would to a colleague. The AI understands context, 
+                        Ask questions like you would to a colleague. The AI understands context,
                         intent, and follows up with clarifications automatically.
                       </p>
                     </div>
@@ -139,7 +136,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Real-Time Data Retrieval</h3>
                       <p className="text-gray-400">
-                        Search across live systems. Get up-to-date information from CRM, ERP, 
+                        Search across live systems. Get up-to-date information from CRM, ERP,
                         databases, and cloud storage in milliseconds.
                       </p>
                     </div>
@@ -153,7 +150,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Contextual Answer Generation</h3>
                       <p className="text-gray-400">
-                        Not just links—get synthesized answers with citations, summaries, and 
+                        Not just links—get synthesized answers with citations, summaries, and
                         actionable insights pulled from multiple sources.
                       </p>
                     </div>
@@ -162,7 +159,7 @@ export default function SearchDataAIClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -213,7 +210,7 @@ export default function SearchDataAIClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Universal Connectors</h2>
                   <p className="text-xl text-gray-300">
-                    Connect to any enterprise system. 100+ pre-built integrations with CRM, ERP, 
+                    Connect to any enterprise system. 100+ pre-built integrations with CRM, ERP,
                     databases, cloud storage, and communication platforms.
                   </p>
                 </div>
@@ -228,7 +225,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Plug-and-Play Integration</h3>
                       <p className="text-gray-400">
-                        Pre-built connectors for Salesforce, SAP, Microsoft 365, ServiceNow, 
+                        Pre-built connectors for Salesforce, SAP, Microsoft 365, ServiceNow,
                         Slack, and 100+ more. Deploy in minutes, not months.
                       </p>
                     </div>
@@ -242,7 +239,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Real-Time Data Sync</h3>
                       <p className="text-gray-400">
-                        Bi-directional sync keeps your data fresh. Changes in connected systems 
+                        Bi-directional sync keeps your data fresh. Changes in connected systems
                         reflect instantly in search results.
                       </p>
                     </div>
@@ -256,7 +253,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Custom Connector SDK</h3>
                       <p className="text-gray-400">
-                        Need a proprietary system? Build custom connectors with our SDK. 
+                        Need a proprietary system? Build custom connectors with our SDK.
                         Full control over data mapping and transformation.
                       </p>
                     </div>
@@ -265,7 +262,7 @@ export default function SearchDataAIClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -286,7 +283,7 @@ export default function SearchDataAIClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Intelligent Data Processing</h2>
                   <p className="text-xl text-gray-300">
-                    Automatic document parsing, smart chunking, and multi-modal extraction. 
+                    Automatic document parsing, smart chunking, and multi-modal extraction.
                     Turn unstructured data into searchable, actionable knowledge.
                   </p>
                 </div>
@@ -301,7 +298,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Automatic Document Parsing</h3>
                       <p className="text-gray-400">
-                        PDFs, Word docs, spreadsheets, presentations—automatically extracted 
+                        PDFs, Word docs, spreadsheets, presentations—automatically extracted
                         and indexed. Text, tables, images, all searchable.
                       </p>
                     </div>
@@ -315,7 +312,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Smart Chunking & Segmentation</h3>
                       <p className="text-gray-400">
-                        AI-powered document segmentation preserves context. Paragraphs, sections, 
+                        AI-powered document segmentation preserves context. Paragraphs, sections,
                         chapters—chunked intelligently for optimal retrieval.
                       </p>
                     </div>
@@ -329,7 +326,7 @@ export default function SearchDataAIClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Multi-Modal Extraction</h3>
                       <p className="text-gray-400">
-                        Extract meaning from images, charts, diagrams. Vision models understand 
+                        Extract meaning from images, charts, diagrams. Vision models understand
                         visual content and make it searchable.
                       </p>
                     </div>
@@ -338,7 +335,7 @@ export default function SearchDataAIClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -376,13 +373,13 @@ export default function SearchDataAIClient() {
             </div>
 
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-16">
-              Every search query and data access integrates with our Center of Excellence framework. 
+              Every search query and data access integrates with our Center of Excellence framework.
               Quality, compliance, and audit trails are built-in—not bolted on.
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="p-6">
-                <div className="w-12 h-12 mx-auto rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                   </svg>
@@ -392,7 +389,7 @@ export default function SearchDataAIClient() {
               </div>
 
               <div className="p-6">
-                <div className="w-12 h-12 mx-auto rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
@@ -402,7 +399,7 @@ export default function SearchDataAIClient() {
               </div>
 
               <div className="p-6">
-                <div className="w-12 h-12 mx-auto rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
@@ -495,13 +492,11 @@ export default function SearchDataAIClient() {
             </p>
             <div className="flex gap-6 justify-center flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
-                  Schedule Demo
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">                  Schedule Demo
                 </Button>
               </Link>
               <Link href="/try-demo">
-                <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
-                  Try Interactive Demo
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">                  Try Interactive Demo
                 </Button>
               </Link>
             </div>

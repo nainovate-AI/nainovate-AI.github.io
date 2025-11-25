@@ -23,7 +23,7 @@ export default function FlowPage() {
     "alternateName": "FLOW Automation Engine",
     "applicationCategory": "Workflow Automation Platform",
     "description": "AI workflow automation engine for orchestrating complex multi-agent processes",
-    "url": "https://www.nainovate.ai/products/flow",
+    "url": "https://www.nainovate.ai/platform/flow",
     "featureList": [
       "Sequential Workflows",
       "Parallel Processing",

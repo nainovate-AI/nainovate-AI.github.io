@@ -5,6 +5,7 @@ import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
 import LiveChatBot from '@/components/ui/LiveChatBot';
+import { div } from 'framer-motion/client';
 
 export default function OperationsPageClient() {
     const [activeUseCase, setActiveUseCase] = useState<'hr' | 'boq' | 'document' | 'search'>('hr');
@@ -82,11 +83,11 @@ export default function OperationsPageClient() {
     const currentCase = useCases[activeUseCase];
 
     return (
-        <main className="pt-20 relative z-10">
+        <main className="pt-4 relative z-10">
             <JsonLd data={operationsSchema} />
 
             {/* Hero */}
-            <section className="min-h-[70vh] flex items-center border-b border-white/10">
+            <section className="min-h-[70vh] flex items-center border-b border-white/10 py-20">
                 <div className="max-w-[1400px] mx-auto px-8 w-full">
                     <div className="max-w-3xl">
                         <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
@@ -103,13 +104,8 @@ export default function OperationsPageClient() {
                         </p>
                         <div className="flex gap-6">
                             <Link href="/contact">
-                                <Button className="bg-white text-black hover:bg-white/90 px-8 py-4">
+                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                                     Schedule Demo
-                                </Button>
-                            </Link>
-                            <Link href="#use-cases">
-                                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
-                                    See Use Cases
                                 </Button>
                             </Link>
                         </div>
@@ -156,8 +152,8 @@ export default function OperationsPageClient() {
                         <button
                             onClick={() => setActiveUseCase('hr')}
                             className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'hr'
-                                    ? 'text-white border-b-2 border-white'
-                                    : 'text-gray hover:text-white border-b-2 border-transparent'
+                                ? 'text-white border-b-2 border-white'
+                                : 'text-gray hover:text-white border-b-2 border-transparent'
                                 }`}
                         >
                             HR SCREENING
@@ -165,8 +161,8 @@ export default function OperationsPageClient() {
                         <button
                             onClick={() => setActiveUseCase('boq')}
                             className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'boq'
-                                    ? 'text-white border-b-2 border-white'
-                                    : 'text-gray hover:text-white border-b-2 border-transparent'
+                                ? 'text-white border-b-2 border-white'
+                                : 'text-gray hover:text-white border-b-2 border-transparent'
                                 }`}
                         >
                             BOQ GENERATION
@@ -174,8 +170,8 @@ export default function OperationsPageClient() {
                         <button
                             onClick={() => setActiveUseCase('document')}
                             className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'document'
-                                    ? 'text-white border-b-2 border-white'
-                                    : 'text-gray hover:text-white border-b-2 border-transparent'
+                                ? 'text-white border-b-2 border-white'
+                                : 'text-gray hover:text-white border-b-2 border-transparent'
                                 }`}
                         >
                             DOCUMENT PROCESSING
@@ -183,8 +179,8 @@ export default function OperationsPageClient() {
                         <button
                             onClick={() => setActiveUseCase('search')}
                             className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'search'
-                                    ? 'text-white border-b-2 border-white'
-                                    : 'text-gray hover:text-white border-b-2 border-transparent'
+                                ? 'text-white border-b-2 border-white'
+                                : 'text-gray hover:text-white border-b-2 border-transparent'
                                 }`}
                         >
                             ENTERPRISE SEARCH
@@ -237,7 +233,7 @@ export default function OperationsPageClient() {
                             </div>
 
                             <Link href="/contact">
-                                <Button className="bg-white text-black hover:bg-white/90 px-8 py-4">
+                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                                     Request Demo →
                                 </Button>
                             </Link>
@@ -297,13 +293,8 @@ export default function OperationsPageClient() {
                     </p>
                     <div className="flex gap-6 justify-center">
                         <Link href="/contact">
-                            <Button className="bg-white text-black hover:bg-white/90 px-8 py-4">
+                            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
                                 Schedule Demo
-                            </Button>
-                        </Link>
-                        <Link href="/solutions">
-                            <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
-                                View All Solutions
                             </Button>
                         </Link>
                     </div>

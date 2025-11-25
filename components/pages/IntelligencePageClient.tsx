@@ -82,11 +82,11 @@ export default function IntelligencePageClient() {
   const currentCase = useCases[activeUseCase];
 
   return (
-    <main className="pt-20 relative z-10">
+    <main className="pt-4 relative z-10">
       <JsonLd data={intelligenceSchema} />
-      
+
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-white/10">
+      <section className="min-h-[70vh] flex items-center border-b border-white/10 py-20">
         <div className="max-w-[1400px] mx-auto px-8 w-full">
           <div className="max-w-3xl">
             <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
@@ -98,18 +98,13 @@ export default function IntelligencePageClient() {
               <span className="block">INSIGHTS</span>
             </h1>
             <p className="text-xl text-gray max-w-2xl leading-relaxed mb-12">
-              Deploy AI agents that analyze data, ensure compliance, monitor quality, and optimize processes. 
+              Deploy AI agents that analyze data, ensure compliance, monitor quality, and optimize processes.
               Make data-driven decisions in real-time.
             </p>
             <div className="flex gap-6">
               <Link href="/contact">
-                <Button className="bg-white text-black hover:bg-white/90 px-8 py-4">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
                   Schedule Demo
-                </Button>
-              </Link>
-              <Link href="#use-cases">
-                <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
-                  See Use Cases
                 </Button>
               </Link>
             </div>
@@ -155,41 +150,37 @@ export default function IntelligencePageClient() {
           <div className="flex justify-center gap-2 mb-16 flex-wrap">
             <button
               onClick={() => setActiveUseCase('analytics')}
-              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${
-                activeUseCase === 'analytics'
-                  ? 'text-white border-b-2 border-white'
-                  : 'text-gray hover:text-white border-b-2 border-transparent'
-              }`}
+              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'analytics'
+                ? 'text-white border-b-2 border-white'
+                : 'text-gray hover:text-white border-b-2 border-transparent'
+                }`}
             >
               ANALYTICS
             </button>
             <button
               onClick={() => setActiveUseCase('compliance')}
-              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${
-                activeUseCase === 'compliance'
-                  ? 'text-white border-b-2 border-white'
-                  : 'text-gray hover:text-white border-b-2 border-transparent'
-              }`}
+              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'compliance'
+                ? 'text-white border-b-2 border-white'
+                : 'text-gray hover:text-white border-b-2 border-transparent'
+                }`}
             >
               COMPLIANCE
             </button>
             <button
               onClick={() => setActiveUseCase('quality')}
-              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${
-                activeUseCase === 'quality'
-                  ? 'text-white border-b-2 border-white'
-                  : 'text-gray hover:text-white border-b-2 border-transparent'
-              }`}
+              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'quality'
+                ? 'text-white border-b-2 border-white'
+                : 'text-gray hover:text-white border-b-2 border-transparent'
+                }`}
             >
               QUALITY ASSURANCE
             </button>
             <button
               onClick={() => setActiveUseCase('monitoring')}
-              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${
-                activeUseCase === 'monitoring'
-                  ? 'text-white border-b-2 border-white'
-                  : 'text-gray hover:text-white border-b-2 border-transparent'
-              }`}
+              className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'monitoring'
+                ? 'text-white border-b-2 border-white'
+                : 'text-gray hover:text-white border-b-2 border-transparent'
+                }`}
             >
               PROCESS MONITORING
             </button>
@@ -197,7 +188,7 @@ export default function IntelligencePageClient() {
 
           {/* Use Case Content */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
+
             {/* Left: Live Chat Bot */}
             <div className="order-2 lg:order-1">
               <LiveChatBot type={activeUseCase} autoPlay={true} />
@@ -206,7 +197,7 @@ export default function IntelligencePageClient() {
             {/* Right: Details */}
             <div className="order-1 lg:order-2">
               <h3 className="text-4xl font-bold mb-6">{currentCase.title}</h3>
-              
+
               <div className="mb-8">
                 <div className="text-sm font-semibold text-red-400 mb-2">THE PROBLEM</div>
                 <p className="text-gray text-lg">{currentCase.problem}</p>
@@ -241,7 +232,7 @@ export default function IntelligencePageClient() {
               </div>
 
               <Link href="/contact">
-                <Button className="bg-white text-black hover:bg-white/90 px-8 py-4">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                   Request Demo →
                 </Button>
               </Link>
@@ -255,7 +246,7 @@ export default function IntelligencePageClient() {
       <section className="py-32 border-t border-white/10 bg-white/[0.01]">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-16 text-center">HOW IT WORKS</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-6 bg-green-500/10 rounded-full flex items-center justify-center border border-green-500/20">
@@ -301,12 +292,12 @@ export default function IntelligencePageClient() {
           </p>
           <div className="flex gap-6 justify-center">
             <Link href="/contact">
-              <Button className="bg-white text-black hover:bg-white/90 px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
                 Schedule Demo
               </Button>
             </Link>
             <Link href="/solutions">
-              <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
                 View All Solutions
               </Button>
             </Link>

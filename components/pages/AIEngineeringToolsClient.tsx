@@ -14,26 +14,21 @@ export default function AIEngineeringToolsClient() {
             <div className="mb-6">
               <span className="text-gray-400 uppercase tracking-[0.2em] text-sm">GenX Platform / AI Engineering</span>
             </div>
-            
+
             <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
-              AI ENGINEERING<br/>
+              AI ENGINEERING<br />
               TOOLS
             </h1>
-            
+
             <p className="text-xl text-gray-300 max-w-3xl mb-12">
-              Build production-ready AI agents with advanced RAG pipelines, fine-tuning capabilities, 
+              Build production-ready AI agents with advanced RAG pipelines, fine-tuning capabilities,
               and comprehensive evaluation tools. All built with AI CoE governance.
             </p>
-            
+
             <div className="flex gap-6 flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
                   Schedule Demo
-                </Button>
-              </Link>
-              <Link href="/products/core">
-                <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
-                  Back to Platform
                 </Button>
               </Link>
             </div>
@@ -50,9 +45,9 @@ export default function AIEngineeringToolsClient() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <AnimatedSection delay={0.1}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                   </svg>
                 </div>
@@ -62,9 +57,9 @@ export default function AIEngineeringToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                   </svg>
                 </div>
@@ -74,9 +69,9 @@ export default function AIEngineeringToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -86,9 +81,9 @@ export default function AIEngineeringToolsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.4}>
-              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
-                <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-6 border border-white/10 rounded-lg hover:border-white/20 transition-colors min-h-[200px]">
+                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
                   </svg>
                 </div>
@@ -110,7 +105,7 @@ export default function AIEngineeringToolsClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Prompt Workshop</h2>
                   <p className="text-xl text-gray-300">
-                    Experiment with and refine prompts across multiple AI models to achieve optimal 
+                    Experiment with and refine prompts across multiple AI models to achieve optimal
                     performance and business outcomes.
                   </p>
                 </div>
@@ -124,7 +119,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Prompt Experimentation</h3>
                       <p className="text-gray-400">
-                        Test identical prompts across multiple AI models simultaneously, comparing outputs, 
+                        Test identical prompts across multiple AI models simultaneously, comparing outputs,
                         monitoring token consumption, and measuring response times in real-time.
                       </p>
                     </div>
@@ -138,7 +133,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Prompt Versioning</h3>
                       <p className="text-gray-400">
-                        Monitor, control, and rollback prompt modifications across the AI agent development cycle, 
+                        Monitor, control, and rollback prompt modifications across the AI agent development cycle,
                         maintaining uniformity and enabling swift iterations at enterprise scale.
                       </p>
                     </div>
@@ -152,7 +147,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">60+ Prompt Libraries</h3>
                       <p className="text-gray-400">
-                        Fast-track your AI development with ready-to-use prompt libraries for data classification, 
+                        Fast-track your AI development with ready-to-use prompt libraries for data classification,
                         content summarization, generation workflows, and more—no need to build from zero.
                       </p>
                     </div>
@@ -161,7 +156,7 @@ export default function AIEngineeringToolsClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border-2 border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -212,7 +207,7 @@ export default function AIEngineeringToolsClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Model Orchestrator</h2>
                   <p className="text-xl text-gray-300">
-                    Empower your team to easily integrate, manage, and connect multiple AI models, whether 
+                    Empower your team to easily integrate, manage, and connect multiple AI models, whether
                     commercial, fine-tuned, or open source, within a single agentic workflow.
                   </p>
                 </div>
@@ -226,7 +221,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Enterprise Models</h3>
                       <p className="text-gray-400">
-                        Integrate any enterprise AI model from OpenAI, Claude, Gemini, and leading providers 
+                        Integrate any enterprise AI model from OpenAI, Claude, Gemini, and leading providers
                         directly into GenX Platform.
                       </p>
                     </div>
@@ -240,7 +235,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Open-Source Integration</h3>
                       <p className="text-gray-400">
-                        Access open-source AI models seamlessly through HuggingFace connectivity, unlocking 
+                        Access open-source AI models seamlessly through HuggingFace connectivity, unlocking
                         millions of models for diverse applications.
                       </p>
                     </div>
@@ -254,7 +249,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Custom Models</h3>
                       <p className="text-gray-400">
-                        Train large language models using your proprietary data or deploy your own specialized 
+                        Train large language models using your proprietary data or deploy your own specialized
                         models for industry-specific requirements.
                       </p>
                     </div>
@@ -263,7 +258,7 @@ export default function AIEngineeringToolsClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border-2 border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -284,7 +279,7 @@ export default function AIEngineeringToolsClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Quality Assurance Lab</h2>
                   <p className="text-xl text-gray-300">
-                    Assess the performance of both AI models and agentic applications to ensure quality, 
+                    Assess the performance of both AI models and agentic applications to ensure quality,
                     accurate, less biased, compliant, and reliable AI agent responses before and after deployment.
                   </p>
                 </div>
@@ -298,7 +293,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Response Validation</h3>
                       <p className="text-gray-400">
-                        Identify AI model hallucinations during development and rapidly optimize them through 
+                        Identify AI model hallucinations during development and rapidly optimize them through
                         test datasets or human-in-the-loop feedback for precision.
                       </p>
                     </div>
@@ -312,7 +307,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Query Alignment</h3>
                       <p className="text-gray-400">
-                        Assess whether AI agent outputs effectively address user inquiries using integrated 
+                        Assess whether AI agent outputs effectively address user inquiries using integrated
                         evaluators or custom-built validation frameworks.
                       </p>
                     </div>
@@ -326,7 +321,7 @@ export default function AIEngineeringToolsClient() {
                     <div>
                       <h3 className="text-lg font-bold mb-2">Behavior Testing</h3>
                       <p className="text-gray-400">
-                        Verify your AI agents perform as intended and utilize appropriate tools for each situation 
+                        Verify your AI agents perform as intended and utilize appropriate tools for each situation
                         by creating and validating custom test scenarios aligned with your operations.
                       </p>
                     </div>
@@ -335,7 +330,7 @@ export default function AIEngineeringToolsClient() {
 
                 <div>
                   <Link href="/contact">
-                    <Button className="border-2 border-white/20 hover:bg-white/10 px-6 py-3">
+                    <Button className="border-2 border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
                       Learn More →
                     </Button>
                   </Link>
@@ -373,14 +368,14 @@ export default function AIEngineeringToolsClient() {
             </div>
 
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-16">
-              Every AI engineering tool integrates with our Center of Excellence framework. This means 
+              Every AI engineering tool integrates with our Center of Excellence framework. This means
               quality, ethical compliance, validation, and ethical guardrails are built-in—not bolted on.
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div>
                 <div className="mb-4">
-                  <svg className="w-8 h-8 mx-auto text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
@@ -390,7 +385,7 @@ export default function AIEngineeringToolsClient() {
 
               <div>
                 <div className="mb-4">
-                  <svg className="w-8 h-8 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                   </svg>
                 </div>
@@ -400,7 +395,7 @@ export default function AIEngineeringToolsClient() {
 
               <div>
                 <div className="mb-4">
-                  <svg className="w-8 h-8 mx-auto text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
@@ -491,12 +486,12 @@ export default function AIEngineeringToolsClient() {
             </p>
             <div className="flex gap-6 justify-center flex-wrap">
               <Link href="/contact">
-                <Button className="px-8 py-4 bg-white text-black hover:bg-gray-200 font-medium">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
                   Schedule Demo
                 </Button>
               </Link>
-              <Link href="/products/core">
-                <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 font-medium">
+              <Link href="/platform/core">
+                <Button className="px-8 py-4 border-2 border-white/20 hover:bg-white/10 hover:text-white font-medium">
                   Try Interactive Demo
                 </Button>
               </Link>
