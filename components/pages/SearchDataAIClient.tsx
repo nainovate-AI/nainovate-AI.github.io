@@ -3,6 +3,9 @@
 import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
+import { EnterpriseSearchMockup } from '../mockups/EnterpriseSearchMockup';
+import { UniversalConnectorsMockup } from '../mockups/UniversalConnectorsMockup';
+import { IntelligentDataProcessingMockup } from '../mockups/IntelligentDataProcessingMockup';
 
 export default function SearchDataAIClient() {
   return (
@@ -168,19 +171,7 @@ export default function SearchDataAIClient() {
             </AnimatedSection>
 
             {/* Right: Visual/Screenshot Placeholder */}
-            <AnimatedSection delay={0.2}>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <p className="text-gray-400">Enterprise Search Engine Interface</p>
-                    <p className="text-sm text-gray-500 mt-2">[Screenshot placeholder]</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><EnterpriseSearchMockup /></div>
           </div>
         </div>
       </section>
@@ -190,19 +181,7 @@ export default function SearchDataAIClient() {
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Visual/Screenshot Placeholder */}
-            <AnimatedSection>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
-                    </svg>
-                    <p className="text-gray-400">Universal Connectors Interface</p>
-                    <p className="text-sm text-gray-500 mt-2">[Screenshot placeholder]</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><UniversalConnectorsMockup /></div>
 
             {/* Right: Content */}
             <AnimatedSection delay={0.2}>
@@ -344,19 +323,7 @@ export default function SearchDataAIClient() {
             </AnimatedSection>
 
             {/* Right: Visual/Screenshot Placeholder */}
-            <AnimatedSection delay={0.2}>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <p className="text-gray-400">Data Processing Interface</p>
-                    <p className="text-sm text-gray-500 mt-2">[Screenshot placeholder]</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><IntelligentDataProcessingMockup /></div>
           </div>
         </div>
       </section>

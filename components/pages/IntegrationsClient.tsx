@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
+import {EnterpriseSystemMockup } from '../mockups/EnterpriseSystemMockup';
+import {APIManagementMockup } from '../mockups/APIManagementMockup';
+import {CustomIntegrationMockup } from '../mockups/CustomIntegrationMockup';
 
 export default function IntegrationsClient() {
   const [activeCategory, setActiveCategory] = useState<'crm' | 'productivity' | 'data' | 'cloud'>('crm');
@@ -239,19 +242,7 @@ export default function IntegrationsClient() {
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Visual */}
-            <AnimatedSection>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                    <p className="text-gray-400 font-medium">Custom Integration Studio</p>
-                    <p className="text-sm text-gray-500 mt-2">REST • GraphQL • SOAP • Webhooks</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><CustomIntegrationMockup /></div>
 
             {/* Right: Content */}
             <AnimatedSection delay={0.2}>
@@ -391,19 +382,7 @@ export default function IntegrationsClient() {
             </AnimatedSection>
 
             {/* Right: Visual */}
-            <AnimatedSection delay={0.2}>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                    <p className="text-gray-400 font-medium">API Orchestration</p>
-                    <p className="text-sm text-gray-500 mt-2">Multi-System • Rate Limiting • Transaction Control</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><APIManagementMockup /></div>
           </div>
         </div>
       </section>
@@ -413,19 +392,7 @@ export default function IntegrationsClient() {
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Visual */}
-            <AnimatedSection>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                    </svg>
-                    <p className="text-gray-400 font-medium">Multi-Cloud Support</p>
-                    <p className="text-sm text-gray-500 mt-2">AWS • Azure • GCP • On-Premises</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><EnterpriseSystemMockup /></div>
 
             {/* Right: Content */}
             <AnimatedSection delay={0.2}>

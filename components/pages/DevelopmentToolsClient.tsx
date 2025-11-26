@@ -3,6 +3,10 @@
 import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
+import { VisualBuilderMockup } from '../mockups/VisualBuilderMockup';
+import { SDKsMockup } from '../mockups/SDKsMockup';
+import { TestingDebuggingMockup } from '../mockups/TestingDebuggingMockup';
+import { DeploymentMockup } from '../mockups/DeploymentMockup';
 
 export default function DevelopmentToolsClient() {
   return (
@@ -166,19 +170,7 @@ export default function DevelopmentToolsClient() {
             </AnimatedSection>
 
             {/* Right: Visual/Screenshot Placeholder */}
-            <AnimatedSection delay={0.2}>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                    </svg>
-                    <p className="text-gray-400 font-medium">Visual Workflow Canvas</p>
-                    <p className="text-sm text-gray-500 mt-2">Drag & Drop • Pre-built Templates • No Code Required</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><VisualBuilderMockup /></div>
           </div>
         </div>
       </section>
@@ -188,19 +180,7 @@ export default function DevelopmentToolsClient() {
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Visual */}
-            <AnimatedSection>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                    <p className="text-gray-400 font-medium">Developer SDKs</p>
-                    <p className="text-sm text-gray-500 mt-2">Python • JavaScript • REST APIs</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><SDKsMockup /></div>
 
             {/* Right: Content */}
             <AnimatedSection delay={0.2}>
@@ -340,19 +320,8 @@ export default function DevelopmentToolsClient() {
             </AnimatedSection>
 
             {/* Right: Visual */}
-            <AnimatedSection delay={0.2}>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                    </svg>
-                    <p className="text-gray-400 font-medium">Debug & Test Suite</p>
-                    <p className="text-sm text-gray-500 mt-2">Real-time Tracing • Breakpoints • Automated Tests</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><TestingDebuggingMockup /></div>
+        
           </div>
         </div>
       </section>
@@ -362,19 +331,7 @@ export default function DevelopmentToolsClient() {
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Visual */}
-            <AnimatedSection>
-              <div className="relative">
-                <div className="aspect-[4/3] bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-lg border border-white/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <svg className="w-24 h-24 mx-auto mb-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                    </svg>
-                    <p className="text-gray-400 font-medium">Deploy Anywhere</p>
-                    <p className="text-sm text-gray-500 mt-2">One-Click • Version Control • Rollback</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
+            <div><DeploymentMockup /></div>
 
             {/* Right: Content */}
             <AnimatedSection delay={0.2}>
