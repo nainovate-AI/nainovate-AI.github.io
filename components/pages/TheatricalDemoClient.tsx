@@ -8,7 +8,7 @@ import AnalyticsDashboard from '@/components/demo/AnalyticsDashboard';
 import WorkflowPlaceholder from '@/components/demo/WorkflowPlaceholder';
 
 type TabType = 'nia' | 'dashboard' | 'workflow';
-type UseCase = 'building-permits' | 'healthcare' | 'manufacturing';
+type UseCase = 'building-permits';
 
 export default function TheatricalDemoClient() {
   const [activeTab, setActiveTab] = useState<TabType>('nia');
@@ -21,14 +21,14 @@ export default function TheatricalDemoClient() {
       label: 'Building Permit Application',
       available: true
     },
-    'healthcare': {
-      label: 'Healthcare (Coming Soon)',
-      available: false
-    },
-    'manufacturing': {
-      label: 'Manufacturing (Coming Soon)',
-      available: false
-    }
+    // 'healthcare': {
+    //   label: 'Healthcare (Coming Soon)',
+    //   available: false
+    // },
+    // 'manufacturing': {
+    //   label: 'Manufacturing (Coming Soon)',
+    //   available: false
+    // }
   };
 
   const sidebarItems = [
