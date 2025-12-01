@@ -307,24 +307,7 @@ export default function ProductsPageClient() {
                             </div>
                         </AnimatedSection>
 
-                        {/* NIA */}
-                        <AnimatedSection delay={0.2}>
-                            <div className="group border border-white/10 rounded-lg p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
-                                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-2xl font-bold mb-2">NIA</h3>
-                                    <p className="text-sm text-gray-400 mb-4">Interface Layer</p>
-                                    <p className="text-gray leading-relaxed">
-                                        Talk to your AI agents through conversational interfaces. Multi-channel, multi-lingual support.
-                                    </p>
-                                </div>
-                            </div>
-                        </AnimatedSection>
-
+                        
                         {/* FLOW */}
                         <AnimatedSection delay={0.3}>
                             <div className="group border border-white/10 rounded-lg p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
@@ -338,6 +321,24 @@ export default function ProductsPageClient() {
                                     <p className="text-sm text-gray-400 mb-4">Automation Engine</p>
                                     <p className="text-gray leading-relaxed">
                                         Automate complex workflows with multi-agent orchestration and seamless integrations.
+                                    </p>
+                                </div>
+                            </div>
+                        </AnimatedSection>
+
+                        {/* NIA */}
+                        <AnimatedSection delay={0.2}>
+                            <div className="group border border-white/10 rounded-lg p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
+                                <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
+                                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                    </svg>
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-2xl font-bold mb-2">NIA</h3>
+                                    <p className="text-sm text-gray-400 mb-4">Interface Layer</p>
+                                    <p className="text-gray leading-relaxed">
+                                        Talk to your AI agents through conversational interfaces. Multi-channel, multi-lingual support.
                                     </p>
                                 </div>
                             </div>
@@ -833,7 +834,7 @@ export default function ProductsPageClient() {
                 </div>
             </section>
 
-            {/* SECTION 8: SOCIAL PROOF (PLACEHOLDER) */}
+            {/* SECTION 8: SOCIAL PROOF */}
             <section className="py-32 border-t border-white/10">
                 <div className="max-w-[1400px] mx-auto px-8">
                     <AnimatedSection>
@@ -845,11 +846,11 @@ export default function ProductsPageClient() {
                     <AnimatedSection delay={0.2}>
                         <div className="text-center max-w-3xl mx-auto">
                             <p className="text-2xl text-gray italic mb-8">
-                                "GenX Platform + AI CoE helped us deploy 5 intelligent agents in 30 days with full compliance.
-                                The governance framework gave us confidence to scale AI across our entire operation."
+                                "GenX Platform + AI CoE transformed how we approach AI adoption.
+                                The built-in governance framework gave us the confidence to scale AI responsibly across our organization."
                             </p>
                             <p className="text-gray">
-                                — Enterprise Client, Fortune 500 Manufacturing
+                                — Enterprise Technology Leader
                             </p>
                         </div>
                     </AnimatedSection>

@@ -18,34 +18,34 @@ interface Message {
     content: string;
 }
 
-// Generate chart based on query
+// Generate chart based on query - UPDATED WITH GENERIC TERMS
 const getChartForQuery = (query: string): ChartWidget | null => {
     const msg = query.toLowerCase();
     const id = Date.now().toString();
 
-    if (msg.includes('building type') || msg.includes('type request')) {
+    if (msg.includes('building type') || msg.includes('type') || msg.includes('category')) {
         return {
             id,
             type: 'bar',
-            title: 'Building Type Requests - 2025',
-            labels: ['Residential', 'Commercial', 'Industrial', 'Government', 'Others'],
+            title: 'Applications by Building Type',
+            labels: ['Residential', 'Commercial', 'Industrial', 'Mixed Use', 'Others'],
             values: [380, 95, 85, 45, 15],
             colors: ['#3B82F6', '#3B82F6', '#3B82F6', '#3B82F6', '#3B82F6']
         };
     }
 
-    if (msg.includes('region') || msg.includes('location')) {
+    if (msg.includes('zone') || msg.includes('area') || msg.includes('region') || msg.includes('location')) {
         return {
             id,
             type: 'pie',
-            title: 'Requests by Region',
-            labels: ['North District', 'South District', 'East District', 'West District'],
+            title: 'Applications by Zone',
+            labels: ['Zone A', 'Zone B', 'Zone C', 'Zone D'],
             values: [4230, 4876, 2150, 1890],
             colors: ['#F97316', '#3B82F6', '#10B981', '#8B5CF6']
         };
     }
 
-    if (msg.includes('monthly') || msg.includes('trend')) {
+    if (msg.includes('monthly') || msg.includes('trend') || msg.includes('over time')) {
         return {
             id,
             type: 'line',
@@ -56,29 +56,29 @@ const getChartForQuery = (query: string): ChartWidget | null => {
         };
     }
 
-    if (msg.includes('approval') || msg.includes('status')) {
+    if (msg.includes('approval') || msg.includes('status') || msg.includes('rate')) {
         return {
             id,
             type: 'pie',
-            title: 'Approval Statistics',
+            title: 'Application Status Overview',
             labels: ['Approved', 'Under Review', 'Rejected', 'Pending'],
             values: [67, 18, 8, 7],
             colors: ['#10B981', '#F59E0B', '#EF4444', '#6B7280']
         };
     }
 
-    if (msg.includes('license') || msg.includes('wilayat')) {
+    if (msg.includes('department') || msg.includes('team') || msg.includes('handled by')) {
         return {
             id,
             type: 'bar',
-            title: 'Licenses Issued per Wilayat',
-            labels: ['Muscat', 'Salalah', 'Sohar', 'Nizwa', 'Sur', 'Ibri'],
+            title: 'Applications by Department',
+            labels: ['Planning', 'Zoning', 'Safety', 'Environmental', 'Structural', 'Permits'],
             values: [260, 180, 145, 120, 95, 78],
             colors: ['#8B5CF6', '#8B5CF6', '#8B5CF6', '#8B5CF6', '#8B5CF6', '#8B5CF6']
         };
     }
 
-    if (msg.includes('processing') || msg.includes('time')) {
+    if (msg.includes('processing') || msg.includes('time') || msg.includes('duration') || msg.includes('days')) {
         return {
             id,
             type: 'bar',
@@ -92,23 +92,25 @@ const getChartForQuery = (query: string): ChartWidget | null => {
     return null;
 };
 
-// Bar Chart Component
+// Bar Chart Component - FIXED OVERFLOW
 const BarChart = ({ widget }: { widget: ChartWidget }) => {
     const maxValue = Math.max(...widget.values);
+    const maxItems = 6; // Maximum items to show without scrolling
+    const needsScroll = widget.labels.length > maxItems;
 
     return (
         <div className="h-full flex flex-col">
-            <h3 className="text-sm font-medium text-white mb-4">{widget.title}</h3>
-            <div className="flex-1 flex flex-col justify-center space-y-2">
+            <h3 className="text-sm font-medium text-white mb-2">{widget.title}</h3>
+            <div className={`flex-1 flex flex-col justify-start space-y-1.5 ${needsScroll ? 'overflow-y-auto pr-1' : ''}`}>
                 {widget.labels.map((label, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                        <span className="text-[10px] text-gray-500 w-20 truncate">{label}</span>
-                        <div className="flex-1 h-5 bg-white/5 rounded overflow-hidden">
+                    <div key={idx} className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-[10px] text-gray-500 w-16 truncate">{label}</span>
+                        <div className="flex-1 h-4 bg-white/5 rounded-full overflow-hidden">
                             <div
-                                className="h-full rounded transition-all duration-1000 ease-out"
+                                className="h-full rounded-full transition-all duration-1000 ease-out"
                                 style={{
                                     width: `${(widget.values[idx] / maxValue) * 100}%`,
-                                    backgroundColor: widget.colors[idx] || '#3B82F6'
+                                    backgroundColor: widget.colors[idx % widget.colors.length] || '#3B82F6'
                                 }}
                             />
                         </div>
@@ -120,16 +122,20 @@ const BarChart = ({ widget }: { widget: ChartWidget }) => {
     );
 };
 
-// Pie Chart Component
+// Pie Chart Component (Donut style) - FIXED OVERFLOW
 const PieChart = ({ widget }: { widget: ChartWidget }) => {
     const total = widget.values.reduce((a, b) => a + b, 0);
     let currentAngle = 0;
 
+    // Limit legend items to prevent overflow (max 6 items)
+    const maxLegendItems = 6;
+    const showAllLegend = widget.labels.length <= maxLegendItems;
+
     return (
         <div className="h-full flex flex-col">
-            <h3 className="text-sm font-medium text-white mb-4">{widget.title}</h3>
-            <div className="flex-1 flex items-center gap-4">
-                <div className="relative w-28 h-28 flex-shrink-0">
+            <h3 className="text-sm font-medium text-white mb-2">{widget.title}</h3>
+            <div className="flex-1 flex items-center gap-4 overflow-hidden">
+                <div className="relative w-24 h-24 flex-shrink-0">
                     <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
                         {widget.values.map((value, idx) => {
                             const percentage = (value / total) * 100;
@@ -147,24 +153,29 @@ const PieChart = ({ widget }: { widget: ChartWidget }) => {
                                 <path
                                     key={idx}
                                     d={`M 50 50 L ${x1} ${y1} A 40 40 0 ${largeArc} 1 ${x2} ${y2} Z`}
-                                    fill={widget.colors[idx] || '#3B82F6'}
+                                    fill={widget.colors[idx % widget.colors.length] || '#3B82F6'}
                                 />
                             );
                         })}
                         <circle cx="50" cy="50" r="20" fill="black" />
                     </svg>
                 </div>
-                <div className="flex-1 space-y-1">
-                    {widget.labels.map((label, idx) => (
+                <div className="flex-1 space-y-0.5 overflow-y-auto max-h-[160px] pr-1">
+                    {(showAllLegend ? widget.labels : widget.labels.slice(0, maxLegendItems)).map((label, idx) => (
                         <div key={idx} className="flex items-center gap-2">
                             <div
                                 className="w-2 h-2 rounded-full flex-shrink-0"
-                                style={{ backgroundColor: widget.colors[idx] }}
+                                style={{ backgroundColor: widget.colors[idx % widget.colors.length] }}
                             />
                             <span className="text-[10px] text-gray-400 truncate">{label}</span>
                             <span className="text-[10px] text-white ml-auto">{widget.values[idx]}</span>
                         </div>
                     ))}
+                    {!showAllLegend && (
+                        <div className="text-[10px] text-gray-500 mt-1">
+                            +{widget.labels.length - maxLegendItems} more...
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
@@ -212,7 +223,6 @@ const LineChart = ({ widget }: { widget: ChartWidget }) => {
     );
 };
 
-// Widget Card
 // Widget Card
 const WidgetCard = ({ widget, onRemove, onChangeType }: {
     widget: ChartWidget;
@@ -324,7 +334,7 @@ export default function AnalyticsDashboard() {
             } else {
                 setMessages(prev => [...prev, {
                     role: 'assistant',
-                    content: 'Try asking about: building types, regions, monthly trends, approval status, licenses, or processing time.'
+                    content: 'Try asking about: building types, zones, monthly trends, approval status, departments, or processing time.'
                 }]);
             }
             setIsTyping(false);
@@ -348,12 +358,13 @@ export default function AnalyticsDashboard() {
         ));
     };
 
+    // UPDATED: Generic suggestions
     const suggestions = [
-        "Show building type requests",
-        "Show requests by region",
+        "Show building types",
+        "Show applications by zone",
         "Show monthly trends",
         "Show approval status",
-        "Show licenses by wilayat",
+        "Show by department",
         "Show processing time"
     ];
 
@@ -442,7 +453,7 @@ export default function AnalyticsDashboard() {
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* Suggestions */}
+                    {/* Suggestions - UPDATED */}
                     <div className="px-4 py-2 border-t border-white/10">
                         <div className="flex flex-wrap gap-1.5">
                             {suggestions.map((suggestion, idx) => (

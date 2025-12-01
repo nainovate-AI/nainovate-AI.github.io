@@ -473,7 +473,7 @@ export function Header() {
                                 </Link>
 
                                 <div className="px-6 py-2">
-                                  <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Features</p>
+                                  <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Products</p>
                                   <p className="text-xs text-gray-500 mb-1">HR Screening & Selection</p>
                                   <p className="text-xs text-gray-500 mb-1">BOQ Generation</p>
                                   <p className="text-xs text-gray-500 mb-1">Document Processing</p>
@@ -511,7 +511,7 @@ export function Header() {
                                 </Link>
 
                                 <div className="px-6 py-2">
-                                  <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Features</p>
+                                  <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Products</p>
                                   <p className="text-xs text-gray-500 mb-1">Customer Service Bots</p>
                                   <p className="text-xs text-gray-500 mb-1">Citizen Portals</p>
                                   <p className="text-xs text-gray-500 mb-1">Multi-Channel Support</p>
@@ -549,7 +549,7 @@ export function Header() {
                                 </Link>
 
                                 <div className="px-6 py-2">
-                                  <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Features</p>
+                                  <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Products</p>
                                   <p className="text-xs text-gray-500 mb-1">Analytics Dashboards</p>
                                   <p className="text-xs text-gray-500 mb-1">Process Monitoring</p>
                                   <p className="text-xs text-gray-500 mb-1">Compliance Tracking</p>
