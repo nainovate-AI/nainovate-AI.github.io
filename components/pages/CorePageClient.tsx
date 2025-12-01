@@ -16,7 +16,7 @@ export default function CorePageClient() {
         "applicationSubCategory": "AI Development Platform",
         "operatingSystem": "Web-based",
         "description": "AI engine for creating specialized agents. Part of the GenX integrated platform.",
-        "url": "https://www.nainovate.ai/products/core",
+        "url": "https://www.nainovate.ai/platform/core",
         "screenshot": [
             "https://www.nainovate.ai/images/core-screenshot-1.png",
             "https://www.nainovate.ai/images/core-screenshot-2.png"

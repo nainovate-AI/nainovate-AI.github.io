@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import Script from "next/script";
 import { PageTracker } from "@/components/tracking/PageTracker";
 import { Suspense } from "react";
-import { inter } from "./fonts";
+import { inter } from "../fonts";
 import JsonLd from '@/components/seo/JsonLd';
 
 
