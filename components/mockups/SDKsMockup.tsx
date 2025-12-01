@@ -63,12 +63,12 @@ export function SDKsMockup() {
         
         <text x="75" y="265" fill="#e5c07b" fontSize="10" fontFamily="monospace">api_key</text>
         <text x="125" y="265" fill="#abb2bf" fontSize="10" fontFamily="monospace">=</text>
-        <text x="140" y="265" fill="#98c379" fontSize="10" fontFamily="monospace">"your-api-key"</text>
+        <text x="140" y="265" fill="#98c379" fontSize="10" fontFamily="monospace">&quot;your-api-key&quot;</text>
         <text x="245" y="265" fill="#abb2bf" fontSize="10" fontFamily="monospace">,</text>
         
         <text x="75" y="280" fill="#e5c07b" fontSize="10" fontFamily="monospace">model</text>
         <text x="115" y="280" fill="#abb2bf" fontSize="10" fontFamily="monospace">=</text>
-        <text x="130" y="280" fill="#98c379" fontSize="10" fontFamily="monospace">"gpt-4"</text>
+        <text x="130" y="280" fill="#98c379" fontSize="10" fontFamily="monospace">&quot;gpt-4&quot;</text>
         
         <text x="55" y="295" fill="#abb2bf" fontSize="10" fontFamily="monospace">)</text>
         
@@ -83,12 +83,12 @@ export function SDKsMockup() {
         
         <text x="75" y="355" fill="#e5c07b" fontSize="10" fontFamily="monospace">document</text>
         <text x="135" y="355" fill="#abb2bf" fontSize="10" fontFamily="monospace">=</text>
-        <text x="150" y="355" fill="#98c379" fontSize="10" fontFamily="monospace">"contract.pdf"</text>
+        <text x="150" y="355" fill="#98c379" fontSize="10" fontFamily="monospace">&quot;contract.pdf&quot;</text>
         <text x="265" y="355" fill="#abb2bf" fontSize="10" fontFamily="monospace">,</text>
         
         <text x="75" y="370" fill="#e5c07b" fontSize="10" fontFamily="monospace">task</text>
         <text x="110" y="370" fill="#abb2bf" fontSize="10" fontFamily="monospace">=</text>
-        <text x="125" y="370" fill="#98c379" fontSize="10" fontFamily="monospace">"extract_payment_terms"</text>
+        <text x="125" y="370" fill="#98c379" fontSize="10" fontFamily="monospace">&quot;extract_payment_terms&quot;</text>
         
         <text x="55" y="385" fill="#abb2bf" fontSize="10" fontFamily="monospace">)</text>
         

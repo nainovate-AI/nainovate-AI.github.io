@@ -205,7 +205,7 @@ export default function IntegrationsClient() {
                     {Object.entries(integrationCategories).map(([key, cat]) => (
                       <button
                         key={key}
-                        onClick={() => setActiveCategory(key as any)}
+                        onClick={() => setActiveCategory(key as 'crm' | 'productivity' | 'data' | 'cloud')}
                         className={`p-4 rounded-lg text-left transition-all ${activeCategory === key
                           ? 'bg-blue-500/20 border-2 border-blue-500'
                           : 'bg-white/5 border border-white/10 hover:border-white/30'

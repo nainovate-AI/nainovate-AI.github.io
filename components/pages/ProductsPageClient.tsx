@@ -378,7 +378,7 @@ export default function ProductsPageClient() {
                             AI CENTER OF EXCELLENCE
                         </h2>
                         <p className="text-xl text-gray text-center mb-20 max-w-3xl mx-auto">
-                            GenX at the core. AI CoE as the governance layer. McKinsey's 6 principles guiding every decision.
+                            GenX at the core. AI CoE as the governance layer. McKinsey&apos;s 6 principles guiding every decision.
                         </p>
                     </AnimatedSection>
 
@@ -508,7 +508,7 @@ export default function ProductsPageClient() {
                         {/* RIGHT: Spoke Details */}
                         <AnimatedSection delay={0.3}>
                             <div className="space-y-4">
-                                <h3 className="text-2xl font-bold mb-6">McKinsey's 6 AI Scaling Principles</h3>
+                                <h3 className="text-2xl font-bold mb-6">McKinsey&apos;s 6 AI Scaling Principles</h3>
 
                                 {spokes.map((spoke) => (
                                     <div
@@ -548,7 +548,7 @@ export default function ProductsPageClient() {
                     <AnimatedSection delay={0.4}>
                         <div className="max-w-3xl mx-auto mt-20 text-center">
                             <p className="text-gray mb-8">
-                                👆 Hover over any spoke to see how McKinsey's principles integrate with GenX and the AI CoE layer
+                                👆 Hover over any spoke to see how McKinsey&apos;s principles integrate with GenX and the AI CoE layer
                             </p>
                             <Link href="/ai-center-of-excellence">
                                 <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
@@ -846,8 +846,8 @@ export default function ProductsPageClient() {
                     <AnimatedSection delay={0.2}>
                         <div className="text-center max-w-3xl mx-auto">
                             <p className="text-2xl text-gray italic mb-8">
-                                "GenX Platform + AI CoE transformed how we approach AI adoption.
-                                The built-in governance framework gave us the confidence to scale AI responsibly across our organization."
+                                &quot;GenX Platform + AI CoE transformed how we approach AI adoption.
+                                The built-in governance framework gave us the confidence to scale AI responsibly across our organization.&quot;
                             </p>
                             <p className="text-gray">
                                 — Enterprise Technology Leader

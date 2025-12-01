@@ -258,7 +258,7 @@ export default function SecurityGovernanceClient() {
                 <div>
                   <h2 className="text-5xl font-bold mb-6">Compliance & Governance</h2>
                   <p className="text-xl text-gray-300">
-                    Built to meet global regulatory requirements. Deploy AI confidently knowing you're
+                    Built to meet global regulatory requirements. Deploy AI confidently knowing you&apos;re
                     compliant from day one with comprehensive audit trails.
                   </p>
                 </div>

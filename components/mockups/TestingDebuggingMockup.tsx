@@ -90,7 +90,7 @@ export function TestingDebuggingMockup() {
           <tspan>[12:45:22] FAIL: test_contract_validation</tspan>
         </text>
         <text x="35" y="450" fill="#fbbf24" fontSize="9" fontFamily="monospace">
-          <tspan>  AssertionError: Expected 'Net 30' but got 'Net 45'</tspan>
+          <tspan>  AssertionError: Expected &apos;Net 30&apos; but got &apos;Net 45&apos;</tspan>
         </text>
         
         {/* Bottom Bar */}

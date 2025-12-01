@@ -83,7 +83,7 @@ export function DataSecurityMockup() {
         
         {/* Bottom Bar */}
         <rect y="480" width="800" height="20" fill="#111"/>
-        <text x="20" y="494" fill="#666" fontSize="9">Key Management: AWS KMS • Certificate Authority: Let's Encrypt • DLP: Enabled</text>
+        <text x="20" y="494" fill="#666" fontSize="9">Key Management: AWS KMS • Certificate Authority: Let&apos;s Encrypt • DLP: Enabled</text>
       </svg>
     </div>
   );

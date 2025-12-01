@@ -400,7 +400,7 @@ export function Header() {
                               </div>
                               <h4 className="text-sm font-bold mb-2">AI Center of Excellence</h4>
                               <p className="text-xs text-gray-400 leading-relaxed mb-4">
-                                Built on McKinsey's 6 proven AI scaling lessons. Governance, orchestration, and trust in every workflow.
+                                Built on McKinsey&apos;s 6 proven AI scaling lessons. Governance, orchestration, and trust in every workflow.
                               </p>
 
                               {/* Mini Hub-Spoke Visual */}

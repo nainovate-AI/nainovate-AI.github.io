@@ -73,47 +73,47 @@ export function CustomIntegrationMockup() {
         
         <text x="440" y="200" fill="#e06c75" fontSize="9" fontFamily="monospace">url</text>
         <text x="465" y="200" fill="#abb2bf" fontSize="9" fontFamily="monospace"> = </text>
-        <text x="480" y="200" fill="#98c379" fontSize="9" fontFamily="monospace">"https://api.customcrm.com/v2"</text>
+        <text x="480" y="200" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;https://api.customcrm.com/v2&quot;</text>
         
         <text x="440" y="215" fill="#e06c75" fontSize="9" fontFamily="monospace">headers</text>
         <text x="485" y="215" fill="#abb2bf" fontSize="9" fontFamily="monospace">= {'{'}</text>
         
-        <text x="455" y="230" fill="#98c379" fontSize="9" fontFamily="monospace">"Authorization"</text>
+        <text x="455" y="230" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;Authorization&quot;</text>
         <text x="555" y="230" fill="#abb2bf" fontSize="9" fontFamily="monospace">: </text>
-        <text x="565" y="230" fill="#98c379" fontSize="9" fontFamily="monospace">"Bearer {'{'} token {'}'}"</text>
+        <text x="565" y="230" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;Bearer {'{'} token {'}'}&quot;</text>
         <text x="665" y="230" fill="#abb2bf" fontSize="9" fontFamily="monospace">,</text>
         
-        <text x="455" y="245" fill="#98c379" fontSize="9" fontFamily="monospace">"Content-Type"</text>
+        <text x="455" y="245" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;Content-Type&quot;</text>
         <text x="545" y="245" fill="#abb2bf" fontSize="9" fontFamily="monospace">: </text>
-        <text x="555" y="245" fill="#98c379" fontSize="9" fontFamily="monospace">"application/json"</text>
+        <text x="555" y="245" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;application/json&quot;</text>
         
         <text x="440" y="260" fill="#abb2bf" fontSize="9" fontFamily="monospace">{"}"}</text>
         
         <text x="440" y="280" fill="#e06c75" fontSize="9" fontFamily="monospace">data</text>
         <text x="470" y="280" fill="#abb2bf" fontSize="9" fontFamily="monospace"> = {'{'}</text>
         
-        <text x="455" y="295" fill="#98c379" fontSize="9" fontFamily="monospace">"account"</text>
+        <text x="455" y="295" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;account&quot;</text>
         <text x="510" y="295" fill="#abb2bf" fontSize="9" fontFamily="monospace">: {'{'}</text>
         
-        <text x="470" y="310" fill="#98c379" fontSize="9" fontFamily="monospace">"full_name"</text>
+        <text x="470" y="310" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;full_name&quot;</text>
         <text x="540" y="310" fill="#abb2bf" fontSize="9" fontFamily="monospace">: </text>
         <text x="550" y="310" fill="#e06c75" fontSize="9" fontFamily="monospace">customer</text>
         <text x="605" y="310" fill="#abb2bf" fontSize="9" fontFamily="monospace">[</text>
-        <text x="610" y="310" fill="#98c379" fontSize="9" fontFamily="monospace">"name"</text>
+        <text x="610" y="310" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;name&quot;</text>
         <text x="645" y="310" fill="#abb2bf" fontSize="9" fontFamily="monospace">],</text>
         
-        <text x="470" y="325" fill="#98c379" fontSize="9" fontFamily="monospace">"email"</text>
+        <text x="470" y="325" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;email&quot;</text>
         <text x="515" y="325" fill="#abb2bf" fontSize="9" fontFamily="monospace">: </text>
         <text x="525" y="325" fill="#e06c75" fontSize="9" fontFamily="monospace">customer</text>
         <text x="580" y="325" fill="#abb2bf" fontSize="9" fontFamily="monospace">[</text>
-        <text x="585" y="325" fill="#98c379" fontSize="9" fontFamily="monospace">"email"</text>
+        <text x="585" y="325" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;email&quot;</text>
         <text x="625" y="325" fill="#abb2bf" fontSize="9" fontFamily="monospace">],</text>
         
-        <text x="470" y="340" fill="#98c379" fontSize="9" fontFamily="monospace">"phone"</text>
+        <text x="470" y="340" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;phone&quot;</text>
         <text x="515" y="340" fill="#abb2bf" fontSize="9" fontFamily="monospace">: </text>
         <text x="525" y="340" fill="#e06c75" fontSize="9" fontFamily="monospace">customer</text>
         <text x="580" y="340" fill="#abb2bf" fontSize="9" fontFamily="monospace">[</text>
-        <text x="585" y="340" fill="#98c379" fontSize="9" fontFamily="monospace">"phone"</text>
+        <text x="585" y="340" fill="#98c379" fontSize="9" fontFamily="monospace">&quot;phone&quot;</text>
         <text x="625" y="340" fill="#abb2bf" fontSize="9" fontFamily="monospace">]</text>
         
         <text x="455" y="355" fill="#abb2bf" fontSize="9" fontFamily="monospace">{"}"}</text>

@@ -330,7 +330,7 @@ function HRMockup() {
                 <div className="pt-4 border-t border-white/10">
                     <div className="bg-white/5 rounded p-3 mb-3">
                         <div className="text-xs text-gray mb-1">User Query</div>
-                        <div className="text-sm">What's the match percentage for candidate C-1247 with job J-589?</div>
+                        <div className="text-sm">What&apos;s the match percentage for candidate C-1247 with job J-589?</div>
                     </div>
 
                     <div className="bg-blue-500/10 rounded p-4 border border-blue-500/20">

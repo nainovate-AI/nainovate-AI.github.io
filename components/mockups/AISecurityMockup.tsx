@@ -83,7 +83,7 @@ export function AISecurityMockup() {
         {/* Threat 1 */}
         <rect x="20" y="415" width="760" height="25" fill="#0a0a0a" stroke="#222" strokeWidth="1"/>
         <circle cx="35" cy="427" r="4" fill="#4ade80"/>
-        <text x="50" y="430" fill="#ccc" fontSize="9">15:45:33 - Blocked prompt injection attempt - Pattern: "Ignore previous instructions"</text>
+        <text x="50" y="430" fill="#ccc" fontSize="9">15:45:33 - Blocked prompt injection attempt - Pattern: &quot;Ignore previous instructions&quot;</text>
         <text x="720" y="430" fill="#4ade80" fontSize="9">BLOCKED</text>
         
         {/* Threat 2 */}
