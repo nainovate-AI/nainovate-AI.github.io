@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   keywords: 'AI platform, enterprise AI, AI agents, no-code AI development, GenX platform, NIA chatbot, AI workflow automation'
 };
 
+//test comment for starting a publish
+
 export default function Home() {
   const homepageSchema = {
     "@context": "https://schema.org",
