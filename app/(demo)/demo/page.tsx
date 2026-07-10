@@ -1,5 +1,5 @@
-import TheatricalDemoClient from '@/components/pages/TheatricalDemoClient';
+import DemoChooserClient from '@/components/pages/DemoChooserClient';
 
 export default function DemoPage() {
-  return <TheatricalDemoClient />;
+  return <DemoChooserClient />;
 }

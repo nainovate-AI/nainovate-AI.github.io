@@ -22,19 +22,19 @@ export default function DemoChooserClient() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Operations NIA */}
             <Link
-              href="/platform/nia"
+              href="/demo/operations"
               className="group border border-white/10 rounded-lg p-12 hover:border-white/40 transition-colors block"
             >
               <p className="text-xs tracking-widest text-gray uppercase mb-6">01 • OPERATIONS</p>
               <h2 className="text-4xl font-bold mb-6 group-hover:text-white">Operations NIA</h2>
               <p className="text-gray mb-8 leading-relaxed">
-                HR screening, BOQ generation, document processing, enterprise search.
-                Original NIA demo — chat with agents, see them work.
+                Theatrical demo of the GenX platform — building permits portal walkthrough
+                with AI-driven approvals and analytics.
               </p>
               <div className="space-y-2 mb-8 text-sm text-gray">
-                <p>· HR candidate matching</p>
-                <p>· BOQ item intelligence</p>
-                <p>· Multi-agent chat</p>
+                <p>· Permits intake automation</p>
+                <p>· Analytics dashboard</p>
+                <p>· Workflow orchestration</p>
               </div>
               <span className="text-sm text-white group-hover:underline">Open Operations demo →</span>
             </Link>
