@@ -126,6 +126,7 @@ interface NavItem {
   isDropdown: boolean;
   isSolutionsMega?: boolean;
   isPlatformMega?: boolean;
+  isDIMega?: boolean;
   dropdownItems?: DropdownItem[];
   solutionCards?: SolutionCard[];
 }
@@ -140,6 +141,12 @@ export function Header() {
       href: '/platform',
       isDropdown: true,
       isPlatformMega: true,
+    },
+    {
+      name: 'Decision Intelligence',
+      href: '/decision-intelligence',
+      isDropdown: true,
+      isDIMega: true,
     },
     {
       name: 'Solutions',
@@ -246,6 +253,7 @@ export function Header() {
                       onClick={() => {
                         if (item.name === 'Platform') window.location.href = item.href;
                         if (item.name === 'Solutions') window.location.href = item.href;
+                        if (item.name === 'Decision Intelligence') window.location.href = item.href;
                       }}
                     >
                       {item.name}
@@ -426,6 +434,65 @@ export function Header() {
                           </div>
                         </div>
                       </div>
+                    ) : item.isDIMega ? (
+                      /* DECISION INTELLIGENCE MEGA DROPDOWN */
+                      <div
+                        className={`absolute left-1/2 -translate-x-1/2 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
+                          }`}
+                        onMouseEnter={() => setActiveDropdown(item.name)}
+                        onMouseLeave={() => setActiveDropdown(null)}
+                      >
+                        <div className="absolute -top-2 left-0 right-0 h-2" />
+                        <div className="bg-black/95 backdrop-blur-md border-2 border-white/10 rounded-lg p-8 w-[720px]">
+                          <div className="grid grid-cols-2 gap-6">
+                            <Link
+                              href="/decision-intelligence"
+                              className="flex flex-col gap-2 p-4 rounded-lg hover:bg-white/5 transition-colors group border border-white/10 col-span-2"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span className="text-xs text-gray-400 uppercase tracking-widest">Overview</span>
+                              <span className="text-lg text-white font-bold">Decision Intelligence.</span>
+                              <span className="text-xs text-gray-500">Explainable AI decision layer on top of Freshdesk, CRM, and knowledge bases.</span>
+                            </Link>
+                            <Link
+                              href="/decision-intelligence/ai-agent"
+                              className="flex flex-col gap-1 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span className="text-xs text-gray-400 uppercase tracking-widest">01</span>
+                              <span className="text-sm text-white font-medium">AI Agent — Ask</span>
+                              <span className="text-xs text-gray-500">Customer-facing chat in Freshdesk. Four scenarios.</span>
+                            </Link>
+                            <Link
+                              href="/decision-intelligence/signal-chain"
+                              className="flex flex-col gap-1 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span className="text-xs text-gray-400 uppercase tracking-widest">02</span>
+                              <span className="text-sm text-white font-medium">Signal → Action Chain</span>
+                              <span className="text-xs text-gray-500">Watchlists → Recommendations → Workflows.</span>
+                            </Link>
+                            <Link
+                              href="/decision-intelligence/trace-audit"
+                              className="flex flex-col gap-1 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span className="text-xs text-gray-400 uppercase tracking-widest">03</span>
+                              <span className="text-sm text-white font-medium">Trace &amp; Audit</span>
+                              <span className="text-xs text-gray-500">Every decision explainable. Legal-audit ready.</span>
+                            </Link>
+                            <Link
+                              href="/decision-intelligence/coordination"
+                              className="flex flex-col gap-1 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <span className="text-xs text-gray-400 uppercase tracking-widest">04</span>
+                              <span className="text-sm text-white font-medium">Coordination Center</span>
+                              <span className="text-xs text-gray-500">Cross-team initiatives. One shared surface.</span>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
                     ) : item.isSolutionsMega ? (
                       /* SOLUTIONS MEGA DROPDOWN - SIMPLE 3 COLUMN LAYOUT */
                       <div
@@ -530,7 +597,7 @@ export function Header() {
 
                             {/* AI FOR INTELLIGENCE Column */}
                             <div className="min-w-[280px] relative">
-                              <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10"></div>
+                              <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-white/10 hidden"></div>
                               <div className="py-2">
                                 <Link
                                   href="/solutions/intelligence"
@@ -563,6 +630,48 @@ export function Header() {
                                     <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">Quality Control</span>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+
+                            {/* BY TEAM Column */}
+                            <div className="min-w-[240px]">
+                              <div className="py-2">
+                                <div className="px-6 py-3">
+                                  <p className="text-xs font-medium text-white uppercase tracking-widest mb-1">By Team</p>
+                                  <p className="text-[10px] text-gray-500">Decision Intelligence in your workflow</p>
+                                </div>
+                                <Link
+                                  href="/solutions/customer-support"
+                                  className="block px-6 py-2 hover:bg-white/5 transition-colors group"
+                                  onClick={() => setActiveDropdown(null)}
+                                >
+                                  <span className="block text-sm text-white">Customer Support</span>
+                                  <span className="block text-[10px] text-gray-500">L1 deflection · L2 co-pilot · Support Head dashboards</span>
+                                </Link>
+                                <Link
+                                  href="/solutions/customer-success"
+                                  className="block px-6 py-2 hover:bg-white/5 transition-colors group"
+                                  onClick={() => setActiveDropdown(null)}
+                                >
+                                  <span className="block text-sm text-white">Customer Success</span>
+                                  <span className="block text-[10px] text-gray-500">Health-anchored watchlists · churn prevention</span>
+                                </Link>
+                                <Link
+                                  href="/solutions/sales"
+                                  className="block px-6 py-2 hover:bg-white/5 transition-colors group"
+                                  onClick={() => setActiveDropdown(null)}
+                                >
+                                  <span className="block text-sm text-white">Sales</span>
+                                  <span className="block text-[10px] text-gray-500">Pipeline aware of deployment reality</span>
+                                </Link>
+                                <Link
+                                  href="/solutions/delivery"
+                                  className="block px-6 py-2 hover:bg-white/5 transition-colors group"
+                                  onClick={() => setActiveDropdown(null)}
+                                >
+                                  <span className="block text-sm text-white">Delivery</span>
+                                  <span className="block text-[10px] text-gray-500">Milestone risk surfaced early</span>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -666,7 +775,15 @@ export function Header() {
                     <p className="text-sm font-medium text-gray uppercase tracking-wider py-2">
                       {item.name}
                     </p>
-                    {item.isPlatformMega ? (
+                    {item.isDIMega ? (
+                      <div className="pl-4">
+                        <Link href="/decision-intelligence" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Overview</Link>
+                        <Link href="/decision-intelligence/ai-agent" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>AI Agent — Ask</Link>
+                        <Link href="/decision-intelligence/signal-chain" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Signal → Action Chain</Link>
+                        <Link href="/decision-intelligence/trace-audit" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Trace & Audit</Link>
+                        <Link href="/decision-intelligence/coordination" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Coordination Center</Link>
+                      </div>
+                    ) : item.isPlatformMega ? (
                       <div className="pl-4">
                         <p className="text-xs text-gray-400 uppercase pt-3">Products</p>
                         <Link href="/platform" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>GenX Platform</Link>
@@ -704,6 +821,15 @@ export function Header() {
                             {card.title}
                           </Link>
                         ))}
+                        {item.isSolutionsMega && (
+                          <>
+                            <p className="text-xs text-gray-400 uppercase pt-3">By Team</p>
+                            <Link href="/solutions/customer-support" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Customer Support</Link>
+                            <Link href="/solutions/customer-success" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Customer Success</Link>
+                            <Link href="/solutions/sales" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Sales</Link>
+                            <Link href="/solutions/delivery" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Delivery</Link>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
