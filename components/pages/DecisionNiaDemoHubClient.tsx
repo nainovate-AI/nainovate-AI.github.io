@@ -186,7 +186,7 @@ export default function DecisionNiaDemoHubClient() {
           </div>
 
           {/* Content */}
-          <div className="px-8 py-8 max-w-[1200px]">
+          <div className="px-8 py-8 w-full">
             <FeaturePanel space={space.key} feature={activeFeature} spaceLabel={space.label} persona={space.persona} />
           </div>
         </section>
