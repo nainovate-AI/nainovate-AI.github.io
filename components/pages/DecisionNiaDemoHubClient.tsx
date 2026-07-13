@@ -88,7 +88,7 @@ export default function DecisionNiaDemoHubClient() {
 
             {/* Popover */}
             {pickerOpen && (
-              <div className="absolute top-0 left-full ml-2 z-50 w-[260px] bg-white/[0.03] border border-white/10 rounded-lg shadow-xl overflow-hidden">
+              <div className="absolute top-0 left-full ml-2 z-50 w-[260px] bg-black border border-white/20 rounded-lg shadow-2xl overflow-hidden">
                 <div className="px-4 py-2 border-b border-white/5">
                   <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">
                     Enterprise Demo
