@@ -187,7 +187,13 @@ export default function DecisionNiaDemoHubClient() {
 
           {/* Content */}
           <div className="px-8 py-8 w-full">
-            <FeaturePanel space={space.key} feature={activeFeature} spaceLabel={space.label} persona={space.persona} />
+            <FeaturePanel
+              space={space.key}
+              feature={activeFeature}
+              spaceLabel={space.label}
+              persona={space.persona}
+              onNavigate={setActiveFeature}
+            />
           </div>
         </section>
       </div>
@@ -204,15 +210,17 @@ function FeaturePanel({
   feature,
   spaceLabel,
   persona,
+  onNavigate,
 }: {
   space: SpaceKey;
   feature: FeatureKey;
   spaceLabel: string;
   persona: string;
+  onNavigate: (f: FeatureKey) => void;
 }) {
-  if (feature === 'command-center') return <CommandCenter space={space} persona={persona} />;
+  if (feature === 'command-center') return <CommandCenter space={space} persona={persona} onNavigate={onNavigate} />;
   if (feature === 'dashboard') return <Dashboard space={space} spaceLabel={spaceLabel} />;
-  if (feature === 'ask') return <Ask space={space} persona={persona} />;
+  if (feature === 'ask') return <Ask space={space} persona={persona} onNavigate={onNavigate} />;
   if (feature === 'trace') return <Trace space={space} />;
   return null;
 }
@@ -481,7 +489,15 @@ const COMMAND_DATA: Record<SpaceKey, {
   },
 };
 
-function CommandCenter({ space, persona }: { space: SpaceKey; persona: string }) {
+function CommandCenter({
+  space,
+  persona,
+  onNavigate,
+}: {
+  space: SpaceKey;
+  persona: string;
+  onNavigate: (f: FeatureKey) => void;
+}) {
   const d = COMMAND_DATA[space];
   return (
     <div className="space-y-6">
@@ -503,7 +519,10 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
             <p className="text-sm text-white/60 mt-1">{d.summary.sub}</p>
           </div>
         </div>
-        <button className="text-xs px-3 py-1.5 border border-white/10 rounded bg-white text-white hover:bg-white/5">
+        <button
+          onClick={() => onNavigate('trace')}
+          className="text-xs px-3 py-1.5 border border-white/10 rounded bg-transparent text-white hover:bg-white/5"
+        >
           View full summary →
         </button>
       </div>
@@ -512,9 +531,9 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
       <div>
         <SectionTitle
           action={
-            <a href="#" className="text-xs text-white/50 hover:text-white">
+            <button onClick={() => onNavigate('dashboard')} className="text-xs text-white/50 hover:text-white">
               View all actions →
-            </a>
+            </button>
           }
         >
           Priority Actions <span className="text-white/40">({d.actions.length})</span>{' '}
@@ -563,9 +582,9 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
       <div>
         <SectionTitle
           action={
-            <a href="#" className="text-xs text-white/50 hover:text-white">
+            <button onClick={() => onNavigate('dashboard')} className="text-xs text-white/50 hover:text-white">
               View all →
-            </a>
+            </button>
           }
         >
           Key Signals
@@ -582,9 +601,9 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
                 View map →
-              </a>
+              </button>
             }
           >
             Cross-Functional Impact
@@ -605,9 +624,9 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
                 View all →
-              </a>
+              </button>
             }
           >
             Active Workflows
@@ -642,9 +661,9 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
                 View all →
-              </a>
+              </button>
             }
           >
             Recent Decisions &amp; Outcomes
@@ -663,9 +682,9 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
                 View all →
-              </a>
+              </button>
             }
           >
             Watchlist Highlights
@@ -700,6 +719,7 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
    ================================================================ */
 
 function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string }) {
+  const [tab, setTab] = useState(0);
   const kpis: Record<SpaceKey, { label: string; value: string; delta: string; tone: 'up' | 'down' | 'neutral' }[]> = {
     'customer-success': [
       { label: 'Total customers', value: '1,248', delta: '↑ 12 (1.0%) vs last 30 days', tone: 'up' },
@@ -813,7 +833,10 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
         {['Overview', 'Health', 'Renewals', 'Adoption', 'Engagement', 'Revenue', 'Support', 'Custom'].map((t, i) => (
           <button
             key={t}
-            className={`text-sm py-2 border-b-2 ${i === 0 ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'}`}
+            onClick={() => setTab(i)}
+            className={`text-sm py-2 border-b-2 ${
+              tab === i ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'
+            }`}
           >
             {t}
           </button>
@@ -832,9 +855,9 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => setTab(1)} className="text-xs text-white/50 hover:text-white">
                 View report →
-              </a>
+              </button>
             }
           >
             Distribution
@@ -902,9 +925,9 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => setTab(5)} className="text-xs text-white/50 hover:text-white">
                 View segments →
-              </a>
+              </button>
             }
           >
             By Segment
@@ -933,9 +956,9 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
       <Card className="p-5">
         <SectionTitle
           action={
-            <a href="#" className="text-xs text-white/50 hover:text-white">
+            <button onClick={() => setTab(1)} className="text-xs text-white/50 hover:text-white">
               View all at-risk →
-            </a>
+            </button>
           }
         >
           Top At-Risk
@@ -977,17 +1000,20 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
    ASK
    ================================================================ */
 
-const ASK_DATA: Record<SpaceKey, {
+type BotAnswer = {
   question: string;
-  timestamp: string;
+  timestamp?: string;
   direct: { headline: string; sub: string };
-  insights: { label: string; value: string; delta: string }[];
-  table: { name: string; health: number; risk: string; arr: string; factors: string[]; owner: string; code: string }[];
-  reasoning: { summary: string; factors: string[] };
+  insights?: { label: string; value: string; delta: string }[];
+  table?: { name: string; health: number; risk: string; arr: string; factors: string[]; owner: string; code: string }[];
+  reasoning?: { summary: string; factors: string[] };
   followups: string[];
-  keyInsightsRail: { icon: string; label: string; value: string; delta: string }[];
-  recommendedActions: { title: string; sub: string; priority: 'high' | 'medium' }[];
-}> = {
+  bullets?: string[];
+  keyInsightsRail?: { icon: string; label: string; value: string; delta: string }[];
+  recommendedActions?: { title: string; sub: string; priority: 'high' | 'medium' }[];
+};
+
+const ASK_DATA: Record<SpaceKey, BotAnswer> = {
   'customer-success': {
     question: 'Which customers are at risk?',
     timestamp: '11:47 AM',
@@ -1138,53 +1164,516 @@ const ASK_DATA: Record<SpaceKey, {
   },
 };
 
-function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
-  const d = ASK_DATA[space];
+const ANSWER_BANK: Record<SpaceKey, BotAnswer[]> = {
+  'customer-success': [
+    {
+      question: 'Show revenue at risk breakdown',
+      direct: {
+        headline: '$2.4M revenue at risk across 12 accounts, weighted 65% Enterprise.',
+        sub: 'Northwind ($450K) + Contoso ($320K) + Fabrikam ($230K) = 42% of exposure.',
+      },
+      bullets: [
+        'Enterprise: $1.6M (67%) — 6 accounts',
+        'Mid Market: $560K (23%) — 4 accounts',
+        'Strategic: $240K (10%) — 2 accounts',
+        'Top driver: usage decline (-24% avg on impacted accounts)',
+      ],
+      followups: ['Which segment is most at risk?', 'What actions should I take?', 'How is Northwind doing?', 'Compare vs last quarter'],
+    },
+    {
+      question: 'Which segment is most at risk?',
+      direct: {
+        headline: 'Enterprise segment carries the highest revenue exposure.',
+        sub: '$1.6M at risk, 67% of total. Mid Market accounts are the largest count-wise but smaller in ARR.',
+      },
+      bullets: [
+        'Enterprise: 6 accts × $267K avg ARR',
+        'Mid Market: 4 accts × $140K avg ARR',
+        'Strategic: 2 accts × $120K avg ARR',
+        'Enterprise churn probability weighted 32% vs 18% MM',
+      ],
+      followups: ['Show me Enterprise account list', 'What is driving Enterprise churn?', 'Which customers are at risk?'],
+    },
+    {
+      question: 'What actions should I take?',
+      direct: {
+        headline: '3 actions recommended for today. 2 auto-approved, 1 needs review.',
+        sub: 'Executive outreach to Northwind is urgent — sync bug + health drop.',
+      },
+      bullets: [
+        '1. Executive outreach — Northwind (health 35, $450K) · APPROVE',
+        '2. Onboarding review — Contoso ($320K) · AUTO-RUN',
+        '3. Pricing review opportunity — Fabrikam ($180K) · SCHEDULE',
+      ],
+      followups: ['Show Northwind outreach draft', 'What triggered Contoso onboarding review?', 'How is Northwind doing?'],
+    },
+    {
+      question: 'How is Northwind doing?',
+      direct: {
+        headline: 'Northwind Industries is at high risk. Health score 35 (down 15 pts in 30d).',
+        sub: '$450K ARR. Renewal in 143 days. Support tickets +3 in 24h. Marcus (CSM) is briefed.',
+      },
+      bullets: [
+        'Health: 35 (was 50 last month)',
+        'Usage: ↓ 32% (mRounds sync failing)',
+        'Open tickets: 4 (1 P0)',
+        'Renewal: 2027-01-15',
+        'Recommended: executive outreach + workflow started',
+      ],
+      followups: ['Show Northwind rescue plan', 'What is FD-2104?', 'Show all at-risk accounts'],
+    },
+    {
+      question: 'Compare vs last quarter',
+      direct: {
+        headline: 'Q3 shows worsening health but improving deflection and MTTR.',
+        sub: 'At-risk accounts up from 8 to 12. NPS steady at 42. Deflection ↑ 12%.',
+      },
+      bullets: [
+        'At-risk accounts: 8 → 12',
+        'Revenue at risk: $1.8M → $2.4M',
+        'Avg health: 68 → 46',
+        'AI deflection: 29% → 41%',
+        'NRR: 108% (target 110%)',
+      ],
+      followups: ['Show revenue at risk breakdown', 'What is driving health drop?', 'Which customers are at risk?'],
+    },
+  ],
+  'customer-support': [
+    {
+      question: 'Show me FD-2104 details',
+      direct: {
+        headline: 'FD-2104: Northwind mRounds sync hang, P0, novelty 0.87.',
+        sub: 'No KB match. Auto-escalated to sync module owner (Priya R.). Trace: trace_acme_p0_2104.',
+      },
+      bullets: [
+        'Customer: Sarah Johnson · Northwind Industries',
+        'Started: 05:45 AM — sync hangs at 87%, 12MB stuck',
+        'Confidence: 0.87 novelty · 0.91 escalation confidence',
+        'Actions: Jira ENG-4412 opened, Marcus (CSM) notified, portal banner up, KB draft queued',
+        'Total workflow time: 1.42s',
+      ],
+      followups: ['Show me the full trace', 'What deflection was possible?', 'Route to L2'],
+    },
+    {
+      question: 'What tickets can we deflect?',
+      direct: {
+        headline: '41% of L1 volume is deflectable this week — 12 KB matches + 3 known incidents.',
+        sub: 'Top deflection candidates: PDF export, login issues, mRounds sync FAQ.',
+      },
+      bullets: [
+        'Docs-solution deflection: 42% (last 7d)',
+        'Known-issue deflection: 34%',
+        'Feature-request routing: 100% (10 items)',
+        'Reopen prevention: 3 patterns identified for KB',
+      ],
+      followups: ['Which product needs a KB update?', 'Show reopen patterns', 'Show me FD-2104 details'],
+    },
+    {
+      question: 'Show me reopen patterns',
+      direct: {
+        headline: '3 reopen patterns identified in the last 30 days — all fixable via KB updates.',
+        sub: 'mRounds sync reopens (3), export layout reopens (2), login flow reopens (2).',
+      },
+      bullets: [
+        'Pattern 1: mRounds sync — 3 reopens, KB gap',
+        'Pattern 2: PDF export layout — 2 reopens, workaround exists',
+        'Pattern 3: Login flow SSO — 2 reopens, config issue',
+        'Recommended: draft 3 KB articles, notify affected accounts',
+      ],
+      followups: ['Draft KB article for FD-2112', 'Which product needs a KB update?', 'What tickets can we deflect?'],
+    },
+    {
+      question: 'Which product needs a KB update?',
+      direct: {
+        headline: 'mRounds has the highest KB gap — 3 reopen patterns + 1 novel escalation this week.',
+        sub: 'Recommend prioritizing mRounds Sync + Export documentation refresh.',
+      },
+      bullets: [
+        'mRounds: 3 KB gaps, 8 similar tickets',
+        'mWorkOrder: 1 KB gap, 2 similar tickets',
+        'mForms: no gaps this week',
+        'Owner suggestion: Karen Foster + Priya R.',
+      ],
+      followups: ['Show reopen patterns', 'Draft KB article for FD-2112', 'What tickets can we deflect?'],
+    },
+  ],
+  sales: [
+    {
+      question: 'Show Q3 forecast',
+      direct: {
+        headline: 'Q3 pipeline $2.9M, weighted $1.7M — 2 deals at risk.',
+        sub: 'Northwind expansion delayed 30d. Contoso renewal ready to close. Wayne fast-track.',
+      },
+      bullets: [
+        'Total pipeline: $2.9M (↑ 12% vs Q2)',
+        'Weighted: $1.7M',
+        'Deals in flight: 5',
+        'At-risk: 2 (Northwind, Initech)',
+        'Ready to close this month: $820K (Contoso renewal)',
+      ],
+      followups: ['What is Contoso deal status?', 'Where should I focus this week?', 'Which champion left?'],
+    },
+    {
+      question: 'What is Contoso deal status?',
+      direct: {
+        headline: 'Contoso renewal in negotiation — $820K, likely close in 2 weeks.',
+        sub: 'FR-338 timeline packaged into proposal. Health 68. Champion strong.',
+      },
+      bullets: [
+        'Stage: Negotiation',
+        'ARR: $820K',
+        'Health: 68 (stable)',
+        'Champion: Priya Menon (procurement)',
+        'Next step: send final proposal',
+      ],
+      followups: ['Show Q3 forecast', 'Where should I focus this week?', 'Which champion left?'],
+    },
+    {
+      question: 'Which champion left?',
+      direct: {
+        headline: 'Umbrella Group — prior champion left (LinkedIn signal).',
+        sub: 'New champion promoted internally. Warmup workflow started.',
+      },
+      bullets: [
+        'Account: Umbrella Group ($540K renewal)',
+        'Signal: LinkedIn — prior champion new role',
+        'New champion: promoted from internal team',
+        'Warmup workflow: rec_s_04 in progress',
+        'Renewal in 90d — proactive',
+      ],
+      followups: ['Show Q3 forecast', 'Where should I focus this week?'],
+    },
+    {
+      question: 'Where should I focus this week?',
+      direct: {
+        headline: '3 priorities: Contoso close, Northwind hold, Umbrella warmup.',
+        sub: 'Delay Wayne fast-track discussion to next week to avoid overloading calendar.',
+      },
+      bullets: [
+        'Mon: Send Contoso final proposal',
+        'Tue: Northwind — hold expansion, book support call',
+        'Wed: Warm new Umbrella champion (LinkedIn intro)',
+        'Thu: Wayne pilot review',
+        'Fri: Q3 forecast review with leadership',
+      ],
+      followups: ['What is Contoso deal status?', 'Which champion left?', 'Show Q3 forecast'],
+    },
+  ],
+  delivery: [
+    {
+      question: 'Show Northwind rescue plan',
+      direct: {
+        headline: 'Northwind Phase 2 M3 rescue on track — new UAT date 2026-07-09 (8-day slip).',
+        sub: 'Reassigned Priya B. from Umbrella. 2 P1s escalated. CSM Marcus re-baselined with PMO.',
+      },
+      bullets: [
+        'Original M3: 2026-07-01',
+        'New M3: 2026-07-09 (+8d)',
+        'Reassigned: Priya B. (was Umbrella green)',
+        'Escalated: 2 P1 tickets to Eng',
+        'Owner: Priya B. + Jordan L.',
+      ],
+      followups: ['What is Initech go-live risk?', 'Who has capacity?', 'Show milestone slip risk'],
+    },
+    {
+      question: 'What is Initech go-live risk?',
+      direct: {
+        headline: 'Initech pilot go-live at high risk — 4 P1 tickets open, 9 days out.',
+        sub: 'Recovery plan: escalate P1s, cross-train consultant, propose 12-day re-baseline.',
+      },
+      bullets: [
+        'Project: Initech Pilot',
+        'Go-live: 2026-07-22 (9 days)',
+        'Open P1s: 4 (2 blockers)',
+        'Consultant load: 138% (over-allocated)',
+        'Recommended: re-baseline +12d, escalate P1s',
+      ],
+      followups: ['Show Northwind rescue plan', 'Who has capacity?', 'Show milestone slip risk'],
+    },
+    {
+      question: 'Who has capacity?',
+      direct: {
+        headline: 'Priya B. freed 40% capacity (Umbrella green complete). Aakash M. 20% available.',
+        sub: 'Casey Wong at 78%, tight but OK for cross-training.',
+      },
+      bullets: [
+        'Priya B.: 40% free (Umbrella green freed)',
+        'Aakash M.: 20% free',
+        'Casey Wong: 22% free',
+        'Jordan Lee: 15% (leadership overhead)',
+        'Total spare hours this week: 62',
+      ],
+      followups: ['Show Northwind rescue plan', 'What is Initech go-live risk?', 'Show milestone slip risk'],
+    },
+    {
+      question: 'Show milestone slip risk',
+      direct: {
+        headline: '2 milestones at slip risk in 30d: Northwind M3 (rescued) + Initech go-live.',
+        sub: 'Watchlist wl_delivery_slip fires on multi-signal: tickets + utilization + sentiment.',
+      },
+      bullets: [
+        'Northwind M3: 21d early warning, rescue active',
+        'Initech go-live: 9d out, 4 P1 blockers',
+        'On track: Umbrella M1, Stark config, Adventure Works',
+        'Trigger threshold: 3+ signals firing',
+      ],
+      followups: ['Show Northwind rescue plan', 'What is Initech go-live risk?', 'Who has capacity?'],
+    },
+  ],
+};
+
+const FALLBACK: BotAnswer = {
+  question: '',
+  direct: {
+    headline: "I don't have specific data on that question.",
+    sub: 'Try one of the suggested follow-ups below, or ask about at-risk accounts, revenue, deals, tickets, or milestones.',
+  },
+  followups: ['Which customers are at risk?', 'What actions should I take?', 'Show me the trace'],
+};
+
+function tokenize(s: string): string[] {
+  return s
+    .toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter((t) => t.length > 3);
+}
+
+function lookupAnswer(q: string, space: SpaceKey): BotAnswer {
+  const norm = q.toLowerCase().trim();
+  const bank: BotAnswer[] = [ASK_DATA[space], ...ANSWER_BANK[space]];
+
+  const exact = bank.find((a) => a.question.toLowerCase().trim() === norm);
+  if (exact) return exact;
+
+  const qTokens = tokenize(norm);
+  if (!qTokens.length) return FALLBACK;
+
+  let best: BotAnswer | null = null;
+  let bestScore = 0;
+  for (const a of bank) {
+    const aTokens = tokenize(a.question);
+    let score = 0;
+    for (const t of qTokens) {
+      for (const at of aTokens) {
+        if (at === t) score += 3;
+        else if (at.startsWith(t) || t.startsWith(at)) score += 2;
+        else if (at.includes(t) || t.includes(at)) score += 1;
+      }
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      best = a;
+    }
+  }
+  return bestScore >= 3 ? best! : FALLBACK;
+}
+
+type ChatMessage = { role: 'user' | 'bot'; text: string; answer?: BotAnswer; ts: string };
+
+function nowLabel(): string {
+  const d = new Date();
+  const h = d.getHours();
+  const m = String(d.getMinutes()).padStart(2, '0');
+  const am = h < 12 ? 'AM' : 'PM';
+  const h12 = h % 12 === 0 ? 12 : h % 12;
+  return `${h12}:${m} ${am}`;
+}
+
+function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string; onNavigate: (f: FeatureKey) => void }) {
+  const seed = ASK_DATA[space];
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    { role: 'user', text: seed.question, ts: seed.timestamp || nowLabel() },
+    { role: 'bot', text: '', answer: seed, ts: seed.timestamp || nowLabel() },
+  ]);
+  const [input, setInput] = useState('');
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Reset on space change
+    const s = ASK_DATA[space];
+    setMessages([
+      { role: 'user', text: s.question, ts: s.timestamp || nowLabel() },
+      { role: 'bot', text: '', answer: s, ts: s.timestamp || nowLabel() },
+    ]);
+  }, [space]);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages.length]);
+
+  function submit(text: string) {
+    const q = text.trim();
+    if (!q) return;
+    const ans = lookupAnswer(q, space);
+    const ts = nowLabel();
+    setMessages((prev) => [
+      ...prev,
+      { role: 'user', text: q, ts },
+      { role: 'bot', text: '', answer: ans, ts },
+    ]);
+    setInput('');
+  }
+
+  const latestBot = [...messages].reverse().find((m) => m.role === 'bot');
+  const currentAnswer = latestBot?.answer;
+
   return (
     <div className="grid grid-cols-12 gap-6">
       <div className="col-span-9">
         <h1 className="text-xl font-semibold text-white mb-4">AI Agent</h1>
 
-        <div className="flex justify-end mb-4">
-          <div className="rounded-2xl px-4 py-3 max-w-xl text-white" style={{ background: '#6366f1' }}>
-            <p className="text-sm">{d.question}</p>
-            <p className="text-[10px] text-white/70 mt-1">{d.timestamp}</p>
-          </div>
+        <div ref={scrollRef} className="max-h-[70vh] overflow-y-auto pr-1 space-y-4">
+          {messages.map((m, idx) => {
+            if (m.role === 'user') {
+              return (
+                <div key={idx} className="flex justify-end">
+                  <div className="rounded-2xl px-4 py-3 max-w-xl text-white" style={{ background: '#6366f1' }}>
+                    <p className="text-sm">{m.text}</p>
+                    <p className="text-[10px] text-white/70 mt-1">{m.ts}</p>
+                  </div>
+                </div>
+              );
+            }
+            const a = m.answer!;
+            const isLast = idx === messages.length - 1;
+            return <BotCard key={idx} answer={a} isLast={isLast} ts={m.ts} onFollowup={submit} onNavigate={onNavigate} />;
+          })}
         </div>
 
-        <Card className="p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs" style={{ background: '#6366f1' }}>
-              ✦
-            </span>
-            <span className="text-sm font-medium text-white">GenX Copilot</span>
-            <Pill tone="neutral">TABLE</Pill>
-            <span className="ml-auto text-xs text-white/50">{d.timestamp}</span>
-          </div>
+        {/* Composer */}
+        <Card className="p-3 mt-4 flex items-center gap-3">
+          <span className="text-white/40">◯</span>
+          <input
+            className="flex-1 outline-none text-sm placeholder:text-white/40 bg-transparent text-white"
+            placeholder="Ask anything about your business…"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') submit(input);
+            }}
+          />
+          <button
+            onClick={() => submit(input)}
+            className="w-8 h-8 rounded flex items-center justify-center text-white"
+            style={{ background: '#6366f1' }}
+          >
+            →
+          </button>
+        </Card>
+      </div>
 
-          {/* Direct answer */}
-          <div className="rounded-lg p-4 mb-6" style={{ background: 'rgba(99,102,241,0.14)' }}>
-            <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-2">✦ Direct Answer</p>
-            <p className="text-sm font-medium text-white">{d.direct.headline}</p>
-            <p className="text-sm text-white/70 mt-1">{d.direct.sub}</p>
-          </div>
+      {/* Right rail */}
+      <div className="col-span-3 space-y-4">
+        {currentAnswer?.keyInsightsRail && (
+          <Card className="p-4">
+            <p className="text-sm font-medium text-white mb-3">Key Insights</p>
+            {currentAnswer.keyInsightsRail.map((i) => (
+              <div key={i.label} className="py-2 border-b border-white/5 last:border-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-white/50 text-xs">{i.icon}</span>
+                  <p className="text-[10px] uppercase tracking-wider text-white/50">{i.label}</p>
+                </div>
+                <p className="text-xl font-semibold text-white">{i.value}</p>
+                <p className="text-[10px] text-green-400 mt-0.5">{i.delta}</p>
+              </div>
+            ))}
+          </Card>
+        )}
 
-          {/* Insights */}
+        {currentAnswer?.recommendedActions && (
+          <Card className="p-4">
+            <p className="text-sm font-medium text-white mb-3">Recommended Actions</p>
+            {currentAnswer.recommendedActions.map((a, i) => (
+              <div key={i} className="py-3 border-b border-white/5 last:border-0">
+                <p className="text-sm text-white mb-1">{a.title}</p>
+                <p className="text-xs text-white/60 leading-relaxed mb-2">{a.sub}</p>
+                <div className="flex items-center justify-between">
+                  <Pill tone={a.priority === 'high' ? 'red' : 'yellow'}>{a.priority} priority</Pill>
+                  <button onClick={() => onNavigate('trace')} className="text-xs" style={{ color: '#6366f1' }}>
+                    View
+                  </button>
+                </div>
+              </div>
+            ))}
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function BotCard({
+  answer: a,
+  isLast,
+  ts,
+  onFollowup,
+  onNavigate,
+}: {
+  answer: BotAnswer;
+  isLast: boolean;
+  ts: string;
+  onFollowup: (q: string) => void;
+  onNavigate: (f: FeatureKey) => void;
+}) {
+  return (
+    <Card className="p-6">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs" style={{ background: '#6366f1' }}>
+          ✦
+        </span>
+        <span className="text-sm font-medium text-white">GenX Copilot</span>
+        {a.table && <Pill tone="neutral">TABLE</Pill>}
+        <span className="ml-auto text-xs text-white/50">{ts}</span>
+      </div>
+
+      {/* Direct answer */}
+      <div className="rounded-lg p-4 mb-4" style={{ background: 'rgba(99,102,241,0.14)' }}>
+        <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-2">✦ Direct Answer</p>
+        <p className="text-sm font-medium text-white">{a.direct.headline}</p>
+        <p className="text-sm text-white/70 mt-1">{a.direct.sub}</p>
+      </div>
+
+      {/* Bullets (compact answers) */}
+      {a.bullets && (
+        <ul className="space-y-2 mb-6">
+          {a.bullets.map((b) => (
+            <li key={b} className="text-sm text-white/80 flex gap-2">
+              <span className="text-white/40 mt-0.5">·</span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Insights */}
+      {a.insights && (
+        <>
           <p className="text-sm font-medium text-white mb-3">Key insights</p>
           <div className="grid grid-cols-4 gap-3 mb-6">
-            {d.insights.map((i) => (
-              <div key={i.label} className="rounded-lg p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
+            {a.insights.map((i) => (
+              <div
+                key={i.label}
+                className="rounded-lg p-3"
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}
+              >
                 <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">{i.label}</p>
                 <p className="text-xl font-semibold text-white">{i.value}</p>
                 <p className="text-[10px] text-green-400 mt-1">{i.delta}</p>
               </div>
             ))}
           </div>
+        </>
+      )}
 
-          {/* Table */}
+      {/* Table */}
+      {a.table && (
+        <>
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-medium text-white">Top At-Risk</p>
-            <span className="text-xs text-white/50">{d.table.length} rows</span>
+            <span className="text-xs text-white/50">{a.table.length} rows</span>
           </div>
           <div className="grid grid-cols-12 gap-2 pb-2 border-b border-white/5 text-[10px] uppercase tracking-wider text-white/50">
             <span className="col-span-3">Account</span>
@@ -1194,7 +1683,7 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
             <span className="col-span-3">Factors</span>
             <span className="col-span-2">Owner</span>
           </div>
-          {d.table.map((r) => (
+          {a.table.map((r) => (
             <div key={r.name} className="grid grid-cols-12 gap-2 py-2 border-b border-white/5 last:border-0 items-center">
               <div className="col-span-3 flex items-center gap-2">
                 <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
@@ -1219,83 +1708,51 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
               <span className="col-span-2 text-xs text-white/70">{r.owner}</span>
             </div>
           ))}
-
-          <a href="#" className="text-xs mt-3 inline-block" style={{ color: '#6366f1' }}>
+          <button onClick={() => onNavigate('dashboard')} className="text-xs mt-3 inline-block" style={{ color: '#6366f1' }}>
             View all at-risk customers →
-          </a>
+          </button>
+        </>
+      )}
 
-          {/* Reasoning */}
-          <div className="rounded-lg p-4 mt-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-white/50">ⓘ</span>
-              <p className="text-sm font-medium text-white">Reasoning</p>
-            </div>
-            <p className="text-xs text-white/60 mb-3">{d.reasoning.summary}</p>
-            <div className="flex flex-wrap gap-2">
-              {d.reasoning.factors.map((f) => (
-                <span key={f} className="text-[10px] px-2 py-1 rounded border border-white/10 text-white">
-                  {f}
-                </span>
-              ))}
-            </div>
+      {/* Reasoning */}
+      {a.reasoning && (
+        <div className="rounded-lg p-4 mt-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-white/50">ⓘ</span>
+            <p className="text-sm font-medium text-white">Reasoning</p>
           </div>
+          <p className="text-xs text-white/60 mb-3">{a.reasoning.summary}</p>
+          <div className="flex flex-wrap gap-2">
+            {a.reasoning.factors.map((f) => (
+              <span key={f} className="text-[10px] px-2 py-1 rounded border border-white/10 text-white">
+                {f}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
-          {/* Followups */}
+      {/* Followups — only on the most recent bot message */}
+      {isLast && a.followups.length > 0 && (
+        <>
           <p className="text-[10px] uppercase tracking-wider text-white/50 mt-6 mb-3">You might also ask</p>
           <div className="flex flex-wrap gap-2">
-            {d.followups.map((f) => (
-              <button key={f} className="text-xs px-3 py-1.5 border border-white/10 rounded-full hover:bg-white/5 text-white">
+            {a.followups.map((f) => (
+              <button
+                key={f}
+                onClick={() => onFollowup(f)}
+                className="text-xs px-3 py-1.5 border border-white/10 rounded-full hover:bg-white/5 text-white bg-transparent"
+              >
                 {f}
               </button>
             ))}
           </div>
-        </Card>
-
-        {/* Composer */}
-        <Card className="p-3 mt-4 flex items-center gap-3">
-          <span className="text-white/40">◯</span>
-          <input className="flex-1 outline-none text-sm placeholder:text-white/40 bg-transparent" placeholder="Ask anything about your business…" />
-          <button className="w-8 h-8 rounded flex items-center justify-center text-white" style={{ background: '#6366f1' }}>
-            →
-          </button>
-        </Card>
-      </div>
-
-      {/* Right rail */}
-      <div className="col-span-3 space-y-4">
-        <Card className="p-4">
-          <p className="text-sm font-medium text-white mb-3">Key Insights</p>
-          {d.keyInsightsRail.map((i) => (
-            <div key={i.label} className="py-2 border-b border-white/5 last:border-0">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-white/50 text-xs">{i.icon}</span>
-                <p className="text-[10px] uppercase tracking-wider text-white/50">{i.label}</p>
-              </div>
-              <p className="text-xl font-semibold text-white">{i.value}</p>
-              <p className="text-[10px] text-green-400 mt-0.5">{i.delta}</p>
-            </div>
-          ))}
-        </Card>
-
-        <Card className="p-4">
-          <p className="text-sm font-medium text-white mb-3">Recommended Actions</p>
-          {d.recommendedActions.map((a, i) => (
-            <div key={i} className="py-3 border-b border-white/5 last:border-0">
-              <p className="text-sm text-white mb-1">{a.title}</p>
-              <p className="text-xs text-white/60 leading-relaxed mb-2">{a.sub}</p>
-              <div className="flex items-center justify-between">
-                <Pill tone={a.priority === 'high' ? 'red' : 'yellow'}>{a.priority} priority</Pill>
-                <a href="#" className="text-xs" style={{ color: '#6366f1' }}>
-                  View
-                </a>
-              </div>
-            </div>
-          ))}
-        </Card>
-      </div>
-    </div>
+        </>
+      )}
+    </Card>
   );
 }
+
 
 /* ================================================================
    TRACE / AUDIT
@@ -1446,9 +1903,29 @@ const TRACE_DATA: Record<SpaceKey, {
   },
 };
 
+type TraceOutcome = {
+  user: string;
+  scenario: string;
+  product: string;
+  platform: string;
+  confidence: number;
+  ticket: string;
+  status: string;
+  feedback: string;
+  when: string;
+  tone: 'green' | 'blue' | 'yellow' | 'gray';
+};
+
 function Trace({ space }: { space: SpaceKey }) {
   const d = TRACE_DATA[space];
   const donutTotal = d.donut.reduce((a, b) => a + b.value, 0);
+  const [selected, setSelected] = useState<TraceOutcome | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    setSelected(null);
+    setActiveTab(0);
+  }, [space]);
 
   return (
     <div className="space-y-6">
@@ -1477,7 +1954,10 @@ function Trace({ space }: { space: SpaceKey }) {
         {['Memory Explorer', 'Decision Log', 'Audit Trail', 'Data Lineage', 'Access History', 'Retention & Policies'].map((t, i) => (
           <button
             key={t}
-            className={`text-sm py-2 border-b-2 ${i === 0 ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'}`}
+            onClick={() => setActiveTab(i)}
+            className={`text-sm py-2 border-b-2 ${
+              activeTab === i ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'
+            }`}
           >
             {t}
           </button>
@@ -1510,7 +1990,11 @@ function Trace({ space }: { space: SpaceKey }) {
             <span className="col-span-1 text-right">When</span>
           </div>
           {d.outcomes.map((o, i) => (
-            <div key={i} className="grid grid-cols-12 gap-2 py-3 border-b border-white/5 last:border-0 items-start text-xs">
+            <button
+              key={i}
+              onClick={() => setSelected(o)}
+              className="grid grid-cols-12 gap-2 py-3 border-b border-white/5 last:border-0 items-start text-xs w-full text-left hover:bg-white/[0.02] transition-colors"
+            >
               <span className="col-span-4 text-white">{o.user}</span>
               <span className="col-span-1">
                 <Pill tone={o.tone === 'green' ? 'green' : o.tone === 'blue' ? 'blue' : o.tone === 'yellow' ? 'yellow' : 'neutral'}>
@@ -1531,16 +2015,16 @@ function Trace({ space }: { space: SpaceKey }) {
                 {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-white/40">—</span>}
               </span>
               <span className="col-span-1 text-right text-white/50">{o.when.split(' ')[0]}<br /><span className="text-white/40">{o.when.split(' ').slice(1).join(' ')}</span></span>
-            </div>
+            </button>
           ))}
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-medium text-white">Audit Trail (Latest)</p>
-            <a href="#" className="text-xs" style={{ color: '#6366f1' }}>
+            <button onClick={() => setActiveTab(2)} className="text-xs" style={{ color: '#6366f1' }}>
               View all →
-            </a>
+            </button>
           </div>
           {d.audit.map((a, i) => (
             <div key={i} className="py-3 border-b border-white/5 last:border-0">
@@ -1555,9 +2039,9 @@ function Trace({ space }: { space: SpaceKey }) {
               </div>
             </div>
           ))}
-          <a href="#" className="text-xs mt-3 inline-block" style={{ color: '#6366f1' }}>
+          <button onClick={() => setActiveTab(2)} className="text-xs mt-3 inline-block" style={{ color: '#6366f1' }}>
             View full audit trail →
-          </a>
+          </button>
         </Card>
       </div>
 
@@ -1597,9 +2081,9 @@ function Trace({ space }: { space: SpaceKey }) {
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-medium text-white">Memory Retention</p>
-            <a href="#" className="text-xs" style={{ color: '#6366f1' }}>
+            <button onClick={() => setActiveTab(5)} className="text-xs" style={{ color: '#6366f1' }}>
               Manage →
-            </a>
+            </button>
           </div>
           <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">Average retention period</p>
           <p className="text-4xl font-semibold text-white">180</p>
@@ -1634,9 +2118,9 @@ function Trace({ space }: { space: SpaceKey }) {
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-medium text-white">Compliance &amp; Security</p>
-            <a href="#" className="text-[10px]" style={{ color: '#6366f1' }}>
+            <button onClick={() => setActiveTab(4)} className="text-[10px]" style={{ color: '#6366f1' }}>
               View →
-            </a>
+            </button>
           </div>
           {[
             { name: 'SOC 2 Type II', status: 'Compliant', tone: 'green' as const },
@@ -1654,6 +2138,117 @@ function Trace({ space }: { space: SpaceKey }) {
             </div>
           ))}
         </Card>
+      </div>
+
+      {/* Outcome detail modal */}
+      {selected && <OutcomeDetailModal outcome={selected} onClose={() => setSelected(null)} />}
+    </div>
+  );
+}
+
+function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClose: () => void }) {
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  const signals = [
+    { label: 'KB match confidence', weight: outcome.confidence / 100 },
+    { label: 'Ticket cluster density', weight: 0.34 },
+    { label: 'Novelty score', weight: outcome.scenario === 'New / unclear' ? 0.87 : 0.22 },
+    { label: 'Customer sentiment', weight: outcome.feedback === 'satisfied' ? 0.15 : 0.42 },
+  ];
+
+  const evidence = [
+    { id: 'evd_01', src: 'Product KB', ref: `KB-${outcome.product.toLowerCase().replace(/\s/g, '-')}-01`, d: 'Article matched by semantic search' },
+    { id: 'evd_02', src: 'Ticket history', ref: outcome.ticket || 'no ticket', d: 'Prior tickets on same product/platform' },
+    { id: 'evd_03', src: 'Telemetry', ref: `${outcome.product}.metrics`, d: 'Product-side event stream' },
+    { id: 'evd_04', src: 'Salesforce', ref: 'Account · Northwind', d: 'ARR + renewal + health signals' },
+  ];
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70" onClick={onClose}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-black border border-white/20 rounded-lg max-w-4xl w-full max-h-[85vh] overflow-y-auto"
+      >
+        <div className="p-6 border-b border-white/10 flex items-start justify-between">
+          <div>
+            <p className="text-[10px] tracking-widest text-white/50 uppercase mb-2 font-mono">
+              trace · {outcome.ticket || 'unassigned'}
+            </p>
+            <h2 className="text-lg font-semibold text-white">{outcome.user}</h2>
+            <p className="text-sm text-white/60 mt-1">
+              {outcome.scenario} · {outcome.product} · {outcome.platform} · confidence{' '}
+              <span className="font-mono">{outcome.confidence}%</span>
+            </p>
+          </div>
+          <button onClick={onClose} className="text-white/60 hover:text-white text-xl">
+            ×
+          </button>
+        </div>
+
+        <div className="p-6 space-y-6">
+          {/* Meta */}
+          <div className="grid grid-cols-4 gap-6">
+            {[
+              { l: 'Status', v: outcome.status },
+              { l: 'Feedback', v: outcome.feedback === '—' ? 'not rated' : outcome.feedback },
+              { l: 'When', v: outcome.when },
+              { l: 'Trace ID', v: `t_${(outcome.ticket || 'auto').toLowerCase().replace(/-/g, '_')}` },
+            ].map((x) => (
+              <div key={x.l}>
+                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">{x.l}</p>
+                <p className="text-sm text-white">{x.v}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Weighted signals */}
+          <div>
+            <p className="text-sm font-medium text-white mb-4">Weighted signals</p>
+            {signals.map((s) => (
+              <div key={s.label} className="mb-3">
+                <div className="flex justify-between mb-1">
+                  <p className="text-sm text-white">{s.label}</p>
+                  <p className="font-mono text-xs text-white">{s.weight.toFixed(2)}</p>
+                </div>
+                <div className="h-1 bg-white/10 rounded overflow-hidden">
+                  <div className="h-full" style={{ width: `${s.weight * 100}%`, background: '#6366f1' }} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Evidence rows */}
+          <div>
+            <p className="text-sm font-medium text-white mb-4">Evidence rows</p>
+            <div className="space-y-3">
+              {evidence.map((e) => (
+                <div key={e.id} className="border-b border-white/5 pb-3 last:border-0">
+                  <div className="flex justify-between mb-1">
+                    <span className="font-mono text-xs text-white/50">{e.id}</span>
+                    <span className="text-xs text-white/50">{e.src}</span>
+                  </div>
+                  <p className="font-mono text-sm text-white mb-1">{e.ref}</p>
+                  <p className="text-xs text-white/60">{e.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="pt-4 border-t border-white/10 flex justify-end gap-2">
+            <button onClick={onClose} className="text-xs px-4 py-2 border border-white/10 rounded text-white bg-transparent hover:bg-white/5">
+              Close
+            </button>
+            <button className="text-xs px-4 py-2 rounded text-white font-medium" style={{ background: '#6366f1' }}>
+              Export trace
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
