@@ -48,49 +48,49 @@ export default function DecisionNiaDemoHubClient() {
   const feature = FEATURES.find((f) => f.key === activeFeature)!;
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-black text-white">
       <div className="fixed top-4 left-1/2 -translate-x-1/2 z-40 px-3 py-1 bg-black text-white text-[10px] tracking-widest uppercase rounded-full">
         Demo · AI Decision Workspace
       </div>
 
       <div className="flex min-h-screen">
         {/* Sidebar */}
-        <aside className="w-[260px] border-r border-black/10 bg-white flex flex-col shrink-0">
+        <aside className="w-[260px] border-r border-white/10 bg-black flex flex-col shrink-0">
           {/* Brand */}
-          <div className="px-5 py-5 border-b border-black/10">
+          <div className="px-5 py-5 border-b border-white/10">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-bold" style={{ background: '#6366f1' }}>
                 ✦
               </div>
               <div>
-                <p className="text-sm font-semibold text-black leading-tight">GenX</p>
-                <p className="text-[10px] text-neutral-500 leading-tight">AI Decision Workspace</p>
+                <p className="text-sm font-semibold text-white leading-tight">GenX</p>
+                <p className="text-[10px] text-white/50 leading-tight">AI Decision Workspace</p>
               </div>
             </div>
           </div>
 
           {/* Space picker button */}
-          <div className="p-3 border-b border-black/10 relative" ref={pickerRef}>
+          <div className="p-3 border-b border-white/10 relative" ref={pickerRef}>
             <button
               onClick={() => setPickerOpen(!pickerOpen)}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg border transition-colors ${
-                pickerOpen ? 'border-black' : 'border-black/20 hover:border-black/40'
+                pickerOpen ? 'border-white' : 'border-white/20 hover:border-white/40'
               }`}
             >
-              <span className="w-7 h-7 rounded flex items-center justify-center text-xs font-medium border border-black/20 shrink-0">
+              <span className="w-7 h-7 rounded flex items-center justify-center text-xs font-medium border border-white/20 shrink-0">
                 {space.letter}
               </span>
-              <span className="flex-1 text-left text-sm text-black">{space.label}</span>
-              <svg width="12" height="12" viewBox="0 0 12 12" className="text-neutral-400">
+              <span className="flex-1 text-left text-sm text-white">{space.label}</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" className="text-white/40">
                 <path d="M3 5l3 3 3-3" stroke="currentColor" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
             {/* Popover */}
             {pickerOpen && (
-              <div className="absolute top-0 left-full ml-2 z-50 w-[260px] bg-white border border-black/10 rounded-lg shadow-xl overflow-hidden">
-                <div className="px-4 py-2 border-b border-black/5">
-                  <p className="text-[10px] font-semibold text-neutral-500 tracking-widest uppercase">
+              <div className="absolute top-0 left-full ml-2 z-50 w-[260px] bg-white/[0.03] border border-white/10 rounded-lg shadow-xl overflow-hidden">
+                <div className="px-4 py-2 border-b border-white/5">
+                  <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">
                     Enterprise Demo
                   </p>
                 </div>
@@ -105,13 +105,13 @@ export default function DecisionNiaDemoHubClient() {
                           setPickerOpen(false);
                         }}
                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                          isActive ? 'text-white' : 'hover:bg-neutral-50 text-black'
+                          isActive ? 'text-white' : 'hover:bg-white/5 text-white'
                         }`}
                         style={isActive ? { background: '#6366f1' } : undefined}
                       >
                         <span
                           className={`w-6 h-6 rounded flex items-center justify-center text-xs font-medium shrink-0 ${
-                            isActive ? 'bg-white/20 text-white' : 'border border-black/20 text-black'
+                            isActive ? 'bg-white/20 text-white' : 'border border-white/20 text-white'
                           }`}
                         >
                           {s.letter}
@@ -134,7 +134,7 @@ export default function DecisionNiaDemoHubClient() {
                   key={f.key}
                   onClick={() => setActiveFeature(f.key)}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg mb-0.5 transition-colors ${
-                    isActive ? 'text-white' : 'text-neutral-700 hover:bg-neutral-50'
+                    isActive ? 'text-white' : 'text-white/70 hover:bg-white/5'
                   }`}
                   style={isActive ? { background: '#6366f1' } : undefined}
                 >
@@ -146,7 +146,7 @@ export default function DecisionNiaDemoHubClient() {
           </nav>
 
           {/* Persona footer */}
-          <div className="px-4 py-4 border-t border-black/10">
+          <div className="px-4 py-4 border-t border-white/10">
             <div className="flex items-center gap-3">
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center text-xs text-white font-medium"
@@ -158,16 +158,16 @@ export default function DecisionNiaDemoHubClient() {
                   .join('')}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-black truncate">{space.persona}</p>
-                <p className="text-[10px] text-neutral-500 truncate">{space.role}</p>
+                <p className="text-sm text-white truncate">{space.persona}</p>
+                <p className="text-[10px] text-white/50 truncate">{space.role}</p>
               </div>
             </div>
           </div>
 
-          <div className="px-4 py-3 border-t border-black/10">
+          <div className="px-4 py-3 border-t border-white/10">
             <Link
               href="/demo"
-              className="text-xs text-neutral-500 hover:text-black flex items-center gap-1"
+              className="text-xs text-white/50 hover:text-white flex items-center gap-1"
             >
               ← Back to chooser
             </Link>
@@ -177,10 +177,10 @@ export default function DecisionNiaDemoHubClient() {
         {/* Main */}
         <section className="flex-1 min-w-0">
           {/* Top bar */}
-          <div className="px-8 py-4 border-b border-black/10 flex items-center justify-between">
-            <p className="text-sm text-black">{feature.label}</p>
+          <div className="px-8 py-4 border-b border-white/10 flex items-center justify-between">
+            <p className="text-sm text-white">{feature.label}</p>
             <div className="flex items-center gap-4">
-              <span className="text-xs text-neutral-500">En</span>
+              <span className="text-xs text-white/50">En</span>
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#dc2626' }} />
             </div>
           </div>
@@ -221,7 +221,7 @@ function FeaturePanel({
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`bg-white border border-black/10 rounded-lg ${className}`}>{children}</div>
+    <div className={`bg-white/[0.03] border border-white/10 rounded-lg ${className}`}>{children}</div>
   );
 }
 
@@ -242,12 +242,12 @@ function KpiTile({
   return (
     <Card className="p-5">
       <div className="flex items-center gap-2 mb-3">
-        <span className="w-6 h-6 rounded flex items-center justify-center text-[11px]" style={{ background: '#f3f4f6' }}>
+        <span className="w-6 h-6 rounded flex items-center justify-center text-[11px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
           {icon}
         </span>
-        <p className="text-xs text-neutral-500">{label}</p>
+        <p className="text-xs text-white/50">{label}</p>
       </div>
-      <p className="text-3xl font-semibold text-black">{value}</p>
+      <p className="text-3xl font-semibold text-white">{value}</p>
       {delta && (
         <p className="text-xs mt-1" style={{ color: deltaColor }}>
           {delta}
@@ -260,7 +260,7 @@ function KpiTile({
 function SectionTitle({ children, action }: { children: React.ReactNode; action?: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between mb-4">
-      <p className="text-sm font-medium text-black">{children}</p>
+      <p className="text-sm font-medium text-white">{children}</p>
       {action}
     </div>
   );
@@ -268,11 +268,11 @@ function SectionTitle({ children, action }: { children: React.ReactNode; action?
 
 function Pill({ children, tone = 'neutral' }: { children: React.ReactNode; tone?: 'red' | 'yellow' | 'green' | 'blue' | 'neutral' }) {
   const map: Record<string, { bg: string; fg: string }> = {
-    red: { bg: '#fee2e2', fg: '#991b1b' },
-    yellow: { bg: '#fef3c7', fg: '#92400e' },
-    green: { bg: '#dcfce7', fg: '#166534' },
-    blue: { bg: '#dbeafe', fg: '#1e40af' },
-    neutral: { bg: '#f3f4f6', fg: '#374151' },
+    red: { bg: 'rgba(220,38,38,0.15)', fg: '#fca5a5' },
+    yellow: { bg: 'rgba(245,158,11,0.15)', fg: '#fcd34d' },
+    green: { bg: 'rgba(22,163,74,0.15)', fg: '#86efac' },
+    blue: { bg: 'rgba(59,130,246,0.15)', fg: '#93c5fd' },
+    neutral: { bg: 'rgba(255,255,255,0.08)', fg: '#d1d5db' },
   };
   const c = map[tone];
   return (
@@ -486,24 +486,24 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-black flex items-center gap-2">Hi, {persona} <span>👋</span></h1>
+        <h1 className="text-2xl font-semibold text-white flex items-center gap-2">Hi, {persona} <span>👋</span></h1>
       </div>
 
       {/* Summary banner */}
-      <div className="border rounded-lg p-5 flex items-start justify-between" style={{ background: '#f5f3ff', borderColor: '#c7d2fe' }}>
+      <div className="border rounded-lg p-5 flex items-start justify-between" style={{ background: 'rgba(99,102,241,0.12)', borderColor: 'rgba(99,102,241,0.35)' }}>
         <div className="flex gap-3">
           <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs shrink-0" style={{ background: '#6366f1' }}>
             ✦
           </span>
           <div>
-            <p className="text-[10px] font-semibold text-neutral-500 tracking-widest uppercase mb-1">
+            <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-1">
               GenX Summary · as of today
             </p>
-            <p className="text-sm font-medium text-black">{d.summary.headline}</p>
-            <p className="text-sm text-neutral-600 mt-1">{d.summary.sub}</p>
+            <p className="text-sm font-medium text-white">{d.summary.headline}</p>
+            <p className="text-sm text-white/60 mt-1">{d.summary.sub}</p>
           </div>
         </div>
-        <button className="text-xs px-3 py-1.5 border border-black/10 rounded bg-white text-black hover:bg-neutral-50">
+        <button className="text-xs px-3 py-1.5 border border-white/10 rounded bg-white text-white hover:bg-white/5">
           View full summary →
         </button>
       </div>
@@ -512,13 +512,13 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
       <div>
         <SectionTitle
           action={
-            <a href="#" className="text-xs text-neutral-500 hover:text-black">
+            <a href="#" className="text-xs text-white/50 hover:text-white">
               View all actions →
             </a>
           }
         >
-          Priority Actions <span className="text-neutral-400">({d.actions.length})</span>{' '}
-          <span className="text-xs text-neutral-500 font-normal">Needs your attention</span>
+          Priority Actions <span className="text-white/40">({d.actions.length})</span>{' '}
+          <span className="text-xs text-white/50 font-normal">Needs your attention</span>
         </SectionTitle>
         <div className="grid lg:grid-cols-3 gap-4">
           {d.actions.map((a, i) => {
@@ -529,20 +529,20 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
                 <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: barColor }} />
                 <div className="pl-2">
                   <Pill tone={tone}>{a.risk === 'high' ? 'HIGH RISK' : a.risk === 'medium' ? 'MEDIUM RISK' : 'LOW RISK'}</Pill>
-                  <p className="text-base font-medium text-black mt-3">{a.title}</p>
-                  <p className="text-xs text-neutral-500 mt-1">{a.account}</p>
+                  <p className="text-base font-medium text-white mt-3">{a.title}</p>
+                  <p className="text-xs text-white/50 mt-1">{a.account}</p>
                   <div className="mt-4">
-                    <p className="text-[10px] uppercase tracking-wider text-neutral-500 mb-1">{a.metric.label}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">{a.metric.label}</p>
                     <div className="flex items-end justify-between">
-                      <p className="text-2xl font-semibold text-black">{a.metric.value}</p>
+                      <p className="text-2xl font-semibold text-white">{a.metric.value}</p>
                       <div className="text-right">
-                        <p className="text-[10px] uppercase tracking-wider text-neutral-500">Status</p>
-                        <p className="text-xs text-black">{a.status}</p>
+                        <p className="text-[10px] uppercase tracking-wider text-white/50">Status</p>
+                        <p className="text-xs text-white">{a.status}</p>
                       </div>
                     </div>
                   </div>
                   <div className="mt-4 grid grid-cols-2 gap-2">
-                    <button className="text-xs px-3 py-2 border border-black/10 rounded hover:bg-neutral-50 text-black">
+                    <button className="text-xs px-3 py-2 border border-white/10 rounded hover:bg-white/5 text-white bg-transparent">
                       View details
                     </button>
                     <button
@@ -563,7 +563,7 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
       <div>
         <SectionTitle
           action={
-            <a href="#" className="text-xs text-neutral-500 hover:text-black">
+            <a href="#" className="text-xs text-white/50 hover:text-white">
               View all →
             </a>
           }
@@ -582,7 +582,7 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-neutral-500 hover:text-black">
+              <a href="#" className="text-xs text-white/50 hover:text-white">
                 View map →
               </a>
             }
@@ -591,11 +591,11 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
           </SectionTitle>
           <div className="space-y-3">
             {d.cfi.map((c) => (
-              <div key={c.team} className="p-4 rounded" style={{ background: '#f9fafb' }}>
-                <p className="text-xs text-neutral-500 mb-1">{c.team}</p>
+              <div key={c.team} className="p-4 rounded" style={{ background: 'rgba(255,255,255,0.04)' }}>
+                <p className="text-xs text-white/50 mb-1">{c.team}</p>
                 <div className="flex items-baseline justify-between">
-                  <p className="text-xs text-black">{c.label}</p>
-                  <p className="text-sm font-medium text-black">{c.value}</p>
+                  <p className="text-xs text-white">{c.label}</p>
+                  <p className="text-sm font-medium text-white">{c.value}</p>
                 </div>
               </div>
             ))}
@@ -605,7 +605,7 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-neutral-500 hover:text-black">
+              <a href="#" className="text-xs text-white/50 hover:text-white">
                 View all →
               </a>
             }
@@ -615,21 +615,21 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
           <div className="grid grid-cols-3 gap-4 mb-4">
             <div>
               <p className="text-2xl font-semibold" style={{ color: '#6366f1' }}>{d.workflows.in_progress}</p>
-              <p className="text-[10px] uppercase tracking-wider text-neutral-500 mt-1">In progress</p>
+              <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">In progress</p>
             </div>
             <div>
               <p className="text-2xl font-semibold" style={{ color: '#f59e0b' }}>{d.workflows.awaiting}</p>
-              <p className="text-[10px] uppercase tracking-wider text-neutral-500 mt-1">Awaiting approval</p>
+              <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">Awaiting approval</p>
             </div>
             <div>
               <p className="text-2xl font-semibold" style={{ color: '#16a34a' }}>{d.workflows.completed}</p>
-              <p className="text-[10px] uppercase tracking-wider text-neutral-500 mt-1">Completed today</p>
+              <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">Completed today</p>
             </div>
           </div>
           <div className="space-y-2">
             {d.workflows.list.map((w) => (
               <div key={w.name} className="flex items-center justify-between text-xs py-1">
-                <span className="text-black">{w.name}</span>
+                <span className="text-white">{w.name}</span>
                 <Pill tone={w.tone === 'blue' ? 'blue' : w.tone === 'yellow' ? 'yellow' : 'green'}>{w.status}</Pill>
               </div>
             ))}
@@ -642,7 +642,7 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-neutral-500 hover:text-black">
+              <a href="#" className="text-xs text-white/50 hover:text-white">
                 View all →
               </a>
             }
@@ -650,12 +650,12 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
             Recent Decisions &amp; Outcomes
           </SectionTitle>
           {d.decisions.map((r, i) => (
-            <div key={i} className="flex items-start justify-between py-3 border-b border-black/5 last:border-0">
+            <div key={i} className="flex items-start justify-between py-3 border-b border-white/5 last:border-0">
               <div>
-                <p className="text-sm text-black">{r.title}</p>
-                <p className="text-[10px] text-neutral-500 mt-0.5">{r.when}</p>
+                <p className="text-sm text-white">{r.title}</p>
+                <p className="text-[10px] text-white/50 mt-0.5">{r.when}</p>
               </div>
-              <p className={`text-xs font-medium ${r.tone === 'green' ? 'text-green-700' : 'text-neutral-600'}`}>{r.impact}</p>
+              <p className={`text-xs font-medium ${r.tone === 'green' ? 'text-green-400' : 'text-white/60'}`}>{r.impact}</p>
             </div>
           ))}
         </Card>
@@ -663,7 +663,7 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-neutral-500 hover:text-black">
+              <a href="#" className="text-xs text-white/50 hover:text-white">
                 View all →
               </a>
             }
@@ -671,21 +671,21 @@ function CommandCenter({ space, persona }: { space: SpaceKey; persona: string })
             Watchlist Highlights
           </SectionTitle>
           {d.watchlist.map((w) => (
-            <div key={w.code} className="flex items-center justify-between py-2.5 border-b border-black/5 last:border-0">
+            <div key={w.code} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
               <div className="flex items-center gap-3">
-                <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: '#f3f4f6' }}>
+                <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'rgba(255,255,255,0.08)' }}>
                   {w.code}
                 </span>
                 <div>
-                  <p className="text-sm text-black">{w.name}</p>
+                  <p className="text-sm text-white">{w.name}</p>
                   <Pill tone={w.risk === 'high' ? 'red' : w.risk === 'medium' ? 'yellow' : 'green'}>
                     {w.risk} risk
                   </Pill>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-[10px] uppercase text-neutral-500 tracking-wider">Score</p>
-                <p className="text-sm font-medium text-black">{w.score}</p>
+                <p className="text-[10px] uppercase text-white/50 tracking-wider">Score</p>
+                <p className="text-sm font-medium text-white">{w.score}</p>
               </div>
             </div>
           ))}
@@ -796,12 +796,12 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-black">Dashboards</h1>
-          <p className="text-sm text-neutral-500 mt-1">Real-time views of your customers, health, and actions — {spaceLabel}</p>
+          <h1 className="text-2xl font-semibold text-white">Dashboards</h1>
+          <p className="text-sm text-white/50 mt-1">Real-time views of your customers, health, and actions — {spaceLabel}</p>
         </div>
         <div className="flex items-center gap-2">
-          <input className="text-xs border border-black/10 rounded px-3 py-1.5 w-56" placeholder="Search dashboards..." />
-          <button className="text-xs px-3 py-1.5 border border-black/10 rounded text-black hover:bg-neutral-50">Filters</button>
+          <input className="text-xs border border-white/10 rounded px-3 py-1.5 w-56 bg-transparent text-white placeholder:text-white/40" placeholder="Search dashboards..." />
+          <button className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5 bg-transparent">Filters</button>
           <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: '#6366f1' }}>
             + Add Widget
           </button>
@@ -809,11 +809,11 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-black/10">
+      <div className="flex gap-6 border-b border-white/10">
         {['Overview', 'Health', 'Renewals', 'Adoption', 'Engagement', 'Revenue', 'Support', 'Custom'].map((t, i) => (
           <button
             key={t}
-            className={`text-sm py-2 border-b-2 ${i === 0 ? 'border-black text-black font-medium' : 'border-transparent text-neutral-500 hover:text-black'}`}
+            className={`text-sm py-2 border-b-2 ${i === 0 ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'}`}
           >
             {t}
           </button>
@@ -832,7 +832,7 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-neutral-500 hover:text-black">
+              <a href="#" className="text-xs text-white/50 hover:text-white">
                 View report →
               </a>
             }
@@ -852,20 +852,20 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
                     .join(', ')})`,
                 }}
               />
-              <div className="absolute inset-4 bg-white rounded-full flex flex-col items-center justify-center">
-                <p className="text-lg font-semibold text-black">
+              <div className="absolute inset-4 bg-black rounded-full flex flex-col items-center justify-center">
+                <p className="text-lg font-semibold text-white">
                   {distribution[space].reduce((a, b) => a + b.count, 0).toLocaleString()}
                 </p>
-                <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Total</p>
+                <p className="text-[10px] text-white/50 uppercase tracking-wider">Total</p>
               </div>
             </div>
             <div className="flex-1 space-y-2">
               {distribution[space].map((d) => (
                 <div key={d.label} className="flex items-center gap-2 text-xs">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ background: d.color }} />
-                  <span className="text-neutral-700 flex-1">{d.label}</span>
-                  <span className="text-neutral-900 font-medium">{d.count}</span>
-                  <span className="text-neutral-500">({d.value}%)</span>
+                  <span className="text-white/70 flex-1">{d.label}</span>
+                  <span className="text-white font-medium">{d.count}</span>
+                  <span className="text-white/50">({d.value}%)</span>
                 </div>
               ))}
             </div>
@@ -874,8 +874,8 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-black">Trend</p>
-            <select className="text-xs border border-black/10 rounded px-2 py-1">
+            <p className="text-sm font-medium text-white">Trend</p>
+            <select className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white">
               <option>Last 30 Days</option>
               <option>Last 90 Days</option>
             </select>
@@ -892,7 +892,7 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
               <circle key={i} cx={x} cy={[110, 105, 98, 80, 70, 55, 42, 38][i]} r="3" fill="#6366f1" />
             ))}
           </svg>
-          <div className="flex justify-between text-[10px] text-neutral-500 mt-2">
+          <div className="flex justify-between text-[10px] text-white/50 mt-2">
             <span>Day 1</span>
             <span>Day 15</span>
             <span>Today</span>
@@ -902,7 +902,7 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
         <Card className="p-5">
           <SectionTitle
             action={
-              <a href="#" className="text-xs text-neutral-500 hover:text-black">
+              <a href="#" className="text-xs text-white/50 hover:text-white">
                 View segments →
               </a>
             }
@@ -917,8 +917,8 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
             ].map((s) => (
               <div key={s.label}>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-black">{s.label}</span>
-                  <span className="text-black font-medium">{s.amount}</span>
+                  <span className="text-white">{s.label}</span>
+                  <span className="text-white font-medium">{s.amount}</span>
                 </div>
                 <div className="h-2 bg-black/5 rounded overflow-hidden">
                   <div className="h-full" style={{ width: `${s.value}%`, background: '#dc2626' }} />
@@ -933,28 +933,28 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
       <Card className="p-5">
         <SectionTitle
           action={
-            <a href="#" className="text-xs text-neutral-500 hover:text-black">
+            <a href="#" className="text-xs text-white/50 hover:text-white">
               View all at-risk →
             </a>
           }
         >
           Top At-Risk
         </SectionTitle>
-        <div className="grid grid-cols-12 gap-3 pb-3 border-b border-black/5 text-[10px] tracking-widest text-neutral-500 uppercase">
+        <div className="grid grid-cols-12 gap-3 pb-3 border-b border-white/5 text-[10px] tracking-widest text-white/50 uppercase">
           <span className="col-span-5">Account</span>
           <span className="col-span-2 text-right">Health</span>
           <span className="col-span-3 text-right">Risk</span>
           <span className="col-span-2 text-right">Trend</span>
         </div>
         {atRisk[space].map((a) => (
-          <div key={a.code} className="grid grid-cols-12 gap-3 py-3 border-b border-black/5 last:border-0 items-center">
+          <div key={a.code} className="grid grid-cols-12 gap-3 py-3 border-b border-white/5 last:border-0 items-center">
             <div className="col-span-5 flex items-center gap-3">
-              <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: '#f3f4f6' }}>
+              <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'rgba(255,255,255,0.08)' }}>
                 {a.code}
               </span>
-              <span className="text-sm text-black">{a.name}</span>
+              <span className="text-sm text-white">{a.name}</span>
             </div>
-            <span className="col-span-2 text-right text-sm text-black">{a.health}</span>
+            <span className="col-span-2 text-right text-sm text-white">{a.health}</span>
             <span className="col-span-3 text-right text-sm" style={{ color: '#dc2626' }}>{a.risk}</span>
             <span className="col-span-2 text-right">
               <svg width="40" height="16" viewBox="0 0 40 16">
@@ -1143,7 +1143,7 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
   return (
     <div className="grid grid-cols-12 gap-6">
       <div className="col-span-9">
-        <h1 className="text-xl font-semibold text-black mb-4">AI Agent</h1>
+        <h1 className="text-xl font-semibold text-white mb-4">AI Agent</h1>
 
         <div className="flex justify-end mb-4">
           <div className="rounded-2xl px-4 py-3 max-w-xl text-white" style={{ background: '#6366f1' }}>
@@ -1157,36 +1157,36 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
             <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs" style={{ background: '#6366f1' }}>
               ✦
             </span>
-            <span className="text-sm font-medium text-black">GenX Copilot</span>
+            <span className="text-sm font-medium text-white">GenX Copilot</span>
             <Pill tone="neutral">TABLE</Pill>
-            <span className="ml-auto text-xs text-neutral-500">{d.timestamp}</span>
+            <span className="ml-auto text-xs text-white/50">{d.timestamp}</span>
           </div>
 
           {/* Direct answer */}
-          <div className="rounded-lg p-4 mb-6" style={{ background: '#f5f3ff' }}>
-            <p className="text-[10px] font-semibold text-neutral-500 tracking-widest uppercase mb-2">✦ Direct Answer</p>
-            <p className="text-sm font-medium text-black">{d.direct.headline}</p>
-            <p className="text-sm text-neutral-700 mt-1">{d.direct.sub}</p>
+          <div className="rounded-lg p-4 mb-6" style={{ background: 'rgba(99,102,241,0.14)' }}>
+            <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-2">✦ Direct Answer</p>
+            <p className="text-sm font-medium text-white">{d.direct.headline}</p>
+            <p className="text-sm text-white/70 mt-1">{d.direct.sub}</p>
           </div>
 
           {/* Insights */}
-          <p className="text-sm font-medium text-black mb-3">Key insights</p>
+          <p className="text-sm font-medium text-white mb-3">Key insights</p>
           <div className="grid grid-cols-4 gap-3 mb-6">
             {d.insights.map((i) => (
-              <div key={i.label} className="rounded-lg p-3" style={{ background: '#fafafa', border: '1px solid #e5e7eb' }}>
-                <p className="text-[10px] uppercase tracking-wider text-neutral-500 mb-1">{i.label}</p>
-                <p className="text-xl font-semibold text-black">{i.value}</p>
-                <p className="text-[10px] text-green-700 mt-1">{i.delta}</p>
+              <div key={i.label} className="rounded-lg p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">{i.label}</p>
+                <p className="text-xl font-semibold text-white">{i.value}</p>
+                <p className="text-[10px] text-green-400 mt-1">{i.delta}</p>
               </div>
             ))}
           </div>
 
           {/* Table */}
           <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-medium text-black">Top At-Risk</p>
-            <span className="text-xs text-neutral-500">{d.table.length} rows</span>
+            <p className="text-sm font-medium text-white">Top At-Risk</p>
+            <span className="text-xs text-white/50">{d.table.length} rows</span>
           </div>
-          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-black/5 text-[10px] uppercase tracking-wider text-neutral-500">
+          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-white/5 text-[10px] uppercase tracking-wider text-white/50">
             <span className="col-span-3">Account</span>
             <span className="col-span-1 text-right">Health</span>
             <span className="col-span-2 text-center">Risk</span>
@@ -1195,28 +1195,28 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
             <span className="col-span-2">Owner</span>
           </div>
           {d.table.map((r) => (
-            <div key={r.name} className="grid grid-cols-12 gap-2 py-2 border-b border-black/5 last:border-0 items-center">
+            <div key={r.name} className="grid grid-cols-12 gap-2 py-2 border-b border-white/5 last:border-0 items-center">
               <div className="col-span-3 flex items-center gap-2">
-                <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: '#f3f4f6' }}>
+                <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
                   {r.code}
                 </span>
-                <span className="text-sm text-black">{r.name}</span>
+                <span className="text-sm text-white">{r.name}</span>
               </div>
-              <span className="col-span-1 text-right text-sm text-black">{r.health}</span>
+              <span className="col-span-1 text-right text-sm text-white">{r.health}</span>
               <span className="col-span-2 text-center">
                 <Pill tone={r.risk === 'High' || r.risk === 'P0' || r.risk === 'Delay' || r.risk === 'M3 slip' || r.risk === 'Go-live risk' ? 'red' : r.risk === 'Medium' || r.risk === 'P1 Reopen' || r.risk === 'Hold' ? 'yellow' : 'green'}>
                   {r.risk}
                 </Pill>
               </span>
-              <span className="col-span-1 text-right text-sm text-black">{r.arr}</span>
+              <span className="col-span-1 text-right text-sm text-white">{r.arr}</span>
               <span className="col-span-3 flex flex-wrap gap-1">
                 {r.factors.map((f) => (
-                  <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: '#f3f4f6' }}>
+                  <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(255,255,255,0.08)' }}>
                     {f}
                   </span>
                 ))}
               </span>
-              <span className="col-span-2 text-xs text-neutral-700">{r.owner}</span>
+              <span className="col-span-2 text-xs text-white/70">{r.owner}</span>
             </div>
           ))}
 
@@ -1225,15 +1225,15 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
           </a>
 
           {/* Reasoning */}
-          <div className="rounded-lg p-4 mt-6" style={{ background: '#fafafa', border: '1px solid #e5e7eb' }}>
+          <div className="rounded-lg p-4 mt-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-neutral-500">ⓘ</span>
-              <p className="text-sm font-medium text-black">Reasoning</p>
+              <span className="text-white/50">ⓘ</span>
+              <p className="text-sm font-medium text-white">Reasoning</p>
             </div>
-            <p className="text-xs text-neutral-600 mb-3">{d.reasoning.summary}</p>
+            <p className="text-xs text-white/60 mb-3">{d.reasoning.summary}</p>
             <div className="flex flex-wrap gap-2">
               {d.reasoning.factors.map((f) => (
-                <span key={f} className="text-[10px] px-2 py-1 rounded border border-black/10 text-black">
+                <span key={f} className="text-[10px] px-2 py-1 rounded border border-white/10 text-white">
                   {f}
                 </span>
               ))}
@@ -1241,10 +1241,10 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
           </div>
 
           {/* Followups */}
-          <p className="text-[10px] uppercase tracking-wider text-neutral-500 mt-6 mb-3">You might also ask</p>
+          <p className="text-[10px] uppercase tracking-wider text-white/50 mt-6 mb-3">You might also ask</p>
           <div className="flex flex-wrap gap-2">
             {d.followups.map((f) => (
-              <button key={f} className="text-xs px-3 py-1.5 border border-black/10 rounded-full hover:bg-neutral-50 text-black">
+              <button key={f} className="text-xs px-3 py-1.5 border border-white/10 rounded-full hover:bg-white/5 text-white">
                 {f}
               </button>
             ))}
@@ -1253,8 +1253,8 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
 
         {/* Composer */}
         <Card className="p-3 mt-4 flex items-center gap-3">
-          <span className="text-neutral-400">◯</span>
-          <input className="flex-1 outline-none text-sm placeholder:text-neutral-400 bg-transparent" placeholder="Ask anything about your business…" />
+          <span className="text-white/40">◯</span>
+          <input className="flex-1 outline-none text-sm placeholder:text-white/40 bg-transparent" placeholder="Ask anything about your business…" />
           <button className="w-8 h-8 rounded flex items-center justify-center text-white" style={{ background: '#6366f1' }}>
             →
           </button>
@@ -1264,25 +1264,25 @@ function Ask({ space, persona }: { space: SpaceKey; persona: string }) {
       {/* Right rail */}
       <div className="col-span-3 space-y-4">
         <Card className="p-4">
-          <p className="text-sm font-medium text-black mb-3">Key Insights</p>
+          <p className="text-sm font-medium text-white mb-3">Key Insights</p>
           {d.keyInsightsRail.map((i) => (
-            <div key={i.label} className="py-2 border-b border-black/5 last:border-0">
+            <div key={i.label} className="py-2 border-b border-white/5 last:border-0">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-neutral-500 text-xs">{i.icon}</span>
-                <p className="text-[10px] uppercase tracking-wider text-neutral-500">{i.label}</p>
+                <span className="text-white/50 text-xs">{i.icon}</span>
+                <p className="text-[10px] uppercase tracking-wider text-white/50">{i.label}</p>
               </div>
-              <p className="text-xl font-semibold text-black">{i.value}</p>
-              <p className="text-[10px] text-green-700 mt-0.5">{i.delta}</p>
+              <p className="text-xl font-semibold text-white">{i.value}</p>
+              <p className="text-[10px] text-green-400 mt-0.5">{i.delta}</p>
             </div>
           ))}
         </Card>
 
         <Card className="p-4">
-          <p className="text-sm font-medium text-black mb-3">Recommended Actions</p>
+          <p className="text-sm font-medium text-white mb-3">Recommended Actions</p>
           {d.recommendedActions.map((a, i) => (
-            <div key={i} className="py-3 border-b border-black/5 last:border-0">
-              <p className="text-sm text-black mb-1">{a.title}</p>
-              <p className="text-xs text-neutral-600 leading-relaxed mb-2">{a.sub}</p>
+            <div key={i} className="py-3 border-b border-white/5 last:border-0">
+              <p className="text-sm text-white mb-1">{a.title}</p>
+              <p className="text-xs text-white/60 leading-relaxed mb-2">{a.sub}</p>
               <div className="flex items-center justify-between">
                 <Pill tone={a.priority === 'high' ? 'red' : 'yellow'}>{a.priority} priority</Pill>
                 <a href="#" className="text-xs" style={{ color: '#6366f1' }}>
@@ -1454,11 +1454,11 @@ function Trace({ space }: { space: SpaceKey }) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-black">Trace / Audit</h1>
-          <p className="text-sm text-neutral-500 mt-1">View system memory, decisions, actions, and audit trails.</p>
+          <h1 className="text-2xl font-semibold text-white">Trace / Audit</h1>
+          <p className="text-sm text-white/50 mt-1">View system memory, decisions, actions, and audit trails.</p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="text-xs px-3 py-1.5 border border-black/10 rounded text-black">Filters</button>
+          <button className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent">Filters</button>
           <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: '#6366f1' }}>
             Export
           </button>
@@ -1473,11 +1473,11 @@ function Trace({ space }: { space: SpaceKey }) {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-black/10">
+      <div className="flex gap-6 border-b border-white/10">
         {['Memory Explorer', 'Decision Log', 'Audit Trail', 'Data Lineage', 'Access History', 'Retention & Policies'].map((t, i) => (
           <button
             key={t}
-            className={`text-sm py-2 border-b-2 ${i === 0 ? 'border-black text-black font-medium' : 'border-transparent text-neutral-500 hover:text-black'}`}
+            className={`text-sm py-2 border-b-2 ${i === 0 ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'}`}
           >
             {t}
           </button>
@@ -1488,18 +1488,18 @@ function Trace({ space }: { space: SpaceKey }) {
       <div className="grid lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-black">Recent Outcomes ({d.outcomes.length})</p>
+            <p className="text-sm font-medium text-white">Recent Outcomes ({d.outcomes.length})</p>
             <div className="flex items-center gap-2">
-              <input className="text-xs border border-black/10 rounded px-3 py-1 w-56" placeholder="Search outcomes..." />
-              <select className="text-xs border border-black/10 rounded px-2 py-1">
+              <input className="text-xs border border-white/10 rounded px-3 py-1 w-56 bg-transparent text-white placeholder:text-white/40" placeholder="Search outcomes..." />
+              <select className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white">
                 <option>All Types</option>
               </select>
-              <select className="text-xs border border-black/10 rounded px-2 py-1">
+              <select className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white">
                 <option>All time</option>
               </select>
             </div>
           </div>
-          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-black/5 text-[10px] uppercase tracking-wider text-neutral-500">
+          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-white/5 text-[10px] uppercase tracking-wider text-white/50">
             <span className="col-span-4">User Message</span>
             <span className="col-span-1">Scenario</span>
             <span className="col-span-2">Product</span>
@@ -1510,47 +1510,47 @@ function Trace({ space }: { space: SpaceKey }) {
             <span className="col-span-1 text-right">When</span>
           </div>
           {d.outcomes.map((o, i) => (
-            <div key={i} className="grid grid-cols-12 gap-2 py-3 border-b border-black/5 last:border-0 items-start text-xs">
-              <span className="col-span-4 text-black">{o.user}</span>
+            <div key={i} className="grid grid-cols-12 gap-2 py-3 border-b border-white/5 last:border-0 items-start text-xs">
+              <span className="col-span-4 text-white">{o.user}</span>
               <span className="col-span-1">
                 <Pill tone={o.tone === 'green' ? 'green' : o.tone === 'blue' ? 'blue' : o.tone === 'yellow' ? 'yellow' : 'neutral'}>
                   {o.scenario}
                 </Pill>
               </span>
-              <span className="col-span-2 text-black">
+              <span className="col-span-2 text-white">
                 {o.product}
                 <br />
-                <span className="text-neutral-500">{o.platform}</span>
+                <span className="text-white/50">{o.platform}</span>
               </span>
-              <span className="col-span-1 text-right text-black font-mono">{o.confidence}%</span>
-              <span className="col-span-1 text-black font-mono">{o.ticket || '—'}</span>
+              <span className="col-span-1 text-right text-white font-mono">{o.confidence}%</span>
+              <span className="col-span-1 text-white font-mono">{o.ticket || '—'}</span>
               <span className="col-span-1">
-                <span className="text-black">{o.status}</span>
+                <span className="text-white">{o.status}</span>
               </span>
               <span className="col-span-1">
-                {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-neutral-400">—</span>}
+                {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-white/40">—</span>}
               </span>
-              <span className="col-span-1 text-right text-neutral-500">{o.when.split(' ')[0]}<br /><span className="text-neutral-400">{o.when.split(' ').slice(1).join(' ')}</span></span>
+              <span className="col-span-1 text-right text-white/50">{o.when.split(' ')[0]}<br /><span className="text-white/40">{o.when.split(' ').slice(1).join(' ')}</span></span>
             </div>
           ))}
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-black">Audit Trail (Latest)</p>
+            <p className="text-sm font-medium text-white">Audit Trail (Latest)</p>
             <a href="#" className="text-xs" style={{ color: '#6366f1' }}>
               View all →
             </a>
           </div>
           {d.audit.map((a, i) => (
-            <div key={i} className="py-3 border-b border-black/5 last:border-0">
+            <div key={i} className="py-3 border-b border-white/5 last:border-0">
               <div className="flex items-start gap-2">
-                <span className="text-neutral-400 text-xs mt-0.5">⓪</span>
+                <span className="text-white/40 text-xs mt-0.5">⓪</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-semibold text-neutral-500 tracking-widest uppercase mb-1">{a.type}</p>
-                  <p className="text-sm text-black leading-tight">{a.title}</p>
-                  <p className="text-xs text-neutral-500 mt-1">{a.who}</p>
-                  <p className="text-[10px] text-neutral-400 mt-0.5">{a.when}</p>
+                  <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-1">{a.type}</p>
+                  <p className="text-sm text-white leading-tight">{a.title}</p>
+                  <p className="text-xs text-white/50 mt-1">{a.who}</p>
+                  <p className="text-[10px] text-white/40 mt-0.5">{a.when}</p>
                 </div>
               </div>
             </div>
@@ -1564,7 +1564,7 @@ function Trace({ space }: { space: SpaceKey }) {
       {/* Bottom row: donut + retention + sources + compliance */}
       <div className="grid lg:grid-cols-4 gap-6">
         <Card className="p-5">
-          <p className="text-sm font-medium text-black mb-4">Outcomes by Scenario</p>
+          <p className="text-sm font-medium text-white mb-4">Outcomes by Scenario</p>
           <div className="relative w-32 h-32 mx-auto">
             <div
               className="w-full h-full rounded-full"
@@ -1578,17 +1578,17 @@ function Trace({ space }: { space: SpaceKey }) {
                   .join(', ')})`,
               }}
             />
-            <div className="absolute inset-4 bg-white rounded-full flex flex-col items-center justify-center">
-              <p className="text-lg font-semibold text-black">{donutTotal.toLocaleString()}</p>
-              <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Total</p>
+            <div className="absolute inset-4 bg-black rounded-full flex flex-col items-center justify-center">
+              <p className="text-lg font-semibold text-white">{donutTotal.toLocaleString()}</p>
+              <p className="text-[10px] text-white/50 uppercase tracking-wider">Total</p>
             </div>
           </div>
           <div className="mt-4 space-y-2">
             {d.donut.map((x) => (
               <div key={x.label} className="flex items-center gap-2 text-xs">
                 <span className="w-2 h-2 rounded-full shrink-0" style={{ background: x.color }} />
-                <span className="text-neutral-700 flex-1">{x.label}</span>
-                <span className="text-black font-medium">{x.value}</span>
+                <span className="text-white/70 flex-1">{x.label}</span>
+                <span className="text-white font-medium">{x.value}</span>
               </div>
             ))}
           </div>
@@ -1596,33 +1596,33 @@ function Trace({ space }: { space: SpaceKey }) {
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-black">Memory Retention</p>
+            <p className="text-sm font-medium text-white">Memory Retention</p>
             <a href="#" className="text-xs" style={{ color: '#6366f1' }}>
               Manage →
             </a>
           </div>
-          <p className="text-[10px] uppercase tracking-wider text-neutral-500 mb-1">Average retention period</p>
-          <p className="text-4xl font-semibold text-black">180</p>
-          <p className="text-xs text-neutral-500 mb-4">days</p>
+          <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">Average retention period</p>
+          <p className="text-4xl font-semibold text-white">180</p>
+          <p className="text-xs text-white/50 mb-4">days</p>
           <div className="text-xs space-y-2">
-            <div className="flex justify-between border-b border-black/5 pb-2">
-              <span className="text-neutral-500">Oldest memory</span>
-              <span className="text-black">Mar 14, 2026</span>
+            <div className="flex justify-between border-b border-white/5 pb-2">
+              <span className="text-white/50">Oldest memory</span>
+              <span className="text-white">Mar 14, 2026</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500">Retention policy</span>
-              <span className="text-black">Standard (180 days)</span>
+              <span className="text-white/50">Retention policy</span>
+              <span className="text-white">Standard (180 days)</span>
             </div>
           </div>
         </Card>
 
         <Card className="p-5">
-          <p className="text-sm font-medium text-black mb-4">Top Data Sources</p>
+          <p className="text-sm font-medium text-white mb-4">Top Data Sources</p>
           {d.sources.map((s) => (
             <div key={s.name} className="mb-3">
               <div className="flex justify-between text-xs mb-1">
-                <span className="text-black">{s.name}</span>
-                <span className="text-black font-medium">{s.pct}%</span>
+                <span className="text-white">{s.name}</span>
+                <span className="text-white font-medium">{s.pct}%</span>
               </div>
               <div className="h-1.5 bg-black/5 rounded overflow-hidden">
                 <div className="h-full" style={{ width: `${s.pct * 2}%`, background: '#6366f1' }} />
@@ -1633,7 +1633,7 @@ function Trace({ space }: { space: SpaceKey }) {
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-black">Compliance &amp; Security</p>
+            <p className="text-sm font-medium text-white">Compliance &amp; Security</p>
             <a href="#" className="text-[10px]" style={{ color: '#6366f1' }}>
               View →
             </a>
@@ -1645,10 +1645,10 @@ function Trace({ space }: { space: SpaceKey }) {
             { name: 'Audit Logging', status: 'Enabled', tone: 'green' as const },
             { name: 'Data Retention', status: 'Policy enforced', tone: 'green' as const },
           ].map((c) => (
-            <div key={c.name} className="flex items-center justify-between py-2 border-b border-black/5 last:border-0">
+            <div key={c.name} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
               <div className="flex items-center gap-2">
-                <span className="text-green-600 text-xs">✓</span>
-                <span className="text-sm text-black">{c.name}</span>
+                <span className="text-green-400 text-xs">✓</span>
+                <span className="text-sm text-white">{c.name}</span>
               </div>
               <Pill tone={c.tone}>{c.status}</Pill>
             </div>
