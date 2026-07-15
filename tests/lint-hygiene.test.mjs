@@ -71,6 +71,15 @@ test('no legacy /try-demo hrefs', () => {
   assert.deepEqual(offenders, [], 'Legacy /try-demo route — use /demo instead');
 });
 
+test('no hardcoded hex or rgba colors in DecisionNiaDemoHubClient (must use CSS vars)', () => {
+  const target = join(COMPONENTS, 'pages', 'DecisionNiaDemoHubClient.tsx');
+  const src = readFileSync(target, 'utf-8');
+  const hexMatches = src.match(/#[0-9a-fA-F]{6}\b/g) || [];
+  const rgbaMatches = src.match(/rgba\(/g) || [];
+  assert.equal(hexMatches.length, 0, `Hardcoded hex colors found: ${hexMatches.slice(0, 5).join(', ')}`);
+  assert.equal(rgbaMatches.length, 0, 'Hardcoded rgba() values found — use var(--gd-*) tokens');
+});
+
 test('no hardcoded localhost:3000 or 4000 URLs', () => {
   const offenders = [];
   for (const f of FILES) {

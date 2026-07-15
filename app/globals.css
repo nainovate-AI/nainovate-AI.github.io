@@ -19,6 +19,63 @@
   }
 }
 
+/* ---------------------------------------------------------------
+   Decision NIA workspace theme tokens
+   Scoped to .theme-genx-decision — never global. Applied only to
+   /demo/decision-nia so it can't leak into the rest of the site.
+   Consumers use Tailwind arbitrary values: bg-[var(--gd-primary)],
+   text-[var(--gd-fg)], border-[var(--gd-border)], etc.
+   -------------------------------------------------------------- */
+.theme-genx-decision {
+  /* Surfaces */
+  --gd-bg: #000000;
+  --gd-fg: #ffffff;
+  --gd-card: rgba(255, 255, 255, 0.03);
+  --gd-card-hover: rgba(255, 255, 255, 0.05);
+  --gd-muted: rgba(255, 255, 255, 0.08);
+  --gd-muted-2: rgba(255, 255, 255, 0.04);
+
+  /* Text */
+  --gd-fg-strong: #ffffff;
+  --gd-fg-mid: rgba(255, 255, 255, 0.7);
+  --gd-fg-muted: rgba(255, 255, 255, 0.6);
+  --gd-fg-subtle: rgba(255, 255, 255, 0.5);
+  --gd-fg-faint: rgba(255, 255, 255, 0.4);
+
+  /* Borders */
+  --gd-border: rgba(255, 255, 255, 0.1);
+  --gd-border-strong: rgba(255, 255, 255, 0.2);
+  --gd-border-active: rgba(255, 255, 255, 0.4);
+
+  /* Brand accent */
+  --gd-primary: #6366f1;
+  --gd-primary-fg: #ffffff;
+  --gd-primary-soft: rgba(99, 102, 241, 0.14);
+  --gd-primary-outline: rgba(99, 102, 241, 0.3);
+
+  /* Semantic tones */
+  --gd-danger: #dc2626;
+  --gd-danger-soft: rgba(220, 38, 38, 0.15);
+  --gd-danger-fg: #fca5a5;
+
+  --gd-success: #16a34a;
+  --gd-success-soft: rgba(22, 163, 74, 0.15);
+  --gd-success-fg: #86efac;
+  --gd-success-text: #4ade80;
+
+  --gd-warning: #f59e0b;
+  --gd-warning-soft: rgba(245, 158, 11, 0.15);
+  --gd-warning-fg: #fcd34d;
+
+  --gd-info: #3b82f6;
+  --gd-info-soft: rgba(59, 130, 246, 0.15);
+  --gd-info-fg: #93c5fd;
+
+  /* Neutral tone (donuts, sparklines, tag chips) */
+  --gd-neutral: #94a3b8;
+  --gd-neutral-fg: #d1d5db;
+}
+
 body {
   @apply bg-black text-white;
   font-family: 'Inter', -apple-system, sans-serif;

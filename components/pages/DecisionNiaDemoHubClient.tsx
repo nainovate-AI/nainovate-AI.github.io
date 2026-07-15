@@ -2,6 +2,17 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import {
+  Home,
+  BarChart3,
+  MessageSquare,
+  FileText,
+  ChevronDown,
+  ChevronLeft,
+  Bell,
+  Globe,
+  Sparkles,
+} from 'lucide-react';
 
 type SpaceKey = 'customer-support' | 'customer-success' | 'sales' | 'delivery';
 type FeatureKey = 'command-center' | 'ask' | 'dashboard' | 'trace';
@@ -19,11 +30,11 @@ const SPACES: {
   { key: 'delivery', label: 'Delivery', letter: 'D', persona: 'Jordan Lee', role: 'Delivery Lead' },
 ];
 
-const FEATURES: { key: FeatureKey; label: string; icon: string }[] = [
-  { key: 'command-center', label: 'Command Center', icon: '⌂' },
-  { key: 'dashboard', label: 'Dashboard', icon: '▤' },
-  { key: 'ask', label: 'Ask', icon: '◉' },
-  { key: 'trace', label: 'Trace / Audit', icon: '⎘' },
+const FEATURES: { key: FeatureKey; label: string; Icon: React.ComponentType<{ className?: string }> }[] = [
+  { key: 'command-center', label: 'Command Center', Icon: Home },
+  { key: 'dashboard', label: 'Dashboard', Icon: BarChart3 },
+  { key: 'ask', label: 'Ask', Icon: MessageSquare },
+  { key: 'trace', label: 'Trace / Audit', Icon: FileText },
 ];
 
 export default function DecisionNiaDemoHubClient() {
@@ -48,21 +59,33 @@ export default function DecisionNiaDemoHubClient() {
   const feature = FEATURES.find((f) => f.key === activeFeature)!;
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-40 px-3 py-1 bg-black text-white text-[10px] tracking-widest uppercase rounded-full">
+    <main
+      className="theme-genx-decision min-h-screen"
+      style={{ background: 'var(--gd-bg)', color: 'var(--gd-fg)' }}
+    >
+      <div
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-40 px-3 py-1 text-[10px] tracking-widest uppercase rounded-full"
+        style={{ background: 'var(--gd-bg)', color: 'var(--gd-fg)', border: '1px solid var(--gd-border)' }}
+      >
         Demo · AI Decision Workspace
       </div>
 
       <div className="flex min-h-screen">
         {/* Sidebar */}
-        <aside className="w-[260px] border-r border-white/10 bg-black flex flex-col shrink-0">
+        <aside
+          className="w-[260px] border-r flex flex-col shrink-0"
+          style={{ borderColor: 'var(--gd-border)', background: 'var(--gd-bg)' }}
+        >
           {/* Brand */}
           <div className="px-5 py-5 border-b border-white/10">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-bold" style={{ background: '#6366f1' }}>
-                ✦
+            <div className="flex items-center gap-2.5">
+              <div
+                className="w-7 h-7 rounded-md flex items-center justify-center text-white shrink-0"
+                style={{ background: 'var(--gd-primary)' }}
+              >
+                <Sparkles className="w-4 h-4" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm font-semibold text-white leading-tight">GenX</p>
                 <p className="text-[10px] text-white/50 leading-tight">AI Decision Workspace</p>
               </div>
@@ -81,9 +104,7 @@ export default function DecisionNiaDemoHubClient() {
                 {space.letter}
               </span>
               <span className="flex-1 text-left text-sm text-white">{space.label}</span>
-              <svg width="12" height="12" viewBox="0 0 12 12" className="text-white/40">
-                <path d="M3 5l3 3 3-3" stroke="currentColor" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <ChevronDown className="w-3.5 h-3.5 text-white/40" />
             </button>
 
             {/* Popover */}
@@ -107,7 +128,7 @@ export default function DecisionNiaDemoHubClient() {
                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
                           isActive ? 'text-white' : 'hover:bg-white/5 text-white'
                         }`}
-                        style={isActive ? { background: '#6366f1' } : undefined}
+                        style={isActive ? { background: 'var(--gd-primary)' } : undefined}
                       >
                         <span
                           className={`w-6 h-6 rounded flex items-center justify-center text-xs font-medium shrink-0 ${
@@ -129,6 +150,7 @@ export default function DecisionNiaDemoHubClient() {
           <nav className="p-2 flex-1">
             {FEATURES.map((f) => {
               const isActive = f.key === activeFeature;
+              const { Icon } = f;
               return (
                 <button
                   key={f.key}
@@ -136,9 +158,9 @@ export default function DecisionNiaDemoHubClient() {
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg mb-0.5 transition-colors ${
                     isActive ? 'text-white' : 'text-white/70 hover:bg-white/5'
                   }`}
-                  style={isActive ? { background: '#6366f1' } : undefined}
+                  style={isActive ? { background: 'var(--gd-primary)' } : undefined}
                 >
-                  <span className="w-4 text-center text-sm">{f.icon}</span>
+                  <Icon className="w-4 h-4 shrink-0" />
                   <span className="text-sm">{f.label}</span>
                 </button>
               );
@@ -150,7 +172,7 @@ export default function DecisionNiaDemoHubClient() {
             <div className="flex items-center gap-3">
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center text-xs text-white font-medium"
-                style={{ background: '#6366f1' }}
+                style={{ background: 'var(--gd-primary)' }}
               >
                 {space.persona
                   .split(' ')
@@ -169,7 +191,7 @@ export default function DecisionNiaDemoHubClient() {
               href="/demo"
               className="text-xs text-white/50 hover:text-white flex items-center gap-1"
             >
-              ← Back to chooser
+              <ChevronLeft className="w-3 h-3" /> Back to chooser
             </Link>
           </div>
         </aside>
@@ -177,11 +199,20 @@ export default function DecisionNiaDemoHubClient() {
         {/* Main */}
         <section className="flex-1 min-w-0">
           {/* Top bar */}
-          <div className="px-8 py-4 border-b border-white/10 flex items-center justify-between">
+          <div className="px-8 py-3 border-b border-white/10 flex items-center justify-between">
             <p className="text-sm text-white">{feature.label}</p>
-            <div className="flex items-center gap-4">
-              <span className="text-xs text-white/50">En</span>
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#dc2626' }} />
+            <div className="flex items-center gap-3">
+              <button className="flex items-center gap-1.5 text-xs text-white/60 hover:text-white px-2 py-1 rounded hover:bg-white/5">
+                <Globe className="w-3.5 h-3.5" />
+                <span>En</span>
+              </button>
+              <button className="relative text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5">
+                <Bell className="w-4 h-4" />
+                <span
+                  className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full"
+                  style={{ background: 'var(--gd-danger)' }}
+                />
+              </button>
             </div>
           </div>
 
@@ -246,11 +277,11 @@ function KpiTile({
   delta?: string;
   tone?: 'up' | 'down' | 'neutral';
 }) {
-  const deltaColor = tone === 'up' ? '#16a34a' : tone === 'down' ? '#dc2626' : '#6b7280';
+  const deltaColor = tone === 'up' ? 'var(--gd-success)' : tone === 'down' ? 'var(--gd-danger)' : 'var(--gd-fg-muted)';
   return (
     <Card className="p-5">
       <div className="flex items-center gap-2 mb-3">
-        <span className="w-6 h-6 rounded flex items-center justify-center text-[11px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
+        <span className="w-6 h-6 rounded flex items-center justify-center text-[11px]" style={{ background: 'var(--gd-muted)' }}>
           {icon}
         </span>
         <p className="text-xs text-white/50">{label}</p>
@@ -276,11 +307,11 @@ function SectionTitle({ children, action }: { children: React.ReactNode; action?
 
 function Pill({ children, tone = 'neutral' }: { children: React.ReactNode; tone?: 'red' | 'yellow' | 'green' | 'blue' | 'neutral' }) {
   const map: Record<string, { bg: string; fg: string }> = {
-    red: { bg: 'rgba(220,38,38,0.15)', fg: '#fca5a5' },
-    yellow: { bg: 'rgba(245,158,11,0.15)', fg: '#fcd34d' },
-    green: { bg: 'rgba(22,163,74,0.15)', fg: '#86efac' },
-    blue: { bg: 'rgba(59,130,246,0.15)', fg: '#93c5fd' },
-    neutral: { bg: 'rgba(255,255,255,0.08)', fg: '#d1d5db' },
+    red: { bg: 'var(--gd-danger-soft)', fg: 'var(--gd-danger-fg)' },
+    yellow: { bg: 'var(--gd-warning-soft)', fg: 'var(--gd-warning-fg)' },
+    green: { bg: 'var(--gd-success-soft)', fg: 'var(--gd-success-fg)' },
+    blue: { bg: 'var(--gd-info-soft)', fg: 'var(--gd-info-fg)' },
+    neutral: { bg: 'var(--gd-muted)', fg: 'var(--gd-neutral-fg)' },
   };
   const c = map[tone];
   return (
@@ -506,9 +537,9 @@ function CommandCenter({
       </div>
 
       {/* Summary banner */}
-      <div className="border rounded-lg p-5 flex items-start justify-between" style={{ background: 'rgba(99,102,241,0.12)', borderColor: 'rgba(99,102,241,0.35)' }}>
+      <div className="border rounded-lg p-5 flex items-start justify-between" style={{ background: 'var(--gd-primary-soft)', borderColor: 'var(--gd-primary-outline)' }}>
         <div className="flex gap-3">
-          <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs shrink-0" style={{ background: '#6366f1' }}>
+          <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs shrink-0" style={{ background: 'var(--gd-primary)' }}>
             ✦
           </span>
           <div>
@@ -542,7 +573,7 @@ function CommandCenter({
         <div className="grid lg:grid-cols-3 gap-4">
           {d.actions.map((a, i) => {
             const tone = a.risk === 'high' ? 'red' : a.risk === 'medium' ? 'yellow' : 'green';
-            const barColor = a.risk === 'high' ? '#dc2626' : a.risk === 'medium' ? '#f59e0b' : '#16a34a';
+            const barColor = a.risk === 'high' ? 'var(--gd-danger)' : a.risk === 'medium' ? 'var(--gd-warning)' : 'var(--gd-success)';
             return (
               <Card key={i} className="p-5 relative overflow-hidden">
                 <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: barColor }} />
@@ -566,7 +597,7 @@ function CommandCenter({
                     </button>
                     <button
                       className="text-xs px-3 py-2 rounded text-white font-medium"
-                      style={{ background: '#6366f1' }}
+                      style={{ background: 'var(--gd-primary)' }}
                     >
                       {a.cta}
                     </button>
@@ -610,7 +641,7 @@ function CommandCenter({
           </SectionTitle>
           <div className="space-y-3">
             {d.cfi.map((c) => (
-              <div key={c.team} className="p-4 rounded" style={{ background: 'rgba(255,255,255,0.04)' }}>
+              <div key={c.team} className="p-4 rounded" style={{ background: 'var(--gd-muted-2)' }}>
                 <p className="text-xs text-white/50 mb-1">{c.team}</p>
                 <div className="flex items-baseline justify-between">
                   <p className="text-xs text-white">{c.label}</p>
@@ -633,15 +664,15 @@ function CommandCenter({
           </SectionTitle>
           <div className="grid grid-cols-3 gap-4 mb-4">
             <div>
-              <p className="text-2xl font-semibold" style={{ color: '#6366f1' }}>{d.workflows.in_progress}</p>
+              <p className="text-2xl font-semibold" style={{ color: 'var(--gd-primary)' }}>{d.workflows.in_progress}</p>
               <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">In progress</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ color: '#f59e0b' }}>{d.workflows.awaiting}</p>
+              <p className="text-2xl font-semibold" style={{ color: 'var(--gd-warning)' }}>{d.workflows.awaiting}</p>
               <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">Awaiting approval</p>
             </div>
             <div>
-              <p className="text-2xl font-semibold" style={{ color: '#16a34a' }}>{d.workflows.completed}</p>
+              <p className="text-2xl font-semibold" style={{ color: 'var(--gd-success)' }}>{d.workflows.completed}</p>
               <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">Completed today</p>
             </div>
           </div>
@@ -692,7 +723,7 @@ function CommandCenter({
           {d.watchlist.map((w) => (
             <div key={w.code} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
               <div className="flex items-center gap-3">
-                <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
                   {w.code}
                 </span>
                 <div>
@@ -757,27 +788,27 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
 
   const distribution: Record<SpaceKey, { label: string; value: number; count: number; color: string }[]> = {
     'customer-success': [
-      { label: 'Excellent (80–100)', value: 19, count: 220, color: '#16a34a' },
-      { label: 'Good (60–79)', value: 44, count: 546, color: '#6366f1' },
-      { label: 'At Risk (40–59)', value: 25, count: 312, color: '#f59e0b' },
-      { label: 'Critical (0–39)', value: 13, count: 170, color: '#dc2626' },
+      { label: 'Excellent (80–100)', value: 19, count: 220, color: 'var(--gd-success)' },
+      { label: 'Good (60–79)', value: 44, count: 546, color: 'var(--gd-primary)' },
+      { label: 'At Risk (40–59)', value: 25, count: 312, color: 'var(--gd-warning)' },
+      { label: 'Critical (0–39)', value: 13, count: 170, color: 'var(--gd-danger)' },
     ],
     'customer-support': [
-      { label: 'Resolved same day', value: 42, count: 3830, color: '#16a34a' },
-      { label: 'Resolved <7d', value: 34, count: 3103, color: '#6366f1' },
-      { label: 'Aged 7–14d', value: 16, count: 1460, color: '#f59e0b' },
-      { label: 'Aged >14d', value: 8, count: 733, color: '#dc2626' },
+      { label: 'Resolved same day', value: 42, count: 3830, color: 'var(--gd-success)' },
+      { label: 'Resolved <7d', value: 34, count: 3103, color: 'var(--gd-primary)' },
+      { label: 'Aged 7–14d', value: 16, count: 1460, color: 'var(--gd-warning)' },
+      { label: 'Aged >14d', value: 8, count: 733, color: 'var(--gd-danger)' },
     ],
     sales: [
-      { label: 'Won', value: 22, count: 12, color: '#16a34a' },
-      { label: 'Prop sent', value: 30, count: 16, color: '#6366f1' },
-      { label: 'Discovery', value: 34, count: 18, color: '#f59e0b' },
-      { label: 'Lost', value: 14, count: 8, color: '#dc2626' },
+      { label: 'Won', value: 22, count: 12, color: 'var(--gd-success)' },
+      { label: 'Prop sent', value: 30, count: 16, color: 'var(--gd-primary)' },
+      { label: 'Discovery', value: 34, count: 18, color: 'var(--gd-warning)' },
+      { label: 'Lost', value: 14, count: 8, color: 'var(--gd-danger)' },
     ],
     delivery: [
-      { label: 'Green', value: 62, count: 5, color: '#16a34a' },
-      { label: 'Yellow', value: 25, count: 2, color: '#f59e0b' },
-      { label: 'Red', value: 13, count: 1, color: '#dc2626' },
+      { label: 'Green', value: 62, count: 5, color: 'var(--gd-success)' },
+      { label: 'Yellow', value: 25, count: 2, color: 'var(--gd-warning)' },
+      { label: 'Red', value: 13, count: 1, color: 'var(--gd-danger)' },
     ],
   };
 
@@ -822,7 +853,7 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
         <div className="flex items-center gap-2">
           <input className="text-xs border border-white/10 rounded px-3 py-1.5 w-56 bg-transparent text-white placeholder:text-white/40" placeholder="Search dashboards..." />
           <button className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5 bg-transparent">Filters</button>
-          <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: '#6366f1' }}>
+          <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: 'var(--gd-primary)' }}>
             + Add Widget
           </button>
         </div>
@@ -906,13 +937,13 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
           <svg viewBox="0 0 300 140" className="w-full h-32">
             <path
               d="M0,110 L40,105 L80,98 L120,80 L160,70 L200,55 L240,42 L300,38"
-              stroke="#6366f1"
+              stroke="var(--gd-primary)"
               strokeWidth="2"
               fill="none"
               strokeLinecap="round"
             />
             {[0, 40, 80, 120, 160, 200, 240, 300].map((x, i) => (
-              <circle key={i} cx={x} cy={[110, 105, 98, 80, 70, 55, 42, 38][i]} r="3" fill="#6366f1" />
+              <circle key={i} cx={x} cy={[110, 105, 98, 80, 70, 55, 42, 38][i]} r="3" fill="var(--gd-primary)" />
             ))}
           </svg>
           <div className="flex justify-between text-[10px] text-white/50 mt-2">
@@ -944,7 +975,7 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
                   <span className="text-white font-medium">{s.amount}</span>
                 </div>
                 <div className="h-2 bg-black/5 rounded overflow-hidden">
-                  <div className="h-full" style={{ width: `${s.value}%`, background: '#dc2626' }} />
+                  <div className="h-full" style={{ width: `${s.value}%`, background: 'var(--gd-danger)' }} />
                 </div>
               </div>
             ))}
@@ -972,18 +1003,18 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
         {atRisk[space].map((a) => (
           <div key={a.code} className="grid grid-cols-12 gap-3 py-3 border-b border-white/5 last:border-0 items-center">
             <div className="col-span-5 flex items-center gap-3">
-              <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'rgba(255,255,255,0.08)' }}>
+              <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
                 {a.code}
               </span>
               <span className="text-sm text-white">{a.name}</span>
             </div>
             <span className="col-span-2 text-right text-sm text-white">{a.health}</span>
-            <span className="col-span-3 text-right text-sm" style={{ color: '#dc2626' }}>{a.risk}</span>
+            <span className="col-span-3 text-right text-sm" style={{ color: 'var(--gd-danger)' }}>{a.risk}</span>
             <span className="col-span-2 text-right">
               <svg width="40" height="16" viewBox="0 0 40 16">
                 <path
                   d={a.trend === 'down' ? 'M2,4 L14,7 L26,10 L38,13' : a.trend === 'up' ? 'M2,13 L14,10 L26,6 L38,3' : 'M2,8 L14,7 L26,9 L38,8'}
-                  stroke={a.trend === 'down' ? '#dc2626' : a.trend === 'up' ? '#16a34a' : '#6b7280'}
+                  stroke={a.trend === 'down' ? 'var(--gd-danger)' : a.trend === 'up' ? 'var(--gd-success)' : 'var(--gd-fg-muted)'}
                   strokeWidth="1.5"
                   fill="none"
                 />
@@ -1533,7 +1564,7 @@ function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string;
             if (m.role === 'user') {
               return (
                 <div key={idx} className="flex justify-end">
-                  <div className="rounded-2xl px-4 py-3 max-w-xl text-white" style={{ background: '#6366f1' }}>
+                  <div className="rounded-2xl px-4 py-3 max-w-xl text-white" style={{ background: 'var(--gd-primary)' }}>
                     <p className="text-sm">{m.text}</p>
                     <p className="text-[10px] text-white/70 mt-1">{m.ts}</p>
                   </div>
@@ -1561,7 +1592,7 @@ function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string;
           <button
             onClick={() => submit(input)}
             className="w-8 h-8 rounded flex items-center justify-center text-white"
-            style={{ background: '#6366f1' }}
+            style={{ background: 'var(--gd-primary)' }}
           >
             →
           </button>
@@ -1595,7 +1626,7 @@ function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string;
                 <p className="text-xs text-white/60 leading-relaxed mb-2">{a.sub}</p>
                 <div className="flex items-center justify-between">
                   <Pill tone={a.priority === 'high' ? 'red' : 'yellow'}>{a.priority} priority</Pill>
-                  <button onClick={() => onNavigate('trace')} className="text-xs" style={{ color: '#6366f1' }}>
+                  <button onClick={() => onNavigate('trace')} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
                     View
                   </button>
                 </div>
@@ -1624,7 +1655,7 @@ function BotCard({
   return (
     <Card className="p-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs" style={{ background: '#6366f1' }}>
+        <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs" style={{ background: 'var(--gd-primary)' }}>
           ✦
         </span>
         <span className="text-sm font-medium text-white">GenX Copilot</span>
@@ -1633,7 +1664,7 @@ function BotCard({
       </div>
 
       {/* Direct answer */}
-      <div className="rounded-lg p-4 mb-4" style={{ background: 'rgba(99,102,241,0.14)' }}>
+      <div className="rounded-lg p-4 mb-4" style={{ background: 'var(--gd-primary-soft)' }}>
         <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-2">✦ Direct Answer</p>
         <p className="text-sm font-medium text-white">{a.direct.headline}</p>
         <p className="text-sm text-white/70 mt-1">{a.direct.sub}</p>
@@ -1660,7 +1691,7 @@ function BotCard({
               <div
                 key={i.label}
                 className="rounded-lg p-3"
-                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}
+                style={{ background: 'var(--gd-muted-2)', border: '1px solid var(--gd-border)' }}
               >
                 <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">{i.label}</p>
                 <p className="text-xl font-semibold text-white">{i.value}</p>
@@ -1689,7 +1720,7 @@ function BotCard({
           {a.table.map((r) => (
             <div key={r.name} className="grid grid-cols-12 gap-2 py-2 border-b border-white/5 last:border-0 items-center">
               <div className="col-span-3 flex items-center gap-2">
-                <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'var(--gd-muted)' }}>
                   {r.code}
                 </span>
                 <span className="text-sm text-white">{r.name}</span>
@@ -1703,7 +1734,7 @@ function BotCard({
               <span className="col-span-1 text-right text-sm text-white">{r.arr}</span>
               <span className="col-span-3 flex flex-wrap gap-1">
                 {r.factors.map((f) => (
-                  <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                  <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--gd-muted)' }}>
                     {f}
                   </span>
                 ))}
@@ -1711,7 +1742,7 @@ function BotCard({
               <span className="col-span-2 text-xs text-white/70">{r.owner}</span>
             </div>
           ))}
-          <button onClick={() => onNavigate('dashboard')} className="text-xs mt-3 inline-block" style={{ color: '#6366f1' }}>
+          <button onClick={() => onNavigate('dashboard')} className="text-xs mt-3 inline-block" style={{ color: 'var(--gd-primary)' }}>
             View all at-risk customers →
           </button>
         </>
@@ -1719,7 +1750,7 @@ function BotCard({
 
       {/* Reasoning */}
       {a.reasoning && (
-        <div className="rounded-lg p-4 mt-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <div className="rounded-lg p-4 mt-6" style={{ background: 'var(--gd-muted-2)', border: '1px solid var(--gd-border)' }}>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-white/50">ⓘ</span>
             <p className="text-sm font-medium text-white">Reasoning</p>
@@ -1790,10 +1821,10 @@ const TRACE_DATA: Record<SpaceKey, {
       { type: 'RECORD DELETED', title: 'Deleted duplicate support ticket #12345', who: 'Jordan Lee — Support Manager', when: 'yesterday · 02:10 PM' },
     ],
     donut: [
-      { label: 'Docs solution', value: 580, color: '#6366f1' },
-      { label: 'Known issue', value: 348, color: '#3b82f6' },
-      { label: 'New / unclear', value: 280, color: '#f59e0b' },
-      { label: 'Feature req.', value: 32, color: '#94a3b8' },
+      { label: 'Docs solution', value: 580, color: 'var(--gd-primary)' },
+      { label: 'Known issue', value: 348, color: 'var(--gd-info)' },
+      { label: 'New / unclear', value: 280, color: 'var(--gd-warning)' },
+      { label: 'Feature req.', value: 32, color: 'var(--gd-neutral)' },
     ],
     sources: [
       { name: 'Salesforce', pct: 32 },
@@ -1824,10 +1855,10 @@ const TRACE_DATA: Record<SpaceKey, {
       { type: 'ACTION EXECUTED', title: 'Deflected 12 mRounds sync queries via KB match', who: 'AI Agent — Deflection', when: 'today · 08:00 AM' },
     ],
     donut: [
-      { label: 'Docs solution', value: 3830, color: '#6366f1' },
-      { label: 'Known issue', value: 3103, color: '#3b82f6' },
-      { label: 'New / unclear', value: 1460, color: '#f59e0b' },
-      { label: 'Feature req.', value: 733, color: '#94a3b8' },
+      { label: 'Docs solution', value: 3830, color: 'var(--gd-primary)' },
+      { label: 'Known issue', value: 3103, color: 'var(--gd-info)' },
+      { label: 'New / unclear', value: 1460, color: 'var(--gd-warning)' },
+      { label: 'Feature req.', value: 733, color: 'var(--gd-neutral)' },
     ],
     sources: [
       { name: 'Freshdesk (Incident Mgmt)', pct: 42 },
@@ -1858,10 +1889,10 @@ const TRACE_DATA: Record<SpaceKey, {
       { type: 'ACTION EXECUTED', title: 'Wayne pilot-to-close plan sent to Ana K.', who: 'Taylor Kim', when: '2 days ago' },
     ],
     donut: [
-      { label: 'Delay rec.', value: 78, color: '#f59e0b' },
-      { label: 'Content aid', value: 210, color: '#6366f1' },
-      { label: 'Playbook', value: 240, color: '#3b82f6' },
-      { label: 'Fast-track', value: 96, color: '#94a3b8' },
+      { label: 'Delay rec.', value: 78, color: 'var(--gd-warning)' },
+      { label: 'Content aid', value: 210, color: 'var(--gd-primary)' },
+      { label: 'Playbook', value: 240, color: 'var(--gd-info)' },
+      { label: 'Fast-track', value: 96, color: 'var(--gd-neutral)' },
     ],
     sources: [
       { name: 'Salesforce', pct: 48 },
@@ -1892,10 +1923,10 @@ const TRACE_DATA: Record<SpaceKey, {
       { type: 'MEMORY UPDATED', title: 'Recorded PMO feedback on rescue plan', who: 'Jordan Lee', when: '2 days ago' },
     ],
     donut: [
-      { label: 'Rescue plan', value: 120, color: '#f59e0b' },
-      { label: 'Decision', value: 168, color: '#6366f1' },
-      { label: 'Approval', value: 148, color: '#16a34a' },
-      { label: 'Playbook', value: 50, color: '#94a3b8' },
+      { label: 'Rescue plan', value: 120, color: 'var(--gd-warning)' },
+      { label: 'Decision', value: 168, color: 'var(--gd-primary)' },
+      { label: 'Approval', value: 148, color: 'var(--gd-success)' },
+      { label: 'Playbook', value: 50, color: 'var(--gd-neutral)' },
     ],
     sources: [
       { name: 'Kimble (PSA)', pct: 45 },
@@ -1939,7 +1970,7 @@ function Trace({ space }: { space: SpaceKey }) {
         </div>
         <div className="flex items-center gap-2">
           <button className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent">Filters</button>
-          <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: '#6366f1' }}>
+          <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: 'var(--gd-primary)' }}>
             Export
           </button>
         </div>
@@ -2025,7 +2056,7 @@ function Trace({ space }: { space: SpaceKey }) {
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-medium text-white">Audit Trail (Latest)</p>
-            <button onClick={() => setActiveTab(2)} className="text-xs" style={{ color: '#6366f1' }}>
+            <button onClick={() => setActiveTab(2)} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
               View all →
             </button>
           </div>
@@ -2042,7 +2073,7 @@ function Trace({ space }: { space: SpaceKey }) {
               </div>
             </div>
           ))}
-          <button onClick={() => setActiveTab(2)} className="text-xs mt-3 inline-block" style={{ color: '#6366f1' }}>
+          <button onClick={() => setActiveTab(2)} className="text-xs mt-3 inline-block" style={{ color: 'var(--gd-primary)' }}>
             View full audit trail →
           </button>
         </Card>
@@ -2084,7 +2115,7 @@ function Trace({ space }: { space: SpaceKey }) {
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-medium text-white">Memory Retention</p>
-            <button onClick={() => setActiveTab(5)} className="text-xs" style={{ color: '#6366f1' }}>
+            <button onClick={() => setActiveTab(5)} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
               Manage →
             </button>
           </div>
@@ -2112,7 +2143,7 @@ function Trace({ space }: { space: SpaceKey }) {
                 <span className="text-white font-medium">{s.pct}%</span>
               </div>
               <div className="h-1.5 bg-black/5 rounded overflow-hidden">
-                <div className="h-full" style={{ width: `${s.pct * 2}%`, background: '#6366f1' }} />
+                <div className="h-full" style={{ width: `${s.pct * 2}%`, background: 'var(--gd-primary)' }} />
               </div>
             </div>
           ))}
@@ -2121,7 +2152,7 @@ function Trace({ space }: { space: SpaceKey }) {
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-medium text-white">Compliance &amp; Security</p>
-            <button onClick={() => setActiveTab(4)} className="text-[10px]" style={{ color: '#6366f1' }}>
+            <button onClick={() => setActiveTab(4)} className="text-[10px]" style={{ color: 'var(--gd-primary)' }}>
               View →
             </button>
           </div>
@@ -2220,7 +2251,7 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
                   <p className="font-mono text-xs text-white">{s.weight.toFixed(2)}</p>
                 </div>
                 <div className="h-1 bg-white/10 rounded overflow-hidden">
-                  <div className="h-full" style={{ width: `${s.weight * 100}%`, background: '#6366f1' }} />
+                  <div className="h-full" style={{ width: `${s.weight * 100}%`, background: 'var(--gd-primary)' }} />
                 </div>
               </div>
             ))}
@@ -2247,7 +2278,7 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
             <button onClick={onClose} className="text-xs px-4 py-2 border border-white/10 rounded text-white bg-transparent hover:bg-white/5">
               Close
             </button>
-            <button className="text-xs px-4 py-2 rounded text-white font-medium" style={{ background: '#6366f1' }}>
+            <button className="text-xs px-4 py-2 rounded text-white font-medium" style={{ background: 'var(--gd-primary)' }}>
               Export trace
             </button>
           </div>
