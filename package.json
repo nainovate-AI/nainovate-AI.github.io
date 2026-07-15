@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "npx serve@latest out",
     "lint": "eslint",
+    "test": "node --test tests/smoke.test.mjs tests/decision-nia-data.test.mjs tests/lint-hygiene.test.mjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out -b gh-pages --dotfiles"
   },

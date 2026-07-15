@@ -462,7 +462,7 @@ export default function SearchDataAIClient() {
                 <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">                  Schedule Demo
                 </Button>
               </Link>
-              <Link href="/try-demo">
+              <Link href="/demo">
                 <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">                  Try Interactive Demo
                 </Button>
               </Link>
