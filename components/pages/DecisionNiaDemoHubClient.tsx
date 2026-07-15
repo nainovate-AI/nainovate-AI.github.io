@@ -1519,6 +1519,9 @@ function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string;
 
   const latestBot = [...messages].reverse().find((m) => m.role === 'bot');
   const currentAnswer = latestBot?.answer;
+  // Right rails fall back to seed's rails so panel never empties
+  const railInsights = currentAnswer?.keyInsightsRail ?? seed.keyInsightsRail;
+  const railActions = currentAnswer?.recommendedActions ?? seed.recommendedActions;
 
   return (
     <div className="grid grid-cols-12 gap-6">
@@ -1567,10 +1570,10 @@ function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string;
 
       {/* Right rail */}
       <div className="col-span-3 space-y-4">
-        {currentAnswer?.keyInsightsRail && (
+        {railInsights && (
           <Card className="p-4">
             <p className="text-sm font-medium text-white mb-3">Key Insights</p>
-            {currentAnswer.keyInsightsRail.map((i) => (
+            {railInsights.map((i) => (
               <div key={i.label} className="py-2 border-b border-white/5 last:border-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-white/50 text-xs">{i.icon}</span>
@@ -1583,10 +1586,10 @@ function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string;
           </Card>
         )}
 
-        {currentAnswer?.recommendedActions && (
+        {railActions && (
           <Card className="p-4">
             <p className="text-sm font-medium text-white mb-3">Recommended Actions</p>
-            {currentAnswer.recommendedActions.map((a, i) => (
+            {railActions.map((a, i) => (
               <div key={i} className="py-3 border-b border-white/5 last:border-0">
                 <p className="text-sm text-white mb-1">{a.title}</p>
                 <p className="text-xs text-white/60 leading-relaxed mb-2">{a.sub}</p>
