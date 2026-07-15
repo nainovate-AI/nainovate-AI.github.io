@@ -13,8 +13,8 @@ const SPACES: {
   persona: string;
   role: string;
 }[] = [
-  { key: 'customer-support', label: 'Customer Support', letter: 'C', persona: 'Karen Foster', role: 'Support Head' },
   { key: 'customer-success', label: 'Customer Success', letter: 'C', persona: 'Alex Morgan', role: 'CSM Director' },
+  { key: 'customer-support', label: 'Customer Support', letter: 'C', persona: 'Karen Foster', role: 'Support Head' },
   { key: 'sales', label: 'Sales', letter: 'S', persona: 'Taylor Kim', role: 'AE Lead' },
   { key: 'delivery', label: 'Delivery', letter: 'D', persona: 'Jordan Lee', role: 'Delivery Lead' },
 ];
