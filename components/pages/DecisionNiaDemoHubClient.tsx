@@ -10,8 +10,8 @@ import {
   ChevronDown,
   ChevronLeft,
   Sparkles,
-  Bell,
-  Globe,
+  PanelLeftClose,
+  PanelLeftOpen,
   Mic,
   Paperclip,
   Send,
@@ -46,24 +46,20 @@ export default function DecisionNiaDemoHubClient() {
   const [pickerOpen, setPickerOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [pendingTraceId, setPendingTraceId] = useState<string | null>(null);
-  const [notifOpen, setNotifOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
-  const notifRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
         setPickerOpen(false);
       }
-      if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
-        setNotifOpen(false);
-      }
     }
-    if (pickerOpen || notifOpen) {
+    if (pickerOpen) {
       document.addEventListener('mousedown', onClickOutside);
       return () => document.removeEventListener('mousedown', onClickOutside);
     }
-  }, [pickerOpen, notifOpen]);
+  }, [pickerOpen]);
 
   useEffect(() => {
     if (!toast) return;
@@ -88,27 +84,37 @@ export default function DecisionNiaDemoHubClient() {
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <aside
-          className="w-[260px] border-r flex flex-col shrink-0"
+          className={`${sidebarCollapsed ? 'hidden' : 'flex'} w-[260px] border-r flex-col shrink-0`}
           style={{ borderColor: 'var(--gd-border)', background: 'var(--gd-bg)' }}
         >
-          {/* Brand */}
-          <button
-            onClick={() => setActiveFeature('command-center')}
-            className="px-5 py-5 border-b border-white/10 text-left hover:bg-white/5 transition-colors"
-          >
-            <div className="flex items-center gap-2.5">
-              <div
-                className="w-7 h-7 rounded-md flex items-center justify-center text-white shrink-0"
-                style={{ background: 'var(--gd-primary)' }}
-              >
-                <Sparkles className="w-4 h-4" />
+          {/* Brand + sidebar collapse toggle */}
+          <div className="flex items-stretch border-b border-white/10">
+            <button
+              onClick={() => setActiveFeature('command-center')}
+              className="flex-1 px-5 py-5 text-left hover:bg-white/5 transition-colors"
+            >
+              <div className="flex items-center gap-2.5">
+                <div
+                  className="w-7 h-7 rounded-md flex items-center justify-center text-white shrink-0"
+                  style={{ background: 'var(--gd-primary)' }}
+                >
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-white leading-tight">GenX</p>
+                  <p className="text-[10px] text-white/50 leading-tight">AI Decision Workspace</p>
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className="text-sm font-semibold text-white leading-tight">GenX</p>
-                <p className="text-[10px] text-white/50 leading-tight">AI Decision Workspace</p>
-              </div>
-            </div>
-          </button>
+            </button>
+            <button
+              onClick={() => setSidebarCollapsed(true)}
+              className="px-3 text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+              title="Collapse sidebar"
+              aria-label="Collapse sidebar"
+            >
+              <PanelLeftClose className="w-4 h-4" />
+            </button>
+          </div>
 
           {/* Space picker button */}
           <div className="p-3 border-b border-white/10 relative" ref={pickerRef}>
@@ -204,73 +210,32 @@ export default function DecisionNiaDemoHubClient() {
             </div>
           </div>
 
-          <div className="px-4 py-3 border-t border-white/10">
-            <Link
-              href="/demo"
-              className="text-xs text-white/50 hover:text-white flex items-center gap-1"
-            >
-              <ChevronLeft className="w-3 h-3" /> Back to chooser
-            </Link>
-          </div>
         </aside>
 
         {/* Main */}
         <section className="flex-1 min-w-0">
           {/* Top bar */}
           <div className="px-8 py-3 border-b border-white/10 flex items-center justify-between">
-            <p className="text-sm text-white">{feature.label}</p>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => showToast('English only in demo')}
-                className="flex items-center gap-1.5 text-xs text-white/60 hover:text-white px-2 py-1 rounded hover:bg-white/5"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                <span>En</span>
-              </button>
-              <div className="relative" ref={notifRef}>
+            <div className="flex items-center gap-3">
+              {sidebarCollapsed && (
                 <button
-                  onClick={() => setNotifOpen(!notifOpen)}
-                  className="relative text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5"
+                  onClick={() => setSidebarCollapsed(false)}
+                  className="text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5"
+                  title="Expand sidebar"
+                  aria-label="Expand sidebar"
                 >
-                  <Bell className="w-4 h-4" />
-                  <span
-                    className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full"
-                    style={{ background: 'var(--gd-danger)' }}
-                  />
+                  <PanelLeftOpen className="w-4 h-4" />
                 </button>
-                {notifOpen && (
-                  <div
-                    className="absolute top-full right-0 mt-2 w-[320px] rounded-lg shadow-2xl overflow-hidden z-50"
-                    style={{ background: 'var(--gd-bg)', border: '1px solid var(--gd-border-strong)' }}
-                  >
-                    <div className="px-4 py-2 border-b border-white/5">
-                      <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">
-                        Notifications · 3 unread
-                      </p>
-                    </div>
-                    <div className="max-h-[360px] overflow-y-auto">
-                      {[
-                        { t: 'Account A health dropped 42 → 35', trace: 'trace_northwind_outreach', when: '5m ago' },
-                        { t: 'FD-2104 P0 auto-escalated to sync module', trace: 'trace_acme_p0_2104', when: '12m ago' },
-                        { t: 'Account B renewal proposal ready to send', trace: 'trace_contoso_renewal_send', when: '1h ago' },
-                      ].map((n, i) => (
-                        <button
-                          key={i}
-                          onClick={() => {
-                            openTrace(n.trace);
-                            setNotifOpen(false);
-                          }}
-                          className="w-full text-left px-4 py-3 border-b border-white/5 last:border-0 hover:bg-white/5"
-                        >
-                          <p className="text-sm text-white">{n.t}</p>
-                          <p className="text-[10px] text-white/50 mt-1 font-mono">{n.trace} · {n.when}</p>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              )}
+              <p className="text-sm text-white">{feature.label}</p>
             </div>
+            <Link
+              href="/demo"
+              className="flex items-center gap-1.5 text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
+            >
+              <ChevronLeft className="w-3 h-3" />
+              Pick your NIA lens
+            </Link>
           </div>
 
           {/* Content */}
@@ -335,7 +300,7 @@ function FeaturePanel({
   if (feature === 'command-center')
     return <CommandCenter space={space} persona={persona} onNavigate={onNavigate} onOpenTrace={onOpenTrace} onToast={onToast} />;
   if (feature === 'dashboard') return <Dashboard space={space} spaceLabel={spaceLabel} onOpenTrace={onOpenTrace} onToast={onToast} />;
-  if (feature === 'ask') return <Ask space={space} persona={persona} onNavigate={onNavigate} onOpenTrace={onOpenTrace} onToast={onToast} />;
+  if (feature === 'ask') return <Ask space={space} onNavigate={onNavigate} onOpenTrace={onOpenTrace} onToast={onToast} />;
   if (feature === 'trace') return <Trace space={space} pendingTraceId={pendingTraceId} clearPendingTraceId={clearPendingTraceId} onToast={onToast} />;
   return null;
 }
@@ -2160,13 +2125,11 @@ function nowLabel(): string {
 
 function Ask({
   space,
-  persona,
   onNavigate,
   onOpenTrace,
   onToast,
 }: {
   space: SpaceKey;
-  persona: string;
   onNavigate: (f: FeatureKey) => void;
   onOpenTrace: (traceId: string) => void;
   onToast: (msg: string) => void;
