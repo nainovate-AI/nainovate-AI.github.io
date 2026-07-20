@@ -84,7 +84,7 @@ export default function DecisionNiaDemoHubClient() {
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <aside
-          className={`${sidebarCollapsed ? 'hidden' : 'flex'} w-[260px] border-r flex-col shrink-0`}
+          className={`${sidebarCollapsed ? 'hidden' : 'flex'} w-[260px] border-r flex-col shrink-0 h-screen sticky top-0 overflow-hidden`}
           style={{ borderColor: 'var(--gd-border)', background: 'var(--gd-bg)' }}
         >
           {/* Brand + sidebar collapse toggle */}

@@ -79,6 +79,31 @@
   --gd-backdrop: rgba(0, 0, 0, 0.7);
 }
 
+/* Scrollbar styling — apply to any scrollable area inside the workspace
+   so the browser default light chrome doesn't pop against the dark bg. */
+.theme-genx-decision,
+.theme-genx-decision * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+.theme-genx-decision *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.theme-genx-decision *::-webkit-scrollbar-track {
+  background: transparent;
+}
+.theme-genx-decision *::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.theme-genx-decision *::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+.theme-genx-decision *::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 body {
   @apply bg-black text-white;
   font-family: 'Inter', -apple-system, sans-serif;
