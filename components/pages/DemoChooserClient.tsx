@@ -23,7 +23,7 @@ export default function DemoChooserClient() {
             {/* Operations NIA */}
             <Link
               href="/demo/operations"
-              className="group border border-white/10 rounded-lg p-12 hover:border-white/40 transition-colors block"
+              className="group border border-white/40 rounded-lg p-12 hover:border-white transition-colors block bg-white/5"
             >
               <p className="text-xs tracking-widest text-gray uppercase mb-6">01 • OPERATIONS</p>
               <h2 className="text-4xl font-bold mb-6 group-hover:text-white">Operations NIA</h2>
