@@ -60,8 +60,8 @@ export default function TraceAuditClient() {
             <div className="p-8">
               <p className="text-xs text-gray uppercase tracking-wider mb-4">Decision summary</p>
               <p className="text-white text-lg leading-relaxed">
-                Auto-escalate FD-2104 to P0. Create ENG-4412 assigned to Priya Ramanan.
-                Notify CSM Marcus Chen. Insert Acme portal banner. Queue KB post-mortem
+                Auto-escalate FD-2104 to P0. Create ENG-4412 assigned to Consultant 1.
+                Notify CSM Persona 1. Insert Account A portal banner. Queue KB post-mortem
                 draft. Agent confidence: <span className="font-mono">0.91</span>.
               </p>
             </div>
@@ -73,7 +73,7 @@ export default function TraceAuditClient() {
               <p className="text-xs text-gray uppercase tracking-wider mb-6">Weighted signals</p>
               <div className="space-y-4">
                 {[
-                  { label: 'Ticket cluster density (Acme, sync)', weight: 0.42, evidence: '3 tickets in 24h' },
+                  { label: 'Ticket cluster density (Account A, sync)', weight: 0.42, evidence: '3 tickets in 24h' },
                   { label: 'Compliance evidence at risk', weight: 0.28, evidence: '12MB stuck on device' },
                   { label: 'Requester seniority (maintenance eng)', weight: 0.18, evidence: 'active user, 47 rounds/day' },
                   { label: 'Account health drop', weight: 0.12, evidence: 'score 42 → 35 in 6h' },
@@ -99,11 +99,11 @@ export default function TraceAuditClient() {
               <p className="text-xs text-gray uppercase tracking-wider mb-6">Evidence rows</p>
               <div className="space-y-3 text-sm">
                 {[
-                  { id: 'evd_01', src: 'Freshdesk', ref: 'FD-2104', detail: 'ticket body, requester, priority' },
-                  { id: 'evd_02', src: 'Freshdesk', ref: 'FD-2101, FD-2098', detail: 'related tickets last 24h' },
+                  { id: 'evd_01', src: 'Incident Management Tool', ref: 'FD-2104', detail: 'ticket body, requester, priority' },
+                  { id: 'evd_02', src: 'Incident Management Tool', ref: 'FD-2101, FD-2098', detail: 'related tickets last 24h' },
                   { id: 'evd_03', src: 'Telemetry', ref: 'sync-svc.metrics', detail: 'error rate 8.4% (threshold 2%)' },
-                  { id: 'evd_04', src: 'Salesforce', ref: 'Acme Corp', detail: 'health score 35, ARR $1.2M' },
-                  { id: 'evd_05', src: 'Jira', ref: 'sync-mobile', detail: 'owner Priya Ramanan, on-call yes' },
+                  { id: 'evd_04', src: 'CRM', ref: 'Account A', detail: 'health score 35, ARR $1.2M' },
+                  { id: 'evd_05', src: 'Issue Tracker', ref: 'sync-mobile', detail: 'owner Consultant 1, on-call yes' },
                   { id: 'evd_06', src: 'KB', ref: 'no article match', detail: 'novelty score 0.87' },
                 ].map((e) => (
                   <div key={e.id} className="border-t border-white/10 pt-3 grid grid-cols-12 gap-2">
@@ -123,7 +123,7 @@ export default function TraceAuditClient() {
               <p className="text-xs text-gray uppercase tracking-wider">Decision timeline</p>
             </div>
             {[
-              { t: '00:00.000', event: 'FD-2104 lands', src: 'Freshdesk' },
+              { t: '00:00.000', event: 'FD-2104 lands', src: 'Incident Management Tool' },
               { t: '00:00.180', event: 'AI Agent classifies novelty 0.87 · escalation path', src: 'Nia · Ask' },
               { t: '00:00.410', event: 'Watchlist wl_001 fires (cluster + compliance signal)', src: 'Nia · Watchlists' },
               { t: '00:00.690', event: 'Recommendation rec_002 drafted, confidence 0.91', src: 'Nia · Recs' },

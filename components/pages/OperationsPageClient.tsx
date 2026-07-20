@@ -446,7 +446,7 @@ function DocumentMockup() {
                             <span className="text-xs text-green-400">Processed</span>
                         </div>
                         <div className="text-xs text-gray space-y-1">
-                            <div>• Vendor: Acme Corp</div>
+                            <div>• Vendor: Account A Corp</div>
                             <div>• Amount: $15,240</div>
                             <div>• Due Date: Nov 30, 2024</div>
                         </div>

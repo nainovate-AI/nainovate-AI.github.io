@@ -6,22 +6,22 @@ import { Button } from '@/components/ui/Button';
 const initiatives = [
   {
     id: 'INIT-2104',
-    title: 'Acme mRounds sync stabilization',
+    title: 'Account A Product X sync stabilization',
     trigger: 'FD-2104 P0 escalation + wl_001 fires',
     teams: ['Support', 'Engineering', 'CSM', 'Product'],
     status: 'Active',
     progress: 60,
     milestones: [
       { d: '2026-07-09 05:47', e: 'Watchlist wl_001 fires' },
-      { d: '2026-07-09 05:48', e: 'ENG-4412 opened, Priya assigned' },
+      { d: '2026-07-09 05:48', e: 'ENG-4412 opened, Consultant 1 assigned' },
       { d: '2026-07-09 07:12', e: 'Root cause identified — sync retry backoff bug' },
       { d: '2026-07-09 11:30', e: 'Hotfix v3.8.3 in QA' },
-      { d: '2026-07-10 09:00', e: 'CSM check-in with Sarah scheduled' },
+      { d: '2026-07-10 09:00', e: 'CSM check-in with End User scheduled' },
     ],
   },
   {
     id: 'INIT-2088',
-    title: 'Globex compliance report format ask',
+    title: 'Account B compliance report format ask',
     trigger: 'FR-338 upvotes crossed threshold',
     teams: ['Support', 'Product', 'CSM'],
     status: 'Planning',
@@ -29,37 +29,37 @@ const initiatives = [
     milestones: [
       { d: '2026-07-05', e: 'Feature request escalated from FD-2098' },
       { d: '2026-07-07', e: 'Product board reviewed, sized 3-sprint' },
-      { d: '2026-07-08', e: 'CSM syncs with Globex on interim workaround' },
+      { d: '2026-07-08', e: 'CSM syncs with Account B on interim workaround' },
     ],
   },
   {
     id: 'INIT-2062',
-    title: 'Initech onboarding at risk',
+    title: 'Account H onboarding at risk',
     trigger: 'Health score drop + 4 open P1s + delivery slip',
     teams: ['Delivery', 'CSM', 'Sales'],
     status: 'Active',
     progress: 40,
     milestones: [
       { d: '2026-07-01', e: 'Delivery flags Phase 2 milestone slip' },
-      { d: '2026-07-03', e: 'CSM opens executive escalation with Initech CTO' },
+      { d: '2026-07-03', e: 'CSM opens executive escalation with Account H CTO' },
       { d: '2026-07-06', e: 'Sales agrees to defer expansion talk to Q4' },
     ],
   },
   {
     id: 'INIT-2041',
-    title: 'Umbrella renewal — decision Sept',
+    title: 'Account I renewal — decision Sept',
     trigger: 'Renewal 90d out + moderate health',
     teams: ['CSM', 'Sales'],
     status: 'Watching',
     progress: 15,
     milestones: [
       { d: '2026-06-28', e: 'CSM logs renewal-risk assessment' },
-      { d: '2026-07-02', e: 'Sales opens QBR with Damien Cole' },
+      { d: '2026-07-02', e: 'Sales opens QBR with Buyer' },
     ],
   },
   {
     id: 'INIT-2019',
-    title: 'mRounds v3.8 release readiness',
+    title: 'Product X v3.8 release readiness',
     trigger: 'Release train 2026-07-15',
     teams: ['Engineering', 'Support', 'Product', 'CSM'],
     status: 'Active',
@@ -89,7 +89,7 @@ export default function CoordinationClient() {
           <p className="text-xl text-gray max-w-3xl mb-12">
             Support, CSM, Sales, Delivery — four teams, one shared surface. Every
             initiative anchored to the ticket, watchlist, or account it came from. No
-            more Slack archaeology to piece together what happened.
+            more Chat archaeology to piece together what happened.
           </p>
         </div>
       </section>

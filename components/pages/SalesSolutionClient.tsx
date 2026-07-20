@@ -49,7 +49,7 @@ export default function SalesSolutionClient() {
             </div>
             {[
               {
-                account: 'Acme Corp',
+                account: 'Account A',
                 deal: 'Expansion — 200 seats',
                 stage: 'Prop sent',
                 arr: '$480k',
@@ -58,7 +58,7 @@ export default function SalesSolutionClient() {
                 rec: 'Delay 30d. Fix trust first.',
               },
               {
-                account: 'Globex Systems',
+                account: 'Account B Systems',
                 deal: 'Renewal',
                 stage: 'Negotiation',
                 arr: '$820k',
@@ -67,7 +67,7 @@ export default function SalesSolutionClient() {
                 rec: 'Include FR-338 timeline in renewal.',
               },
               {
-                account: 'Initech Ltd',
+                account: 'Account H',
                 deal: 'Expansion — new module',
                 stage: 'Discovery',
                 arr: '$310k',
@@ -76,7 +76,7 @@ export default function SalesSolutionClient() {
                 rec: 'Pause. Delivery-first play.',
               },
               {
-                account: 'Umbrella Group',
+                account: 'Account I',
                 deal: 'Renewal',
                 stage: 'Discovery',
                 arr: '$540k',
@@ -85,13 +85,13 @@ export default function SalesSolutionClient() {
                 rec: 'Warm new champion. Executive-level QBR.',
               },
               {
-                account: 'Wayne Industries',
+                account: 'Account G',
                 deal: 'New logo',
                 stage: 'Prop sent',
                 arr: '$720k',
                 health: '—',
                 signals: 'Pilot success',
-                rec: 'Fast-track. Reference from Acme (post-fix).',
+                rec: 'Fast-track. Reference from Account A (post-fix).',
               },
             ].map((r) => (
               <div key={r.account} className="grid grid-cols-12 p-4 border-b border-white/10 text-sm items-center">
@@ -134,8 +134,8 @@ export default function SalesSolutionClient() {
             Every meeting starts with the full picture.
           </h2>
           <div className="border border-white/10 rounded-lg p-8">
-            <p className="text-xs text-gray uppercase tracking-wider mb-4">10:00 — Acme Corp expansion call</p>
-            <h3 className="text-2xl font-bold mb-6">Ana (rep), Sarah (buyer), Marcus (CSM)</h3>
+            <p className="text-xs text-gray uppercase tracking-wider mb-4">10:00 — Account A expansion call</p>
+            <h3 className="text-2xl font-bold mb-6">Ana (rep), End User (buyer), Persona 1 (CSM)</h3>
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-xs text-gray uppercase tracking-wider mb-3">Before the call — Nia briefing</p>

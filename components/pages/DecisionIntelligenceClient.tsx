@@ -10,7 +10,7 @@ export default function DecisionIntelligenceClient() {
     '@type': 'Product',
     name: 'Nia Decision Intelligence',
     description:
-      'Explainable AI decision layer on top of Freshdesk, CRM, and knowledge bases. Ask, Watchlists, Trace, Coordination.',
+      'Explainable AI decision layer on top of Incident Management Tool, CRM, and knowledge bases. Ask, Watchlists, Trace, Coordination.',
     brand: { '@type': 'Brand', name: 'Nainovate' },
   };
 
@@ -32,7 +32,7 @@ export default function DecisionIntelligenceClient() {
             </h1>
             <p className="text-xl text-gray max-w-3xl mb-12">
               Turn every ticket, signal, and AI decision into explainable outcomes.
-              Nia sits on top of your Freshdesk, CRM, and knowledge base — customers
+              Nia sits on top of your Incident Management Tool, CRM, and knowledge base — customers
               self-serve, agents deflect, leaders decide.
             </p>
             <div className="flex gap-8 flex-wrap">
@@ -63,7 +63,7 @@ export default function DecisionIntelligenceClient() {
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-6 text-gray text-lg leading-relaxed">
               <p>
-                Sarah Johnson, maintenance engineer at Acme Corp, opens mRounds on
+                End User, maintenance engineer at Account A, opens Product X on
                 her Android to sync 47 rounds from her morning shift. Sync hangs.
                 12&nbsp;MB of compliance evidence is stuck on her device. She files
                 ticket <span className="text-white">FD-2104</span>.
@@ -84,10 +84,10 @@ export default function DecisionIntelligenceClient() {
                 <span className="text-white">Nia turns FD-2104 into a decision loop.</span>
               </p>
               <p>
-                The AI Agent handles Sarah in the Freshdesk portal. Watchlists fire.
+                The AI Agent handles End User in the Incident Management Tool portal. Watchlists fire.
                 A Recommendation converts into a Workflow. The Coordination Center
-                links back to Acme&rsquo;s account. The CSM sees the health score
-                drop from 42 → 35 before Sarah&rsquo;s next shift.
+                links back to Account A&rsquo;s account. The CSM sees the health score
+                drop from 42 → 35 before End User&rsquo;s next shift.
               </p>
               <p>
                 Every AI action is logged in <span className="text-white">Trace &amp; Audit</span>{' '}
@@ -116,7 +116,7 @@ export default function DecisionIntelligenceClient() {
               <p className="text-xs tracking-widest text-gray uppercase mb-4">01</p>
               <h3 className="text-3xl font-bold mb-4 group-hover:text-white">AI Agent — Ask</h3>
               <p className="text-gray mb-6">
-                Customer-facing chat inside Freshdesk. Handles L1 without a human.
+                Customer-facing chat inside Incident Management Tool. Handles L1 without a human.
                 4 canonical scenarios: doc-based, known issue, new bug, feature
                 request.
               </p>
@@ -190,12 +190,12 @@ export default function DecisionIntelligenceClient() {
               <tbody className="text-gray">
                 <tr className="border-t border-white/10">
                   <td className="p-6 text-white">Customer</td>
-                  <td className="p-6">Freshdesk Help Center</td>
+                  <td className="p-6">Incident Management Tool Help Center</td>
                   <td className="p-6">Embedded AI Agent only — never leaves the portal</td>
                 </tr>
                 <tr className="border-t border-white/10">
                   <td className="p-6 text-white">L1 / L2 Agent</td>
-                  <td className="p-6">Freshdesk Agent UI</td>
+                  <td className="p-6">Incident Management Tool Agent UI</td>
                   <td className="p-6">Ticket-sidebar Co-Pilot, summaries, draft replies</td>
                 </tr>
                 <tr className="border-t border-white/10">

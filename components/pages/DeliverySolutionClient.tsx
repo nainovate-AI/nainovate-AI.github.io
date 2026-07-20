@@ -29,11 +29,11 @@ export default function DeliverySolutionClient() {
         </div>
       </section>
 
-      {/* Acme Phase 2 rescue */}
+      {/* Account A Phase 2 rescue */}
       <section className="py-32">
         <div className="max-w-[1400px] mx-auto px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
-            ACME PHASE 2 — RESCUE PLAN
+            ACCOUNT A PHASE 2 — RESCUE PLAN
           </p>
           <h2 className="text-5xl font-bold mb-16 max-w-3xl">
             Milestone slip spotted 21 days before steering.
@@ -42,7 +42,7 @@ export default function DeliverySolutionClient() {
           <div className="grid lg:grid-cols-2 gap-16 mb-16">
             <div className="space-y-6 text-gray text-lg leading-relaxed">
               <p>
-                <span className="text-white">Acme Phase 2</span> was scoped 8 weeks, kicked
+                <span className="text-white">Account A Phase 2</span> was scoped 8 weeks, kicked
                 off 2026-05-15. Milestone M3 (UAT sign-off) was due 2026-07-01. On
                 2026-06-10 — 21 days before — Nia flagged three concurrent signals: two
                 open P1 tickets from UAT users, resource utilization at 138% for two
@@ -58,7 +58,7 @@ export default function DeliverySolutionClient() {
                 <span className="text-white">With Nia:</span> watchlist wl_delivery_slip
                 fires. Recommendation drafts a rescue plan — 1 consultant reassigned from
                 a green project, 2 P1s escalated to engineering with hotfix path, CSM
-                warms Acme PMO on realistic re-baseline.
+                warms Account A PMO on realistic re-baseline.
               </p>
               <p>
                 Result: M3 slips 8 days instead of 3 weeks. Steering committee sees the
@@ -75,9 +75,9 @@ export default function DeliverySolutionClient() {
             {[
               { d: '2026-06-10', e: 'wl_delivery_slip fires. Signals: 2 P1s + resource 138% + CSM sentiment down' },
               { d: '2026-06-10', e: 'Recommendation rec_delivery_009 drafted. Auto-approved (delivery director policy)' },
-              { d: '2026-06-11', e: 'Workflow: reassign Priya B from Umbrella green project, coordinate with Umbrella CSM' },
+              { d: '2026-06-11', e: 'Workflow: reassign Consultant 1 from Account I green project, coordinate with Account I CSM' },
               { d: '2026-06-11', e: 'Workflow: escalate P1s to engineering, hotfix path negotiated' },
-              { d: '2026-06-12', e: 'CSM Marcus opens re-baseline conversation with Acme PMO' },
+              { d: '2026-06-12', e: 'CSM Persona 1 opens re-baseline conversation with Account A PMO' },
               { d: '2026-06-14', e: 'New M3 date agreed: 2026-07-09 (8-day slip vs 21-day slip)' },
               { d: '2026-06-20', e: 'INIT-2104 coordination opens (support-side sync issue merges into initiative)' },
               { d: '2026-07-09', e: 'M3 UAT sign-off ✓' },
@@ -102,14 +102,14 @@ export default function DeliverySolutionClient() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { p: 'Acme Phase 2', m: 'M3 UAT', s: '2026-07-09', h: 'At risk', c: 'watchlist active' },
-              { p: 'Globex Rollout', m: 'M2 Data migration', s: '2026-08-15', h: 'On track', c: 'clean' },
-              { p: 'Initech Pilot', m: 'Go-live', s: '2026-07-22', h: 'At risk', c: '4 P1 tickets open' },
-              { p: 'Umbrella Expansion', m: 'M1 Discovery', s: '2026-09-01', h: 'On track', c: 'clean' },
-              { p: 'Wayne Onboarding', m: 'Kickoff', s: '2026-07-20', h: 'On track', c: 'new logo' },
-              { p: 'Stark Phase 3', m: 'M4 Training', s: '2026-07-30', h: 'At risk', c: 'trainer conflict' },
-              { p: 'LexCorp Rescue', m: 'Recovery', s: '2026-08-30', h: 'Blue', c: 'ex-red · recovering' },
-              { p: 'Cyberdyne Upgrade', m: 'M2 Config', s: '2026-08-05', h: 'On track', c: 'clean' },
+              { p: 'Account A Phase 2', m: 'M3 UAT', s: '2026-07-09', h: 'At risk', c: 'watchlist active' },
+              { p: 'Account B Rollout', m: 'M2 Data migration', s: '2026-08-15', h: 'On track', c: 'clean' },
+              { p: 'Account H Pilot', m: 'Go-live', s: '2026-07-22', h: 'At risk', c: '4 P1 tickets open' },
+              { p: 'Account I Expansion', m: 'M1 Discovery', s: '2026-09-01', h: 'On track', c: 'clean' },
+              { p: 'Account G Onboarding', m: 'Kickoff', s: '2026-07-20', h: 'On track', c: 'new logo' },
+              { p: 'Account J Phase 3', m: 'M4 Training', s: '2026-07-30', h: 'At risk', c: 'trainer conflict' },
+              { p: 'Account K Rescue', m: 'Recovery', s: '2026-08-30', h: 'Blue', c: 'ex-red · recovering' },
+              { p: 'Account L Upgrade', m: 'M2 Config', s: '2026-08-05', h: 'On track', c: 'clean' },
             ].map((x) => (
               <div key={x.p} className="border border-white/10 rounded-lg p-6">
                 <p className="text-xs text-gray uppercase tracking-wider mb-1">Project</p>

@@ -38,7 +38,7 @@ export default function SignalChainClient() {
           {/* Chain visual */}
           <div className="grid lg:grid-cols-3 gap-4 mb-24">
             {[
-              { step: '01', label: 'Watchlist', id: 'wl_001', title: 'mRounds sync failures spiking' },
+              { step: '01', label: 'Watchlist', id: 'wl_001', title: 'Product X sync failures spiking' },
               { step: '02', label: 'Recommendation', id: 'rec_002', title: 'Escalate to sync module owner' },
               { step: '03', label: 'Workflow', id: 'wf_001', title: 'P0 engineering ticket + CSM notify' },
             ].map((n, i) => (
@@ -61,7 +61,7 @@ export default function SignalChainClient() {
             <div className="grid lg:grid-cols-12 gap-12 border-t border-white/10 pt-16">
               <div className="lg:col-span-4">
                 <p className="text-xs tracking-widest text-gray uppercase mb-4">01 • WATCHLIST wl_001</p>
-                <h3 className="text-3xl font-bold mb-4">mRounds sync failures spiking</h3>
+                <h3 className="text-3xl font-bold mb-4">Product X sync failures spiking</h3>
                 <p className="text-gray text-sm">
                   Watchlists sit on a live stream of tickets, telemetry, and product events.
                   When a pattern crosses threshold, they fire.
@@ -71,14 +71,14 @@ export default function SignalChainClient() {
                 <div className="border border-white/10 rounded-lg p-6">
                   <p className="text-xs text-gray uppercase tracking-wider mb-3">Trigger</p>
                   <p className="text-white">
-                    3+ sync-related tickets from Acme Corp in the last 24h with priority ≥ P1
+                    3+ sync-related tickets from Account A in the last 24h with priority ≥ P1
                   </p>
                 </div>
                 <div className="border border-white/10 rounded-lg p-6">
                   <p className="text-xs text-gray uppercase tracking-wider mb-3">Signal weight</p>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray">Ticket cluster density (Acme, sync)</span>
+                      <span className="text-gray">Ticket cluster density (Account A, sync)</span>
                       <span className="text-white font-mono">0.42</span>
                     </div>
                     <div className="flex justify-between text-sm">
@@ -90,7 +90,7 @@ export default function SignalChainClient() {
                       <span className="text-white font-mono">0.28</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray">Account health drop (Acme, 42→35)</span>
+                      <span className="text-gray">Account health drop (Account A, 42→35)</span>
                       <span className="text-white font-mono">0.12</span>
                     </div>
                     <div className="border-t border-white/10 pt-2 flex justify-between text-sm mt-3">
@@ -101,7 +101,7 @@ export default function SignalChainClient() {
                 </div>
                 <div className="border-l-2 border-white pl-6">
                   <p className="text-sm text-gray uppercase tracking-wider mb-2">Fires at</p>
-                  <p className="text-white">05:47 AM IST — 2 minutes after FD-2104 lands in Freshdesk</p>
+                  <p className="text-white">05:47 AM IST — 2 minutes after FD-2104 lands in Incident Management Tool</p>
                 </div>
               </div>
             </div>
@@ -121,8 +121,8 @@ export default function SignalChainClient() {
                   <p className="text-xs text-gray uppercase tracking-wider mb-3">Proposed action</p>
                   <p className="text-white leading-relaxed">
                     Create P0 engineering ticket ENG-4412 assigned to the sync module owner
-                    (Priya Ramanan). Notify Acme CSM (Marcus Chen). Insert incident banner into
-                    Acme customer portal. Warm the KB team for a future post-mortem article.
+                    (Consultant 1). Notify Account A CSM (Persona 1). Insert incident banner into
+                    Account A customer portal. Warm the KB team for a future post-mortem article.
                   </p>
                 </div>
                 <div className="border border-white/10 rounded-lg p-6">
@@ -143,8 +143,8 @@ export default function SignalChainClient() {
                 <p className="text-xs tracking-widest text-gray uppercase mb-4">03 • WORKFLOW wf_001</p>
                 <h3 className="text-3xl font-bold mb-4">P0 engineering + CSM notify</h3>
                 <p className="text-gray text-sm">
-                  Recommendation converts into a workflow. Steps execute across Freshdesk,
-                  Jira, Slack, CRM. Each step logged to the trace with duration and outcome.
+                  Recommendation converts into a workflow. Steps execute across Incident Management Tool,
+                  Issue Tracker, Chat, CRM. Each step logged to the trace with duration and outcome.
                 </p>
               </div>
               <div className="lg:col-span-8 space-y-6">
@@ -153,11 +153,11 @@ export default function SignalChainClient() {
                     <p className="text-xs text-gray uppercase tracking-wider">Step sequence</p>
                   </div>
                   {[
-                    { step: '1', action: 'Create Jira ENG-4412 (P0)', target: 'Jira · sync-mobile', duration: '340ms', status: 'ok' },
-                    { step: '2', action: 'Assign Priya Ramanan', target: 'Jira', duration: '110ms', status: 'ok' },
-                    { step: '3', action: 'Slack #acme-critical: FD-2104 escalated', target: 'Slack', duration: '290ms', status: 'ok' },
-                    { step: '4', action: 'Notify CSM Marcus Chen (email + Slack DM)', target: 'CRM · Salesforce', duration: '410ms', status: 'ok' },
-                    { step: '5', action: 'Insert banner into Acme portal', target: 'Freshdesk portal', duration: '190ms', status: 'ok' },
+                    { step: '1', action: 'Create Issue Tracker ENG-4412 (P0)', target: 'Issue Tracker · sync-mobile', duration: '340ms', status: 'ok' },
+                    { step: '2', action: 'Assign Consultant 1', target: 'Issue Tracker', duration: '110ms', status: 'ok' },
+                    { step: '3', action: 'Chat #acme-critical: FD-2104 escalated', target: 'Chat', duration: '290ms', status: 'ok' },
+                    { step: '4', action: 'Notify CSM Persona 1 (email + Chat DM)', target: 'CRM · CRM', duration: '410ms', status: 'ok' },
+                    { step: '5', action: 'Insert banner into Account A portal', target: 'Incident Management Tool portal', duration: '190ms', status: 'ok' },
                     { step: '6', action: 'Queue KB post-mortem draft', target: 'Nia KB queue', duration: '80ms', status: 'ok' },
                   ].map((r) => (
                     <div key={r.step} className="p-4 border-b border-white/10 grid grid-cols-12 gap-4 text-sm">

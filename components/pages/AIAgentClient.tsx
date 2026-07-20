@@ -8,10 +8,10 @@ const scenarios = [
     id: '01',
     title: 'Doc-based question',
     ticket: 'FD-2098',
-    customer: 'Globex — Priya Menon',
-    question: 'How do I export mRounds compliance evidence as PDF?',
+    customer: 'Account B — Buyer',
+    question: 'How do I export Product X compliance evidence as PDF?',
     agent_reply:
-      'You can export from the Round Detail screen → tap the share icon → select "PDF with evidence". Full walk-through with screenshots is at docs.acme-mrounds.com/exports/pdf. Would that answer your question?',
+      'You can export from the Round Detail screen → tap the share icon → select "PDF with evidence". Full walk-through with screenshots is at docs.vendor.docs/exports/pdf. Would that answer your question?',
     outcome: 'Resolved in 42 seconds. Zero handoff. KB article view logged.',
     signals: ['KB match confidence 0.94', 'Similar tickets resolved 12', 'Deflection: yes'],
   },
@@ -19,7 +19,7 @@ const scenarios = [
     id: '02',
     title: 'Known issue',
     ticket: 'FD-2101',
-    customer: 'Initech — Anders Holm',
+    customer: 'Account H — End User',
     question: 'App crashes when I open the Compliance tab on Android 14',
     agent_reply:
       'We are aware of this — tracked as INC-887. Fix ships in v3.8.2 (rolling out this week). As a workaround, force-stop and reopen the app; crash rate drops to <2% after that. You will be notified when v3.8.2 lands in your tenant.',
@@ -30,11 +30,11 @@ const scenarios = [
     id: '03',
     title: 'New issue → auto-create',
     ticket: 'FD-2104',
-    customer: 'Acme Corp — Sarah Johnson',
+    customer: 'Account A — End User',
     question:
-      'mRounds sync hangs at 87% every morning. 12 MB of evidence stuck on device. Reboot did not help.',
+      'Product X sync hangs at 87% every morning. 12 MB of evidence stuck on device. Reboot did not help.',
     agent_reply:
-      'This looks new — no match in known issues or docs. Creating engineering ticket ENG-4412 for the sync module owner and setting priority P0. Sarah, I have logged the device details, network state, and the 12 MB payload for engineering. Support will get back within 4 hours.',
+      'This looks new — no match in known issues or docs. Creating engineering ticket ENG-4412 for the sync module owner and setting priority P0. End User, I have logged the device details, network state, and the 12 MB payload for engineering. Support will get back within 4 hours.',
     outcome: 'Escalated to L2 with full context. Watchlist wl_001 fires. Coordination initiative opens.',
     signals: ['Novelty score 0.87', 'Priority P0', 'Auto-created ENG-4412', 'Deflection: no'],
   },
@@ -42,10 +42,10 @@ const scenarios = [
     id: '04',
     title: 'Feature request',
     ticket: 'FD-2109',
-    customer: 'Umbrella — Damien Cole',
+    customer: 'Account I — Buyer',
     question: 'Can we get bulk-approve for round evidence? Manual approval takes hours.',
     agent_reply:
-      'That is a feature request, not a bug — noted. I have logged it as FR-338 under "Round Evidence UX". Product reviews FRs weekly; you can track status at status.acme-mrounds.com/fr/338. Would you like to add supporting context (screenshots, workflow) now?',
+      'That is a feature request, not a bug — noted. I have logged it as FR-338 under "Round Evidence UX". Product reviews FRs weekly; you can track status at status.vendor.docs/fr/338. Would you like to add supporting context (screenshots, workflow) now?',
     outcome: 'Routed to product board. Customer given a tracking link. No support cycle burned.',
     signals: ['Intent: feature request', 'Product board: FR-338', 'Deflection: yes'],
   },
@@ -65,7 +65,7 @@ export default function AIAgentClient() {
             <span className="block text-gray">NO HUMAN.</span>
           </h1>
           <p className="text-xl text-gray max-w-3xl mb-12">
-            Customer-facing chat embedded in the Freshdesk Help Center. Four canonical
+            Customer-facing chat embedded in the Incident Management Tool Help Center. Four canonical
             scenarios — doc-based, known issue, new bug, feature request — resolved,
             deflected, or escalated with full context in seconds.
           </p>

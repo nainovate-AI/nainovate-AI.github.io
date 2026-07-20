@@ -34,7 +34,7 @@ export default function CustomerSuccessSolutionClient() {
       <section className="py-32">
         <div className="max-w-[1400px] mx-auto px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
-            ACCOUNT VIEW — ACME CORP
+            ACCOUNT VIEW — ACCOUNT A
           </p>
           <h2 className="text-5xl font-bold mb-16 max-w-3xl">
             One account. Every lens. One CSM view.
@@ -45,7 +45,7 @@ export default function CustomerSuccessSolutionClient() {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                 <div>
                   <p className="text-xs text-gray uppercase tracking-wider mb-2">Account</p>
-                  <p className="text-white text-lg">Acme Corp</p>
+                  <p className="text-white text-lg">Account A</p>
                 </div>
                 <div>
                   <p className="text-xs text-gray uppercase tracking-wider mb-2">Health score</p>
@@ -67,7 +67,7 @@ export default function CustomerSuccessSolutionClient() {
               <div>
                 <p className="text-xs text-gray uppercase tracking-wider mb-4">Active signals</p>
                 <ul className="space-y-2 text-sm">
-                  <li className="text-white">· FD-2104 P0 escalation — mRounds sync</li>
+                  <li className="text-white">· FD-2104 P0 escalation — Product X sync</li>
                   <li className="text-white">· wl_001 fired 05:47 today</li>
                   <li className="text-white">· INIT-2104 coordination open</li>
                   <li className="text-gray">· 3 sync tickets last 24h</li>
@@ -77,9 +77,9 @@ export default function CustomerSuccessSolutionClient() {
               <div>
                 <p className="text-xs text-gray uppercase tracking-wider mb-4">Next actions</p>
                 <ul className="space-y-2 text-sm">
-                  <li className="text-white">✓ 09:00 — Check-in with Sarah scheduled</li>
-                  <li className="text-white">✓ 10:00 — Sync with Priya on hotfix ETA</li>
-                  <li className="text-white">✓ 14:00 — Draft executive summary for Acme CIO</li>
+                  <li className="text-white">✓ 09:00 — Check-in with End User scheduled</li>
+                  <li className="text-white">✓ 10:00 — Sync with Consultant 1 on hotfix ETA</li>
+                  <li className="text-white">✓ 14:00 — Draft executive summary for Account A CIO</li>
                 </ul>
               </div>
             </div>
@@ -117,12 +117,12 @@ export default function CustomerSuccessSolutionClient() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: 'Renewal 90d out + health &lt; 40', hits: 4, top: 'Acme Corp' },
-              { name: 'NPS drop &gt; 2 in a week', hits: 7, top: 'Umbrella' },
-              { name: '3+ P1/P0 tickets in 30d', hits: 3, top: 'Initech' },
-              { name: 'Executive escalation open', hits: 2, top: 'Acme Corp' },
-              { name: 'License usage &lt; 40%', hits: 5, top: 'Globex' },
-              { name: 'Champion left (LinkedIn signal)', hits: 1, top: 'Umbrella' },
+              { name: 'Renewal 90d out + health &lt; 40', hits: 4, top: 'Account A' },
+              { name: 'NPS drop &gt; 2 in a week', hits: 7, top: 'Account I' },
+              { name: '3+ P1/P0 tickets in 30d', hits: 3, top: 'Account H' },
+              { name: 'Executive escalation open', hits: 2, top: 'Account A' },
+              { name: 'License usage &lt; 40%', hits: 5, top: 'Account B' },
+              { name: 'Champion left (Social Signal signal)', hits: 1, top: 'Account I' },
             ].map((w) => (
               <div key={w.name} className="border border-white/10 rounded-lg p-6">
                 <p className="text-xs text-gray uppercase tracking-wider mb-2">Watchlist</p>

@@ -16,7 +16,7 @@ export default function DemoChooserClient() {
           </h1>
           <p className="text-xl text-gray max-w-3xl mb-16">
             Same platform. Two demos. Operations NIA runs your internal workflows.
-            Decision NIA sits on Freshdesk + CRM as an explainable decision layer.
+            Decision NIA sits on Incident Management Tool + CRM as an explainable decision layer.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -48,7 +48,7 @@ export default function DemoChooserClient() {
               <h2 className="text-4xl font-bold mb-6 group-hover:text-white">Decision NIA</h2>
               <p className="text-gray mb-8 leading-relaxed">
                 AI decision layer for enterprise support. Ask, Watchlists, Trace,
-                Coordination. Live 4-team walkthrough anchored on Acme FD-2104.
+                Coordination. Live 4-team walkthrough anchored on Account A FD-2104.
               </p>
               <div className="space-y-2 mb-8 text-sm text-gray">
                 <p>· Customer Support</p>

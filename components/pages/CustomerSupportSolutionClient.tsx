@@ -18,7 +18,7 @@ export default function CustomerSupportSolutionClient() {
           </h1>
           <p className="text-xl text-gray max-w-3xl mb-12">
             L1 deflection without a human. L2 with full context. Support Heads with root
-            cause, not reopen counts. Nia sits inside Freshdesk — customers self-serve,
+            cause, not reopen counts. Nia sits inside Incident Management Tool — customers self-serve,
             agents deflect, leaders decide.
           </p>
           <div className="flex gap-8 flex-wrap">
@@ -50,18 +50,18 @@ export default function CustomerSupportSolutionClient() {
             {[
               {
                 t: '05:45',
-                who: 'Sarah · Customer',
-                what: 'Files ticket FD-2104 from Acme Corp portal. mRounds sync hangs. 12MB of evidence stuck.',
+                who: 'End User · Customer',
+                what: 'Files ticket FD-2104 from Account A portal. Product X sync hangs. 12MB of evidence stuck.',
               },
               {
                 t: '05:45',
-                who: 'Nia · AI Agent (in Freshdesk portal)',
-                what: 'Classifies novelty 0.87. No KB match. No known incident. Escalation path chosen. Replies to Sarah with expected timeline.',
+                who: 'Nia · AI Agent (in Incident Management Tool portal)',
+                what: 'Classifies novelty 0.87. No KB match. No known incident. Escalation path chosen. Replies to End User with expected timeline.',
               },
               {
                 t: '05:47',
                 who: 'Nia · Watchlists',
-                what: 'wl_001 fires — 3 sync tickets from Acme in 24h, compliance evidence at risk. Confidence 1.0.',
+                what: 'wl_001 fires — 3 sync tickets from Account A in 24h, compliance evidence at risk. Confidence 1.0.',
               },
               {
                 t: '05:47',
@@ -71,27 +71,27 @@ export default function CustomerSupportSolutionClient() {
               {
                 t: '05:47',
                 who: 'Nia · Workflow wf_001',
-                what: '6 steps dispatched: ENG-4412 created, Priya assigned, Slack posted, Marcus (CSM) notified, banner up, KB queued. 1.42 seconds.',
+                what: '6 steps dispatched: ENG-4412 created, Consultant 1 assigned, Chat posted, Persona 1 (CSM) notified, banner up, KB queued. 1.42 seconds.',
               },
               {
                 t: '05:48',
-                who: 'Priya · L2 Engineer',
+                who: 'Consultant 1 · L2 Engineer',
                 what: 'Opens ENG-4412 with full context: ticket, telemetry, related tickets, evidence rows. Starts investigation.',
               },
               {
                 t: '05:49',
-                who: 'Marcus · CSM',
-                what: 'Notified. Sees Acme health drop 42→35. Adds to today\'s check-ins. Opens INIT-2104 coordination.',
+                who: 'Persona 1 · CSM',
+                what: 'Notified. Sees Account A health drop 42→35. Adds to today\'s check-ins. Opens INIT-2104 coordination.',
               },
               {
                 t: '11:30',
-                who: 'Priya',
+                who: 'Consultant 1',
                 what: 'Root cause: sync retry backoff bug. Hotfix v3.8.3 in QA.',
               },
               {
                 t: '2026-07-10',
                 who: 'Support Head dashboard',
-                what: 'Reopen pattern spotted across 3 Acme tickets → same root cause. wl_001 marked resolved. Trace closed.',
+                what: 'Reopen pattern spotted across 3 Account A tickets → same root cause. wl_001 marked resolved. Trace closed.',
               },
             ].map((row, i) => (
               <div key={i} className="grid grid-cols-12 gap-4 border-t border-white/10 pt-4 items-start">
@@ -114,12 +114,12 @@ export default function CustomerSupportSolutionClient() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                who: 'Customer (in Freshdesk portal)',
+                who: 'Customer (in Incident Management Tool portal)',
                 surface: 'Embedded AI Agent only. Never leaves the portal.',
                 what: 'Deflects doc-based + known-issue questions. Escalates new bugs. Routes feature requests.',
               },
               {
-                who: 'L1 / L2 Agent (Freshdesk agent UI)',
+                who: 'L1 / L2 Agent (Incident Management Tool agent UI)',
                 surface: 'Ticket-sidebar Co-Pilot.',
                 what: 'Ticket summary. Similar-ticket pills. KB references. Draft reply. One-click escalate.',
               },
