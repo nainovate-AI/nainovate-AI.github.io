@@ -15,6 +15,7 @@ import {
   Mic,
   Paperclip,
   Send,
+  X,
 } from 'lucide-react';
 
 type SpaceKey = 'customer-support' | 'customer-success' | 'sales' | 'delivery';
@@ -231,10 +232,11 @@ export default function DecisionNiaDemoHubClient() {
             </div>
             <Link
               href="/demo"
-              className="flex items-center gap-1.5 text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
+              className="text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5"
+              title="Close workspace · back to chooser"
+              aria-label="Close workspace"
             >
-              <ChevronLeft className="w-3 h-3" />
-              Pick your NIA lens
+              <X className="w-4 h-4" />
             </Link>
           </div>
 
