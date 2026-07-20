@@ -74,6 +74,9 @@
   /* Neutral tone (donuts, sparklines, tag chips) */
   --gd-neutral: #94a3b8;
   --gd-neutral-fg: #d1d5db;
+
+  /* Modal backdrop */
+  --gd-backdrop: rgba(0, 0, 0, 0.7);
 }
 
 body {

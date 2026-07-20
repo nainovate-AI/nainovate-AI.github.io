@@ -12,6 +12,9 @@ import {
   Sparkles,
   Bell,
   Globe,
+  Mic,
+  Paperclip,
+  Send,
 } from 'lucide-react';
 
 type SpaceKey = 'customer-support' | 'customer-success' | 'sales' | 'delivery';
@@ -332,12 +335,122 @@ function FeaturePanel({
   if (feature === 'command-center')
     return <CommandCenter space={space} persona={persona} onNavigate={onNavigate} onOpenTrace={onOpenTrace} onToast={onToast} />;
   if (feature === 'dashboard') return <Dashboard space={space} spaceLabel={spaceLabel} onOpenTrace={onOpenTrace} onToast={onToast} />;
-  if (feature === 'ask') return <Ask space={space} persona={persona} onNavigate={onNavigate} onOpenTrace={onOpenTrace} />;
+  if (feature === 'ask') return <Ask space={space} persona={persona} onNavigate={onNavigate} onOpenTrace={onOpenTrace} onToast={onToast} />;
   if (feature === 'trace') return <Trace space={space} pendingTraceId={pendingTraceId} clearPendingTraceId={clearPendingTraceId} onToast={onToast} />;
   return null;
 }
 
 /* ---------- primitives ---------- */
+
+function Dialog({
+  open,
+  onClose,
+  title,
+  children,
+  footer,
+  width = 'md',
+}: {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+  width?: 'sm' | 'md' | 'lg';
+}) {
+  useEffect(() => {
+    if (!open) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open, onClose]);
+  if (!open) return null;
+  const w = width === 'sm' ? 'max-w-md' : width === 'lg' ? 'max-w-3xl' : 'max-w-xl';
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: 'var(--gd-backdrop)' }}
+      onClick={onClose}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`${w} w-full rounded-lg overflow-hidden`}
+        style={{ background: 'var(--gd-bg)', border: '1px solid var(--gd-border-strong)' }}
+      >
+        <div className="p-5 border-b flex items-start justify-between" style={{ borderColor: 'var(--gd-border)' }}>
+          <h2 className="text-base font-semibold text-white">{title}</h2>
+          <button onClick={onClose} className="text-white/60 hover:text-white text-xl leading-none">
+            ×
+          </button>
+        </div>
+        <div className="p-5 max-h-[70vh] overflow-y-auto">{children}</div>
+        {footer && (
+          <div className="p-5 border-t flex justify-end gap-2" style={{ borderColor: 'var(--gd-border)' }}>
+            {footer}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block mb-4 last:mb-0">
+      <span className="text-[10px] font-semibold tracking-widest uppercase text-white/50 mb-1.5 block">
+        {label}
+      </span>
+      {children}
+    </label>
+  );
+}
+
+function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      {...props}
+      className="w-full text-sm px-3 py-2 rounded bg-transparent text-white placeholder:text-white/40 outline-none focus:border-white/40"
+      style={{ border: '1px solid var(--gd-border)' }}
+    />
+  );
+}
+
+function Select({ children, ...props }: React.SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <select
+      {...props}
+      className="w-full text-sm px-3 py-2 rounded text-white outline-none"
+      style={{ background: 'var(--gd-bg)', border: '1px solid var(--gd-border)' }}
+    >
+      {children}
+    </select>
+  );
+}
+
+function BtnPrimary({ children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      {...props}
+      className="text-xs px-4 py-2 rounded text-white font-medium hover:brightness-110 disabled:opacity-50"
+      style={{ background: 'var(--gd-primary)' }}
+    >
+      {children}
+    </button>
+  );
+}
+
+function BtnSecondary({ children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      {...props}
+      className="text-xs px-4 py-2 rounded text-white bg-transparent hover:bg-white/5"
+      style={{ border: '1px solid var(--gd-border)' }}
+    >
+      {children}
+    </button>
+  );
+}
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
@@ -601,6 +714,10 @@ const COMMAND_DATA: Record<SpaceKey, {
   },
 };
 
+type CmdAction = { risk: 'high' | 'medium' | 'low'; title: string; account: string; metric: { label: string; value: string }; status: string; cta: string };
+type CmdWorkflow = { name: string; status: string; tone: 'blue' | 'yellow' | 'green' };
+type CmdWatchlist = { code: string; name: string; score: number; risk: 'high' | 'medium' | 'low' };
+
 function CommandCenter({
   space,
   persona,
@@ -616,19 +733,47 @@ function CommandCenter({
 }) {
   const d = COMMAND_DATA[space];
   const [actionState, setActionState] = useState<Record<number, 'approved' | 'auto-running' | 'scheduled'>>({});
+  const [detailAction, setDetailAction] = useState<CmdAction | null>(null);
+  const [detailWorkflow, setDetailWorkflow] = useState<CmdWorkflow | null>(null);
+  const [detailWatchlist, setDetailWatchlist] = useState<CmdWatchlist | null>(null);
+  const [pendingCta, setPendingCta] = useState<{ idx: number; cta: string; account: string } | null>(null);
+  const [scheduleDate, setScheduleDate] = useState('');
+  const [scheduleTime, setScheduleTime] = useState('09:00');
+  const [scheduleErr, setScheduleErr] = useState('');
 
-  const handleAction = (idx: number, cta: string) => {
-    if (cta === 'Approve') {
-      setActionState((p) => ({ ...p, [idx]: 'approved' }));
-      onToast('Approved · workflow started');
-    } else if (cta === 'Auto-run') {
-      setActionState((p) => ({ ...p, [idx]: 'auto-running' }));
-      onToast('Auto-running · no approval needed');
-    } else if (cta === 'Schedule') {
-      setActionState((p) => ({ ...p, [idx]: 'scheduled' }));
-      onToast('Scheduled · tomorrow 09:00');
+  function openCtaDialog(idx: number, cta: string, account: string) {
+    setPendingCta({ idx, cta, account });
+    if (cta === 'Schedule') {
+      const tomorrow = new Date(Date.now() + 24 * 3600 * 1000).toISOString().slice(0, 10);
+      setScheduleDate(tomorrow);
+      setScheduleTime('09:00');
+      setScheduleErr('');
     }
-  };
+  }
+
+  function confirmCta() {
+    if (!pendingCta) return;
+    if (pendingCta.cta === 'Schedule') {
+      if (!scheduleDate) {
+        setScheduleErr('Date required');
+        return;
+      }
+      const when = new Date(`${scheduleDate}T${scheduleTime}`);
+      if (when.getTime() < Date.now()) {
+        setScheduleErr('Schedule must be in the future');
+        return;
+      }
+      setActionState((p) => ({ ...p, [pendingCta.idx]: 'scheduled' }));
+      onToast(`Scheduled · ${when.toLocaleString()}`);
+    } else if (pendingCta.cta === 'Approve') {
+      setActionState((p) => ({ ...p, [pendingCta.idx]: 'approved' }));
+      onToast('Approved · workflow started');
+    } else if (pendingCta.cta === 'Auto-run') {
+      setActionState((p) => ({ ...p, [pendingCta.idx]: 'auto-running' }));
+      onToast('Auto-running · no approval needed');
+    }
+    setPendingCta(null);
+  }
 
   return (
     <div className="space-y-6">
@@ -716,14 +861,14 @@ function CommandCenter({
                   ) : (
                     <div className="mt-4 grid grid-cols-2 gap-2">
                       <button
-                        onClick={() => onOpenTrace(a.account)}
+                        onClick={() => setDetailAction(a)}
                         className="text-xs px-3 py-2 border border-white/10 rounded hover:bg-white/5 text-white bg-transparent"
                       >
                         View details
                       </button>
                       <button
-                        onClick={() => handleAction(i, a.cta)}
-                        className="text-xs px-3 py-2 rounded text-white font-medium"
+                        onClick={() => openCtaDialog(i, a.cta, a.account)}
+                        className="text-xs px-3 py-2 rounded text-white font-medium hover:brightness-110"
                         style={{ background: 'var(--gd-primary)' }}
                       >
                         {a.cta}
@@ -813,7 +958,7 @@ function CommandCenter({
             {d.workflows.list.map((w) => (
               <button
                 key={w.name}
-                onClick={() => onOpenTrace(w.name)}
+                onClick={() => setDetailWorkflow(w)}
                 className="w-full flex items-center justify-between text-xs py-1.5 px-2 -mx-2 rounded hover:bg-white/5 text-left"
               >
                 <span className="text-white">{w.name}</span>
@@ -864,7 +1009,7 @@ function CommandCenter({
           {d.watchlist.map((w) => (
             <button
               key={w.code}
-              onClick={() => onOpenTrace(w.name)}
+              onClick={() => setDetailWatchlist(w)}
               className="w-full flex items-center justify-between py-2.5 border-b border-white/5 last:border-0 hover:bg-white/[0.02] px-2 -mx-2 rounded text-left transition-colors"
             >
               <div className="flex items-center gap-3">
@@ -886,6 +1031,170 @@ function CommandCenter({
           ))}
         </Card>
       </div>
+
+      {/* CTA confirm dialog (Approve / Auto-run / Schedule) */}
+      <Dialog
+        open={!!pendingCta}
+        onClose={() => setPendingCta(null)}
+        title={
+          pendingCta?.cta === 'Approve'
+            ? 'Approve recommended action'
+            : pendingCta?.cta === 'Auto-run'
+            ? 'Auto-run without approval'
+            : 'Schedule action'
+        }
+        footer={
+          <>
+            <BtnSecondary onClick={() => setPendingCta(null)}>Cancel</BtnSecondary>
+            <BtnPrimary onClick={confirmCta}>
+              {pendingCta?.cta === 'Schedule' ? 'Schedule' : pendingCta?.cta === 'Auto-run' ? 'Start auto-run' : 'Approve'}
+            </BtnPrimary>
+          </>
+        }
+      >
+        {pendingCta?.cta === 'Schedule' ? (
+          <div>
+            <p className="text-sm text-white/70 mb-4">
+              Schedule the workflow for <span className="text-white font-medium">{pendingCta.account}</span> to
+              run at a future time.
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <Field label="Date">
+                <Input type="date" value={scheduleDate} onChange={(e) => setScheduleDate(e.target.value)} />
+              </Field>
+              <Field label="Time">
+                <Input type="time" value={scheduleTime} onChange={(e) => setScheduleTime(e.target.value)} />
+              </Field>
+            </div>
+            {scheduleErr && (
+              <p className="text-xs mt-2" style={{ color: 'var(--gd-danger-fg)' }}>
+                {scheduleErr}
+              </p>
+            )}
+          </div>
+        ) : (
+          <p className="text-sm text-white/70">
+            {pendingCta?.cta === 'Approve'
+              ? `Approve action for ${pendingCta?.account}? Workflow will run immediately.`
+              : `Enable auto-run for ${pendingCta?.account}? Future actions of this type will fire without approval.`}
+          </p>
+        )}
+      </Dialog>
+
+      {/* Action detail dialog */}
+      <Dialog
+        open={!!detailAction}
+        onClose={() => setDetailAction(null)}
+        title={detailAction?.title || ''}
+        footer={<BtnSecondary onClick={() => setDetailAction(null)}>Close</BtnSecondary>}
+      >
+        {detailAction && (
+          <div className="space-y-4 text-sm">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Account</p>
+                <p className="text-white">{detailAction.account}</p>
+              </div>
+              <div>
+                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Risk</p>
+                <Pill tone={detailAction.risk === 'high' ? 'red' : detailAction.risk === 'medium' ? 'yellow' : 'green'}>
+                  {detailAction.risk}
+                </Pill>
+              </div>
+              <div>
+                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">{detailAction.metric.label}</p>
+                <p className="text-white font-medium">{detailAction.metric.value}</p>
+              </div>
+              <div>
+                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Status</p>
+                <p className="text-white">{detailAction.status}</p>
+              </div>
+            </div>
+            <div className="pt-3 border-t border-white/10">
+              <p className="text-xs text-white/60">
+                Recommended action: <span className="text-white">{detailAction.cta}</span>. Click the {detailAction.cta}
+                button on the card to proceed.
+              </p>
+            </div>
+          </div>
+        )}
+      </Dialog>
+
+      {/* Workflow detail dialog */}
+      <Dialog
+        open={!!detailWorkflow}
+        onClose={() => setDetailWorkflow(null)}
+        title={detailWorkflow?.name || ''}
+        footer={
+          <>
+            <BtnSecondary onClick={() => setDetailWorkflow(null)}>Close</BtnSecondary>
+            <BtnPrimary
+              onClick={() => {
+                if (detailWorkflow) onOpenTrace(detailWorkflow.name);
+                setDetailWorkflow(null);
+              }}
+            >
+              Open trace
+            </BtnPrimary>
+          </>
+        }
+      >
+        {detailWorkflow && (
+          <div className="space-y-3 text-sm">
+            <div>
+              <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Status</p>
+              <Pill tone={detailWorkflow.tone === 'blue' ? 'blue' : detailWorkflow.tone === 'yellow' ? 'yellow' : 'green'}>
+                {detailWorkflow.status}
+              </Pill>
+            </div>
+            <p className="text-white/70">
+              This workflow was auto-triggered by the associated watchlist. Open the trace to see every step,
+              weighted signals, and evidence rows.
+            </p>
+          </div>
+        )}
+      </Dialog>
+
+      {/* Watchlist detail dialog */}
+      <Dialog
+        open={!!detailWatchlist}
+        onClose={() => setDetailWatchlist(null)}
+        title={detailWatchlist?.name || ''}
+        footer={
+          <>
+            <BtnSecondary onClick={() => setDetailWatchlist(null)}>Close</BtnSecondary>
+            <BtnPrimary
+              onClick={() => {
+                if (detailWatchlist) onOpenTrace(detailWatchlist.name);
+                setDetailWatchlist(null);
+              }}
+            >
+              Open trace
+            </BtnPrimary>
+          </>
+        }
+      >
+        {detailWatchlist && (
+          <div className="space-y-3 text-sm">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Health score</p>
+                <p className="text-3xl font-semibold text-white">{detailWatchlist.score}</p>
+              </div>
+              <div>
+                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Risk</p>
+                <Pill tone={detailWatchlist.risk === 'high' ? 'red' : detailWatchlist.risk === 'medium' ? 'yellow' : 'green'}>
+                  {detailWatchlist.risk} risk
+                </Pill>
+              </div>
+            </div>
+            <p className="text-white/70">
+              Account is being monitored by an active watchlist. Open the trace to see the signals that fired
+              and the recommended actions in flight.
+            </p>
+          </div>
+        )}
+      </Dialog>
     </div>
   );
 }
@@ -906,6 +1215,42 @@ function Dashboard({
   onToast: (msg: string) => void;
 }) {
   const [tab, setTab] = useState(0);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [widgetOpen, setWidgetOpen] = useState(false);
+  const [fRegion, setFRegion] = useState('all');
+  const [fSegment, setFSegment] = useState('all');
+  const [fRange, setFRange] = useState('30d');
+  const [wPreset, setWPreset] = useState('kpi-tile');
+  const [wTitle, setWTitle] = useState('');
+  const [wQuery, setWQuery] = useState('');
+  const [wLang, setWLang] = useState('en');
+  const [wForceRefresh, setWForceRefresh] = useState(false);
+  const [wErr, setWErr] = useState('');
+
+  function applyFilters() {
+    setFiltersOpen(false);
+    const parts = [];
+    if (fRegion !== 'all') parts.push(`region=${fRegion}`);
+    if (fSegment !== 'all') parts.push(`segment=${fSegment}`);
+    parts.push(`range=${fRange}`);
+    onToast(`Filters applied · ${parts.join(' · ')}`);
+  }
+
+  function submitWidget() {
+    if (!wTitle.trim()) {
+      setWErr('Widget title required');
+      return;
+    }
+    if (!wQuery.trim()) {
+      setWErr('Query required');
+      return;
+    }
+    setWidgetOpen(false);
+    onToast(`Widget added · "${wTitle}" (${wPreset})`);
+    setWTitle('');
+    setWQuery('');
+    setWErr('');
+  }
   const kpis: Record<SpaceKey, { label: string; value: string; delta: string; tone: 'up' | 'down' | 'neutral' }[]> = {
     'customer-success': [
       { label: 'Total customers', value: '1,248', delta: '↑ 12 (1.0%) vs last 30 days', tone: 'up' },
@@ -1014,13 +1359,13 @@ function Dashboard({
             }}
           />
           <button
-            onClick={() => onToast('Filter picker: coming soon')}
+            onClick={() => setFiltersOpen(true)}
             className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
           >
             Filters
           </button>
           <button
-            onClick={() => onToast('Widget added · custom layout saved')}
+            onClick={() => setWidgetOpen(true)}
             className="text-xs px-3 py-1.5 rounded text-white font-medium hover:brightness-110"
             style={{ background: 'var(--gd-primary)' }}
           >
@@ -1197,6 +1542,134 @@ function Dashboard({
           </button>
         ))}
       </Card>
+
+      {/* Filters dialog */}
+      <Dialog
+        open={filtersOpen}
+        onClose={() => setFiltersOpen(false)}
+        title="Filter dashboard"
+        footer={
+          <>
+            <BtnSecondary
+              onClick={() => {
+                setFRegion('all');
+                setFSegment('all');
+                setFRange('30d');
+                setFiltersOpen(false);
+                onToast('Filters cleared');
+              }}
+            >
+              Clear all
+            </BtnSecondary>
+            <BtnPrimary onClick={applyFilters}>Apply filters</BtnPrimary>
+          </>
+        }
+      >
+        <div className="grid grid-cols-2 gap-3">
+          <Field label="Region">
+            <Select value={fRegion} onChange={(e) => setFRegion(e.target.value)}>
+              <option value="all">All regions</option>
+              <option value="na">North America</option>
+              <option value="emea">EMEA</option>
+              <option value="apac">APAC</option>
+              <option value="latam">LATAM</option>
+            </Select>
+          </Field>
+          <Field label="Segment">
+            <Select value={fSegment} onChange={(e) => setFSegment(e.target.value)}>
+              <option value="all">All segments</option>
+              <option value="enterprise">Enterprise</option>
+              <option value="mid-market">Mid Market</option>
+              <option value="strategic">Strategic</option>
+            </Select>
+          </Field>
+        </div>
+        <Field label="Date range">
+          <div className="flex gap-2">
+            {[
+              { k: '30d', l: 'Last 30 days' },
+              { k: '90d', l: 'Last 90 days' },
+              { k: '365d', l: 'Last 365 days' },
+            ].map((r) => (
+              <button
+                key={r.k}
+                onClick={() => setFRange(r.k)}
+                className="text-xs px-3 py-2 rounded flex-1"
+                style={{
+                  background: fRange === r.k ? 'var(--gd-primary)' : 'transparent',
+                  border: `1px solid ${fRange === r.k ? 'var(--gd-primary)' : 'var(--gd-border)'}`,
+                  color: 'var(--gd-fg)',
+                }}
+              >
+                {r.l}
+              </button>
+            ))}
+          </div>
+        </Field>
+      </Dialog>
+
+      {/* Add Widget dialog */}
+      <Dialog
+        open={widgetOpen}
+        onClose={() => setWidgetOpen(false)}
+        title="Add widget"
+        footer={
+          <>
+            <BtnSecondary onClick={() => setWidgetOpen(false)}>Cancel</BtnSecondary>
+            <BtnPrimary onClick={submitWidget}>Add widget</BtnPrimary>
+          </>
+        }
+      >
+        <Field label="Widget type">
+          <Select value={wPreset} onChange={(e) => setWPreset(e.target.value)}>
+            <option value="kpi-tile">KPI tile</option>
+            <option value="line-chart">Line chart</option>
+            <option value="bar-chart">Bar chart</option>
+            <option value="donut">Donut chart</option>
+            <option value="table">Data table</option>
+            <option value="custom-query">Custom query (AI)</option>
+          </Select>
+        </Field>
+        <Field label="Widget title">
+          <Input value={wTitle} onChange={(e) => setWTitle(e.target.value)} placeholder="e.g. Weekly deflection rate" />
+        </Field>
+        <Field label="Data query">
+          <textarea
+            value={wQuery}
+            onChange={(e) => setWQuery(e.target.value)}
+            placeholder="e.g. Count tickets grouped by product for last 30 days"
+            rows={3}
+            className="w-full text-sm px-3 py-2 rounded bg-transparent text-white placeholder:text-white/40 outline-none focus:border-white/40"
+            style={{ border: '1px solid var(--gd-border)' }}
+          />
+        </Field>
+        <div className="grid grid-cols-2 gap-3">
+          <Field label="Language">
+            <Select value={wLang} onChange={(e) => setWLang(e.target.value)}>
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="ar">Arabic</option>
+              <option value="hi">Hindi</option>
+            </Select>
+          </Field>
+          <Field label="Refresh">
+            <label className="flex items-center gap-2 pt-2 text-sm text-white cursor-pointer">
+              <input
+                type="checkbox"
+                checked={wForceRefresh}
+                onChange={(e) => setWForceRefresh(e.target.checked)}
+                className="cursor-pointer"
+              />
+              Force refresh (skip cache)
+            </label>
+          </Field>
+        </div>
+        {wErr && (
+          <p className="text-xs mt-2" style={{ color: 'var(--gd-danger-fg)' }}>
+            {wErr}
+          </p>
+        )}
+      </Dialog>
     </div>
   );
 }
@@ -1690,11 +2163,13 @@ function Ask({
   persona,
   onNavigate,
   onOpenTrace,
+  onToast,
 }: {
   space: SpaceKey;
   persona: string;
   onNavigate: (f: FeatureKey) => void;
   onOpenTrace: (traceId: string) => void;
+  onToast: (msg: string) => void;
 }) {
   const seed = ASK_DATA[space];
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -1763,7 +2238,20 @@ function Ask({
 
         {/* Composer */}
         <Card className="p-3 mt-4 flex items-center gap-3">
-          <span className="text-white/40">◯</span>
+          <button
+            onClick={() => onToast('Attach file: coming soon')}
+            className="text-white/40 hover:text-white p-1"
+            title="Attach file"
+          >
+            <Paperclip className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => onToast('Voice input: coming soon')}
+            className="text-white/40 hover:text-white p-1"
+            title="Dictate"
+          >
+            <Mic className="w-4 h-4" />
+          </button>
           <input
             className="flex-1 outline-none text-sm placeholder:text-white/40 bg-transparent text-white"
             placeholder="Ask anything about your business…"
@@ -1775,10 +2263,10 @@ function Ask({
           />
           <button
             onClick={() => submit(input)}
-            className="w-8 h-8 rounded flex items-center justify-center text-white"
+            className="w-8 h-8 rounded flex items-center justify-center text-white hover:brightness-110"
             style={{ background: 'var(--gd-primary)' }}
           >
-            →
+            <Send className="w-3.5 h-3.5" />
           </button>
         </Card>
       </div>
@@ -2155,11 +2643,31 @@ function Trace({
   const donutTotal = d.donut.reduce((a, b) => a + b.value, 0);
   const [selected, setSelected] = useState<TraceOutcome | null>(null);
   const [activeTab, setActiveTab] = useState(0);
+  const [search, setSearch] = useState('');
+  const [scenarioFilter, setScenarioFilter] = useState('all');
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [fType, setFType] = useState('all');
+  const [fFeedback, setFFeedback] = useState('all');
 
   useEffect(() => {
     setSelected(null);
     setActiveTab(0);
+    setSearch('');
+    setScenarioFilter('all');
   }, [space]);
+
+  const filteredOutcomes = d.outcomes.filter((o) => {
+    if (search) {
+      const q = search.toLowerCase();
+      if (!o.user.toLowerCase().includes(q) && !o.ticket.toLowerCase().includes(q) && !o.product.toLowerCase().includes(q)) {
+        return false;
+      }
+    }
+    if (scenarioFilter !== 'all' && o.scenario !== scenarioFilter) return false;
+    if (fType !== 'all' && o.scenario !== fType) return false;
+    if (fFeedback !== 'all' && o.feedback !== fFeedback) return false;
+    return true;
+  });
 
   // Auto-open outcome when Command Center / Ask / Dashboard nav sends us a hint
   useEffect(() => {
@@ -2200,7 +2708,7 @@ function Trace({
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => onToast('Filter picker: coming soon')}
+            onClick={() => setFiltersOpen(true)}
             className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
           >
             Filters
@@ -2241,14 +2749,32 @@ function Trace({
       <div className="grid lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-white">Recent Outcomes ({d.outcomes.length})</p>
+            <p className="text-sm font-medium text-white">Recent Outcomes ({filteredOutcomes.length})</p>
             <div className="flex items-center gap-2">
-              <input className="text-xs border border-white/10 rounded px-3 py-1 w-56 bg-transparent text-white placeholder:text-white/40" placeholder="Search outcomes..." />
-              <select className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white">
-                <option>All Types</option>
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="text-xs border border-white/10 rounded px-3 py-1 w-56 bg-transparent text-white placeholder:text-white/40"
+                placeholder="Search outcomes..."
+              />
+              <select
+                value={scenarioFilter}
+                onChange={(e) => setScenarioFilter(e.target.value)}
+                className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white"
+              >
+                <option value="all">All Types</option>
+                {Array.from(new Set(d.outcomes.map((o) => o.scenario))).map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
               </select>
-              <select className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white">
-                <option>All time</option>
+              <select
+                onChange={(e) => onToast(`Time range: ${e.target.value}`)}
+                className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white"
+              >
+                <option value="all">All time</option>
+                <option value="24h">Last 24h</option>
+                <option value="7d">Last 7 days</option>
+                <option value="30d">Last 30 days</option>
               </select>
             </div>
           </div>
@@ -2262,7 +2788,10 @@ function Trace({
             <span className="col-span-1">Feedback</span>
             <span className="col-span-1 text-right">When</span>
           </div>
-          {d.outcomes.map((o, i) => (
+          {filteredOutcomes.length === 0 && (
+            <p className="text-sm text-white/50 py-8 text-center">No outcomes match filters</p>
+          )}
+          {filteredOutcomes.map((o, i) => (
             <button
               key={i}
               onClick={() => setSelected(o)}
@@ -2415,6 +2944,51 @@ function Trace({
 
       {/* Outcome detail modal */}
       {selected && <OutcomeDetailModal outcome={selected} onClose={() => setSelected(null)} />}
+
+      {/* Filters dialog */}
+      <Dialog
+        open={filtersOpen}
+        onClose={() => setFiltersOpen(false)}
+        title="Filter outcomes"
+        footer={
+          <>
+            <BtnSecondary
+              onClick={() => {
+                setFType('all');
+                setFFeedback('all');
+                setFiltersOpen(false);
+                onToast('Filters cleared');
+              }}
+            >
+              Clear all
+            </BtnSecondary>
+            <BtnPrimary
+              onClick={() => {
+                setFiltersOpen(false);
+                onToast(`Filters applied · ${filteredOutcomes.length} match`);
+              }}
+            >
+              Apply
+            </BtnPrimary>
+          </>
+        }
+      >
+        <Field label="Scenario type">
+          <Select value={fType} onChange={(e) => setFType(e.target.value)}>
+            <option value="all">All types</option>
+            {Array.from(new Set(d.outcomes.map((o) => o.scenario))).map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </Select>
+        </Field>
+        <Field label="Feedback">
+          <Select value={fFeedback} onChange={(e) => setFFeedback(e.target.value)}>
+            <option value="all">Any feedback</option>
+            <option value="satisfied">Satisfied only</option>
+            <option value="—">Not rated</option>
+          </Select>
+        </Field>
+      </Dialog>
     </div>
   );
 }
