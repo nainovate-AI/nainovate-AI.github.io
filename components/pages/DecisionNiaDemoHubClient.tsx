@@ -9,9 +9,9 @@ import {
   FileText,
   ChevronDown,
   ChevronLeft,
+  Sparkles,
   Bell,
   Globe,
-  Sparkles,
 } from 'lucide-react';
 
 type SpaceKey = 'customer-support' | 'customer-success' | 'sales' | 'delivery';
@@ -41,19 +41,38 @@ export default function DecisionNiaDemoHubClient() {
   const [activeSpace, setActiveSpace] = useState<SpaceKey>('customer-success');
   const [activeFeature, setActiveFeature] = useState<FeatureKey>('command-center');
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+  const [pendingTraceId, setPendingTraceId] = useState<string | null>(null);
+  const [notifOpen, setNotifOpen] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
+  const notifRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
         setPickerOpen(false);
       }
+      if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
+        setNotifOpen(false);
+      }
     }
-    if (pickerOpen) {
+    if (pickerOpen || notifOpen) {
       document.addEventListener('mousedown', onClickOutside);
       return () => document.removeEventListener('mousedown', onClickOutside);
     }
-  }, [pickerOpen]);
+  }, [pickerOpen, notifOpen]);
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 2400);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  const showToast = (msg: string) => setToast(msg);
+  const openTrace = (traceId: string) => {
+    setPendingTraceId(traceId);
+    setActiveFeature('trace');
+  };
 
   const space = SPACES.find((s) => s.key === activeSpace)!;
   const feature = FEATURES.find((f) => f.key === activeFeature)!;
@@ -63,13 +82,6 @@ export default function DecisionNiaDemoHubClient() {
       className="theme-genx-decision min-h-screen"
       style={{ background: 'var(--gd-bg)', color: 'var(--gd-fg)' }}
     >
-      <div
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-40 px-3 py-1 text-[10px] tracking-widest uppercase rounded-full"
-        style={{ background: 'var(--gd-bg)', color: 'var(--gd-fg)', border: '1px solid var(--gd-border)' }}
-      >
-        Demo · AI Decision Workspace
-      </div>
-
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <aside
@@ -77,7 +89,10 @@ export default function DecisionNiaDemoHubClient() {
           style={{ borderColor: 'var(--gd-border)', background: 'var(--gd-bg)' }}
         >
           {/* Brand */}
-          <div className="px-5 py-5 border-b border-white/10">
+          <button
+            onClick={() => setActiveFeature('command-center')}
+            className="px-5 py-5 border-b border-white/10 text-left hover:bg-white/5 transition-colors"
+          >
             <div className="flex items-center gap-2.5">
               <div
                 className="w-7 h-7 rounded-md flex items-center justify-center text-white shrink-0"
@@ -90,7 +105,7 @@ export default function DecisionNiaDemoHubClient() {
                 <p className="text-[10px] text-white/50 leading-tight">AI Decision Workspace</p>
               </div>
             </div>
-          </div>
+          </button>
 
           {/* Space picker button */}
           <div className="p-3 border-b border-white/10 relative" ref={pickerRef}>
@@ -201,18 +216,57 @@ export default function DecisionNiaDemoHubClient() {
           {/* Top bar */}
           <div className="px-8 py-3 border-b border-white/10 flex items-center justify-between">
             <p className="text-sm text-white">{feature.label}</p>
-            <div className="flex items-center gap-3">
-              <button className="flex items-center gap-1.5 text-xs text-white/60 hover:text-white px-2 py-1 rounded hover:bg-white/5">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => showToast('English only in demo')}
+                className="flex items-center gap-1.5 text-xs text-white/60 hover:text-white px-2 py-1 rounded hover:bg-white/5"
+              >
                 <Globe className="w-3.5 h-3.5" />
                 <span>En</span>
               </button>
-              <button className="relative text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5">
-                <Bell className="w-4 h-4" />
-                <span
-                  className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full"
-                  style={{ background: 'var(--gd-danger)' }}
-                />
-              </button>
+              <div className="relative" ref={notifRef}>
+                <button
+                  onClick={() => setNotifOpen(!notifOpen)}
+                  className="relative text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5"
+                >
+                  <Bell className="w-4 h-4" />
+                  <span
+                    className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full"
+                    style={{ background: 'var(--gd-danger)' }}
+                  />
+                </button>
+                {notifOpen && (
+                  <div
+                    className="absolute top-full right-0 mt-2 w-[320px] rounded-lg shadow-2xl overflow-hidden z-50"
+                    style={{ background: 'var(--gd-bg)', border: '1px solid var(--gd-border-strong)' }}
+                  >
+                    <div className="px-4 py-2 border-b border-white/5">
+                      <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">
+                        Notifications · 3 unread
+                      </p>
+                    </div>
+                    <div className="max-h-[360px] overflow-y-auto">
+                      {[
+                        { t: 'Northwind health dropped 42 → 35', trace: 'trace_northwind_outreach', when: '5m ago' },
+                        { t: 'FD-2104 P0 auto-escalated to sync module', trace: 'trace_acme_p0_2104', when: '12m ago' },
+                        { t: 'Contoso renewal proposal ready to send', trace: 'trace_contoso_renewal_send', when: '1h ago' },
+                      ].map((n, i) => (
+                        <button
+                          key={i}
+                          onClick={() => {
+                            openTrace(n.trace);
+                            setNotifOpen(false);
+                          }}
+                          className="w-full text-left px-4 py-3 border-b border-white/5 last:border-0 hover:bg-white/5"
+                        >
+                          <p className="text-sm text-white">{n.t}</p>
+                          <p className="text-[10px] text-white/50 mt-1 font-mono">{n.trace} · {n.when}</p>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -224,10 +278,28 @@ export default function DecisionNiaDemoHubClient() {
               spaceLabel={space.label}
               persona={space.persona}
               onNavigate={setActiveFeature}
+              onOpenTrace={openTrace}
+              onToast={showToast}
+              pendingTraceId={pendingTraceId}
+              clearPendingTraceId={() => setPendingTraceId(null)}
             />
           </div>
         </section>
       </div>
+
+      {/* Toast surface */}
+      {toast && (
+        <div
+          className="fixed bottom-6 right-6 z-50 px-4 py-3 rounded-lg text-sm shadow-2xl"
+          style={{
+            background: 'var(--gd-bg)',
+            color: 'var(--gd-fg)',
+            border: '1px solid var(--gd-border-strong)',
+          }}
+        >
+          {toast}
+        </div>
+      )}
     </main>
   );
 }
@@ -242,17 +314,26 @@ function FeaturePanel({
   spaceLabel,
   persona,
   onNavigate,
+  onOpenTrace,
+  onToast,
+  pendingTraceId,
+  clearPendingTraceId,
 }: {
   space: SpaceKey;
   feature: FeatureKey;
   spaceLabel: string;
   persona: string;
   onNavigate: (f: FeatureKey) => void;
+  onOpenTrace: (traceId: string) => void;
+  onToast: (msg: string) => void;
+  pendingTraceId: string | null;
+  clearPendingTraceId: () => void;
 }) {
-  if (feature === 'command-center') return <CommandCenter space={space} persona={persona} onNavigate={onNavigate} />;
-  if (feature === 'dashboard') return <Dashboard space={space} spaceLabel={spaceLabel} />;
-  if (feature === 'ask') return <Ask space={space} persona={persona} onNavigate={onNavigate} />;
-  if (feature === 'trace') return <Trace space={space} />;
+  if (feature === 'command-center')
+    return <CommandCenter space={space} persona={persona} onNavigate={onNavigate} onOpenTrace={onOpenTrace} onToast={onToast} />;
+  if (feature === 'dashboard') return <Dashboard space={space} spaceLabel={spaceLabel} onOpenTrace={onOpenTrace} onToast={onToast} />;
+  if (feature === 'ask') return <Ask space={space} persona={persona} onNavigate={onNavigate} onOpenTrace={onOpenTrace} />;
+  if (feature === 'trace') return <Trace space={space} pendingTraceId={pendingTraceId} clearPendingTraceId={clearPendingTraceId} onToast={onToast} />;
   return null;
 }
 
@@ -524,12 +605,31 @@ function CommandCenter({
   space,
   persona,
   onNavigate,
+  onOpenTrace,
+  onToast,
 }: {
   space: SpaceKey;
   persona: string;
   onNavigate: (f: FeatureKey) => void;
+  onOpenTrace: (traceId: string) => void;
+  onToast: (msg: string) => void;
 }) {
   const d = COMMAND_DATA[space];
+  const [actionState, setActionState] = useState<Record<number, 'approved' | 'auto-running' | 'scheduled'>>({});
+
+  const handleAction = (idx: number, cta: string) => {
+    if (cta === 'Approve') {
+      setActionState((p) => ({ ...p, [idx]: 'approved' }));
+      onToast('Approved · workflow started');
+    } else if (cta === 'Auto-run') {
+      setActionState((p) => ({ ...p, [idx]: 'auto-running' }));
+      onToast('Auto-running · no approval needed');
+    } else if (cta === 'Schedule') {
+      setActionState((p) => ({ ...p, [idx]: 'scheduled' }));
+      onToast('Scheduled · tomorrow 09:00');
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -591,17 +691,45 @@ function CommandCenter({
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 grid grid-cols-2 gap-2">
-                    <button className="text-xs px-3 py-2 border border-white/10 rounded hover:bg-white/5 text-white bg-transparent">
-                      View details
-                    </button>
-                    <button
-                      className="text-xs px-3 py-2 rounded text-white font-medium"
-                      style={{ background: 'var(--gd-primary)' }}
+                  {actionState[i] ? (
+                    <div
+                      className="mt-4 text-xs px-3 py-2 rounded text-center font-medium"
+                      style={{
+                        background:
+                          actionState[i] === 'approved'
+                            ? 'var(--gd-success-soft)'
+                            : actionState[i] === 'auto-running'
+                            ? 'var(--gd-info-soft)'
+                            : 'var(--gd-primary-soft)',
+                        color:
+                          actionState[i] === 'approved'
+                            ? 'var(--gd-success-fg)'
+                            : actionState[i] === 'auto-running'
+                            ? 'var(--gd-info-fg)'
+                            : 'var(--gd-fg)',
+                      }}
                     >
-                      {a.cta}
-                    </button>
-                  </div>
+                      {actionState[i] === 'approved' && '✓ Approved · workflow started'}
+                      {actionState[i] === 'auto-running' && '⟳ Auto-running…'}
+                      {actionState[i] === 'scheduled' && '⏱ Scheduled · tomorrow 09:00'}
+                    </div>
+                  ) : (
+                    <div className="mt-4 grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => onOpenTrace(a.account)}
+                        className="text-xs px-3 py-2 border border-white/10 rounded hover:bg-white/5 text-white bg-transparent"
+                      >
+                        View details
+                      </button>
+                      <button
+                        onClick={() => handleAction(i, a.cta)}
+                        className="text-xs px-3 py-2 rounded text-white font-medium"
+                        style={{ background: 'var(--gd-primary)' }}
+                      >
+                        {a.cta}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </Card>
             );
@@ -641,13 +769,18 @@ function CommandCenter({
           </SectionTitle>
           <div className="space-y-3">
             {d.cfi.map((c) => (
-              <div key={c.team} className="p-4 rounded" style={{ background: 'var(--gd-muted-2)' }}>
+              <button
+                key={c.team}
+                onClick={() => onNavigate('dashboard')}
+                className="w-full text-left p-4 rounded hover:brightness-125 transition"
+                style={{ background: 'var(--gd-muted-2)' }}
+              >
                 <p className="text-xs text-white/50 mb-1">{c.team}</p>
                 <div className="flex items-baseline justify-between">
                   <p className="text-xs text-white">{c.label}</p>
                   <p className="text-sm font-medium text-white">{c.value}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </Card>
@@ -678,10 +811,14 @@ function CommandCenter({
           </div>
           <div className="space-y-2">
             {d.workflows.list.map((w) => (
-              <div key={w.name} className="flex items-center justify-between text-xs py-1">
+              <button
+                key={w.name}
+                onClick={() => onOpenTrace(w.name)}
+                className="w-full flex items-center justify-between text-xs py-1.5 px-2 -mx-2 rounded hover:bg-white/5 text-left"
+              >
                 <span className="text-white">{w.name}</span>
                 <Pill tone={w.tone === 'blue' ? 'blue' : w.tone === 'yellow' ? 'yellow' : 'green'}>{w.status}</Pill>
-              </div>
+              </button>
             ))}
           </div>
         </Card>
@@ -700,20 +837,24 @@ function CommandCenter({
             Recent Decisions &amp; Outcomes
           </SectionTitle>
           {d.decisions.map((r, i) => (
-            <div key={i} className="flex items-start justify-between py-3 border-b border-white/5 last:border-0">
+            <button
+              key={i}
+              onClick={() => onOpenTrace(r.title)}
+              className="w-full flex items-start justify-between py-3 border-b border-white/5 last:border-0 hover:bg-white/[0.02] px-2 -mx-2 rounded text-left transition-colors"
+            >
               <div>
                 <p className="text-sm text-white">{r.title}</p>
                 <p className="text-[10px] text-white/50 mt-0.5">{r.when}</p>
               </div>
               <p className={`text-xs font-medium ${r.tone === 'green' ? 'text-green-400' : 'text-white/60'}`}>{r.impact}</p>
-            </div>
+            </button>
           ))}
         </Card>
 
         <Card className="p-5">
           <SectionTitle
             action={
-              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('dashboard')} className="text-xs text-white/50 hover:text-white">
                 View all →
               </button>
             }
@@ -721,7 +862,11 @@ function CommandCenter({
             Watchlist Highlights
           </SectionTitle>
           {d.watchlist.map((w) => (
-            <div key={w.code} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
+            <button
+              key={w.code}
+              onClick={() => onOpenTrace(w.name)}
+              className="w-full flex items-center justify-between py-2.5 border-b border-white/5 last:border-0 hover:bg-white/[0.02] px-2 -mx-2 rounded text-left transition-colors"
+            >
               <div className="flex items-center gap-3">
                 <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
                   {w.code}
@@ -737,7 +882,7 @@ function CommandCenter({
                 <p className="text-[10px] uppercase text-white/50 tracking-wider">Score</p>
                 <p className="text-sm font-medium text-white">{w.score}</p>
               </div>
-            </div>
+            </button>
           ))}
         </Card>
       </div>
@@ -749,7 +894,17 @@ function CommandCenter({
    DASHBOARD
    ================================================================ */
 
-function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string }) {
+function Dashboard({
+  space,
+  spaceLabel,
+  onOpenTrace,
+  onToast,
+}: {
+  space: SpaceKey;
+  spaceLabel: string;
+  onOpenTrace: (traceId: string) => void;
+  onToast: (msg: string) => void;
+}) {
   const [tab, setTab] = useState(0);
   const kpis: Record<SpaceKey, { label: string; value: string; delta: string; tone: 'up' | 'down' | 'neutral' }[]> = {
     'customer-success': [
@@ -851,9 +1006,24 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
           <p className="text-sm text-white/50 mt-1">Real-time views of your customers, health, and actions — {spaceLabel}</p>
         </div>
         <div className="flex items-center gap-2">
-          <input className="text-xs border border-white/10 rounded px-3 py-1.5 w-56 bg-transparent text-white placeholder:text-white/40" placeholder="Search dashboards..." />
-          <button className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5 bg-transparent">Filters</button>
-          <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: 'var(--gd-primary)' }}>
+          <input
+            className="text-xs border border-white/10 rounded px-3 py-1.5 w-56 bg-transparent text-white placeholder:text-white/40"
+            placeholder="Search dashboards..."
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') onToast('Search: coming soon');
+            }}
+          />
+          <button
+            onClick={() => onToast('Filter picker: coming soon')}
+            className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
+          >
+            Filters
+          </button>
+          <button
+            onClick={() => onToast('Widget added · custom layout saved')}
+            className="text-xs px-3 py-1.5 rounded text-white font-medium hover:brightness-110"
+            style={{ background: 'var(--gd-primary)' }}
+          >
             + Add Widget
           </button>
         </div>
@@ -1001,7 +1171,11 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
           <span className="col-span-2 text-right">Trend</span>
         </div>
         {atRisk[space].map((a) => (
-          <div key={a.code} className="grid grid-cols-12 gap-3 py-3 border-b border-white/5 last:border-0 items-center">
+          <button
+            key={a.code}
+            onClick={() => onOpenTrace(a.name)}
+            className="w-full grid grid-cols-12 gap-3 py-3 border-b border-white/5 last:border-0 items-center hover:bg-white/[0.02] rounded transition-colors text-left"
+          >
             <div className="col-span-5 flex items-center gap-3">
               <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
                 {a.code}
@@ -1020,7 +1194,7 @@ function Dashboard({ space, spaceLabel }: { space: SpaceKey; spaceLabel: string 
                 />
               </svg>
             </span>
-          </div>
+          </button>
         ))}
       </Card>
     </div>
@@ -1511,7 +1685,17 @@ function nowLabel(): string {
   return `${h12}:${m} ${am}`;
 }
 
-function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string; onNavigate: (f: FeatureKey) => void }) {
+function Ask({
+  space,
+  persona,
+  onNavigate,
+  onOpenTrace,
+}: {
+  space: SpaceKey;
+  persona: string;
+  onNavigate: (f: FeatureKey) => void;
+  onOpenTrace: (traceId: string) => void;
+}) {
   const seed = ASK_DATA[space];
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: 'user', text: seed.question, ts: seed.timestamp || nowLabel() },
@@ -1573,7 +1757,7 @@ function Ask({ space, persona, onNavigate }: { space: SpaceKey; persona: string;
             }
             const a = m.answer!;
             const isLast = idx === messages.length - 1;
-            return <BotCard key={idx} answer={a} isLast={isLast} ts={m.ts} onFollowup={submit} onNavigate={onNavigate} />;
+            return <BotCard key={idx} answer={a} isLast={isLast} ts={m.ts} onFollowup={submit} onNavigate={onNavigate} onOpenTrace={onOpenTrace} />;
           })}
         </div>
 
@@ -1645,12 +1829,14 @@ function BotCard({
   ts,
   onFollowup,
   onNavigate,
+  onOpenTrace,
 }: {
   answer: BotAnswer;
   isLast: boolean;
   ts: string;
   onFollowup: (q: string) => void;
   onNavigate: (f: FeatureKey) => void;
+  onOpenTrace: (traceId: string) => void;
 }) {
   return (
     <Card className="p-6">
@@ -1718,7 +1904,11 @@ function BotCard({
             <span className="col-span-2">Owner</span>
           </div>
           {a.table.map((r) => (
-            <div key={r.name} className="grid grid-cols-12 gap-2 py-2 border-b border-white/5 last:border-0 items-center">
+            <button
+              key={r.name}
+              onClick={() => onOpenTrace(r.name)}
+              className="w-full grid grid-cols-12 gap-2 py-2 border-b border-white/5 last:border-0 items-center hover:bg-white/[0.02] rounded transition-colors text-left"
+            >
               <div className="col-span-3 flex items-center gap-2">
                 <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'var(--gd-muted)' }}>
                   {r.code}
@@ -1740,7 +1930,7 @@ function BotCard({
                 ))}
               </span>
               <span className="col-span-2 text-xs text-white/70">{r.owner}</span>
-            </div>
+            </button>
           ))}
           <button onClick={() => onNavigate('dashboard')} className="text-xs mt-3 inline-block" style={{ color: 'var(--gd-primary)' }}>
             View all at-risk customers →
@@ -1950,7 +2140,17 @@ type TraceOutcome = {
   tone: 'green' | 'blue' | 'yellow' | 'gray';
 };
 
-function Trace({ space }: { space: SpaceKey }) {
+function Trace({
+  space,
+  pendingTraceId,
+  clearPendingTraceId,
+  onToast,
+}: {
+  space: SpaceKey;
+  pendingTraceId: string | null;
+  clearPendingTraceId: () => void;
+  onToast: (msg: string) => void;
+}) {
   const d = TRACE_DATA[space];
   const donutTotal = d.donut.reduce((a, b) => a + b.value, 0);
   const [selected, setSelected] = useState<TraceOutcome | null>(null);
@@ -1961,6 +2161,36 @@ function Trace({ space }: { space: SpaceKey }) {
     setActiveTab(0);
   }, [space]);
 
+  // Auto-open outcome when Command Center / Ask / Dashboard nav sends us a hint
+  useEffect(() => {
+    if (!pendingTraceId) return;
+    const hint = pendingTraceId.toLowerCase();
+    const match =
+      d.outcomes.find(
+        (o) => o.ticket.toLowerCase() === hint || o.user.toLowerCase().includes(hint),
+      ) ||
+      d.outcomes.find((o) => {
+        const nameTokens = hint.split(/[\s-]+/).filter((t) => t.length > 3);
+        return nameTokens.some(
+          (t) => o.user.toLowerCase().includes(t) || o.product.toLowerCase().includes(t) || o.ticket.toLowerCase().includes(t),
+        );
+      }) ||
+      d.outcomes[0];
+    setSelected(match);
+    clearPendingTraceId();
+  }, [pendingTraceId, d.outcomes, clearPendingTraceId]);
+
+  const exportOutcomes = () => {
+    const blob = new Blob([JSON.stringify(d.outcomes, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${space}-outcomes.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    onToast(`Exported ${d.outcomes.length} outcomes`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -1969,8 +2199,17 @@ function Trace({ space }: { space: SpaceKey }) {
           <p className="text-sm text-white/50 mt-1">View system memory, decisions, actions, and audit trails.</p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent">Filters</button>
-          <button className="text-xs px-3 py-1.5 rounded text-white font-medium" style={{ background: 'var(--gd-primary)' }}>
+          <button
+            onClick={() => onToast('Filter picker: coming soon')}
+            className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
+          >
+            Filters
+          </button>
+          <button
+            onClick={exportOutcomes}
+            className="text-xs px-3 py-1.5 rounded text-white font-medium hover:brightness-110"
+            style={{ background: 'var(--gd-primary)' }}
+          >
             Export
           </button>
         </div>
@@ -2278,7 +2517,20 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
             <button onClick={onClose} className="text-xs px-4 py-2 border border-white/10 rounded text-white bg-transparent hover:bg-white/5">
               Close
             </button>
-            <button className="text-xs px-4 py-2 rounded text-white font-medium" style={{ background: 'var(--gd-primary)' }}>
+            <button
+              onClick={() => {
+                const payload = { outcome, signals, evidence, exported_at: new Date().toISOString() };
+                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `trace-${(outcome.ticket || 'auto').toLowerCase()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+              }}
+              className="text-xs px-4 py-2 rounded text-white font-medium hover:brightness-110"
+              style={{ background: 'var(--gd-primary)' }}
+            >
               Export trace
             </button>
           </div>
