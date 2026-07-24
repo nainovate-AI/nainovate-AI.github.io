@@ -154,7 +154,7 @@ export default function AIReadinessReport2025Page() {
             <JsonLd data={reportSchema} />
 
             {/* Back Button */}
-            <div className="max-w-[1400px] mx-auto px-8 pt-8">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 pt-8">
                 <Link href="/reports" className="inline-flex items-center gap-2 text-gray hover:text-white transition-colors group">
                     <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -172,7 +172,7 @@ export default function AIReadinessReport2025Page() {
                     }}></div>
                 </div>
 
-                <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8">
+                <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <div className="max-w-4xl">
                             {/* Official badge */}
@@ -181,27 +181,27 @@ export default function AIReadinessReport2025Page() {
                                 <span className="text-sm tracking-wider">2025 OFFICIAL REPORT</span>
                             </div>
 
-                            <h1 className="text-[clamp(3rem,7vw,5rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-6">
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,7vw,5rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-6">
                                 <span className="block">AI READINESS</span>
                                 <span className="block text-gray">REPORT 2025</span>
                             </h1>
 
-                            <p className="text-xl mb-12 max-w-3xl">
+                            <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-12 max-w-3xl">
                                 The Global State of AI Readiness & Responsible Innovation
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button
                                     onClick={() => setShowForm(true)}
-                                    className="group relative overflow-hidden border-2 border-white"
+                                    className="w-full sm:w-auto group relative overflow-hidden border-2 border-white"
                                 >
-                                    <span className="relative z-10 block px-8 py-4 font-medium transition-colors duration-500 group-hover:text-black">
+                                    <span className="relative z-10 block px-6 py-3 sm:px-8 sm:py-4 font-medium transition-colors duration-500 group-hover:text-black">
                                         DOWNLOAD FULL REPORT
                                     </span>
                                     <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
                                 </button>
 
-                                <a href="#readiness-assessment" className="px-8 py-4 font-medium text-gray hover:text-white transition-colors border border-white/10">
+                                <a href="#readiness-assessment" className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 font-medium text-gray hover:text-white transition-colors border border-white/10 text-center">
                                     ASSESS YOUR READINESS
                                 </a>
                             </div>
@@ -212,17 +212,17 @@ export default function AIReadinessReport2025Page() {
 
             {/* Key Finding Banner */}
             <section className="py-8 border-y border-white/10 bg-white/[0.02]">
-                <div className="max-w-[1400px] mx-auto px-8">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                             <div className="flex items-center gap-4">
-                                <span className="text-5xl font-bold">80%</span>
-                                <span className="text-lg">of enterprises have AI deployment</span>
+                                <span className="text-3xl sm:text-4xl md:text-5xl font-bold">80%</span>
+                                <span className="text-base sm:text-lg">of enterprises have AI deployment</span>
                             </div>
-                            <div className="text-2xl font-bold">×</div>
+                            <div className="text-xl md:text-2xl font-bold">×</div>
                             <div className="flex items-center gap-4">
-                                <span className="text-5xl font-bold">20%</span>
-                                <span className="text-lg">achieve full-scale readiness</span>
+                                <span className="text-3xl sm:text-4xl md:text-5xl font-bold">20%</span>
+                                <span className="text-base sm:text-lg">achieve full-scale readiness</span>
                             </div>
                         </div>
                     </AnimatedSection>
@@ -230,17 +230,17 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Global Readiness Map */}
-            <section className="py-20">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-12 md:py-20">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-4xl font-bold mb-4">Global AI Readiness Landscape</h2>
-                        <p className="text-gray mb-12 max-w-3xl">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Global AI Readiness Landscape</h2>
+                        <p className="text-gray mb-6 md:mb-12 max-w-3xl">
                             Regulatory maturity and compliance requirements across major economies
                         </p>
                     </AnimatedSection>
 
                     {/* Regional Cards */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 md:mb-12">
                         {regions.map((region, idx) => (
                             <AnimatedSection key={region.id} delay={idx * 0.1}>
                                 <div
@@ -249,7 +249,7 @@ export default function AIReadinessReport2025Page() {
                                     onMouseEnter={() => setActiveRegion(region.id)}
                                     onMouseLeave={() => setActiveRegion(null)}
                                 >
-                                    <h3 className="text-xl font-bold mb-2">{region.name}</h3>
+                                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">{region.name}</h3>
                                     <div className="space-y-2 text-sm">
                                         <div className="flex justify-between">
                                             <span className="text-gray">Status:</span>
@@ -289,23 +289,23 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Five Pillars */}
-            <section className="py-20 border-t border-white/10 bg-white/[0.02]">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-12 md:py-20 border-t border-white/10 bg-white/[0.02]">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-4xl font-bold mb-12 text-center">The Five Pillars of AI Readiness</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-12 text-center">The Five Pillars of AI Readiness</h2>
                     </AnimatedSection>
 
-                    <div className="grid lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                         {pillars.map((pillar, idx) => (
                             <AnimatedSection key={pillar.id} delay={idx * 0.1}>
                                 <div
-                                    className="text-center p-6 border border-white/10 hover:border-white/30 transition-all cursor-pointer"
+                                    className="text-center p-5 md:p-6 border border-white/10 hover:border-white/30 transition-all cursor-pointer"
                                     onClick={() => setActivePillar(pillar.id)}
                                     style={{
                                         backgroundColor: activePillar === pillar.id ? 'rgba(255,255,255,0.05)' : 'transparent'
                                     }}
                                 >
-                                    <div className="text-5xl mb-4 opacity-80">{pillar.icon}</div>
+                                    <div className="text-3xl sm:text-4xl md:text-5xl mb-4 opacity-80">{pillar.icon}</div>
                                     <h3 className="text-sm font-medium">{pillar.name}</h3>
                                 </div>
                             </AnimatedSection>
@@ -329,11 +329,11 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Compliance Requirements Visual */}
-            <section className="py-20 border-t border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-12 md:py-20 border-t border-white/10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold mb-4">Critical Compliance Requirements</h2>
+                        <div className="text-center mb-6 md:mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Critical Compliance Requirements</h2>
                             <p className="text-gray max-w-2xl mx-auto">
                                 Key capabilities needed for multi-jurisdiction AI deployment
                             </p>
@@ -341,7 +341,7 @@ export default function AIReadinessReport2025Page() {
                     </AnimatedSection>
 
                     {/* Visual Grid Instead of Table */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                         {[
                             {
                                 requirement: 'Risk Classification',
@@ -394,16 +394,16 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Building Trust in AI */}
-            <section className="py-20 border-t border-white/10 bg-white/[0.02]">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-12 md:py-20 border-t border-white/10 bg-white/[0.02]">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-4xl font-bold mb-12 text-center">The Trust Framework</h2>
-                        <p className="text-gray text-center mb-16 max-w-2xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-12 text-center">The Trust Framework</h2>
+                        <p className="text-gray text-center mb-8 md:mb-16 max-w-2xl mx-auto">
                             Successful AI deployment requires three foundational elements of trust
                         </p>
                     </AnimatedSection>
 
-                    <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         <AnimatedSection delay={0.1}>
                             <div className="text-center">
                                 <div className="w-20 h-20 mx-auto mb-4 border-2 border-white/20 rounded-full flex items-center justify-center">
@@ -438,14 +438,14 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-20 border-t border-white/10">
-                <div className="max-w-[800px] mx-auto px-8 text-center">
+            <section className="py-12 md:py-20 border-t border-white/10">
+                <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
-                        <div className="mb-12">
-                            <h2 className="text-4xl font-bold mb-4">
+                        <div className="mb-6 md:mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
                                 Ready for Responsible AI?
                             </h2>
-                            <p className="text-xl text-gray">
+                            <p className="text-base sm:text-lg md:text-xl text-gray">
                                 Join organizations building AI with trust, compliance, and human oversight at the core.
                             </p>
                         </div>
@@ -453,16 +453,16 @@ export default function AIReadinessReport2025Page() {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <button
                                 onClick={() => setShowForm(true)}
-                                className="group relative overflow-hidden border-2 border-white"
+                                className="w-full sm:w-auto group relative overflow-hidden border-2 border-white"
                             >
-                                <span className="relative z-10 block px-8 py-4 font-medium transition-colors duration-500 group-hover:text-black">
+                                <span className="relative z-10 block px-6 py-3 sm:px-8 sm:py-4 font-medium transition-colors duration-500 group-hover:text-black">
                                     DOWNLOAD 2025 REPORT
                                 </span>
                                 <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
                             </button>
 
-                            <Link href="/ai-center-of-excellence">
-                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+                            <Link href="/ai-center-of-excellence" className="w-full sm:w-auto">
+                                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
                                     Build Your AI Governance →
                                 </Button>
                             </Link>
@@ -473,10 +473,10 @@ export default function AIReadinessReport2025Page() {
 
             {/* Download Form Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-8">
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
                     <AnimatedSection>
-                        <div className="bg-black border border-white/20 p-8 max-w-md w-full relative">
-                            <h3 className="text-2xl font-bold mb-6">
+                        <div className="bg-black border border-white/20 p-5 md:p-8 max-w-md w-full relative">
+                            <h3 className="text-xl md:text-2xl font-bold mb-6">
                                 Access AI Readiness Report 2025
                             </h3>
 

@@ -1,0 +1,60 @@
+{
+  "useCases": {
+    "analytics": {
+      "title": "Analytics Dashboards",
+      "problem": "Data is scattered across systems. Building reports takes days. Insights come too late to act on.",
+      "solution": "AI-powered dashboards aggregate data in real-time, answer questions in natural language, and surface insights automatically.",
+      "features": [
+        "Natural language queries",
+        "Real-time data sync",
+        "Automated reporting",
+        "Predictive analytics",
+        "Custom visualizations",
+        "Export capabilities"
+      ],
+      "industries": ["Enterprise", "Finance", "Healthcare", "Manufacturing"]
+    },
+    "compliance": {
+      "title": "Compliance Tracking",
+      "problem": "Manual compliance checks are error-prone. Regulations change frequently. Audit trails are incomplete.",
+      "solution": "AI monitors activities 24/7, flags violations instantly, maintains complete audit logs, and adapts to regulatory changes.",
+      "features": [
+        "Automated monitoring",
+        "Violation detection",
+        "Audit trail generation",
+        "Regulatory updates",
+        "Risk scoring",
+        "Compliance reporting"
+      ],
+      "industries": ["Government", "Financial Services", "Healthcare", "Manufacturing"]
+    },
+    "quality": {
+      "title": "Quality Assurance",
+      "problem": "Quality issues discovered after production. Manual inspection is slow and inconsistent. Root causes unclear.",
+      "solution": "AI inspects 100% of output in real-time, identifies defects instantly, tracks trends, and recommends corrective actions.",
+      "features": [
+        "Defect detection",
+        "Real-time inspection",
+        "Trend analysis",
+        "Root cause identification",
+        "Corrective actions",
+        "Performance tracking"
+      ],
+      "industries": ["Manufacturing", "Pharma", "Food & Beverage", "Automotive"]
+    },
+    "monitoring": {
+      "title": "Process Monitoring",
+      "problem": "Critical processes run blind. Issues escalate before detection. Performance bottlenecks are hidden.",
+      "solution": "AI monitors all processes 24/7, predicts failures before they occur, and optimizes performance automatically.",
+      "features": [
+        "24/7 monitoring",
+        "Anomaly detection",
+        "Predictive maintenance",
+        "Performance optimization",
+        "Alert management",
+        "Capacity planning"
+      ],
+      "industries": ["Manufacturing", "Energy", "Logistics", "IT Operations"]
+    }
+  }
+}

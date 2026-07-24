@@ -1,0 +1,60 @@
+{
+  "useCases": {
+    "customer": {
+      "title": "Customer Service Bot",
+      "problem": "Support teams are overwhelmed. 70% of queries are repetitive. Response times are hours, not minutes.",
+      "solution": "AI bot handles common queries instantly, escalates complex issues to humans with full context.",
+      "features": [
+        "24/7 availability",
+        "Instant responses",
+        "Order tracking",
+        "Password resets",
+        "FAQ automation",
+        "Smart escalation"
+      ],
+      "industries": ["Retail", "E-commerce", "SaaS", "Hospitality"]
+    },
+    "citizen": {
+      "title": "Citizen Portal",
+      "problem": "Government services have long wait times. Citizens struggle to navigate complex processes.",
+      "solution": "AI-powered portal guides citizens through applications, tracks status, and answers questions 24/7.",
+      "features": [
+        "Permit applications",
+        "Status tracking",
+        "Document upload",
+        "Multi-language support",
+        "Payment processing",
+        "Appointment scheduling"
+      ],
+      "industries": ["Government", "Municipal Services", "Public Sector", "Education"]
+    },
+    "multichannel": {
+      "title": "Multi-Channel Support",
+      "problem": "Customers reach out via chat, email, SMS, social media. Context is lost between channels.",
+      "solution": "Unified AI platform maintains conversation history across all channels, providing seamless experience.",
+      "features": [
+        "Unified inbox",
+        "Cross-channel history",
+        "Email integration",
+        "SMS support",
+        "Social media monitoring",
+        "Consistent responses"
+      ],
+      "industries": ["Enterprise", "Retail", "Healthcare", "Financial Services"]
+    },
+    "quality": {
+      "title": "Service Quality Assurance",
+      "problem": "Manual call review is slow. Quality issues are discovered too late. Training gaps are unclear.",
+      "solution": "AI analyzes 100% of interactions in real-time, identifies issues, and recommends training.",
+      "features": [
+        "Call transcription",
+        "Sentiment analysis",
+        "Compliance checking",
+        "Performance scoring",
+        "Training recommendations",
+        "Trend identification"
+      ],
+      "industries": ["Call Centers", "Healthcare", "Financial Services", "Insurance"]
+    }
+  }
+}

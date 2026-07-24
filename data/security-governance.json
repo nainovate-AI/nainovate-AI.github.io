@@ -1,0 +1,161 @@
+{
+  "coreCapabilities": [
+    {
+      "title": "Enterprise Security",
+      "description": "Multi-layer security architecture with end-to-end encryption",
+      "iconPath": "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+    },
+    {
+      "title": "Access Control",
+      "description": "Role-based permissions with SSO & MFA integration",
+      "iconPath": "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+    },
+    {
+      "title": "Compliance Management",
+      "description": "GDPR, HIPAA, SOC2-ready with automated reporting",
+      "iconPath": "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+    },
+    {
+      "title": "Audit & Monitoring",
+      "description": "Complete activity logging with real-time security alerts",
+      "iconPath": "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    }
+  ],
+  "detailSections": [
+    {
+      "id": "data-security",
+      "title": "Data Security & Encryption",
+      "description": "Your data never leaves your control. Every byte is encrypted, isolated, and protected with enterprise-grade security from training to deployment.",
+      "mockup": "DataSecurityMockup",
+      "reversed": false,
+      "colorBg": "bg-blue-500/20",
+      "colorText": "text-blue-400",
+      "features": [
+        {
+          "title": "End-to-End Encryption",
+          "description": "Data encrypted at rest (AES-256) and in transit (TLS 1.3). Customer-managed encryption keys (CMEK) option with secure key rotation and zero-knowledge architecture for sensitive data."
+        },
+        {
+          "title": "Data Isolation",
+          "description": "Tenant-specific data segregation with private cloud deployment options. Virtual private cloud (VPC) support and dedicated infrastructure for enterprise clients."
+        },
+        {
+          "title": "Secure Model Training",
+          "description": "Training data never leaves your environment. Differential privacy for sensitive datasets, federated learning capabilities, and model encryption with secure storage."
+        }
+      ]
+    },
+    {
+      "id": "access-control",
+      "title": "Access Control & Identity",
+      "description": "Granular permission management that scales with your organization. Control who can access what, when, and how with enterprise SSO integration.",
+      "mockup": "AccessControlMockup",
+      "reversed": true,
+      "colorBg": "bg-green-500/20",
+      "colorText": "text-green-400",
+      "features": [
+        {
+          "title": "Role-Based Access Control",
+          "description": "Granular permission management with pre-built enterprise roles (Admin, Developer, Analyst, Viewer). Custom role creation and attribute-based access control (ABAC) support."
+        },
+        {
+          "title": "Enterprise SSO Integration",
+          "description": "SAML 2.0 and OAuth 2.0 support with Active Directory / LDAP integration. Compatible with Okta, Azure AD, Google Workspace with multi-factor authentication (MFA) enforcement."
+        },
+        {
+          "title": "Agent-Level Security",
+          "description": "Per-agent access policies with API key management and rotation. Rate limiting, throttling, and IP whitelisting for production agents ensure secure operations."
+        }
+      ]
+    },
+    {
+      "id": "compliance",
+      "title": "Compliance & Governance",
+      "description": "Built to meet global regulatory requirements. Deploy AI confidently knowing you're compliant from day one with comprehensive audit trails.",
+      "mockup": "ComplianceGovernanceMockup",
+      "reversed": false,
+      "colorBg": "bg-purple-500/20",
+      "colorText": "text-purple-400",
+      "features": [
+        {
+          "title": "Regulatory Compliance",
+          "description": "GDPR compliance built-in with data subject rights and right to deletion. HIPAA-ready for healthcare, SOC 2-ready infrastructure, plus CCPA, PIPEDA, and LGPD support."
+        },
+        {
+          "title": "Data Governance",
+          "description": "Complete data lineage tracking from source to model to output. Automated PII detection and redaction, retention policies, and data residency controls for EU, US, India, and GCC regions."
+        },
+        {
+          "title": "Audit Trails & Reporting",
+          "description": "Complete activity logs tracking who accessed what and when. Automated compliance reports (quarterly, annual) with real-time monitoring dashboards and exportable logs for external audits."
+        }
+      ]
+    },
+    {
+      "id": "ai-security",
+      "title": "AI-Specific Security",
+      "description": "Protection against AI-specific threats. From prompt injection to model extraction, comprehensive security for your AI operations.",
+      "mockup": "AISecurityMockup",
+      "reversed": true,
+      "colorBg": "bg-orange-500/20",
+      "colorText": "text-orange-400",
+      "features": [
+        {
+          "title": "Prompt Injection Protection",
+          "description": "Built-in input validation with malicious prompt detection. Sanitization of user inputs and context-aware filtering to prevent prompt injection attacks."
+        },
+        {
+          "title": "Model Security",
+          "description": "Protection against model extraction attacks with watermarking for proprietary models. Adversarial robustness testing and secure model versioning with rollback capabilities."
+        },
+        {
+          "title": "Output Monitoring",
+          "description": "Real-time hallucination detection with bias and toxicity monitoring. Sensitive data leak prevention and content policy enforcement for safe AI outputs."
+        }
+      ]
+    }
+  ],
+  "coeGovernance": [
+    {
+      "title": "Security by Default",
+      "description": "Zero-trust architecture with automatic compliance validation",
+      "iconPath": "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+    },
+    {
+      "title": "Continuous Compliance",
+      "description": "Real-time policy enforcement with automated audit preparation",
+      "iconPath": "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+    },
+    {
+      "title": "Risk Management",
+      "description": "AI-specific threat detection with bias and fairness monitoring",
+      "iconPath": "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+    }
+  ],
+  "platformFeatures": [
+    {
+      "title": "AI Engineering Tools",
+      "description": "Build and test AI agents",
+      "href": "/platform/ai-engineering-tools",
+      "iconPath": "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
+    },
+    {
+      "title": "Search + Data AI",
+      "description": "Vector search and data preparation",
+      "href": "/platform/search-data-ai",
+      "iconPath": "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    },
+    {
+      "title": "Development Tools",
+      "description": "No-code and pro-code options",
+      "href": "/platform/development-tools",
+      "iconPath": "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+    },
+    {
+      "title": "Integrations",
+      "description": "100+ pre-built connectors",
+      "href": "/platform/integrations",
+      "iconPath": "M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+    }
+  ]
+}

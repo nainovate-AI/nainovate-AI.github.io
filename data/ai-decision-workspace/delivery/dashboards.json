@@ -1,0 +1,22 @@
+{
+  "kpis": [
+    { "label": "Active projects", "value": "8", "delta": "stable", "tone": "neutral" },
+    { "label": "At risk", "value": "3", "delta": "↑ 1 vs last 30d", "tone": "down" },
+    { "label": "On track", "value": "5", "delta": "↑ 1 vs last 30d", "tone": "up" },
+    { "label": "Rescues active", "value": "2", "delta": "Contoso Ltd + Proseware Systems", "tone": "neutral" },
+    { "label": "Avg utilization", "value": "92%", "delta": "↓ 3 pts vs last 30d", "tone": "up" },
+    { "label": "Milestones 30d", "value": "8", "delta": "2 at risk", "tone": "down" }
+  ],
+  "distribution": [
+    { "label": "Green", "value": 62, "count": 5, "color": "var(--gd-success)" },
+    { "label": "Yellow", "value": 25, "count": 2, "color": "var(--gd-warning)" },
+    { "label": "Red", "value": 13, "count": 1, "color": "var(--gd-danger)" }
+  ],
+  "atRisk": [
+    { "code": "NI", "name": "Contoso Ltd Phase 2", "health": 42, "risk": "M3 slip", "trend": "down" },
+    { "code": "IL", "name": "Proseware Systems Pilot", "health": 38, "risk": "4 P1 open", "trend": "down" },
+    { "code": "UG", "name": "Northwind Traders Discovery", "health": 65, "risk": "On track", "trend": "flat" },
+    { "code": "SI", "name": "Blue Yonder Config", "health": 72, "risk": "clean", "trend": "up" },
+    { "code": "AW", "name": "Tailspin Toys", "health": 80, "risk": "clean", "trend": "up" }
+  ]
+}

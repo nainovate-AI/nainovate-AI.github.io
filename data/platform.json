@@ -1,0 +1,52 @@
+{
+  "spokes": [
+    {
+      "id": 1,
+      "title": "Workflows over agents",
+      "description": "End-to-end business workflow design",
+      "icon": "⟲",
+      "color": "#3B82F6",
+      "angle": 0
+    },
+    {
+      "id": 2,
+      "title": "Right tool for the right task",
+      "description": "AI tool selection governance",
+      "icon": "⚙",
+      "color": "#F97316",
+      "angle": 60
+    },
+    {
+      "id": 3,
+      "title": "Fight \"AI slop\"",
+      "description": "Continuous evaluation & improvement",
+      "icon": "◆",
+      "color": "#10B981",
+      "angle": 120
+    },
+    {
+      "id": 4,
+      "title": "Agents as employees",
+      "description": "Onboarding & performance monitoring",
+      "icon": "◯",
+      "color": "#8B5CF6",
+      "angle": 180
+    },
+    {
+      "id": 5,
+      "title": "Frameworks for orchestration",
+      "description": "Seamless integration & scale",
+      "icon": "◈",
+      "color": "#EF4444",
+      "angle": 240
+    },
+    {
+      "id": 6,
+      "title": "User-centric trust loops",
+      "description": "Ethics, compliance, and feedback",
+      "icon": "◉",
+      "color": "#14B8A6",
+      "angle": 300
+    }
+  ]
+}

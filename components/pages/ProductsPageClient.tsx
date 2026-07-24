@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { useState } from 'react';
 import Link from 'next/link';
+import mockData from '@/data/platform.json';
 
 export default function ProductsPageClient() {
     const [activeSpoke, setActiveSpoke] = useState<number | null>(null);
@@ -28,56 +29,7 @@ export default function ProductsPageClient() {
         const percentage = (x / rect.width) * 100;
         setSliderPosition(Math.max(0, Math.min(100, percentage)));
     };
-    const spokes = [
-        {
-            id: 1,
-            title: 'Workflows over agents',
-            description: 'End-to-end business workflow design',
-            icon: '⟲',
-            color: '#3B82F6',
-            angle: 0
-        },
-        {
-            id: 2,
-            title: 'Right tool for the right task',
-            description: 'AI tool selection governance',
-            icon: '⚙',
-            color: '#F97316',
-            angle: 60
-        },
-        {
-            id: 3,
-            title: 'Fight "AI slop"',
-            description: 'Continuous evaluation & improvement',
-            icon: '◆',
-            color: '#10B981',
-            angle: 120
-        },
-        {
-            id: 4,
-            title: 'Agents as employees',
-            description: 'Onboarding & performance monitoring',
-            icon: '◯',
-            color: '#8B5CF6',
-            angle: 180
-        },
-        {
-            id: 5,
-            title: 'Frameworks for orchestration',
-            description: 'Seamless integration & scale',
-            icon: '◈',
-            color: '#EF4444',
-            angle: 240
-        },
-        {
-            id: 6,
-            title: 'User-centric trust loops',
-            description: 'Ethics, compliance, and feedback',
-            icon: '◉',
-            color: '#14B8A6',
-            angle: 300
-        }
-    ];
+    const spokes = mockData.spokes;
     // define SVG center and radius values for the AI CoE diagram
     const centerX = 250;
     const centerY = 250;
@@ -90,7 +42,7 @@ export default function ProductsPageClient() {
             <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-dark/10 to-black" />
 
-                <div className="relative z-10 max-w-[1400px] mx-auto px-8 py-32 text-center">
+                <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-16 md:py-32 text-center">
                     <AnimatedSection>
                         <div className="mb-6">
                             <span className="text-gray uppercase tracking-[0.2em] text-sm">
@@ -98,23 +50,23 @@ export default function ProductsPageClient() {
                             </span>
                         </div>
 
-                        <h1 className="text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.85] tracking-[-0.04em] mb-8">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.85] tracking-[-0.04em] mb-8">
                             THE GENX<br />
                             <span className="text-gray">PLATFORM</span>
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-gray max-w-3xl mx-auto mb-12">
+                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray max-w-3xl mx-auto mb-6 md:mb-12">
                             Build, Deploy, and Scale AI Responsibly with Governance and Trust Built Into Every Workflow
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                            <Link href="/contact">
-                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-6 md:mb-12">
+                            <Link href="/contact" className="w-full sm:w-auto">
+                                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                                     Schedule Demo →
                                 </Button>
                             </Link>
-                            <Link href="/ai-center-of-excellence">
-                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+                            <Link href="/ai-center-of-excellence" className="w-full sm:w-auto">
+                                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                                     Explore AI CoE
                                 </Button>
                             </Link>
@@ -139,13 +91,13 @@ export default function ProductsPageClient() {
                 </div>
             </section>
 
-            <section className="py-32 border-t border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-16 md:py-32 border-t border-white/10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-5xl font-bold mb-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">
                             WHAT MAKES GENX DIFFERENT?
                         </h2>
-                        <p className="text-xl text-gray text-center mb-20 max-w-2xl mx-auto">
+                        <p className="text-base sm:text-lg md:text-xl text-gray text-center mb-10 md:mb-20 max-w-2xl mx-auto">
                             Drag the slider to see the transformation from generic AI tools to a complete platform with governance.
                         </p>
                     </AnimatedSection>
@@ -279,10 +231,10 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 3: FOUR CORE CAPABILITIES */}
-            <section className="py-32 border-t border-white/10 bg-white/[0.01]">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-5xl font-bold mb-20 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20 text-center">
                             FOUR INTEGRATED CAPABILITIES
                         </h2>
                     </AnimatedSection>
@@ -291,14 +243,14 @@ export default function ProductsPageClient() {
 
                         {/* CORE */}
                         <AnimatedSection delay={0.1}>
-                            <div className="group border border-white/10 rounded-lg p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
+                            <div className="group border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-2xl font-bold mb-2">CORE</h3>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-2">CORE</h3>
                                     <p className="text-sm text-gray-400 mb-4">AI Engine</p>
                                     <p className="text-gray leading-relaxed">
                                         Build intelligent agents for any task with advanced RAG pipelines and fine-tuning capabilities.
@@ -310,14 +262,14 @@ export default function ProductsPageClient() {
                         
                         {/* FLOW */}
                         <AnimatedSection delay={0.3}>
-                            <div className="group border border-white/10 rounded-lg p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
+                            <div className="group border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                     </svg>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-2xl font-bold mb-2">FLOW</h3>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-2">FLOW</h3>
                                     <p className="text-sm text-gray-400 mb-4">Automation Engine</p>
                                     <p className="text-gray leading-relaxed">
                                         Automate complex workflows with multi-agent orchestration and seamless integrations.
@@ -328,14 +280,14 @@ export default function ProductsPageClient() {
 
                         {/* NIA */}
                         <AnimatedSection delay={0.2}>
-                            <div className="group border border-white/10 rounded-lg p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
+                            <div className="group border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 transition-all cursor-pointer h-full flex flex-col">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-2xl font-bold mb-2">NIA</h3>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-2">NIA</h3>
                                     <p className="text-sm text-gray-400 mb-4">Interface Layer</p>
                                     <p className="text-gray leading-relaxed">
                                         Talk to your AI agents through conversational interfaces. Multi-channel, multi-lingual support.
@@ -347,14 +299,14 @@ export default function ProductsPageClient() {
                         {/* AI CoE - HIGHLIGHTED */}
                         <AnimatedSection delay={0.4}>
                             <Link href="/ai-center-of-excellence">
-                                <div className="group border-2 border-white/30 rounded-lg p-8 bg-gradient-to-br from-white/10 to-white/5 hover:border-white/50 transition-all cursor-pointer h-full flex flex-col">
+                                <div className="group border-2 border-white/30 rounded-lg p-5 md:p-8 bg-gradient-to-br from-white/10 to-white/5 hover:border-white/50 transition-all cursor-pointer h-full flex flex-col">
                                     <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                         </svg>
                                     </div>
                                     <div className="flex-1 flex flex-col">
-                                        <h3 className="text-2xl font-bold mb-2">AI CoE</h3>
+                                        <h3 className="text-xl md:text-2xl font-bold mb-2">AI CoE</h3>
                                         <p className="text-sm text-gray-400 mb-4">Governance Framework</p>
                                         <p className="text-gray leading-relaxed mb-4 flex-1">
                                             Scale AI responsibly with built-in governance, ethics, and McKinsey best practices.
@@ -371,18 +323,18 @@ export default function ProductsPageClient() {
                 </div>
             </section>
 
-            <section className="py-32 border-t border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-16 md:py-32 border-t border-white/10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-5xl font-bold mb-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">
                             AI CENTER OF EXCELLENCE
                         </h2>
-                        <p className="text-xl text-gray text-center mb-20 max-w-3xl mx-auto">
+                        <p className="text-base sm:text-lg md:text-xl text-gray text-center mb-10 md:mb-20 max-w-3xl mx-auto">
                             GenX at the core. AI CoE as the governance layer. McKinsey&apos;s 6 principles guiding every decision.
                         </p>
                     </AnimatedSection>
 
-                    <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center max-w-6xl mx-auto">
 
                         {/* LEFT: SVG Diagram */}
                         <AnimatedSection delay={0.2}>
@@ -508,7 +460,7 @@ export default function ProductsPageClient() {
                         {/* RIGHT: Spoke Details */}
                         <AnimatedSection delay={0.3}>
                             <div className="space-y-4">
-                                <h3 className="text-2xl font-bold mb-6">McKinsey&apos;s 6 AI Scaling Principles</h3>
+                                <h3 className="text-xl md:text-2xl font-bold mb-6">McKinsey&apos;s 6 AI Scaling Principles</h3>
 
                                 {spokes.map((spoke) => (
                                     <div
@@ -546,12 +498,12 @@ export default function ProductsPageClient() {
 
                     {/* Bottom CTA */}
                     <AnimatedSection delay={0.4}>
-                        <div className="max-w-3xl mx-auto mt-20 text-center">
+                        <div className="max-w-3xl mx-auto mt-10 md:mt-20 text-center">
                             <p className="text-gray mb-8">
                                 👆 Hover over any spoke to see how McKinsey&apos;s principles integrate with GenX and the AI CoE layer
                             </p>
                             <Link href="/ai-center-of-excellence">
-                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+                                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                                     Explore the Complete AI CoE Framework →
                                 </Button>
                             </Link>
@@ -577,10 +529,10 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 5: PLATFORM FEATURES */}
-            <section className="py-32 border-t border-white/10 bg-white/[0.01]">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-5xl font-bold mb-20 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20 text-center">
                             PLATFORM FEATURES
                         </h2>
                     </AnimatedSection>
@@ -589,14 +541,14 @@ export default function ProductsPageClient() {
 
                         {/* Feature 1: AI Engineering Tools */}
                         <AnimatedSection delay={0.1}>
-                            <div className="border border-white/10 rounded-lg p-8 hover:border-white/20 hover:bg-white/5 transition-all">
+                            <div className="border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 hover:bg-white/5 transition-all">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4">AI Engineering Tools</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">AI Engineering Tools</h3>
                                 <ul className="space-y-2 text-gray text-sm">
                                     <li>• RAG pipeline builder</li>
                                     <li>• RLHF fine-tuning</li>
@@ -608,13 +560,13 @@ export default function ProductsPageClient() {
 
                         {/* Feature 2: Search + Data AI */}
                         <AnimatedSection delay={0.2}>
-                            <div className="border border-white/10 rounded-lg p-8 hover:border-white/20 hover:bg-white/5 transition-all">
+                            <div className="border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 hover:bg-white/5 transition-all">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4">Search + Data AI</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Search + Data AI</h3>
                                 <ul className="space-y-2 text-gray text-sm">
                                     <li>• Vector search engine</li>
                                     <li>• Data preparation tools</li>
@@ -626,13 +578,13 @@ export default function ProductsPageClient() {
 
                         {/* Feature 3: Security + Governance */}
                         <AnimatedSection delay={0.3}>
-                            <div className="border border-white/10 rounded-lg p-8 hover:border-white/20 hover:bg-white/5 transition-all">
+                            <div className="border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 hover:bg-white/5 transition-all">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4">Security + Governance</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Security + Governance</h3>
                                 <ul className="space-y-2 text-gray text-sm">
                                     <li>• Role-based access control</li>
                                     <li>• Audit logging</li>
@@ -644,13 +596,13 @@ export default function ProductsPageClient() {
 
                         {/* Feature 4: No-Code + Pro-Code */}
                         <AnimatedSection delay={0.4}>
-                            <div className="border border-white/10 rounded-lg p-8 hover:border-white/20 hover:bg-white/5 transition-all">
+                            <div className="border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 hover:bg-white/5 transition-all">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4">No-Code + Pro-Code</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">No-Code + Pro-Code</h3>
                                 <ul className="space-y-2 text-gray text-sm">
                                     <li>• Visual workflow builder</li>
                                     <li>• Python SDK</li>
@@ -662,13 +614,13 @@ export default function ProductsPageClient() {
 
                         {/* Feature 5: Integrations */}
                         <AnimatedSection delay={0.5}>
-                            <div className="border border-white/10 rounded-lg p-8 hover:border-white/20 hover:bg-white/5 transition-all">
+                            <div className="border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 hover:bg-white/5 transition-all">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4">Integrations</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Integrations</h3>
                                 <ul className="space-y-2 text-gray text-sm">
                                     <li>• 100+ pre-built connectors</li>
                                     <li>• CRM & ERP systems</li>
@@ -680,13 +632,13 @@ export default function ProductsPageClient() {
 
                         {/* Feature 6: Enterprise Support */}
                         <AnimatedSection delay={0.6}>
-                            <div className="border border-white/10 rounded-lg p-8 hover:border-white/20 hover:bg-white/5 transition-all">
+                            <div className="border border-white/10 rounded-lg p-5 md:p-8 hover:border-white/20 hover:bg-white/5 transition-all">
                                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-4">Enterprise Support</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Enterprise Support</h3>
                                 <ul className="space-y-2 text-gray text-sm">
                                     <li>• 24/7 technical support</li>
                                     <li>• Dedicated account manager</li>
@@ -701,10 +653,10 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 6: COMPONENT DEEP DIVE (KEEP EXISTING) */}
-            <section className="py-32 border-t border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-16 md:py-32 border-t border-white/10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-bold mb-20">
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(2.5rem,6vw,5rem)] font-bold mb-10 md:mb-20">
                             <span className="text-gray">EXPLORE</span><br />
                             <span>COMPONENTS</span>
                         </h2>
@@ -713,12 +665,12 @@ export default function ProductsPageClient() {
                     <div className="space-y-0">
                         <AnimatedSection delay={0.1}>
                             <Link href="/platform/core" className="block group">
-                                <div className="border-t border-gray-dark py-12 hover:bg-white hover:text-black transition-all duration-500">
+                                <div className="border-t border-gray-dark py-6 md:py-12 hover:bg-white hover:text-black transition-all duration-500">
                                     <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-8">
-                                            <span className="text-5xl font-bold text-gray group-hover:text-black transition-colors">01</span>
+                                        <div className="flex items-center gap-4 md:gap-8">
+                                            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray group-hover:text-black transition-colors">01</span>
                                             <div>
-                                                <h3 className="text-3xl font-bold mb-2">CORE - AI Engine</h3>
+                                                <h3 className="text-2xl md:text-3xl font-bold mb-2">CORE - AI Engine</h3>
                                                 <p className="text-gray group-hover:text-black transition-colors">
                                                     Create intelligent agents for any task
                                                 </p>
@@ -734,12 +686,12 @@ export default function ProductsPageClient() {
 
                         <AnimatedSection delay={0.2}>
                             <Link href="/platform/nia" className="block group">
-                                <div className="border-t border-gray-dark py-12 hover:bg-white hover:text-black transition-all duration-500">
+                                <div className="border-t border-gray-dark py-6 md:py-12 hover:bg-white hover:text-black transition-all duration-500">
                                     <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-8">
-                                            <span className="text-5xl font-bold text-gray group-hover:text-black transition-colors">02</span>
+                                        <div className="flex items-center gap-4 md:gap-8">
+                                            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray group-hover:text-black transition-colors">02</span>
                                             <div>
-                                                <h3 className="text-3xl font-bold mb-2">NIA - Interface</h3>
+                                                <h3 className="text-2xl md:text-3xl font-bold mb-2">NIA - Interface</h3>
                                                 <p className="text-gray group-hover:text-black transition-colors">
                                                     Deploy conversational AI at scale
                                                 </p>
@@ -755,12 +707,12 @@ export default function ProductsPageClient() {
 
                         <AnimatedSection delay={0.3}>
                             <Link href="/platform/flow" className="block group">
-                                <div className="border-t border-b border-gray-dark py-12 hover:bg-white hover:text-black transition-all duration-500">
+                                <div className="border-t border-b border-gray-dark py-6 md:py-12 hover:bg-white hover:text-black transition-all duration-500">
                                     <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-8">
-                                            <span className="text-5xl font-bold text-gray group-hover:text-black transition-colors">03</span>
+                                        <div className="flex items-center gap-4 md:gap-8">
+                                            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray group-hover:text-black transition-colors">03</span>
                                             <div>
-                                                <h3 className="text-3xl font-bold mb-2">FLOW - Automation Engine</h3>
+                                                <h3 className="text-2xl md:text-3xl font-bold mb-2">FLOW - Automation Engine</h3>
                                                 <p className="text-gray group-hover:text-black transition-colors">
                                                     Orchestrate complex workflows
                                                 </p>
@@ -778,10 +730,10 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 7: ENTERPRISE FEATURES (MOVED DOWN) */}
-            <section className="py-32 border-t border-white/10 bg-white/[0.01]">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-5xl font-bold mb-20 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20 text-center">
                             BUILT FOR ENTERPRISE
                         </h2>
                     </AnimatedSection>
@@ -793,7 +745,7 @@ export default function ProductsPageClient() {
                                 <div className="w-16 h-16 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
                                     <span className="text-3xl">✓</span>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">Production Ready</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Production Ready</h3>
                                 <p className="text-gray">Deploy confidently with 99.9% uptime SLA and enterprise-grade infrastructure.</p>
                             </div>
                         </AnimatedSection>
@@ -803,7 +755,7 @@ export default function ProductsPageClient() {
                                 <div className="w-16 h-16 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
                                     <span className="text-3xl">↑</span>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">Enterprise Scale</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Enterprise Scale</h3>
                                 <p className="text-gray">Handle millions of requests per day. Built for the demands of large organizations.</p>
                             </div>
                         </AnimatedSection>
@@ -815,7 +767,7 @@ export default function ProductsPageClient() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">Security & Compliance</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Security & Compliance</h3>
                                 <p className="text-gray">SOC 2, GDPR, HIPAA compliant. Your data stays yours.</p>
                             </div>
                         </AnimatedSection>
@@ -825,7 +777,7 @@ export default function ProductsPageClient() {
                                 <div className="w-16 h-16 mx-auto mb-6 bg-white/10 rounded-full flex items-center justify-center">
                                     <span className="text-3xl">⟲</span>
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">Continuous Learning</h3>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Continuous Learning</h3>
                                 <p className="text-gray">Agents improve over time with RLHF and real-world feedback loops.</p>
                             </div>
                         </AnimatedSection>
@@ -835,17 +787,17 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 8: SOCIAL PROOF */}
-            <section className="py-32 border-t border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-16 md:py-32 border-t border-white/10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-5xl font-bold mb-20 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20 text-center">
                             TRUSTED BY LEADING ORGANIZATIONS
                         </h2>
                     </AnimatedSection>
 
                     <AnimatedSection delay={0.2}>
                         <div className="text-center max-w-3xl mx-auto">
-                            <p className="text-2xl text-gray italic mb-8">
+                            <p className="text-xl md:text-2xl text-gray italic mb-8">
                                 &quot;GenX Platform + AI CoE transformed how we approach AI adoption.
                                 The built-in governance framework gave us the confidence to scale AI responsibly across our organization.&quot;
                             </p>
@@ -858,25 +810,25 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 9: FINAL CTA */}
-            <section className="py-32 border-t border-white/10 bg-gradient-to-br from-white/5 to-black">
-                <div className="max-w-[800px] mx-auto px-8 text-center">
+            <section className="py-16 md:py-32 border-t border-white/10 bg-gradient-to-br from-white/5 to-black">
+                <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
-                        <h2 className="text-6xl font-bold mb-8">
+                        <h2 className="text-4xl md:text-6xl font-bold mb-8">
                             READY TO TRANSFORM YOUR AI OPERATIONS?
                         </h2>
 
-                        <p className="text-xl text-gray mb-12">
+                        <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12">
                             See how GenX Platform + AI CoE can help you scale AI responsibly
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                            <Link href="/contact">
-                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                            <Link href="/contact" className="w-full sm:w-auto">
+                                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                                     Schedule Demo →
                                 </Button>
                             </Link>
-                            <Link href="/platform/core">
-                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+                            <Link href="/platform/core" className="w-full sm:w-auto">
+                                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                                     Explore CORE
                                 </Button>
                             </Link>

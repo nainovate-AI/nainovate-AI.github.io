@@ -1,5 +1,5 @@
-import TheatricalDemoClient from '@/components/pages/TheatricalDemoClient';
+import PublicSectorHubClient from '@/components/pages/PublicSectorHubClient';
 
 export default function OperationsDemoPage() {
-  return <TheatricalDemoClient />;
+  return <PublicSectorHubClient />;
 }

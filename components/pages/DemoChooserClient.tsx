@@ -15,37 +15,38 @@ export default function DemoChooserClient() {
             <span className="block text-gray">LENS.</span>
           </h1>
           <p className="text-xl text-gray max-w-3xl mb-16">
-            Same platform. Two demos. Operations NIA runs your internal workflows.
-            Decision NIA sits on Incident Management Tool + CRM as an explainable decision layer.
+            Same platform. Two lenses. Government &amp; Public Services runs building
+            permits and inter-department approvals. Enterprise Business Functions
+            sits on Incident Management + CRM as an explainable decision layer.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Operations NIA */}
+            {/* Government & Public Services */}
             <Link
-              href="/demo/operations"
+              href="/demo/public-sector"
               className="group border border-white/40 rounded-lg p-12 hover:border-white transition-colors block bg-white/5"
             >
-              <p className="text-xs tracking-widest text-gray uppercase mb-6">01 • OPERATIONS</p>
-              <h2 className="text-4xl font-bold mb-6 group-hover:text-white">Operations NIA</h2>
+              <p className="text-xs tracking-widest text-gray uppercase mb-6">01 • PUBLIC SECTOR</p>
+              <h2 className="text-4xl font-bold mb-6 group-hover:text-white">Government &amp; Public Services</h2>
               <p className="text-gray mb-8 leading-relaxed">
-                Theatrical demo of the GenX platform — building permits portal walkthrough
-                with AI-driven approvals and analytics.
+                Building permits portal walkthrough with AI-driven approvals,
+                analytics dashboard, and workflow orchestration.
               </p>
               <div className="space-y-2 mb-8 text-sm text-gray">
                 <p>· Permits intake automation</p>
                 <p>· Analytics dashboard</p>
                 <p>· Workflow orchestration</p>
               </div>
-              <span className="text-sm text-white group-hover:underline">Open Operations demo →</span>
+              <span className="text-sm text-white group-hover:underline">Open Public Sector demo →</span>
             </Link>
 
-            {/* Decision NIA */}
+            {/* Enterprise Business Functions */}
             <Link
               href="/demo/decision-nia"
               className="group border border-white/40 rounded-lg p-12 hover:border-white transition-colors block bg-white/5"
             >
-              <p className="text-xs tracking-widest text-gray uppercase mb-6">02 • DECISION</p>
-              <h2 className="text-4xl font-bold mb-6 group-hover:text-white">Decision NIA</h2>
+              <p className="text-xs tracking-widest text-gray uppercase mb-6">02 • ENTERPRISE</p>
+              <h2 className="text-4xl font-bold mb-6 group-hover:text-white">Enterprise Business Functions</h2>
               <p className="text-gray mb-8 leading-relaxed">
                 AI decision layer for enterprise support. Ask, Watchlists, Trace,
                 Coordination. Live 4-team walkthrough anchored on Account A FD-2104.
@@ -56,7 +57,7 @@ export default function DemoChooserClient() {
                 <p>· Sales</p>
                 <p>· Delivery</p>
               </div>
-              <span className="text-sm text-white group-hover:underline">Open Decision NIA demo →</span>
+              <span className="text-sm text-white group-hover:underline">Open Enterprise demo →</span>
             </Link>
           </div>
         </div>

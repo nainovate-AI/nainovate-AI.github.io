@@ -1,0 +1,60 @@
+{
+  "useCases": {
+    "hr": {
+      "title": "HR Screening Assistant",
+      "problem": "Manual resume screening takes hours. HR teams spend 60% of time on repetitive tasks.",
+      "solution": "AI agent analyzes candidates against job requirements in seconds, providing match scores and recommendations.",
+      "features": [
+        "Automated resume parsing",
+        "Skills gap analysis",
+        "Interview scheduling",
+        "Candidate ranking",
+        "Compliance tracking",
+        "Onboarding automation"
+      ],
+      "industries": ["Technology", "Healthcare", "Manufacturing", "Retail"]
+    },
+    "boq": {
+      "title": "BOQ Generation",
+      "problem": "Creating Bills of Quantities from architectural drawings is time-consuming and error-prone.",
+      "solution": "AI extracts quantities from drawings and specifications, generating accurate BOQs in minutes.",
+      "features": [
+        "Drawing analysis",
+        "Quantity extraction",
+        "Material estimation",
+        "Cost calculation",
+        "Version tracking",
+        "Export to Excel/PDF"
+      ],
+      "industries": ["Construction", "Real Estate", "Engineering", "Architecture"]
+    },
+    "document": {
+      "title": "Document Processing",
+      "problem": "Processing contracts, invoices, and reports manually is slow and inconsistent.",
+      "solution": "AI extracts key information from any document type, categorizes, and routes for approval.",
+      "features": [
+        "OCR & text extraction",
+        "Smart classification",
+        "Data validation",
+        "Approval workflows",
+        "Version control",
+        "Audit trails"
+      ],
+      "industries": ["Legal", "Finance", "Government", "Insurance"]
+    },
+    "search": {
+      "title": "Enterprise Search",
+      "problem": "Finding information across multiple systems wastes 20% of employee time.",
+      "solution": "AI-powered search understands context and intent, surfacing relevant information instantly.",
+      "features": [
+        "Natural language queries",
+        "Cross-system search",
+        "Semantic understanding",
+        "Personalized results",
+        "Access control",
+        "Usage analytics"
+      ],
+      "industries": ["Enterprise", "Healthcare", "Education", "Technology"]
+    }
+  }
+}

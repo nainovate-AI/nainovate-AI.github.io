@@ -1,0 +1,22 @@
+{
+  "rescueTimeline": [
+    { "d": "2026-06-10", "e": "wl_delivery_slip fires. Signals: 2 P1s + resource 138% + CSM sentiment down" },
+    { "d": "2026-06-10", "e": "Recommendation rec_delivery_009 drafted. Auto-approved (delivery director policy)" },
+    { "d": "2026-06-11", "e": "Workflow: reassign Consultant 1 from Account I green project, coordinate with Account I CSM" },
+    { "d": "2026-06-11", "e": "Workflow: escalate P1s to engineering, hotfix path negotiated" },
+    { "d": "2026-06-12", "e": "CSM Persona 1 opens re-baseline conversation with Account A PMO" },
+    { "d": "2026-06-14", "e": "New M3 date agreed: 2026-07-09 (8-day slip vs 21-day slip)" },
+    { "d": "2026-06-20", "e": "INIT-2104 coordination opens (support-side sync issue merges into initiative)" },
+    { "d": "2026-07-09", "e": "M3 UAT sign-off ✓" }
+  ],
+  "portfolio": [
+    { "p": "Account A Phase 2", "m": "M3 UAT", "s": "2026-07-09", "h": "At risk", "c": "watchlist active" },
+    { "p": "Account B Rollout", "m": "M2 Data migration", "s": "2026-08-15", "h": "On track", "c": "clean" },
+    { "p": "Account H Pilot", "m": "Go-live", "s": "2026-07-22", "h": "At risk", "c": "4 P1 tickets open" },
+    { "p": "Account I Expansion", "m": "M1 Discovery", "s": "2026-09-01", "h": "On track", "c": "clean" },
+    { "p": "Account G Onboarding", "m": "Kickoff", "s": "2026-07-20", "h": "On track", "c": "new logo" },
+    { "p": "Account J Phase 3", "m": "M4 Training", "s": "2026-07-30", "h": "At risk", "c": "trainer conflict" },
+    { "p": "Account K Rescue", "m": "Recovery", "s": "2026-08-30", "h": "Blue", "c": "ex-red · recovering" },
+    { "p": "Account L Upgrade", "m": "M2 Config", "s": "2026-08-05", "h": "On track", "c": "clean" }
+  ]
+}

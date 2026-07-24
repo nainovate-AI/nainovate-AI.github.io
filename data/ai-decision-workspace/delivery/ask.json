@@ -1,0 +1,100 @@
+{
+  "seed": {
+    "question": "Which projects are at risk of missing milestones?",
+    "timestamp": "11:47 AM",
+    "direct": {
+      "headline": "3 projects at risk — Contoso Ltd Phase 2 and Proseware Systems pilot most critical.",
+      "sub": "Rescue plans active for both. On-track projects: 5."
+    },
+    "insights": [
+      { "label": "Projects at risk", "value": "3", "delta": "↑ 1 vs last 30d" },
+      { "label": "On track", "value": "5", "delta": "↑ 1" },
+      { "label": "Rescues active", "value": "2", "delta": "Contoso Ltd + Proseware Systems" },
+      { "label": "Milestones 30d", "value": "8", "delta": "2 at risk" }
+    ],
+    "table": [
+      { "code": "NI", "name": "Contoso Ltd Phase 2", "health": 42, "risk": "M3 slip", "arr": "Rescue", "factors": ["UAT delay", "Utilization ↑"], "owner": "Consultant 1" },
+      { "code": "IL", "name": "Proseware Systems Pilot", "health": 38, "risk": "Go-live risk", "arr": "Recovery", "factors": ["4 P1 open"], "owner": "Sam Rivera" },
+      { "code": "UG", "name": "Northwind Traders M1", "health": 65, "risk": "On track", "arr": "2 wk out", "factors": ["clean"], "owner": "Consultant 1" },
+      { "code": "SI", "name": "Blue Yonder Config", "health": 72, "risk": "On track", "arr": "4 wk out", "factors": ["clean"], "owner": "Consultant 2" },
+      { "code": "AW", "name": "Tailspin Toys", "health": 80, "risk": "On track", "arr": "6 wk out", "factors": ["clean"], "owner": "Consultant 3" }
+    ],
+    "reasoning": {
+      "summary": "Multi-signal risk model: milestone slippage + utilization + P-tickets + CSM sentiment.",
+      "factors": ["Milestone slip", "Consultant load", "Open P1s", "CSM sentiment", "Client feedback"]
+    },
+    "followups": ["Show Contoso Ltd rescue plan", "Proseware Systems go-live checklist", "Reassign consultants", "Q3 delivery forecast"],
+    "keyInsightsRail": [
+      { "icon": "⚠", "label": "Projects at risk", "value": "3", "delta": "↑ 1 vs last 30d" },
+      { "icon": "◷", "label": "On track", "value": "5", "delta": "↑ 1" },
+      { "icon": "⇗", "label": "Rescues active", "value": "2", "delta": "Contoso Ltd + Proseware Systems" },
+      { "icon": "$", "label": "Milestones 30d", "value": "8", "delta": "2 at risk" }
+    ],
+    "recommendedActions": [
+      { "title": "Reassign Consultant 1 to Proseware Systems pilot recovery", "sub": "Northwind Traders green frees 40% capacity. Coverage plan ready.", "priority": "high" },
+      { "title": "Escalate 2 Proseware Systems P1s to engineering", "sub": "Blockers for go-live. Both fixes in QA.", "priority": "high" },
+      { "title": "Re-baseline Proseware Systems go-live with PMO", "sub": "New date proposal: +12d. Sentiment recovery plan attached.", "priority": "medium" }
+    ]
+  },
+  "bank": [
+    {
+      "question": "Show Contoso Ltd rescue plan",
+      "direct": {
+        "headline": "Contoso Ltd Phase 2 M3 rescue on track — new UAT date 2026-07-09 (8-day slip).",
+        "sub": "Reassigned Consultant 1 from Northwind Traders. 2 P1s escalated. CSM Alex Morgan re-baselined with PMO."
+      },
+      "bullets": [
+        "Original M3: 2026-07-01",
+        "New M3: 2026-07-09 (+8d)",
+        "Reassigned: Consultant 1 (was Northwind Traders green)",
+        "Escalated: 2 P1 tickets to Eng",
+        "Owner: Consultant 1 + Jordan L."
+      ],
+      "followups": ["What is Proseware Systems go-live risk?", "Who has capacity?", "Show milestone slip risk"]
+    },
+    {
+      "question": "What is Proseware Systems go-live risk?",
+      "direct": {
+        "headline": "Proseware Systems pilot go-live at high risk — 4 P1 tickets open, 9 days out.",
+        "sub": "Recovery plan: escalate P1s, cross-train consultant, propose 12-day re-baseline."
+      },
+      "bullets": [
+        "Project: Proseware Systems Pilot",
+        "Go-live: 2026-07-22 (9 days)",
+        "Open P1s: 4 (2 blockers)",
+        "Consultant load: 138% (over-allocated)",
+        "Recommended: re-baseline +12d, escalate P1s"
+      ],
+      "followups": ["Show Contoso Ltd rescue plan", "Who has capacity?", "Show milestone slip risk"]
+    },
+    {
+      "question": "Who has capacity?",
+      "direct": {
+        "headline": "Consultant 1 freed 40% capacity (Northwind Traders green complete). Consultant 2 20% available.",
+        "sub": "Consultant 3 at 78%, tight but OK for cross-training."
+      },
+      "bullets": [
+        "Consultant 1: 40% free (Northwind Traders green freed)",
+        "Consultant 2: 20% free",
+        "Consultant 3: 22% free",
+        "Sam Rivera: 15% (leadership overhead)",
+        "Total spare hours this week: 62"
+      ],
+      "followups": ["Show Contoso Ltd rescue plan", "What is Proseware Systems go-live risk?", "Show milestone slip risk"]
+    },
+    {
+      "question": "Show milestone slip risk",
+      "direct": {
+        "headline": "2 milestones at slip risk in 30d: Contoso Ltd M3 (rescued) + Proseware Systems go-live.",
+        "sub": "Watchlist wl_delivery_slip fires on multi-signal: tickets + utilization + sentiment."
+      },
+      "bullets": [
+        "Contoso Ltd M3: 21d early warning, rescue active",
+        "Proseware Systems go-live: 9d out, 4 P1 blockers",
+        "On track: Northwind Traders M1, Blue Yonder config, Tailspin Toys",
+        "Trigger threshold: 3+ signals firing"
+      ],
+      "followups": ["Show Contoso Ltd rescue plan", "What is Proseware Systems go-live risk?", "Who has capacity?"]
+    }
+  ]
+}

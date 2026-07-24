@@ -1,0 +1,11 @@
+{
+  "healthTrend": [68, 66, 65, 65, 64, 62, 60, 58, 58, 57, 55, 55, 54, 52, 50, 49, 47, 46, 45, 44, 44, 43, 42, 42, 42, 42, 42, 40, 38, 35],
+  "watchlists": [
+    { "name": "Renewal 90d out + health &lt; 40", "hits": 4, "top": "Account A" },
+    { "name": "NPS drop &gt; 2 in a week", "hits": 7, "top": "Account I" },
+    { "name": "3+ P1/P0 tickets in 30d", "hits": 3, "top": "Account H" },
+    { "name": "Executive escalation open", "hits": 2, "top": "Account A" },
+    { "name": "License usage &lt; 40%", "hits": 5, "top": "Account B" },
+    { "name": "Champion left (Social Signal signal)", "hits": 1, "top": "Account I" }
+  ]
+}

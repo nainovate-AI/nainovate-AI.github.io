@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Home,
   BarChart3,
@@ -9,17 +9,145 @@ import {
   FileText,
   ChevronDown,
   ChevronLeft,
+  ChevronRight,
   Sparkles,
-  PanelLeftClose,
-  PanelLeftOpen,
   Mic,
   Paperclip,
   Send,
   X,
 } from 'lucide-react';
 
+// Per-space, per-capability panel data (extracted from inline mocks)
+import csCommandCenter from '@/data/ai-decision-workspace/customer-success/command-center.json';
+import csAsk from '@/data/ai-decision-workspace/customer-success/ask.json';
+import csDashboards from '@/data/ai-decision-workspace/customer-success/dashboards.json';
+import csTrace from '@/data/ai-decision-workspace/customer-success/trace.json';
+
+import supCommandCenter from '@/data/ai-decision-workspace/customer-support/command-center.json';
+import supAsk from '@/data/ai-decision-workspace/customer-support/ask.json';
+import supDashboards from '@/data/ai-decision-workspace/customer-support/dashboards.json';
+import supTrace from '@/data/ai-decision-workspace/customer-support/trace.json';
+
+import salesCommandCenter from '@/data/ai-decision-workspace/sales/command-center.json';
+import salesAsk from '@/data/ai-decision-workspace/sales/ask.json';
+import salesDashboards from '@/data/ai-decision-workspace/sales/dashboards.json';
+import salesTrace from '@/data/ai-decision-workspace/sales/trace.json';
+
+import delCommandCenter from '@/data/ai-decision-workspace/delivery/command-center.json';
+import delAsk from '@/data/ai-decision-workspace/delivery/ask.json';
+import delDashboards from '@/data/ai-decision-workspace/delivery/dashboards.json';
+import delTrace from '@/data/ai-decision-workspace/delivery/trace.json';
+
 type SpaceKey = 'customer-support' | 'customer-success' | 'sales' | 'delivery';
 type FeatureKey = 'command-center' | 'ask' | 'dashboard' | 'trace';
+
+/* ---------- data shape types (match the JSON files) ---------- */
+
+type Risk = 'high' | 'medium' | 'low';
+type Tone = 'up' | 'down' | 'neutral';
+type PillTone = 'red' | 'yellow' | 'green' | 'blue' | 'neutral';
+
+type CmdAction = {
+  risk: Risk;
+  title: string;
+  account: string;
+  metric: { label: string; value: string };
+  status: string;
+  cta: string;
+};
+
+type CmdWorkflow = { name: string; status: string; tone: 'blue' | 'yellow' | 'green' };
+type CmdWatchlist = { code: string; name: string; score: number; risk: Risk };
+
+type CommandData = {
+  greeting: string;
+  summary: { headline: string; sub: string };
+  actions: CmdAction[];
+  signals: { icon: string; label: string; value: string; delta: string; tone: Tone }[];
+  cfi: { team: string; label: string; value: string }[];
+  workflows: {
+    in_progress: number;
+    awaiting: number;
+    completed: number;
+    list: CmdWorkflow[];
+  };
+  decisions: { title: string; when: string; impact: string; tone: 'green' | 'neutral' }[];
+  watchlist: CmdWatchlist[];
+};
+
+type DashboardData = {
+  kpis: { label: string; value: string; delta: string; tone: Tone }[];
+  distribution: { label: string; value: number; count: number; color: string }[];
+  atRisk: { code: string; name: string; health: number; risk: string; trend: 'up' | 'down' | 'flat' }[];
+};
+
+type BotAnswer = {
+  question: string;
+  timestamp?: string;
+  direct: { headline: string; sub: string };
+  insights?: { label: string; value: string; delta: string }[];
+  table?: { name: string; health: number; risk: string; arr: string; factors: string[]; owner: string; code: string }[];
+  reasoning?: { summary: string; factors: string[] };
+  followups: string[];
+  bullets?: string[];
+  keyInsightsRail?: { icon: string; label: string; value: string; delta: string }[];
+  recommendedActions?: { title: string; sub: string; priority: 'high' | 'medium' }[];
+};
+
+type AskData = { seed: BotAnswer; bank: BotAnswer[] };
+
+type TraceOutcome = {
+  user: string;
+  scenario: string;
+  product: string;
+  platform: string;
+  confidence: number;
+  ticket: string;
+  status: string;
+  feedback: string;
+  when: string;
+  tone: 'green' | 'blue' | 'yellow' | 'gray';
+};
+
+type TraceData = {
+  kpis: { icon: string; label: string; value: string }[];
+  outcomes: TraceOutcome[];
+  audit: { type: string; title: string; who: string; when: string }[];
+  donut: { label: string; value: number; color: string }[];
+  sources: { name: string; pct: number }[];
+};
+
+/* ---------- lookup tables ---------- */
+
+const COMMAND_DATA: Record<SpaceKey, CommandData> = {
+  'customer-success': csCommandCenter as CommandData,
+  'customer-support': supCommandCenter as CommandData,
+  sales: salesCommandCenter as CommandData,
+  delivery: delCommandCenter as CommandData,
+};
+
+const DASHBOARD_DATA: Record<SpaceKey, DashboardData> = {
+  'customer-success': csDashboards as DashboardData,
+  'customer-support': supDashboards as DashboardData,
+  sales: salesDashboards as DashboardData,
+  delivery: delDashboards as DashboardData,
+};
+
+const ASK_BUNDLE: Record<SpaceKey, AskData> = {
+  'customer-success': csAsk as AskData,
+  'customer-support': supAsk as AskData,
+  sales: salesAsk as AskData,
+  delivery: delAsk as AskData,
+};
+
+const TRACE_DATA: Record<SpaceKey, TraceData> = {
+  'customer-success': csTrace as TraceData,
+  'customer-support': supTrace as TraceData,
+  sales: salesTrace as TraceData,
+  delivery: delTrace as TraceData,
+};
+
+/* ---------- metadata (kept inline, not "mock" content) ---------- */
 
 const SPACES: {
   key: SpaceKey;
@@ -28,10 +156,10 @@ const SPACES: {
   persona: string;
   role: string;
 }[] = [
-  { key: 'customer-success', label: 'Customer Success', letter: 'C', persona: 'Persona 1', role: 'CSM Director' },
-  { key: 'customer-support', label: 'Customer Support', letter: 'C', persona: 'Persona 2', role: 'Support Head' },
-  { key: 'sales', label: 'Sales', letter: 'S', persona: 'Persona 3', role: 'AE Lead' },
-  { key: 'delivery', label: 'Delivery', letter: 'D', persona: 'Persona 4', role: 'Delivery Lead' },
+  { key: 'customer-success', label: 'Customer Success', letter: 'C', persona: 'Alex Morgan', role: 'CSM Director' },
+  { key: 'customer-support', label: 'Customer Support', letter: 'C', persona: 'Jordan Chen', role: 'Support Head' },
+  { key: 'sales', label: 'Sales', letter: 'S', persona: 'Riley Patel', role: 'AE Lead' },
+  { key: 'delivery', label: 'Delivery', letter: 'D', persona: 'Sam Rivera', role: 'Delivery Lead' },
 ];
 
 const FEATURES: { key: FeatureKey; label: string; Icon: React.ComponentType<{ className?: string }> }[] = [
@@ -42,6 +170,9 @@ const FEATURES: { key: FeatureKey; label: string; Icon: React.ComponentType<{ cl
 ];
 
 export default function DecisionNiaDemoHubClient() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const closeHref = searchParams.get('from') === 'home' ? '/' : '/demo';
   const [activeSpace, setActiveSpace] = useState<SpaceKey>('customer-success');
   const [activeFeature, setActiveFeature] = useState<FeatureKey>('command-center');
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -85,51 +216,57 @@ export default function DecisionNiaDemoHubClient() {
       <div className="flex min-h-screen">
         {/* Sidebar */}
         <aside
-          className={`${sidebarCollapsed ? 'hidden' : 'flex'} w-[260px] border-r flex-col shrink-0 h-screen sticky top-0 overflow-hidden`}
+          className={`flex flex-col shrink-0 h-screen sticky top-0 overflow-hidden border-r transition-[width] duration-300 ${
+            sidebarCollapsed ? 'w-16' : 'w-[260px]'
+          }`}
           style={{ borderColor: 'var(--gd-border)', background: 'var(--gd-bg)' }}
         >
-          {/* Brand + sidebar collapse toggle */}
-          <div className="flex items-stretch border-b border-white/10">
+          {/* Brand */}
+          <div
+            className="flex items-center border-b h-14"
+            style={{ borderColor: 'var(--gd-border)' }}
+          >
             <button
               onClick={() => setActiveFeature('command-center')}
-              className="flex-1 px-5 py-5 text-left hover:bg-white/5 transition-colors"
+              className={`h-full flex items-center hover:bg-white/5 transition-colors w-full ${
+                sidebarCollapsed ? 'justify-center' : 'px-5 text-left'
+              }`}
+              title="Command Center"
             >
-              <div className="flex items-center gap-2.5">
-                <div
-                  className="w-7 h-7 rounded-md flex items-center justify-center text-white shrink-0"
-                  style={{ background: 'var(--gd-primary)' }}
-                >
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-white leading-tight">GenX</p>
-                  <p className="text-[10px] text-white/50 leading-tight">AI Decision Workspace</p>
-                </div>
+              <div
+                className="w-7 h-7 rounded-md flex items-center justify-center text-white shrink-0"
+                style={{ background: 'var(--gd-primary)' }}
+              >
+                <Sparkles className="w-4 h-4" />
               </div>
-            </button>
-            <button
-              onClick={() => setSidebarCollapsed(true)}
-              className="px-3 text-white/60 hover:text-white hover:bg-white/5 transition-colors"
-              title="Collapse sidebar"
-              aria-label="Collapse sidebar"
-            >
-              <PanelLeftClose className="w-4 h-4" />
+              {!sidebarCollapsed && (
+                <p className="text-sm font-semibold text-white leading-tight ml-2.5">GenX</p>
+              )}
             </button>
           </div>
 
           {/* Space picker button */}
-          <div className="p-3 border-b border-white/10 relative" ref={pickerRef}>
+          <div
+            className="p-3 border-b relative"
+            style={{ borderColor: 'var(--gd-border)' }}
+            ref={pickerRef}
+          >
             <button
               onClick={() => setPickerOpen(!pickerOpen)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg border transition-colors ${
-                pickerOpen ? 'border-white' : 'border-white/20 hover:border-white/40'
-              }`}
+              title={space.label}
+              className={`w-full flex items-center rounded-lg border transition-colors ${
+                sidebarCollapsed ? 'justify-center py-2.5' : 'gap-3 px-3 py-2.5'
+              } ${pickerOpen ? 'border-white' : 'border-white/20 hover:border-white/40'}`}
             >
               <span className="w-7 h-7 rounded flex items-center justify-center text-xs font-medium border border-white/20 shrink-0">
                 {space.letter}
               </span>
-              <span className="flex-1 text-left text-sm text-white">{space.label}</span>
-              <ChevronDown className="w-3.5 h-3.5 text-white/40" />
+              {!sidebarCollapsed && (
+                <>
+                  <span className="flex-1 text-left text-sm text-white truncate">{space.label}</span>
+                  <ChevronDown className="w-3.5 h-3.5 text-white/40" />
+                </>
+              )}
             </button>
 
             {/* Popover */}
@@ -172,7 +309,7 @@ export default function DecisionNiaDemoHubClient() {
           </div>
 
           {/* Feature nav */}
-          <nav className="p-2 flex-1">
+          <nav className={`p-2 flex-1 flex flex-col ${sidebarCollapsed ? 'items-center' : ''}`}>
             {FEATURES.map((f) => {
               const isActive = f.key === activeFeature;
               const { Icon } = f;
@@ -180,23 +317,31 @@ export default function DecisionNiaDemoHubClient() {
                 <button
                   key={f.key}
                   onClick={() => setActiveFeature(f.key)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg mb-0.5 transition-colors ${
-                    isActive ? 'text-white' : 'text-white/70 hover:bg-white/5'
-                  }`}
+                  title={f.label}
+                  aria-label={f.label}
+                  className={`flex items-center rounded-lg mb-0.5 transition-colors ${
+                    sidebarCollapsed ? 'justify-center w-10 h-10' : 'w-full gap-3 px-3 py-2.5'
+                  } ${isActive ? 'text-white' : 'text-white/70 hover:bg-white/5'}`}
                   style={isActive ? { background: 'var(--gd-primary)' } : undefined}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
-                  <span className="text-sm">{f.label}</span>
+                  {!sidebarCollapsed && <span className="text-sm">{f.label}</span>}
                 </button>
               );
             })}
           </nav>
 
-          {/* Persona footer */}
-          <div className="px-4 py-4 border-t border-white/10">
-            <div className="flex items-center gap-3">
+          {/* Persona footer + collapse toggle */}
+          <div
+            className="px-3 py-3 border-t"
+            style={{ borderColor: 'var(--gd-border)' }}
+          >
+            <div
+              className={`flex items-center ${sidebarCollapsed ? 'justify-center' : 'gap-3 px-1'}`}
+              title={`${space.persona} · ${space.role}`}
+            >
               <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-xs text-white font-medium"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-xs text-white font-medium shrink-0"
                 style={{ background: 'var(--gd-primary)' }}
               >
                 {space.persona
@@ -204,11 +349,33 @@ export default function DecisionNiaDemoHubClient() {
                   .map((n) => n[0])
                   .join('')}
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-white truncate">{space.persona}</p>
-                <p className="text-[10px] text-white/50 truncate">{space.role}</p>
-              </div>
+              {!sidebarCollapsed && (
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-white truncate">{space.persona}</p>
+                  <p className="text-[10px] text-white/50 truncate">{space.role}</p>
+                </div>
+              )}
             </div>
+
+            <button
+              type="button"
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+              aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+              aria-pressed={!sidebarCollapsed}
+              className={`mt-2 flex items-center justify-center rounded-md text-white/60 hover:text-white hover:bg-white/5 transition-colors ${
+                sidebarCollapsed ? 'w-8 h-8 mx-auto' : 'w-full h-8 gap-2 px-2'
+              }`}
+            >
+              {sidebarCollapsed ? (
+                <ChevronRight className="w-4 h-4" />
+              ) : (
+                <>
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="text-xs font-medium">Collapse</span>
+                </>
+              )}
+            </button>
           </div>
 
         </aside>
@@ -216,28 +383,20 @@ export default function DecisionNiaDemoHubClient() {
         {/* Main */}
         <section className="flex-1 min-w-0">
           {/* Top bar */}
-          <div className="px-8 py-3 border-b border-white/10 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              {sidebarCollapsed && (
-                <button
-                  onClick={() => setSidebarCollapsed(false)}
-                  className="text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5"
-                  title="Expand sidebar"
-                  aria-label="Expand sidebar"
-                >
-                  <PanelLeftOpen className="w-4 h-4" />
-                </button>
-              )}
-              <p className="text-sm text-white">{feature.label}</p>
-            </div>
-            <Link
-              href="/demo"
-              className="text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5"
-              title="Close workspace · back to chooser"
+          <div
+            className="px-8 h-14 border-b flex items-center justify-between"
+            style={{ borderColor: 'var(--gd-border)' }}
+          >
+            <p className="text-sm text-white">{feature.label}</p>
+            <button
+              type="button"
+              onClick={() => router.push(closeHref)}
+              className="text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5 relative z-20"
+              title={closeHref === '/' ? 'Back to home' : 'Back to lens chooser'}
               aria-label="Close workspace"
             >
               <X className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
 
           {/* Content */}
@@ -466,7 +625,7 @@ function SectionTitle({ children, action }: { children: React.ReactNode; action?
   );
 }
 
-function Pill({ children, tone = 'neutral' }: { children: React.ReactNode; tone?: 'red' | 'yellow' | 'green' | 'blue' | 'neutral' }) {
+function Pill({ children, tone = 'neutral' }: { children: React.ReactNode; tone?: PillTone }) {
   const map: Record<string, { bg: string; fg: string }> = {
     red: { bg: 'var(--gd-danger-soft)', fg: 'var(--gd-danger-fg)' },
     yellow: { bg: 'var(--gd-warning-soft)', fg: 'var(--gd-warning-fg)' },
@@ -488,202 +647,6 @@ function Pill({ children, tone = 'neutral' }: { children: React.ReactNode; tone?
 /* ================================================================
    COMMAND CENTER
    ================================================================ */
-
-const COMMAND_DATA: Record<SpaceKey, {
-  greeting: string;
-  summary: { headline: string; sub: string };
-  actions: { risk: 'high' | 'medium' | 'low'; title: string; account: string; metric: { label: string; value: string }; status: string; cta: string }[];
-  signals: { icon: string; label: string; value: string; delta: string; tone: 'up' | 'down' | 'neutral' }[];
-  cfi: { team: string; label: string; value: string }[];
-  workflows: { in_progress: number; awaiting: number; completed: number; list: { name: string; status: string; tone: 'blue' | 'yellow' | 'green' }[] };
-  decisions: { title: string; when: string; impact: string; tone: 'green' | 'neutral' }[];
-  watchlist: { code: string; name: string; score: number; risk: 'high' | 'medium' | 'low' }[];
-}> = {
-  'customer-success': {
-    greeting: 'Persona 1',
-    summary: {
-      headline: '3 critical risks detected across Customer Success and Finance',
-      sub: '$1.2M revenue at risk. 2 actions recommended. 1 requires approval.',
-    },
-    actions: [
-      { risk: 'high', title: 'Executive outreach needed', account: 'Account A', metric: { label: 'Revenue at risk', value: '$450K' }, status: 'Due today', cta: 'Approve' },
-      { risk: 'medium', title: 'Renewal intervention required', account: 'Account B', metric: { label: 'Revenue at risk', value: '$320K' }, status: 'Due in 2 days', cta: 'Auto-run' },
-      { risk: 'low', title: 'Pricing review opportunity', account: 'Account C', metric: { label: 'Potential impact', value: '$180K' }, status: 'Due in 5 days', cta: 'Schedule' },
-    ],
-    signals: [
-      { icon: '⚠', label: 'At-risk accounts', value: '12', delta: '↑ 3 vs last 7 days', tone: 'down' },
-      { icon: '$', label: 'Revenue at risk', value: '$1.8M', delta: '↑ 18% vs last 7 days', tone: 'down' },
-      { icon: '◷', label: 'SLA breaches', value: '6', delta: '↑ 2 vs last 7 days', tone: 'down' },
-      { icon: '⇗', label: 'Pipeline risk', value: '$3.2M', delta: '↑ 5% vs last 7 days', tone: 'down' },
-    ],
-    cfi: [
-      { team: 'Customer Success', label: 'At risk', value: '12 accounts' },
-      { team: 'Sales', label: 'Impact', value: '$1.8M' },
-      { team: 'Finance', label: 'Exposure', value: '$1.2M' },
-    ],
-    workflows: {
-      in_progress: 28,
-      awaiting: 4,
-      completed: 7,
-      list: [
-        { name: 'Renewal Intervention — Account A', status: 'In progress', tone: 'blue' },
-        { name: 'Onboarding Optimization — Account C', status: 'Awaiting approval', tone: 'yellow' },
-        { name: 'Executive Escalation — Account D', status: 'In progress', tone: 'blue' },
-      ],
-    },
-    decisions: [
-      { title: 'Churn risk prevented — Account A', when: '2d ago', impact: '$450K saved', tone: 'green' },
-      { title: 'Escalation resolved — Account D', when: '1d ago', impact: 'SLA restored', tone: 'green' },
-      { title: 'Renewal secured — Account E', when: '3d ago', impact: '$120K', tone: 'green' },
-    ],
-    watchlist: [
-      { code: 'NI', name: 'Account A', score: 35, risk: 'high' },
-      { code: 'CL', name: 'Account B', score: 40, risk: 'high' },
-      { code: 'FM', name: 'Account C', score: 45, risk: 'high' },
-      { code: 'TT', name: 'Account D', score: 48, risk: 'medium' },
-      { code: 'WW', name: 'Account E', score: 58, risk: 'low' },
-    ],
-  },
-  'customer-support': {
-    greeting: 'Persona 2',
-    summary: {
-      headline: '4 P0/P1 tickets active — SLA at risk on 2',
-      sub: 'MTTR trending 4.1h (from 8.4h). AI deflection 41% last 7d.',
-    },
-    actions: [
-      { risk: 'high', title: 'FD-2104 P0 escalation', account: 'Account A', metric: { label: 'SLA remaining', value: '18m' }, status: 'Overdue soon', cta: 'Approve' },
-      { risk: 'medium', title: 'Reopen pattern on export bug', account: 'Account B', metric: { label: 'Reopens (30d)', value: '3' }, status: 'Route to QA', cta: 'Auto-run' },
-      { risk: 'low', title: 'KB gap: PDF layout bug', account: 'Account C', metric: { label: 'Similar tickets', value: '5' }, status: 'Draft article', cta: 'Schedule' },
-    ],
-    signals: [
-      { icon: '⚠', label: 'Open P0/P1', value: '4', delta: '↑ 1 vs last 7 days', tone: 'down' },
-      { icon: '◷', label: 'SLA compliance', value: '94%', delta: '↑ 2 vs last 7 days', tone: 'up' },
-      { icon: '⇗', label: 'Avg MTTR', value: '4.1h', delta: '↓ 4.3h vs last 7 days', tone: 'up' },
-      { icon: '$', label: 'AI deflection', value: '41%', delta: '↑ 6% vs last 7 days', tone: 'up' },
-    ],
-    cfi: [
-      { team: 'Support L1/L2', label: 'Active', value: '18 tickets' },
-      { team: 'Engineering', label: 'Escalated', value: '3 P0' },
-      { team: 'Customer Success', label: 'Impacted', value: '4 accounts' },
-    ],
-    workflows: {
-      in_progress: 12,
-      awaiting: 2,
-      completed: 14,
-      list: [
-        { name: 'P0 Incident Response — Account A FD-2104', status: 'In progress', tone: 'blue' },
-        { name: 'Hotfix v3.8.3 QA validation', status: 'Awaiting approval', tone: 'yellow' },
-        { name: 'KB post-mortem draft — sync module', status: 'Completed', tone: 'green' },
-      ],
-    },
-    decisions: [
-      { title: 'Auto-escalated FD-2104 to sync module owner', when: '2h ago', impact: 'Trace opened', tone: 'green' },
-      { title: 'Deflected 12 KB queries (Product X sync)', when: '1d ago', impact: 'Deflection +6%', tone: 'green' },
-      { title: 'Reopened FD-2112 flagged as KB gap', when: '3d ago', impact: 'Article drafted', tone: 'neutral' },
-    ],
-    watchlist: [
-      { code: 'NI', name: 'Account A', score: 35, risk: 'high' },
-      { code: 'CL', name: 'Account B', score: 42, risk: 'high' },
-      { code: 'FM', name: 'Account C', score: 58, risk: 'medium' },
-      { code: 'TT', name: 'Account D', score: 62, risk: 'medium' },
-      { code: 'WW', name: 'Account E', score: 74, risk: 'low' },
-    ],
-  },
-  sales: {
-    greeting: 'Persona 3',
-    summary: {
-      headline: '$2.9M Q3 pipeline · 2 deals at risk',
-      sub: 'Account A expansion at risk due to open P0. Account B renewal negotiation in progress.',
-    },
-    actions: [
-      { risk: 'high', title: 'Delay Account A expansion pitch 30d', account: 'Account A', metric: { label: 'Deal size', value: '$480K' }, status: 'Call at 10:00', cta: 'Approve' },
-      { risk: 'medium', title: 'Send Account B renewal proposal', account: 'Account B', metric: { label: 'Renewal ARR', value: '$820K' }, status: 'Ready to send', cta: 'Auto-run' },
-      { risk: 'low', title: 'Account G fast-track pitch', account: 'Account G', metric: { label: 'Potential ACV', value: '$720K' }, status: 'Q4 targeted', cta: 'Schedule' },
-    ],
-    signals: [
-      { icon: '⇗', label: 'Q3 pipeline', value: '$2.9M', delta: '↑ 12% vs Q2', tone: 'up' },
-      { icon: '$', label: 'Weighted', value: '$1.7M', delta: '↑ 8% vs last 30d', tone: 'up' },
-      { icon: '⚠', label: 'At-risk deals', value: '2', delta: '↑ 1 vs last 30d', tone: 'down' },
-      { icon: '◷', label: 'Avg deal cycle', value: '58d', delta: '↓ 4d vs Q2', tone: 'up' },
-    ],
-    cfi: [
-      { team: 'Sales', label: 'In flight', value: '5 deals' },
-      { team: 'Customer Success', label: 'Blockers', value: '2 P0 open' },
-      { team: 'Product', label: 'FR asks', value: '3 accts' },
-    ],
-    workflows: {
-      in_progress: 8,
-      awaiting: 3,
-      completed: 4,
-      list: [
-        { name: 'Account B renewal proposal packet', status: 'In progress', tone: 'blue' },
-        { name: 'Account A expansion hold-review', status: 'Awaiting approval', tone: 'yellow' },
-        { name: 'Account G QBR follow-up', status: 'Completed', tone: 'green' },
-      ],
-    },
-    decisions: [
-      { title: 'Held Account A expansion — health 35', when: '4h ago', impact: 'Trust preserved', tone: 'green' },
-      { title: 'Warmed Account I new champion (Social Signal)', when: '2d ago', impact: 'Sentiment ↑', tone: 'green' },
-      { title: 'FR-338 included in Account B proposal', when: '3d ago', impact: 'Diff. established', tone: 'neutral' },
-    ],
-    watchlist: [
-      { code: 'NI', name: 'Account A', score: 35, risk: 'high' },
-      { code: 'CL', name: 'Account B', score: 68, risk: 'medium' },
-      { code: 'IL', name: 'Account H', score: 42, risk: 'high' },
-      { code: 'UG', name: 'Account I', score: 62, risk: 'medium' },
-      { code: 'WI', name: 'Account G', score: 78, risk: 'low' },
-    ],
-  },
-  delivery: {
-    greeting: 'Persona 4',
-    summary: {
-      headline: '3 projects at risk · 2 rescue plans active',
-      sub: 'Account A Phase 2 M3 slip flagged 21d early. Account H pilot go-live in doubt.',
-    },
-    actions: [
-      { risk: 'high', title: 'Account H pilot recovery plan', account: 'Account H', metric: { label: 'Days to go-live', value: '9' }, status: 'Escalate today', cta: 'Approve' },
-      { risk: 'medium', title: 'Reassign Consultant 1 from Account I green', account: 'Account I', metric: { label: 'Utilization', value: '138%' }, status: 'Approve reassign', cta: 'Auto-run' },
-      { risk: 'low', title: 'Cross-train 1 consultant onto Account J', account: 'Account J', metric: { label: 'Coverage gap', value: '2 wk' }, status: 'Plan for Q4', cta: 'Schedule' },
-    ],
-    signals: [
-      { icon: '⚠', label: 'Projects at risk', value: '3', delta: '↑ 1 vs last 30d', tone: 'down' },
-      { icon: '◷', label: 'Milestones 30d', value: '8', delta: '2 at risk', tone: 'down' },
-      { icon: '⇗', label: 'On-track', value: '5', delta: '↑ 1 vs last 30d', tone: 'up' },
-      { icon: '$', label: 'Rescues active', value: '2', delta: 'Account A + Account H', tone: 'neutral' },
-    ],
-    cfi: [
-      { team: 'Delivery', label: 'Active', value: '8 projects' },
-      { team: 'Engineering', label: 'Blockers', value: '2 P1 escalated' },
-      { team: 'Customer Success', label: 'Sentiment', value: 'Watch' },
-    ],
-    workflows: {
-      in_progress: 6,
-      awaiting: 2,
-      completed: 3,
-      list: [
-        { name: 'Account A Phase 2 rescue plan', status: 'In progress', tone: 'blue' },
-        { name: 'Account H pilot go-live checklist', status: 'Awaiting approval', tone: 'yellow' },
-        { name: 'Account I M1 discovery signoff', status: 'Completed', tone: 'green' },
-      ],
-    },
-    decisions: [
-      { title: 'Re-baselined Account A M3 → 2026-07-09', when: '1w ago', impact: 'Steering cleared', tone: 'green' },
-      { title: 'Escalated 2 Account H P1s to engineering', when: '3d ago', impact: 'Fixes queued', tone: 'green' },
-      { title: 'Consultant 1 reassigned from Account I green', when: '4d ago', impact: 'Load 138 → 100%', tone: 'neutral' },
-    ],
-    watchlist: [
-      { code: 'NI', name: 'Account A', score: 42, risk: 'high' },
-      { code: 'IL', name: 'Account H', score: 38, risk: 'high' },
-      { code: 'UG', name: 'Account I', score: 65, risk: 'medium' },
-      { code: 'SI', name: 'Account J', score: 72, risk: 'low' },
-      { code: 'AW', name: 'Account F', score: 80, risk: 'low' },
-    ],
-  },
-};
-
-type CmdAction = { risk: 'high' | 'medium' | 'low'; title: string; account: string; metric: { label: string; value: string }; status: string; cta: string };
-type CmdWorkflow = { name: string; status: string; tone: 'blue' | 'yellow' | 'green' };
-type CmdWatchlist = { code: string; name: string; score: number; risk: 'high' | 'medium' | 'low' };
 
 function CommandCenter({
   space,
@@ -784,7 +747,7 @@ function CommandCenter({
         </SectionTitle>
         <div className="grid lg:grid-cols-3 gap-4">
           {d.actions.map((a, i) => {
-            const tone = a.risk === 'high' ? 'red' : a.risk === 'medium' ? 'yellow' : 'green';
+            const tone: PillTone = a.risk === 'high' ? 'red' : a.risk === 'medium' ? 'yellow' : 'green';
             const barColor = a.risk === 'high' ? 'var(--gd-danger)' : a.risk === 'medium' ? 'var(--gd-warning)' : 'var(--gd-success)';
             return (
               <Card key={i} className="p-5 relative overflow-hidden">
@@ -1181,15 +1144,16 @@ function Dashboard({
   onOpenTrace: (traceId: string) => void;
   onToast: (msg: string) => void;
 }) {
+  const d = DASHBOARD_DATA[space];
   const [tab, setTab] = useState(0);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [widgetOpen, setWidgetOpen] = useState(false);
   const [fRegion, setFRegion] = useState('all');
   const [fSegment, setFSegment] = useState('all');
   const [fRange, setFRange] = useState('30d');
-  const [wPreset, setWPreset] = useState('kpi-tile');
-  const [wTitle, setWTitle] = useState('');
+  const [wPreset, setWPreset] = useState('Executive Overview');
   const [wQuery, setWQuery] = useState('');
+  const [wTaskId, setWTaskId] = useState('');
   const [wLang, setWLang] = useState('en');
   const [wForceRefresh, setWForceRefresh] = useState(false);
   const [wErr, setWErr] = useState('');
@@ -1204,111 +1168,20 @@ function Dashboard({
   }
 
   function submitWidget() {
-    if (!wTitle.trim()) {
-      setWErr('Widget title required');
-      return;
-    }
     if (!wQuery.trim()) {
       setWErr('Query required');
       return;
     }
+    if (!wTaskId.trim()) {
+      setWErr('Task ID required');
+      return;
+    }
     setWidgetOpen(false);
-    onToast(`Widget added · "${wTitle}" (${wPreset})`);
-    setWTitle('');
+    onToast(`Widget added · ${wPreset}`);
     setWQuery('');
+    setWTaskId('');
     setWErr('');
   }
-  const kpis: Record<SpaceKey, { label: string; value: string; delta: string; tone: 'up' | 'down' | 'neutral' }[]> = {
-    'customer-success': [
-      { label: 'Total customers', value: '1,248', delta: '↑ 12 (1.0%) vs last 30 days', tone: 'up' },
-      { label: 'Revenue at risk', value: '$2.4M', delta: '↓ 18% vs last 30 days', tone: 'up' },
-      { label: 'Avg health score', value: '72', delta: '↑ 5 pts vs last 30 days', tone: 'up' },
-      { label: 'Churn risk (weighted)', value: '23%', delta: '↓ 8 pts vs last 30 days', tone: 'up' },
-      { label: 'Expansion pipeline', value: '$1.8M', delta: '↑ 15% vs last 30 days', tone: 'up' },
-      { label: 'Active workflows', value: '28', delta: '↑ 4 vs last 30 days', tone: 'up' },
-    ],
-    'customer-support': [
-      { label: 'Total tickets (30d)', value: '9,126', delta: '↑ 4% vs last 30 days', tone: 'up' },
-      { label: 'Open P0/P1', value: '4', delta: '↑ 1 vs last 7 days', tone: 'down' },
-      { label: 'SLA compliance', value: '94%', delta: '↑ 2% vs last 30 days', tone: 'up' },
-      { label: 'Avg MTTR', value: '4.1h', delta: '↓ 4.3h vs last 30 days', tone: 'up' },
-      { label: 'AI deflection', value: '41%', delta: '↑ 6% vs last 30 days', tone: 'up' },
-      { label: 'Reopens', value: '6%', delta: '↓ 12 pts vs last 30 days', tone: 'up' },
-    ],
-    sales: [
-      { label: 'Q3 pipeline', value: '$2.9M', delta: '↑ 12% vs Q2', tone: 'up' },
-      { label: 'Weighted', value: '$1.7M', delta: '↑ 8%', tone: 'up' },
-      { label: 'Deals in flight', value: '5', delta: '↑ 1 vs last 30d', tone: 'up' },
-      { label: 'At-risk deals', value: '2', delta: '↑ 1', tone: 'down' },
-      { label: 'Win rate', value: '38%', delta: '↑ 4 pts', tone: 'up' },
-      { label: 'Avg deal cycle', value: '58d', delta: '↓ 4d', tone: 'up' },
-    ],
-    delivery: [
-      { label: 'Active projects', value: '8', delta: 'stable', tone: 'neutral' },
-      { label: 'At risk', value: '3', delta: '↑ 1 vs last 30d', tone: 'down' },
-      { label: 'On track', value: '5', delta: '↑ 1 vs last 30d', tone: 'up' },
-      { label: 'Rescues active', value: '2', delta: 'Account A + Account H', tone: 'neutral' },
-      { label: 'Avg utilization', value: '92%', delta: '↓ 3 pts vs last 30d', tone: 'up' },
-      { label: 'Milestones 30d', value: '8', delta: '2 at risk', tone: 'down' },
-    ],
-  };
-
-  const distribution: Record<SpaceKey, { label: string; value: number; count: number; color: string }[]> = {
-    'customer-success': [
-      { label: 'Excellent (80–100)', value: 19, count: 220, color: 'var(--gd-success)' },
-      { label: 'Good (60–79)', value: 44, count: 546, color: 'var(--gd-primary)' },
-      { label: 'At Risk (40–59)', value: 25, count: 312, color: 'var(--gd-warning)' },
-      { label: 'Critical (0–39)', value: 13, count: 170, color: 'var(--gd-danger)' },
-    ],
-    'customer-support': [
-      { label: 'Resolved same day', value: 42, count: 3830, color: 'var(--gd-success)' },
-      { label: 'Resolved <7d', value: 34, count: 3103, color: 'var(--gd-primary)' },
-      { label: 'Aged 7–14d', value: 16, count: 1460, color: 'var(--gd-warning)' },
-      { label: 'Aged >14d', value: 8, count: 733, color: 'var(--gd-danger)' },
-    ],
-    sales: [
-      { label: 'Won', value: 22, count: 12, color: 'var(--gd-success)' },
-      { label: 'Prop sent', value: 30, count: 16, color: 'var(--gd-primary)' },
-      { label: 'Discovery', value: 34, count: 18, color: 'var(--gd-warning)' },
-      { label: 'Lost', value: 14, count: 8, color: 'var(--gd-danger)' },
-    ],
-    delivery: [
-      { label: 'Green', value: 62, count: 5, color: 'var(--gd-success)' },
-      { label: 'Yellow', value: 25, count: 2, color: 'var(--gd-warning)' },
-      { label: 'Red', value: 13, count: 1, color: 'var(--gd-danger)' },
-    ],
-  };
-
-  const atRisk: Record<SpaceKey, { code: string; name: string; health: number; risk: string; trend: 'up' | 'down' | 'flat' }[]> = {
-    'customer-success': [
-      { code: 'NI', name: 'Account A', health: 35, risk: '$450K', trend: 'down' },
-      { code: 'CL', name: 'Account B', health: 40, risk: '$320K', trend: 'down' },
-      { code: 'FM', name: 'Account C', health: 45, risk: '$230K', trend: 'down' },
-      { code: 'TT', name: 'Account D', health: 48, risk: '$280K', trend: 'flat' },
-      { code: 'WW', name: 'Account E', health: 58, risk: '$210K', trend: 'up' },
-    ],
-    'customer-support': [
-      { code: 'NI', name: 'Account A', health: 35, risk: '4 P0/P1', trend: 'down' },
-      { code: 'CL', name: 'Account B', health: 42, risk: '3 open', trend: 'down' },
-      { code: 'FM', name: 'Account C', health: 58, risk: '2 open', trend: 'flat' },
-      { code: 'TT', name: 'Account D', health: 62, risk: '1 open', trend: 'up' },
-      { code: 'WW', name: 'Account E', health: 74, risk: '0 open', trend: 'up' },
-    ],
-    sales: [
-      { code: 'NI', name: 'Account A', health: 35, risk: '$480K deal', trend: 'down' },
-      { code: 'CL', name: 'Account B', health: 68, risk: '$820K renewal', trend: 'flat' },
-      { code: 'IL', name: 'Account H', health: 42, risk: '$310K expand', trend: 'down' },
-      { code: 'UG', name: 'Account I', health: 62, risk: '$540K renewal', trend: 'flat' },
-      { code: 'WI', name: 'Account G', health: 78, risk: '$720K new', trend: 'up' },
-    ],
-    delivery: [
-      { code: 'NI', name: 'Account A Phase 2', health: 42, risk: 'M3 slip', trend: 'down' },
-      { code: 'IL', name: 'Account H Pilot', health: 38, risk: '4 P1 open', trend: 'down' },
-      { code: 'UG', name: 'Account I Discovery', health: 65, risk: 'On track', trend: 'flat' },
-      { code: 'SI', name: 'Account J Config', health: 72, risk: 'clean', trend: 'up' },
-      { code: 'AW', name: 'Account F', health: 80, risk: 'clean', trend: 'up' },
-    ],
-  };
 
   return (
     <div className="space-y-6">
@@ -1358,7 +1231,7 @@ function Dashboard({
 
       {/* KPI grid */}
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
-        {kpis[space].map((k) => (
+        {d.kpis.map((k) => (
           <KpiTile key={k.label} icon="◆" label={k.label} value={k.value} delta={k.delta} tone={k.tone} />
         ))}
       </div>
@@ -1380,28 +1253,28 @@ function Dashboard({
               <div
                 className="w-full h-full rounded-full"
                 style={{
-                  background: `conic-gradient(${distribution[space]
-                    .map((d, i) => {
-                      const prev = distribution[space].slice(0, i).reduce((a, b) => a + b.value, 0);
-                      return `${d.color} ${prev}% ${prev + d.value}%`;
+                  background: `conic-gradient(${d.distribution
+                    .map((seg, i) => {
+                      const prev = d.distribution.slice(0, i).reduce((a, b) => a + b.value, 0);
+                      return `${seg.color} ${prev}% ${prev + seg.value}%`;
                     })
                     .join(', ')})`,
                 }}
               />
               <div className="absolute inset-4 bg-black rounded-full flex flex-col items-center justify-center">
                 <p className="text-lg font-semibold text-white">
-                  {distribution[space].reduce((a, b) => a + b.count, 0).toLocaleString()}
+                  {d.distribution.reduce((a, b) => a + b.count, 0).toLocaleString()}
                 </p>
                 <p className="text-[10px] text-white/50 uppercase tracking-wider">Total</p>
               </div>
             </div>
             <div className="flex-1 space-y-2">
-              {distribution[space].map((d) => (
-                <div key={d.label} className="flex items-center gap-2 text-xs">
-                  <span className="w-2 h-2 rounded-full shrink-0" style={{ background: d.color }} />
-                  <span className="text-white/70 flex-1">{d.label}</span>
-                  <span className="text-white font-medium">{d.count}</span>
-                  <span className="text-white/50">({d.value}%)</span>
+              {d.distribution.map((seg) => (
+                <div key={seg.label} className="flex items-center gap-2 text-xs">
+                  <span className="w-2 h-2 rounded-full shrink-0" style={{ background: seg.color }} />
+                  <span className="text-white/70 flex-1">{seg.label}</span>
+                  <span className="text-white font-medium">{seg.count}</span>
+                  <span className="text-white/50">({seg.value}%)</span>
                 </div>
               ))}
             </div>
@@ -1482,7 +1355,7 @@ function Dashboard({
           <span className="col-span-3 text-right">Risk</span>
           <span className="col-span-2 text-right">Trend</span>
         </div>
-        {atRisk[space].map((a) => (
+        {d.atRisk.map((a) => (
           <button
             key={a.code}
             onClick={() => onOpenTrace(a.name)}
@@ -1587,26 +1460,33 @@ function Dashboard({
           </>
         }
       >
-        <Field label="Widget type">
+        <Field label="Widget preset">
           <Select value={wPreset} onChange={(e) => setWPreset(e.target.value)}>
-            <option value="kpi-tile">KPI tile</option>
-            <option value="line-chart">Line chart</option>
-            <option value="bar-chart">Bar chart</option>
-            <option value="donut">Donut chart</option>
-            <option value="table">Data table</option>
-            <option value="custom-query">Custom query (AI)</option>
+            <option value="Executive Overview">Executive Overview</option>
+            <option value="Revenue Risk">Revenue Risk</option>
+            <option value="Renewal Forecast">Renewal Forecast</option>
+            <option value="Adoption Analytics">Adoption Analytics</option>
+            <option value="CSM Workspace">CSM Workspace</option>
+            <option value="Custom Query">Custom Query</option>
           </Select>
         </Field>
-        <Field label="Widget title">
-          <Input value={wTitle} onChange={(e) => setWTitle(e.target.value)} placeholder="e.g. Weekly deflection rate" />
-        </Field>
-        <Field label="Data query">
+        <Field label="Query (natural language)">
           <textarea
             value={wQuery}
             onChange={(e) => setWQuery(e.target.value)}
-            placeholder="e.g. Count tickets grouped by product for last 30 days"
-            rows={3}
+            placeholder="Describe what this widget should show…"
+            rows={2}
             className="w-full text-sm px-3 py-2 rounded bg-transparent text-white placeholder:text-white/40 outline-none focus:border-white/40"
+            style={{ border: '1px solid var(--gd-border)' }}
+          />
+        </Field>
+        <Field label="Task ID">
+          <input
+            type="text"
+            value={wTaskId}
+            onChange={(e) => setWTaskId(e.target.value)}
+            placeholder="ObjectId of the analytics task"
+            className="w-full text-sm px-3 py-2 rounded bg-transparent text-white placeholder:text-white/40 outline-none focus:border-white/40 font-mono"
             style={{ border: '1px solid var(--gd-border)' }}
           />
         </Field>
@@ -1617,9 +1497,10 @@ function Dashboard({
               <option value="es">Spanish</option>
               <option value="ar">Arabic</option>
               <option value="hi">Hindi</option>
+              <option value="te">Telugu</option>
             </Select>
           </Field>
-          <Field label="Refresh">
+          <Field label="Force refresh">
             <label className="flex items-center gap-2 pt-2 text-sm text-white cursor-pointer">
               <input
                 type="checkbox"
@@ -1627,7 +1508,7 @@ function Dashboard({
                 onChange={(e) => setWForceRefresh(e.target.checked)}
                 className="cursor-pointer"
               />
-              Force refresh (skip cache)
+              Bypass cache
             </label>
           </Field>
         </div>
@@ -1644,428 +1525,6 @@ function Dashboard({
 /* ================================================================
    ASK
    ================================================================ */
-
-type BotAnswer = {
-  question: string;
-  timestamp?: string;
-  direct: { headline: string; sub: string };
-  insights?: { label: string; value: string; delta: string }[];
-  table?: { name: string; health: number; risk: string; arr: string; factors: string[]; owner: string; code: string }[];
-  reasoning?: { summary: string; factors: string[] };
-  followups: string[];
-  bullets?: string[];
-  keyInsightsRail?: { icon: string; label: string; value: string; delta: string }[];
-  recommendedActions?: { title: string; sub: string; priority: 'high' | 'medium' }[];
-};
-
-const ASK_DATA: Record<SpaceKey, BotAnswer> = {
-  'customer-success': {
-    question: 'Which customers are at risk?',
-    timestamp: '11:47 AM',
-    direct: {
-      headline: '12 customers are at high risk of churn in the next 90 days.',
-      sub: 'They represent $2.4M in revenue, 23% of total ARR.',
-    },
-    insights: [
-      { label: 'At Risk Customers', value: '12', delta: '↑ 2 vs last 90 days' },
-      { label: 'Revenue at Risk', value: '$2.4M', delta: '↑ 18% vs last 90 days' },
-      { label: 'Avg. Health Score', value: '46', delta: '↓ 8 pts vs last 90 days' },
-      { label: 'Churn Risk (Weighted)', value: '23%', delta: '↑ 6% vs last 90 days' },
-    ],
-    table: [
-      { code: 'NI', name: 'Account A', health: 35, risk: 'High', arr: '$450K', factors: ['Usage ↓ 32%', 'Support ↑'], owner: 'Persona 1' },
-      { code: 'CL', name: 'Account B', health: 40, risk: 'High', arr: '$320K', factors: ['Low Adoption', 'Exec Change'], owner: 'Persona 4' },
-      { code: 'FM', name: 'Account C', health: 45, risk: 'High', arr: '$230K', factors: ['Usage ↓ 28%', 'Open Tickets'], owner: 'Persona 3' },
-      { code: 'TT', name: 'Account D', health: 48, risk: 'Medium', arr: '$280K', factors: ['Low Adoption'], owner: 'Consultant 3' },
-      { code: 'WW', name: 'Account E', health: 50, risk: 'Medium', arr: '$210K', factors: ['Usage ↓ 15%'], owner: 'Persona 4' },
-    ],
-    reasoning: {
-      summary: 'Based on 8 signals across usage, engagement, sentiment, support, and renewal indicators.',
-      factors: ['Usage Decline', 'Low Feature Adoption', 'Support Activity', 'Sentiment Drop', 'Executive Change'],
-    },
-    followups: ['Show revenue at risk breakdown', 'Which segment is most at risk?', 'What actions should I take?', 'Compare vs last quarter'],
-    keyInsightsRail: [
-      { icon: '⚠', label: 'At Risk Customers', value: '12', delta: '↑ 2 vs last 90 days' },
-      { icon: '$', label: 'Revenue at Risk', value: '$2.4M', delta: '↑ 18% vs last 90 days' },
-      { icon: '◆', label: 'Avg. Health Score', value: '46', delta: '↓ 8 pts vs last 90 days' },
-      { icon: '⇗', label: 'Churn Risk (Weighted)', value: '23%', delta: '↑ 6% vs last 90 days' },
-    ],
-    recommendedActions: [
-      { title: 'Executive outreach for Account A', sub: 'Health score dropped 15 points due to usage decline and open tickets.', priority: 'high' },
-      { title: 'Onboarding review for Account B', sub: 'Low feature adoption detected. Recommend onboarding workshop.', priority: 'medium' },
-      { title: 'Renewal planning for Account C', sub: 'Contract up for renewal in 60 days. High churn probability.', priority: 'high' },
-    ],
-  },
-  'customer-support': {
-    question: 'Which tickets need my attention right now?',
-    timestamp: '11:47 AM',
-    direct: {
-      headline: '4 P0/P1 tickets are active; 2 are at SLA risk in the next hour.',
-      sub: 'Account A FD-2104 is the most urgent. Auto-escalation ready.',
-    },
-    insights: [
-      { label: 'Open P0/P1', value: '4', delta: '↑ 1 vs last 7 days' },
-      { label: 'SLA at risk', value: '2', delta: '↑ 1 vs last 7 days' },
-      { label: 'Avg MTTR', value: '4.1h', delta: '↓ 4.3h vs last 30 days' },
-      { label: 'AI deflection', value: '41%', delta: '↑ 6% vs last 30 days' },
-    ],
-    table: [
-      { code: 'NI', name: 'Account A — FD-2104', health: 35, risk: 'P0', arr: '$450K acct', factors: ['sync hang', 'novelty 0.87'], owner: 'Consultant 1' },
-      { code: 'CL', name: 'Account B — FD-2112', health: 45, risk: 'P1 Reopen', arr: '$320K acct', factors: ['export bug'], owner: 'Persona 2' },
-      { code: 'FM', name: 'Account C — FD-2108', health: 58, risk: 'P2', arr: '$230K acct', factors: ['PDF layout'], owner: 'Persona 2' },
-      { code: 'TT', name: 'Account D — FD-2115', health: 62, risk: 'P2', arr: '$280K acct', factors: ['login flow'], owner: 'Consultant 2' },
-      { code: 'IL', name: 'Account H — FD-2105', health: 42, risk: 'P1', arr: '$310K acct', factors: ['vendor API'], owner: 'Consultant 1' },
-    ],
-    reasoning: {
-      summary: 'Ranked by SLA urgency, priority, ticket age, and customer health signals.',
-      factors: ['SLA remaining', 'Priority', 'Reopen count', 'Account health', 'Novelty score'],
-    },
-    followups: ['Show me the FD-2104 details', 'What deflection was possible?', 'Route to L2', 'Draft KB article for FD-2112'],
-    keyInsightsRail: [
-      { icon: '⚠', label: 'Open P0/P1', value: '4', delta: '↑ 1 vs last 7 days' },
-      { icon: '◷', label: 'SLA at risk', value: '2', delta: '↑ 1 vs last 7 days' },
-      { icon: '⇗', label: 'Avg MTTR', value: '4.1h', delta: '↓ 4.3h vs last 30 days' },
-      { icon: '$', label: 'AI deflection', value: '41%', delta: '↑ 6% vs last 30 days' },
-    ],
-    recommendedActions: [
-      { title: 'Escalate FD-2104 to sync module owner', sub: 'Novelty 0.87 + no KB match. Auto-approve per policy.', priority: 'high' },
-      { title: 'Notify CSM Persona 1 (Account A)', sub: 'Health score at 35. Customer briefing needed.', priority: 'high' },
-      { title: 'Draft KB article for reopen pattern', sub: '3 similar reopens in 30d. Content gap identified.', priority: 'medium' },
-    ],
-  },
-  sales: {
-    question: 'Which deals should I focus on today?',
-    timestamp: '11:47 AM',
-    direct: {
-      headline: '2 deals need immediate attention out of 5 in flight.',
-      sub: 'Account A expansion at risk. Account B renewal ready to send.',
-    },
-    insights: [
-      { label: 'Q3 pipeline', value: '$2.9M', delta: '↑ 12% vs Q2' },
-      { label: 'Weighted', value: '$1.7M', delta: '↑ 8%' },
-      { label: 'At-risk deals', value: '2', delta: '↑ 1' },
-      { label: 'Win rate', value: '38%', delta: '↑ 4 pts' },
-    ],
-    table: [
-      { code: 'NI', name: 'Account A — Expansion', health: 35, risk: 'Delay', arr: '$480K', factors: ['Health 35', 'FD-2104 P0'], owner: 'Persona 3' },
-      { code: 'CL', name: 'Account B — Renewal', health: 68, risk: 'Send', arr: '$820K', factors: ['FR-338 packaged'], owner: 'Persona 3' },
-      { code: 'IL', name: 'Account H — Expansion', health: 42, risk: 'Hold', arr: '$310K', factors: ['Delivery slip'], owner: 'Consultant 3' },
-      { code: 'UG', name: 'Account I — Renewal', health: 62, risk: 'Discovery', arr: '$540K', factors: ['New champion'], owner: 'Persona 3' },
-      { code: 'WI', name: 'Account G — New logo', health: 78, risk: 'Fast-track', arr: '$720K', factors: ['Pilot success'], owner: 'AE 2' },
-    ],
-    reasoning: {
-      summary: 'Ranked by deal size × win probability × time to close × account health signals.',
-      factors: ['Deal size', 'Health score', 'Time to close', 'FR alignment', 'Champion strength'],
-    },
-    followups: ['Delay Account A pitch — draft messaging', 'Account B proposal — final review', 'Account I champion — Social Signal signals', 'Q3 forecast update'],
-    keyInsightsRail: [
-      { icon: '⇗', label: 'Q3 pipeline', value: '$2.9M', delta: '↑ 12% vs Q2' },
-      { icon: '$', label: 'Weighted', value: '$1.7M', delta: '↑ 8%' },
-      { icon: '⚠', label: 'At-risk deals', value: '2', delta: '↑ 1' },
-      { icon: '◷', label: 'Win rate', value: '38%', delta: '↑ 4 pts' },
-    ],
-    recommendedActions: [
-      { title: 'Delay Account A expansion 30 days', sub: 'FD-2104 P0 active. Trust-first play.', priority: 'high' },
-      { title: 'Send Account B renewal proposal', sub: 'FR-338 timeline included. Ready to close.', priority: 'high' },
-      { title: 'Warm new Account I champion', sub: 'Prior champion left; new hire promoted internally.', priority: 'medium' },
-    ],
-  },
-  delivery: {
-    question: 'Which projects are at risk of missing milestones?',
-    timestamp: '11:47 AM',
-    direct: {
-      headline: '3 projects at risk — Account A Phase 2 and Account H pilot most critical.',
-      sub: 'Rescue plans active for both. On-track projects: 5.',
-    },
-    insights: [
-      { label: 'Projects at risk', value: '3', delta: '↑ 1 vs last 30d' },
-      { label: 'On track', value: '5', delta: '↑ 1' },
-      { label: 'Rescues active', value: '2', delta: 'Account A + Account H' },
-      { label: 'Milestones 30d', value: '8', delta: '2 at risk' },
-    ],
-    table: [
-      { code: 'NI', name: 'Account A Phase 2', health: 42, risk: 'M3 slip', arr: 'Rescue', factors: ['UAT delay', 'Utilization ↑'], owner: 'Consultant 1' },
-      { code: 'IL', name: 'Account H Pilot', health: 38, risk: 'Go-live risk', arr: 'Recovery', factors: ['4 P1 open'], owner: 'Persona 4' },
-      { code: 'UG', name: 'Account I M1', health: 65, risk: 'On track', arr: '2 wk out', factors: ['clean'], owner: 'Consultant 1' },
-      { code: 'SI', name: 'Account J Config', health: 72, risk: 'On track', arr: '4 wk out', factors: ['clean'], owner: 'Consultant 2' },
-      { code: 'AW', name: 'Account F', health: 80, risk: 'On track', arr: '6 wk out', factors: ['clean'], owner: 'Consultant 3' },
-    ],
-    reasoning: {
-      summary: 'Multi-signal risk model: milestone slippage + utilization + P-tickets + CSM sentiment.',
-      factors: ['Milestone slip', 'Consultant load', 'Open P1s', 'CSM sentiment', 'Client feedback'],
-    },
-    followups: ['Show Account A rescue plan', 'Account H go-live checklist', 'Reassign consultants', 'Q3 delivery forecast'],
-    keyInsightsRail: [
-      { icon: '⚠', label: 'Projects at risk', value: '3', delta: '↑ 1 vs last 30d' },
-      { icon: '◷', label: 'On track', value: '5', delta: '↑ 1' },
-      { icon: '⇗', label: 'Rescues active', value: '2', delta: 'Account A + Account H' },
-      { icon: '$', label: 'Milestones 30d', value: '8', delta: '2 at risk' },
-    ],
-    recommendedActions: [
-      { title: 'Reassign Consultant 1 to Account H pilot recovery', sub: 'Account I green frees 40% capacity. Coverage plan ready.', priority: 'high' },
-      { title: 'Escalate 2 Account H P1s to engineering', sub: 'Blockers for go-live. Both fixes in QA.', priority: 'high' },
-      { title: 'Re-baseline Account H go-live with PMO', sub: 'New date proposal: +12d. Sentiment recovery plan attached.', priority: 'medium' },
-    ],
-  },
-};
-
-const ANSWER_BANK: Record<SpaceKey, BotAnswer[]> = {
-  'customer-success': [
-    {
-      question: 'Show revenue at risk breakdown',
-      direct: {
-        headline: '$2.4M revenue at risk across 12 accounts, weighted 65% Enterprise.',
-        sub: 'Account A ($450K) + Account B ($320K) + Account C ($230K) = 42% of exposure.',
-      },
-      bullets: [
-        'Enterprise: $1.6M (67%) — 6 accounts',
-        'Mid Market: $560K (23%) — 4 accounts',
-        'Strategic: $240K (10%) — 2 accounts',
-        'Top driver: usage decline (-24% avg on impacted accounts)',
-      ],
-      followups: ['Which segment is most at risk?', 'What actions should I take?', 'How is Account A doing?', 'Compare vs last quarter'],
-    },
-    {
-      question: 'Which segment is most at risk?',
-      direct: {
-        headline: 'Enterprise segment carries the highest revenue exposure.',
-        sub: '$1.6M at risk, 67% of total. Mid Market accounts are the largest count-wise but smaller in ARR.',
-      },
-      bullets: [
-        'Enterprise: 6 accts × $267K avg ARR',
-        'Mid Market: 4 accts × $140K avg ARR',
-        'Strategic: 2 accts × $120K avg ARR',
-        'Enterprise churn probability weighted 32% vs 18% MM',
-      ],
-      followups: ['Show me Enterprise account list', 'What is driving Enterprise churn?', 'Which customers are at risk?'],
-    },
-    {
-      question: 'What actions should I take?',
-      direct: {
-        headline: '3 actions recommended for today. 2 auto-approved, 1 needs review.',
-        sub: 'Executive outreach to Account A is urgent — sync bug + health drop.',
-      },
-      bullets: [
-        '1. Executive outreach — Account A (health 35, $450K) · APPROVE',
-        '2. Onboarding review — Account B ($320K) · AUTO-RUN',
-        '3. Pricing review opportunity — Account C ($180K) · SCHEDULE',
-      ],
-      followups: ['Show Account A outreach draft', 'What triggered Account B onboarding review?', 'How is Account A doing?'],
-    },
-    {
-      question: 'How is Account A doing?',
-      direct: {
-        headline: 'Account A is at high risk. Health score 35 (down 15 pts in 30d).',
-        sub: '$450K ARR. Renewal in 143 days. Support tickets +3 in 24h. Persona 1 (CSM) is briefed.',
-      },
-      bullets: [
-        'Health: 35 (was 50 last month)',
-        'Usage: ↓ 32% (Product X sync failing)',
-        'Open tickets: 4 (1 P0)',
-        'Renewal: 2027-01-15',
-        'Recommended: executive outreach + workflow started',
-      ],
-      followups: ['Show Account A rescue plan', 'What is FD-2104?', 'Show all at-risk accounts'],
-    },
-    {
-      question: 'Compare vs last quarter',
-      direct: {
-        headline: 'Q3 shows worsening health but improving deflection and MTTR.',
-        sub: 'At-risk accounts up from 8 to 12. NPS steady at 42. Deflection ↑ 12%.',
-      },
-      bullets: [
-        'At-risk accounts: 8 → 12',
-        'Revenue at risk: $1.8M → $2.4M',
-        'Avg health: 68 → 46',
-        'AI deflection: 29% → 41%',
-        'NRR: 108% (target 110%)',
-      ],
-      followups: ['Show revenue at risk breakdown', 'What is driving health drop?', 'Which customers are at risk?'],
-    },
-  ],
-  'customer-support': [
-    {
-      question: 'Show me FD-2104 details',
-      direct: {
-        headline: 'FD-2104: Account A Product X sync hang, P0, novelty 0.87.',
-        sub: 'No KB match. Auto-escalated to sync module owner (Consultant 1). Trace: trace_acme_p0_2104.',
-      },
-      bullets: [
-        'Customer: End User · Account A',
-        'Started: 05:45 AM — sync hangs at 87%, 12MB stuck',
-        'Confidence: 0.87 novelty · 0.91 escalation confidence',
-        'Actions: Issue Tracker ENG-4412 opened, Persona 1 (CSM) notified, portal banner up, KB draft queued',
-        'Total workflow time: 1.42s',
-      ],
-      followups: ['Show me the full trace', 'What deflection was possible?', 'Route to L2'],
-    },
-    {
-      question: 'What tickets can we deflect?',
-      direct: {
-        headline: '41% of L1 volume is deflectable this week — 12 KB matches + 3 known incidents.',
-        sub: 'Top deflection candidates: PDF export, login issues, Product X sync FAQ.',
-      },
-      bullets: [
-        'Docs-solution deflection: 42% (last 7d)',
-        'Known-issue deflection: 34%',
-        'Feature-request routing: 100% (10 items)',
-        'Reopen prevention: 3 patterns identified for KB',
-      ],
-      followups: ['Which product needs a KB update?', 'Show reopen patterns', 'Show me FD-2104 details'],
-    },
-    {
-      question: 'Show me reopen patterns',
-      direct: {
-        headline: '3 reopen patterns identified in the last 30 days — all fixable via KB updates.',
-        sub: 'Product X sync reopens (3), export layout reopens (2), login flow reopens (2).',
-      },
-      bullets: [
-        'Pattern 1: Product X sync — 3 reopens, KB gap',
-        'Pattern 2: PDF export layout — 2 reopens, workaround exists',
-        'Pattern 3: Login flow SSO — 2 reopens, config issue',
-        'Recommended: draft 3 KB articles, notify affected accounts',
-      ],
-      followups: ['Draft KB article for FD-2112', 'Which product needs a KB update?', 'What tickets can we deflect?'],
-    },
-    {
-      question: 'Which product needs a KB update?',
-      direct: {
-        headline: 'Product X has the highest KB gap — 3 reopen patterns + 1 novel escalation this week.',
-        sub: 'Recommend prioritizing Product X Sync + Export documentation refresh.',
-      },
-      bullets: [
-        'Product X: 3 KB gaps, 8 similar tickets',
-        'Product Y: 1 KB gap, 2 similar tickets',
-        'Product Z: no gaps this week',
-        'Owner suggestion: Persona 2 + Consultant 1',
-      ],
-      followups: ['Show reopen patterns', 'Draft KB article for FD-2112', 'What tickets can we deflect?'],
-    },
-  ],
-  sales: [
-    {
-      question: 'Show Q3 forecast',
-      direct: {
-        headline: 'Q3 pipeline $2.9M, weighted $1.7M — 2 deals at risk.',
-        sub: 'Account A expansion delayed 30d. Account B renewal ready to close. Account G fast-track.',
-      },
-      bullets: [
-        'Total pipeline: $2.9M (↑ 12% vs Q2)',
-        'Weighted: $1.7M',
-        'Deals in flight: 5',
-        'At-risk: 2 (Account A, Account H)',
-        'Ready to close this month: $820K (Account B renewal)',
-      ],
-      followups: ['What is Account B deal status?', 'Where should I focus this week?', 'Which champion left?'],
-    },
-    {
-      question: 'What is Account B deal status?',
-      direct: {
-        headline: 'Account B renewal in negotiation — $820K, likely close in 2 weeks.',
-        sub: 'FR-338 timeline packaged into proposal. Health 68. Champion strong.',
-      },
-      bullets: [
-        'Stage: Negotiation',
-        'ARR: $820K',
-        'Health: 68 (stable)',
-        'Champion: Buyer (procurement)',
-        'Next step: send final proposal',
-      ],
-      followups: ['Show Q3 forecast', 'Where should I focus this week?', 'Which champion left?'],
-    },
-    {
-      question: 'Which champion left?',
-      direct: {
-        headline: 'Account I — prior champion left (Social Signal signal).',
-        sub: 'New champion promoted internally. Warmup workflow started.',
-      },
-      bullets: [
-        'Account: Account I ($540K renewal)',
-        'Signal: Social Signal — prior champion new role',
-        'New champion: promoted from internal team',
-        'Warmup workflow: rec_s_04 in progress',
-        'Renewal in 90d — proactive',
-      ],
-      followups: ['Show Q3 forecast', 'Where should I focus this week?'],
-    },
-    {
-      question: 'Where should I focus this week?',
-      direct: {
-        headline: '3 priorities: Account B close, Account A hold, Account I warmup.',
-        sub: 'Delay Account G fast-track discussion to next week to avoid overloading calendar.',
-      },
-      bullets: [
-        'Mon: Send Account B final proposal',
-        'Tue: Account A — hold expansion, book support call',
-        'Wed: Warm new Account I champion (Social Signal intro)',
-        'Thu: Account G pilot review',
-        'Fri: Q3 forecast review with leadership',
-      ],
-      followups: ['What is Account B deal status?', 'Which champion left?', 'Show Q3 forecast'],
-    },
-  ],
-  delivery: [
-    {
-      question: 'Show Account A rescue plan',
-      direct: {
-        headline: 'Account A Phase 2 M3 rescue on track — new UAT date 2026-07-09 (8-day slip).',
-        sub: 'Reassigned Consultant 1 from Account I. 2 P1s escalated. CSM Persona 1 re-baselined with PMO.',
-      },
-      bullets: [
-        'Original M3: 2026-07-01',
-        'New M3: 2026-07-09 (+8d)',
-        'Reassigned: Consultant 1 (was Account I green)',
-        'Escalated: 2 P1 tickets to Eng',
-        'Owner: Consultant 1 + Jordan L.',
-      ],
-      followups: ['What is Account H go-live risk?', 'Who has capacity?', 'Show milestone slip risk'],
-    },
-    {
-      question: 'What is Account H go-live risk?',
-      direct: {
-        headline: 'Account H pilot go-live at high risk — 4 P1 tickets open, 9 days out.',
-        sub: 'Recovery plan: escalate P1s, cross-train consultant, propose 12-day re-baseline.',
-      },
-      bullets: [
-        'Project: Account H Pilot',
-        'Go-live: 2026-07-22 (9 days)',
-        'Open P1s: 4 (2 blockers)',
-        'Consultant load: 138% (over-allocated)',
-        'Recommended: re-baseline +12d, escalate P1s',
-      ],
-      followups: ['Show Account A rescue plan', 'Who has capacity?', 'Show milestone slip risk'],
-    },
-    {
-      question: 'Who has capacity?',
-      direct: {
-        headline: 'Consultant 1 freed 40% capacity (Account I green complete). Consultant 2 20% available.',
-        sub: 'Consultant 3 at 78%, tight but OK for cross-training.',
-      },
-      bullets: [
-        'Consultant 1: 40% free (Account I green freed)',
-        'Consultant 2: 20% free',
-        'Consultant 3: 22% free',
-        'Persona 4: 15% (leadership overhead)',
-        'Total spare hours this week: 62',
-      ],
-      followups: ['Show Account A rescue plan', 'What is Account H go-live risk?', 'Show milestone slip risk'],
-    },
-    {
-      question: 'Show milestone slip risk',
-      direct: {
-        headline: '2 milestones at slip risk in 30d: Account A M3 (rescued) + Account H go-live.',
-        sub: 'Watchlist wl_delivery_slip fires on multi-signal: tickets + utilization + sentiment.',
-      },
-      bullets: [
-        'Account A M3: 21d early warning, rescue active',
-        'Account H go-live: 9d out, 4 P1 blockers',
-        'On track: Account I M1, Account J config, Account F',
-        'Trigger threshold: 3+ signals firing',
-      ],
-      followups: ['Show Account A rescue plan', 'What is Account H go-live risk?', 'Who has capacity?'],
-    },
-  ],
-};
 
 const FALLBACK: BotAnswer = {
   question: '',
@@ -2086,9 +1545,10 @@ function tokenize(s: string): string[] {
 
 function lookupAnswer(q: string, space: SpaceKey): BotAnswer {
   const norm = q.toLowerCase().trim();
-  const bank: BotAnswer[] = [ASK_DATA[space], ...ANSWER_BANK[space]];
+  const { seed, bank } = ASK_BUNDLE[space];
+  const all: BotAnswer[] = [seed, ...bank];
 
-  const exact = bank.find((a) => a.question.toLowerCase().trim() === norm);
+  const exact = all.find((a) => a.question.toLowerCase().trim() === norm);
   if (exact) return exact;
 
   const qTokens = tokenize(norm);
@@ -2096,7 +1556,7 @@ function lookupAnswer(q: string, space: SpaceKey): BotAnswer {
 
   let best: BotAnswer | null = null;
   let bestScore = 0;
-  for (const a of bank) {
+  for (const a of all) {
     const aTokens = tokenize(a.question);
     let score = 0;
     for (const t of qTokens) {
@@ -2136,7 +1596,7 @@ function Ask({
   onOpenTrace: (traceId: string) => void;
   onToast: (msg: string) => void;
 }) {
-  const seed = ASK_DATA[space];
+  const seed = ASK_BUNDLE[space].seed;
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: 'user', text: seed.question, ts: seed.timestamp || nowLabel() },
     { role: 'bot', text: '', answer: seed, ts: seed.timestamp || nowLabel() },
@@ -2146,7 +1606,7 @@ function Ask({
 
   useEffect(() => {
     // Reset on space change
-    const s = ASK_DATA[space];
+    const s = ASK_BUNDLE[space].seed;
     setMessages([
       { role: 'user', text: s.question, ts: s.timestamp || nowLabel() },
       { role: 'bot', text: '', answer: s, ts: s.timestamp || nowLabel() },
@@ -2434,164 +1894,6 @@ function BotCard({
 /* ================================================================
    TRACE / AUDIT
    ================================================================ */
-
-const TRACE_DATA: Record<SpaceKey, {
-  kpis: { icon: string; label: string; value: string }[];
-  outcomes: { user: string; scenario: string; product: string; platform: string; confidence: number; ticket: string; status: string; feedback: string; when: string; tone: 'green' | 'blue' | 'yellow' | 'gray' }[];
-  audit: { type: string; title: string; who: string; when: string }[];
-  donut: { label: string; value: number; color: string }[];
-  sources: { name: string; pct: number }[];
-}> = {
-  'customer-success': {
-    kpis: [
-      { icon: '◉', label: 'Total outcomes', value: '1,240' },
-      { icon: '✉', label: 'Tickets created', value: '312' },
-      { icon: '⇘', label: 'Deflection rate', value: '75%' },
-      { icon: '%', label: 'Avg confidence', value: '81%' },
-      { icon: '☺', label: 'Satisfied feedback', value: '89%' },
-    ],
-    outcomes: [
-      { user: 'NIA chat is not responding', scenario: 'Docs solution', product: 'NIA', platform: 'Web', confidence: 92, ticket: '', status: 'Resolution Provided', feedback: 'satisfied', when: '7/13/2026 11:48 AM', tone: 'green' },
-      { user: 'Product X app crashes after sync', scenario: 'Known issue', product: 'Product X', platform: 'iOS', confidence: 88, ticket: 'SUP-1041', status: 'Known Issue', feedback: '—', when: '7/13/2026 11:48 AM', tone: 'blue' },
-      { user: 'Product Y is freezing on Android', scenario: 'New / unclear', product: 'Product Y', platform: 'Android', confidence: 74, ticket: 'SUP-1042', status: 'Open', feedback: '—', when: '7/13/2026 11:48 AM', tone: 'yellow' },
-      { user: 'Add bulk export to Product X reports', scenario: 'Feature req.', product: 'Product X', platform: 'Web', confidence: 86, ticket: 'SUP-1043', status: 'Review In Progress', feedback: '—', when: '7/13/2026 11:48 AM', tone: 'gray' },
-    ],
-    audit: [
-      { type: 'ACTION EXECUTED', title: 'Renewal outreach email sent to Account A', who: 'Persona 1 — CSM Director', when: 'today · 10:24 AM' },
-      { type: 'RECORD VIEWED', title: 'Viewed customer health dashboard - Account A', who: 'Persona 3 — Sales Director', when: 'today · 10:15 AM' },
-      { type: 'MEMORY UPDATED', title: 'Updated note: Executive call with Account A leadership', who: 'Persona 1 — CSM Director', when: 'yesterday · 04:35 PM' },
-      { type: 'WORKFLOW TRIGGERED', title: 'Renewal Intervention workflow started', who: 'AI Agent — Workflow Engine', when: 'yesterday · 04:32 PM' },
-      { type: 'RECORD DELETED', title: 'Deleted duplicate support ticket #12345', who: 'Persona 4 — Support Manager', when: 'yesterday · 02:10 PM' },
-    ],
-    donut: [
-      { label: 'Docs solution', value: 580, color: 'var(--gd-primary)' },
-      { label: 'Known issue', value: 348, color: 'var(--gd-info)' },
-      { label: 'New / unclear', value: 280, color: 'var(--gd-warning)' },
-      { label: 'Feature req.', value: 32, color: 'var(--gd-neutral)' },
-    ],
-    sources: [
-      { name: 'CRM', pct: 32 },
-      { name: 'Ticketing Tool', pct: 18 },
-      { name: 'Product Analytics', pct: 15 },
-      { name: 'NetSuite', pct: 12 },
-    ],
-  },
-  'customer-support': {
-    kpis: [
-      { icon: '◉', label: 'Total outcomes', value: '9,126' },
-      { icon: '✉', label: 'Tickets escalated', value: '312' },
-      { icon: '⇘', label: 'Deflection rate', value: '41%' },
-      { icon: '%', label: 'Avg confidence', value: '84%' },
-      { icon: '☺', label: 'Satisfied feedback', value: '87%' },
-    ],
-    outcomes: [
-      { user: 'How do I export Product X compliance evidence as PDF?', scenario: 'Docs solution', product: 'Product X', platform: 'Web', confidence: 94, ticket: '', status: 'Resolution Provided', feedback: 'satisfied', when: '7/13/2026 09:12 AM', tone: 'green' },
-      { user: 'App crashes when I open Compliance tab on Android 14', scenario: 'Known issue', product: 'Product X', platform: 'Android', confidence: 91, ticket: 'INC-887', status: 'Known Issue', feedback: 'satisfied', when: '7/13/2026 08:55 AM', tone: 'blue' },
-      { user: 'Product X sync hangs at 87%, 12MB stuck on device', scenario: 'New / unclear', product: 'Product X', platform: 'iOS', confidence: 87, ticket: 'FD-2104', status: 'P0 Escalated', feedback: '—', when: '7/13/2026 05:47 AM', tone: 'yellow' },
-      { user: 'Can we bulk-approve round evidence?', scenario: 'Feature req.', product: 'Product X', platform: 'Web', confidence: 82, ticket: 'FR-338', status: 'Product Board', feedback: 'satisfied', when: '7/12/2026 03:14 PM', tone: 'gray' },
-    ],
-    audit: [
-      { type: 'WORKFLOW TRIGGERED', title: 'P0 escalation workflow — FD-2104', who: 'AI Agent — Watchlist Engine', when: 'today · 05:47 AM' },
-      { type: 'ACTION EXECUTED', title: 'Auto-created Issue Tracker ENG-4412 for sync module owner', who: 'AI Agent — Workflow Engine', when: 'today · 05:47 AM' },
-      { type: 'RECORD VIEWED', title: 'Persona 2 opened FD-2104 trace', who: 'Persona 2 — Support Head', when: 'today · 06:10 AM' },
-      { type: 'MEMORY UPDATED', title: 'Draft KB article seeded from FD-2104 pattern', who: 'AI Agent — KB Queue', when: 'today · 05:48 AM' },
-      { type: 'ACTION EXECUTED', title: 'Deflected 12 Product X sync queries via KB match', who: 'AI Agent — Deflection', when: 'today · 08:00 AM' },
-    ],
-    donut: [
-      { label: 'Docs solution', value: 3830, color: 'var(--gd-primary)' },
-      { label: 'Known issue', value: 3103, color: 'var(--gd-info)' },
-      { label: 'New / unclear', value: 1460, color: 'var(--gd-warning)' },
-      { label: 'Feature req.', value: 733, color: 'var(--gd-neutral)' },
-    ],
-    sources: [
-      { name: 'Incident Management Tool', pct: 42 },
-      { name: 'Issue Tracker', pct: 22 },
-      { name: 'KB — Wiki', pct: 18 },
-      { name: 'Product Telemetry', pct: 10 },
-    ],
-  },
-  sales: {
-    kpis: [
-      { icon: '◉', label: 'Total outcomes', value: '624' },
-      { icon: '✉', label: 'Deals shaped', value: '48' },
-      { icon: '⇘', label: 'Delay rate', value: '18%' },
-      { icon: '%', label: 'Avg confidence', value: '86%' },
-      { icon: '☺', label: 'Rep confirmed', value: '91%' },
-    ],
-    outcomes: [
-      { user: 'Should I pitch Account A expansion today?', scenario: 'Delay rec.', product: 'CRM · CRM', platform: 'Web', confidence: 94, ticket: 'REC-401', status: 'Delayed 30d', feedback: 'satisfied', when: '7/13/2026 09:30 AM', tone: 'yellow' },
-      { user: 'Account B renewal — what to include?', scenario: 'Content aid', product: 'CRM · CRM', platform: 'Web', confidence: 89, ticket: '', status: 'Resolution Provided', feedback: 'satisfied', when: '7/12/2026 04:20 PM', tone: 'green' },
-      { user: 'Account I new champion — how to warm?', scenario: 'Playbook', product: 'CRM · CRM', platform: 'Web', confidence: 82, ticket: 'REC-388', status: 'In Progress', feedback: '—', when: '7/11/2026 11:15 AM', tone: 'blue' },
-      { user: 'Account G — pilot to close plan', scenario: 'Fast-track', product: 'CRM · CRM', platform: 'Web', confidence: 78, ticket: 'REC-372', status: 'Approved', feedback: 'satisfied', when: '7/10/2026 02:00 PM', tone: 'gray' },
-    ],
-    audit: [
-      { type: 'ACTION EXECUTED', title: 'Recommended: delay Account A expansion 30d', who: 'AI Agent — Reasoning Engine', when: 'today · 09:30 AM' },
-      { type: 'RECORD VIEWED', title: 'Persona 3 opened Account B renewal proposal', who: 'Persona 3 — AE Lead', when: 'today · 10:00 AM' },
-      { type: 'MEMORY UPDATED', title: 'FR-338 timeline attached to Account B proposal', who: 'Persona 3', when: 'yesterday · 04:20 PM' },
-      { type: 'WORKFLOW TRIGGERED', title: 'Account I new-champion warmup workflow', who: 'AI Agent — Workflow Engine', when: 'yesterday · 11:15 AM' },
-      { type: 'ACTION EXECUTED', title: 'Account G pilot-to-close plan sent to AE 2', who: 'Persona 3', when: '2 days ago' },
-    ],
-    donut: [
-      { label: 'Delay rec.', value: 78, color: 'var(--gd-warning)' },
-      { label: 'Content aid', value: 210, color: 'var(--gd-primary)' },
-      { label: 'Playbook', value: 240, color: 'var(--gd-info)' },
-      { label: 'Fast-track', value: 96, color: 'var(--gd-neutral)' },
-    ],
-    sources: [
-      { name: 'CRM', pct: 48 },
-      { name: 'Social Signal Sales Nav', pct: 22 },
-      { name: 'Product Analytics', pct: 18 },
-      { name: 'Call Analytics', pct: 12 },
-    ],
-  },
-  delivery: {
-    kpis: [
-      { icon: '◉', label: 'Total outcomes', value: '486' },
-      { icon: '✉', label: 'Rescues opened', value: '18' },
-      { icon: '⇘', label: 'Slip caught early', value: '73%' },
-      { icon: '%', label: 'Avg confidence', value: '85%' },
-      { icon: '☺', label: 'PMO confirmed', value: '92%' },
-    ],
-    outcomes: [
-      { user: 'Account A Phase 2 — what is M3 risk?', scenario: 'Rescue plan', product: 'PSA · PSA Tool', platform: 'Web', confidence: 93, ticket: 'INIT-2104', status: 'Rescue Active', feedback: 'satisfied', when: '7/13/2026 08:20 AM', tone: 'yellow' },
-      { user: 'Account H pilot — go/no-go?', scenario: 'Decision', product: 'PSA · PSA Tool', platform: 'Web', confidence: 88, ticket: 'INIT-2103', status: 'Go with plan', feedback: 'satisfied', when: '7/12/2026 11:30 AM', tone: 'blue' },
-      { user: 'Account I M1 — approve signoff?', scenario: 'Approval', product: 'PSA · PSA Tool', platform: 'Web', confidence: 84, ticket: '', status: 'Approved', feedback: 'satisfied', when: '7/11/2026 03:15 PM', tone: 'green' },
-      { user: 'Reassign Consultant 1 — capacity check', scenario: 'Playbook', product: 'PSA · PSA Tool', platform: 'Web', confidence: 79, ticket: 'REC-411', status: 'Auto-run', feedback: '—', when: '7/10/2026 09:45 AM', tone: 'gray' },
-    ],
-    audit: [
-      { type: 'WORKFLOW TRIGGERED', title: 'Account A Phase 2 rescue plan workflow', who: 'AI Agent — Watchlist Engine', when: 'today · 08:20 AM' },
-      { type: 'ACTION EXECUTED', title: 'Re-baselined M3 date to 2026-07-09', who: 'Persona 4 — Delivery Lead', when: '1 week ago' },
-      { type: 'RECORD VIEWED', title: 'Consultant 1 opened Account H pilot dashboard', who: 'Consultant 1 — Consultant', when: 'today · 09:00 AM' },
-      { type: 'ACTION EXECUTED', title: 'Escalated 2 Account H P1s to engineering', who: 'AI Agent', when: '3 days ago' },
-      { type: 'MEMORY UPDATED', title: 'Recorded PMO feedback on rescue plan', who: 'Persona 4', when: '2 days ago' },
-    ],
-    donut: [
-      { label: 'Rescue plan', value: 120, color: 'var(--gd-warning)' },
-      { label: 'Decision', value: 168, color: 'var(--gd-primary)' },
-      { label: 'Approval', value: 148, color: 'var(--gd-success)' },
-      { label: 'Playbook', value: 50, color: 'var(--gd-neutral)' },
-    ],
-    sources: [
-      { name: 'PSA Tool (PSA)', pct: 45 },
-      { name: 'Issue Tracker', pct: 24 },
-      { name: 'Chat sentiment', pct: 18 },
-      { name: 'Timesheets', pct: 13 },
-    ],
-  },
-};
-
-type TraceOutcome = {
-  user: string;
-  scenario: string;
-  product: string;
-  platform: string;
-  confidence: number;
-  ticket: string;
-  status: string;
-  feedback: string;
-  when: string;
-  tone: 'green' | 'blue' | 'yellow' | 'gray';
-};
 
 function Trace({
   space,
@@ -2978,7 +2280,7 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
     { id: 'evd_01', src: 'Product KB', ref: `KB-${outcome.product.toLowerCase().replace(/\s/g, '-')}-01`, d: 'Article matched by semantic search' },
     { id: 'evd_02', src: 'Ticket history', ref: outcome.ticket || 'no ticket', d: 'Prior tickets on same product/platform' },
     { id: 'evd_03', src: 'Telemetry', ref: `${outcome.product}.metrics`, d: 'Product-side event stream' },
-    { id: 'evd_04', src: 'CRM', ref: 'Account · Account A', d: 'ARR + renewal + health signals' },
+    { id: 'evd_04', src: 'CRM', ref: 'Account · Contoso Ltd', d: 'ARR + renewal + health signals' },
   ];
 
   return (

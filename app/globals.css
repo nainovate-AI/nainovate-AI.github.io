@@ -43,7 +43,7 @@
   --gd-fg-faint: rgba(255, 255, 255, 0.4);
 
   /* Borders */
-  --gd-border: rgba(255, 255, 255, 0.1);
+  --gd-border: rgba(255, 255, 255, 0.08);
   --gd-border-strong: rgba(255, 255, 255, 0.2);
   --gd-border-active: rgba(255, 255, 255, 0.4);
 
@@ -112,39 +112,45 @@ body {
 }
 
 /* Hide default cursor */
-html, body, * {
-  cursor: none !important;
+@media (hover: hover) and (pointer: fine) {
+  html, body, * {
+    cursor: none !important;
+  }
+
+  /* Custom cursor container */
+  .custom-cursor {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+
+  /* Cursor dot */
+  .custom-cursor-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                0 0 40px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Make links and buttons react */
+  a:hover ~ .custom-cursor,
+  button:hover ~ .custom-cursor {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
 }
 
-/* Custom cursor container */
-.custom-cursor {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
-}
-
-/* Cursor dot */
-.custom-cursor-dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 1), 
-              0 0 40px rgba(255, 255, 255, 0.5);
-}
-
-/* Make links and buttons react */
-a:hover ~ .custom-cursor,
-button:hover ~ .custom-cursor {
-  transform: translate(-50%, -50%) scale(1.5);
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor { display: none !important; }
 }
 
 /* Gradient Background Container */

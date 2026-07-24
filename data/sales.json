@@ -1,0 +1,49 @@
+{
+  "pipeline": [
+    {
+      "account": "Account A",
+      "deal": "Expansion — 200 seats",
+      "stage": "Prop sent",
+      "arr": "$480k",
+      "health": 35,
+      "signals": "FD-2104 P0, INIT-2104",
+      "rec": "Delay 30d. Fix trust first."
+    },
+    {
+      "account": "Account B Systems",
+      "deal": "Renewal",
+      "stage": "Negotiation",
+      "arr": "$820k",
+      "health": 68,
+      "signals": "FR-338 open",
+      "rec": "Include FR-338 timeline in renewal."
+    },
+    {
+      "account": "Account H",
+      "deal": "Expansion — new module",
+      "stage": "Discovery",
+      "arr": "$310k",
+      "health": 42,
+      "signals": "Delivery slip, 4 P1s",
+      "rec": "Pause. Delivery-first play."
+    },
+    {
+      "account": "Account I",
+      "deal": "Renewal",
+      "stage": "Discovery",
+      "arr": "$540k",
+      "health": 62,
+      "signals": "Champion left",
+      "rec": "Warm new champion. Executive-level QBR."
+    },
+    {
+      "account": "Account G",
+      "deal": "New logo",
+      "stage": "Prop sent",
+      "arr": "$720k",
+      "health": "—",
+      "signals": "Pilot success",
+      "rec": "Fast-track. Reference from Account A (post-fix)."
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "kpiTiles": [
+    {
+      "label": "Total Applications",
+      "value": "1,024",
+      "delta": "14.2%",
+      "deltaDir": "up",
+      "deltaNote": "vs last month",
+      "icon": "file",
+      "color": "#3B82F6",
+      "spark": [220, 240, 260, 290, 310, 340, 360, 400, 460, 520, 620, 780]
+    },
+    {
+      "label": "Avg. Processing Time",
+      "value": "32 Days",
+      "delta": "8.5%",
+      "deltaDir": "down",
+      "deltaNote": "vs last month",
+      "icon": "clock",
+      "color": "#F59E0B",
+      "spark": [46, 44, 42, 40, 39, 37, 36, 35, 34, 33, 33, 32]
+    },
+    {
+      "label": "Approval Rate",
+      "value": "72%",
+      "delta": "6.1%",
+      "deltaDir": "up",
+      "deltaNote": "vs last month",
+      "icon": "check",
+      "color": "#10B981",
+      "spark": [58, 60, 62, 63, 65, 66, 67, 68, 69, 70, 71, 72]
+    },
+    {
+      "label": "vs Last Month",
+      "value": "+12%",
+      "delta": "12%",
+      "deltaDir": "up",
+      "deltaNote": "in applications",
+      "icon": "trend",
+      "color": "#8B5CF6",
+      "spark": [40, 55, 45, 60, 50, 70, 65, 80, 75, 90, 85, 100]
+    },
+    {
+      "label": "Pending Review",
+      "value": "68",
+      "delta": "4",
+      "deltaDir": "down",
+      "deltaNote": "vs last month",
+      "icon": "hour",
+      "color": "#F59E0B",
+      "spark": [82, 80, 78, 76, 74, 73, 72, 71, 70, 69, 68, 68]
+    },
+    {
+      "label": "Approved",
+      "value": "738",
+      "delta": "9.2%",
+      "deltaDir": "up",
+      "deltaNote": "vs last month",
+      "icon": "check",
+      "color": "#10B981",
+      "spark": [520, 560, 600, 620, 640, 660, 680, 690, 705, 720, 730, 738]
+    },
+    {
+      "label": "Rejected",
+      "value": "86",
+      "delta": "3.4%",
+      "deltaDir": "down",
+      "deltaNote": "vs last month",
+      "icon": "x",
+      "color": "#EF4444",
+      "spark": [110, 108, 106, 102, 100, 98, 95, 92, 90, 88, 87, 86]
+    }
+  ],
+  "byBuildingType": {
+    "title": "Applications by Building Type",
+    "total": 1024,
+    "totalLabel": "Total Applications",
+    "totalValue": 620,
+    "items": [
+      { "label": "Residential", "value": 380, "percent": 37.1, "color": "#3B82F6" },
+      { "label": "Commercial",  "value":  95, "percent":  9.3, "color": "#8B5CF6" },
+      { "label": "Industrial",  "value":  85, "percent":  8.3, "color": "#10B981" },
+      { "label": "Mixed Use",   "value":  45, "percent":  4.4, "color": "#F59E0B" },
+      { "label": "Others",      "value":  15, "percent":  1.5, "color": "#6B7280" }
+    ]
+  },
+  "byDepartment": {
+    "title": "Applications by Department",
+    "totalLabel": "Total Applications",
+    "totalValue": 878,
+    "items": [
+      { "label": "Planning",      "value": 260, "percent": 29.3, "color": "#8B5CF6" },
+      { "label": "Zoning",        "value": 180, "percent": 20.3, "color": "#A78BFA" },
+      { "label": "Safety",        "value": 145, "percent": 16.4, "color": "#C4B5FD" },
+      { "label": "Environmental", "value": 120, "percent": 13.5, "color": "#6366F1" },
+      { "label": "Structural",    "value":  95, "percent": 10.7, "color": "#4F46E5" },
+      { "label": "Permits",       "value":  78, "percent":  8.8, "color": "#4338CA" }
+    ]
+  },
+  "byZone": {
+    "title": "Applications by Zone",
+    "totalLabel": "Total Applications",
+    "totalValue": 13146,
+    "items": [
+      { "label": "Zone A", "value": 4230, "percent": 31.1, "color": "#F97316" },
+      { "label": "Zone B", "value": 4876, "percent": 35.8, "color": "#3B82F6" },
+      { "label": "Zone C", "value": 2150, "percent": 15.8, "color": "#10B981" },
+      { "label": "Zone D", "value": 1890, "percent": 13.9, "color": "#8B5CF6" }
+    ]
+  },
+  "avgProcessingTime": {
+    "title": "Average Processing Time (Days)",
+    "items": [
+      { "label": "Residential", "value": 18, "color": "#10B981" },
+      { "label": "Commercial",  "value": 32, "color": "#F59E0B" },
+      { "label": "Industrial",  "value": 45, "color": "#EF4444" },
+      { "label": "Renovation",  "value": 12, "color": "#3B82F6" }
+    ],
+    "overall": {
+      "label": "Overall Average",
+      "value": "32 Days",
+      "delta": "8.5%",
+      "deltaDir": "down",
+      "deltaNote": "vs last month"
+    }
+  },
+  "monthlyTrends": {
+    "title": "Monthly Application Trends",
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "values": [120, 240, 380, 460, 620, 680, 900, 720, 780, 830, 950, 1150],
+    "seriesLabel": "Applications"
+  },
+  "applicationsSummary": {
+    "title": "Applications Summary",
+    "tiles": [
+      { "label": "Total Applications", "value": "1,024", "icon": "file",  "color": "#3B82F6" },
+      { "label": "Approved",           "value": "738",   "icon": "check", "color": "#10B981" },
+      { "label": "Pending Review",     "value": "68",    "icon": "hour",  "color": "#F59E0B" },
+      { "label": "Rejected",           "value": "86",    "icon": "x",     "color": "#EF4444" }
+    ],
+    "approval": {
+      "value": "72%",
+      "label": "Approval Rate",
+      "delta": "6.1%",
+      "deltaDir": "up",
+      "deltaNote": "vs last month"
+    }
+  },
+  "assistant": {
+    "title": "Analytics Assistant",
+    "subtitle": "Your intelligent analytics companion",
+    "welcome": "Hi there! 👋 I can help you explore your application data and find insights.",
+    "quickPrompts": [
+      "Show processing time",
+      "Show by department",
+      "Show by zone",
+      "Show vs last month",
+      "Show approved",
+      "Show rejected",
+      "Show pending",
+      "Show avg time",
+      "Show trends",
+      "Compare with last year"
+    ],
+    "seedConversation": [],
+    "widgetMap": {
+      "Show building types":       ["byType"],
+      "Show by department":        ["byDepartment"],
+      "Show by zone":               ["byZone"],
+      "Show monthly trends":       ["monthlyTrends"],
+      "Show processing time":      ["kpi-time"],
+      "Show vs last month":        ["kpi-vs"],
+      "Show total applications":   ["kpi-total"],
+      "Show approval rate":        ["kpi-approval"],
+      "Show approval status":      ["kpi-approval"],
+      "Show approved":             ["kpi-approved"],
+      "Show rejected":             ["kpi-rejected"],
+      "Show pending applications": ["kpi-pending"],
+      "Show pending":              ["kpi-pending"],
+      "Show avg time":             ["avgTime"],
+      "Show trends":               ["monthlyTrends"],
+      "Compare with last year":    ["kpi-vs"]
+    },
+    "cannedReplies": {
+      "Show building types":       "Added \"Applications by Building Type\" to your dashboard!",
+      "Show by department":        "Added \"Applications by Department\" to your dashboard!",
+      "Show by zone":              "Added \"Applications by Zone\" to your dashboard!",
+      "Show monthly trends":       "Added \"Monthly Application Trends\" to your dashboard!",
+      "Show processing time":      "Added \"Avg. Processing Time\" KPI — 32 days, down 8.5% MoM.",
+      "Show vs last month":        "Added \"vs Last Month\" KPI — applications up +12%.",
+      "Show total applications":   "Added \"Total Applications\" KPI — 1,024 total.",
+      "Show approval rate":        "Added \"Approval Rate\" KPI — 72%, up 6.1% MoM.",
+      "Show approval status":      "Added \"Approval Rate\" KPI — 72%.",
+      "Show approved":             "Added \"Approved\" KPI — 738, up 9.2% MoM.",
+      "Show rejected":             "Added \"Rejected\" KPI — 86, down 3.4% MoM.",
+      "Show pending applications": "Added \"Pending Review\" KPI — 68 pending.",
+      "Show pending":              "Added \"Pending Review\" KPI — 68 pending.",
+      "Show avg time":             "Added \"Average Processing Time\" chart to your dashboard!",
+      "Show trends":               "Added \"Monthly Application Trends\" to your dashboard!",
+      "Compare with last year":    "Added \"vs Last Month\" KPI — applications up +12%."
+    }
+  }
+}

@@ -178,7 +178,7 @@ export default function AIImplementationIndexPage() {
             <JsonLd data={reportSchema} />
 
             {/* Back Button */}
-            <div className="max-w-[1400px] mx-auto px-8 pt-8">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 pt-8">
                 <Link href="/reports" className="inline-flex items-center gap-2 text-gray hover:text-white transition-colors group">
                     <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -196,25 +196,25 @@ export default function AIImplementationIndexPage() {
                     }}></div>
                 </div>
 
-                <div className="relative z-10 max-w-[1400px] mx-auto px-8 py-12">
+                <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-12">
                     {/* Header */}
                     <AnimatedSection>
-                        <div className="mb-16">
+                        <div className="mb-8 md:mb-16">
                             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-4">
                                 2025 AI IMPLEMENTATION INDEX
                             </p>
-                            <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-bold mb-4">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,6vw,4rem)] font-bold mb-4">
                                 Your AI pilots are dying. Here&apos;s why.
                             </h1>
                         </div>
                     </AnimatedSection>
 
                     {/* Live Dashboard Grid */}
-                    <div className="grid lg:grid-cols-4 gap-6 mb-16">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8 md:mb-16">
                         {dashboardStats.map((stat, idx) => (
                             <AnimatedSection key={stat.id} delay={idx * 0.1}>
                                 <div
-                                    className="relative bg-black border border-white/10 p-6 hover:border-white/30 transition-all cursor-pointer"
+                                    className="relative bg-black border border-white/10 p-5 md:p-6 hover:border-white/30 transition-all cursor-pointer"
                                     onMouseEnter={() => setHoveredStat(stat.id)}
                                     onMouseLeave={() => setHoveredStat(null)}
                                 >
@@ -225,7 +225,7 @@ export default function AIImplementationIndexPage() {
                                     ></div>
 
                                     <div className="relative z-10">
-                                        <div className="text-4xl font-bold mb-2">
+                                        <div className="text-3xl md:text-4xl font-bold mb-2">
                                             <AnimatedCounter
                                                 end={stat.value}
                                                 prefix={stat.prefix}
@@ -249,8 +249,8 @@ export default function AIImplementationIndexPage() {
 
                     {/* Visual Success Path */}
                     <AnimatedSection delay={0.5}>
-                        <div className="bg-black/50 backdrop-blur border border-white/10 p-8">
-                            <h2 className="text-2xl font-bold mb-6">From Pilot to Production</h2>
+                        <div className="bg-black/50 backdrop-blur border border-white/10 p-5 md:p-8">
+                            <h2 className="text-xl md:text-2xl font-bold mb-6">From Pilot to Production</h2>
 
                             {/* Progress visualization */}
                             <div className="relative h-12 mb-8">
@@ -276,7 +276,7 @@ export default function AIImplementationIndexPage() {
                                 </p>
                                 <button
                                     onClick={() => setShowForm(true)}
-                                    className="px-8 py-4 bg-white text-black hover:bg-gray-light transition-all font-medium"
+                                    className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-white text-black hover:bg-gray-light transition-all font-medium"
                                 >
                                     DOWNLOAD IMPLEMENTATION INDEX
                                 </button>
@@ -287,10 +287,10 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Maturity Distribution */}
-            <section className="py-20 border-t border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-12 md:py-20 border-t border-white/10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-3xl font-bold mb-12 text-center">Where Companies Get Stuck</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12 text-center">Where Companies Get Stuck</h2>
                     </AnimatedSection>
 
                     <div className="max-w-4xl mx-auto">
@@ -334,17 +334,17 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Four Pillars - Visual Only */}
-            <section className="py-20 border-t border-white/10">
-                <div className="max-w-[1200px] mx-auto px-8">
+            <section className="py-12 md:py-20 border-t border-white/10">
+                <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-3xl font-bold mb-12 text-center">Implementation Pillars</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12 text-center">Implementation Pillars</h2>
                     </AnimatedSection>
 
-                    <div className="grid md:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {implementationPillars.map((pillar, idx) => (
                             <AnimatedSection key={pillar.name} delay={idx * 0.1}>
                                 <div className="text-center group cursor-pointer">
-                                    <div className="text-6xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity">
+                                    <div className="text-4xl md:text-6xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity">
                                         {pillar.icon}
                                     </div>
                                     <h3 className="font-medium mb-2">{pillar.name}</h3>
@@ -359,26 +359,26 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Final CTA */}
-            <section className="py-20 border-t border-white/10">
-                <div className="max-w-[600px] mx-auto px-8 text-center">
+            <section className="py-12 md:py-20 border-t border-white/10">
+                <div className="max-w-[600px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
                         <div className="mb-8">
-                            <div className="text-6xl font-bold mb-4">90</div>
-                            <p className="text-xl">days to production-ready AI</p>
+                            <div className="text-4xl md:text-6xl font-bold mb-4">90</div>
+                            <p className="text-base sm:text-lg md:text-xl">days to production-ready AI</p>
                         </div>
 
                         <button
                             onClick={() => setShowForm(true)}
                             className="w-full group relative overflow-hidden border border-white/20 mb-4"
                         >
-                            <span className="relative z-10 block px-8 py-4 font-medium transition-colors duration-500 group-hover:text-black">
+                            <span className="relative z-10 block px-6 py-3 sm:px-8 sm:py-4 font-medium transition-colors duration-500 group-hover:text-black">
                                 DOWNLOAD IMPLEMENTATION INDEX
                             </span>
                             <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
                         </button>
 
                         <Link href="/contact">
-                            <button className="w-full px-8 py-4 text-sm text-gray hover:text-white transition-colors">
+                            <button className="w-full px-6 py-3 sm:px-8 sm:py-4 text-sm text-gray hover:text-white transition-colors">
                                 Need help with implementation? Talk to an expert →
                             </button>
                         </Link>
@@ -388,10 +388,10 @@ export default function AIImplementationIndexPage() {
 
             {/* Download Form Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-8">
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
                     <AnimatedSection>
-                        <div className="bg-black border border-white/20 p-8 max-w-md w-full relative">
-                            <h3 className="text-2xl font-bold mb-6">
+                        <div className="bg-black border border-white/20 p-5 md:p-8 max-w-md w-full relative">
+                            <h3 className="text-xl md:text-2xl font-bold mb-6">
                                 Download Implementation Index
                             </h3>
                             <p className="text-sm text-gray mb-6">

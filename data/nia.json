@@ -1,0 +1,10 @@
+{
+  "candidateMessages": [
+    { "type": "user", "text": "What's the match percentage for candidate C-1247 with job J-589?" },
+    { "type": "bot", "text": "Analyzing candidate C-1247 against job J-589 requirements...\n\nOverall Match: 78%\n\n✓ Matched Skills: Python, Machine Learning, Data Analysis\n✗ Missing: AWS certification, Team lead experience" }
+  ],
+  "boqMessages": [
+    { "type": "user", "text": "Give me detailed description for occupancy sensor" },
+    { "type": "bot", "text": "Occupancy Sensor - PIR Type\n\nSpecs: 360° detection, 8m range\nVoltage: 220-240V AC\nLoad: Max 1200W\nMounting: Ceiling flush mount\nApplications: Meeting rooms, corridors\n\nBrands: Schneider, Legrand, Havells" }
+  ]
+}

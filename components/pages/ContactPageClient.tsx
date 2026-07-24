@@ -141,16 +141,16 @@ export default function ContactPageClient() {
 
       {/* Hero */}
       <section className="min-h-[60vh] flex items-center">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
               CONTACT
             </p>
-            <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               <span className="block">LET&apos;S</span>
               <span className="block text-gray">CONNECT</span>
             </h1>
-            <p className="text-xl text-gray max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl">
               Ready to transform your business with AI? Our team is here to help
               you get started.
             </p>
@@ -159,14 +159,14 @@ export default function ContactPageClient() {
       </section>
 
       {/* Contact Options */}
-      <section className="py-32">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-32">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold mb-12">GET IN TOUCH</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12">GET IN TOUCH</h2>
 
-              <form className="space-y-8" onSubmit={handleSubmit}>
+              <form className="space-y-5 md:space-y-8" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <label className="block text-sm font-medium mb-3">First Name</label>
@@ -269,37 +269,31 @@ export default function ContactPageClient() {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-16">
+            <div className="space-y-8 md:space-y-16">
               <div>
-                <h3 className="text-xl font-bold mb-6">LET&apos;S CONNECT</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-6">LET&apos;S CONNECT</h3>
                 <p className="text-gray mb-8">
                   Ready to explore how AI can transform your business? Let&apos;s discuss your needs.
                 </p>
 
                 <div className="grid grid-cols-1 gap-4">
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl text-white/60">🗲</span>
-                    <div>
-                      <p className="text-sm text-gray">24-hour response time</p>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <span className="w-6 flex items-center justify-center text-base leading-none text-white/60">🗲</span>
+                    <p className="text-sm text-gray leading-none">24-hour response time</p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl text-white/60">◉</span>
-                    <div>
-                      <p className="text-sm text-gray">Free initial consultation</p>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <span className="w-6 flex items-center justify-center text-base leading-none text-white/60">◉</span>
+                    <p className="text-sm text-gray leading-none">Free initial consultation</p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl text-white/60">◈</span>
-                    <div>
-                      <p className="text-sm text-gray">100% confidential</p>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <span className="w-6 flex items-center justify-center text-base leading-none text-white/60">◈</span>
+                    <p className="text-sm text-gray leading-none">100% confidential</p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-bold mb-6">VISIT US</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-6">VISIT US</h3>
                 <div className="rounded-lg mb-4 overflow-hidden h-[250px]">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121826.27689281755!2d78.27798406762885!3d17.408372669616604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb952200059677%3A0xac28e1d107bc3e57!2sAVK%20SRI%20Harsha%20Icon!5e0!3m2!1sen!2sin!4v1753865250238!5m2!1sen!2sin"
@@ -323,13 +317,13 @@ export default function ContactPageClient() {
       </section>
 
       {/* FAQ */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">FREQUENTLY ASKED</h2>
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">FREQUENTLY ASKED</h2>
 
-          <div className="space-y-8">
+          <div className="space-y-5 md:space-y-8">
             <div className="border-b border-white/10 pb-8">
-              <h3 className="text-xl font-bold mb-4">How quickly can I get started with GenX?</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">How quickly can I get started with GenX?</h3>
               <p className="text-gray">
                 Most customers are up and running within days. Our onboarding team
                 will guide you through setup and initial agent creation.
@@ -337,7 +331,7 @@ export default function ContactPageClient() {
             </div>
 
             <div className="border-b border-white/10 pb-8">
-              <h3 className="text-xl font-bold mb-4">Do I need technical expertise?</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Do I need technical expertise?</h3>
               <p className="text-gray">
                 No. GenX is designed for business users. Our visual workflow builder
                 requires no coding knowledge.
@@ -345,7 +339,7 @@ export default function ContactPageClient() {
             </div>
 
             <div className="border-b border-white/10 pb-8">
-              <h3 className="text-xl font-bold mb-4">Are you AI compliance ready?</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Are you AI compliance ready?</h3>
               <p className="text-gray">
                 Yes. Designed with compliance at its core.
                 We are AI compliance ready and adhere to enterprise-grade security and governance standards.
@@ -353,7 +347,7 @@ export default function ContactPageClient() {
             </div>
 
             <div className="border-b border-white/10 pb-8">
-              <h3 className="text-xl font-bold mb-4">Can I try before buying?</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Can I try before buying?</h3>
               <p className="text-gray">
                 Yes. We offer personalized demos and proof-of-concept projects
                 for qualified enterprises.

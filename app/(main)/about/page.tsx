@@ -96,16 +96,16 @@ export default function AboutPage() {
 
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
               ABOUT
             </p>
-            <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               <span className="block">BUILDING THE</span>
               <span className="block text-gray">FUTURE OF AI</span>
             </h1>
-            <p className="text-xl text-gray max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl">
               Nainovate transforms businesses with intelligent AI agents.
               We believe AI should be accessible, powerful, and tailored to your needs.
             </p>
@@ -114,12 +114,12 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             <div>
-              <h2 className="text-5xl font-bold mb-8">OUR MISSION</h2>
-              <p className="text-xl text-gray mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">OUR MISSION</h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray mb-8">
                 To democratize AI by making it accessible to every business,
                 regardless of technical expertise or resources.
               </p>
@@ -143,15 +143,15 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">OUR STORY</h2>
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">OUR STORY</h2>
 
-          <div className="space-y-16">
+          <div className="space-y-8 md:space-y-16">
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-6xl font-bold text-gray">2023</div>
+              <div className="text-4xl md:text-6xl font-bold text-gray">2023</div>
               <div className="lg:col-span-2">
-                <h3 className="text-2xl font-bold mb-4">BUILDING IN STEALTH</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-4">BUILDING IN STEALTH</h3>
                 <p className="text-gray">
                   Began operations in stealth mode, conducting extensive research and development.
                   Laid the technical foundation for the GenX platform through rigorous market analysis and prototype development.
@@ -160,9 +160,9 @@ export default function AboutPage() {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-6xl font-bold text-gray">2024</div>
+              <div className="text-4xl md:text-6xl font-bold text-gray">2024</div>
               <div className="lg:col-span-2">
-                <h3 className="text-2xl font-bold mb-4">PROVING THE CONCEPT</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-4">PROVING THE CONCEPT</h3>
                 <p className="text-gray">
                   Completed GenX platform development and validation.
                   Delivered over 20 proof-of-concept implementations across various industries, refining our approach based on real-world feedback.
@@ -171,10 +171,10 @@ export default function AboutPage() {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-6xl font-bold text-gray">2025</div>
+              <div className="text-4xl md:text-6xl font-bold text-gray">2025</div>
               <div className="lg:col-span-2">
-                <h3 className="text-2xl font-bold mb-4">SCALING GLOBALLY</h3>
-                <ul className="text-gray text-lg space-y-2">
+                <h3 className="text-xl md:text-2xl font-bold mb-4">SCALING GLOBALLY</h3>
+                <ul className="text-gray text-base md:text-lg space-y-2">
                   <li>• Signed MoU with strategic partner in Oman</li>
                   <li>• Established partnership with Indian medical device manufacturer</li>
                   <li>• Expanding proof-of-concepts to GCC, North America, and Australia</li>
@@ -186,35 +186,35 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">OUR VALUES</h2>
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">OUR VALUES</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
-              <div className="text-4xl font-bold mb-4">01</div>
-              <h3 className="text-xl font-bold mb-2">ENTERPRISE SECURITY</h3>
+              <div className="text-3xl md:text-4xl font-bold mb-4">01</div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">ENTERPRISE SECURITY</h3>
               <p className="text-gray text-sm">
                 On-premise deployment ensures complete data sovereignty and regulatory compliance
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-4">02</div>
-              <h3 className="text-xl font-bold mb-2">RAPID IMPLEMENTATION</h3>
+              <div className="text-3xl md:text-4xl font-bold mb-4">02</div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">RAPID IMPLEMENTATION</h3>
               <p className="text-gray text-sm">
                 Visual workflow builders enable production deployment within days
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-4">03</div>
-              <h3 className="text-xl font-bold mb-2">ROI - DRIVEN SOLUTIONS</h3>
+              <div className="text-3xl md:text-4xl font-bold mb-4">03</div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">ROI - DRIVEN SOLUTIONS</h3>
               <p className="text-gray text-sm">
                 Guaranteed performance metrics with average 300% ROI in year one
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-4">04</div>
-              <h3 className="text-xl font-bold mb-2">COLLABURATIVE GROWTH</h3>
+              <div className="text-3xl md:text-4xl font-bold mb-4">04</div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">COLLABURATIVE GROWTH</h3>
               <p className="text-gray text-sm">
                 Success-based partnerships aligned with your business outcomes
               </p>
@@ -252,25 +252,25 @@ export default function AboutPage() {
       </section> */}
 
       {/* Partners */}
-      <section className="py-32 border-t border-white/10" id="partners">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">PARTNERS & INVESTORS</h2>
+      <section className="py-16 md:py-32 border-t border-white/10" id="partners">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">PARTNERS & INVESTORS</h2>
 
-          <div className="grid md:grid-cols-4 gap-16 items-center opacity-60">
+          <div className="grid md:grid-cols-4 gap-8 md:gap-16 items-center opacity-60">
             <div className="text-center">
-              <p className="text-xl font-bold">NVIDIA</p>
+              <p className="text-base sm:text-lg md:text-xl font-bold">NVIDIA</p>
               <p className="text-sm text-gray">Inception Partner</p>
             </div>
             <div className="text-center">
-              <p className="text-xl font-bold">Walnut</p>
+              <p className="text-base sm:text-lg md:text-xl font-bold">Walnut</p>
               <p className="text-sm text-gray">Strategic Partner</p>
             </div>
             <div className="text-center">
-              <p className="text-xl font-bold">Brillius</p>
+              <p className="text-base sm:text-lg md:text-xl font-bold">Brillius</p>
               <p className="text-sm text-gray">Strategic Partner</p>
             </div>
             <div className="text-center">
-              <p className="text-xl font-bold">Al Tomouh IT</p>
+              <p className="text-base sm:text-lg md:text-xl font-bold">Al Tomouh IT</p>
               <p className="text-sm text-gray">Strategic Partner | Suhail Bahwan Group</p>
             </div>
           </div>
@@ -278,20 +278,20 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-6xl font-bold mb-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8">
             JOIN OUR MISSION
           </h2>
-          <p className="text-xl text-gray mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12 max-w-2xl mx-auto">
             Be part of the team that&apos;s making AI accessible to everyone.
           </p>
-          <div className="flex gap-8 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center">
             {/* <Button className="bg-white text-black hover:bg-gray-200 px-12 py-6 text-lg">
               View Careers →
             </Button> */}
-            <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-12 py-6 text-lg">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 text-base md:text-lg">
                 Contact Us
               </Button>
             </Link>

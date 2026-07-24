@@ -1,0 +1,112 @@
+{
+  "seed": {
+    "question": "Which customers are at risk?",
+    "timestamp": "11:47 AM",
+    "direct": {
+      "headline": "12 customers are at high risk of churn in the next 90 days.",
+      "sub": "They represent $2.4M in revenue, 23% of total ARR."
+    },
+    "insights": [
+      { "label": "At Risk Customers", "value": "12", "delta": "↑ 2 vs last 90 days" },
+      { "label": "Revenue at Risk", "value": "$2.4M", "delta": "↑ 18% vs last 90 days" },
+      { "label": "Avg. Health Score", "value": "46", "delta": "↓ 8 pts vs last 90 days" },
+      { "label": "Churn Risk (Weighted)", "value": "23%", "delta": "↑ 6% vs last 90 days" }
+    ],
+    "table": [
+      { "code": "NI", "name": "Contoso Ltd", "health": 35, "risk": "High", "arr": "$450K", "factors": ["Usage ↓ 32%", "Support ↑"], "owner": "Alex Morgan" },
+      { "code": "CL", "name": "Fabrikam Inc", "health": 40, "risk": "High", "arr": "$320K", "factors": ["Low Adoption", "Exec Change"], "owner": "Sam Rivera" },
+      { "code": "FM", "name": "Adventure Works", "health": 45, "risk": "High", "arr": "$230K", "factors": ["Usage ↓ 28%", "Open Tickets"], "owner": "Riley Patel" },
+      { "code": "TT", "name": "Wingtip Toys", "health": 48, "risk": "Medium", "arr": "$280K", "factors": ["Low Adoption"], "owner": "Consultant 3" },
+      { "code": "WW", "name": "Litware Inc", "health": 50, "risk": "Medium", "arr": "$210K", "factors": ["Usage ↓ 15%"], "owner": "Sam Rivera" }
+    ],
+    "reasoning": {
+      "summary": "Based on 8 signals across usage, engagement, sentiment, support, and renewal indicators.",
+      "factors": ["Usage Decline", "Low Feature Adoption", "Support Activity", "Sentiment Drop", "Executive Change"]
+    },
+    "followups": ["Show revenue at risk breakdown", "Which segment is most at risk?", "What actions should I take?", "Compare vs last quarter"],
+    "keyInsightsRail": [
+      { "icon": "⚠", "label": "At Risk Customers", "value": "12", "delta": "↑ 2 vs last 90 days" },
+      { "icon": "$", "label": "Revenue at Risk", "value": "$2.4M", "delta": "↑ 18% vs last 90 days" },
+      { "icon": "◆", "label": "Avg. Health Score", "value": "46", "delta": "↓ 8 pts vs last 90 days" },
+      { "icon": "⇗", "label": "Churn Risk (Weighted)", "value": "23%", "delta": "↑ 6% vs last 90 days" }
+    ],
+    "recommendedActions": [
+      { "title": "Executive outreach for Contoso Ltd", "sub": "Health score dropped 15 points due to usage decline and open tickets.", "priority": "high" },
+      { "title": "Onboarding review for Fabrikam Inc", "sub": "Low feature adoption detected. Recommend onboarding workshop.", "priority": "medium" },
+      { "title": "Renewal planning for Adventure Works", "sub": "Contract up for renewal in 60 days. High churn probability.", "priority": "high" }
+    ]
+  },
+  "bank": [
+    {
+      "question": "Show revenue at risk breakdown",
+      "direct": {
+        "headline": "$2.4M revenue at risk across 12 accounts, weighted 65% Enterprise.",
+        "sub": "Contoso Ltd ($450K) + Fabrikam Inc ($320K) + Adventure Works ($230K) = 42% of exposure."
+      },
+      "bullets": [
+        "Enterprise: $1.6M (67%) — 6 accounts",
+        "Mid Market: $560K (23%) — 4 accounts",
+        "Strategic: $240K (10%) — 2 accounts",
+        "Top driver: usage decline (-24% avg on impacted accounts)"
+      ],
+      "followups": ["Which segment is most at risk?", "What actions should I take?", "How is Contoso Ltd doing?", "Compare vs last quarter"]
+    },
+    {
+      "question": "Which segment is most at risk?",
+      "direct": {
+        "headline": "Enterprise segment carries the highest revenue exposure.",
+        "sub": "$1.6M at risk, 67% of total. Mid Market accounts are the largest count-wise but smaller in ARR."
+      },
+      "bullets": [
+        "Enterprise: 6 accts × $267K avg ARR",
+        "Mid Market: 4 accts × $140K avg ARR",
+        "Strategic: 2 accts × $120K avg ARR",
+        "Enterprise churn probability weighted 32% vs 18% MM"
+      ],
+      "followups": ["Show me Enterprise account list", "What is driving Enterprise churn?", "Which customers are at risk?"]
+    },
+    {
+      "question": "What actions should I take?",
+      "direct": {
+        "headline": "3 actions recommended for today. 2 auto-approved, 1 needs review.",
+        "sub": "Executive outreach to Contoso Ltd is urgent — sync bug + health drop."
+      },
+      "bullets": [
+        "1. Executive outreach — Contoso Ltd (health 35, $450K) · APPROVE",
+        "2. Onboarding review — Fabrikam Inc ($320K) · AUTO-RUN",
+        "3. Pricing review opportunity — Adventure Works ($180K) · SCHEDULE"
+      ],
+      "followups": ["Show Contoso Ltd outreach draft", "What triggered Fabrikam Inc onboarding review?", "How is Contoso Ltd doing?"]
+    },
+    {
+      "question": "How is Contoso Ltd doing?",
+      "direct": {
+        "headline": "Contoso Ltd is at high risk. Health score 35 (down 15 pts in 30d).",
+        "sub": "$450K ARR. Renewal in 143 days. Support tickets +3 in 24h. Alex Morgan (CSM) is briefed."
+      },
+      "bullets": [
+        "Health: 35 (was 50 last month)",
+        "Usage: ↓ 32% (Product X sync failing)",
+        "Open tickets: 4 (1 P0)",
+        "Renewal: 2027-01-15",
+        "Recommended: executive outreach + workflow started"
+      ],
+      "followups": ["Show Contoso Ltd rescue plan", "What is FD-2104?", "Show all at-risk accounts"]
+    },
+    {
+      "question": "Compare vs last quarter",
+      "direct": {
+        "headline": "Q3 shows worsening health but improving deflection and MTTR.",
+        "sub": "At-risk accounts up from 8 to 12. NPS steady at 42. Deflection ↑ 12%."
+      },
+      "bullets": [
+        "At-risk accounts: 8 → 12",
+        "Revenue at risk: $1.8M → $2.4M",
+        "Avg health: 68 → 46",
+        "AI deflection: 29% → 41%",
+        "NRR: 108% (target 110%)"
+      ],
+      "followups": ["Show revenue at risk breakdown", "What is driving health drop?", "Which customers are at risk?"]
+    }
+  ]
+}

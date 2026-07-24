@@ -20,29 +20,29 @@ export default function DecisionIntelligenceClient() {
 
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
               NIA • DECISION INTELLIGENCE
             </p>
-            <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               <span className="block">DECISION</span>
               <span className="block text-gray">INTELLIGENCE.</span>
               <span className="block">EXPLAINED.</span>
             </h1>
-            <p className="text-xl text-gray max-w-3xl mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
               Turn every ticket, signal, and AI decision into explainable outcomes.
               Nia sits on top of your Incident Management Tool, CRM, and knowledge base — customers
               self-serve, agents deflect, leaders decide.
             </p>
-            <div className="flex gap-8 flex-wrap">
-              <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 flex-wrap">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
                   Book a demo
                 </Button>
               </Link>
-              <Link href="/demo">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+              <Link href="/demo" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
                   Watch it in action
                 </Button>
               </Link>
@@ -52,15 +52,15 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Story — the 5:45 AM problem */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             THE 5:45 AM PROBLEM
           </p>
-          <h2 className="text-5xl font-bold mb-12 max-w-4xl leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-12 max-w-4xl leading-tight">
             One ticket. Four teams. Zero handoffs.
           </h2>
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
             <div className="space-y-6 text-gray text-lg leading-relaxed">
               <p>
                 End User, maintenance engineer at Account A, opens Product X on
@@ -100,21 +100,21 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Four pillars */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             FOUR PILLARS
           </p>
-          <h2 className="text-5xl font-bold mb-20">Same nia. Different lens.</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">Same nia. Different lens.</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Ask */}
             <Link
               href="/decision-intelligence/ai-agent"
-              className="group border border-white/10 rounded-lg p-10 hover:border-white/40 transition-colors block"
+              className="group border border-white/10 rounded-lg p-6 md:p-10 hover:border-white/40 transition-colors block"
             >
               <p className="text-xs tracking-widest text-gray uppercase mb-4">01</p>
-              <h3 className="text-3xl font-bold mb-4 group-hover:text-white">AI Agent — Ask</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">AI Agent — Ask</h3>
               <p className="text-gray mb-6">
                 Customer-facing chat inside Incident Management Tool. Handles L1 without a human.
                 4 canonical scenarios: doc-based, known issue, new bug, feature
@@ -126,10 +126,10 @@ export default function DecisionIntelligenceClient() {
             {/* Signal Chain */}
             <Link
               href="/decision-intelligence/signal-chain"
-              className="group border border-white/10 rounded-lg p-10 hover:border-white/40 transition-colors block"
+              className="group border border-white/10 rounded-lg p-6 md:p-10 hover:border-white/40 transition-colors block"
             >
               <p className="text-xs tracking-widest text-gray uppercase mb-4">02</p>
-              <h3 className="text-3xl font-bold mb-4 group-hover:text-white">Signal → Action Chain</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">Signal → Action Chain</h3>
               <p className="text-gray mb-6">
                 Watchlists spot risk. Recommendations propose action. Workflows
                 execute across teams. Every step lineage-linked.
@@ -140,10 +140,10 @@ export default function DecisionIntelligenceClient() {
             {/* Trace */}
             <Link
               href="/decision-intelligence/trace-audit"
-              className="group border border-white/10 rounded-lg p-10 hover:border-white/40 transition-colors block"
+              className="group border border-white/10 rounded-lg p-6 md:p-10 hover:border-white/40 transition-colors block"
             >
               <p className="text-xs tracking-widest text-gray uppercase mb-4">03</p>
-              <h3 className="text-3xl font-bold mb-4 group-hover:text-white">Trace &amp; Audit</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">Trace &amp; Audit</h3>
               <p className="text-gray mb-6">
                 Every AI decision logged with agent confidence, weighted signals,
                 and evidence rows. Legal-audit ready. Zero black box.
@@ -154,10 +154,10 @@ export default function DecisionIntelligenceClient() {
             {/* Coordination */}
             <Link
               href="/decision-intelligence/coordination"
-              className="group border border-white/10 rounded-lg p-10 hover:border-white/40 transition-colors block"
+              className="group border border-white/10 rounded-lg p-6 md:p-10 hover:border-white/40 transition-colors block"
             >
               <p className="text-xs tracking-widest text-gray uppercase mb-4">04</p>
-              <h3 className="text-3xl font-bold mb-4 group-hover:text-white">Coordination Center</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">Coordination Center</h3>
               <p className="text-gray mb-6">
                 Cross-team initiatives. Support → CSM → Sales → Delivery. One
                 shared surface where the four lenses converge on the same customer.
@@ -169,16 +169,16 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Persona matrix */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             PERSONA × WORKSPACE
           </p>
-          <h2 className="text-5xl font-bold mb-16 max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-4xl">
             Right surface for the right person.
           </h2>
 
-          <div className="border border-white/10 rounded-lg overflow-hidden">
+          <div className="border border-white/10 rounded-lg overflow-x-auto">
             <table className="w-full text-left">
               <thead className="bg-white/5">
                 <tr>
@@ -220,12 +220,12 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Results */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             SIX WEEKS AT ACME
           </p>
-          <h2 className="text-5xl font-bold mb-16">What changed.</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16">What changed.</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { label: 'AI deflection rate', value: '41%' },
@@ -233,9 +233,9 @@ export default function DecisionIntelligenceClient() {
               { label: 'Root causes surfaced', value: '3', sub: 'from reopen patterns' },
               { label: 'L1 headcount', value: '4', sub: 'from 12 investigators' },
             ].map((r) => (
-              <div key={r.label} className="border border-white/10 rounded-lg p-8">
+              <div key={r.label} className="border border-white/10 rounded-lg p-5 md:p-8">
                 <p className="text-sm text-gray uppercase tracking-wider mb-4">{r.label}</p>
-                <p className="text-5xl font-bold mb-2">{r.value}</p>
+                <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">{r.value}</p>
                 {r.sub && <p className="text-sm text-gray">{r.sub}</p>}
               </div>
             ))}
@@ -244,14 +244,14 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-6xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             Ready to see nia decide on your data?
           </h2>
-          <div className="flex gap-8 justify-center flex-wrap">
-            <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-10 py-4">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
+            <Link href="/contact" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10">
                 Book a 30-min demo
               </Button>
             </Link>

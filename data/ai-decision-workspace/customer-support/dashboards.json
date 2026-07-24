@@ -1,0 +1,23 @@
+{
+  "kpis": [
+    { "label": "Total tickets (30d)", "value": "9,126", "delta": "↑ 4% vs last 30 days", "tone": "up" },
+    { "label": "Open P0/P1", "value": "4", "delta": "↑ 1 vs last 7 days", "tone": "down" },
+    { "label": "SLA compliance", "value": "94%", "delta": "↑ 2% vs last 30 days", "tone": "up" },
+    { "label": "Avg MTTR", "value": "4.1h", "delta": "↓ 4.3h vs last 30 days", "tone": "up" },
+    { "label": "AI deflection", "value": "41%", "delta": "↑ 6% vs last 30 days", "tone": "up" },
+    { "label": "Reopens", "value": "6%", "delta": "↓ 12 pts vs last 30 days", "tone": "up" }
+  ],
+  "distribution": [
+    { "label": "Resolved same day", "value": 42, "count": 3830, "color": "var(--gd-success)" },
+    { "label": "Resolved <7d", "value": 34, "count": 3103, "color": "var(--gd-primary)" },
+    { "label": "Aged 7–14d", "value": 16, "count": 1460, "color": "var(--gd-warning)" },
+    { "label": "Aged >14d", "value": 8, "count": 733, "color": "var(--gd-danger)" }
+  ],
+  "atRisk": [
+    { "code": "NI", "name": "Contoso Ltd", "health": 35, "risk": "4 P0/P1", "trend": "down" },
+    { "code": "CL", "name": "Fabrikam Inc", "health": 42, "risk": "3 open", "trend": "down" },
+    { "code": "FM", "name": "Adventure Works", "health": 58, "risk": "2 open", "trend": "flat" },
+    { "code": "TT", "name": "Wingtip Toys", "health": 62, "risk": "1 open", "trend": "up" },
+    { "code": "WW", "name": "Litware Inc", "health": 74, "risk": "0 open", "trend": "up" }
+  ]
+}

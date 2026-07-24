@@ -5,6 +5,7 @@ import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
 import LiveChatBot from '@/components/ui/LiveChatBot';
+import mockData from '@/data/engagement.json';
 
 export default function EngagementPageClient() {
   const [activeUseCase, setActiveUseCase] = useState<'customer' | 'citizen' | 'multichannel' | 'quality'>('customer');
@@ -20,90 +21,31 @@ export default function EngagementPageClient() {
     }
   };
 
-  const useCases = {
-    customer: {
-      title: 'Customer Service Bot',
-      problem: 'Support teams are overwhelmed. 70% of queries are repetitive. Response times are hours, not minutes.',
-      solution: 'AI bot handles common queries instantly, escalates complex issues to humans with full context.',
-      features: [
-        '24/7 availability',
-        'Instant responses',
-        'Order tracking',
-        'Password resets',
-        'FAQ automation',
-        'Smart escalation'
-      ],
-      industries: ['Retail', 'E-commerce', 'SaaS', 'Hospitality']
-    },
-    citizen: {
-      title: 'Citizen Portal',
-      problem: 'Government services have long wait times. Citizens struggle to navigate complex processes.',
-      solution: 'AI-powered portal guides citizens through applications, tracks status, and answers questions 24/7.',
-      features: [
-        'Permit applications',
-        'Status tracking',
-        'Document upload',
-        'Multi-language support',
-        'Payment processing',
-        'Appointment scheduling'
-      ],
-      industries: ['Government', 'Municipal Services', 'Public Sector', 'Education']
-    },
-    multichannel: {
-      title: 'Multi-Channel Support',
-      problem: 'Customers reach out via chat, email, SMS, social media. Context is lost between channels.',
-      solution: 'Unified AI platform maintains conversation history across all channels, providing seamless experience.',
-      features: [
-        'Unified inbox',
-        'Cross-channel history',
-        'Email integration',
-        'SMS support',
-        'Social media monitoring',
-        'Consistent responses'
-      ],
-      industries: ['Enterprise', 'Retail', 'Healthcare', 'Financial Services']
-    },
-    quality: {
-      title: 'Service Quality Assurance',
-      problem: 'Manual call review is slow. Quality issues are discovered too late. Training gaps are unclear.',
-      solution: 'AI analyzes 100% of interactions in real-time, identifies issues, and recommends training.',
-      features: [
-        'Call transcription',
-        'Sentiment analysis',
-        'Compliance checking',
-        'Performance scoring',
-        'Training recommendations',
-        'Trend identification'
-      ],
-      industries: ['Call Centers', 'Healthcare', 'Financial Services', 'Insurance']
-    }
-  };
-
-  const currentCase = useCases[activeUseCase];
+  const currentCase = mockData.useCases[activeUseCase];
 
   return (
     <main className="pt-4 relative z-10">
       <JsonLd data={engagementSchema} />
 
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-white/10 py-20">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+      <section className="min-h-[70vh] flex items-center border-b border-white/10 py-12 md:py-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-3xl">
             <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
               AI FOR ENGAGEMENT
             </p>
-            <h1 className="text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
               <span className="block">SCALE</span>
               <span className="block">CUSTOMER</span>
               <span className="block">INTERACTIONS</span>
             </h1>
-            <p className="text-xl text-gray max-w-2xl leading-relaxed mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl leading-relaxed mb-6 md:mb-12">
               Deploy AI agents that handle customer service, citizen requests, and multi-channel support.
               Deliver exceptional experiences at scale, 24/7.
             </p>
-            <div className="flex gap-6">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
+                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg w-full sm:w-auto">
                   Schedule Demo
                 </Button>
               </Link>
@@ -113,23 +55,23 @@ export default function EngagementPageClient() {
       </section>
 
       {/* Stats */}
-      <section className="py-20 border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-12 md:py-20 border-b border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">24/7</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">24/7</div>
               <div className="text-gray">Availability</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">85%</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">85%</div>
               <div className="text-gray">Query Resolution</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">&lt;2s</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">&lt;2s</div>
               <div className="text-gray">Response Time</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-bold mb-2">40%</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">40%</div>
               <div className="text-gray">Cost Reduction</div>
             </div>
           </div>
@@ -137,17 +79,17 @@ export default function EngagementPageClient() {
       </section>
 
       {/* Use Cases */}
-      <section id="use-cases" className="py-32">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6">USE CASES</h2>
-            <p className="text-xl text-gray max-w-2xl mx-auto">
+      <section id="use-cases" className="py-16 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">USE CASES</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl mx-auto">
               Transform how you engage with customers and citizens
             </p>
           </div>
 
           {/* Use Case Tabs */}
-          <div className="flex justify-center gap-2 mb-16 flex-wrap">
+          <div className="flex justify-center gap-2 mb-8 md:mb-16 flex-wrap">
             <button
               onClick={() => setActiveUseCase('customer')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'customer'
@@ -187,7 +129,7 @@ export default function EngagementPageClient() {
           </div>
 
           {/* Use Case Content */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
 
             {/* Left: Live Chat Bot */}
             <div className="order-2 lg:order-1">
@@ -196,7 +138,7 @@ export default function EngagementPageClient() {
 
             {/* Right: Details */}
             <div className="order-1 lg:order-2">
-              <h3 className="text-4xl font-bold mb-6">{currentCase.title}</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-6">{currentCase.title}</h3>
 
               <div className="mb-8">
                 <div className="text-sm font-semibold text-red-400 mb-2">THE PROBLEM</div>
@@ -243,16 +185,16 @@ export default function EngagementPageClient() {
       </section>
 
       {/* How It Works */}
-      <section className="py-32 border-t border-white/10 bg-white/[0.01]">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-16 text-center">HOW IT WORKS</h2>
+      <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 text-center">HOW IT WORKS</h2>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-12">
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-6 bg-purple-500/10 rounded-full flex items-center justify-center border border-purple-500/20">
-                <span className="text-3xl font-bold text-purple-400">1</span>
+                <span className="text-2xl md:text-3xl font-bold text-purple-400">1</span>
               </div>
-              <h3 className="text-xl font-bold mb-3">Design Conversations</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Design Conversations</h3>
               <p className="text-gray">
                 Map customer journeys, define intents, and create response templates. Import existing FAQs.
               </p>
@@ -260,9 +202,9 @@ export default function EngagementPageClient() {
 
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-6 bg-purple-500/10 rounded-full flex items-center justify-center border border-purple-500/20">
-                <span className="text-3xl font-bold text-purple-400">2</span>
+                <span className="text-2xl md:text-3xl font-bold text-purple-400">2</span>
               </div>
-              <h3 className="text-xl font-bold mb-3">Train & Integrate</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Train & Integrate</h3>
               <p className="text-gray">
                 AI learns your brand voice. Connect to CRM, ticketing, and knowledge bases.
               </p>
@@ -270,9 +212,9 @@ export default function EngagementPageClient() {
 
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-6 bg-purple-500/10 rounded-full flex items-center justify-center border border-purple-500/20">
-                <span className="text-3xl font-bold text-purple-400">3</span>
+                <span className="text-2xl md:text-3xl font-bold text-purple-400">3</span>
               </div>
-              <h3 className="text-xl font-bold mb-3">Launch & Optimize</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Launch & Optimize</h3>
               <p className="text-gray">
                 Deploy across channels. Monitor performance. Continuously improve with analytics.
               </p>
@@ -282,22 +224,22 @@ export default function EngagementPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[800px] mx-auto px-8 text-center">
-          <h2 className="text-5xl font-bold mb-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             READY TO SCALE YOUR ENGAGEMENT?
           </h2>
-          <p className="text-xl text-gray mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12">
             See how AI agents can transform your customer and citizen interactions.
           </p>
-          <div className="flex gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg w-full sm:w-auto">
                 Schedule Demo
               </Button>
             </Link>
             <Link href="/solutions">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
+              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg w-full sm:w-auto">
                 View All Solutions
               </Button>
             </Link>

@@ -1,0 +1,34 @@
+{
+  "kpis": [
+    { "icon": "◉", "label": "Total outcomes", "value": "9,126" },
+    { "icon": "✉", "label": "Tickets escalated", "value": "312" },
+    { "icon": "⇘", "label": "Deflection rate", "value": "41%" },
+    { "icon": "%", "label": "Avg confidence", "value": "84%" },
+    { "icon": "☺", "label": "Satisfied feedback", "value": "87%" }
+  ],
+  "outcomes": [
+    { "user": "How do I export Product X compliance evidence as PDF?", "scenario": "Docs solution", "product": "Product X", "platform": "Web", "confidence": 94, "ticket": "", "status": "Resolution Provided", "feedback": "satisfied", "when": "7/13/2026 09:12 AM", "tone": "green" },
+    { "user": "App crashes when I open Compliance tab on Android 14", "scenario": "Known issue", "product": "Product X", "platform": "Android", "confidence": 91, "ticket": "INC-887", "status": "Known Issue", "feedback": "satisfied", "when": "7/13/2026 08:55 AM", "tone": "blue" },
+    { "user": "Product X sync hangs at 87%, 12MB stuck on device", "scenario": "New / unclear", "product": "Product X", "platform": "iOS", "confidence": 87, "ticket": "FD-2104", "status": "P0 Escalated", "feedback": "—", "when": "7/13/2026 05:47 AM", "tone": "yellow" },
+    { "user": "Can we bulk-approve round evidence?", "scenario": "Feature req.", "product": "Product X", "platform": "Web", "confidence": 82, "ticket": "FR-338", "status": "Product Board", "feedback": "satisfied", "when": "7/12/2026 03:14 PM", "tone": "gray" }
+  ],
+  "audit": [
+    { "type": "WORKFLOW TRIGGERED", "title": "P0 escalation workflow — FD-2104", "who": "AI Agent — Watchlist Engine", "when": "today · 05:47 AM" },
+    { "type": "ACTION EXECUTED", "title": "Auto-created Issue Tracker ENG-4412 for sync module owner", "who": "AI Agent — Workflow Engine", "when": "today · 05:47 AM" },
+    { "type": "RECORD VIEWED", "title": "Jordan Chen opened FD-2104 trace", "who": "Jordan Chen — Support Head", "when": "today · 06:10 AM" },
+    { "type": "MEMORY UPDATED", "title": "Draft KB article seeded from FD-2104 pattern", "who": "AI Agent — KB Queue", "when": "today · 05:48 AM" },
+    { "type": "ACTION EXECUTED", "title": "Deflected 12 Product X sync queries via KB match", "who": "AI Agent — Deflection", "when": "today · 08:00 AM" }
+  ],
+  "donut": [
+    { "label": "Docs solution", "value": 3830, "color": "var(--gd-primary)" },
+    { "label": "Known issue", "value": 3103, "color": "var(--gd-info)" },
+    { "label": "New / unclear", "value": 1460, "color": "var(--gd-warning)" },
+    { "label": "Feature req.", "value": 733, "color": "var(--gd-neutral)" }
+  ],
+  "sources": [
+    { "name": "Incident Management Tool", "pct": 42 },
+    { "name": "Issue Tracker", "pct": 22 },
+    { "name": "KB — Wiki", "pct": 18 },
+    { "name": "Product Telemetry", "pct": 10 }
+  ]
+}

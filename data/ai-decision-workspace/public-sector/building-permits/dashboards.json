@@ -1,0 +1,78 @@
+{
+  "suggestions": [
+    "Show building types",
+    "Show applications by zone",
+    "Show monthly trends",
+    "Show approval status",
+    "Show by department",
+    "Show processing time"
+  ],
+  "empty": {
+    "title": "Your dashboard is empty",
+    "subtitle": "Click the chat button and ask for analytics"
+  },
+  "welcome": "Ask me to show analytics and I'll add widgets to your dashboard!",
+  "fallback": "Try asking about: building types, zones, monthly trends, approval status, departments, or processing time.",
+  "matchers": [
+    {
+      "keywords": ["building type", "type", "category"],
+      "widget": {
+        "type": "bar",
+        "title": "Applications by Building Type",
+        "labels": ["Residential", "Commercial", "Industrial", "Mixed Use", "Others"],
+        "values": [380, 95, 85, 45, 15],
+        "colors": ["#3B82F6", "#3B82F6", "#3B82F6", "#3B82F6", "#3B82F6"]
+      }
+    },
+    {
+      "keywords": ["zone", "area", "region", "location"],
+      "widget": {
+        "type": "pie",
+        "title": "Applications by Zone",
+        "labels": ["Zone A", "Zone B", "Zone C", "Zone D"],
+        "values": [4230, 4876, 2150, 1890],
+        "colors": ["#F97316", "#3B82F6", "#10B981", "#8B5CF6"]
+      }
+    },
+    {
+      "keywords": ["monthly", "trend", "over time"],
+      "widget": {
+        "type": "line",
+        "title": "Monthly Application Trends",
+        "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
+        "values": [120, 150, 180, 220, 195, 240, 280, 310, 290, 320, 350],
+        "colors": ["#3B82F6"]
+      }
+    },
+    {
+      "keywords": ["approval", "status", "rate"],
+      "widget": {
+        "type": "pie",
+        "title": "Application Status Overview",
+        "labels": ["Approved", "Under Review", "Rejected", "Pending"],
+        "values": [67, 18, 8, 7],
+        "colors": ["#10B981", "#F59E0B", "#EF4444", "#6B7280"]
+      }
+    },
+    {
+      "keywords": ["department", "team", "handled by"],
+      "widget": {
+        "type": "bar",
+        "title": "Applications by Department",
+        "labels": ["Planning", "Zoning", "Safety", "Environmental", "Structural", "Permits"],
+        "values": [260, 180, 145, 120, 95, 78],
+        "colors": ["#8B5CF6", "#8B5CF6", "#8B5CF6", "#8B5CF6", "#8B5CF6", "#8B5CF6"]
+      }
+    },
+    {
+      "keywords": ["processing", "time", "duration", "days"],
+      "widget": {
+        "type": "bar",
+        "title": "Average Processing Time (Days)",
+        "labels": ["Residential", "Commercial", "Industrial", "Renovation"],
+        "values": [18, 32, 45, 12],
+        "colors": ["#10B981", "#F59E0B", "#EF4444", "#3B82F6"]
+      }
+    }
+  ]
+}

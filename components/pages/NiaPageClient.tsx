@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
+import mockData from '@/data/nia.json';
 
 
 export default function NiaPageClient() {
@@ -55,17 +56,11 @@ export default function NiaPageClient() {
 
   // Support Agent Messages
   const [candidateMessage, setCandidateMessage] = useState(0);
-  const candidateMessages = [
-    { type: 'user', text: 'What\'s the match percentage for candidate C-1247 with job J-589?' },
-    { type: 'bot', text: 'Analyzing candidate C-1247 against job J-589 requirements...\n\nOverall Match: 78%\n\n✓ Matched Skills: Python, Machine Learning, Data Analysis\n✗ Missing: AWS certification, Team lead experience' }
-  ];
+  const candidateMessages = mockData.candidateMessages;
 
   // BOQ Messages
   const [boqMessage, setBoqMessage] = useState(0);
-  const boqMessages = [
-    { type: 'user', text: 'Give me detailed description for occupancy sensor' },
-    { type: 'bot', text: 'Occupancy Sensor - PIR Type\n\nSpecs: 360° detection, 8m range\nVoltage: 220-240V AC\nLoad: Max 1200W\nMounting: Ceiling flush mount\nApplications: Meeting rooms, corridors\n\nBrands: Schneider, Legrand, Havells' }
-  ];
+  const boqMessages = mockData.boqMessages;
 
   // For BOQ Messages
   const [showBoqTyping, setShowBoqTyping] = useState<number | null>(null); // Separate typing state
@@ -135,22 +130,22 @@ export default function NiaPageClient() {
       
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
               GENX NIA • INTERFACE
             </p>
-            <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               <span className="block">WHERE AGENTS</span>
               <span className="block text-gray">COME TO LIFE</span>
             </h1>
-            <p className="text-xl text-gray max-w-3xl mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
               NIA is the conversational interface where your CORE-built agents
               interact with users. Deploy once, engage everywhere.
             </p>
-            <div className="flex gap-8">
-              <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
                   Try Live Demo
                 </Button>
               </Link>
@@ -160,15 +155,15 @@ export default function NiaPageClient() {
       </section>
 
       {/* Live Demo Section */}
-      <section className="py-32 border-t border-white/10 bg-gradient-to-b from-transparent to-white/[0.02]">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">SEE NIA IN ACTION</h2>
-          
+      <section className="py-16 md:py-32 border-t border-white/10 bg-gradient-to-b from-transparent to-white/[0.02]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">SEE NIA IN ACTION</h2>
+
           {/* First Demo - HR Agent */}
-          <div className="grid lg:grid-cols-2 gap-24 items-center mb-32">
+          <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center mb-16 md:mb-32">
             <div>
-              <h3 className="text-3xl font-bold mb-8">Intelligent hiring decisions</h3>
-              <p className="text-xl text-gray mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold mb-8">Intelligent hiring decisions</h3>
+              <p className="text-base sm:text-lg md:text-xl text-gray mb-8">
                 Evaluate candidates objectively with AI-powered assessment. Match skills, analyze experience, and make data-driven hiring decisions.
               </p>
 
@@ -267,7 +262,7 @@ export default function NiaPageClient() {
           </div>
 
           {/* Second Demo Section - BOQ Agent (Reversed) */}
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             {/* Chat Demo Left */}
             <div className="order-2 lg:order-1">
               <div className="bg-black border border-white/10 rounded-lg overflow-hidden max-w-md mx-auto">
@@ -346,8 +341,8 @@ export default function NiaPageClient() {
 
             {/* Content Right */}
             <div className="order-1 lg:order-2">
-              <h3 className="text-3xl font-bold mb-8">Instant BOQ intelligence</h3>
-              <p className="text-xl text-gray mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold mb-8">Instant BOQ intelligence</h3>
+              <p className="text-base sm:text-lg md:text-xl text-gray mb-8">
                 Get detailed specifications, pricing, and material information instantly. 
                 Your AI-powered construction assistant knows every detail.
               </p>
@@ -386,14 +381,14 @@ export default function NiaPageClient() {
       }} />
 
       {/* Features */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">THE NIA ADVANTAGE</h2>
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">THE NIA ADVANTAGE</h2>
 
-          <div className="grid md:grid-cols-2 gap-24">
-            <div className="space-y-12">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-24">
+            <div className="space-y-6 md:space-y-12">
               <div className="border-l border-white/20 pl-8">
-                <h3 className="text-2xl font-bold mb-4">Contextual Intelligence</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-4">Contextual Intelligence</h3>
                 <p className="text-gray leading-relaxed">
                   NIA maintains conversation context across sessions, understanding user intent
                   and routing to the right agent automatically.
@@ -401,7 +396,7 @@ export default function NiaPageClient() {
               </div>
 
               <div className="border-l border-white/20 pl-8">
-                <h3 className="text-2xl font-bold mb-4">Unified Interface</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-4">Unified Interface</h3>
                 <p className="text-gray leading-relaxed">
                   All your CORE agents accessible through one intelligent chatbot interface.
                   Seamless switching between different agent capabilities.
@@ -409,7 +404,7 @@ export default function NiaPageClient() {
               </div>
 
               <div className="border-l border-white/20 pl-8">
-                <h3 className="text-2xl font-bold mb-4">Continuous Optimization</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-4">Continuous Optimization</h3>
                 <p className="text-gray leading-relaxed">
                   NIA learns from every interaction, continuously improving response accuracy
                   and adapting to your business terminology and processes.
@@ -446,16 +441,16 @@ export default function NiaPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-6xl font-bold mb-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8">
             EXPERIENCE NIA TODAY
           </h2>
-          <p className="text-xl text-gray mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12 max-w-2xl mx-auto">
             See how intelligent conversations can transform your business operations.
           </p>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-12 py-6 text-lg">
+            <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 text-lg">
               See NIA in Action →
             </Button>
           </Link>

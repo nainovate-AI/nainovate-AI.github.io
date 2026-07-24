@@ -1,0 +1,101 @@
+{
+  "seed": {
+    "question": "Which deals should I focus on today?",
+    "timestamp": "11:47 AM",
+    "direct": {
+      "headline": "2 deals need immediate attention out of 5 in flight.",
+      "sub": "Contoso Ltd expansion at risk. Fabrikam Inc renewal ready to send."
+    },
+    "insights": [
+      { "label": "Q3 pipeline", "value": "$2.9M", "delta": "↑ 12% vs Q2" },
+      { "label": "Weighted", "value": "$1.7M", "delta": "↑ 8%" },
+      { "label": "At-risk deals", "value": "2", "delta": "↑ 1" },
+      { "label": "Win rate", "value": "38%", "delta": "↑ 4 pts" }
+    ],
+    "table": [
+      { "code": "NI", "name": "Contoso Ltd — Expansion", "health": 35, "risk": "Delay", "arr": "$480K", "factors": ["Health 35", "FD-2104 P0"], "owner": "Riley Patel" },
+      { "code": "CL", "name": "Fabrikam Inc — Renewal", "health": 68, "risk": "Send", "arr": "$820K", "factors": ["FR-338 packaged"], "owner": "Riley Patel" },
+      { "code": "IL", "name": "Proseware Systems — Expansion", "health": 42, "risk": "Hold", "arr": "$310K", "factors": ["Delivery slip"], "owner": "Consultant 3" },
+      { "code": "UG", "name": "Northwind Traders — Renewal", "health": 62, "risk": "Discovery", "arr": "$540K", "factors": ["New champion"], "owner": "Riley Patel" },
+      { "code": "WI", "name": "Trey Research — New logo", "health": 78, "risk": "Fast-track", "arr": "$720K", "factors": ["Pilot success"], "owner": "AE 2" }
+    ],
+    "reasoning": {
+      "summary": "Ranked by deal size × win probability × time to close × account health signals.",
+      "factors": ["Deal size", "Health score", "Time to close", "FR alignment", "Champion strength"]
+    },
+    "followups": ["Delay Contoso Ltd pitch — draft messaging", "Fabrikam Inc proposal — final review", "Northwind Traders champion — Social Signal signals", "Q3 forecast update"],
+    "keyInsightsRail": [
+      { "icon": "⇗", "label": "Q3 pipeline", "value": "$2.9M", "delta": "↑ 12% vs Q2" },
+      { "icon": "$", "label": "Weighted", "value": "$1.7M", "delta": "↑ 8%" },
+      { "icon": "⚠", "label": "At-risk deals", "value": "2", "delta": "↑ 1" },
+      { "icon": "◷", "label": "Win rate", "value": "38%", "delta": "↑ 4 pts" }
+    ],
+    "recommendedActions": [
+      { "title": "Delay Contoso Ltd expansion 30 days", "sub": "FD-2104 P0 active. Trust-first play.", "priority": "high" },
+      { "title": "Send Fabrikam Inc renewal proposal", "sub": "FR-338 timeline included. Ready to close.", "priority": "high" },
+      { "title": "Warm new Northwind Traders champion", "sub": "Prior champion left; new hire promoted internally.", "priority": "medium" }
+    ]
+  },
+  "bank": [
+    {
+      "question": "Show Q3 forecast",
+      "direct": {
+        "headline": "Q3 pipeline $2.9M, weighted $1.7M — 2 deals at risk.",
+        "sub": "Contoso Ltd expansion delayed 30d. Fabrikam Inc renewal ready to close. Trey Research fast-track."
+      },
+      "bullets": [
+        "Total pipeline: $2.9M (↑ 12% vs Q2)",
+        "Weighted: $1.7M",
+        "Deals in flight: 5",
+        "At-risk: 2 (Contoso Ltd, Proseware Systems)",
+        "Ready to close this month: $820K (Fabrikam Inc renewal)"
+      ],
+      "followups": ["What is Fabrikam Inc deal status?", "Where should I focus this week?", "Which champion left?"]
+    },
+    {
+      "question": "What is Fabrikam Inc deal status?",
+      "direct": {
+        "headline": "Fabrikam Inc renewal in negotiation — $820K, likely close in 2 weeks.",
+        "sub": "FR-338 timeline packaged into proposal. Health 68. Champion strong."
+      },
+      "bullets": [
+        "Stage: Negotiation",
+        "ARR: $820K",
+        "Health: 68 (stable)",
+        "Champion: Buyer (procurement)",
+        "Next step: send final proposal"
+      ],
+      "followups": ["Show Q3 forecast", "Where should I focus this week?", "Which champion left?"]
+    },
+    {
+      "question": "Which champion left?",
+      "direct": {
+        "headline": "Northwind Traders — prior champion left (Social Signal signal).",
+        "sub": "New champion promoted internally. Warmup workflow started."
+      },
+      "bullets": [
+        "Account: Northwind Traders ($540K renewal)",
+        "Signal: Social Signal — prior champion new role",
+        "New champion: promoted from internal team",
+        "Warmup workflow: rec_s_04 in progress",
+        "Renewal in 90d — proactive"
+      ],
+      "followups": ["Show Q3 forecast", "Where should I focus this week?"]
+    },
+    {
+      "question": "Where should I focus this week?",
+      "direct": {
+        "headline": "3 priorities: Fabrikam Inc close, Contoso Ltd hold, Northwind Traders warmup.",
+        "sub": "Delay Trey Research fast-track discussion to next week to avoid overloading calendar."
+      },
+      "bullets": [
+        "Mon: Send Fabrikam Inc final proposal",
+        "Tue: Contoso Ltd — hold expansion, book support call",
+        "Wed: Warm new Northwind Traders champion (Social Signal intro)",
+        "Thu: Trey Research pilot review",
+        "Fri: Q3 forecast review with leadership"
+      ],
+      "followups": ["What is Fabrikam Inc deal status?", "Which champion left?", "Show Q3 forecast"]
+    }
+  ]
+}

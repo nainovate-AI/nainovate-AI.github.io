@@ -1,0 +1,141 @@
+{
+  "coreCapabilities": [
+    {
+      "title": "Prompt Workshop",
+      "description": "Test and optimize prompts across multiple models",
+      "iconPath": "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
+    },
+    {
+      "title": "Model Orchestrator",
+      "description": "Connect and manage any AI model seamlessly",
+      "iconPath": "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+    },
+    {
+      "title": "Quality Assurance Lab",
+      "description": "Evaluate and ensure AI quality before deployment",
+      "iconPath": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    },
+    {
+      "title": "Platform Features",
+      "description": "Enterprise integrations and security built-in",
+      "iconPath": "M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+    }
+  ],
+  "detailSections": [
+    {
+      "id": "prompt-workshop",
+      "title": "Prompt Workshop",
+      "description": "Experiment with and refine prompts across multiple AI models to achieve optimal performance and business outcomes.",
+      "mockup": "PromptWorkshopMockup",
+      "mockupPosition": "right",
+      "sectionClass": "py-16 md:py-32 border-t border-white/10",
+      "accentBg": "bg-blue-500/20",
+      "accentText": "text-blue-400",
+      "features": [
+        {
+          "title": "Prompt Experimentation",
+          "description": "Test identical prompts across multiple AI models simultaneously, comparing outputs, monitoring token consumption, and measuring response times in real-time."
+        },
+        {
+          "title": "Prompt Versioning",
+          "description": "Monitor, control, and rollback prompt modifications across the AI agent development cycle, maintaining uniformity and enabling swift iterations at enterprise scale."
+        },
+        {
+          "title": "60+ Prompt Libraries",
+          "description": "Fast-track your AI development with ready-to-use prompt libraries for data classification, content summarization, generation workflows, and more—no need to build from zero."
+        }
+      ]
+    },
+    {
+      "id": "model-orchestrator",
+      "title": "Model Orchestrator",
+      "description": "Empower your team to easily integrate, manage, and connect multiple AI models, whether commercial, fine-tuned, or open source, within a single agentic workflow.",
+      "mockup": "ModelOrchestratorMockup",
+      "mockupPosition": "left",
+      "sectionClass": "py-16 md:py-32 border-t border-white/10 bg-white/[0.02]",
+      "accentBg": "bg-purple-500/20",
+      "accentText": "text-purple-400",
+      "features": [
+        {
+          "title": "Enterprise Models",
+          "description": "Integrate any enterprise AI model from OpenAI, Claude, Gemini, and leading providers directly into GenX Platform."
+        },
+        {
+          "title": "Open-Source Integration",
+          "description": "Access open-source AI models seamlessly through HuggingFace connectivity, unlocking millions of models for diverse applications."
+        },
+        {
+          "title": "Custom Models",
+          "description": "Train large language models using your proprietary data or deploy your own specialized models for industry-specific requirements."
+        }
+      ]
+    },
+    {
+      "id": "quality-assurance-lab",
+      "title": "Quality Assurance Lab",
+      "description": "Assess the performance of both AI models and agentic applications to ensure quality, accurate, less biased, compliant, and reliable AI agent responses before and after deployment.",
+      "mockup": "QualityAssuranceLabMockup",
+      "mockupPosition": "right",
+      "sectionClass": "py-16 md:py-32 border-t border-white/10",
+      "accentBg": "bg-green-500/20",
+      "accentText": "text-green-400",
+      "features": [
+        {
+          "title": "Response Validation",
+          "description": "Identify AI model hallucinations during development and rapidly optimize them through test datasets or human-in-the-loop feedback for precision."
+        },
+        {
+          "title": "Query Alignment",
+          "description": "Assess whether AI agent outputs effectively address user inquiries using integrated evaluators or custom-built validation frameworks."
+        },
+        {
+          "title": "Behavior Testing",
+          "description": "Verify your AI agents perform as intended and utilize appropriate tools for each situation by creating and validating custom test scenarios aligned with your operations."
+        }
+      ]
+    }
+  ],
+  "governancePillars": [
+    {
+      "title": "Automatic Validation",
+      "description": "Every model passes quality gates before deployment",
+      "iconPath": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+    },
+    {
+      "title": "Audit Tools",
+      "description": "Complete traceability built into development",
+      "iconPath": "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+    },
+    {
+      "title": "Compliance Built-In",
+      "description": "SOC2, GDPR, HIPAA compliance out of the box",
+      "iconPath": "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+    }
+  ],
+  "platformFeatures": [
+    {
+      "title": "Search + Data AI",
+      "description": "Hybrid search and data integration",
+      "href": "/platform/search-data-ai",
+      "iconPath": "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    },
+    {
+      "title": "Security + Governance",
+      "description": "Enterprise-grade security",
+      "href": "/platform/security-governance",
+      "iconPath": "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+    },
+    {
+      "title": "Development Tools",
+      "description": "No-code and pro-code options",
+      "href": "/platform/development-tools",
+      "iconPath": "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+    },
+    {
+      "title": "Integrations",
+      "description": "100+ pre-built connectors",
+      "href": "/platform/integrations",
+      "iconPath": "M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+    }
+  ]
+}

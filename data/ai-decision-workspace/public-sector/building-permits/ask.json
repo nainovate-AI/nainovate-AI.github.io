@@ -1,0 +1,32 @@
+{
+  "welcome": "Hello! I'm your Building Permits Assistant. I can help you with:\n\n- Check permit application status\n- Document requirements\n- Processing timelines\n- Fee calculations\n- Compliance guidelines\n\nHow can I assist you today?",
+  "suggestions": [
+    "Check application status",
+    "What documents do I need?",
+    "How long does it take?",
+    "What are the fees?"
+  ],
+  "fallback": "I can help you with:\n\n- **Status** - \"Check my application status\"\n- **Documents** - \"What documents do I need?\"\n- **Timeline** - \"How long does it take?\"\n- **Fees** - \"What are the permit fees?\"\n- **Compliance** - \"What are the requirements?\"\n\nWhat would you like to know?",
+  "matchers": [
+    {
+      "keywords": ["status", "track", "application"],
+      "response": "**Permit Application Status**\n\n📋 **Application ID:** BP-2025-04892\n📍 **Location:** Commercial District, Block 7\n📅 **Submitted:** November 15, 2025\n\n**Current Status:** Under Technical Review ⏳\n\n| Stage | Status |\n|-------|--------|\n| Document Verification | ✅ Complete |\n| Zoning Compliance | ✅ Complete |\n| Technical Review | 🔄 In Progress |\n| Final Approval | ⏸️ Pending |\n\n**Progress:** 65% complete\n**Expected Completion:** December 5, 2025"
+    },
+    {
+      "keywords": ["document", "require", "need", "submit"],
+      "response": "**Required Documents for Building Permit**\n\n**Essential Documents:**\n✓ Completed application form\n✓ Site plan (1:500 scale)\n✓ Architectural drawings\n✓ Structural engineering plans\n✓ Fire safety plan\n✓ Environmental assessment\n\n**Supporting Documents:**\n✓ Land ownership proof\n✓ NOC from municipality\n✓ Contractor license\n✓ Insurance certificate\n\n**Format:** PDF (max 10MB per file)"
+    },
+    {
+      "keywords": ["long", "time", "timeline", "days"],
+      "response": "**Processing Timeline**\n\n| Permit Type | Duration |\n|-------------|----------|\n| Residential | 15-20 business days |\n| Commercial | 25-35 business days |\n| Industrial | 35-45 business days |\n| Renovation | 10-15 business days |\n\n**Current Average:** 18 days\n\n**Express Processing Available:**\n- Additional fee: $500\n- Processing time: 7-10 days"
+    },
+    {
+      "keywords": ["fee", "cost", "pay", "price"],
+      "response": "**Permit Fee Structure**\n\n| Building Type | Fee per sqm |\n|---------------|-------------|\n| Residential | $8 |\n| Commercial | $12 |\n| Industrial | $15 |\n\n**Example (500 sqm Commercial):**\n- Base fee: $6,000\n- Inspection: $800\n- Processing: $200\n- **Total: $7,000**"
+    },
+    {
+      "keywords": ["compliance", "regulation", "code", "safety"],
+      "response": "**Compliance Requirements**\n\n**Structural:**\n✓ Load-bearing calculations\n✓ Seismic design standards\n✓ Foundation specifications\n\n**Fire Safety:**\n✓ Fire exits every 30m\n✓ Fire-resistant materials\n✓ Sprinkler systems (buildings >15m)\n\n**Accessibility:**\n✓ Ramps (1:12 slope)\n✓ Accessible parking (2%)\n✓ Elevator (>4 floors)"
+    }
+  ]
+}

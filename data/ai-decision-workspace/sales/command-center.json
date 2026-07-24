@@ -1,0 +1,45 @@
+{
+  "greeting": "Riley Patel",
+  "summary": {
+    "headline": "$2.9M Q3 pipeline · 2 deals at risk",
+    "sub": "Contoso Ltd expansion at risk due to open P0. Fabrikam Inc renewal negotiation in progress."
+  },
+  "actions": [
+    { "risk": "high", "title": "Delay Contoso Ltd expansion pitch 30d", "account": "Contoso Ltd", "metric": { "label": "Deal size", "value": "$480K" }, "status": "Call at 10:00", "cta": "Approve" },
+    { "risk": "medium", "title": "Send Fabrikam Inc renewal proposal", "account": "Fabrikam Inc", "metric": { "label": "Renewal ARR", "value": "$820K" }, "status": "Ready to send", "cta": "Auto-run" },
+    { "risk": "low", "title": "Trey Research fast-track pitch", "account": "Trey Research", "metric": { "label": "Potential ACV", "value": "$720K" }, "status": "Q4 targeted", "cta": "Schedule" }
+  ],
+  "signals": [
+    { "icon": "⇗", "label": "Q3 pipeline", "value": "$2.9M", "delta": "↑ 12% vs Q2", "tone": "up" },
+    { "icon": "$", "label": "Weighted", "value": "$1.7M", "delta": "↑ 8% vs last 30d", "tone": "up" },
+    { "icon": "⚠", "label": "At-risk deals", "value": "2", "delta": "↑ 1 vs last 30d", "tone": "down" },
+    { "icon": "◷", "label": "Avg deal cycle", "value": "58d", "delta": "↓ 4d vs Q2", "tone": "up" }
+  ],
+  "cfi": [
+    { "team": "Sales", "label": "In flight", "value": "5 deals" },
+    { "team": "Customer Success", "label": "Blockers", "value": "2 P0 open" },
+    { "team": "Product", "label": "FR asks", "value": "3 accts" }
+  ],
+  "workflows": {
+    "in_progress": 8,
+    "awaiting": 3,
+    "completed": 4,
+    "list": [
+      { "name": "Fabrikam Inc renewal proposal packet", "status": "In progress", "tone": "blue" },
+      { "name": "Contoso Ltd expansion hold-review", "status": "Awaiting approval", "tone": "yellow" },
+      { "name": "Trey Research QBR follow-up", "status": "Completed", "tone": "green" }
+    ]
+  },
+  "decisions": [
+    { "title": "Held Contoso Ltd expansion — health 35", "when": "4h ago", "impact": "Trust preserved", "tone": "green" },
+    { "title": "Warmed Northwind Traders new champion (Social Signal)", "when": "2d ago", "impact": "Sentiment ↑", "tone": "green" },
+    { "title": "FR-338 included in Fabrikam Inc proposal", "when": "3d ago", "impact": "Diff. established", "tone": "neutral" }
+  ],
+  "watchlist": [
+    { "code": "NI", "name": "Contoso Ltd", "score": 35, "risk": "high" },
+    { "code": "CL", "name": "Fabrikam Inc", "score": 68, "risk": "medium" },
+    { "code": "IL", "name": "Proseware Systems", "score": 42, "risk": "high" },
+    { "code": "UG", "name": "Northwind Traders", "score": 62, "risk": "medium" },
+    { "code": "WI", "name": "Trey Research", "score": 78, "risk": "low" }
+  ]
+}

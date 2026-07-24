@@ -1,0 +1,45 @@
+{
+  "greeting": "Alex Morgan",
+  "summary": {
+    "headline": "3 critical risks detected across Customer Success and Finance",
+    "sub": "$1.2M revenue at risk. 2 actions recommended. 1 requires approval."
+  },
+  "actions": [
+    { "risk": "high", "title": "Executive outreach needed", "account": "Contoso Ltd", "metric": { "label": "Revenue at risk", "value": "$450K" }, "status": "Due today", "cta": "Approve" },
+    { "risk": "medium", "title": "Renewal intervention required", "account": "Fabrikam Inc", "metric": { "label": "Revenue at risk", "value": "$320K" }, "status": "Due in 2 days", "cta": "Auto-run" },
+    { "risk": "low", "title": "Pricing review opportunity", "account": "Adventure Works", "metric": { "label": "Potential impact", "value": "$180K" }, "status": "Due in 5 days", "cta": "Schedule" }
+  ],
+  "signals": [
+    { "icon": "⚠", "label": "At-risk accounts", "value": "12", "delta": "↑ 3 vs last 7 days", "tone": "down" },
+    { "icon": "$", "label": "Revenue at risk", "value": "$1.8M", "delta": "↑ 18% vs last 7 days", "tone": "down" },
+    { "icon": "◷", "label": "SLA breaches", "value": "6", "delta": "↑ 2 vs last 7 days", "tone": "down" },
+    { "icon": "⇗", "label": "Pipeline risk", "value": "$3.2M", "delta": "↑ 5% vs last 7 days", "tone": "down" }
+  ],
+  "cfi": [
+    { "team": "Customer Success", "label": "At risk", "value": "12 accounts" },
+    { "team": "Sales", "label": "Impact", "value": "$1.8M" },
+    { "team": "Finance", "label": "Exposure", "value": "$1.2M" }
+  ],
+  "workflows": {
+    "in_progress": 28,
+    "awaiting": 4,
+    "completed": 7,
+    "list": [
+      { "name": "Renewal Intervention — Contoso Ltd", "status": "In progress", "tone": "blue" },
+      { "name": "Onboarding Optimization — Adventure Works", "status": "Awaiting approval", "tone": "yellow" },
+      { "name": "Executive Escalation — Wingtip Toys", "status": "In progress", "tone": "blue" }
+    ]
+  },
+  "decisions": [
+    { "title": "Churn risk prevented — Contoso Ltd", "when": "2d ago", "impact": "$450K saved", "tone": "green" },
+    { "title": "Escalation resolved — Wingtip Toys", "when": "1d ago", "impact": "SLA restored", "tone": "green" },
+    { "title": "Renewal secured — Litware Inc", "when": "3d ago", "impact": "$120K", "tone": "green" }
+  ],
+  "watchlist": [
+    { "code": "NI", "name": "Contoso Ltd", "score": 35, "risk": "high" },
+    { "code": "CL", "name": "Fabrikam Inc", "score": 40, "risk": "high" },
+    { "code": "FM", "name": "Adventure Works", "score": 45, "risk": "high" },
+    { "code": "TT", "name": "Wingtip Toys", "score": 48, "risk": "medium" },
+    { "code": "WW", "name": "Litware Inc", "score": 58, "risk": "low" }
+  ]
+}

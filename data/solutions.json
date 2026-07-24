@@ -1,0 +1,29 @@
+{
+  "operationsFeatures": [
+    "HR Screening & Selection",
+    "BOQ Generation",
+    "Document Processing",
+    "Enterprise Search",
+    "LMS Integration",
+    "Internal Automation"
+  ],
+  "operationsAccelerators": ["HR", "Construction", "Enterprise Ops"],
+  "engagementFeatures": [
+    "Customer Service Bots",
+    "Citizen Portals",
+    "Multi-Channel Support",
+    "Service Quality",
+    "Proactive Outreach",
+    "Client Portals"
+  ],
+  "engagementAccelerators": ["Retail & Hospitality", "Government Services", "Client Support"],
+  "intelligenceFeatures": [
+    "Analytics Dashboards",
+    "Process Monitoring",
+    "Compliance Tracking",
+    "Quality Assurance",
+    "Predictive Analytics",
+    "Performance Reporting"
+  ],
+  "intelligenceAccelerators": ["Manufacturing", "Government Compliance", "Quality Control"]
+}

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Hero } from '@/components/sections/Hero';
+import { ProofStrip } from '@/components/sections/ProofStrip';
+import { LensPicker } from '@/components/sections/LensPicker';
+import { Problem } from '@/components/sections/Problem';
 import { Features } from '@/components/sections/Features';
 import { Industries } from '@/components/sections/Industries';
+import { Category } from '@/components/sections/Category';
 import { Stats } from '@/components/sections/Stats';
 import { CTA } from '@/components/sections/CTA';
 import JsonLd from '@/components/seo/JsonLd';
@@ -76,8 +80,12 @@ export default function Home() {
       <JsonLd data={homepageSchema} />
       <JsonLd data={heroSchema} />
       <Hero />
-      <Features />
+      <ProofStrip />
+      <LensPicker />
+      <Problem />
       <Industries />
+      <Features />
+      <Category />
       <Stats />
       <CTA />
     </main>

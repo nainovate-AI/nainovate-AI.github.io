@@ -1,0 +1,45 @@
+{
+  "greeting": "Sam Rivera",
+  "summary": {
+    "headline": "3 projects at risk · 2 rescue plans active",
+    "sub": "Contoso Ltd Phase 2 M3 slip flagged 21d early. Proseware Systems pilot go-live in doubt."
+  },
+  "actions": [
+    { "risk": "high", "title": "Proseware Systems pilot recovery plan", "account": "Proseware Systems", "metric": { "label": "Days to go-live", "value": "9" }, "status": "Escalate today", "cta": "Approve" },
+    { "risk": "medium", "title": "Reassign Consultant 1 from Northwind Traders green", "account": "Northwind Traders", "metric": { "label": "Utilization", "value": "138%" }, "status": "Approve reassign", "cta": "Auto-run" },
+    { "risk": "low", "title": "Cross-train 1 consultant onto Blue Yonder", "account": "Blue Yonder", "metric": { "label": "Coverage gap", "value": "2 wk" }, "status": "Plan for Q4", "cta": "Schedule" }
+  ],
+  "signals": [
+    { "icon": "⚠", "label": "Projects at risk", "value": "3", "delta": "↑ 1 vs last 30d", "tone": "down" },
+    { "icon": "◷", "label": "Milestones 30d", "value": "8", "delta": "2 at risk", "tone": "down" },
+    { "icon": "⇗", "label": "On-track", "value": "5", "delta": "↑ 1 vs last 30d", "tone": "up" },
+    { "icon": "$", "label": "Rescues active", "value": "2", "delta": "Contoso Ltd + Proseware Systems", "tone": "neutral" }
+  ],
+  "cfi": [
+    { "team": "Delivery", "label": "Active", "value": "8 projects" },
+    { "team": "Engineering", "label": "Blockers", "value": "2 P1 escalated" },
+    { "team": "Customer Success", "label": "Sentiment", "value": "Watch" }
+  ],
+  "workflows": {
+    "in_progress": 6,
+    "awaiting": 2,
+    "completed": 3,
+    "list": [
+      { "name": "Contoso Ltd Phase 2 rescue plan", "status": "In progress", "tone": "blue" },
+      { "name": "Proseware Systems pilot go-live checklist", "status": "Awaiting approval", "tone": "yellow" },
+      { "name": "Northwind Traders M1 discovery signoff", "status": "Completed", "tone": "green" }
+    ]
+  },
+  "decisions": [
+    { "title": "Re-baselined Contoso Ltd M3 → 2026-07-09", "when": "1w ago", "impact": "Steering cleared", "tone": "green" },
+    { "title": "Escalated 2 Proseware Systems P1s to engineering", "when": "3d ago", "impact": "Fixes queued", "tone": "green" },
+    { "title": "Consultant 1 reassigned from Northwind Traders green", "when": "4d ago", "impact": "Load 138 → 100%", "tone": "neutral" }
+  ],
+  "watchlist": [
+    { "code": "NI", "name": "Contoso Ltd", "score": 42, "risk": "high" },
+    { "code": "IL", "name": "Proseware Systems", "score": 38, "risk": "high" },
+    { "code": "UG", "name": "Northwind Traders", "score": 65, "risk": "medium" },
+    { "code": "SI", "name": "Blue Yonder", "score": 72, "risk": "low" },
+    { "code": "AW", "name": "Tailspin Toys", "score": 80, "risk": "low" }
+  ]
+}

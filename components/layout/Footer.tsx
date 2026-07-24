@@ -3,13 +3,13 @@ import Link from 'next/link';
 export function Footer() {
   return (
     <footer className="border-t border-gray-dark">
-      <div className="max-w-[1400px] mx-auto px-8 py-16">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
         {/* Top Section - Multi-Column Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-10 mb-10 md:mb-16">
           
           {/* COLUMN 1: SOLUTIONS */}
           <div>
-            <h4 className="font-medium mb-6 text-sm">SOLUTIONS</h4>
+            <h4 className="font-medium mb-4 md:mb-6 text-sm">SOLUTIONS</h4>
             <div className="space-y-3">
               <Link href="/solutions/operations" className="block text-gray hover:text-white transition-colors text-sm">AI for Operations</Link>
               <Link href="/solutions/engagement" className="block text-gray hover:text-white transition-colors text-sm">AI for Engagement</Link>
@@ -20,7 +20,7 @@ export function Footer() {
 
           {/* COLUMN 2: PLATFORM */}
           <div>
-            <h4 className="font-medium mb-6 text-sm">PLATFORM</h4>
+            <h4 className="font-medium mb-4 md:mb-6 text-sm">PLATFORM</h4>
             <div className="space-y-3">
               <Link href="/platform" className="block text-gray hover:text-white transition-colors text-sm">GenX Platform</Link>
               <Link href="/platform/core" className="block text-gray hover:text-white transition-colors text-sm">CORE - AI Engine</Link>
@@ -31,7 +31,7 @@ export function Footer() {
 
           {/* COLUMN 3: FEATURES */}
           <div>
-            <h4 className="font-medium mb-6 text-sm">FEATURES</h4>
+            <h4 className="font-medium mb-4 md:mb-6 text-sm">FEATURES</h4>
             <div className="space-y-3">
               <Link href="/platform/ai-engineering-tools" className="block text-gray hover:text-white transition-colors text-sm">AI Engineering Tools</Link>
               <Link href="/platform/search-data-ai" className="block text-gray hover:text-white transition-colors text-sm">Search + Data AI</Link>
@@ -43,7 +43,7 @@ export function Footer() {
 
           {/* COLUMN 4: COMPANY */}
           <div>
-            <h4 className="font-medium mb-6 text-sm">COMPANY</h4>
+            <h4 className="font-medium mb-4 md:mb-6 text-sm">COMPANY</h4>
             <div className="space-y-3">
               <Link href="/about" className="block text-gray hover:text-white transition-colors text-sm">About Nainovate</Link>
               <Link href="/about#leadership" className="block text-gray hover:text-white transition-colors text-sm">Leadership</Link>
@@ -54,7 +54,7 @@ export function Footer() {
 
           {/* COLUMN 5: RESOURCES */}
           <div>
-            <h4 className="font-medium mb-6 text-sm">RESOURCES</h4>
+            <h4 className="font-medium mb-4 md:mb-6 text-sm">RESOURCES</h4>
             <div className="space-y-3">
               <Link href="/reports" className="block text-gray hover:text-white transition-colors text-sm">Reports & Research</Link>
               <Link href="/ai-implementation-index" className="block text-gray hover:text-white transition-colors text-sm">Implementation Index</Link>

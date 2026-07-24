@@ -1,0 +1,89 @@
+{
+    "modules": [
+        {
+            "title": "CONTEXTA",
+            "description": "Prepare and optimize RAG pipelines. Index your data, create embeddings, and build context-aware AI systems that understand your domain.",
+            "bullets": [
+                "Vector database integration",
+                "Custom embedding models",
+                "Context window optimization"
+            ]
+        },
+        {
+            "title": "FINETUNE",
+            "description": "Fine-tune models with RLHF, run exploratory data analysis, and create domain-specific AI that speaks your language.",
+            "bullets": [
+                "RLHF implementation",
+                "Domain dataset preparation",
+                "Performance benchmarking"
+            ]
+        },
+        {
+            "title": "MODELA",
+            "description": "Comprehensive evaluation suite. Test accuracy, measure performance, and ensure your AI meets quality standards before deployment.",
+            "bullets": [
+                "Automated testing",
+                "Performance metrics",
+                "A/B testing framework"
+            ]
+        },
+        {
+            "title": "INFERENCE",
+            "description": "Create production pipelines with RAG or direct LLM integration. Deploy scalable, efficient AI systems ready for real-world use.",
+            "bullets": [
+                "Pipeline orchestration",
+                "Load balancing",
+                "Response optimization"
+            ]
+        }
+    ],
+    "capabilities": [
+        {
+            "title": "Domain Expertise",
+            "description": "Train agents on your industry knowledge, company policies, and specific workflows. Your agent becomes an expert in your field."
+        },
+        {
+            "title": "Custom Behaviors",
+            "description": "Define how your agent responds, what actions it can take, and how it interacts. Complete control over every aspect."
+        },
+        {
+            "title": "Rapid Iteration",
+            "description": "Test, refine, and deploy agents in days with our advanced development environment. No coding required."
+        }
+    ],
+    "agentTypes": [
+        {
+            "title": "Sales Agent",
+            "description": "Lead qualification & conversion"
+        },
+        {
+            "title": "Support Agent",
+            "description": "24/7 customer assistance"
+        },
+        {
+            "title": "Analytics Agent",
+            "description": "Data insights & reporting"
+        },
+        {
+            "title": "Research Agent",
+            "description": "Information synthesis"
+        }
+    ],
+    "buildProcess": [
+        {
+            "number": "01",
+            "title": "DEFINE",
+            "description": "Set agent purpose, capabilities, and knowledge domain. Configure behavior patterns."
+        },
+        {
+            "number": "02",
+            "title": "TRAIN",
+            "description": "Upload data, fine-tune responses, and validate performance against your standards."
+        },
+        {
+            "number": "03",
+            "title": "DEPLOY",
+            "description": "Launch your agent instantly to NIA chatbot. Monitor and optimize in real-time."
+        }
+    ]
+}

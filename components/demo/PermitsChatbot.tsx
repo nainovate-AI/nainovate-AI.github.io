@@ -2,126 +2,21 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
+import askData from '@/data/ai-decision-workspace/public-sector/building-permits/ask.json';
 
 interface Message {
     role: 'user' | 'assistant';
     content: string;
 }
 
-const WELCOME_MESSAGE = `Hello! I'm your Building Permits Assistant. I can help you with:
-
-- Check permit application status
-- Document requirements
-- Processing timelines
-- Fee calculations
-- Compliance guidelines
-
-How can I assist you today?`;
+const WELCOME_MESSAGE = askData.welcome;
 
 const getResponse = (userMessage: string): string => {
     const msg = userMessage.toLowerCase();
-
-    if (msg.includes('status') || msg.includes('track') || msg.includes('application')) {
-        return `**Permit Application Status**
-
-📋 **Application ID:** BP-2025-04892
-📍 **Location:** Commercial District, Block 7
-📅 **Submitted:** November 15, 2025
-
-**Current Status:** Under Technical Review ⏳
-
-| Stage | Status |
-|-------|--------|
-| Document Verification | ✅ Complete |
-| Zoning Compliance | ✅ Complete |
-| Technical Review | 🔄 In Progress |
-| Final Approval | ⏸️ Pending |
-
-**Progress:** 65% complete
-**Expected Completion:** December 5, 2025`;
-    }
-
-    if (msg.includes('document') || msg.includes('require') || msg.includes('need') || msg.includes('submit')) {
-        return `**Required Documents for Building Permit**
-
-**Essential Documents:**
-✓ Completed application form
-✓ Site plan (1:500 scale)
-✓ Architectural drawings
-✓ Structural engineering plans
-✓ Fire safety plan
-✓ Environmental assessment
-
-**Supporting Documents:**
-✓ Land ownership proof
-✓ NOC from municipality
-✓ Contractor license
-✓ Insurance certificate
-
-**Format:** PDF (max 10MB per file)`;
-    }
-
-    if (msg.includes('long') || msg.includes('time') || msg.includes('timeline') || msg.includes('days')) {
-        return `**Processing Timeline**
-
-| Permit Type | Duration |
-|-------------|----------|
-| Residential | 15-20 business days |
-| Commercial | 25-35 business days |
-| Industrial | 35-45 business days |
-| Renovation | 10-15 business days |
-
-**Current Average:** 18 days
-
-**Express Processing Available:**
-- Additional fee: $500
-- Processing time: 7-10 days`;
-    }
-
-    if (msg.includes('fee') || msg.includes('cost') || msg.includes('pay') || msg.includes('price')) {
-        return `**Permit Fee Structure**
-
-| Building Type | Fee per sqm |
-|---------------|-------------|
-| Residential | $8 |
-| Commercial | $12 |
-| Industrial | $15 |
-
-**Example (500 sqm Commercial):**
-- Base fee: $6,000
-- Inspection: $800
-- Processing: $200
-- **Total: $7,000**`;
-    }
-
-    if (msg.includes('compliance') || msg.includes('regulation') || msg.includes('code') || msg.includes('safety')) {
-        return `**Compliance Requirements**
-
-**Structural:**
-✓ Load-bearing calculations
-✓ Seismic design standards
-✓ Foundation specifications
-
-**Fire Safety:**
-✓ Fire exits every 30m
-✓ Fire-resistant materials
-✓ Sprinkler systems (buildings >15m)
-
-**Accessibility:**
-✓ Ramps (1:12 slope)
-✓ Accessible parking (2%)
-✓ Elevator (>4 floors)`;
-    }
-
-    return `I can help you with:
-
-- **Status** - "Check my application status"
-- **Documents** - "What documents do I need?"
-- **Timeline** - "How long does it take?"
-- **Fees** - "What are the permit fees?"
-- **Compliance** - "What are the requirements?"
-
-What would you like to know?`;
+    const match = askData.matchers.find((m) =>
+        m.keywords.some((k) => msg.includes(k))
+    );
+    return match ? match.response : askData.fallback;
 };
 
 export default function PermitsChatbot() {
@@ -162,12 +57,7 @@ export default function PermitsChatbot() {
         }
     };
 
-    const suggestions = [
-        "Check application status",
-        "What documents do I need?",
-        "How long does it take?",
-        "What are the fees?"
-    ];
+    const suggestions = askData.suggestions;
 
     return (
         <div className="h-full flex flex-col overflow-hidden">

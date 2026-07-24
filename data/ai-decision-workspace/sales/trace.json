@@ -1,0 +1,34 @@
+{
+  "kpis": [
+    { "icon": "◉", "label": "Total outcomes", "value": "624" },
+    { "icon": "✉", "label": "Deals shaped", "value": "48" },
+    { "icon": "⇘", "label": "Delay rate", "value": "18%" },
+    { "icon": "%", "label": "Avg confidence", "value": "86%" },
+    { "icon": "☺", "label": "Rep confirmed", "value": "91%" }
+  ],
+  "outcomes": [
+    { "user": "Should I pitch Contoso Ltd expansion today?", "scenario": "Delay rec.", "product": "CRM · CRM", "platform": "Web", "confidence": 94, "ticket": "REC-401", "status": "Delayed 30d", "feedback": "satisfied", "when": "7/13/2026 09:30 AM", "tone": "yellow" },
+    { "user": "Fabrikam Inc renewal — what to include?", "scenario": "Content aid", "product": "CRM · CRM", "platform": "Web", "confidence": 89, "ticket": "", "status": "Resolution Provided", "feedback": "satisfied", "when": "7/12/2026 04:20 PM", "tone": "green" },
+    { "user": "Northwind Traders new champion — how to warm?", "scenario": "Playbook", "product": "CRM · CRM", "platform": "Web", "confidence": 82, "ticket": "REC-388", "status": "In Progress", "feedback": "—", "when": "7/11/2026 11:15 AM", "tone": "blue" },
+    { "user": "Trey Research — pilot to close plan", "scenario": "Fast-track", "product": "CRM · CRM", "platform": "Web", "confidence": 78, "ticket": "REC-372", "status": "Approved", "feedback": "satisfied", "when": "7/10/2026 02:00 PM", "tone": "gray" }
+  ],
+  "audit": [
+    { "type": "ACTION EXECUTED", "title": "Recommended: delay Contoso Ltd expansion 30d", "who": "AI Agent — Reasoning Engine", "when": "today · 09:30 AM" },
+    { "type": "RECORD VIEWED", "title": "Riley Patel opened Fabrikam Inc renewal proposal", "who": "Riley Patel — AE Lead", "when": "today · 10:00 AM" },
+    { "type": "MEMORY UPDATED", "title": "FR-338 timeline attached to Fabrikam Inc proposal", "who": "Riley Patel", "when": "yesterday · 04:20 PM" },
+    { "type": "WORKFLOW TRIGGERED", "title": "Northwind Traders new-champion warmup workflow", "who": "AI Agent — Workflow Engine", "when": "yesterday · 11:15 AM" },
+    { "type": "ACTION EXECUTED", "title": "Trey Research pilot-to-close plan sent to AE 2", "who": "Riley Patel", "when": "2 days ago" }
+  ],
+  "donut": [
+    { "label": "Delay rec.", "value": 78, "color": "var(--gd-warning)" },
+    { "label": "Content aid", "value": 210, "color": "var(--gd-primary)" },
+    { "label": "Playbook", "value": 240, "color": "var(--gd-info)" },
+    { "label": "Fast-track", "value": 96, "color": "var(--gd-neutral)" }
+  ],
+  "sources": [
+    { "name": "CRM", "pct": 48 },
+    { "name": "Social Signal Sales Nav", "pct": 22 },
+    { "name": "Product Analytics", "pct": 18 },
+    { "name": "Call Analytics", "pct": 12 }
+  ]
+}

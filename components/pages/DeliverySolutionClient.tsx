@@ -2,27 +2,28 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import mockData from '@/data/delivery.json';
 
 export default function DeliverySolutionClient() {
   return (
     <main className="pt-20 relative z-10 bg-black">
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             SOLUTION • DELIVERY
           </p>
-          <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
             <span className="block">DELIVERY.</span>
             <span className="block text-gray">RESCUED.</span>
           </h1>
-          <p className="text-xl text-gray max-w-3xl mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
             Milestone risk surfaced when it forms — not at the steering committee. Every
             slip anchored to a signal. Every rescue coordinated across CSM, Sales, and
             Support.
           </p>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
               Book a demo
             </Button>
           </Link>
@@ -30,16 +31,16 @@ export default function DeliverySolutionClient() {
       </section>
 
       {/* Account A Phase 2 rescue */}
-      <section className="py-32">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             ACCOUNT A PHASE 2 — RESCUE PLAN
           </p>
-          <h2 className="text-5xl font-bold mb-16 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
             Milestone slip spotted 21 days before steering.
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-16 mb-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 mb-8 md:mb-16">
             <div className="space-y-6 text-gray text-lg leading-relaxed">
               <p>
                 <span className="text-white">Account A Phase 2</span> was scoped 8 weeks, kicked
@@ -72,16 +73,7 @@ export default function DeliverySolutionClient() {
             <div className="p-6 border-b border-white/10 bg-white/5">
               <p className="text-xs text-gray uppercase tracking-wider">Rescue timeline</p>
             </div>
-            {[
-              { d: '2026-06-10', e: 'wl_delivery_slip fires. Signals: 2 P1s + resource 138% + CSM sentiment down' },
-              { d: '2026-06-10', e: 'Recommendation rec_delivery_009 drafted. Auto-approved (delivery director policy)' },
-              { d: '2026-06-11', e: 'Workflow: reassign Consultant 1 from Account I green project, coordinate with Account I CSM' },
-              { d: '2026-06-11', e: 'Workflow: escalate P1s to engineering, hotfix path negotiated' },
-              { d: '2026-06-12', e: 'CSM Persona 1 opens re-baseline conversation with Account A PMO' },
-              { d: '2026-06-14', e: 'New M3 date agreed: 2026-07-09 (8-day slip vs 21-day slip)' },
-              { d: '2026-06-20', e: 'INIT-2104 coordination opens (support-side sync issue merges into initiative)' },
-              { d: '2026-07-09', e: 'M3 UAT sign-off ✓' },
-            ].map((row) => (
+            {mockData.rescueTimeline.map((row) => (
               <div key={row.d} className="p-4 border-b border-white/10 grid grid-cols-12 gap-4 text-sm">
                 <span className="col-span-2 text-gray font-mono">{row.d}</span>
                 <span className="col-span-10 text-white">{row.e}</span>
@@ -92,26 +84,17 @@ export default function DeliverySolutionClient() {
       </section>
 
       {/* Portfolio */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             PORTFOLIO VIEW
           </p>
-          <h2 className="text-5xl font-bold mb-16 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
             Every project. Every milestone. One dashboard.
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { p: 'Account A Phase 2', m: 'M3 UAT', s: '2026-07-09', h: 'At risk', c: 'watchlist active' },
-              { p: 'Account B Rollout', m: 'M2 Data migration', s: '2026-08-15', h: 'On track', c: 'clean' },
-              { p: 'Account H Pilot', m: 'Go-live', s: '2026-07-22', h: 'At risk', c: '4 P1 tickets open' },
-              { p: 'Account I Expansion', m: 'M1 Discovery', s: '2026-09-01', h: 'On track', c: 'clean' },
-              { p: 'Account G Onboarding', m: 'Kickoff', s: '2026-07-20', h: 'On track', c: 'new logo' },
-              { p: 'Account J Phase 3', m: 'M4 Training', s: '2026-07-30', h: 'At risk', c: 'trainer conflict' },
-              { p: 'Account K Rescue', m: 'Recovery', s: '2026-08-30', h: 'Blue', c: 'ex-red · recovering' },
-              { p: 'Account L Upgrade', m: 'M2 Config', s: '2026-08-05', h: 'On track', c: 'clean' },
-            ].map((x) => (
-              <div key={x.p} className="border border-white/10 rounded-lg p-6">
+            {mockData.portfolio.map((x) => (
+              <div key={x.p} className="border border-white/10 rounded-lg p-5 md:p-6">
                 <p className="text-xs text-gray uppercase tracking-wider mb-1">Project</p>
                 <h3 className="text-lg font-bold mb-4">{x.p}</h3>
                 <p className="text-sm text-white mb-1">{x.m}</p>
@@ -126,13 +109,13 @@ export default function DeliverySolutionClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             Never learn about a slip at steering again.
           </h2>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-10 py-4">
+            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-10 sm:py-4 w-full sm:w-auto">
               Book a demo
             </Button>
           </Link>

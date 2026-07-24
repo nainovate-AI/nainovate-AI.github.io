@@ -1,0 +1,24 @@
+{
+  "integrationCategories": {
+    "crm": {
+      "title": "CRM & Sales",
+      "count": "25+",
+      "examples": ["Salesforce", "HubSpot", "Microsoft Dynamics", "Oracle CX", "SAP Sales Cloud", "Zoho CRM"]
+    },
+    "productivity": {
+      "title": "Productivity & Collaboration",
+      "count": "30+",
+      "examples": ["Microsoft 365", "Google Workspace", "Slack", "Teams", "Jira", "Asana"]
+    },
+    "data": {
+      "title": "Databases & Storage",
+      "count": "20+",
+      "examples": ["PostgreSQL", "MongoDB", "MySQL", "Oracle DB", "Redis", "Snowflake"]
+    },
+    "cloud": {
+      "title": "Cloud & Infrastructure",
+      "count": "25+",
+      "examples": ["AWS", "Azure", "Google Cloud", "IBM Cloud", "Oracle Cloud", "DigitalOcean"]
+    }
+  }
+}

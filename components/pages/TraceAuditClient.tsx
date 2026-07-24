@@ -8,16 +8,16 @@ export default function TraceAuditClient() {
     <main className="pt-20 relative z-10 bg-black">
       {/* Hero */}
       <section className="min-h-[70vh] flex items-center border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             PILLAR 03 • TRACE &amp; AUDIT
           </p>
-          <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
             <span className="block">ZERO</span>
             <span className="block text-gray">BLACK</span>
             <span className="block">BOX.</span>
           </h1>
-          <p className="text-xl text-gray max-w-3xl mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
             Every AI decision — every reply, every escalation, every watchlist trigger —
             logged with agent confidence, weighted signals, and evidence rows. Legal-audit
             ready. Regulator-ready. Compliance-team-happy.
@@ -26,19 +26,19 @@ export default function TraceAuditClient() {
       </section>
 
       {/* Trace record */}
-      <section className="py-32">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             TRACE trace_acme_p0_2104
           </p>
-          <h2 className="text-5xl font-bold mb-16 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
             Open a trace. See the whole decision.
           </h2>
 
           {/* Trace header card */}
-          <div className="border border-white/10 rounded-lg overflow-hidden mb-12">
-            <div className="p-8 border-b border-white/10 bg-white/5">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="border border-white/10 rounded-lg overflow-hidden mb-6 md:mb-12">
+            <div className="p-5 md:p-8 border-b border-white/10 bg-white/5">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <div>
                   <p className="text-xs text-gray uppercase tracking-wider mb-2">Trace ID</p>
                   <p className="text-white font-mono">trace_acme_p0_2104</p>
@@ -57,7 +57,7 @@ export default function TraceAuditClient() {
                 </div>
               </div>
             </div>
-            <div className="p-8">
+            <div className="p-5 md:p-8">
               <p className="text-xs text-gray uppercase tracking-wider mb-4">Decision summary</p>
               <p className="text-white text-lg leading-relaxed">
                 Auto-escalate FD-2104 to P0. Create ENG-4412 assigned to Consultant 1.
@@ -68,8 +68,8 @@ export default function TraceAuditClient() {
           </div>
 
           {/* Weighted signals */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            <div className="border border-white/10 rounded-lg p-8">
+          <div className="grid lg:grid-cols-2 gap-8 mb-6 md:mb-12">
+            <div className="border border-white/10 rounded-lg p-5 md:p-8">
               <p className="text-xs text-gray uppercase tracking-wider mb-6">Weighted signals</p>
               <div className="space-y-4">
                 {[
@@ -95,7 +95,7 @@ export default function TraceAuditClient() {
               </div>
             </div>
 
-            <div className="border border-white/10 rounded-lg p-8">
+            <div className="border border-white/10 rounded-lg p-5 md:p-8">
               <p className="text-xs text-gray uppercase tracking-wider mb-6">Evidence rows</p>
               <div className="space-y-3 text-sm">
                 {[
@@ -142,12 +142,12 @@ export default function TraceAuditClient() {
       </section>
 
       {/* Why it matters */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             WHY IT MATTERS
           </p>
-          <h2 className="text-5xl font-bold mb-16 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
             Explainability is not a feature. It is the contract.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -156,8 +156,8 @@ export default function TraceAuditClient() {
               { h: 'Governance boards', p: 'Prompt versions, model versions, decision policies — all versioned and diffable.' },
               { h: 'Customer trust', p: 'When customers ask why the AI did that — you have the receipts, with citations.' },
             ].map((c) => (
-              <div key={c.h} className="border border-white/10 rounded-lg p-8">
-                <h3 className="text-xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: c.h }} />
+              <div key={c.h} className="border border-white/10 rounded-lg p-5 md:p-8">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: c.h }} />
                 <p className="text-gray text-sm leading-relaxed">{c.p}</p>
               </div>
             ))}
@@ -166,19 +166,19 @@ export default function TraceAuditClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             One ticket triggered four teams. See how they land.
           </h2>
-          <div className="flex gap-8 justify-center flex-wrap">
-            <Link href="/decision-intelligence/coordination">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-10 py-4">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
+            <Link href="/decision-intelligence/coordination" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10">
                 Coordination Center →
               </Button>
             </Link>
-            <Link href="/decision-intelligence">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-10 py-4">
+            <Link href="/decision-intelligence" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10">
                 Back to overview
               </Button>
             </Link>

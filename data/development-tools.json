@@ -1,0 +1,166 @@
+{
+  "coreCapabilities": [
+    {
+      "title": "Visual Workflow Builder",
+      "description": "Drag-and-drop interface with pre-built templates"
+    },
+    {
+      "title": "Developer SDKs",
+      "description": "Python, JavaScript, and REST APIs"
+    },
+    {
+      "title": "Debugging & Testing",
+      "description": "Real-time tracing and integrated testing tools"
+    },
+    {
+      "title": "Deployment Automation",
+      "description": "One-click deployment with version control"
+    }
+  ],
+  "detailedSections": [
+    {
+      "heading": "Visual No-Code Builder",
+      "description": "Empower business users to build sophisticated AI workflows without writing a single line of code. Drag, drop, and deploy.",
+      "accentColor": "blue",
+      "features": [
+        {
+          "title": "Drag-and-Drop Canvas",
+          "description": "Build AI workflows visually by connecting agents, tools, and integrations with visual blocks. Real-time preview of agent behavior with instant validation and error detection."
+        },
+        {
+          "title": "75+ Pre-Built Templates",
+          "description": "Industry-specific workflow templates for HR, Finance, and Operations. Use case accelerators for Document Processing, Customer Service, and Analytics with customizable starting points."
+        },
+        {
+          "title": "Business User Empowerment",
+          "description": "Enable non-technical teams to build AI solutions with role-based access controls for safe experimentation. Approval workflows for production deployment with training programs available."
+        }
+      ]
+    },
+    {
+      "heading": "Comprehensive SDKs",
+      "description": "Full-featured SDKs for professional developers. Write custom logic, extend platform capabilities, and integrate with your existing tech stack.",
+      "accentColor": "green",
+      "features": [
+        {
+          "title": "Multi-Language Support",
+          "description": "Python SDK for ML/AI developers with full-featured capabilities. JavaScript SDK for browser and Node.js. REST APIs for language-agnostic integration with complete documentation."
+        },
+        {
+          "title": "Custom Function Development",
+          "description": "Write custom logic in Python or JavaScript that executes within agent workflows seamlessly. Access platform services and data. Package and reuse across multiple agents."
+        },
+        {
+          "title": "Open Standards & Extensibility",
+          "description": "Agent Protocol for multi-agent communication. Standard interfaces for tools and memory. Plugin architecture for extending capabilities with community-contributed extensions."
+        }
+      ]
+    },
+    {
+      "heading": "Integrated Testing & Debugging",
+      "description": "Monitor, troubleshoot, and optimize AI agents across their entire lifecycle. Built-in tools for testing, debugging, and performance analysis.",
+      "accentColor": "purple",
+      "features": [
+        {
+          "title": "End-to-End Agent Tracing",
+          "description": "View complete execution flow from input to output. Track agent decisions and tool usage. Identify bottlenecks and failures quickly with performance metrics at every step."
+        },
+        {
+          "title": "Interactive Debugging",
+          "description": "Set breakpoints in visual workflows and inspect variables with agent state visibility. Step through execution logic with hot-reload for rapid iteration."
+        },
+        {
+          "title": "Automated Testing Framework",
+          "description": "Create test scenarios for agent behaviors with regression testing for production changes. Load testing for scale validation and CI/CD pipeline integration."
+        }
+      ]
+    },
+    {
+      "heading": "Deployment & Lifecycle Management",
+      "description": "Deploy instantly with confidence. Built-in version control, automated rollback, and comprehensive monitoring for production AI agents.",
+      "accentColor": "orange",
+      "features": [
+        {
+          "title": "One-Click Deployment",
+          "description": "Deploy from development to production instantly with environment-specific configurations. Blue-green deployment for zero downtime with automatic scaling based on load."
+        },
+        {
+          "title": "Version Control & Rollback",
+          "description": "Git integration for workflow versioning. Compare versions side-by-side with instant rollback to previous versions. Complete audit trail of all changes."
+        },
+        {
+          "title": "Lifecycle Monitoring",
+          "description": "Real-time performance dashboards with usage analytics and cost tracking. Automated alerts for issues with health checks and uptime monitoring."
+        }
+      ]
+    }
+  ],
+  "governanceItems": [
+    {
+      "title": "Secure by Design",
+      "description": "Sandboxed environments with automatic security scanning"
+    },
+    {
+      "title": "Quality Gates",
+      "description": "Mandatory testing with performance benchmarks enforced"
+    },
+    {
+      "title": "Best Practices Enforced",
+      "description": "Linting, code standards, and documentation requirements"
+    }
+  ],
+  "developmentPaths": [
+    {
+      "title": "No-Code Path",
+      "steps": [
+        "1. Choose template",
+        "2. Customize visually",
+        "3. Test",
+        "4. Deploy"
+      ],
+      "time": "Time: 2-5 days"
+    },
+    {
+      "title": "Pro-Code Path",
+      "steps": [
+        "1. Install SDK",
+        "2. Write code",
+        "3. Test locally",
+        "4. Deploy via API"
+      ],
+      "time": "Time: 1-3 days"
+    },
+    {
+      "title": "Hybrid Path",
+      "steps": [
+        "1. Build workflow visually",
+        "2. Add custom code nodes",
+        "3. Test",
+        "4. Deploy"
+      ],
+      "time": "Time: 2-4 days"
+    }
+  ],
+  "platformFeatures": [
+    {
+      "title": "AI Engineering Tools",
+      "description": "Build and test AI agents",
+      "href": "/platform/ai-engineering-tools"
+    },
+    {
+      "title": "Search + Data AI",
+      "description": "Vector search and data preparation",
+      "href": "/platform/search-data-ai"
+    },
+    {
+      "title": "Security + Governance",
+      "description": "Enterprise-grade security",
+      "href": "/platform/security-governance"
+    },
+    {
+      "title": "Integrations",
+      "description": "100+ pre-built connectors",
+      "href": "/platform/integrations"
+    }
+  ]
+}

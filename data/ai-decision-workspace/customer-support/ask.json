@@ -1,0 +1,98 @@
+{
+  "seed": {
+    "question": "Which tickets need my attention right now?",
+    "timestamp": "11:47 AM",
+    "direct": {
+      "headline": "4 P0/P1 tickets are active; 2 are at SLA risk in the next hour.",
+      "sub": "Contoso Ltd FD-2104 is the most urgent. Auto-escalation ready."
+    },
+    "insights": [
+      { "label": "Open P0/P1", "value": "4", "delta": "↑ 1 vs last 7 days" },
+      { "label": "SLA at risk", "value": "2", "delta": "↑ 1 vs last 7 days" },
+      { "label": "Avg MTTR", "value": "4.1h", "delta": "↓ 4.3h vs last 30 days" },
+      { "label": "AI deflection", "value": "41%", "delta": "↑ 6% vs last 30 days" }
+    ],
+    "table": [
+      { "code": "NI", "name": "Contoso Ltd — FD-2104", "health": 35, "risk": "P0", "arr": "$450K acct", "factors": ["sync hang", "novelty 0.87"], "owner": "Consultant 1" },
+      { "code": "CL", "name": "Fabrikam Inc — FD-2112", "health": 45, "risk": "P1 Reopen", "arr": "$320K acct", "factors": ["export bug"], "owner": "Jordan Chen" },
+      { "code": "FM", "name": "Adventure Works — FD-2108", "health": 58, "risk": "P2", "arr": "$230K acct", "factors": ["PDF layout"], "owner": "Jordan Chen" },
+      { "code": "TT", "name": "Wingtip Toys — FD-2115", "health": 62, "risk": "P2", "arr": "$280K acct", "factors": ["login flow"], "owner": "Consultant 2" },
+      { "code": "IL", "name": "Proseware Systems — FD-2105", "health": 42, "risk": "P1", "arr": "$310K acct", "factors": ["vendor API"], "owner": "Consultant 1" }
+    ],
+    "reasoning": {
+      "summary": "Ranked by SLA urgency, priority, ticket age, and customer health signals.",
+      "factors": ["SLA remaining", "Priority", "Reopen count", "Account health", "Novelty score"]
+    },
+    "followups": ["Show me the FD-2104 details", "What deflection was possible?", "Route to L2", "Draft KB article for FD-2112"],
+    "keyInsightsRail": [
+      { "icon": "⚠", "label": "Open P0/P1", "value": "4", "delta": "↑ 1 vs last 7 days" },
+      { "icon": "◷", "label": "SLA at risk", "value": "2", "delta": "↑ 1 vs last 7 days" },
+      { "icon": "⇗", "label": "Avg MTTR", "value": "4.1h", "delta": "↓ 4.3h vs last 30 days" },
+      { "icon": "$", "label": "AI deflection", "value": "41%", "delta": "↑ 6% vs last 30 days" }
+    ],
+    "recommendedActions": [
+      { "title": "Escalate FD-2104 to sync module owner", "sub": "Novelty 0.87 + no KB match. Auto-approve per policy.", "priority": "high" },
+      { "title": "Notify CSM Alex Morgan (Contoso Ltd)", "sub": "Health score at 35. Customer briefing needed.", "priority": "high" },
+      { "title": "Draft KB article for reopen pattern", "sub": "3 similar reopens in 30d. Content gap identified.", "priority": "medium" }
+    ]
+  },
+  "bank": [
+    {
+      "question": "Show me FD-2104 details",
+      "direct": {
+        "headline": "FD-2104: Contoso Ltd Product X sync hang, P0, novelty 0.87.",
+        "sub": "No KB match. Auto-escalated to sync module owner (Consultant 1). Trace: trace_acme_p0_2104."
+      },
+      "bullets": [
+        "Customer: End User · Contoso Ltd",
+        "Started: 05:45 AM — sync hangs at 87%, 12MB stuck",
+        "Confidence: 0.87 novelty · 0.91 escalation confidence",
+        "Actions: Issue Tracker ENG-4412 opened, Alex Morgan (CSM) notified, portal banner up, KB draft queued",
+        "Total workflow time: 1.42s"
+      ],
+      "followups": ["Show me the full trace", "What deflection was possible?", "Route to L2"]
+    },
+    {
+      "question": "What tickets can we deflect?",
+      "direct": {
+        "headline": "41% of L1 volume is deflectable this week — 12 KB matches + 3 known incidents.",
+        "sub": "Top deflection candidates: PDF export, login issues, Product X sync FAQ."
+      },
+      "bullets": [
+        "Docs-solution deflection: 42% (last 7d)",
+        "Known-issue deflection: 34%",
+        "Feature-request routing: 100% (10 items)",
+        "Reopen prevention: 3 patterns identified for KB"
+      ],
+      "followups": ["Which product needs a KB update?", "Show reopen patterns", "Show me FD-2104 details"]
+    },
+    {
+      "question": "Show me reopen patterns",
+      "direct": {
+        "headline": "3 reopen patterns identified in the last 30 days — all fixable via KB updates.",
+        "sub": "Product X sync reopens (3), export layout reopens (2), login flow reopens (2)."
+      },
+      "bullets": [
+        "Pattern 1: Product X sync — 3 reopens, KB gap",
+        "Pattern 2: PDF export layout — 2 reopens, workaround exists",
+        "Pattern 3: Login flow SSO — 2 reopens, config issue",
+        "Recommended: draft 3 KB articles, notify affected accounts"
+      ],
+      "followups": ["Draft KB article for FD-2112", "Which product needs a KB update?", "What tickets can we deflect?"]
+    },
+    {
+      "question": "Which product needs a KB update?",
+      "direct": {
+        "headline": "Product X has the highest KB gap — 3 reopen patterns + 1 novel escalation this week.",
+        "sub": "Recommend prioritizing Product X Sync + Export documentation refresh."
+      },
+      "bullets": [
+        "Product X: 3 KB gaps, 8 similar tickets",
+        "Product Y: 1 KB gap, 2 similar tickets",
+        "Product Z: no gaps this week",
+        "Owner suggestion: Jordan Chen + Consultant 1"
+      ],
+      "followups": ["Show reopen patterns", "Draft KB article for FD-2112", "What tickets can we deflect?"]
+    }
+  ]
+}

@@ -2,26 +2,27 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import mockData from '@/data/sales.json';
 
 export default function SalesSolutionClient() {
   return (
     <main className="pt-20 relative z-10 bg-black">
       {/* Hero */}
       <section className="min-h-[80vh] flex items-center border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             SOLUTION • SALES
           </p>
-          <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
             <span className="block">PIPELINE.</span>
             <span className="block text-gray">HONEST.</span>
           </h1>
-          <p className="text-xl text-gray max-w-3xl mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
             Sales sees the same signals CS and Support see. Renewal risk, deployment
             health, support escalations — before pitching expansion into a broken account.
           </p>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
               Book a demo
             </Button>
           </Link>
@@ -29,12 +30,12 @@ export default function SalesSolutionClient() {
       </section>
 
       {/* Pipeline */}
-      <section className="py-32">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             PIPELINE VIEW — Q3 2026
           </p>
-          <h2 className="text-5xl font-bold mb-16 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
             Every deal, in context.
           </h2>
 
@@ -47,53 +48,7 @@ export default function SalesSolutionClient() {
               <span className="col-span-2">Active signals</span>
               <span className="col-span-2">Nia recommendation</span>
             </div>
-            {[
-              {
-                account: 'Account A',
-                deal: 'Expansion — 200 seats',
-                stage: 'Prop sent',
-                arr: '$480k',
-                health: 35,
-                signals: 'FD-2104 P0, INIT-2104',
-                rec: 'Delay 30d. Fix trust first.',
-              },
-              {
-                account: 'Account B Systems',
-                deal: 'Renewal',
-                stage: 'Negotiation',
-                arr: '$820k',
-                health: 68,
-                signals: 'FR-338 open',
-                rec: 'Include FR-338 timeline in renewal.',
-              },
-              {
-                account: 'Account H',
-                deal: 'Expansion — new module',
-                stage: 'Discovery',
-                arr: '$310k',
-                health: 42,
-                signals: 'Delivery slip, 4 P1s',
-                rec: 'Pause. Delivery-first play.',
-              },
-              {
-                account: 'Account I',
-                deal: 'Renewal',
-                stage: 'Discovery',
-                arr: '$540k',
-                health: 62,
-                signals: 'Champion left',
-                rec: 'Warm new champion. Executive-level QBR.',
-              },
-              {
-                account: 'Account G',
-                deal: 'New logo',
-                stage: 'Prop sent',
-                arr: '$720k',
-                health: '—',
-                signals: 'Pilot success',
-                rec: 'Fast-track. Reference from Account A (post-fix).',
-              },
-            ].map((r) => (
+            {mockData.pipeline.map((r) => (
               <div key={r.account} className="grid grid-cols-12 p-4 border-b border-white/10 text-sm items-center">
                 <div className="col-span-3">
                   <p className="text-white">{r.account}</p>
@@ -125,17 +80,17 @@ export default function SalesSolutionClient() {
       </section>
 
       {/* Rep view */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
             REP BRIEFING
           </p>
-          <h2 className="text-5xl font-bold mb-16 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
             Every meeting starts with the full picture.
           </h2>
-          <div className="border border-white/10 rounded-lg p-8">
+          <div className="border border-white/10 rounded-lg p-5 md:p-8">
             <p className="text-xs text-gray uppercase tracking-wider mb-4">10:00 — Account A expansion call</p>
-            <h3 className="text-2xl font-bold mb-6">Ana (rep), End User (buyer), Persona 1 (CSM)</h3>
+            <h3 className="text-xl md:text-2xl font-bold mb-6">Ana (rep), End User (buyer), Persona 1 (CSM)</h3>
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-xs text-gray uppercase tracking-wider mb-3">Before the call — Nia briefing</p>
@@ -161,13 +116,13 @@ export default function SalesSolutionClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             Stop pitching expansion into broken deployments.
           </h2>
           <Link href="/contact">
-            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-10 py-4">
+            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-10 sm:py-4 w-full sm:w-auto">
               Book a demo
             </Button>
           </Link>

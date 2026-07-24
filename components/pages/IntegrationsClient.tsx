@@ -7,60 +7,40 @@ import Link from 'next/link';
 import {EnterpriseSystemMockup } from '../mockups/EnterpriseSystemMockup';
 import {APIManagementMockup } from '../mockups/APIManagementMockup';
 import {CustomIntegrationMockup } from '../mockups/CustomIntegrationMockup';
+import mockData from '@/data/integrations.json';
 
 export default function IntegrationsClient() {
   const [activeCategory, setActiveCategory] = useState<'crm' | 'productivity' | 'data' | 'cloud'>('crm');
 
-  const integrationCategories = {
-    crm: {
-      title: 'CRM & Sales',
-      count: '25+',
-      examples: ['Salesforce', 'HubSpot', 'Microsoft Dynamics', 'Oracle CX', 'SAP Sales Cloud', 'Zoho CRM']
-    },
-    productivity: {
-      title: 'Productivity & Collaboration',
-      count: '30+',
-      examples: ['Microsoft 365', 'Google Workspace', 'Slack', 'Teams', 'Jira', 'Asana']
-    },
-    data: {
-      title: 'Databases & Storage',
-      count: '20+',
-      examples: ['PostgreSQL', 'MongoDB', 'MySQL', 'Oracle DB', 'Redis', 'Snowflake']
-    },
-    cloud: {
-      title: 'Cloud & Infrastructure',
-      count: '25+',
-      examples: ['AWS', 'Azure', 'Google Cloud', 'IBM Cloud', 'Oracle Cloud', 'DigitalOcean']
-    }
-  };
+  const integrationCategories = mockData.integrationCategories;
 
   return (
     <main className="bg-black min-h-screen text-white">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-8">
+      <section className="pt-16 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-[1400px] mx-auto">
           <AnimatedSection>
             <div className="mb-6">
               <span className="text-gray-400 uppercase tracking-[0.2em] text-sm">GenX Platform / Integrations</span>
             </div>
 
-            <h1 className="text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
               100+ PRE-BUILT<br />
               INTEGRATIONS
             </h1>
 
-            <p className="text-xl text-gray-300 max-w-3xl mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mb-6 md:mb-12">
               Connect AI agents to your entire tech stack instantly. Pre-built connectors for CRM,
               ERP, databases, cloud services, and more. Plus custom integration framework for anything else.
             </p>
 
-            <div className="flex gap-6 flex-wrap">
-              <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 flex-wrap">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                   Explore Integrations
                 </Button>
               </Link>
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                 View Integration Docs
               </Button>
             </div>
@@ -69,10 +49,10 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Core Capabilities Overview */}
-      <section className="py-20 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-12 md:py-20 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-16">INTEGRATION CAPABILITIES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">INTEGRATION CAPABILITIES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -128,15 +108,15 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 1: Pre-Built Connectors */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Content */}
             <AnimatedSection>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-5xl font-bold mb-6">100+ Pre-Built Enterprise Connectors</h2>
-                  <p className="text-xl text-gray-300">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">100+ Pre-Built Enterprise Connectors</h2>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300">
                     Connect to your existing systems in minutes, not months. Every major enterprise
                     platform is supported with authentication, data mapping, and error handling built-in.
                   </p>
@@ -199,7 +179,7 @@ export default function IntegrationsClient() {
             {/* Right: Integration Categories Selector */}
             <AnimatedSection delay={0.2}>
               <div className="relative">
-                <div className="border border-white/10 rounded-lg p-8 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
+                <div className="border border-white/10 rounded-lg p-5 md:p-8 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
                   {/* Category Tabs */}
                   <div className="grid grid-cols-2 gap-2 mb-8">
                     {Object.entries(integrationCategories).map(([key, cat]) => (
@@ -238,9 +218,9 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 2: Custom Integration Framework (Reversed Layout) */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Visual */}
             <div><CustomIntegrationMockup /></div>
 
@@ -248,8 +228,8 @@ export default function IntegrationsClient() {
             <AnimatedSection delay={0.2}>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-5xl font-bold mb-6">Custom Integration Framework</h2>
-                  <p className="text-xl text-gray-300">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Custom Integration Framework</h2>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300">
                     Build custom connectors for proprietary systems or niche applications. Visual API
                     builder with support for any protocol, authentication method, and data format.
                   </p>
@@ -313,15 +293,15 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 3: API Management & Orchestration */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Content */}
             <AnimatedSection>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-5xl font-bold mb-6">API Management & Orchestration</h2>
-                  <p className="text-xl text-gray-300">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">API Management & Orchestration</h2>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300">
                     Manage API keys, monitor usage, handle rate limits, and orchestrate complex
                     multi-system workflows from a single control plane.
                   </p>
@@ -388,9 +368,9 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 4: Enterprise System Support (Reversed Layout) */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Visual */}
             <div><EnterpriseSystemMockup /></div>
 
@@ -398,8 +378,8 @@ export default function IntegrationsClient() {
             <AnimatedSection delay={0.2}>
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-5xl font-bold mb-6">Enterprise System Support</h2>
-                  <p className="text-xl text-gray-300">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Enterprise System Support</h2>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-300">
                     Connect to legacy systems, on-premises infrastructure, and modern cloud services.
                     Support for any deployment model with enterprise-grade security.
                   </p>
@@ -463,17 +443,17 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Built with AI CoE Governance */}
-      <section className="py-32 border-t border-white/10 bg-white/[0.02]">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
+      <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.02]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
-            <div className="mb-12">
+            <div className="mb-6 md:mb-12">
               <svg className="w-16 h-16 mx-auto mb-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
-              <h2 className="text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
             </div>
 
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-16">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 md:mb-16">
               Every integration respects AI CoE governance policies. Data access controls,
               audit trails, and compliance validation are enforced automatically.
             </p>
@@ -514,21 +494,21 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Integration Categories Grid */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-16">INTEGRATION CATEGORIES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">INTEGRATION CATEGORIES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <AnimatedSection delay={0.1}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+              <div className="p-5 md:p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold mb-2">CRM & Sales</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">CRM & Sales</h3>
                 <p className="text-sm text-gray-400 mb-4">25+ connectors</p>
                 <div className="space-y-2 text-sm text-gray-500">
                   <p>• Salesforce</p>
@@ -540,13 +520,13 @@ export default function IntegrationsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+              <div className="p-5 md:p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold mb-2">ERP & Finance</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">ERP & Finance</h3>
                 <p className="text-sm text-gray-400 mb-4">20+ connectors</p>
                 <div className="space-y-2 text-sm text-gray-500">
                   <p>• SAP</p>
@@ -558,13 +538,13 @@ export default function IntegrationsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+              <div className="p-5 md:p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Communication</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Communication</h3>
                 <p className="text-sm text-gray-400 mb-4">15+ connectors</p>
                 <div className="space-y-2 text-sm text-gray-500">
                   <p>• Slack</p>
@@ -576,13 +556,13 @@ export default function IntegrationsClient() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.4}>
-              <div className="p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+              <div className="p-5 md:p-8 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
                 <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Cloud Platforms</h3>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Cloud Platforms</h3>
                 <p className="text-sm text-gray-400 mb-4">25+ connectors</p>
                 <div className="space-y-2 text-sm text-gray-500">
                   <p>• AWS</p>
@@ -597,10 +577,10 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Platform Features Grid */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-4xl font-bold text-center mb-16">EXPLORE MORE PLATFORM FEATURES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">EXPLORE MORE PLATFORM FEATURES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -664,18 +644,18 @@ export default function IntegrationsClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[800px] mx-auto px-8 text-center">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
-            <h2 className="text-5xl font-bold mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
               CONNECT YOUR ENTIRE STACK
             </h2>
-            <p className="text-xl text-gray-300 mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-12">
               100+ pre-built connectors plus custom integration framework. Connect any system, any protocol, any cloud.
             </p>
-            <div className="flex gap-6 justify-center flex-wrap">
-              <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4 text-lg">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center flex-wrap">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 text-lg">
                   Explore Integrations
                 </Button>
               </Link>

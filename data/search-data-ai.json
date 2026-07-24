@@ -1,0 +1,148 @@
+{
+  "coreCapabilities": [
+    {
+      "title": "Enterprise Search",
+      "description": "Natural language queries across all systems",
+      "iconPath": "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    },
+    {
+      "title": "Universal Connectors",
+      "description": "100+ pre-built integrations",
+      "iconPath": "M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+    },
+    {
+      "title": "Data Processing",
+      "description": "AI-powered extraction and indexing",
+      "iconPath": "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+    },
+    {
+      "title": "RAG Pipelines",
+      "description": "Custom retrieval strategies",
+      "iconPath": "M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+    }
+  ],
+  "detailSections": [
+    {
+      "id": "enterprise-search",
+      "title": "Enterprise Search Engine",
+      "description": "Ask questions in natural language. Get accurate answers grounded in your enterprise data. No more keyword searches or buried documents.",
+      "mockup": "EnterpriseSearchMockup",
+      "visualPosition": "right",
+      "accentBg": "bg-blue-500/20",
+      "accentText": "text-blue-400",
+      "features": [
+        {
+          "title": "Natural Language Queries",
+          "description": "Ask questions like you would to a colleague. The AI understands context, intent, and follows up with clarifications automatically."
+        },
+        {
+          "title": "Real-Time Data Retrieval",
+          "description": "Search across live systems. Get up-to-date information from CRM, ERP, databases, and cloud storage in milliseconds."
+        },
+        {
+          "title": "Contextual Answer Generation",
+          "description": "Not just links—get synthesized answers with citations, summaries, and actionable insights pulled from multiple sources."
+        }
+      ]
+    },
+    {
+      "id": "universal-connectors",
+      "title": "Universal Connectors",
+      "description": "Connect to any enterprise system. 100+ pre-built integrations with CRM, ERP, databases, cloud storage, and communication platforms.",
+      "mockup": "UniversalConnectorsMockup",
+      "visualPosition": "left",
+      "sectionBg": "bg-white/[0.02]",
+      "accentBg": "bg-green-500/20",
+      "accentText": "text-green-400",
+      "features": [
+        {
+          "title": "Plug-and-Play Integration",
+          "description": "Pre-built connectors for Salesforce, SAP, Microsoft 365, ServiceNow, Slack, and 100+ more. Deploy in minutes, not months."
+        },
+        {
+          "title": "Real-Time Data Sync",
+          "description": "Bi-directional sync keeps your data fresh. Changes in connected systems reflect instantly in search results."
+        },
+        {
+          "title": "Custom Connector SDK",
+          "description": "Need a proprietary system? Build custom connectors with our SDK. Full control over data mapping and transformation."
+        }
+      ]
+    },
+    {
+      "id": "intelligent-data-processing",
+      "title": "Intelligent Data Processing",
+      "description": "Automatic document parsing, smart chunking, and multi-modal extraction. Turn unstructured data into searchable, actionable knowledge.",
+      "mockup": "IntelligentDataProcessingMockup",
+      "visualPosition": "right",
+      "accentBg": "bg-purple-500/20",
+      "accentText": "text-purple-400",
+      "features": [
+        {
+          "title": "Automatic Document Parsing",
+          "description": "PDFs, Word docs, spreadsheets, presentations—automatically extracted and indexed. Text, tables, images, all searchable."
+        },
+        {
+          "title": "Smart Chunking & Segmentation",
+          "description": "AI-powered document segmentation preserves context. Paragraphs, sections, chapters—chunked intelligently for optimal retrieval."
+        },
+        {
+          "title": "Multi-Modal Extraction",
+          "description": "Extract meaning from images, charts, diagrams. Vision models understand visual content and make it searchable."
+        }
+      ]
+    }
+  ],
+  "governancePillars": [
+    {
+      "title": "Complete Audit Trails",
+      "description": "Every query and data access logged for compliance",
+      "iconPath": "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+    },
+    {
+      "title": "Permission-Aware Search",
+      "description": "Only returns results users have access to",
+      "iconPath": "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+    },
+    {
+      "title": "Compliance Built-In",
+      "description": "SOC2, GDPR, HIPAA compliance out of the box",
+      "iconPath": "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+    }
+  ],
+  "platformFeatures": [
+    {
+      "title": "AI Engineering Tools",
+      "description": "Build and optimize AI agents",
+      "href": "/platform/ai-engineering-tools",
+      "iconPaths": [
+        "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",
+        "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+      ]
+    },
+    {
+      "title": "Security + Governance",
+      "description": "Enterprise-grade security",
+      "href": "/platform/security-governance",
+      "iconPaths": [
+        "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+      ]
+    },
+    {
+      "title": "Development Tools",
+      "description": "No-code and pro-code options",
+      "href": "/platform/development-tools",
+      "iconPaths": [
+        "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+      ]
+    },
+    {
+      "title": "Integrations",
+      "description": "100+ pre-built connectors",
+      "href": "/platform/integrations",
+      "iconPaths": [
+        "M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"
+      ]
+    }
+  ]
+}

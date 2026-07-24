@@ -1,0 +1,23 @@
+{
+  "kpis": [
+    { "label": "Q3 pipeline", "value": "$2.9M", "delta": "↑ 12% vs Q2", "tone": "up" },
+    { "label": "Weighted", "value": "$1.7M", "delta": "↑ 8%", "tone": "up" },
+    { "label": "Deals in flight", "value": "5", "delta": "↑ 1 vs last 30d", "tone": "up" },
+    { "label": "At-risk deals", "value": "2", "delta": "↑ 1", "tone": "down" },
+    { "label": "Win rate", "value": "38%", "delta": "↑ 4 pts", "tone": "up" },
+    { "label": "Avg deal cycle", "value": "58d", "delta": "↓ 4d", "tone": "up" }
+  ],
+  "distribution": [
+    { "label": "Won", "value": 22, "count": 12, "color": "var(--gd-success)" },
+    { "label": "Prop sent", "value": 30, "count": 16, "color": "var(--gd-primary)" },
+    { "label": "Discovery", "value": 34, "count": 18, "color": "var(--gd-warning)" },
+    { "label": "Lost", "value": 14, "count": 8, "color": "var(--gd-danger)" }
+  ],
+  "atRisk": [
+    { "code": "NI", "name": "Contoso Ltd", "health": 35, "risk": "$480K deal", "trend": "down" },
+    { "code": "CL", "name": "Fabrikam Inc", "health": 68, "risk": "$820K renewal", "trend": "flat" },
+    { "code": "IL", "name": "Proseware Systems", "health": 42, "risk": "$310K expand", "trend": "down" },
+    { "code": "UG", "name": "Northwind Traders", "health": 62, "risk": "$540K renewal", "trend": "flat" },
+    { "code": "WI", "name": "Trey Research", "health": 78, "risk": "$720K new", "trend": "up" }
+  ]
+}

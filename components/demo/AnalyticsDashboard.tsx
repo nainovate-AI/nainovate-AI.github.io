@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ArrowUp, MessageCircle, X, MoreVertical } from 'lucide-react';
+import dashboardsData from '@/data/ai-decision-workspace/public-sector/building-permits/dashboards.json';
 
 interface ChartWidget {
     id: string;
@@ -18,78 +19,25 @@ interface Message {
     content: string;
 }
 
-// Generate chart based on query - UPDATED WITH GENERIC TERMS
+// Match user query against JSON-configured keyword matchers; return widget or null.
 const getChartForQuery = (query: string): ChartWidget | null => {
     const msg = query.toLowerCase();
     const id = Date.now().toString();
 
-    if (msg.includes('building type') || msg.includes('type') || msg.includes('category')) {
-        return {
-            id,
-            type: 'bar',
-            title: 'Applications by Building Type',
-            labels: ['Residential', 'Commercial', 'Industrial', 'Mixed Use', 'Others'],
-            values: [380, 95, 85, 45, 15],
-            colors: ['#3B82F6', '#3B82F6', '#3B82F6', '#3B82F6', '#3B82F6']
-        };
-    }
+    const match = dashboardsData.matchers.find((m) =>
+        m.keywords.some((k) => msg.includes(k))
+    );
+    if (!match) return null;
 
-    if (msg.includes('zone') || msg.includes('area') || msg.includes('region') || msg.includes('location')) {
-        return {
-            id,
-            type: 'pie',
-            title: 'Applications by Zone',
-            labels: ['Zone A', 'Zone B', 'Zone C', 'Zone D'],
-            values: [4230, 4876, 2150, 1890],
-            colors: ['#F97316', '#3B82F6', '#10B981', '#8B5CF6']
-        };
-    }
-
-    if (msg.includes('monthly') || msg.includes('trend') || msg.includes('over time')) {
-        return {
-            id,
-            type: 'line',
-            title: 'Monthly Application Trends',
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
-            values: [120, 150, 180, 220, 195, 240, 280, 310, 290, 320, 350],
-            colors: ['#3B82F6']
-        };
-    }
-
-    if (msg.includes('approval') || msg.includes('status') || msg.includes('rate')) {
-        return {
-            id,
-            type: 'pie',
-            title: 'Application Status Overview',
-            labels: ['Approved', 'Under Review', 'Rejected', 'Pending'],
-            values: [67, 18, 8, 7],
-            colors: ['#10B981', '#F59E0B', '#EF4444', '#6B7280']
-        };
-    }
-
-    if (msg.includes('department') || msg.includes('team') || msg.includes('handled by')) {
-        return {
-            id,
-            type: 'bar',
-            title: 'Applications by Department',
-            labels: ['Planning', 'Zoning', 'Safety', 'Environmental', 'Structural', 'Permits'],
-            values: [260, 180, 145, 120, 95, 78],
-            colors: ['#8B5CF6', '#8B5CF6', '#8B5CF6', '#8B5CF6', '#8B5CF6', '#8B5CF6']
-        };
-    }
-
-    if (msg.includes('processing') || msg.includes('time') || msg.includes('duration') || msg.includes('days')) {
-        return {
-            id,
-            type: 'bar',
-            title: 'Average Processing Time (Days)',
-            labels: ['Residential', 'Commercial', 'Industrial', 'Renovation'],
-            values: [18, 32, 45, 12],
-            colors: ['#10B981', '#F59E0B', '#EF4444', '#3B82F6']
-        };
-    }
-
-    return null;
+    const w = match.widget;
+    return {
+        id,
+        type: w.type as 'bar' | 'pie' | 'line',
+        title: w.title,
+        labels: w.labels,
+        values: w.values,
+        colors: w.colors,
+    };
 };
 
 // Bar Chart Component - FIXED OVERFLOW
@@ -301,7 +249,7 @@ export default function AnalyticsDashboard() {
     const [widgets, setWidgets] = useState<ChartWidget[]>([]);
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
-        { role: 'assistant', content: 'Ask me to show analytics and I\'ll add widgets to your dashboard!' }
+        { role: 'assistant', content: dashboardsData.welcome }
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
@@ -334,7 +282,7 @@ export default function AnalyticsDashboard() {
             } else {
                 setMessages(prev => [...prev, {
                     role: 'assistant',
-                    content: 'Try asking about: building types, zones, monthly trends, approval status, departments, or processing time.'
+                    content: dashboardsData.fallback
                 }]);
             }
             setIsTyping(false);
@@ -358,15 +306,7 @@ export default function AnalyticsDashboard() {
         ));
     };
 
-    // UPDATED: Generic suggestions
-    const suggestions = [
-        "Show building types",
-        "Show applications by zone",
-        "Show monthly trends",
-        "Show approval status",
-        "Show by department",
-        "Show processing time"
-    ];
+    const suggestions = dashboardsData.suggestions;
 
     return (
         <div className="h-full relative">
@@ -377,8 +317,8 @@ export default function AnalyticsDashboard() {
                     <div className="h-full flex items-center justify-center">
                         <div className="text-center text-gray-500">
                             <MessageCircle className="w-16 h-16 mx-auto mb-4 opacity-30" />
-                            <p className="text-lg">Your dashboard is empty</p>
-                            <p className="text-sm mt-2">Click the chat button and ask for analytics</p>
+                            <p className="text-lg">{dashboardsData.empty.title}</p>
+                            <p className="text-sm mt-2">{dashboardsData.empty.subtitle}</p>
                         </div>
                     </div>
                 ) : (

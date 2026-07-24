@@ -1,0 +1,45 @@
+{
+  "greeting": "Jordan Chen",
+  "summary": {
+    "headline": "4 P0/P1 tickets active — SLA at risk on 2",
+    "sub": "MTTR trending 4.1h (from 8.4h). AI deflection 41% last 7d."
+  },
+  "actions": [
+    { "risk": "high", "title": "FD-2104 P0 escalation", "account": "Contoso Ltd", "metric": { "label": "SLA remaining", "value": "18m" }, "status": "Overdue soon", "cta": "Approve" },
+    { "risk": "medium", "title": "Reopen pattern on export bug", "account": "Fabrikam Inc", "metric": { "label": "Reopens (30d)", "value": "3" }, "status": "Route to QA", "cta": "Auto-run" },
+    { "risk": "low", "title": "KB gap: PDF layout bug", "account": "Adventure Works", "metric": { "label": "Similar tickets", "value": "5" }, "status": "Draft article", "cta": "Schedule" }
+  ],
+  "signals": [
+    { "icon": "⚠", "label": "Open P0/P1", "value": "4", "delta": "↑ 1 vs last 7 days", "tone": "down" },
+    { "icon": "◷", "label": "SLA compliance", "value": "94%", "delta": "↑ 2 vs last 7 days", "tone": "up" },
+    { "icon": "⇗", "label": "Avg MTTR", "value": "4.1h", "delta": "↓ 4.3h vs last 7 days", "tone": "up" },
+    { "icon": "$", "label": "AI deflection", "value": "41%", "delta": "↑ 6% vs last 7 days", "tone": "up" }
+  ],
+  "cfi": [
+    { "team": "Support L1/L2", "label": "Active", "value": "18 tickets" },
+    { "team": "Engineering", "label": "Escalated", "value": "3 P0" },
+    { "team": "Customer Success", "label": "Impacted", "value": "4 accounts" }
+  ],
+  "workflows": {
+    "in_progress": 12,
+    "awaiting": 2,
+    "completed": 14,
+    "list": [
+      { "name": "P0 Incident Response — Contoso Ltd FD-2104", "status": "In progress", "tone": "blue" },
+      { "name": "Hotfix v3.8.3 QA validation", "status": "Awaiting approval", "tone": "yellow" },
+      { "name": "KB post-mortem draft — sync module", "status": "Completed", "tone": "green" }
+    ]
+  },
+  "decisions": [
+    { "title": "Auto-escalated FD-2104 to sync module owner", "when": "2h ago", "impact": "Trace opened", "tone": "green" },
+    { "title": "Deflected 12 KB queries (Product X sync)", "when": "1d ago", "impact": "Deflection +6%", "tone": "green" },
+    { "title": "Reopened FD-2112 flagged as KB gap", "when": "3d ago", "impact": "Article drafted", "tone": "neutral" }
+  ],
+  "watchlist": [
+    { "code": "NI", "name": "Contoso Ltd", "score": 35, "risk": "high" },
+    { "code": "CL", "name": "Fabrikam Inc", "score": 42, "risk": "high" },
+    { "code": "FM", "name": "Adventure Works", "score": 58, "risk": "medium" },
+    { "code": "TT", "name": "Wingtip Toys", "score": 62, "risk": "medium" },
+    { "code": "WW", "name": "Litware Inc", "score": 74, "risk": "low" }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "kpis": [
+    { "icon": "◉", "label": "Total outcomes", "value": "1,240" },
+    { "icon": "✉", "label": "Tickets created", "value": "312" },
+    { "icon": "⇘", "label": "Deflection rate", "value": "75%" },
+    { "icon": "%", "label": "Avg confidence", "value": "81%" },
+    { "icon": "☺", "label": "Satisfied feedback", "value": "89%" }
+  ],
+  "outcomes": [
+    { "user": "NIA chat is not responding", "scenario": "Docs solution", "product": "NIA", "platform": "Web", "confidence": 92, "ticket": "", "status": "Resolution Provided", "feedback": "satisfied", "when": "7/13/2026 11:48 AM", "tone": "green" },
+    { "user": "Product X app crashes after sync", "scenario": "Known issue", "product": "Product X", "platform": "iOS", "confidence": 88, "ticket": "SUP-1041", "status": "Known Issue", "feedback": "—", "when": "7/13/2026 11:48 AM", "tone": "blue" },
+    { "user": "Product Y is freezing on Android", "scenario": "New / unclear", "product": "Product Y", "platform": "Android", "confidence": 74, "ticket": "SUP-1042", "status": "Open", "feedback": "—", "when": "7/13/2026 11:48 AM", "tone": "yellow" },
+    { "user": "Add bulk export to Product X reports", "scenario": "Feature req.", "product": "Product X", "platform": "Web", "confidence": 86, "ticket": "SUP-1043", "status": "Review In Progress", "feedback": "—", "when": "7/13/2026 11:48 AM", "tone": "gray" }
+  ],
+  "audit": [
+    { "type": "ACTION EXECUTED", "title": "Renewal outreach email sent to Contoso Ltd", "who": "Alex Morgan — CSM Director", "when": "today · 10:24 AM" },
+    { "type": "RECORD VIEWED", "title": "Viewed customer health dashboard - Contoso Ltd", "who": "Riley Patel — Sales Director", "when": "today · 10:15 AM" },
+    { "type": "MEMORY UPDATED", "title": "Updated note: Executive call with Contoso Ltd leadership", "who": "Alex Morgan — CSM Director", "when": "yesterday · 04:35 PM" },
+    { "type": "WORKFLOW TRIGGERED", "title": "Renewal Intervention workflow started", "who": "AI Agent — Workflow Engine", "when": "yesterday · 04:32 PM" },
+    { "type": "RECORD DELETED", "title": "Deleted duplicate support ticket #12345", "who": "Sam Rivera — Support Manager", "when": "yesterday · 02:10 PM" }
+  ],
+  "donut": [
+    { "label": "Docs solution", "value": 580, "color": "var(--gd-primary)" },
+    { "label": "Known issue", "value": 348, "color": "var(--gd-info)" },
+    { "label": "New / unclear", "value": 280, "color": "var(--gd-warning)" },
+    { "label": "Feature req.", "value": 32, "color": "var(--gd-neutral)" }
+  ],
+  "sources": [
+    { "name": "CRM", "pct": 32 },
+    { "name": "Ticketing Tool", "pct": 18 },
+    { "name": "Product Analytics", "pct": 15 },
+    { "name": "NetSuite", "pct": 12 }
+  ]
+}

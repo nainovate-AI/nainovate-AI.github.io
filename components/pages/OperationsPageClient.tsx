@@ -6,6 +6,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
 import LiveChatBot from '@/components/ui/LiveChatBot';
 import { div } from 'framer-motion/client';
+import mockData from '@/data/operations.json';
 
 export default function OperationsPageClient() {
     const [activeUseCase, setActiveUseCase] = useState<'hr' | 'boq' | 'document' | 'search'>('hr');
@@ -21,64 +22,7 @@ export default function OperationsPageClient() {
         }
     };
 
-    const useCases = {
-        hr: {
-            title: 'HR Screening Assistant',
-            problem: 'Manual resume screening takes hours. HR teams spend 60% of time on repetitive tasks.',
-            solution: 'AI agent analyzes candidates against job requirements in seconds, providing match scores and recommendations.',
-            features: [
-                'Automated resume parsing',
-                'Skills gap analysis',
-                'Interview scheduling',
-                'Candidate ranking',
-                'Compliance tracking',
-                'Onboarding automation'
-            ],
-            industries: ['Technology', 'Healthcare', 'Manufacturing', 'Retail']
-        },
-        boq: {
-            title: 'BOQ Generation',
-            problem: 'Creating Bills of Quantities from architectural drawings is time-consuming and error-prone.',
-            solution: 'AI extracts quantities from drawings and specifications, generating accurate BOQs in minutes.',
-            features: [
-                'Drawing analysis',
-                'Quantity extraction',
-                'Material estimation',
-                'Cost calculation',
-                'Version tracking',
-                'Export to Excel/PDF'
-            ],
-            industries: ['Construction', 'Real Estate', 'Engineering', 'Architecture']
-        },
-        document: {
-            title: 'Document Processing',
-            problem: 'Processing contracts, invoices, and reports manually is slow and inconsistent.',
-            solution: 'AI extracts key information from any document type, categorizes, and routes for approval.',
-            features: [
-                'OCR & text extraction',
-                'Smart classification',
-                'Data validation',
-                'Approval workflows',
-                'Version control',
-                'Audit trails'
-            ],
-            industries: ['Legal', 'Finance', 'Government', 'Insurance']
-        },
-        search: {
-            title: 'Enterprise Search',
-            problem: 'Finding information across multiple systems wastes 20% of employee time.',
-            solution: 'AI-powered search understands context and intent, surfacing relevant information instantly.',
-            features: [
-                'Natural language queries',
-                'Cross-system search',
-                'Semantic understanding',
-                'Personalized results',
-                'Access control',
-                'Usage analytics'
-            ],
-            industries: ['Enterprise', 'Healthcare', 'Education', 'Technology']
-        }
-    };
+    const useCases = mockData.useCases;
 
     const currentCase = useCases[activeUseCase];
 
@@ -87,24 +31,24 @@ export default function OperationsPageClient() {
             <JsonLd data={operationsSchema} />
 
             {/* Hero */}
-            <section className="min-h-[70vh] flex items-center border-b border-white/10 py-20">
-                <div className="max-w-[1400px] mx-auto px-8 w-full">
+            <section className="min-h-[70vh] flex items-center border-b border-white/10 py-12 md:py-20">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
                     <div className="max-w-3xl">
                         <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
                             AI FOR OPERATIONS
                         </p>
-                        <h1 className="text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
                             <span className="block">AUTOMATE</span>
                             <span className="block">INTERNAL</span>
                             <span className="block">WORKFLOWS</span>
                         </h1>
-                        <p className="text-xl text-gray max-w-2xl leading-relaxed mb-12">
+                        <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl leading-relaxed mb-6 md:mb-12">
                             Deploy AI agents that handle HR screening, document processing, BOQ generation,
                             and enterprise search. Free your team to focus on strategic work.
                         </p>
-                        <div className="flex gap-6">
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                             <Link href="/contact">
-                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
+                                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 w-full sm:w-auto">
                                     Schedule Demo
                                 </Button>
                             </Link>
@@ -114,23 +58,23 @@ export default function OperationsPageClient() {
             </section>
 
             {/* Stats */}
-            <section className="py-20 border-b border-white/10">
-                <div className="max-w-[1400px] mx-auto px-8">
+            <section className="py-12 md:py-20 border-b border-white/10">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         <div className="text-center">
-                            <div className="text-5xl font-bold mb-2">70%</div>
+                            <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">70%</div>
                             <div className="text-gray">Faster Processing</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-5xl font-bold mb-2">60%</div>
+                            <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">60%</div>
                             <div className="text-gray">Cost Reduction</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-5xl font-bold mb-2">90%</div>
+                            <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">90%</div>
                             <div className="text-gray">Accuracy Rate</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-5xl font-bold mb-2">24/7</div>
+                            <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">24/7</div>
                             <div className="text-gray">Availability</div>
                         </div>
                     </div>
@@ -138,17 +82,17 @@ export default function OperationsPageClient() {
             </section>
 
             {/* Use Cases */}
-            <section id="use-cases" className="py-32">
-                <div className="max-w-[1400px] mx-auto px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-5xl font-bold mb-6">USE CASES</h2>
-                        <p className="text-xl text-gray max-w-2xl mx-auto">
+            <section id="use-cases" className="py-16 md:py-32">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+                    <div className="text-center mb-8 md:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">USE CASES</h2>
+                        <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl mx-auto">
                             Real-world applications that transform how your operations team works
                         </p>
                     </div>
 
                     {/* Use Case Tabs - Styled like Solutions page */}
-                    <div className="flex justify-center gap-2 mb-16">
+                    <div className="flex justify-center gap-2 mb-8 md:mb-16 flex-wrap">
                         <button
                             onClick={() => setActiveUseCase('hr')}
                             className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'hr'
@@ -188,7 +132,7 @@ export default function OperationsPageClient() {
                     </div>
 
                     {/* Use Case Content */}
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
 
                         {/* Left: Live Chat Bot (Auto-play, No scroll) */}
                         <div className="order-2 lg:order-1">
@@ -197,7 +141,7 @@ export default function OperationsPageClient() {
 
                         {/* Right: Details */}
                         <div className="order-1 lg:order-2">
-                            <h3 className="text-4xl font-bold mb-6">{currentCase.title}</h3>
+                            <h3 className="text-3xl md:text-4xl font-bold mb-6">{currentCase.title}</h3>
 
                             <div className="mb-8">
                                 <div className="text-sm font-semibold text-red-400 mb-2">THE PROBLEM</div>
@@ -244,16 +188,16 @@ export default function OperationsPageClient() {
             </section>
 
             {/* How It Works */}
-            <section className="py-32 border-t border-white/10 bg-white/[0.01]">
-                <div className="max-w-[1400px] mx-auto px-8">
-                    <h2 className="text-5xl font-bold mb-16 text-center">HOW IT WORKS</h2>
+            <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 text-center">HOW IT WORKS</h2>
 
-                    <div className="grid md:grid-cols-3 gap-12">
+                    <div className="grid md:grid-cols-3 gap-6 md:gap-12">
                         <div className="text-center">
                             <div className="w-16 h-16 mx-auto mb-6 bg-blue-500/10 rounded-full flex items-center justify-center border border-blue-500/20">
-                                <span className="text-3xl font-bold text-blue-400">1</span>
+                                <span className="text-2xl md:text-3xl font-bold text-blue-400">1</span>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Configure Agent</h3>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Configure Agent</h3>
                             <p className="text-gray">
                                 Define your workflow, upload templates, and set business rules. No coding required.
                             </p>
@@ -261,9 +205,9 @@ export default function OperationsPageClient() {
 
                         <div className="text-center">
                             <div className="w-16 h-16 mx-auto mb-6 bg-blue-500/10 rounded-full flex items-center justify-center border border-blue-500/20">
-                                <span className="text-3xl font-bold text-blue-400">2</span>
+                                <span className="text-2xl md:text-3xl font-bold text-blue-400">2</span>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Train & Test</h3>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Train & Test</h3>
                             <p className="text-gray">
                                 Our AI learns your specific requirements. Test with sample data before going live.
                             </p>
@@ -271,9 +215,9 @@ export default function OperationsPageClient() {
 
                         <div className="text-center">
                             <div className="w-16 h-16 mx-auto mb-6 bg-blue-500/10 rounded-full flex items-center justify-center border border-blue-500/20">
-                                <span className="text-3xl font-bold text-blue-400">3</span>
+                                <span className="text-2xl md:text-3xl font-bold text-blue-400">3</span>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">Deploy & Scale</h3>
+                            <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Deploy & Scale</h3>
                             <p className="text-gray">
                                 Launch in days. Agent handles volume automatically with continuous learning.
                             </p>
@@ -283,17 +227,17 @@ export default function OperationsPageClient() {
             </section>
 
             {/* CTA */}
-            <section className="py-32 border-t border-white/10">
-                <div className="max-w-[800px] mx-auto px-8 text-center">
-                    <h2 className="text-5xl font-bold mb-8">
+            <section className="py-16 md:py-32 border-t border-white/10">
+                <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
                         READY TO AUTOMATE YOUR OPERATIONS?
                     </h2>
-                    <p className="text-xl text-gray mb-12">
+                    <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12">
                         See how AI agents can transform your internal workflows in just 30 days.
                     </p>
-                    <div className="flex gap-6 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                         <Link href="/contact">
-                            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg">
+                            <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg w-full sm:w-auto">
                                 Schedule Demo
                             </Button>
                         </Link>

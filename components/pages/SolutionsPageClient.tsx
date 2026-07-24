@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
+import mockData from '@/data/solutions.json';
 
 
 // Icons for the three solutions
@@ -92,45 +93,24 @@ export default function SolutionsPageClient() {
       title: 'AI for Operations',
       subtitle: 'Automate internal workflows. Accelerate decision-making. Empower your workforce.',
       icon: <OperationsIcon large />,
-      features: [
-        'HR Screening & Selection',
-        'BOQ Generation',
-        'Document Processing',
-        'Enterprise Search',
-        'LMS Integration',
-        'Internal Automation'
-      ],
-      accelerators: ['HR', 'Construction', 'Enterprise Ops'],
+      features: mockData.operationsFeatures,
+      accelerators: mockData.operationsAccelerators,
       link: '/solutions/operations'
     },
     engagement: {
       title: 'AI for Engagement',
       subtitle: 'Deliver exceptional experiences. Scale customer interactions. Build lasting relationships.',
       icon: <EngagementIcon large />,
-      features: [
-        'Customer Service Bots',
-        'Citizen Portals',
-        'Multi-Channel Support',
-        'Service Quality',
-        'Proactive Outreach',
-        'Client Portals'
-      ],
-      accelerators: ['Retail & Hospitality', 'Government Services', 'Client Support'],
+      features: mockData.engagementFeatures,
+      accelerators: mockData.engagementAccelerators,
       link: '/solutions/engagement'
     },
     intelligence: {
       title: 'AI for Intelligence',
       subtitle: 'Transform data into insights. Ensure compliance. Optimize operations.',
       icon: <IntelligenceIcon large />,
-      features: [
-        'Analytics Dashboards',
-        'Process Monitoring',
-        'Compliance Tracking',
-        'Quality Assurance',
-        'Predictive Analytics',
-        'Performance Reporting'
-      ],
-      accelerators: ['Manufacturing', 'Government Compliance', 'Quality Control'],
+      features: mockData.intelligenceFeatures,
+      accelerators: mockData.intelligenceAccelerators,
       link: '/solutions/intelligence'
     }
   };
@@ -143,16 +123,16 @@ export default function SolutionsPageClient() {
 
       {/* Hero - CENTERED */}
       <section className="min-h-[70vh] flex items-center border-b border-white/10">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
               AI SOLUTIONS
             </p>
-            <h1 className="text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
               <span className="block">ENTERPRISE AI</span>
               <span className="block">SOLUTIONS</span>
             </h1>
-            <p className="text-xl text-gray max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl mx-auto leading-relaxed">
               Deploy intelligent AI agents across operations, customer engagement, and business intelligence.
               Built for enterprise scale. Delivered in days.
             </p>
@@ -161,11 +141,11 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Tabbed Solution Cards */}
-      <section className="py-32">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <section className="py-16 md:py-32">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Tabs */}
-          <div className="flex justify-center gap-2 mb-16">
+          <div className="flex justify-center gap-2 mb-8 md:mb-16">
             <button
               onClick={() => setActiveTab('operations')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'operations'
@@ -196,7 +176,7 @@ export default function SolutionsPageClient() {
           </div>
 
           {/* Split View Content */}
-          <div className="grid lg:grid-cols-5 gap-16 items-center">
+          <div className="grid lg:grid-cols-5 gap-8 md:gap-16 items-center">
 
             {/* Left: Animated Visual */}
             <div className="lg:col-span-2">
@@ -233,8 +213,8 @@ export default function SolutionsPageClient() {
 
             {/* Right: Content */}
             <div className="lg:col-span-3">
-              <h2 className="text-5xl font-bold mb-6">{currentSolution.title}</h2>
-              <p className="text-xl text-gray mb-10 leading-relaxed">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">{currentSolution.title}</h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray mb-10 leading-relaxed">
                 {currentSolution.subtitle}
               </p>
 
@@ -273,19 +253,19 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Delivery Formats - EXPANDING CARDS */}
-      <section className="py-32 border-t border-white/10 bg-white/[0.01]">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="max-w-3xl mx-auto text-center mb-20">
-            <h2 className="text-5xl font-bold mb-6">
+      <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-10 md:mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               CHOOSE YOUR DELIVERY FORMAT
             </h2>
-            <p className="text-xl text-gray">
+            <p className="text-base sm:text-lg md:text-xl text-gray">
               Every solution can be delivered through conversational AI, intelligence dashboards,
               or workflow automation—or all three combined.
             </p>
           </div>
 
-          <div className="flex gap-4 min-h-[360px]">
+          <div className="flex flex-col md:flex-row gap-4 min-h-[360px]">
             {/* Conversational AI */}
             <div
               className={`relative border border-white/10 rounded-lg bg-black overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
@@ -299,13 +279,13 @@ export default function SolutionsPageClient() {
               onMouseLeave={() => setHoveredCard(null)}
             >
               {/* Expanded Content */}
-              <div className={`absolute inset-0 p-10 flex flex-col justify-center transition-opacity duration-300
+              <div className={`absolute inset-0 p-6 md:p-10 flex flex-col justify-center transition-opacity duration-300
                 ${hoveredCard === 'chat' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="max-w-lg mx-auto">
                   <div className="text-gray-400 mb-6">
                     <ChatIcon large />
                   </div>
-                  <h3 className="text-3xl font-bold mb-4">Conversational AI</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4">Conversational AI</h3>
                   <p className="text-gray leading-relaxed mb-6">
                     Interactive Q&A agents for HR screening, customer service, internal support,
                     and knowledge retrieval.
@@ -319,7 +299,7 @@ export default function SolutionsPageClient() {
               </div>
 
               {/* Collapsed Content */}
-              <div className={`absolute inset-0 p-8 flex flex-col items-center justify-center transition-opacity duration-300
+              <div className={`absolute inset-0 p-5 md:p-8 flex flex-col items-center justify-center transition-opacity duration-300
                 ${hoveredCard === 'chat' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
                 <div className="text-gray-400 mb-4">
                   <ChatIcon />
@@ -349,13 +329,13 @@ export default function SolutionsPageClient() {
               </div>
 
               {/* Expanded Content */}
-              <div className={`absolute inset-0 p-10 flex flex-col justify-center transition-opacity duration-300
+              <div className={`absolute inset-0 p-6 md:p-10 flex flex-col justify-center transition-opacity duration-300
                 ${hoveredCard === 'dashboard' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="max-w-xl mx-auto">
                   <div className="text-gray-400 mb-6">
                     <DashboardIcon large />
                   </div>
-                  <h3 className="text-3xl font-bold mb-4">Intelligence Dashboards</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4">Intelligence Dashboards</h3>
                   <p className="text-gray leading-relaxed mb-6">
                     Chat meets analytics. Ask questions in natural language, see visual insights instantly.
                   </p>
@@ -368,7 +348,7 @@ export default function SolutionsPageClient() {
               </div>
 
               {/* Collapsed Content */}
-              <div className={`absolute inset-0 p-8 flex flex-col items-center justify-center transition-opacity duration-300
+              <div className={`absolute inset-0 p-5 md:p-8 flex flex-col items-center justify-center transition-opacity duration-300
                 ${hoveredCard === 'dashboard' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
                 <div className="text-gray-400 mb-4">
                   <DashboardIcon />
@@ -390,13 +370,13 @@ export default function SolutionsPageClient() {
               onMouseLeave={() => setHoveredCard(null)}
             >
               {/* Expanded Content */}
-              <div className={`absolute inset-0 p-10 flex flex-col justify-center transition-opacity duration-300
+              <div className={`absolute inset-0 p-6 md:p-10 flex flex-col justify-center transition-opacity duration-300
                 ${hoveredCard === 'workflow' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="max-w-lg mx-auto">
                   <div className="text-gray-400 mb-6">
                     <WorkflowIcon large />
                   </div>
-                  <h3 className="text-3xl font-bold mb-4">Workflow Automation</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4">Workflow Automation</h3>
                   <p className="text-gray leading-relaxed mb-6">
                     Build end-to-end processes with AI guidance. Visual workflow builder with agent support.
                   </p>
@@ -409,7 +389,7 @@ export default function SolutionsPageClient() {
               </div>
 
               {/* Collapsed Content */}
-              <div className={`absolute inset-0 p-8 flex flex-col items-center justify-center transition-opacity duration-300
+              <div className={`absolute inset-0 p-5 md:p-8 flex flex-col items-center justify-center transition-opacity duration-300
                 ${hoveredCard === 'workflow' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
                 <div className="text-gray-400 mb-4">
                   <WorkflowIcon />
@@ -422,41 +402,41 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Try It Yourself Section */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[1200px] mx-auto px-8">
-          <div className="text-center mb-16">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="text-center mb-8 md:mb-16">
             <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-4">
               INTERACTIVE DEMO
             </p>
-            <h2 className="text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               TRY IT YOURSELF
             </h2>
-            <p className="text-xl text-gray max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl mx-auto leading-relaxed">
               Experience our AI solutions hands-on. See how we deliver through
               conversational AI, analytics dashboards, and workflow automation.
             </p>
           </div>
 
           {/* Three Delivery Format Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="border border-white/10 rounded-lg p-8 text-center hover:border-white/20 transition-colors">
-              <div className="text-4xl mb-4">💬</div>
+          <div className="grid md:grid-cols-3 gap-6 mb-6 md:mb-12">
+            <div className="border border-white/10 rounded-lg p-5 md:p-8 text-center hover:border-white/20 transition-colors">
+              <div className="text-3xl md:text-4xl mb-4">💬</div>
               <h3 className="text-lg font-bold mb-2">Conversational AI</h3>
               <p className="text-sm text-gray">
                 Ask questions, get instant answers with context-aware responses
               </p>
             </div>
 
-            <div className="border border-white/10 rounded-lg p-8 text-center hover:border-white/20 transition-colors">
-              <div className="text-4xl mb-4">📊</div>
+            <div className="border border-white/10 rounded-lg p-5 md:p-8 text-center hover:border-white/20 transition-colors">
+              <div className="text-3xl md:text-4xl mb-4">📊</div>
               <h3 className="text-lg font-bold mb-2">Analytics Dashboard</h3>
               <p className="text-sm text-gray">
                 Request data visualizations and build dashboards through chat
               </p>
             </div>
 
-            <div className="border border-white/10 rounded-lg p-8 text-center hover:border-white/20 transition-colors">
-              <div className="text-4xl mb-4">⚙️</div>
+            <div className="border border-white/10 rounded-lg p-5 md:p-8 text-center hover:border-white/20 transition-colors">
+              <div className="text-3xl md:text-4xl mb-4">⚙️</div>
               <h3 className="text-lg font-bold mb-2">Workflow Automation</h3>
               <p className="text-sm text-gray">
                 Automate complex processes with AI-guided workflows
@@ -467,7 +447,7 @@ export default function SolutionsPageClient() {
           {/* CTA Button */}
           <div className="text-center">
             <Link href="/demo">
-              <Button className="bg-white text-black hover:bg-gray-200 px-8 py-4 text-lg inline-flex items-center gap-3">
+              <Button className="bg-white text-black hover:bg-gray-200 px-6 py-3 sm:px-8 sm:py-4 text-lg inline-flex items-center gap-3 w-full sm:w-auto">
                 <span>🖐️</span>
                 Launch Interactive Demo
               </Button>
@@ -477,22 +457,22 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-[800px] mx-auto px-8 text-center">
-          <h2 className="text-5xl font-bold mb-8">
+      <section className="py-16 md:py-32 border-t border-white/10">
+        <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             READY TO DEPLOY AI SOLUTIONS?
           </h2>
-          <p className="text-xl text-gray mb-12 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12 leading-relaxed">
             See how our AI solutions can transform your operations, engagement, and intelligence capabilities.
           </p>
-          <div className="flex gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white hover:text-black px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white hover:text-black px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
                 Schedule a Demo
               </Button>
             </Link>
             <Link href="/platform">
-              <Button className="border border-white/20 hover:bg-white/10 px-8 py-4">
+              <Button className="border border-white/20 hover:bg-white/10 px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
                 Explore Platform
               </Button>
             </Link>

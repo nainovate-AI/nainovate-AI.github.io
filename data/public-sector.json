@@ -1,0 +1,192 @@
+{
+  "spaces": [
+    {
+      "key": "building-permits",
+      "label": "Building Permits",
+      "letter": "B",
+      "department": "Planning & Development",
+      "role": "Permit Officer",
+      "hero": {
+        "headline": "24 permits pending review",
+        "sub": "3 flagged for cross-department approval"
+      }
+    },
+    {
+      "key": "public-health",
+      "label": "Public Health",
+      "letter": "H",
+      "department": "Health Department",
+      "role": "Health Inspector",
+      "hero": {
+        "headline": "7 restaurant inspections due",
+        "sub": "1 outbreak signal detected"
+      }
+    },
+    {
+      "key": "public-safety",
+      "label": "Public Safety",
+      "letter": "S",
+      "department": "Fire & Safety",
+      "role": "Safety Officer",
+      "hero": {
+        "headline": "12 open safety violations",
+        "sub": "2 buildings escalated"
+      }
+    },
+    {
+      "key": "revenue",
+      "label": "Revenue & Taxation",
+      "letter": "R",
+      "department": "Revenue Department",
+      "role": "Revenue Analyst",
+      "hero": {
+        "headline": "$1.2M in overdue payments",
+        "sub": "3 accounts flagged for review"
+      }
+    }
+  ],
+  "kpis": {
+    "building-permits": [
+      { "label": "Applications Received", "value": "184", "delta": "+12%" },
+      { "label": "Approved This Week", "value": "47", "delta": "+8%" },
+      { "label": "Cross-Dept Escalations", "value": "3", "delta": "-25%" },
+      { "label": "Avg. Turnaround (days)", "value": "9.2", "delta": "-14%" }
+    ],
+    "public-health": [
+      { "label": "Inspections Scheduled", "value": "42", "delta": "+5%" },
+      { "label": "Violations Issued", "value": "8", "delta": "-33%" },
+      { "label": "Outbreak Signals", "value": "1", "delta": "new" },
+      { "label": "Compliance Rate", "value": "94%", "delta": "+2%" }
+    ],
+    "public-safety": [
+      { "label": "Open Violations", "value": "12", "delta": "-8%" },
+      { "label": "Buildings Inspected", "value": "56", "delta": "+15%" },
+      { "label": "Escalations", "value": "2", "delta": "0" },
+      { "label": "Response Time (min)", "value": "18", "delta": "-22%" }
+    ],
+    "revenue": [
+      { "label": "Overdue Amount", "value": "$1.2M", "delta": "-11%" },
+      { "label": "Collections", "value": "$3.8M", "delta": "+18%" },
+      { "label": "Accounts Flagged", "value": "3", "delta": "-40%" },
+      { "label": "Collection Rate", "value": "87%", "delta": "+4%" }
+    ]
+  },
+  "workflows": {
+    "building-permits": [
+      {
+        "id": "wf-permit-001",
+        "title": "Permit BP-2841 · Cross-department approval",
+        "when": "12m ago",
+        "status": "in-progress",
+        "steps": [
+          "Planning: Zoning check passed",
+          "Fire: Egress plan review pending",
+          "Water: Supply capacity confirmed",
+          "Revenue: Fee assessment $1,240"
+        ]
+      },
+      {
+        "id": "wf-permit-002",
+        "title": "Permit BP-2839 · Residential extension",
+        "when": "1h ago",
+        "status": "approved",
+        "steps": [
+          "Planning: Setback OK",
+          "Fire: N/A (residential)",
+          "Revenue: Fee $420 collected"
+        ]
+      },
+      {
+        "id": "wf-permit-003",
+        "title": "Permit BP-2822 · Commercial retail",
+        "when": "3h ago",
+        "status": "flagged",
+        "steps": [
+          "Planning: Zoning conflict detected",
+          "Escalated to Zoning Board"
+        ]
+      }
+    ]
+  },
+  "askSuggestions": {
+    "building-permits": [
+      "Which permits are stuck across departments?",
+      "Show me the turnaround by department this month",
+      "What's the top rejection reason this quarter?",
+      "Which zone has the most applications pending?"
+    ],
+    "public-health": [
+      "Which restaurants are overdue for inspection?",
+      "Show outbreak signal trend last 30 days",
+      "Which zones have most violations?"
+    ],
+    "public-safety": [
+      "Which buildings have repeat violations?",
+      "Show response time by district",
+      "What escalations are open right now?"
+    ],
+    "revenue": [
+      "Top 10 overdue accounts",
+      "Collection rate trend by quarter",
+      "Which zones have most delinquencies?"
+    ]
+  },
+  "cannedAnswers": [
+    {
+      "match": "stuck|cross|department",
+      "answer": "3 permits are currently stuck across departments. BP-2841 (Fire review pending 4 days), BP-2822 (Zoning conflict), BP-2815 (Water capacity check overdue).",
+      "widget": {
+        "type": "table",
+        "title": "Permits Stuck Cross-Department",
+        "columns": ["Permit", "Blocked At", "Days Waiting"],
+        "rows": [
+          ["BP-2841", "Fire Review", "4"],
+          ["BP-2822", "Zoning Board", "6"],
+          ["BP-2815", "Water Dept", "3"]
+        ]
+      }
+    },
+    {
+      "match": "turnaround|time",
+      "answer": "Average turnaround is 9.2 days, down 14% MoM. Planning is fastest (3.1 days). Fire is slowest (6.2 days).",
+      "widget": {
+        "type": "bar",
+        "title": "Avg. Turnaround by Department (days)",
+        "data": [
+          { "label": "Planning", "value": 3.1 },
+          { "label": "Water", "value": 4.4 },
+          { "label": "Revenue", "value": 4.8 },
+          { "label": "Fire", "value": 6.2 }
+        ]
+      }
+    },
+    {
+      "match": "rejection|top",
+      "answer": "Top rejection reason this quarter is 'Incomplete site plan' (42% of rejections). Followed by 'Setback violation' (23%) and 'Missing fire egress' (18%).",
+      "widget": {
+        "type": "bar",
+        "title": "Top Rejection Reasons (%)",
+        "data": [
+          { "label": "Incomplete site plan", "value": 42 },
+          { "label": "Setback violation", "value": 23 },
+          { "label": "Missing fire egress", "value": 18 },
+          { "label": "Other", "value": 17 }
+        ]
+      }
+    },
+    {
+      "match": "zone|most|pending",
+      "answer": "Zone C-4 has 38 pending applications (mostly commercial). Zone R-2 second with 24 (residential extensions).",
+      "widget": {
+        "type": "bar",
+        "title": "Pending Applications by Zone",
+        "data": [
+          { "label": "C-4", "value": 38 },
+          { "label": "R-2", "value": 24 },
+          { "label": "M-1", "value": 15 },
+          { "label": "R-1", "value": 11 }
+        ]
+      }
+    }
+  ]
+}

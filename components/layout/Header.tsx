@@ -137,6 +137,11 @@ export function Header() {
 
   const navigation: NavItem[] = [
     {
+      name: 'Home',
+      href: '/',
+      isDropdown: false,
+    },
+    {
       name: 'Platform',
       href: '/platform',
       isDropdown: true,
@@ -223,8 +228,8 @@ export function Header() {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-sm">
-      <nav className="max-w-[1400px] mx-auto px-8 py-6">
+    <header className="fixed top-0 w-full z-50 bg-black border-b border-white/5">
+      <nav className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center">
@@ -726,14 +731,6 @@ export function Header() {
                 )}
               </div>
             ))}
-
-            <Link
-              href="/demo"
-              className="relative text-sm font-medium px-4 py-2 text-white hover:text-gray-300 transition-colors group"
-            >
-              <span>Try Demo</span>
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            </Link>
 
             <Link href="/contact">
               <button className="text-sm font-medium px-6 py-2 border-2 border-white hover:bg-white hover:text-black transition-all">
