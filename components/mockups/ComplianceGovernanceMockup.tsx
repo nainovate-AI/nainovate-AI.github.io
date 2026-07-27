@@ -1,6 +1,6 @@
 export function ComplianceGovernanceMockup() {
   return (
-    <div className="w-full aspect-[16/10] bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-lg overflow-hidden shadow-2xl">
+    <div className="w-full aspect-[16/10] bg-gradient-to-br from-gray-900 to-black border border-fg-strong/10 rounded-lg overflow-hidden shadow-2xl">
       <svg viewBox="0 0 800 500" className="w-full h-full">
         {/* Background */}
         <rect width="800" height="500" fill="#0a0a0a"/>

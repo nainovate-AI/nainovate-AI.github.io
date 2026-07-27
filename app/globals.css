@@ -7,16 +7,64 @@
 
 @layer base {
   :root {
-    /* Pure monochrome */
+    /* Pure monochrome (legacy — kept for older components) */
     --black: #000000;
     --white: #ffffff;
     --gray: #888888;
     --gray-light: #cccccc;
     --gray-dark: #333333;
-    
-    /* One accent - use VERY sparingly */
+
+    /* Accent (legacy) */
     --accent: #0066ff;
+
+    /* -----------------------------------------------------------
+       Marketing site theme tokens — DARK MODE (default)
+       Consumed via Tailwind semantic colors (bg-bg, text-fg, ...).
+       Light-mode overrides live in the prefers-color-scheme block.
+       Do NOT hardcode colors in components. Use these tokens.
+       ----------------------------------------------------------- */
+
+    /* Surfaces */
+    --bg: #000000;
+    --bg-elevated: #0a0a0a;
+    --surface: rgba(255, 255, 255, 0.03);
+    --surface-2: rgba(255, 255, 255, 0.05);
+    --surface-hover: rgba(255, 255, 255, 0.08);
+
+    /* Text */
+    --fg: #ffffff;
+    --fg-strong: #ffffff;
+    --fg-mid: rgba(255, 255, 255, 0.7);
+    --fg-muted: rgba(255, 255, 255, 0.6);
+    --fg-subtle: rgba(255, 255, 255, 0.5);
+    --fg-faint: rgba(255, 255, 255, 0.4);
+    --fg-invert: #0a0a0a;
+
+    /* Borders */
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.2);
+    --border-active: rgba(255, 255, 255, 0.4);
+
+    /* Brand */
+    --brand: #6366f1;
+    --brand-hover: #7c7ff5;
+    --brand-fg: #ffffff;
+    --brand-soft: rgba(99, 102, 241, 0.14);
+    --brand-2: #8b5cf6;
+    --brand-2-soft: rgba(139, 92, 246, 0.12);
+
+    /* Semantic */
+    --danger: #dc2626;
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+
+    color-scheme: dark;
   }
+
+  /* Logo variants — both logos hidden fallback; only .logo-dark shown */
+  .logo-light { display: none; }
+  .logo-dark { display: block; }
 }
 
 /* ---------------------------------------------------------------
@@ -105,7 +153,8 @@
 }
 
 body {
-  @apply bg-black text-white;
+  background-color: var(--bg);
+  color: var(--fg);
   font-family: 'Inter', -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: 'ss01' 1, 'ss02' 1;
@@ -128,18 +177,18 @@ body {
     transition: transform 0.1s ease;
   }
 
-  /* Cursor dot */
+  /* Cursor dot — theme-aware */
   .custom-cursor-dot {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 8px;
     height: 8px;
-    background-color: #ffffff;
+    background-color: var(--fg-strong);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 1),
-                0 0 40px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px var(--fg-strong),
+                0 0 40px color-mix(in srgb, var(--fg-strong) 50%, transparent);
   }
 
   /* Make links and buttons react */
@@ -151,6 +200,17 @@ body {
 
 @media (hover: none), (pointer: coarse) {
   .custom-cursor { display: none !important; }
+}
+
+/* Header glass — semi-transparent theme bg + backdrop blur so
+   scrolled content blurs under nav without occlusion collision. */
+.nav-glass {
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .nav-glass { background: var(--bg); }
 }
 
 /* Gradient Background Container */

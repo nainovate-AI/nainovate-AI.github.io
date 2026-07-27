@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
-import mockData from '@/data/solutions.json';
+import mockData from '@/data/marketing/solutions.json';
 
 
 // Icons for the three solutions
@@ -122,17 +122,17 @@ export default function SolutionsPageClient() {
       <JsonLd data={solutionsSchema} />
 
       {/* Hero - CENTERED */}
-      <section className="min-h-[70vh] flex items-center border-b border-white/10">
+      <section className="min-h-[70vh] flex items-center border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
+            <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">
               AI SOLUTIONS
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
               <span className="block">ENTERPRISE AI</span>
               <span className="block">SOLUTIONS</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto leading-relaxed">
               Deploy intelligent AI agents across operations, customer engagement, and business intelligence.
               Built for enterprise scale. Delivered in days.
             </p>
@@ -141,7 +141,7 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Tabbed Solution Cards */}
-      <section className="py-16 md:py-32">
+      <section className="py-14 md:py-20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Tabs */}
@@ -149,8 +149,8 @@ export default function SolutionsPageClient() {
             <button
               onClick={() => setActiveTab('operations')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'operations'
-                ? 'text-white border-b-2 border-white'
-                : 'text-gray hover:text-white border-b-2 border-transparent'
+                ? 'text-fg-strong border-b-2 border-fg-strong'
+                : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                 }`}
             >
               OPERATIONS
@@ -158,8 +158,8 @@ export default function SolutionsPageClient() {
             <button
               onClick={() => setActiveTab('engagement')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'engagement'
-                ? 'text-white border-b-2 border-white'
-                : 'text-gray hover:text-white border-b-2 border-transparent'
+                ? 'text-fg-strong border-b-2 border-fg-strong'
+                : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                 }`}
             >
               ENGAGEMENT
@@ -167,8 +167,8 @@ export default function SolutionsPageClient() {
             <button
               onClick={() => setActiveTab('intelligence')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'intelligence'
-                ? 'text-white border-b-2 border-white'
-                : 'text-gray hover:text-white border-b-2 border-transparent'
+                ? 'text-fg-strong border-b-2 border-fg-strong'
+                : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                 }`}
             >
               INTELLIGENCE
@@ -180,7 +180,7 @@ export default function SolutionsPageClient() {
 
             {/* Left: Animated Visual */}
             <div className="lg:col-span-2">
-              <div className="relative h-96 border border-white/10 rounded-lg flex items-center justify-center bg-black overflow-hidden">
+              <div className="relative h-96 border border-border rounded-lg flex items-center justify-center bg-bg overflow-hidden">
                 {/* Gradient Blobs - Different per tab */}
                 {activeTab === 'operations' && (
                   <>
@@ -205,7 +205,7 @@ export default function SolutionsPageClient() {
                 )}
 
                 {/* Icon Overlay */}
-                <div className="relative z-10 text-white/40">
+                <div className="relative z-10 text-fg-faint">
                   {currentSolution.icon}
                 </div>
               </div>
@@ -214,27 +214,27 @@ export default function SolutionsPageClient() {
             {/* Right: Content */}
             <div className="lg:col-span-3">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">{currentSolution.title}</h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray mb-10 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-10 leading-relaxed">
                 {currentSolution.subtitle}
               </p>
 
               <div className="mb-10">
-                <p className="text-xs font-semibold text-gray-400 mb-6 tracking-wider">FEATURES</p>
+                <p className="text-xs font-semibold text-fg-muted mb-6 tracking-wider">FEATURES</p>
                 <div className="grid grid-cols-2 gap-4">
                   {currentSolution.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <span className="text-white/40 mt-1">→</span>
-                      <span className="text-gray">{feature}</span>
+                      <span className="text-fg-faint mt-1">→</span>
+                      <span className="text-fg-muted">{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="mb-10 pb-10 border-b border-white/10">
-                <p className="text-xs font-semibold text-gray-400 mb-4 tracking-wider">PRE-BUILT ACCELERATORS</p>
+              <div className="mb-10 pb-10 border-b border-border">
+                <p className="text-xs font-semibold text-fg-muted mb-4 tracking-wider">PRE-BUILT ACCELERATORS</p>
                 <div className="flex flex-wrap gap-3">
                   {currentSolution.accelerators.map((acc, idx) => (
-                    <span key={idx} className="text-sm px-4 py-2 bg-white/5 rounded-full border border-white/10">
+                    <span key={idx} className="text-sm px-4 py-2 bg-surface-2 rounded-full border border-border">
                       {acc}
                     </span>
                   ))}
@@ -242,7 +242,7 @@ export default function SolutionsPageClient() {
               </div>
 
               <Link href={currentSolution.link}>
-                <Button className="px-8 py-4 bg-white text-black hover:bg-white/90">
+                <Button className="px-8 py-4">
                   LEARN MORE →
                 </Button>
               </Link>
@@ -253,13 +253,13 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Delivery Formats - EXPANDING CARDS */}
-      <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10 md:mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               CHOOSE YOUR DELIVERY FORMAT
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted">
               Every solution can be delivered through conversational AI, intelligence dashboards,
               or workflow automation—or all three combined.
             </p>
@@ -268,7 +268,7 @@ export default function SolutionsPageClient() {
           <div className="flex flex-col md:flex-row gap-4 min-h-[360px]">
             {/* Conversational AI */}
             <div
-              className={`relative border border-white/10 rounded-lg bg-black overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
+              className={`relative border border-border rounded-lg bg-bg overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
                 ${hoveredCard === 'chat' || hoveredCard === null
                   ? hoveredCard === 'chat'
                     ? 'flex-[1.6]'
@@ -282,18 +282,18 @@ export default function SolutionsPageClient() {
               <div className={`absolute inset-0 p-6 md:p-10 flex flex-col justify-center transition-opacity duration-300
                 ${hoveredCard === 'chat' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="max-w-lg mx-auto">
-                  <div className="text-gray-400 mb-6">
+                  <div className="text-fg-muted mb-6">
                     <ChatIcon large />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold mb-4">Conversational AI</h3>
-                  <p className="text-gray leading-relaxed mb-6">
+                  <p className="text-fg-muted leading-relaxed mb-6">
                     Interactive Q&A agents for HR screening, customer service, internal support,
                     and knowledge retrieval.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">HR Bots</span>
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Customer Service</span>
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Internal Support</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">HR Bots</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Customer Service</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Internal Support</span>
                   </div>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export default function SolutionsPageClient() {
               {/* Collapsed Content */}
               <div className={`absolute inset-0 p-5 md:p-8 flex flex-col items-center justify-center transition-opacity duration-300
                 ${hoveredCard === 'chat' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
-                <div className="text-gray-400 mb-4">
+                <div className="text-fg-muted mb-4">
                   <ChatIcon />
                 </div>
                 <h3 className="text-lg font-bold text-center">Conversational AI</h3>
@@ -310,12 +310,12 @@ export default function SolutionsPageClient() {
 
             {/* Intelligence Dashboards */}
             <div
-              className={`relative border rounded-lg bg-black overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
+              className={`relative border rounded-lg bg-bg overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
                 ${hoveredCard === 'dashboard' || hoveredCard === null
                   ? hoveredCard === 'dashboard'
                     ? 'flex-[1.8] border-blue-500/30'
-                    : 'flex-1 border-white/10'
-                  : 'flex-[0.5] opacity-50 border-white/10'
+                    : 'flex-1 border-border'
+                  : 'flex-[0.5] opacity-50 border-border'
                 }`}
               onMouseEnter={() => setHoveredCard('dashboard')}
               onMouseLeave={() => setHoveredCard(null)}
@@ -332,17 +332,17 @@ export default function SolutionsPageClient() {
               <div className={`absolute inset-0 p-6 md:p-10 flex flex-col justify-center transition-opacity duration-300
                 ${hoveredCard === 'dashboard' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="max-w-xl mx-auto">
-                  <div className="text-gray-400 mb-6">
+                  <div className="text-fg-muted mb-6">
                     <DashboardIcon large />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold mb-4">Intelligence Dashboards</h3>
-                  <p className="text-gray leading-relaxed mb-6">
+                  <p className="text-fg-muted leading-relaxed mb-6">
                     Chat meets analytics. Ask questions in natural language, see visual insights instantly.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Building Permits</span>
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Compliance</span>
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Executive Insights</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Building Permits</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Compliance</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Executive Insights</span>
                   </div>
                 </div>
               </div>
@@ -350,7 +350,7 @@ export default function SolutionsPageClient() {
               {/* Collapsed Content */}
               <div className={`absolute inset-0 p-5 md:p-8 flex flex-col items-center justify-center transition-opacity duration-300
                 ${hoveredCard === 'dashboard' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
-                <div className="text-gray-400 mb-4">
+                <div className="text-fg-muted mb-4">
                   <DashboardIcon />
                 </div>
                 <h3 className="text-lg font-bold text-center">Intelligence Dashboards</h3>
@@ -359,7 +359,7 @@ export default function SolutionsPageClient() {
 
             {/* Workflow Automation */}
             <div
-              className={`relative border border-white/10 rounded-lg bg-black overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
+              className={`relative border border-border rounded-lg bg-bg overflow-hidden transition-all duration-500 ease-in-out cursor-pointer
                 ${hoveredCard === 'workflow' || hoveredCard === null
                   ? hoveredCard === 'workflow'
                     ? 'flex-[1.6]'
@@ -373,17 +373,17 @@ export default function SolutionsPageClient() {
               <div className={`absolute inset-0 p-6 md:p-10 flex flex-col justify-center transition-opacity duration-300
                 ${hoveredCard === 'workflow' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="max-w-lg mx-auto">
-                  <div className="text-gray-400 mb-6">
+                  <div className="text-fg-muted mb-6">
                     <WorkflowIcon large />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold mb-4">Workflow Automation</h3>
-                  <p className="text-gray leading-relaxed mb-6">
+                  <p className="text-fg-muted leading-relaxed mb-6">
                     Build end-to-end processes with AI guidance. Visual workflow builder with agent support.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Procurement</span>
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Approvals</span>
-                    <span className="text-xs px-3 py-1.5 bg-white/5 rounded-full border border-white/10">Onboarding</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Procurement</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Approvals</span>
+                    <span className="text-xs px-3 py-1.5 bg-surface-2 rounded-full border border-border">Onboarding</span>
                   </div>
                 </div>
               </div>
@@ -391,7 +391,7 @@ export default function SolutionsPageClient() {
               {/* Collapsed Content */}
               <div className={`absolute inset-0 p-5 md:p-8 flex flex-col items-center justify-center transition-opacity duration-300
                 ${hoveredCard === 'workflow' ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
-                <div className="text-gray-400 mb-4">
+                <div className="text-fg-muted mb-4">
                   <WorkflowIcon />
                 </div>
                 <h3 className="text-lg font-bold text-center">Workflow Automation</h3>
@@ -402,16 +402,16 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Try It Yourself Section */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="text-center mb-8 md:mb-16">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-4">
+            <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-4">
               INTERACTIVE DEMO
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               TRY IT YOURSELF
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto leading-relaxed">
               Experience our AI solutions hands-on. See how we deliver through
               conversational AI, analytics dashboards, and workflow automation.
             </p>
@@ -419,26 +419,26 @@ export default function SolutionsPageClient() {
 
           {/* Three Delivery Format Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-6 md:mb-12">
-            <div className="border border-white/10 rounded-lg p-5 md:p-8 text-center hover:border-white/20 transition-colors">
+            <div className="border border-border rounded-lg p-5 md:p-8 text-center hover:border-border-strong transition-colors">
               <div className="text-3xl md:text-4xl mb-4">💬</div>
               <h3 className="text-lg font-bold mb-2">Conversational AI</h3>
-              <p className="text-sm text-gray">
+              <p className="text-sm text-fg-muted">
                 Ask questions, get instant answers with context-aware responses
               </p>
             </div>
 
-            <div className="border border-white/10 rounded-lg p-5 md:p-8 text-center hover:border-white/20 transition-colors">
+            <div className="border border-border rounded-lg p-5 md:p-8 text-center hover:border-border-strong transition-colors">
               <div className="text-3xl md:text-4xl mb-4">📊</div>
               <h3 className="text-lg font-bold mb-2">Analytics Dashboard</h3>
-              <p className="text-sm text-gray">
+              <p className="text-sm text-fg-muted">
                 Request data visualizations and build dashboards through chat
               </p>
             </div>
 
-            <div className="border border-white/10 rounded-lg p-5 md:p-8 text-center hover:border-white/20 transition-colors">
+            <div className="border border-border rounded-lg p-5 md:p-8 text-center hover:border-border-strong transition-colors">
               <div className="text-3xl md:text-4xl mb-4">⚙️</div>
               <h3 className="text-lg font-bold mb-2">Workflow Automation</h3>
-              <p className="text-sm text-gray">
+              <p className="text-sm text-fg-muted">
                 Automate complex processes with AI-guided workflows
               </p>
             </div>
@@ -447,7 +447,7 @@ export default function SolutionsPageClient() {
           {/* CTA Button */}
           <div className="text-center">
             <Link href="/demo">
-              <Button className="bg-white text-black hover:bg-gray-200 px-6 py-3 sm:px-8 sm:py-4 text-lg inline-flex items-center gap-3 w-full sm:w-auto">
+              <Button className="px-6 py-3 sm:px-8 sm:py-4 text-lg inline-flex items-center gap-3 w-full sm:w-auto">
                 <span>🖐️</span>
                 Launch Interactive Demo
               </Button>
@@ -457,22 +457,22 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             READY TO DEPLOY AI SOLUTIONS?
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12 leading-relaxed">
             See how our AI solutions can transform your operations, engagement, and intelligence capabilities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white hover:text-black px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
+              <Button className="px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
                 Schedule a Demo
               </Button>
             </Link>
             <Link href="/platform">
-              <Button className="border border-white/20 hover:bg-white/10 px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
+              <Button className="px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
                 Explore Platform
               </Button>
             </Link>

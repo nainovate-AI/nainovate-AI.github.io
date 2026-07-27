@@ -15,7 +15,7 @@ import {
   X,
   MessageCircle,
 } from 'lucide-react';
-import data from '@/data/building-permits/dashboards.json';
+import data from '@/data/demo/public-sector/building-permits/dashboard.json';
 
 type Msg = { role: 'user' | 'assistant'; content: string };
 
@@ -37,7 +37,7 @@ function CloseX({ onClose }: { onClose: () => void }) {
   return (
     <button
       onClick={onClose}
-      className="absolute top-2 right-2 w-6 h-6 rounded-md text-white/40 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors z-10"
+      className="absolute top-2 right-2 w-6 h-6 rounded-md text-fg-strong/40 hover:text-fg-strong hover:bg-fg-strong/10 flex items-center justify-center transition-colors z-10"
       aria-label="Remove widget"
       title="Remove"
     >
@@ -90,7 +90,7 @@ function KpiTile({ tile, onClose }: { tile: (typeof data.kpiTiles)[number]; onCl
   const isUp = tile.deltaDir === 'up';
   const isBar = tile.icon === 'trend';
   return (
-    <div className="relative rounded-xl border border-white/10 bg-white/[0.02] p-5">
+    <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
       <CloseX onClose={onClose} />
       <div className="flex items-start gap-4 pr-6">
         <div
@@ -100,8 +100,8 @@ function KpiTile({ tile, onClose }: { tile: (typeof data.kpiTiles)[number]; onCl
           <IconFor name={tile.icon} className="w-5 h-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-xs text-white/60">{tile.label}</p>
-          <p className="text-2xl font-semibold text-white leading-tight">{tile.value}</p>
+          <p className="text-xs text-fg-strong/60">{tile.label}</p>
+          <p className="text-2xl font-semibold text-fg-strong leading-tight">{tile.value}</p>
         </div>
       </div>
       <div className="mt-3 flex items-center gap-3">
@@ -109,7 +109,7 @@ function KpiTile({ tile, onClose }: { tile: (typeof data.kpiTiles)[number]; onCl
           {isUp ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
           {tile.delta}
         </span>
-        <span className="text-xs text-white/50">{tile.deltaNote}</span>
+        <span className="text-xs text-fg-strong/50">{tile.deltaNote}</span>
         <div className="ml-auto w-24">
           <Sparkline values={tile.spark} color={tile.color} variant={isBar ? 'bar' : 'line'} />
         </div>
@@ -163,8 +163,8 @@ function Donut({
         })}
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <p className="text-2xl font-semibold text-white leading-tight">{centerTop}</p>
-        <p className="text-xs text-white/50">{centerBottom}</p>
+        <p className="text-2xl font-semibold text-fg-strong leading-tight">{centerTop}</p>
+        <p className="text-xs text-fg-strong/50">{centerBottom}</p>
       </div>
     </div>
   );
@@ -177,9 +177,9 @@ function LegendRows({ items }: { items: { label: string; value: number; percent:
       {items.map((it) => (
         <li key={it.label} className="flex items-center gap-3 text-sm">
           <span className="w-2 h-2 rounded-full shrink-0" style={{ background: it.color }} />
-          <span className="text-white/80 flex-1">{it.label}</span>
-          <span className="text-white font-medium tabular-nums">{it.value.toLocaleString()}</span>
-          <span className="text-white/50 tabular-nums text-xs">({it.percent}%)</span>
+          <span className="text-fg-strong/80 flex-1">{it.label}</span>
+          <span className="text-fg-strong font-medium tabular-nums">{it.value.toLocaleString()}</span>
+          <span className="text-fg-strong/50 tabular-nums text-xs">({it.percent}%)</span>
         </li>
       ))}
     </ul>
@@ -192,14 +192,14 @@ function BarList({ items, max }: { items: { label: string; value: number; color:
     <ul className="space-y-3">
       {items.map((it) => (
         <li key={it.label} className="grid grid-cols-[80px_1fr_40px] items-center gap-3 text-sm">
-          <span className="text-white/80">{it.label}</span>
-          <div className="h-2 rounded-full bg-white/5 overflow-hidden">
+          <span className="text-fg-strong/80">{it.label}</span>
+          <div className="h-2 rounded-full bg-surface-2 overflow-hidden">
             <div
               className="h-full rounded-full"
               style={{ width: `${(it.value / max) * 100}%`, background: it.color }}
             />
           </div>
-          <span className="text-white text-right tabular-nums font-medium">{it.value}</span>
+          <span className="text-fg-strong text-right tabular-nums font-medium">{it.value}</span>
         </li>
       ))}
     </ul>
@@ -266,7 +266,7 @@ function LineChart({ labels, values }: { labels: string[]; values: number[] }) {
 /* ── Small tile inside Applications Summary ─────────────────────────── */
 function SummaryTile({ tile }: { tile: { label: string; value: string; icon: string; color: string } }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-white/[0.02] p-3 flex items-center gap-3">
+    <div className="rounded-lg border border-fg-strong/10 bg-white/[0.02] p-3 flex items-center gap-3">
       <div
         className="w-9 h-9 rounded-md flex items-center justify-center shrink-0"
         style={{ background: `${tile.color}22`, color: tile.color }}
@@ -274,8 +274,8 @@ function SummaryTile({ tile }: { tile: { label: string; value: string; icon: str
         <IconFor name={tile.icon} className="w-4 h-4" />
       </div>
       <div className="min-w-0">
-        <p className="text-lg font-semibold text-white leading-tight">{tile.value}</p>
-        <p className="text-[11px] text-white/60 truncate">{tile.label}</p>
+        <p className="text-lg font-semibold text-fg-strong leading-tight">{tile.value}</p>
+        <p className="text-[11px] text-fg-strong/60 truncate">{tile.label}</p>
       </div>
     </div>
   );
@@ -319,16 +319,16 @@ function AssistantChatPopup({
   const remainingPrompts = a.quickPrompts.filter((q) => !usedPrompts.has(q));
 
   return (
-    <div className="fixed bottom-6 right-6 w-[380px] h-[500px] bg-black border border-white/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] sm:h-[500px] max-h-[500px] bg-bg border border-fg-strong/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-fg-strong/10">
         <div className="flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-violet-400" />
-          <span className="text-sm font-medium text-white">{a.title}</span>
+          <span className="text-sm font-medium text-fg-strong">{a.title}</span>
         </div>
         <button
           onClick={onClose}
-          className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+          className="w-8 h-8 rounded-full hover:bg-fg-strong/10 flex items-center justify-center text-fg-muted hover:text-fg-strong transition-colors"
           aria-label="Close chat"
         >
           <X className="w-4 h-4" />
@@ -340,13 +340,13 @@ function AssistantChatPopup({
         {messages.map((m, i) =>
           m.role === 'user' ? (
             <div key={i} className="flex justify-end">
-              <div className="max-w-[85%] rounded-2xl bg-[#6366F1] text-white text-xs px-4 py-2">
+              <div className="max-w-[85%] rounded-2xl bg-[#6366F1] text-fg-strong text-xs px-4 py-2">
                 {m.content}
               </div>
             </div>
           ) : (
             <div key={i} className="flex justify-start">
-              <div className="max-w-[85%] rounded-xl bg-white/10 text-white text-sm px-3 py-2">
+              <div className="max-w-[85%] rounded-xl bg-surface-2 text-fg-strong text-sm px-3 py-2">
                 {m.content}
               </div>
             </div>
@@ -356,13 +356,13 @@ function AssistantChatPopup({
 
       {/* Quick prompts */}
       {remainingPrompts.length > 0 && (
-        <div className="px-4 py-2 border-t border-white/10">
+        <div className="px-4 py-2 border-t border-fg-strong/10">
           <div className="flex gap-1.5 overflow-x-auto scrollbar-thin -mx-1 px-1 pb-1">
             {remainingPrompts.map((q) => (
               <button
                 key={q}
                 onClick={() => send(q)}
-                className="shrink-0 whitespace-nowrap px-2.5 py-1 text-[10px] bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors text-gray-400 hover:text-white"
+                className="shrink-0 whitespace-nowrap px-2.5 py-1 text-[10px] bg-surface-2 hover:bg-fg-strong/10 border border-fg-strong/10 rounded-full transition-colors text-fg-muted hover:text-fg-strong"
               >
                 {q}
               </button>
@@ -372,14 +372,14 @@ function AssistantChatPopup({
       )}
 
       {/* Input */}
-      <div className="px-4 py-3 border-t border-white/10">
-        <div className="flex gap-2 items-center bg-white/5 border border-white/10 rounded-full px-3 py-2">
+      <div className="px-4 py-3 border-t border-fg-strong/10">
+        <div className="flex gap-2 items-center bg-surface-2 border border-fg-strong/10 rounded-full px-3 py-2">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && send()}
             placeholder="Ask for analytics..."
-            className="flex-1 bg-transparent text-white placeholder-gray-500 focus:outline-none text-sm"
+            className="flex-1 bg-transparent text-fg-strong placeholder-gray-500 focus:outline-none text-sm"
           />
           <button
             onClick={() => send()}
@@ -411,7 +411,7 @@ type WidgetId =
 
 const DEFAULT_VISIBLE: WidgetId[] = ['kpi-total', 'kpi-approval', 'byType', 'monthlyTrends'];
 
-export default function BuildingPermitsDashboard() {
+export default function PublicSectorDashboard() {
   const [chatOpen, setChatOpen] = useState(false);
   const [visible, setVisible] = useState<Set<WidgetId>>(new Set(DEFAULT_VISIBLE));
   const isShown = (id: WidgetId) => visible.has(id);
@@ -450,9 +450,9 @@ export default function BuildingPermitsDashboard() {
         {/* Charts — single responsive grid (2/3 per row, wrap) */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {isShown('byType') && (
-            <div className="relative rounded-xl border border-white/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
               <CloseX onClose={() => hide('byType')} />
-              <p className="text-sm font-medium text-white mb-4 pr-6">{data.byBuildingType.title}</p>
+              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byBuildingType.title}</p>
               <div className="flex items-center gap-5">
                 <Donut
                   items={data.byBuildingType.items}
@@ -464,9 +464,9 @@ export default function BuildingPermitsDashboard() {
                   <LegendRows items={data.byBuildingType.items} />
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-                <span className="text-white/60">{data.byBuildingType.totalLabel}</span>
-                <span className="text-white font-medium tabular-nums">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between text-xs">
+                <span className="text-fg-strong/60">{data.byBuildingType.totalLabel}</span>
+                <span className="text-fg-strong font-medium tabular-nums">
                   {data.byBuildingType.totalValue.toLocaleString()}
                 </span>
               </div>
@@ -474,18 +474,18 @@ export default function BuildingPermitsDashboard() {
           )}
 
           {isShown('byDepartment') && (
-            <div className="relative rounded-xl border border-white/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
               <CloseX onClose={() => hide('byDepartment')} />
-              <p className="text-sm font-medium text-white mb-4 pr-6">{data.byDepartment.title}</p>
+              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byDepartment.title}</p>
               <div className="flex items-center gap-5">
                 <Donut items={data.byDepartment.items} centerTop="" centerBottom="" size={170} ring={16} />
                 <div className="flex-1 min-w-0">
                   <LegendRows items={data.byDepartment.items} />
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-                <span className="text-white/60">{data.byDepartment.totalLabel}</span>
-                <span className="text-white font-medium tabular-nums">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between text-xs">
+                <span className="text-fg-strong/60">{data.byDepartment.totalLabel}</span>
+                <span className="text-fg-strong font-medium tabular-nums">
                   {data.byDepartment.totalValue.toLocaleString()}
                 </span>
               </div>
@@ -493,18 +493,18 @@ export default function BuildingPermitsDashboard() {
           )}
 
           {isShown('byZone') && (
-            <div className="relative rounded-xl border border-white/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
               <CloseX onClose={() => hide('byZone')} />
-              <p className="text-sm font-medium text-white mb-4 pr-6">{data.byZone.title}</p>
+              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byZone.title}</p>
               <div className="flex items-center gap-5">
                 <Donut items={data.byZone.items} centerTop="" centerBottom="" size={170} />
                 <div className="flex-1 min-w-0">
                   <LegendRows items={data.byZone.items} />
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-                <span className="text-white/60">{data.byZone.totalLabel}</span>
-                <span className="text-white font-medium tabular-nums">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between text-xs">
+                <span className="text-fg-strong/60">{data.byZone.totalLabel}</span>
+                <span className="text-fg-strong font-medium tabular-nums">
                   {data.byZone.totalValue.toLocaleString()}
                 </span>
               </div>
@@ -512,17 +512,17 @@ export default function BuildingPermitsDashboard() {
           )}
 
           {isShown('avgTime') && (
-            <div className="relative rounded-xl border border-white/10 bg-white/[0.02] p-5 flex flex-col">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 flex flex-col">
               <CloseX onClose={() => hide('avgTime')} />
-              <p className="text-sm font-medium text-white mb-4 pr-6">{data.avgProcessingTime.title}</p>
+              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.avgProcessingTime.title}</p>
               <BarList items={data.avgProcessingTime.items} max={maxProcTime + 8} />
-              <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-3">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[11px] text-white/50">{data.avgProcessingTime.overall.label}</p>
-                  <p className="text-lg font-semibold text-white leading-tight">
+                  <p className="text-[11px] text-fg-strong/50">{data.avgProcessingTime.overall.label}</p>
+                  <p className="text-lg font-semibold text-fg-strong leading-tight">
                     {data.avgProcessingTime.overall.value}
                   </p>
                 </div>
@@ -531,18 +531,18 @@ export default function BuildingPermitsDashboard() {
                     <ArrowDown className="w-3 h-3" />
                     {data.avgProcessingTime.overall.delta}
                   </p>
-                  <p className="text-[10px] text-white/50">{data.avgProcessingTime.overall.deltaNote}</p>
+                  <p className="text-[10px] text-fg-strong/50">{data.avgProcessingTime.overall.deltaNote}</p>
                 </div>
               </div>
             </div>
           )}
 
           {isShown('monthlyTrends') && (
-            <div className="relative rounded-xl border border-white/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
               <CloseX onClose={() => hide('monthlyTrends')} />
-              <p className="text-sm font-medium text-white mb-4 pr-6">{data.monthlyTrends.title}</p>
+              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.monthlyTrends.title}</p>
               <LineChart labels={data.monthlyTrends.labels} values={data.monthlyTrends.values} />
-              <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/60">
+              <div className="mt-3 flex items-center justify-center gap-2 text-xs text-fg-strong/60">
                 <span className="w-2 h-2 rounded-full bg-violet-500" />
                 {data.monthlyTrends.seriesLabel}
               </div>
@@ -558,7 +558,7 @@ export default function BuildingPermitsDashboard() {
       ) : (
         <button
           onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 w-14 h-14 bg-white text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50"
+          className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-14 h-14 bg-white text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50"
           aria-label="Open assistant"
         >
           <MessageCircle className="w-6 h-6" />

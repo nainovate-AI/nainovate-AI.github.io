@@ -5,19 +5,19 @@ import { Button } from '@/components/ui/Button';
 
 export default function TraceAuditClient() {
   return (
-    <main className="pt-20 relative z-10 bg-black">
+    <main className="pt-20 relative z-10 bg-bg">
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-white/10">
+      <section className="min-h-[70vh] flex items-center border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
-          <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             PILLAR 03 • TRACE &amp; AUDIT
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
             <span className="block">ZERO</span>
-            <span className="block text-gray">BLACK</span>
+            <span className="block">BLACK</span>
             <span className="block">BOX.</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
             Every AI decision — every reply, every escalation, every watchlist trigger —
             logged with agent confidence, weighted signals, and evidence rows. Legal-audit
             ready. Regulator-ready. Compliance-team-happy.
@@ -26,40 +26,40 @@ export default function TraceAuditClient() {
       </section>
 
       {/* Trace record */}
-      <section className="py-16 md:py-32">
+      <section className="py-14 md:py-20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             TRACE trace_acme_p0_2104
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
             Open a trace. See the whole decision.
           </h2>
 
           {/* Trace header card */}
-          <div className="border border-white/10 rounded-lg overflow-hidden mb-6 md:mb-12">
-            <div className="p-5 md:p-8 border-b border-white/10 bg-white/5">
+          <div className="border border-border rounded-lg overflow-hidden mb-6 md:mb-12">
+            <div className="p-5 md:p-8 border-b border-border bg-surface-2">
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <div>
-                  <p className="text-xs text-gray uppercase tracking-wider mb-2">Trace ID</p>
-                  <p className="text-white font-mono">trace_acme_p0_2104</p>
+                  <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Trace ID</p>
+                  <p className="text-fg-strong font-mono">trace_acme_p0_2104</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray uppercase tracking-wider mb-2">Source ticket</p>
-                  <p className="text-white font-mono">FD-2104</p>
+                  <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Source ticket</p>
+                  <p className="text-fg-strong font-mono">FD-2104</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray uppercase tracking-wider mb-2">Started</p>
-                  <p className="text-white">05:45 AM · 2026-07-09</p>
+                  <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Started</p>
+                  <p className="text-fg-strong">05:45 AM · 2026-07-09</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray uppercase tracking-wider mb-2">Duration</p>
-                  <p className="text-white">1.42s</p>
+                  <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Duration</p>
+                  <p className="text-fg-strong">1.42s</p>
                 </div>
               </div>
             </div>
             <div className="p-5 md:p-8">
-              <p className="text-xs text-gray uppercase tracking-wider mb-4">Decision summary</p>
-              <p className="text-white text-lg leading-relaxed">
+              <p className="text-xs text-fg-muted uppercase tracking-wider mb-4">Decision summary</p>
+              <p className="text-fg-strong text-lg leading-relaxed">
                 Auto-escalate FD-2104 to P0. Create ENG-4412 assigned to Consultant 1.
                 Notify CSM Persona 1. Insert Account A portal banner. Queue KB post-mortem
                 draft. Agent confidence: <span className="font-mono">0.91</span>.
@@ -69,8 +69,8 @@ export default function TraceAuditClient() {
 
           {/* Weighted signals */}
           <div className="grid lg:grid-cols-2 gap-8 mb-6 md:mb-12">
-            <div className="border border-white/10 rounded-lg p-5 md:p-8">
-              <p className="text-xs text-gray uppercase tracking-wider mb-6">Weighted signals</p>
+            <div className="border border-border rounded-lg p-5 md:p-8">
+              <p className="text-xs text-fg-muted uppercase tracking-wider mb-6">Weighted signals</p>
               <div className="space-y-4">
                 {[
                   { label: 'Ticket cluster density (Account A, sync)', weight: 0.42, evidence: '3 tickets in 24h' },
@@ -78,15 +78,15 @@ export default function TraceAuditClient() {
                   { label: 'Requester seniority (maintenance eng)', weight: 0.18, evidence: 'active user, 47 rounds/day' },
                   { label: 'Account health drop', weight: 0.12, evidence: 'score 42 → 35 in 6h' },
                 ].map((s) => (
-                  <div key={s.label} className="border-t border-white/10 pt-4">
+                  <div key={s.label} className="border-t border-border pt-4">
                     <div className="flex justify-between mb-1">
-                      <p className="text-white text-sm">{s.label}</p>
-                      <p className="text-white font-mono text-sm">{s.weight.toFixed(2)}</p>
+                      <p className="text-fg-strong text-sm">{s.label}</p>
+                      <p className="text-fg-strong font-mono text-sm">{s.weight.toFixed(2)}</p>
                     </div>
-                    <p className="text-xs text-gray">{s.evidence}</p>
-                    <div className="mt-2 h-1 bg-white/10 rounded overflow-hidden">
+                    <p className="text-xs text-fg-muted">{s.evidence}</p>
+                    <div className="mt-2 h-1 bg-surface-2 rounded overflow-hidden">
                       <div
-                        className="h-full bg-white"
+                        className="h-full bg-fg-strong"
                         style={{ width: `${s.weight * 100}%` }}
                       />
                     </div>
@@ -95,8 +95,8 @@ export default function TraceAuditClient() {
               </div>
             </div>
 
-            <div className="border border-white/10 rounded-lg p-5 md:p-8">
-              <p className="text-xs text-gray uppercase tracking-wider mb-6">Evidence rows</p>
+            <div className="border border-border rounded-lg p-5 md:p-8">
+              <p className="text-xs text-fg-muted uppercase tracking-wider mb-6">Evidence rows</p>
               <div className="space-y-3 text-sm">
                 {[
                   { id: 'evd_01', src: 'Incident Management Tool', ref: 'FD-2104', detail: 'ticket body, requester, priority' },
@@ -106,11 +106,11 @@ export default function TraceAuditClient() {
                   { id: 'evd_05', src: 'Issue Tracker', ref: 'sync-mobile', detail: 'owner Consultant 1, on-call yes' },
                   { id: 'evd_06', src: 'KB', ref: 'no article match', detail: 'novelty score 0.87' },
                 ].map((e) => (
-                  <div key={e.id} className="border-t border-white/10 pt-3 grid grid-cols-12 gap-2">
-                    <span className="col-span-2 text-gray font-mono">{e.id}</span>
-                    <span className="col-span-2 text-gray">{e.src}</span>
-                    <span className="col-span-3 text-white font-mono">{e.ref}</span>
-                    <span className="col-span-5 text-gray">{e.detail}</span>
+                  <div key={e.id} className="border-t border-border pt-3 grid grid-cols-12 gap-2">
+                    <span className="col-span-2 text-fg-muted font-mono">{e.id}</span>
+                    <span className="col-span-2 text-fg-muted">{e.src}</span>
+                    <span className="col-span-3 text-fg-strong font-mono">{e.ref}</span>
+                    <span className="col-span-5 text-fg-muted">{e.detail}</span>
                   </div>
                 ))}
               </div>
@@ -118,9 +118,9 @@ export default function TraceAuditClient() {
           </div>
 
           {/* Timeline */}
-          <div className="border border-white/10 rounded-lg overflow-hidden">
-            <div className="p-6 border-b border-white/10 bg-white/5">
-              <p className="text-xs text-gray uppercase tracking-wider">Decision timeline</p>
+          <div className="border border-border rounded-lg overflow-hidden">
+            <div className="p-6 border-b border-border bg-surface-2">
+              <p className="text-xs text-fg-muted uppercase tracking-wider">Decision timeline</p>
             </div>
             {[
               { t: '00:00.000', event: 'FD-2104 lands', src: 'Incident Management Tool' },
@@ -131,10 +131,10 @@ export default function TraceAuditClient() {
               { t: '00:01.060', event: 'Workflow wf_001 dispatched (6 steps)', src: 'Nia · Workflows' },
               { t: '00:01.420', event: 'All steps ✓ — trace closed', src: 'Coordination' },
             ].map((row) => (
-              <div key={row.t} className="p-4 border-b border-white/10 grid grid-cols-12 gap-4 text-sm">
-                <span className="col-span-2 text-gray font-mono">{row.t}</span>
-                <span className="col-span-7 text-white">{row.event}</span>
-                <span className="col-span-3 text-gray">{row.src}</span>
+              <div key={row.t} className="p-4 border-b border-border grid grid-cols-12 gap-4 text-sm">
+                <span className="col-span-2 text-fg-muted font-mono">{row.t}</span>
+                <span className="col-span-7 text-fg-strong">{row.event}</span>
+                <span className="col-span-3 text-fg-muted">{row.src}</span>
               </div>
             ))}
           </div>
@@ -142,12 +142,12 @@ export default function TraceAuditClient() {
       </section>
 
       {/* Why it matters */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             WHY IT MATTERS
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
             Explainability is not a feature. It is the contract.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -156,9 +156,9 @@ export default function TraceAuditClient() {
               { h: 'Governance boards', p: 'Prompt versions, model versions, decision policies — all versioned and diffable.' },
               { h: 'Customer trust', p: 'When customers ask why the AI did that — you have the receipts, with citations.' },
             ].map((c) => (
-              <div key={c.h} className="border border-white/10 rounded-lg p-5 md:p-8">
+              <div key={c.h} className="border border-border rounded-lg p-5 md:p-8">
                 <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4" dangerouslySetInnerHTML={{ __html: c.h }} />
-                <p className="text-gray text-sm leading-relaxed">{c.p}</p>
+                <p className="text-fg-muted text-sm leading-relaxed">{c.p}</p>
               </div>
             ))}
           </div>
@@ -166,19 +166,19 @@ export default function TraceAuditClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             One ticket triggered four teams. See how they land.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
             <Link href="/decision-intelligence/coordination" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10">
+              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
                 Coordination Center →
               </Button>
             </Link>
             <Link href="/decision-intelligence" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-10">
+              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
                 Back to overview
               </Button>
             </Link>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
 import { useState } from 'react';
 import LiveChatBot from '@/components/ui/LiveChatBot';
-import mockData from '@/data/engagement.json';
+import mockData from '@/data/marketing/engagement.json';
 
 export default function EngagementPageClient() {
   const [activeUseCase, setActiveUseCase] = useState<'customer' | 'citizen' | 'multichannel' | 'quality'>('customer');
@@ -28,10 +28,10 @@ export default function EngagementPageClient() {
       <JsonLd data={engagementSchema} />
 
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-white/10 py-12 md:py-20">
+      <section className="min-h-[70vh] flex items-center border-b border-border py-12 md:py-20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-3xl">
-            <p className="text-sm font-medium tracking-[0.2em] text-gray uppercase mb-8">
+            <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">
               AI FOR ENGAGEMENT
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
@@ -39,13 +39,13 @@ export default function EngagementPageClient() {
               <span className="block">CUSTOMER</span>
               <span className="block">INTERACTIONS</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl leading-relaxed mb-6 md:mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl leading-relaxed mb-6 md:mb-12">
               Deploy AI agents that handle customer service, citizen requests, and multi-channel support.
               Deliver exceptional experiences at scale, 24/7.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg w-full sm:w-auto">
+                <Button className="px-6 py-3 text-lg w-full sm:w-auto">
                   Schedule Demo
                 </Button>
               </Link>
@@ -55,35 +55,35 @@ export default function EngagementPageClient() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 md:py-20 border-b border-white/10">
+      <section className="py-12 md:py-20 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">24/7</div>
-              <div className="text-gray">Availability</div>
+              <div className="text-fg-muted">Availability</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">85%</div>
-              <div className="text-gray">Query Resolution</div>
+              <div className="text-fg-muted">Query Resolution</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">&lt;2s</div>
-              <div className="text-gray">Response Time</div>
+              <div className="text-fg-muted">Response Time</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">40%</div>
-              <div className="text-gray">Cost Reduction</div>
+              <div className="text-fg-muted">Cost Reduction</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Use Cases */}
-      <section id="use-cases" className="py-16 md:py-32">
+      <section id="use-cases" className="py-14 md:py-20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">USE CASES</h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto">
               Transform how you engage with customers and citizens
             </p>
           </div>
@@ -93,8 +93,8 @@ export default function EngagementPageClient() {
             <button
               onClick={() => setActiveUseCase('customer')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'customer'
-                ? 'text-white border-b-2 border-white'
-                : 'text-gray hover:text-white border-b-2 border-transparent'
+                ? 'text-fg-strong border-b-2 border-fg-strong'
+                : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                 }`}
             >
               CUSTOMER SERVICE
@@ -102,8 +102,8 @@ export default function EngagementPageClient() {
             <button
               onClick={() => setActiveUseCase('citizen')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'citizen'
-                ? 'text-white border-b-2 border-white'
-                : 'text-gray hover:text-white border-b-2 border-transparent'
+                ? 'text-fg-strong border-b-2 border-fg-strong'
+                : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                 }`}
             >
               CITIZEN PORTAL
@@ -111,8 +111,8 @@ export default function EngagementPageClient() {
             <button
               onClick={() => setActiveUseCase('multichannel')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'multichannel'
-                ? 'text-white border-b-2 border-white'
-                : 'text-gray hover:text-white border-b-2 border-transparent'
+                ? 'text-fg-strong border-b-2 border-fg-strong'
+                : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                 }`}
             >
               MULTI-CHANNEL
@@ -120,8 +120,8 @@ export default function EngagementPageClient() {
             <button
               onClick={() => setActiveUseCase('quality')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'quality'
-                ? 'text-white border-b-2 border-white'
-                : 'text-gray hover:text-white border-b-2 border-transparent'
+                ? 'text-fg-strong border-b-2 border-fg-strong'
+                : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                 }`}
             >
               QUALITY ASSURANCE
@@ -142,7 +142,7 @@ export default function EngagementPageClient() {
 
               <div className="mb-8">
                 <div className="text-sm font-semibold text-red-400 mb-2">THE PROBLEM</div>
-                <p className="text-gray text-lg">{currentCase.problem}</p>
+                <p className="text-fg-muted text-lg">{currentCase.problem}</p>
               </div>
 
               <div className="mb-8">
@@ -151,22 +151,22 @@ export default function EngagementPageClient() {
               </div>
 
               <div className="mb-8">
-                <div className="text-sm font-semibold text-gray-400 mb-4">KEY FEATURES</div>
+                <div className="text-sm font-semibold text-fg-muted mb-4">KEY FEATURES</div>
                 <div className="grid grid-cols-2 gap-3">
                   {currentCase.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <span className="text-white/40">✓</span>
-                      <span className="text-gray text-sm">{feature}</span>
+                      <span className="text-fg-faint">✓</span>
+                      <span className="text-fg-muted text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="mb-8">
-                <div className="text-sm font-semibold text-gray-400 mb-4">INDUSTRIES</div>
+                <div className="text-sm font-semibold text-fg-muted mb-4">INDUSTRIES</div>
                 <div className="flex flex-wrap gap-2">
                   {currentCase.industries.map((industry, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
+                    <span key={idx} className="px-3 py-1 bg-surface-2 rounded-full text-sm border border-border">
                       {industry}
                     </span>
                   ))}
@@ -174,7 +174,7 @@ export default function EngagementPageClient() {
               </div>
 
               <Link href="/contact">
-                <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3">
+                <Button className="px-6 py-3">
                   Request Demo →
                 </Button>
               </Link>
@@ -185,9 +185,9 @@ export default function EngagementPageClient() {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 md:py-32 border-t border-white/10 bg-white/[0.01]">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-16 text-center">HOW IT WORKS</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">HOW IT WORKS</h2>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-12">
             <div className="text-center">
@@ -195,7 +195,7 @@ export default function EngagementPageClient() {
                 <span className="text-2xl md:text-3xl font-bold text-purple-400">1</span>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Design Conversations</h3>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 Map customer journeys, define intents, and create response templates. Import existing FAQs.
               </p>
             </div>
@@ -205,7 +205,7 @@ export default function EngagementPageClient() {
                 <span className="text-2xl md:text-3xl font-bold text-purple-400">2</span>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Train & Integrate</h3>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 AI learns your brand voice. Connect to CRM, ticketing, and knowledge bases.
               </p>
             </div>
@@ -215,7 +215,7 @@ export default function EngagementPageClient() {
                 <span className="text-2xl md:text-3xl font-bold text-purple-400">3</span>
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Launch & Optimize</h3>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 Deploy across channels. Monitor performance. Continuously improve with analytics.
               </p>
             </div>
@@ -224,22 +224,22 @@ export default function EngagementPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             READY TO SCALE YOUR ENGAGEMENT?
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12">
             See how AI agents can transform your customer and citizen interactions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <Link href="/contact">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg w-full sm:w-auto">
+              <Button className="px-6 py-3 text-lg w-full sm:w-auto">
                 Schedule Demo
               </Button>
             </Link>
             <Link href="/solutions">
-              <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 text-lg w-full sm:w-auto">
+              <Button className="px-6 py-3 text-lg w-full sm:w-auto">
                 View All Solutions
               </Button>
             </Link>

@@ -90,7 +90,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="bg-black pt-20">
+    <main className="bg-bg pt-20">
       <JsonLd data={aboutSchema} />
       <JsonLd data={timelineSchema} />
 
@@ -98,14 +98,14 @@ export default function AboutPage() {
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
-            <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+            <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               ABOUT
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
               <span className="block">BUILDING THE</span>
-              <span className="block text-gray">FUTURE OF AI</span>
+              <span className="block">FUTURE OF AI</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl">
               Nainovate transforms businesses with intelligent AI agents.
               We believe AI should be accessible, powerful, and tailored to your needs.
             </p>
@@ -114,28 +114,28 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">OUR MISSION</h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-8">
                 To democratize AI by making it accessible to every business,
                 regardless of technical expertise or resources.
               </p>
-              <p className="text-gray mb-8">
+              <p className="text-fg-muted mb-8">
                 We believe that AI should augment human capabilities, not replace them.
                 Our GenX platform empowers organizations to build intelligent agents
                 that understand their unique challenges and deliver real results.
               </p>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 Currently focused on governance, healthcare, and manufacturing sectors,
                 we&apos;re developing AI solutions that address complex operational challenges with measurable outcomes.
               </p>
             </div>
             <div className="relative h-[400px]">
               <div className="absolute inset-0 flex items-center justify-center">
-                <Target className="w-40 h-40 text-white/30" strokeWidth={1.5} />
+                <Target className="w-40 h-40 text-fg-faint" strokeWidth={1.5} />
               </div>
             </div>
           </div>
@@ -143,16 +143,16 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">OUR STORY</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">OUR STORY</h2>
 
           <div className="space-y-8 md:space-y-16">
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-4xl md:text-6xl font-bold text-gray">2023</div>
+              <div className="text-4xl md:text-6xl font-bold text-fg-muted">2023</div>
               <div className="lg:col-span-2">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">BUILDING IN STEALTH</h3>
-                <p className="text-gray">
+                <p className="text-fg-muted">
                   Began operations in stealth mode, conducting extensive research and development.
                   Laid the technical foundation for the GenX platform through rigorous market analysis and prototype development.
                 </p>
@@ -160,10 +160,10 @@ export default function AboutPage() {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-4xl md:text-6xl font-bold text-gray">2024</div>
+              <div className="text-4xl md:text-6xl font-bold text-fg-muted">2024</div>
               <div className="lg:col-span-2">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">PROVING THE CONCEPT</h3>
-                <p className="text-gray">
+                <p className="text-fg-muted">
                   Completed GenX platform development and validation.
                   Delivered over 20 proof-of-concept implementations across various industries, refining our approach based on real-world feedback.
                 </p>
@@ -171,10 +171,10 @@ export default function AboutPage() {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-4xl md:text-6xl font-bold text-gray">2025</div>
+              <div className="text-4xl md:text-6xl font-bold text-fg-muted">2025</div>
               <div className="lg:col-span-2">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">SCALING GLOBALLY</h3>
-                <ul className="text-gray text-base md:text-lg space-y-2">
+                <ul className="text-fg-muted text-base md:text-lg space-y-2">
                   <li>• Signed MoU with strategic partner in Oman</li>
                   <li>• Established partnership with Indian medical device manufacturer</li>
                   <li>• Expanding proof-of-concepts to GCC, North America, and Australia</li>
@@ -186,36 +186,36 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">OUR VALUES</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">OUR VALUES</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-4">01</div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">ENTERPRISE SECURITY</h3>
-              <p className="text-gray text-sm">
+              <p className="text-fg-muted text-sm">
                 On-premise deployment ensures complete data sovereignty and regulatory compliance
               </p>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-4">02</div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">RAPID IMPLEMENTATION</h3>
-              <p className="text-gray text-sm">
+              <p className="text-fg-muted text-sm">
                 Visual workflow builders enable production deployment within days
               </p>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-4">03</div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">ROI - DRIVEN SOLUTIONS</h3>
-              <p className="text-gray text-sm">
+              <p className="text-fg-muted text-sm">
                 Guaranteed performance metrics with average 300% ROI in year one
               </p>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold mb-4">04</div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">COLLABURATIVE GROWTH</h3>
-              <p className="text-gray text-sm">
+              <p className="text-fg-muted text-sm">
                 Success-based partnerships aligned with your business outcomes
               </p>
             </div>
@@ -224,74 +224,74 @@ export default function AboutPage() {
       </section>
 
       {/* Team
-      <section className="py-32 border-t border-white/10">
+      <section className="py-32 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">LEADERSHIP</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-white/10 to-white/5 rounded-full"></div>
+              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-surface-hover to-surface-2 rounded-full"></div>
               <h3 className="text-xl font-bold mb-2">FOUNDER NAME</h3>
-              <p className="text-gray mb-2">Chief Executive Officer</p>
-              <p className="text-sm text-gray">Former AI lead at Tech Giant</p>
+              <p className="text-fg-muted mb-2">Chief Executive Officer</p>
+              <p className="text-sm text-fg-muted">Former AI lead at Tech Giant</p>
             </div>
             <div className="text-center">
-              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-white/10 to-white/5 rounded-full"></div>
+              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-surface-hover to-surface-2 rounded-full"></div>
               <h3 className="text-xl font-bold mb-2">CTO NAME</h3>
-              <p className="text-gray mb-2">Chief Technology Officer</p>
-              <p className="text-sm text-gray">PhD in Machine Learning</p>
+              <p className="text-fg-muted mb-2">Chief Technology Officer</p>
+              <p className="text-sm text-fg-muted">PhD in Machine Learning</p>
             </div>
             <div className="text-center">
-              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-white/10 to-white/5 rounded-full"></div>
+              <div className="w-48 h-48 mx-auto mb-6 bg-gradient-to-br from-surface-hover to-surface-2 rounded-full"></div>
               <h3 className="text-xl font-bold mb-2">CPO NAME</h3>
-              <p className="text-gray mb-2">Chief Product Officer</p>
-              <p className="text-sm text-gray">Built AI products at scale</p>
+              <p className="text-fg-muted mb-2">Chief Product Officer</p>
+              <p className="text-sm text-fg-muted">Built AI products at scale</p>
             </div>
           </div>
         </div>
       </section> */}
 
       {/* Partners */}
-      <section className="py-16 md:py-32 border-t border-white/10" id="partners">
+      <section className="py-14 md:py-20 border-t border-border" id="partners">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">PARTNERS & INVESTORS</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">PARTNERS & INVESTORS</h2>
 
           <div className="grid md:grid-cols-4 gap-8 md:gap-16 items-center opacity-60">
             <div className="text-center">
               <p className="text-base sm:text-lg md:text-xl font-bold">NVIDIA</p>
-              <p className="text-sm text-gray">Inception Partner</p>
+              <p className="text-sm text-fg-muted">Inception Partner</p>
             </div>
             <div className="text-center">
               <p className="text-base sm:text-lg md:text-xl font-bold">Walnut</p>
-              <p className="text-sm text-gray">Strategic Partner</p>
+              <p className="text-sm text-fg-muted">Strategic Partner</p>
             </div>
             <div className="text-center">
               <p className="text-base sm:text-lg md:text-xl font-bold">Brillius</p>
-              <p className="text-sm text-gray">Strategic Partner</p>
+              <p className="text-sm text-fg-muted">Strategic Partner</p>
             </div>
             <div className="text-center">
               <p className="text-base sm:text-lg md:text-xl font-bold">Al Tomouh IT</p>
-              <p className="text-sm text-gray">Strategic Partner | Suhail Bahwan Group</p>
+              <p className="text-sm text-fg-muted">Strategic Partner | Suhail Bahwan Group</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-8">
             JOIN OUR MISSION
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12 max-w-2xl mx-auto">
             Be part of the team that&apos;s making AI accessible to everyone.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center">
-            {/* <Button className="bg-white text-black hover:bg-gray-200 px-12 py-6 text-lg">
+            {/* <Button className="px-12 py-6 text-lg">
               View Careers →
             </Button> */}
             <Link href="/contact" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 text-base md:text-lg">
+              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 text-base md:text-lg">
                 Contact Us
               </Button>
             </Link>

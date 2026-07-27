@@ -174,12 +174,12 @@ export default function AIImplementationIndexPage() {
     };
 
     return (
-        <main className="bg-black min-h-screen pt-20">
+        <main className="bg-bg min-h-screen pt-20">
             <JsonLd data={reportSchema} />
 
             {/* Back Button */}
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 pt-8">
-                <Link href="/reports" className="inline-flex items-center gap-2 text-gray hover:text-white transition-colors group">
+                <Link href="/reports" className="inline-flex items-center gap-2 text-fg-muted hover:text-fg-strong transition-colors group">
                     <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
@@ -200,7 +200,7 @@ export default function AIImplementationIndexPage() {
                     {/* Header */}
                     <AnimatedSection>
                         <div className="mb-8 md:mb-16">
-                            <p className="text-sm font-medium tracking-widest text-gray uppercase mb-4">
+                            <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-4">
                                 2025 AI IMPLEMENTATION INDEX
                             </p>
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,6vw,4rem)] font-bold mb-4">
@@ -214,7 +214,7 @@ export default function AIImplementationIndexPage() {
                         {dashboardStats.map((stat, idx) => (
                             <AnimatedSection key={stat.id} delay={idx * 0.1}>
                                 <div
-                                    className="relative bg-black border border-white/10 p-5 md:p-6 hover:border-white/30 transition-all cursor-pointer"
+                                    className="relative bg-bg border border-border p-5 md:p-6 hover:border-border-strong transition-all cursor-pointer"
                                     onMouseEnter={() => setHoveredStat(stat.id)}
                                     onMouseLeave={() => setHoveredStat(null)}
                                 >
@@ -232,12 +232,12 @@ export default function AIImplementationIndexPage() {
                                                 suffix={stat.suffix}
                                             />
                                         </div>
-                                        <div className="text-sm text-gray uppercase tracking-wider">
+                                        <div className="text-sm text-fg-muted uppercase tracking-wider">
                                             {stat.label}
                                         </div>
 
                                         {/* Hover insight */}
-                                        <div className={`absolute top-full left-0 right-0 mt-2 p-3 bg-black border border-white/20 text-xs transition-opacity ${hoveredStat === stat.id ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                                        <div className={`absolute top-full left-0 right-0 mt-2 p-3 bg-bg border border-border-strong text-xs transition-opacity ${hoveredStat === stat.id ? 'opacity-100' : 'opacity-0 pointer-events-none'
                                             }`}>
                                             {stat.insight}
                                         </div>
@@ -249,12 +249,12 @@ export default function AIImplementationIndexPage() {
 
                     {/* Visual Success Path */}
                     <AnimatedSection delay={0.5}>
-                        <div className="bg-black/50 backdrop-blur border border-white/10 p-5 md:p-8">
+                        <div className="bg-fg-strong/50 backdrop-blur border border-border p-5 md:p-8">
                             <h2 className="text-xl md:text-2xl font-bold mb-6">From Pilot to Production</h2>
 
                             {/* Progress visualization */}
                             <div className="relative h-12 mb-8">
-                                <div className="absolute inset-0 bg-white/5 rounded-full overflow-hidden">
+                                <div className="absolute inset-0 bg-surface-2 rounded-full overflow-hidden">
                                     {/* Animated progress fill */}
                                     <div
                                         className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-red-500/50 via-yellow-500/50 to-green-500/50 transition-all duration-1000"
@@ -271,12 +271,12 @@ export default function AIImplementationIndexPage() {
 
                             {/* Single Clear CTA */}
                             <div className="text-center">
-                                <p className="text-sm text-gray mb-4">
+                                <p className="text-sm text-fg-muted mb-4">
                                     Discover why 77% fail and how to join the successful 23%
                                 </p>
                                 <button
                                     onClick={() => setShowForm(true)}
-                                    className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-white text-black hover:bg-gray-light transition-all font-medium"
+                                    className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-fg-strong text-black hover:bg-gray-light transition-all font-medium"
                                 >
                                     DOWNLOAD IMPLEMENTATION INDEX
                                 </button>
@@ -287,7 +287,7 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Maturity Distribution */}
-            <section className="py-12 md:py-20 border-t border-white/10">
+            <section className="py-12 md:py-20 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12 text-center">Where Companies Get Stuck</h2>
@@ -302,7 +302,7 @@ export default function AIImplementationIndexPage() {
                                 >
                                     <div className="flex items-center gap-4 mb-2">
                                         <span className="text-sm font-medium w-32">{level.name}</span>
-                                        <div className="flex-1 relative h-8 bg-white/5 rounded overflow-hidden">
+                                        <div className="flex-1 relative h-8 bg-surface-2 rounded overflow-hidden">
                                             <div
                                                 className="absolute left-0 top-0 bottom-0 bg-white/30 transition-all duration-1000"
                                                 style={{ width: `${level.percentage}%` }}
@@ -319,9 +319,9 @@ export default function AIImplementationIndexPage() {
 
                     {selectedMaturity && (
                         <AnimatedSection>
-                            <div className="mt-8 p-6 bg-black border border-white/10 max-w-2xl mx-auto">
+                            <div className="mt-8 p-6 bg-bg border border-border max-w-2xl mx-auto">
                                 <h3 className="font-bold mb-2">Stage {selectedMaturity} Insights</h3>
-                                <p className="text-sm text-gray mb-4">
+                                <p className="text-sm text-fg-muted mb-4">
                                     Companies at this stage typically face governance and technical architecture challenges.
                                 </p>
                                 <Link href="/contact">
@@ -334,7 +334,7 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Four Pillars - Visual Only */}
-            <section className="py-12 md:py-20 border-t border-white/10">
+            <section className="py-12 md:py-20 border-t border-border">
                 <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12 text-center">Implementation Pillars</h2>
@@ -348,7 +348,7 @@ export default function AIImplementationIndexPage() {
                                         {pillar.icon}
                                     </div>
                                     <h3 className="font-medium mb-2">{pillar.name}</h3>
-                                    <p className="text-xs text-gray opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <p className="text-xs text-fg-muted opacity-0 group-hover:opacity-100 transition-opacity">
                                         {pillar.key}
                                     </p>
                                 </div>
@@ -359,7 +359,7 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Final CTA */}
-            <section className="py-12 md:py-20 border-t border-white/10">
+            <section className="py-12 md:py-20 border-t border-border">
                 <div className="max-w-[600px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
                         <div className="mb-8">
@@ -369,16 +369,13 @@ export default function AIImplementationIndexPage() {
 
                         <button
                             onClick={() => setShowForm(true)}
-                            className="w-full group relative overflow-hidden border border-white/20 mb-4"
+                            className="w-full px-6 py-3 sm:px-8 sm:py-4 font-medium border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all mb-4"
                         >
-                            <span className="relative z-10 block px-6 py-3 sm:px-8 sm:py-4 font-medium transition-colors duration-500 group-hover:text-black">
-                                DOWNLOAD IMPLEMENTATION INDEX
-                            </span>
-                            <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                            DOWNLOAD IMPLEMENTATION INDEX
                         </button>
 
                         <Link href="/contact">
-                            <button className="w-full px-6 py-3 sm:px-8 sm:py-4 text-sm text-gray hover:text-white transition-colors">
+                            <button className="w-full px-6 py-3 sm:px-8 sm:py-4 text-sm text-fg-muted hover:text-fg-strong transition-colors">
                                 Need help with implementation? Talk to an expert →
                             </button>
                         </Link>
@@ -388,13 +385,13 @@ export default function AIImplementationIndexPage() {
 
             {/* Download Form Modal */}
             {showForm && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+                <div className="fixed inset-0 bg-fg-strong/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
                     <AnimatedSection>
-                        <div className="bg-black border border-white/20 p-5 md:p-8 max-w-md w-full relative">
+                        <div className="bg-bg border border-border-strong p-5 md:p-8 max-w-md w-full relative">
                             <h3 className="text-xl md:text-2xl font-bold mb-6">
                                 Download Implementation Index
                             </h3>
-                            <p className="text-sm text-gray mb-6">
+                            <p className="text-sm text-fg-muted mb-6">
                                 Get instant access to the 2025 Enterprise AI Implementation Index
                             </p>
 
@@ -406,7 +403,7 @@ export default function AIImplementationIndexPage() {
                                         </svg>
                                     </div>
                                     <h4 className="text-xl font-bold text-center mb-2">Success!</h4>
-                                    <p className="text-center text-gray">
+                                    <p className="text-center text-fg-muted">
                                         Check your email for the download link. We&apos;ve sent the Implementation Index to <strong>{formData.email}</strong>
                                     </p>
                                 </div>
@@ -416,7 +413,7 @@ export default function AIImplementationIndexPage() {
                                         type="text"
                                         placeholder="Name*"
                                         required
-                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        className="w-full bg-transparent border border-border-strong p-3 text-fg-strong placeholder-gray focus:border-border-active transition-colors"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         disabled={isSubmitting}
@@ -426,7 +423,7 @@ export default function AIImplementationIndexPage() {
                                         type="email"
                                         placeholder="Work Email*"
                                         required
-                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        className="w-full bg-transparent border border-border-strong p-3 text-fg-strong placeholder-gray focus:border-border-active transition-colors"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         disabled={isSubmitting}
@@ -436,7 +433,7 @@ export default function AIImplementationIndexPage() {
                                         type="text"
                                         placeholder="Company*"
                                         required
-                                        className="w-full bg-transparent border border-white/20 p-3 text-white placeholder-gray focus:border-white/40 transition-colors"
+                                        className="w-full bg-transparent border border-border-strong p-3 text-fg-strong placeholder-gray focus:border-border-active transition-colors"
                                         value={formData.company}
                                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                                         disabled={isSubmitting}
@@ -452,7 +449,7 @@ export default function AIImplementationIndexPage() {
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="flex-1 bg-white text-black px-6 py-3 font-medium hover:bg-gray-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="flex-1 bg-fg-strong text-black px-6 py-3 font-medium hover:bg-gray-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             {isSubmitting ? 'SENDING...' : 'GET REPORT'}
                                         </button>
@@ -465,13 +462,13 @@ export default function AIImplementationIndexPage() {
                                                 setErrorMessage('');
                                             }}
                                             disabled={isSubmitting}
-                                            className="px-6 py-3 text-gray hover:text-white transition-colors disabled:opacity-50"
+                                            className="px-6 py-3 text-fg-muted hover:text-fg-strong transition-colors disabled:opacity-50"
                                         >
                                             Cancel
                                         </button>
                                     </div>
 
-                                    <p className="text-xs text-gray text-center mt-4">
+                                    <p className="text-xs text-fg-muted text-center mt-4">
                                         By downloading, you agree to receive AI insights and updates from Nainovate.
                                     </p>
                                 </form>

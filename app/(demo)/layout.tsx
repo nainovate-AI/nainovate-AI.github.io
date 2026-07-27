@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import '../globals.css';
 import { inter } from '../fonts';
 import { CustomCursor } from '@/components/ui/CustomCursor';
@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   description: 'Experience the GenX platform with conversational AI, analytics dashboard, and workflow automation.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: 'cover',
+};
+
 export default function DemoLayout({
   children,
 }: {
@@ -15,7 +22,7 @@ export default function DemoLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased bg-black`} suppressHydrationWarning>
+      <body className={`${inter.className} antialiased bg-bg`} suppressHydrationWarning>
         <CustomCursor />
         {children}
       </body>

@@ -1,5 +1,5 @@
-import DecisionNiaDemoHubClient from '@/components/pages/DecisionNiaDemoHubClient';
+import WorkspaceHub from '@/components/workspace/WorkspaceHub';
 
 export default function DecisionNiaDemoPage() {
-  return <DecisionNiaDemoHubClient />;
+  return <WorkspaceHub />;
 }

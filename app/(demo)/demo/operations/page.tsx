@@ -1,5 +1,5 @@
-import PublicSectorHubClient from '@/components/pages/PublicSectorHubClient';
+import PublicSectorHub from '@/components/public-sector/PublicSectorHub';
 
 export default function OperationsDemoPage() {
-  return <PublicSectorHubClient />;
+  return <PublicSectorHub />;
 }

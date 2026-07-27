@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
-import mockData from '@/data/core.json';
+import mockData from '@/data/marketing/core.json';
 
 
 export default function CorePageClient() {
@@ -97,20 +97,20 @@ export default function CorePageClient() {
             <section className="min-h-[80vh] flex items-center">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
                     <div className="max-w-4xl">
-                        <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+                        <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
                             GENX CORE • AI ENGINE
                         </p>
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
                             <span className="block">CREATE AI</span>
-                            <span className="block text-gray">AGENTS</span>
+                            <span className="block">AGENTS</span>
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
+                        <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
                             Build production-ready AI agents with our advanced engine.
                             Domain-specific. Purpose-built. Deploy in days.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                             <Link href="/contact" className="w-full sm:w-auto">
-                                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
+                                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4">
                                     Start Building
                                 </Button>
                             </Link>
@@ -120,19 +120,19 @@ export default function CorePageClient() {
             </section>
 
             {/* CORE Modules */}
-            <section className="py-16 md:py-32 border-t border-white/10">
+            <section className="py-14 md:py-20 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">CORE MODULES</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">CORE MODULES</h2>
 
                     <div className="grid md:grid-cols-2 gap-8 md:gap-16">
                         {mockData.modules.map((mod, i) => (
                             <AnimatedSection key={mod.title} delay={i * 0.1}>
-                                <div className="border-l border-white/20 pl-8">
+                                <div className="border-l border-border-strong pl-8">
                                     <h3 className="text-xl md:text-2xl font-bold mb-4">{mod.title}</h3>
-                                    <p className="text-gray mb-6">
+                                    <p className="text-fg-muted mb-6">
                                         {mod.description}
                                     </p>
-                                    <ul className="text-sm text-gray space-y-2">
+                                    <ul className="text-sm text-fg-muted space-y-2">
                                         {mod.bullets.map((b) => (
                                             <li key={b}>→ {b}</li>
                                         ))}
@@ -145,15 +145,15 @@ export default function CorePageClient() {
             </section>
 
             {/* Build Agents for Any Use Case */}
-            <section className="py-16 md:py-32 bg-white/[0.02] border-y border-white/10">
+            <section className="py-14 md:py-20 border-y border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,5rem)] font-bold mb-8 leading-[0.9]">
                         <span className="block">BUILD AGENTS FOR</span>
-                        <span className="block text-gray">ANY USE CASE</span>
+                        <span className="block">ANY USE CASE</span>
                     </h2>
 
                     <div className="max-w-3xl mb-10 md:mb-20">
-                        <p className="text-base sm:text-lg md:text-xl text-gray leading-relaxed">
+                        <p className="text-base sm:text-lg md:text-xl text-fg-muted leading-relaxed">
                             Create specialized AI agents tailored to your exact business needs.
                             CORE empowers you to build intelligent agents that understand your
                             domain, speak your language, and solve your specific challenges.
@@ -164,9 +164,9 @@ export default function CorePageClient() {
                     <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center mb-16 md:mb-32">
                         <div className="space-y-6 md:space-y-12">
                             {mockData.capabilities.map((cap) => (
-                                <div key={cap.title} className="border-l border-white/20 pl-8">
+                                <div key={cap.title} className="border-l border-border-strong pl-8">
                                     <h3 className="text-xl md:text-2xl font-bold mb-4">{cap.title}</h3>
-                                    <p className="text-gray leading-relaxed">
+                                    <p className="text-fg-muted leading-relaxed">
                                         {cap.description}
                                     </p>
                                 </div>
@@ -174,24 +174,24 @@ export default function CorePageClient() {
                         </div>
 
                         {/* Agent Types Grid */}
-                        <div className="grid grid-cols-2 gap-px bg-white/10">
+                        <div className="grid grid-cols-2 gap-px bg-surface-2">
                             {mockData.agentTypes.map((agent) => (
-                                <div key={agent.title} className="bg-black p-5 md:p-8">
+                                <div key={agent.title} className="bg-bg p-5 md:p-8">
                                     <h4 className="text-lg font-medium mb-2">{agent.title}</h4>
-                                    <p className="text-sm text-gray">{agent.description}</p>
+                                    <p className="text-sm text-fg-muted">{agent.description}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Build Process */}
-                    <div className="border border-white/10 rounded-none">
+                    <div className="border border-border rounded-none">
                         <div className="grid md:grid-cols-3 divide-x divide-white/10">
                             {mockData.buildProcess.map((step) => (
                                 <div key={step.number} className="p-6 md:p-12">
-                                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray">{step.number}</div>
+                                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-fg-muted">{step.number}</div>
                                     <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">{step.title}</h3>
-                                    <p className="text-gray">
+                                    <p className="text-fg-muted">
                                         {step.description}
                                     </p>
                                 </div>
@@ -200,11 +200,11 @@ export default function CorePageClient() {
                     </div>
                     <div className="mt-8 md:mt-16 flex flex-col sm:flex-row gap-4 sm:gap-8">
                         <Link href="/contact" className="w-full sm:w-auto">
-                            <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
+                            <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4">
                                 Start Building
                             </Button>
                         </Link>
-                        {/* <Button className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4">
+                        {/* <Button className="px-8 py-4">
                 View Documentation
             </Button> */}
                     </div>
@@ -212,14 +212,14 @@ export default function CorePageClient() {
             </section>
 
             {/* CTA */}
-            <section className="py-16 md:py-32">
+            <section className="py-14 md:py-20">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">START BUILDING TODAY</h2>
-                    <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-10">
+                    <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-10">
                         Transform your business with AI agents designed for your specific needs.
                     </p>
                     <Link href="/contact">
-                        <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
+                        <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4">
                             Schedule a Demo →
                         </Button>
                     </Link>

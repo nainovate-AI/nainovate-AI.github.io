@@ -586,11 +586,11 @@ Would you like detailed sensor data or maintenance work orders?`;
   };
 
   return (
-    <div className="bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-lg p-6">
-      <div className="bg-black border border-white/10 rounded-lg flex flex-col h-[500px]">
+    <div className="bg-gradient-to-br from-surface-2 to-transparent border border-fg-strong/10 rounded-lg p-6">
+      <div className="bg-bg border border-fg-strong/10 rounded-lg flex flex-col h-[500px]">
         
         {/* Header */}
-        <div className="flex items-center gap-3 p-4 border-b border-white/10">
+        <div className="flex items-center gap-3 p-4 border-b border-fg-strong/10">
           <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
             <span className="text-xl">{config.avatar}</span>
           </div>
@@ -604,7 +604,7 @@ Would you like detailed sensor data or maintenance work orders?`;
         </div>
 
         {/* Messages - AUTO SCROLL UP */}
-        <div className="flex-1 overflow-hidden relative bg-black">
+        <div className="flex-1 overflow-hidden relative bg-bg">
           <div 
             className="p-4 space-y-4 transition-all duration-1000 ease-out"
             style={{ 
@@ -622,11 +622,11 @@ Would you like detailed sensor data or maintenance work orders?`;
                   className={`max-w-[80%] rounded-lg p-3 ${
                     message.role === 'user'
                       ? 'bg-blue-500/20 border border-blue-500/30'
-                      : 'bg-white/5 border border-white/10'
+                      : 'bg-surface-2 border border-fg-strong/10'
                   }`}
                 >
                   <div className="text-sm whitespace-pre-line leading-relaxed">{message.content}</div>
-                  <div className="text-xs text-gray mt-2">
+                  <div className="text-xs text-fg-muted mt-2">
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
@@ -635,7 +635,7 @@ Would you like detailed sensor data or maintenance work orders?`;
             
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-white/5 border border-white/10 rounded-lg p-3">
+                <div className="bg-surface-2 border border-fg-strong/10 rounded-lg p-3">
                   <div className="flex gap-1">
                     <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
                     <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
@@ -650,13 +650,13 @@ Would you like detailed sensor data or maintenance work orders?`;
         {/* Example Questions */}
         {messages.length === 1 && !autoPlay && (
           <div className="px-4 pb-2">
-            <div className="text-xs text-gray mb-2">Try asking:</div>
+            <div className="text-xs text-fg-muted mb-2">Try asking:</div>
             <div className="space-y-2">
               {config.examples.map((example, index) => (
                 <button
                   key={index}
                   onClick={() => handleExampleClick(example)}
-                  className="w-full text-left text-xs bg-white/5 hover:bg-white/10 border border-white/10 rounded p-2 transition-colors"
+                  className="w-full text-left text-xs bg-surface-2 hover:bg-fg-strong/10 border border-fg-strong/10 rounded p-2 transition-colors"
                 >
                   {example}
                 </button>
@@ -667,7 +667,7 @@ Would you like detailed sensor data or maintenance work orders?`;
 
         {/* Input */}
         {!autoPlay && (
-          <div className="p-4 border-t border-white/10">
+          <div className="p-4 border-t border-fg-strong/10">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -675,11 +675,11 @@ Would you like detailed sensor data or maintenance work orders?`;
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                 placeholder="Type your message..."
-                className="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-sm outline-none focus:border-white/20"
+                className="flex-1 bg-surface-2 border border-fg-strong/10 rounded px-3 py-2 text-sm outline-none focus:border-fg-strong/20"
               />
               <button
                 onClick={handleSendMessage}
-                className="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2 text-sm font-semibold transition-colors"
+                className="bg-blue-500 hover:bg-blue-600 text-fg-strong rounded px-4 py-2 text-sm font-semibold transition-colors"
               >
                 Send
               </button>

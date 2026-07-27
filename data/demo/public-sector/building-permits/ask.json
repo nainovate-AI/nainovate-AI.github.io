@@ -1,0 +1,672 @@
+{
+  "welcome": {
+    "greeting": "Hello! I'm your Building Permits Assistant.",
+    "capabilities": [
+      { "label": "Check permit application status", "icon": "FileText" },
+      { "label": "Document requirements", "icon": "Folder" },
+      { "label": "Processing timelines", "icon": "Clock" },
+      { "label": "Fee calculations", "icon": "Calculator" },
+      { "label": "Compliance guidelines", "icon": "ShieldCheck" }
+    ]
+  },
+  "suggestions": [
+    { "title": "Check application status", "sub": "See the status of your permit application", "icon": "FileText", "prompt": "Check my application status" },
+    { "title": "What documents do I need?", "sub": "Get a list of required documents", "icon": "Folder", "prompt": "What documents do I need?" },
+    { "title": "How long does it take?", "sub": "View typical processing timelines", "icon": "Clock", "prompt": "How long does processing take?" },
+    { "title": "What are the fees?", "sub": "Calculate fees for your permit", "icon": "Calculator", "prompt": "What are the fees?" }
+  ],
+  "classifier": {
+    "status": ["status", "track", "application"],
+    "documents": ["document", "require", "need", "submit"],
+    "timeline": ["long", "time", "timeline", "days"],
+    "fees": ["fee", "cost", "price", "pay"],
+    "compliance": ["compliance", "guideline", "rule", "regulation"]
+  },
+  "blocks": {
+    "STATUS_BLOCK": {
+      "kind": "statusCard",
+      "title": "Permit Application Status",
+      "fields": [
+        { "icon": "FileText", "label": "Application ID", "value": "BP-2026-04892" },
+        { "icon": "MapPin", "label": "Location", "value": "Commercial District, Block 7" },
+        { "icon": "Clock", "label": "Submitted", "value": "2026-06-15" }
+      ],
+      "currentStatus": "Under Technical Review",
+      "stages": [
+        { "label": "Document Verification", "state": "complete" },
+        { "label": "Zoning Compliance", "state": "complete" },
+        { "label": "Technical Review", "state": "active" },
+        { "label": "Final Approval", "state": "pending" }
+      ],
+      "progressPct": 65,
+      "expected": "2026-07-05"
+    },
+    "DOCS_BLOCK": {
+      "kind": "listCard",
+      "title": "Required Documents",
+      "icon": "Folder",
+      "groups": [
+        {
+          "heading": "Essential",
+          "items": [
+            "Completed application form",
+            "Site plan (1:500 scale)",
+            "Architectural drawings",
+            "Structural engineering plans",
+            "Fire safety plan",
+            "Environmental assessment"
+          ]
+        },
+        {
+          "heading": "Supporting",
+          "items": [
+            "Land ownership proof",
+            "NOC from municipality",
+            "Contractor license",
+            "Insurance certificate"
+          ]
+        }
+      ],
+      "footer": "Format: PDF (max 10 MB per file)"
+    },
+    "FEES_BLOCK": {
+      "kind": "feesCard",
+      "title": "Fee Structure",
+      "rows": [
+        { "type": "Residential", "baseFee": "$250", "perSqFt": "$0.50" },
+        { "type": "Commercial", "baseFee": "$500", "perSqFt": "$1.20" },
+        { "type": "Industrial", "baseFee": "$1,000", "perSqFt": "$2.50" },
+        { "type": "Renovation", "baseFee": "$150", "perSqFt": "$0.30" }
+      ],
+      "addons": [
+        { "label": "Express processing", "value": "+$500" },
+        { "label": "Inspection", "value": "$75 / visit" },
+        { "label": "Certificate", "value": "$50" }
+      ]
+    },
+    "COMPLIANCE_BLOCK": {
+      "kind": "complianceCard",
+      "title": "Compliance Guidelines",
+      "sections": [
+        {
+          "icon": "Building2",
+          "heading": "Zoning",
+          "items": [
+            "Setback: min 5 m front, 3 m side",
+            "Height: 12 m residential, 24 m commercial",
+            "Coverage: max 60% of plot area"
+          ]
+        },
+        {
+          "icon": "Flame",
+          "heading": "Safety",
+          "items": [
+            "Fire exits per NFPA-101",
+            "Structural per IBC 2021",
+            "Egress width min 1.2 m"
+          ]
+        },
+        {
+          "icon": "Leaf",
+          "heading": "Environmental",
+          "items": [
+            "Green space min 20%",
+            "Rainwater harvesting mandatory > 5,000 sq ft",
+            "LEED Silver required for commercial > 10,000 sq ft"
+          ]
+        }
+      ]
+    }
+  },
+  "responses": {
+    "status": {
+      "intro": "Here's the latest status for your permit application.",
+      "blocks": [{ "$ref": "STATUS_BLOCK" }],
+      "followups": [
+        { "label": "Express processing options", "icon": "Zap" },
+        { "label": "Compare permit types", "icon": "Scale" },
+        { "label": "Track my application", "icon": "MapPin" }
+      ]
+    },
+    "timeline": {
+      "intro": "Processing time varies by permit type. Current average across all types is 18 days.",
+      "blocks": [
+        {
+          "kind": "metricGrid",
+          "metrics": [
+            { "label": "Current Average", "value": "18 days", "delta": "2 days faster", "deltaTone": "up" },
+            { "label": "Express Turnaround", "value": "7–10 days", "delta": "+$500 fee", "deltaTone": "neutral" },
+            { "label": "On-time Rate", "value": "87%", "delta": "+4% MoM", "deltaTone": "up" }
+          ]
+        },
+        {
+          "kind": "barChart",
+          "title": "Processing Duration by Permit Type",
+          "icon": "Clock",
+          "unit": "business days",
+          "bars": [
+            { "label": "Renovation", "value": 12, "hint": "10–15 days" },
+            { "label": "Residential", "value": 18, "hint": "15–20 days" },
+            { "label": "Commercial", "value": 30, "hint": "25–35 days" },
+            { "label": "Industrial", "value": 40, "hint": "35–45 days" }
+          ],
+          "highlight": "Renovation"
+        },
+        {
+          "kind": "alert",
+          "tone": "info",
+          "title": "Express Processing Available",
+          "message": "Get any permit approved in 7–10 business days for an additional $500 fee."
+        }
+      ],
+      "followups": [
+        { "label": "Express processing options", "icon": "Zap" },
+        { "label": "Compare permit types", "icon": "Scale" },
+        { "label": "Track my application", "icon": "MapPin" }
+      ]
+    },
+    "documents": {
+      "intro": "You'll need to prepare essential + supporting documents. Details below.",
+      "blocks": [
+        {
+          "kind": "text",
+          "paragraphs": [
+            "All submissions must be signed by a licensed professional. Missing any essential document will delay verification by 3–5 business days."
+          ]
+        },
+        { "$ref": "DOCS_BLOCK" },
+        {
+          "kind": "alert",
+          "tone": "warning",
+          "title": "File format matters",
+          "message": "Only PDF is accepted. Each file must be under 10 MB. Scanned images should be at least 300 DPI."
+        }
+      ],
+      "followups": [
+        { "label": "Show format requirements", "icon": "FileCheck" },
+        { "label": "Where to submit?", "icon": "MapPin" },
+        { "label": "Sample application form", "icon": "FileText" }
+      ]
+    },
+    "fees": {
+      "intro": "Fees scale with permit type + built area. Add-ons apply for express processing and inspections.",
+      "blocks": [
+        {
+          "kind": "barChart",
+          "title": "Base Fee by Permit Type",
+          "icon": "Calculator",
+          "unit": "USD",
+          "bars": [
+            { "label": "Renovation", "value": 150 },
+            { "label": "Residential", "value": 250 },
+            { "label": "Commercial", "value": 500 },
+            { "label": "Industrial", "value": 1000 }
+          ]
+        },
+        { "$ref": "FEES_BLOCK" },
+        {
+          "kind": "text",
+          "heading": "Example calculation",
+          "paragraphs": [
+            "A 2,000 sq ft commercial permit = $500 base + (2,000 × $1.20) = $2,900 total, before add-ons."
+          ]
+        }
+      ],
+      "followups": [
+        { "label": "Payment methods", "icon": "Wallet" },
+        { "label": "Fee waivers", "icon": "FileCheck" },
+        { "label": "Renovation discount", "icon": "Calculator" }
+      ]
+    },
+    "compliance": {
+      "intro": "Three compliance categories apply to every permit: zoning, safety, environmental.",
+      "blocks": [{ "$ref": "COMPLIANCE_BLOCK" }],
+      "followups": [
+        { "label": "Zoning setback rules", "icon": "Building2" },
+        { "label": "Fire safety code", "icon": "Flame" },
+        { "label": "LEED requirements", "icon": "Leaf" }
+      ]
+    },
+    "default": {
+      "intro": "",
+      "blocks": [
+        {
+          "kind": "text",
+          "paragraphs": [
+            "I can help with permit status, documents, timelines, fees, and compliance. Pick a topic below to get started — or type your own question."
+          ]
+        }
+      ],
+      "followups": [
+        { "label": "Check application status", "icon": "FileText" },
+        { "label": "What documents do I need?", "icon": "Folder" },
+        { "label": "How long does it take?", "icon": "Clock" },
+        { "label": "What are the fees?", "icon": "Calculator" }
+      ]
+    }
+  },
+  "promptResponses": {
+    "check my application status": { "$response": "status" },
+    "check application status": { "$response": "status" },
+    "what documents do i need?": { "$response": "documents" },
+    "how long does processing take?": { "$response": "timeline" },
+    "how long does it take?": { "$response": "timeline" },
+    "what are the fees?": { "$response": "fees" },
+    "express processing options": {
+      "intro": "Express processing cuts approval time in half. Here are the numbers.",
+      "blocks": [
+        {
+          "kind": "metricGrid",
+          "metrics": [
+            { "label": "Days Saved", "value": "~11 days", "delta": "vs standard", "deltaTone": "up" },
+            { "label": "Extra Fee", "value": "$500", "delta": "flat", "deltaTone": "neutral" },
+            { "label": "Turnaround", "value": "7–10 days", "delta": "guaranteed", "deltaTone": "up" }
+          ]
+        },
+        {
+          "kind": "alert",
+          "tone": "success",
+          "title": "Auto-approval available",
+          "message": "Renovation and small residential permits under 2,000 sq ft can qualify for same-week express approval."
+        }
+      ],
+      "followups": [
+        { "label": "Payment methods", "icon": "Wallet" },
+        { "label": "Compare permit types", "icon": "Scale" },
+        { "label": "Track my application", "icon": "MapPin" }
+      ]
+    },
+    "compare permit types": {
+      "intro": "Base fees, duration, and complexity vary widely across permit types.",
+      "blocks": [
+        {
+          "kind": "barChart",
+          "title": "Base Fee Comparison",
+          "icon": "Calculator",
+          "unit": "USD",
+          "bars": [
+            { "label": "Renovation", "value": 150 },
+            { "label": "Residential", "value": 250 },
+            { "label": "Commercial", "value": 500, "hint": "$500 (avg)" },
+            { "label": "Industrial", "value": 1000 }
+          ],
+          "highlight": "Commercial"
+        },
+        {
+          "kind": "text",
+          "heading": "When to pick which",
+          "paragraphs": [
+            "Renovation permits are cheapest but require existing structural approvals. Industrial permits carry the highest fees but include hazardous-material clearance. Commercial hits the sweet spot for most retail and office builds."
+          ]
+        }
+      ],
+      "followups": [
+        { "label": "Express processing options", "icon": "Zap" },
+        { "label": "Payment methods", "icon": "Wallet" },
+        { "label": "Zoning setback rules", "icon": "Building2" }
+      ]
+    },
+    "track my application": {
+      "intro": "Your current permit is 65% through review — Technical Review stage.",
+      "blocks": [
+        {
+          "kind": "text",
+          "paragraphs": [
+            "Application BP-2026-04892 was submitted 2026-06-15. Two stages are complete, one is in progress, and one is pending. Expected completion: 2026-07-05."
+          ]
+        },
+        { "$ref": "STATUS_BLOCK" }
+      ],
+      "followups": [
+        { "label": "Express processing options", "icon": "Zap" },
+        { "label": "Contact reviewer", "icon": "Sparkles" },
+        { "label": "What happens next?", "icon": "ChevronRight" }
+      ]
+    },
+    "show format requirements": {
+      "intro": "File format rules for permit submissions.",
+      "blocks": [
+        {
+          "kind": "listCard",
+          "title": "File Format Rules",
+          "icon": "FileCheck",
+          "groups": [
+            {
+              "heading": "Accepted",
+              "items": [
+                "PDF (preferred, all documents)",
+                "PDF/A for archival plans",
+                "Signed digital signatures (PAdES)"
+              ]
+            },
+            {
+              "heading": "Rejected",
+              "items": [
+                "Photos of paper documents",
+                "Word / Excel files",
+                "ZIP archives",
+                "Files above 10 MB"
+              ]
+            }
+          ],
+          "footer": "Tip: Combine multi-page drawings into a single PDF at 300 DPI."
+        }
+      ],
+      "followups": [
+        { "label": "Sample application form", "icon": "FileText" },
+        { "label": "Where to submit?", "icon": "MapPin" },
+        { "label": "What documents do I need?", "icon": "Folder" }
+      ]
+    },
+    "where to submit?": {
+      "intro": "You can submit online or in person at the Planning Department.",
+      "blocks": [
+        {
+          "kind": "text",
+          "heading": "Online portal",
+          "paragraphs": [
+            "permits.city.gov — available 24/7. Payment by card or ACH. Instant confirmation email + application ID."
+          ]
+        },
+        {
+          "kind": "text",
+          "heading": "In-person counter",
+          "paragraphs": [
+            "Planning Department, 3rd Floor, City Hall. Mon–Fri, 9:00 AM – 4:30 PM. Bring 2 physical copies + all originals."
+          ]
+        },
+        {
+          "kind": "alert",
+          "tone": "info",
+          "title": "Online is 3x faster",
+          "message": "Online submissions skip manual routing and reach a reviewer within 24 hours."
+        }
+      ],
+      "followups": [
+        { "label": "Show format requirements", "icon": "FileCheck" },
+        { "label": "Sample application form", "icon": "FileText" },
+        { "label": "Payment methods", "icon": "Wallet" }
+      ]
+    },
+    "sample application form": {
+      "intro": "Sample forms and templates are available from the Planning Department.",
+      "blocks": [
+        {
+          "kind": "listCard",
+          "title": "Available Templates",
+          "icon": "FileText",
+          "groups": [
+            {
+              "heading": "Forms",
+              "items": [
+                "BP-101 — General building permit",
+                "BP-102 — Renovation-only permit",
+                "BP-201 — Change of use permit",
+                "BP-301 — Demolition permit"
+              ]
+            },
+            {
+              "heading": "Attachments",
+              "items": [
+                "Site plan template (1:500)",
+                "Structural calculation checklist",
+                "Fire safety plan example",
+                "Environmental impact worksheet"
+              ]
+            }
+          ],
+          "footer": "Download at permits.city.gov/templates — no login required."
+        }
+      ],
+      "followups": [
+        { "label": "What documents do I need?", "icon": "Folder" },
+        { "label": "Show format requirements", "icon": "FileCheck" },
+        { "label": "Where to submit?", "icon": "MapPin" }
+      ]
+    },
+    "payment methods": {
+      "intro": "Three payment methods are accepted. Card is the fastest.",
+      "blocks": [
+        {
+          "kind": "listCard",
+          "title": "Accepted Payment Methods",
+          "icon": "Wallet",
+          "groups": [
+            {
+              "heading": "Online",
+              "items": [
+                "Credit / Debit card (Visa, Mastercard, Amex)",
+                "ACH bank transfer",
+                "Digital wallet (Apple Pay / Google Pay)"
+              ]
+            },
+            {
+              "heading": "In-person",
+              "items": [
+                "Cashier check",
+                "Money order",
+                "Bank draft",
+                "Cash (up to $500 only)"
+              ]
+            }
+          ],
+          "footer": "Card payments post instantly. ACH takes 2–3 business days."
+        },
+        {
+          "kind": "alert",
+          "tone": "warning",
+          "title": "Convenience fee",
+          "message": "Card payments carry a 2.5% surcharge. ACH and in-person options are fee-free."
+        }
+      ],
+      "followups": [
+        { "label": "Fee waivers", "icon": "FileCheck" },
+        { "label": "Renovation discount", "icon": "Calculator" },
+        { "label": "What are the fees?", "icon": "Calculator" }
+      ]
+    },
+    "fee waivers": {
+      "intro": "Waivers reduce fees by 50–100% for eligible applicants.",
+      "blocks": [
+        {
+          "kind": "listCard",
+          "title": "Waiver Eligibility",
+          "icon": "FileCheck",
+          "groups": [
+            {
+              "heading": "100% waiver",
+              "items": [
+                "Registered nonprofits (501(c)(3))",
+                "Places of worship",
+                "Public schools",
+                "Disaster reconstruction (declared zones)"
+              ]
+            },
+            {
+              "heading": "50% waiver",
+              "items": [
+                "Low-income owner-occupied residential",
+                "Historic preservation projects",
+                "Green-certified buildings (LEED Silver+)"
+              ]
+            }
+          ],
+          "footer": "Waivers require pre-approval. Apply at least 2 weeks before permit submission."
+        }
+      ],
+      "followups": [
+        { "label": "Payment methods", "icon": "Wallet" },
+        { "label": "Renovation discount", "icon": "Calculator" },
+        { "label": "LEED requirements", "icon": "Leaf" }
+      ]
+    },
+    "renovation discount": {
+      "intro": "Renovation permits enjoy the lowest base fee + shortest processing.",
+      "blocks": [
+        {
+          "kind": "metricGrid",
+          "metrics": [
+            { "label": "Base Fee", "value": "$150", "delta": "40% lower", "deltaTone": "up" },
+            { "label": "Per sq ft", "value": "$0.30", "delta": "75% lower", "deltaTone": "up" },
+            { "label": "Duration", "value": "10–15 days", "delta": "3–5 days faster", "deltaTone": "up" }
+          ]
+        },
+        {
+          "kind": "text",
+          "paragraphs": [
+            "To qualify, work must preserve at least 50% of the existing structure and stay within the original footprint. Structural changes trigger a full residential/commercial permit instead."
+          ]
+        }
+      ],
+      "followups": [
+        { "label": "Fee waivers", "icon": "FileCheck" },
+        { "label": "Compare permit types", "icon": "Scale" },
+        { "label": "Show format requirements", "icon": "FileCheck" }
+      ]
+    },
+    "zoning setback rules": {
+      "intro": "Setback rules define the minimum distance from lot lines by zone.",
+      "blocks": [
+        {
+          "kind": "text",
+          "heading": "Residential",
+          "paragraphs": ["Front: min 5 m · Side: min 3 m · Rear: min 4 m. Corner lots need extra 1 m on street side."]
+        },
+        {
+          "kind": "text",
+          "heading": "Commercial",
+          "paragraphs": ["Front: min 3 m · Side: min 2 m (unless abuts residential — then 5 m). Rear: min 3 m."]
+        },
+        {
+          "kind": "alert",
+          "tone": "warning",
+          "title": "Variance required",
+          "message": "Any encroachment into setback zones requires a Board of Zoning Adjustment variance — adds 30–45 days."
+        }
+      ],
+      "followups": [
+        { "label": "Fire safety code", "icon": "Flame" },
+        { "label": "LEED requirements", "icon": "Leaf" },
+        { "label": "Compare permit types", "icon": "Scale" }
+      ]
+    },
+    "fire safety code": {
+      "intro": "Fire safety compliance follows NFPA-101 + local amendments.",
+      "blocks": [
+        {
+          "kind": "listCard",
+          "title": "Fire Safety Requirements",
+          "icon": "Flame",
+          "groups": [
+            {
+              "heading": "Egress",
+              "items": [
+                "Min 2 exits for occupancy > 50 persons",
+                "Egress width min 1.2 m",
+                "Max travel distance 60 m (sprinklered)",
+                "Emergency lighting on all paths"
+              ]
+            },
+            {
+              "heading": "Suppression",
+              "items": [
+                "Sprinklers required > 15 m or > 5,000 sq ft",
+                "Fire extinguisher every 23 m",
+                "Standpipe for buildings > 4 floors",
+                "Fire alarm zone map at main entry"
+              ]
+            }
+          ],
+          "footer": "Fire Marshal sign-off required before Certificate of Occupancy."
+        }
+      ],
+      "followups": [
+        { "label": "Zoning setback rules", "icon": "Building2" },
+        { "label": "LEED requirements", "icon": "Leaf" },
+        { "label": "What documents do I need?", "icon": "Folder" }
+      ]
+    },
+    "leed requirements": {
+      "intro": "LEED Silver certification is mandatory for commercial builds over 10,000 sq ft.",
+      "blocks": [
+        {
+          "kind": "listCard",
+          "title": "LEED Silver Minimums",
+          "icon": "Leaf",
+          "groups": [
+            {
+              "heading": "Site + Water",
+              "items": [
+                "Green space min 20% of lot",
+                "Rainwater harvesting > 5,000 sq ft",
+                "Low-flow fixtures (30% reduction)",
+                "Native / drought-tolerant landscaping"
+              ]
+            },
+            {
+              "heading": "Energy + Materials",
+              "items": [
+                "Energy performance 10% above baseline",
+                "Solar-ready roof orientation",
+                "Recycled content min 10% by value",
+                "Regional materials min 20%"
+              ]
+            }
+          ],
+          "footer": "Submit LEED scorecard with initial permit application."
+        }
+      ],
+      "followups": [
+        { "label": "Zoning setback rules", "icon": "Building2" },
+        { "label": "Fire safety code", "icon": "Flame" },
+        { "label": "Fee waivers", "icon": "FileCheck" }
+      ]
+    },
+    "contact reviewer": {
+      "intro": "You can reach your assigned reviewer directly through the portal.",
+      "blocks": [
+        {
+          "kind": "text",
+          "paragraphs": [
+            "Your reviewer for BP-2026-04892 is available at review-desk@city.gov or +1 (555) 010-4892 ext. 204. Response time is typically 1 business day."
+          ]
+        },
+        {
+          "kind": "alert",
+          "tone": "info",
+          "title": "Reviewer office hours",
+          "message": "Wednesdays 2:00 – 4:00 PM in-person walk-ins, no appointment needed."
+        }
+      ],
+      "followups": [
+        { "label": "Track my application", "icon": "MapPin" },
+        { "label": "What happens next?", "icon": "ChevronRight" },
+        { "label": "Express processing options", "icon": "Zap" }
+      ]
+    },
+    "what happens next?": {
+      "intro": "Next up: Technical Review sign-off, then Final Approval.",
+      "blocks": [
+        {
+          "kind": "text",
+          "heading": "Immediate next step",
+          "paragraphs": [
+            "The technical reviewer is verifying structural calculations against IBC 2021. Estimated completion: 2026-07-01."
+          ]
+        },
+        {
+          "kind": "text",
+          "heading": "After that",
+          "paragraphs": [
+            "Final Approval routes through the Planning Director. Once signed, you receive the permit certificate + payment link (if any balance is due). Expected: 2026-07-05."
+          ]
+        }
+      ],
+      "followups": [
+        { "label": "Contact reviewer", "icon": "Sparkles" },
+        { "label": "Track my application", "icon": "MapPin" },
+        { "label": "Express processing options", "icon": "Zap" }
+      ]
+    }
+  }
+}

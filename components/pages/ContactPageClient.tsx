@@ -135,7 +135,7 @@ export default function ContactPageClient() {
   };
 
   return (
-    <main className="bg-black pt-20">
+    <main className="bg-bg pt-20">
       <JsonLd data={faqSchema} />
       <JsonLd data={contactSchema} />
 
@@ -143,14 +143,14 @@ export default function ContactPageClient() {
       <section className="min-h-[60vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
-            <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+            <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               CONTACT
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
               <span className="block">LET&apos;S</span>
-              <span className="block text-gray">CONNECT</span>
+              <span className="block">CONNECT</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl">
               Ready to transform your business with AI? Our team is here to help
               you get started.
             </p>
@@ -159,7 +159,7 @@ export default function ContactPageClient() {
       </section>
 
       {/* Contact Options */}
-      <section className="py-16 md:py-32">
+      <section className="py-14 md:py-20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-32">
             {/* Contact Form */}
@@ -176,7 +176,7 @@ export default function ContactPageClient() {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
-                      className="w-full px-0 py-3 bg-transparent border-b border-white/20 focus:border-white outline-none transition-colors"
+                      className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
                       placeholder="John"
                     />
                   </div>
@@ -188,7 +188,7 @@ export default function ContactPageClient() {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
-                      className="w-full px-0 py-3 bg-transparent border-b border-white/20 focus:border-white outline-none transition-colors"
+                      className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
                       placeholder="Doe"
                     />
                   </div>
@@ -202,7 +202,7 @@ export default function ContactPageClient() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/20 focus:border-white outline-none transition-colors"
+                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
                     placeholder="john@company.com"
                   />
                 </div>
@@ -215,7 +215,7 @@ export default function ContactPageClient() {
                     value={formData.company}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/20 focus:border-white outline-none transition-colors"
+                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
                     placeholder="Company Name"
                   />
                 </div>
@@ -227,13 +227,13 @@ export default function ContactPageClient() {
                     value={formData.interest}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/20 focus:border-white outline-none transition-colors cursor-pointer"
+                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors cursor-pointer"
                   >
-                    <option value="" className="bg-black">Select your interest</option>
-                    <option value="demo" className="bg-black">Product Demo</option>
-                    <option value="pricing" className="bg-black">Pricing Information</option>
-                    <option value="partnership" className="bg-black">Partnership</option>
-                    <option value="support" className="bg-black">Technical Support</option>
+                    <option value="" className="bg-bg">Select your interest</option>
+                    <option value="demo" className="bg-bg">Product Demo</option>
+                    <option value="pricing" className="bg-bg">Pricing Information</option>
+                    <option value="partnership" className="bg-bg">Partnership</option>
+                    <option value="support" className="bg-bg">Technical Support</option>
                   </select>
                 </div>
 
@@ -245,7 +245,7 @@ export default function ContactPageClient() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/20 focus:border-white outline-none transition-colors resize-none"
+                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors resize-none"
                     placeholder="Tell us about your project..."
                   />
                 </div>
@@ -261,7 +261,7 @@ export default function ContactPageClient() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="border border-white/20 hover:bg-white/10 hover:text-white px-8 py-4"
+                  className="px-8 py-4"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message →'}
                 </Button>
@@ -272,22 +272,22 @@ export default function ContactPageClient() {
             <div className="space-y-8 md:space-y-16">
               <div>
                 <h3 className="text-base sm:text-lg md:text-xl font-bold mb-6">LET&apos;S CONNECT</h3>
-                <p className="text-gray mb-8">
+                <p className="text-fg-muted mb-8">
                   Ready to explore how AI can transform your business? Let&apos;s discuss your needs.
                 </p>
 
                 <div className="grid grid-cols-1 gap-4">
                   <div className="flex items-center gap-3">
-                    <span className="w-6 flex items-center justify-center text-base leading-none text-white/60">🗲</span>
-                    <p className="text-sm text-gray leading-none">24-hour response time</p>
+                    <span className="w-6 flex items-center justify-center text-base leading-none text-fg-muted">🗲</span>
+                    <p className="text-sm text-fg-muted leading-none">24-hour response time</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="w-6 flex items-center justify-center text-base leading-none text-white/60">◉</span>
-                    <p className="text-sm text-gray leading-none">Free initial consultation</p>
+                    <span className="w-6 flex items-center justify-center text-base leading-none text-fg-muted">◉</span>
+                    <p className="text-sm text-fg-muted leading-none">Free initial consultation</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="w-6 flex items-center justify-center text-base leading-none text-white/60">◈</span>
-                    <p className="text-sm text-gray leading-none">100% confidential</p>
+                    <span className="w-6 flex items-center justify-center text-base leading-none text-fg-muted">◈</span>
+                    <p className="text-sm text-fg-muted leading-none">100% confidential</p>
                   </div>
                 </div>
               </div>
@@ -305,8 +305,8 @@ export default function ContactPageClient() {
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
-                <address className="not-italic text-sm text-gray">
-                  <strong className="text-white">Nainovate Technologies</strong><br />
+                <address className="not-italic text-sm text-fg-muted">
+                  <strong className="text-fg-strong">Nainovate Technologies</strong><br />
                   HITEC City, Cyberabad<br />
                   Hyderabad, Telangana 500081
                 </address>
@@ -317,38 +317,38 @@ export default function ContactPageClient() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">FREQUENTLY ASKED</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">FREQUENTLY ASKED</h2>
 
           <div className="space-y-5 md:space-y-8">
-            <div className="border-b border-white/10 pb-8">
+            <div className="border-b border-border pb-8">
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">How quickly can I get started with GenX?</h3>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 Most customers are up and running within days. Our onboarding team
                 will guide you through setup and initial agent creation.
               </p>
             </div>
 
-            <div className="border-b border-white/10 pb-8">
+            <div className="border-b border-border pb-8">
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Do I need technical expertise?</h3>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 No. GenX is designed for business users. Our visual workflow builder
                 requires no coding knowledge.
               </p>
             </div>
 
-            <div className="border-b border-white/10 pb-8">
+            <div className="border-b border-border pb-8">
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Are you AI compliance ready?</h3>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 Yes. Designed with compliance at its core.
                 We are AI compliance ready and adhere to enterprise-grade security and governance standards.
               </p>
             </div>
 
-            <div className="border-b border-white/10 pb-8">
+            <div className="border-b border-border pb-8">
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Can I try before buying?</h3>
-              <p className="text-gray">
+              <p className="text-fg-muted">
                 Yes. We offer personalized demos and proof-of-concept projects
                 for qualified enterprises.
               </p>

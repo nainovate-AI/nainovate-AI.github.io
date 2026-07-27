@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import JsonLd from '@/components/seo/JsonLd';
-import mockData from '@/data/nia.json';
+import mockData from '@/data/marketing/nia.json';
 
 
 export default function NiaPageClient() {
@@ -132,20 +132,20 @@ export default function NiaPageClient() {
       <section className="min-h-[80vh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
-            <p className="text-sm font-medium tracking-widest text-gray uppercase mb-8">
+            <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               GENX NIA • INTERFACE
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
               <span className="block">WHERE AGENTS</span>
-              <span className="block text-gray">COME TO LIFE</span>
+              <span className="block">COME TO LIFE</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray max-w-3xl mb-6 md:mb-12">
+            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
               NIA is the conversational interface where your CORE-built agents
               interact with users. Deploy once, engage everywhere.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
               <Link href="/contact" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4">
+                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4">
                   Try Live Demo
                 </Button>
               </Link>
@@ -155,43 +155,43 @@ export default function NiaPageClient() {
       </section>
 
       {/* Live Demo Section */}
-      <section className="py-16 md:py-32 border-t border-white/10 bg-gradient-to-b from-transparent to-white/[0.02]">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">SEE NIA IN ACTION</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">SEE NIA IN ACTION</h2>
 
           {/* First Demo - HR Agent */}
           <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center mb-16 md:mb-32">
             <div>
               <h3 className="text-2xl md:text-3xl font-bold mb-8">Intelligent hiring decisions</h3>
-              <p className="text-base sm:text-lg md:text-xl text-gray mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-8">
                 Evaluate candidates objectively with AI-powered assessment. Match skills, analyze experience, and make data-driven hiring decisions.
               </p>
 
               <div className="space-y-6 pt-4">
-                <div className="border-l border-white/20 pl-6">
+                <div className="border-l border-border-strong pl-6">
                   <h4 className="text-lg font-semibold mb-2">Job-Candidate Matching</h4>
-                  <p className="text-gray">Percentage-based fit analysis for any role</p>
+                  <p className="text-fg-muted">Percentage-based fit analysis for any role</p>
                 </div>
-                <div className="border-l border-white/20 pl-6">
+                <div className="border-l border-border-strong pl-6">
                   <h4 className="text-lg font-semibold mb-2">Skills Gap Analysis</h4>
-                  <p className="text-gray">Identify training needs and development areas</p>
+                  <p className="text-fg-muted">Identify training needs and development areas</p>
                 </div>
-                <div className="border-l border-white/20 pl-6">
+                <div className="border-l border-border-strong pl-6">
                   <h4 className="text-lg font-semibold mb-2">Interview Intelligence</h4>
-                  <p className="text-gray">Ensure questions align with job requirements</p>
+                  <p className="text-fg-muted">Ensure questions align with job requirements</p>
                 </div>
               </div>
             </div>
 
             {/* Chat Demo Right */}
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-white/5 to-transparent blur-xl"></div>
-              <div className="relative bg-black border border-white/10 rounded-lg overflow-hidden max-w-md">
-                <div className="border-b border-white/10 p-4 flex items-center gap-3">
+              <div className="absolute -inset-4 bg-gradient-to-r from-surface-2 to-transparent blur-xl"></div>
+              <div className="relative bg-bg border border-border rounded-lg overflow-hidden max-w-md">
+                <div className="border-b border-border p-4 flex items-center gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="ml-4 text-sm text-gray">NIA - HR Assistant</span>
+                  <span className="ml-4 text-sm text-fg-muted">NIA - HR Assistant</span>
                 </div>
 
                 <div className="h-96 p-6 flex flex-col">
@@ -200,10 +200,10 @@ export default function NiaPageClient() {
                       <div key={idx}>
                         {msg.type === 'user' ? (
                           <div className="flex justify-end gap-3">
-                            <div className="max-w-[80%] bg-black border border-white/10 rounded-2xl px-4 py-3">
+                            <div className="max-w-[80%] bg-bg border border-border rounded-2xl px-4 py-3">
                               <p className="text-sm whitespace-pre-line">{msg.text}</p>
                             </div>
-                            <div className="w-8 h-8 bg-black border border-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div className="w-8 h-8 bg-bg border border-border-strong rounded-full flex items-center justify-center flex-shrink-0">
                               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                               </svg>
@@ -211,14 +211,14 @@ export default function NiaPageClient() {
                           </div>
                         ) : (
                           <div className="flex justify-start gap-3">
-                            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-black border border-white/10">
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-bg border border-border">
                               <img
                                 src="/images/N_Dark_Mode.png"
                                 alt="NIA"
                                 className="w-6 h-6 object-contain"
                               />
                             </div>
-                            <div className="max-w-[80%] bg-black border border-white/10 rounded-2xl px-4 py-3">
+                            <div className="max-w-[80%] bg-bg border border-border rounded-2xl px-4 py-3">
                               {idx === candidateMessage ? (
                                 <TypewriterText text={msg.text} />
                               ) : (
@@ -233,26 +233,26 @@ export default function NiaPageClient() {
                     {/* Typing indicator */}
                     {showTyping === candidateMessage + 1 && (
                       <div className="flex justify-start gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-black border border-white/10">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-bg border border-border">
                           <img
                             src="/images/N_Dark_Mode.png"
                             alt="NIA"
                             className="w-6 h-6 object-contain"
                           />
                         </div>
-                        <div className="bg-black border border-white/10 rounded-2xl px-4 py-3">
+                        <div className="bg-bg border border-border rounded-2xl px-4 py-3">
                           <div className="flex gap-1">
-                            <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                            <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                            <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                            <div className="w-1 h-1 bg-fg-strong rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-1 h-1 bg-fg-strong rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-1 h-1 bg-fg-strong rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                           </div>
                         </div>
                       </div>
                     )}
                   </div>
 
-                  <div className="pt-4 border-t border-white/10">
-                    <div className="bg-white/5 rounded-lg px-4 py-3 text-sm text-gray">
+                  <div className="pt-4 border-t border-border">
+                    <div className="bg-surface-2 rounded-lg px-4 py-3 text-sm text-fg-muted">
                       Type a message...
                     </div>
                   </div>
@@ -265,12 +265,12 @@ export default function NiaPageClient() {
           <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
             {/* Chat Demo Left */}
             <div className="order-2 lg:order-1">
-              <div className="bg-black border border-white/10 rounded-lg overflow-hidden max-w-md mx-auto">
-                <div className="border-b border-white/10 p-4 flex items-center gap-3">
+              <div className="bg-bg border border-border rounded-lg overflow-hidden max-w-md mx-auto">
+                <div className="border-b border-border p-4 flex items-center gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="ml-4 text-sm text-gray">NIA - BOQ Assistant</span>
+                  <span className="ml-4 text-sm text-fg-muted">NIA - BOQ Assistant</span>
                 </div>
 
                 <div className="h-96 p-6 flex flex-col">
@@ -279,10 +279,10 @@ export default function NiaPageClient() {
                       <div key={idx}>
                         {msg.type === 'user' ? (
                           <div className="flex justify-end gap-3">
-                            <div className="max-w-[80%] bg-black border border-white/10 rounded-2xl px-4 py-3">
+                            <div className="max-w-[80%] bg-bg border border-border rounded-2xl px-4 py-3">
                               <p className="text-sm whitespace-pre-line">{msg.text}</p>
                             </div>
-                            <div className="w-8 h-8 bg-black border border-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div className="w-8 h-8 bg-bg border border-border-strong rounded-full flex items-center justify-center flex-shrink-0">
                               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                               </svg>
@@ -290,14 +290,14 @@ export default function NiaPageClient() {
                           </div>
                         ) : (
                           <div className="flex justify-start gap-3">
-                            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-black border border-white/10">
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-bg border border-border">
                               <img
                                 src="/images/N_Dark_Mode.png"
                                 alt="NIA"
                                 className="w-6 h-6 object-contain"
                               />
                             </div>
-                            <div className="max-w-[80%] bg-black border border-white/10 rounded-2xl px-4 py-3">
+                            <div className="max-w-[80%] bg-bg border border-border rounded-2xl px-4 py-3">
                               {idx === boqMessage ? (
                                 <TypewriterText text={msg.text} />
                               ) : (
@@ -312,26 +312,26 @@ export default function NiaPageClient() {
                     {/* Typing indicator */}
                     {showBoqTyping === boqMessage + 1 && (
                       <div className="flex justify-start gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-black border border-white/10">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden bg-bg border border-border">
                           <img
                             src="/images/N_Dark_Mode.png"
                             alt="NIA"
                             className="w-6 h-6 object-contain"
                           />
                         </div>
-                        <div className="bg-black border border-white/10 rounded-2xl px-4 py-3">
+                        <div className="bg-bg border border-border rounded-2xl px-4 py-3">
                           <div className="flex gap-1">
-                            <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                            <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                            <div className="w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                            <div className="w-1 h-1 bg-fg-strong rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-1 h-1 bg-fg-strong rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-1 h-1 bg-fg-strong rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                           </div>
                         </div>
                       </div>
                     )}
                   </div>
 
-                  <div className="pt-4 border-t border-white/10">
-                    <div className="bg-white/5 rounded-lg px-4 py-3 text-sm text-gray">
+                  <div className="pt-4 border-t border-border">
+                    <div className="bg-surface-2 rounded-lg px-4 py-3 text-sm text-fg-muted">
                       Type a message...
                     </div>
                   </div>
@@ -342,23 +342,23 @@ export default function NiaPageClient() {
             {/* Content Right */}
             <div className="order-1 lg:order-2">
               <h3 className="text-2xl md:text-3xl font-bold mb-8">Instant BOQ intelligence</h3>
-              <p className="text-base sm:text-lg md:text-xl text-gray mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-8">
                 Get detailed specifications, pricing, and material information instantly. 
                 Your AI-powered construction assistant knows every detail.
               </p>
 
               <div className="space-y-6 pt-4">
-                <div className="border-l border-white/20 pl-6">
+                <div className="border-l border-border-strong pl-6">
                   <h4 className="text-lg font-semibold mb-2">Item Specifications</h4>
-                  <p className="text-gray">Detailed descriptions for any construction item</p>
+                  <p className="text-fg-muted">Detailed descriptions for any construction item</p>
                 </div>
-                <div className="border-l border-white/20 pl-6">
+                <div className="border-l border-border-strong pl-6">
                   <h4 className="text-lg font-semibold mb-2">Real-time Pricing</h4>
-                  <p className="text-gray">Current supply amounts and market rates</p>
+                  <p className="text-fg-muted">Current supply amounts and market rates</p>
                 </div>
-                <div className="border-l border-white/20 pl-6">
+                <div className="border-l border-border-strong pl-6">
                   <h4 className="text-lg font-semibold mb-2">Regional Data</h4>
-                  <p className="text-gray">Location-specific pricing and availability</p>
+                  <p className="text-fg-muted">Location-specific pricing and availability</p>
                 </div>
               </div>
             </div>
@@ -381,31 +381,31 @@ export default function NiaPageClient() {
       }} />
 
       {/* Features */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-20">THE NIA ADVANTAGE</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">THE NIA ADVANTAGE</h2>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-24">
             <div className="space-y-6 md:space-y-12">
-              <div className="border-l border-white/20 pl-8">
+              <div className="border-l border-border-strong pl-8">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">Contextual Intelligence</h3>
-                <p className="text-gray leading-relaxed">
+                <p className="text-fg-muted leading-relaxed">
                   NIA maintains conversation context across sessions, understanding user intent
                   and routing to the right agent automatically.
                 </p>
               </div>
 
-              <div className="border-l border-white/20 pl-8">
+              <div className="border-l border-border-strong pl-8">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">Unified Interface</h3>
-                <p className="text-gray leading-relaxed">
+                <p className="text-fg-muted leading-relaxed">
                   All your CORE agents accessible through one intelligent chatbot interface.
                   Seamless switching between different agent capabilities.
                 </p>
               </div>
 
-              <div className="border-l border-white/20 pl-8">
+              <div className="border-l border-border-strong pl-8">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">Continuous Optimization</h3>
-                <p className="text-gray leading-relaxed">
+                <p className="text-fg-muted leading-relaxed">
                   NIA learns from every interaction, continuously improving response accuracy
                   and adapting to your business terminology and processes.
                 </p>
@@ -417,21 +417,21 @@ export default function NiaPageClient() {
                 <div className="grid grid-cols-2 gap-8 mb-8">
                   <div>
                     <p className="text-4xl font-bold mb-2">50M+</p>
-                    <p className="text-gray">Daily conversations</p>
+                    <p className="text-fg-muted">Daily conversations</p>
                   </div>
                   <div>
                     <p className="text-4xl font-bold mb-2">&lt;100ms</p>
-                    <p className="text-gray">Response time</p>
+                    <p className="text-fg-muted">Response time</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-8">
                   <div>
                     <p className="text-4xl font-bold mb-2">99.9%</p>
-                    <p className="text-gray">Uptime SLA</p>
+                    <p className="text-fg-muted">Uptime SLA</p>
                   </div>
                   <div>
                     <p className="text-4xl font-bold mb-2">25+</p>
-                    <p className="text-gray">Languages</p>
+                    <p className="text-fg-muted">Languages</p>
                   </div>
                 </div>
               </div>
@@ -441,16 +441,16 @@ export default function NiaPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-32 border-t border-white/10">
+      <section className="py-14 md:py-20 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-8">
             EXPERIENCE NIA TODAY
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray mb-6 md:mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12 max-w-2xl mx-auto">
             See how intelligent conversations can transform your business operations.
           </p>
           <Link href="/contact">
-            <Button className="w-full sm:w-auto border border-white/20 hover:bg-white/10 hover:text-white px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 text-lg">
+            <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-6 text-lg">
               See NIA in Action →
             </Button>
           </Link>

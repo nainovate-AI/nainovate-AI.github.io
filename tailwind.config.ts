@@ -9,21 +9,53 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        /* Semantic tokens — theme-aware. Consumed by every component.
+           Never hardcode bg-black / text-white — use these. */
+        bg: 'var(--bg)',
+        'bg-elevated': 'var(--bg-elevated)',
+        surface: 'var(--surface)',
+        'surface-2': 'var(--surface-2)',
+        'surface-hover': 'var(--surface-hover)',
+        fg: 'var(--fg)',
+        'fg-strong': 'var(--fg-strong)',
+        'fg-mid': 'var(--fg-mid)',
+        'fg-muted': 'var(--fg-muted)',
+        'fg-subtle': 'var(--fg-subtle)',
+        'fg-faint': 'var(--fg-faint)',
+        'fg-invert': 'var(--fg-invert)',
+        border: 'var(--border)',
+        'border-strong': 'var(--border-strong)',
+        'border-active': 'var(--border-active)',
+        brand: {
+          DEFAULT: 'var(--brand)',
+          hover: 'var(--brand-hover)',
+          fg: 'var(--brand-fg)',
+          soft: 'var(--brand-soft)',
+          2: 'var(--brand-2)',
+          '2-soft': 'var(--brand-2-soft)',
+        },
+        danger: 'var(--danger)',
+        success: 'var(--success)',
+        warning: 'var(--warning)',
+        info: 'var(--info)',
+
+        /* Legacy — kept for backwards compat during migration */
         primary: {
-          DEFAULT: 'var(--primary)',
-          light: 'var(--primary-light)',
-          dark: 'var(--primary-dark)',
+          DEFAULT: 'var(--brand)',
+          light: 'var(--brand-hover)',
+          dark: 'var(--brand)',
         },
         secondary: {
-          DEFAULT: 'var(--secondary)',
-          light: 'var(--secondary-light)',
-          dark: 'var(--secondary-dark)',
+          DEFAULT: 'var(--brand-2)',
+          light: 'var(--brand-2)',
+          dark: 'var(--brand-2)',
         },
         accent: {
           DEFAULT: 'var(--accent)',
-          light: 'var(--accent-light)',
-          dark: 'var(--accent-dark)',
         },
+      },
+      borderColor: {
+        DEFAULT: 'var(--border)',
       },
       spacing: {
         'xs': 'var(--space-xs)',

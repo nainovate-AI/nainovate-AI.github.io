@@ -76,7 +76,7 @@ export default function Home() {
   };
   
   return (
-    <main className="bg-black">
+    <main className="bg-bg">
       <JsonLd data={homepageSchema} />
       <JsonLd data={heroSchema} />
       <Hero />

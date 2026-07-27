@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const SLIDES = [
-  { src: '/hero-slides/1.png', alt: 'Decision intelligence background 1' },
-  { src: '/hero-slides/2.png', alt: 'Decision intelligence background 2' },
-  { src: '/hero-slides/3.png', alt: 'Decision intelligence background 3' },
-  { src: '/hero-slides/4.png', alt: 'Decision intelligence background 4' },
-  { src: '/hero-slides/5.png', alt: 'Decision intelligence background 5' },
+  { src: '/hero-slides/1.png', alt: 'Decision intelligence 1' },
+  { src: '/hero-slides/2.png', alt: 'Decision intelligence 2' },
+  { src: '/hero-slides/3.png', alt: 'Decision intelligence 3' },
+  { src: '/hero-slides/4.png', alt: 'Decision intelligence 4' },
 ];
 
 export function HeroSlideshow() {
@@ -22,7 +21,7 @@ export function HeroSlideshow() {
   }, []);
 
   return (
-    <div className="relative w-full h-full rounded-lg overflow-hidden bg-black">
+    <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-bg">
       {SLIDES.map((s, i) => (
         <div
           key={s.src}
@@ -34,7 +33,7 @@ export function HeroSlideshow() {
             alt={s.alt}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 900px"
-            className="object-contain"
+            className="object-cover"
             priority={i === 0}
           />
         </div>
@@ -47,7 +46,7 @@ export function HeroSlideshow() {
             onClick={() => setActive(i)}
             aria-label={`Slide ${i + 1}`}
             className={`h-1 rounded-full transition-all ${
-              i === active ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/60'
+              i === active ? 'w-6 bg-fg-strong' : 'w-1.5 bg-fg-strong/40 hover:bg-fg-strong/60'
             }`}
           />
         ))}

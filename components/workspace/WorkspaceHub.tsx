@@ -15,28 +15,29 @@ import {
   Paperclip,
   Send,
   X,
+  Menu,
 } from 'lucide-react';
 
 // Per-space, per-capability panel data (extracted from inline mocks)
-import csCommandCenter from '@/data/ai-decision-workspace/customer-success/command-center.json';
-import csAsk from '@/data/ai-decision-workspace/customer-success/ask.json';
-import csDashboards from '@/data/ai-decision-workspace/customer-success/dashboards.json';
-import csTrace from '@/data/ai-decision-workspace/customer-success/trace.json';
+import csCommandCenter from '@/data/demo/workspace/customer-success/command-center.json';
+import csAsk from '@/data/demo/workspace/customer-success/ask.json';
+import csDashboards from '@/data/demo/workspace/customer-success/dashboard.json';
+import csTrace from '@/data/demo/workspace/customer-success/trace.json';
 
-import supCommandCenter from '@/data/ai-decision-workspace/customer-support/command-center.json';
-import supAsk from '@/data/ai-decision-workspace/customer-support/ask.json';
-import supDashboards from '@/data/ai-decision-workspace/customer-support/dashboards.json';
-import supTrace from '@/data/ai-decision-workspace/customer-support/trace.json';
+import supCommandCenter from '@/data/demo/workspace/customer-support/command-center.json';
+import supAsk from '@/data/demo/workspace/customer-support/ask.json';
+import supDashboards from '@/data/demo/workspace/customer-support/dashboard.json';
+import supTrace from '@/data/demo/workspace/customer-support/trace.json';
 
-import salesCommandCenter from '@/data/ai-decision-workspace/sales/command-center.json';
-import salesAsk from '@/data/ai-decision-workspace/sales/ask.json';
-import salesDashboards from '@/data/ai-decision-workspace/sales/dashboards.json';
-import salesTrace from '@/data/ai-decision-workspace/sales/trace.json';
+import salesCommandCenter from '@/data/demo/workspace/sales/command-center.json';
+import salesAsk from '@/data/demo/workspace/sales/ask.json';
+import salesDashboards from '@/data/demo/workspace/sales/dashboard.json';
+import salesTrace from '@/data/demo/workspace/sales/trace.json';
 
-import delCommandCenter from '@/data/ai-decision-workspace/delivery/command-center.json';
-import delAsk from '@/data/ai-decision-workspace/delivery/ask.json';
-import delDashboards from '@/data/ai-decision-workspace/delivery/dashboards.json';
-import delTrace from '@/data/ai-decision-workspace/delivery/trace.json';
+import delCommandCenter from '@/data/demo/workspace/delivery/command-center.json';
+import delAsk from '@/data/demo/workspace/delivery/ask.json';
+import delDashboards from '@/data/demo/workspace/delivery/dashboard.json';
+import delTrace from '@/data/demo/workspace/delivery/trace.json';
 
 type SpaceKey = 'customer-support' | 'customer-success' | 'sales' | 'delivery';
 type FeatureKey = 'command-center' | 'ask' | 'dashboard' | 'trace';
@@ -169,7 +170,7 @@ const FEATURES: { key: FeatureKey; label: string; Icon: React.ComponentType<{ cl
   { key: 'trace', label: 'Trace / Audit', Icon: FileText },
 ];
 
-export default function DecisionNiaDemoHubClient() {
+export default function WorkspaceHub() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const closeHref = searchParams.get('from') === 'home' ? '/' : '/demo';
@@ -179,7 +180,15 @@ export default function DecisionNiaDemoHubClient() {
   const [toast, setToast] = useState<string | null>(null);
   const [pendingTraceId, setPendingTraceId] = useState<string | null>(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -213,12 +222,25 @@ export default function DecisionNiaDemoHubClient() {
       className="theme-genx-decision min-h-screen"
       style={{ background: 'var(--gd-bg)', color: 'var(--gd-fg)' }}
     >
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen relative">
+        {/* Mobile backdrop */}
+        {mobileOpen && (
+          <button
+            type="button"
+            aria-label="Close menu"
+            className="fixed inset-0 z-40 bg-bg/60 md:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
+        )}
         {/* Sidebar */}
         <aside
-          className={`flex flex-col shrink-0 h-screen sticky top-0 overflow-hidden border-r transition-[width] duration-300 ${
-            sidebarCollapsed ? 'w-16' : 'w-[260px]'
-          }`}
+          className={`flex flex-col shrink-0 h-screen overflow-hidden border-r transition-[width,transform] duration-300
+            md:sticky md:top-0
+            fixed inset-y-0 left-0 z-50
+            ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
+            md:translate-x-0
+            ${sidebarCollapsed ? 'md:w-16' : 'md:w-[260px]'}
+            w-[260px]`}
           style={{ borderColor: 'var(--gd-border)', background: 'var(--gd-bg)' }}
         >
           {/* Brand */}
@@ -228,19 +250,19 @@ export default function DecisionNiaDemoHubClient() {
           >
             <button
               onClick={() => setActiveFeature('command-center')}
-              className={`h-full flex items-center hover:bg-white/5 transition-colors w-full ${
+              className={`h-full flex items-center hover:bg-fg-strong/5 transition-colors w-full ${
                 sidebarCollapsed ? 'justify-center' : 'px-5 text-left'
               }`}
               title="Command Center"
             >
               <div
-                className="w-7 h-7 rounded-md flex items-center justify-center text-white shrink-0"
+                className="w-7 h-7 rounded-md flex items-center justify-center text-fg-strong shrink-0"
                 style={{ background: 'var(--gd-primary)' }}
               >
                 <Sparkles className="w-4 h-4" />
               </div>
               {!sidebarCollapsed && (
-                <p className="text-sm font-semibold text-white leading-tight ml-2.5">GenX</p>
+                <p className="text-sm font-semibold text-fg-strong leading-tight ml-2.5">GenX</p>
               )}
             </button>
           </div>
@@ -256,24 +278,24 @@ export default function DecisionNiaDemoHubClient() {
               title={space.label}
               className={`w-full flex items-center rounded-lg border transition-colors ${
                 sidebarCollapsed ? 'justify-center py-2.5' : 'gap-3 px-3 py-2.5'
-              } ${pickerOpen ? 'border-white' : 'border-white/20 hover:border-white/40'}`}
+              } ${pickerOpen ? 'border-fg-strong' : 'border-fg-strong/20 hover:border-fg-strong/40'}`}
             >
-              <span className="w-7 h-7 rounded flex items-center justify-center text-xs font-medium border border-white/20 shrink-0">
+              <span className="w-7 h-7 rounded flex items-center justify-center text-xs font-medium border border-fg-strong/20 shrink-0">
                 {space.letter}
               </span>
               {!sidebarCollapsed && (
                 <>
-                  <span className="flex-1 text-left text-sm text-white truncate">{space.label}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-white/40" />
+                  <span className="flex-1 text-left text-sm text-fg-strong truncate">{space.label}</span>
+                  <ChevronDown className="w-3.5 h-3.5 text-fg-strong/40" />
                 </>
               )}
             </button>
 
             {/* Popover */}
             {pickerOpen && (
-              <div className="absolute top-0 left-full ml-2 z-50 w-[260px] bg-black border border-white/20 rounded-lg shadow-2xl overflow-hidden">
-                <div className="px-4 py-2 border-b border-white/5">
-                  <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase">
+              <div className="absolute top-0 left-full ml-2 z-50 w-[260px] bg-bg border border-fg-strong/20 rounded-lg shadow-2xl overflow-hidden">
+                <div className="px-4 py-2 border-b border-fg-strong/5">
+                  <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase">
                     Enterprise Demo
                   </p>
                 </div>
@@ -288,13 +310,13 @@ export default function DecisionNiaDemoHubClient() {
                           setPickerOpen(false);
                         }}
                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                          isActive ? 'text-white' : 'hover:bg-white/5 text-white'
+                          isActive ? 'text-fg-strong' : 'hover:bg-fg-strong/5 text-fg-strong'
                         }`}
                         style={isActive ? { background: 'var(--gd-primary)' } : undefined}
                       >
                         <span
                           className={`w-6 h-6 rounded flex items-center justify-center text-xs font-medium shrink-0 ${
-                            isActive ? 'bg-white/20 text-white' : 'border border-white/20 text-white'
+                            isActive ? 'bg-surface-hover text-fg-strong' : 'border border-fg-strong/20 text-fg-strong'
                           }`}
                         >
                           {s.letter}
@@ -316,12 +338,15 @@ export default function DecisionNiaDemoHubClient() {
               return (
                 <button
                   key={f.key}
-                  onClick={() => setActiveFeature(f.key)}
+                  onClick={() => {
+                    setActiveFeature(f.key);
+                    setMobileOpen(false);
+                  }}
                   title={f.label}
                   aria-label={f.label}
                   className={`flex items-center rounded-lg mb-0.5 transition-colors ${
                     sidebarCollapsed ? 'justify-center w-10 h-10' : 'w-full gap-3 px-3 py-2.5'
-                  } ${isActive ? 'text-white' : 'text-white/70 hover:bg-white/5'}`}
+                  } ${isActive ? 'text-fg-strong' : 'text-fg-strong/70 hover:bg-fg-strong/5'}`}
                   style={isActive ? { background: 'var(--gd-primary)' } : undefined}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
@@ -341,7 +366,7 @@ export default function DecisionNiaDemoHubClient() {
               title={`${space.persona} · ${space.role}`}
             >
               <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-xs text-white font-medium shrink-0"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-xs text-fg-strong font-medium shrink-0"
                 style={{ background: 'var(--gd-primary)' }}
               >
                 {space.persona
@@ -351,8 +376,8 @@ export default function DecisionNiaDemoHubClient() {
               </div>
               {!sidebarCollapsed && (
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-white truncate">{space.persona}</p>
-                  <p className="text-[10px] text-white/50 truncate">{space.role}</p>
+                  <p className="text-sm text-fg-strong truncate">{space.persona}</p>
+                  <p className="text-[10px] text-fg-strong/50 truncate">{space.role}</p>
                 </div>
               )}
             </div>
@@ -363,7 +388,7 @@ export default function DecisionNiaDemoHubClient() {
               title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
               aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
               aria-pressed={!sidebarCollapsed}
-              className={`mt-2 flex items-center justify-center rounded-md text-white/60 hover:text-white hover:bg-white/5 transition-colors ${
+              className={`hidden md:flex mt-2 items-center justify-center rounded-md text-fg-strong/60 hover:text-fg-strong hover:bg-fg-strong/5 transition-colors ${
                 sidebarCollapsed ? 'w-8 h-8 mx-auto' : 'w-full h-8 gap-2 px-2'
               }`}
             >
@@ -384,14 +409,24 @@ export default function DecisionNiaDemoHubClient() {
         <section className="flex-1 min-w-0">
           {/* Top bar */}
           <div
-            className="px-8 h-14 border-b flex items-center justify-between"
+            className="px-4 sm:px-6 md:px-8 h-14 border-b flex items-center justify-between gap-3"
             style={{ borderColor: 'var(--gd-border)' }}
           >
-            <p className="text-sm text-white">{feature.label}</p>
+            <div className="flex items-center gap-3 min-w-0">
+              <button
+                type="button"
+                onClick={() => setMobileOpen(true)}
+                className="md:hidden text-fg-strong/70 hover:text-fg-strong p-1.5 rounded hover:bg-fg-strong/5"
+                aria-label="Open menu"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+              <p className="text-sm text-fg-strong truncate">{feature.label}</p>
+            </div>
             <button
               type="button"
               onClick={() => router.push(closeHref)}
-              className="text-white/60 hover:text-white p-1.5 rounded hover:bg-white/5 relative z-20"
+              className="text-fg-strong/60 hover:text-fg-strong p-1.5 rounded hover:bg-fg-strong/5 shrink-0"
               title={closeHref === '/' ? 'Back to home' : 'Back to lens chooser'}
               aria-label="Close workspace"
             >
@@ -400,7 +435,7 @@ export default function DecisionNiaDemoHubClient() {
           </div>
 
           {/* Content */}
-          <div className="px-8 py-8 w-full">
+          <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 w-full">
             <FeaturePanel
               space={space.key}
               feature={activeFeature}
@@ -505,8 +540,8 @@ function Dialog({
         style={{ background: 'var(--gd-bg)', border: '1px solid var(--gd-border-strong)' }}
       >
         <div className="p-5 border-b flex items-start justify-between" style={{ borderColor: 'var(--gd-border)' }}>
-          <h2 className="text-base font-semibold text-white">{title}</h2>
-          <button onClick={onClose} className="text-white/60 hover:text-white text-xl leading-none">
+          <h2 className="text-base font-semibold text-fg-strong">{title}</h2>
+          <button onClick={onClose} className="text-fg-strong/60 hover:text-fg-strong text-xl leading-none">
             ×
           </button>
         </div>
@@ -524,7 +559,7 @@ function Dialog({
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block mb-4 last:mb-0">
-      <span className="text-[10px] font-semibold tracking-widest uppercase text-white/50 mb-1.5 block">
+      <span className="text-[10px] font-semibold tracking-widest uppercase text-fg-strong/50 mb-1.5 block">
         {label}
       </span>
       {children}
@@ -536,7 +571,7 @@ function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className="w-full text-sm px-3 py-2 rounded bg-transparent text-white placeholder:text-white/40 outline-none focus:border-white/40"
+      className="w-full text-sm px-3 py-2 rounded bg-transparent text-fg-strong placeholder:text-fg-strong/40 outline-none focus:border-fg-strong/40"
       style={{ border: '1px solid var(--gd-border)' }}
     />
   );
@@ -546,7 +581,7 @@ function Select({ children, ...props }: React.SelectHTMLAttributes<HTMLSelectEle
   return (
     <select
       {...props}
-      className="w-full text-sm px-3 py-2 rounded text-white outline-none"
+      className="w-full text-sm px-3 py-2 rounded text-fg-strong outline-none"
       style={{ background: 'var(--gd-bg)', border: '1px solid var(--gd-border)' }}
     >
       {children}
@@ -558,7 +593,7 @@ function BtnPrimary({ children, ...props }: React.ButtonHTMLAttributes<HTMLButto
   return (
     <button
       {...props}
-      className="text-xs px-4 py-2 rounded text-white font-medium hover:brightness-110 disabled:opacity-50"
+      className="text-xs px-4 py-2 rounded text-fg-strong font-medium hover:brightness-110 disabled:opacity-50"
       style={{ background: 'var(--gd-primary)' }}
     >
       {children}
@@ -570,7 +605,7 @@ function BtnSecondary({ children, ...props }: React.ButtonHTMLAttributes<HTMLBut
   return (
     <button
       {...props}
-      className="text-xs px-4 py-2 rounded text-white bg-transparent hover:bg-white/5"
+      className="text-xs px-4 py-2 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5"
       style={{ border: '1px solid var(--gd-border)' }}
     >
       {children}
@@ -580,7 +615,7 @@ function BtnSecondary({ children, ...props }: React.ButtonHTMLAttributes<HTMLBut
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`bg-white/[0.03] border border-white/10 rounded-lg ${className}`}>{children}</div>
+    <div className={`bg-white/[0.03] border border-fg-strong/10 rounded-lg ${className}`}>{children}</div>
   );
 }
 
@@ -604,9 +639,9 @@ function KpiTile({
         <span className="w-6 h-6 rounded flex items-center justify-center text-[11px]" style={{ background: 'var(--gd-muted)' }}>
           {icon}
         </span>
-        <p className="text-xs text-white/50">{label}</p>
+        <p className="text-xs text-fg-strong/50">{label}</p>
       </div>
-      <p className="text-3xl font-semibold text-white">{value}</p>
+      <p className="text-3xl font-semibold text-fg-strong">{value}</p>
       {delta && (
         <p className="text-xs mt-1" style={{ color: deltaColor }}>
           {delta}
@@ -619,7 +654,7 @@ function KpiTile({
 function SectionTitle({ children, action }: { children: React.ReactNode; action?: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between mb-4">
-      <p className="text-sm font-medium text-white">{children}</p>
+      <p className="text-sm font-medium text-fg-strong">{children}</p>
       {action}
     </div>
   );
@@ -708,26 +743,26 @@ function CommandCenter({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-white flex items-center gap-2">Hi, {persona} <span>👋</span></h1>
+        <h1 className="text-2xl font-semibold text-fg-strong flex items-center gap-2">Hi, {persona} <span>👋</span></h1>
       </div>
 
       {/* Summary banner */}
       <div className="border rounded-lg p-5 flex items-start justify-between" style={{ background: 'var(--gd-primary-soft)', borderColor: 'var(--gd-primary-outline)' }}>
         <div className="flex gap-3">
-          <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs shrink-0" style={{ background: 'var(--gd-primary)' }}>
+          <span className="w-6 h-6 rounded flex items-center justify-center text-fg-strong text-xs shrink-0" style={{ background: 'var(--gd-primary)' }}>
             ✦
           </span>
           <div>
-            <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-1">
+            <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase mb-1">
               GenX Summary · as of today
             </p>
-            <p className="text-sm font-medium text-white">{d.summary.headline}</p>
-            <p className="text-sm text-white/60 mt-1">{d.summary.sub}</p>
+            <p className="text-sm font-medium text-fg-strong">{d.summary.headline}</p>
+            <p className="text-sm text-fg-strong/60 mt-1">{d.summary.sub}</p>
           </div>
         </div>
         <button
           onClick={() => onNavigate('trace')}
-          className="text-xs px-3 py-1.5 border border-white/10 rounded bg-transparent text-white hover:bg-white/5"
+          className="text-xs px-3 py-1.5 border border-fg-strong/10 rounded bg-transparent text-fg-strong hover:bg-fg-strong/5"
         >
           View full summary →
         </button>
@@ -737,13 +772,13 @@ function CommandCenter({
       <div>
         <SectionTitle
           action={
-            <button onClick={() => onNavigate('dashboard')} className="text-xs text-white/50 hover:text-white">
+            <button onClick={() => onNavigate('dashboard')} className="text-xs text-fg-strong/50 hover:text-fg-strong">
               View all actions →
             </button>
           }
         >
-          Priority Actions <span className="text-white/40">({d.actions.length})</span>{' '}
-          <span className="text-xs text-white/50 font-normal">Needs your attention</span>
+          Priority Actions <span className="text-fg-strong/40">({d.actions.length})</span>{' '}
+          <span className="text-xs text-fg-strong/50 font-normal">Needs your attention</span>
         </SectionTitle>
         <div className="grid lg:grid-cols-3 gap-4">
           {d.actions.map((a, i) => {
@@ -754,15 +789,15 @@ function CommandCenter({
                 <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: barColor }} />
                 <div className="pl-2">
                   <Pill tone={tone}>{a.risk === 'high' ? 'HIGH RISK' : a.risk === 'medium' ? 'MEDIUM RISK' : 'LOW RISK'}</Pill>
-                  <p className="text-base font-medium text-white mt-3">{a.title}</p>
-                  <p className="text-xs text-white/50 mt-1">{a.account}</p>
+                  <p className="text-base font-medium text-fg-strong mt-3">{a.title}</p>
+                  <p className="text-xs text-fg-strong/50 mt-1">{a.account}</p>
                   <div className="mt-4">
-                    <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">{a.metric.label}</p>
+                    <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mb-1">{a.metric.label}</p>
                     <div className="flex items-end justify-between">
-                      <p className="text-2xl font-semibold text-white">{a.metric.value}</p>
+                      <p className="text-2xl font-semibold text-fg-strong">{a.metric.value}</p>
                       <div className="text-right">
-                        <p className="text-[10px] uppercase tracking-wider text-white/50">Status</p>
-                        <p className="text-xs text-white">{a.status}</p>
+                        <p className="text-[10px] uppercase tracking-wider text-fg-strong/50">Status</p>
+                        <p className="text-xs text-fg-strong">{a.status}</p>
                       </div>
                     </div>
                   </div>
@@ -792,13 +827,13 @@ function CommandCenter({
                     <div className="mt-4 grid grid-cols-2 gap-2">
                       <button
                         onClick={() => setDetailAction(a)}
-                        className="text-xs px-3 py-2 border border-white/10 rounded hover:bg-white/5 text-white bg-transparent"
+                        className="text-xs px-3 py-2 border border-fg-strong/10 rounded hover:bg-fg-strong/5 text-fg-strong bg-transparent"
                       >
                         View details
                       </button>
                       <button
                         onClick={() => openCtaDialog(i, a.cta, a.account)}
-                        className="text-xs px-3 py-2 rounded text-white font-medium hover:brightness-110"
+                        className="text-xs px-3 py-2 rounded text-fg-strong font-medium hover:brightness-110"
                         style={{ background: 'var(--gd-primary)' }}
                       >
                         {a.cta}
@@ -816,7 +851,7 @@ function CommandCenter({
       <div>
         <SectionTitle
           action={
-            <button onClick={() => onNavigate('dashboard')} className="text-xs text-white/50 hover:text-white">
+            <button onClick={() => onNavigate('dashboard')} className="text-xs text-fg-strong/50 hover:text-fg-strong">
               View all →
             </button>
           }
@@ -835,7 +870,7 @@ function CommandCenter({
         <Card className="p-5">
           <SectionTitle
             action={
-              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('trace')} className="text-xs text-fg-strong/50 hover:text-fg-strong">
                 View map →
               </button>
             }
@@ -850,10 +885,10 @@ function CommandCenter({
                 className="w-full text-left p-4 rounded hover:brightness-125 transition"
                 style={{ background: 'var(--gd-muted-2)' }}
               >
-                <p className="text-xs text-white/50 mb-1">{c.team}</p>
+                <p className="text-xs text-fg-strong/50 mb-1">{c.team}</p>
                 <div className="flex items-baseline justify-between">
-                  <p className="text-xs text-white">{c.label}</p>
-                  <p className="text-sm font-medium text-white">{c.value}</p>
+                  <p className="text-xs text-fg-strong">{c.label}</p>
+                  <p className="text-sm font-medium text-fg-strong">{c.value}</p>
                 </div>
               </button>
             ))}
@@ -863,7 +898,7 @@ function CommandCenter({
         <Card className="p-5">
           <SectionTitle
             action={
-              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('trace')} className="text-xs text-fg-strong/50 hover:text-fg-strong">
                 View all →
               </button>
             }
@@ -873,15 +908,15 @@ function CommandCenter({
           <div className="grid grid-cols-3 gap-4 mb-4">
             <div>
               <p className="text-2xl font-semibold" style={{ color: 'var(--gd-primary)' }}>{d.workflows.in_progress}</p>
-              <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">In progress</p>
+              <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mt-1">In progress</p>
             </div>
             <div>
               <p className="text-2xl font-semibold" style={{ color: 'var(--gd-warning)' }}>{d.workflows.awaiting}</p>
-              <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">Awaiting approval</p>
+              <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mt-1">Awaiting approval</p>
             </div>
             <div>
               <p className="text-2xl font-semibold" style={{ color: 'var(--gd-success)' }}>{d.workflows.completed}</p>
-              <p className="text-[10px] uppercase tracking-wider text-white/50 mt-1">Completed today</p>
+              <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mt-1">Completed today</p>
             </div>
           </div>
           <div className="space-y-2">
@@ -889,9 +924,9 @@ function CommandCenter({
               <button
                 key={w.name}
                 onClick={() => setDetailWorkflow(w)}
-                className="w-full flex items-center justify-between text-xs py-1.5 px-2 -mx-2 rounded hover:bg-white/5 text-left"
+                className="w-full flex items-center justify-between text-xs py-1.5 px-2 -mx-2 rounded hover:bg-fg-strong/5 text-left"
               >
-                <span className="text-white">{w.name}</span>
+                <span className="text-fg-strong">{w.name}</span>
                 <Pill tone={w.tone === 'blue' ? 'blue' : w.tone === 'yellow' ? 'yellow' : 'green'}>{w.status}</Pill>
               </button>
             ))}
@@ -904,7 +939,7 @@ function CommandCenter({
         <Card className="p-5">
           <SectionTitle
             action={
-              <button onClick={() => onNavigate('trace')} className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('trace')} className="text-xs text-fg-strong/50 hover:text-fg-strong">
                 View all →
               </button>
             }
@@ -915,13 +950,13 @@ function CommandCenter({
             <button
               key={i}
               onClick={() => onOpenTrace(r.title)}
-              className="w-full flex items-start justify-between py-3 border-b border-white/5 last:border-0 hover:bg-white/[0.02] px-2 -mx-2 rounded text-left transition-colors"
+              className="w-full flex items-start justify-between py-3 border-b border-fg-strong/5 last:border-0 hover:bg-fg-strong/[0.02] px-2 -mx-2 rounded text-left transition-colors"
             >
               <div>
-                <p className="text-sm text-white">{r.title}</p>
-                <p className="text-[10px] text-white/50 mt-0.5">{r.when}</p>
+                <p className="text-sm text-fg-strong">{r.title}</p>
+                <p className="text-[10px] text-fg-strong/50 mt-0.5">{r.when}</p>
               </div>
-              <p className={`text-xs font-medium ${r.tone === 'green' ? 'text-green-400' : 'text-white/60'}`}>{r.impact}</p>
+              <p className={`text-xs font-medium ${r.tone === 'green' ? 'text-green-400' : 'text-fg-strong/60'}`}>{r.impact}</p>
             </button>
           ))}
         </Card>
@@ -929,7 +964,7 @@ function CommandCenter({
         <Card className="p-5">
           <SectionTitle
             action={
-              <button onClick={() => onNavigate('dashboard')} className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => onNavigate('dashboard')} className="text-xs text-fg-strong/50 hover:text-fg-strong">
                 View all →
               </button>
             }
@@ -940,22 +975,22 @@ function CommandCenter({
             <button
               key={w.code}
               onClick={() => setDetailWatchlist(w)}
-              className="w-full flex items-center justify-between py-2.5 border-b border-white/5 last:border-0 hover:bg-white/[0.02] px-2 -mx-2 rounded text-left transition-colors"
+              className="w-full flex items-center justify-between py-2.5 border-b border-fg-strong/5 last:border-0 hover:bg-fg-strong/[0.02] px-2 -mx-2 rounded text-left transition-colors"
             >
               <div className="flex items-center gap-3">
                 <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
                   {w.code}
                 </span>
                 <div>
-                  <p className="text-sm text-white">{w.name}</p>
+                  <p className="text-sm text-fg-strong">{w.name}</p>
                   <Pill tone={w.risk === 'high' ? 'red' : w.risk === 'medium' ? 'yellow' : 'green'}>
                     {w.risk} risk
                   </Pill>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-[10px] uppercase text-white/50 tracking-wider">Score</p>
-                <p className="text-sm font-medium text-white">{w.score}</p>
+                <p className="text-[10px] uppercase text-fg-strong/50 tracking-wider">Score</p>
+                <p className="text-sm font-medium text-fg-strong">{w.score}</p>
               </div>
             </button>
           ))}
@@ -984,8 +1019,8 @@ function CommandCenter({
       >
         {pendingCta?.cta === 'Schedule' ? (
           <div>
-            <p className="text-sm text-white/70 mb-4">
-              Schedule the workflow for <span className="text-white font-medium">{pendingCta.account}</span> to
+            <p className="text-sm text-fg-strong/70 mb-4">
+              Schedule the workflow for <span className="text-fg-strong font-medium">{pendingCta.account}</span> to
               run at a future time.
             </p>
             <div className="grid grid-cols-2 gap-3">
@@ -1003,7 +1038,7 @@ function CommandCenter({
             )}
           </div>
         ) : (
-          <p className="text-sm text-white/70">
+          <p className="text-sm text-fg-strong/70">
             {pendingCta?.cta === 'Approve'
               ? `Approve action for ${pendingCta?.account}? Workflow will run immediately.`
               : `Enable auto-run for ${pendingCta?.account}? Future actions of this type will fire without approval.`}
@@ -1022,27 +1057,27 @@ function CommandCenter({
           <div className="space-y-4 text-sm">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Account</p>
-                <p className="text-white">{detailAction.account}</p>
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Account</p>
+                <p className="text-fg-strong">{detailAction.account}</p>
               </div>
               <div>
-                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Risk</p>
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Risk</p>
                 <Pill tone={detailAction.risk === 'high' ? 'red' : detailAction.risk === 'medium' ? 'yellow' : 'green'}>
                   {detailAction.risk}
                 </Pill>
               </div>
               <div>
-                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">{detailAction.metric.label}</p>
-                <p className="text-white font-medium">{detailAction.metric.value}</p>
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">{detailAction.metric.label}</p>
+                <p className="text-fg-strong font-medium">{detailAction.metric.value}</p>
               </div>
               <div>
-                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Status</p>
-                <p className="text-white">{detailAction.status}</p>
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Status</p>
+                <p className="text-fg-strong">{detailAction.status}</p>
               </div>
             </div>
-            <div className="pt-3 border-t border-white/10">
-              <p className="text-xs text-white/60">
-                Recommended action: <span className="text-white">{detailAction.cta}</span>. Click the {detailAction.cta}
+            <div className="pt-3 border-t border-fg-strong/10">
+              <p className="text-xs text-fg-strong/60">
+                Recommended action: <span className="text-fg-strong">{detailAction.cta}</span>. Click the {detailAction.cta}
                 button on the card to proceed.
               </p>
             </div>
@@ -1072,12 +1107,12 @@ function CommandCenter({
         {detailWorkflow && (
           <div className="space-y-3 text-sm">
             <div>
-              <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Status</p>
+              <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Status</p>
               <Pill tone={detailWorkflow.tone === 'blue' ? 'blue' : detailWorkflow.tone === 'yellow' ? 'yellow' : 'green'}>
                 {detailWorkflow.status}
               </Pill>
             </div>
-            <p className="text-white/70">
+            <p className="text-fg-strong/70">
               This workflow was auto-triggered by the associated watchlist. Open the trace to see every step,
               weighted signals, and evidence rows.
             </p>
@@ -1108,17 +1143,17 @@ function CommandCenter({
           <div className="space-y-3 text-sm">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Health score</p>
-                <p className="text-3xl font-semibold text-white">{detailWatchlist.score}</p>
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Health score</p>
+                <p className="text-3xl font-semibold text-fg-strong">{detailWatchlist.score}</p>
               </div>
               <div>
-                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">Risk</p>
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Risk</p>
                 <Pill tone={detailWatchlist.risk === 'high' ? 'red' : detailWatchlist.risk === 'medium' ? 'yellow' : 'green'}>
                   {detailWatchlist.risk} risk
                 </Pill>
               </div>
             </div>
-            <p className="text-white/70">
+            <p className="text-fg-strong/70">
               Account is being monitored by an active watchlist. Open the trace to see the signals that fired
               and the recommended actions in flight.
             </p>
@@ -1187,12 +1222,12 @@ function Dashboard({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-white">Dashboards</h1>
-          <p className="text-sm text-white/50 mt-1">Real-time views of your customers, health, and actions — {spaceLabel}</p>
+          <h1 className="text-2xl font-semibold text-fg-strong">Dashboards</h1>
+          <p className="text-sm text-fg-strong/50 mt-1">Real-time views of your customers, health, and actions — {spaceLabel}</p>
         </div>
         <div className="flex items-center gap-2">
           <input
-            className="text-xs border border-white/10 rounded px-3 py-1.5 w-56 bg-transparent text-white placeholder:text-white/40"
+            className="text-xs border border-fg-strong/10 rounded px-3 py-1.5 w-56 bg-transparent text-fg-strong placeholder:text-fg-strong/40"
             placeholder="Search dashboards..."
             onKeyDown={(e) => {
               if (e.key === 'Enter') onToast('Search: coming soon');
@@ -1200,13 +1235,13 @@ function Dashboard({
           />
           <button
             onClick={() => setFiltersOpen(true)}
-            className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
+            className="text-xs px-3 py-1.5 border border-fg-strong/10 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5"
           >
             Filters
           </button>
           <button
             onClick={() => setWidgetOpen(true)}
-            className="text-xs px-3 py-1.5 rounded text-white font-medium hover:brightness-110"
+            className="text-xs px-3 py-1.5 rounded text-fg-strong font-medium hover:brightness-110"
             style={{ background: 'var(--gd-primary)' }}
           >
             + Add Widget
@@ -1215,13 +1250,13 @@ function Dashboard({
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-white/10">
+      <div className="flex gap-6 border-b border-fg-strong/10">
         {['Overview', 'Health', 'Renewals', 'Adoption', 'Engagement', 'Revenue', 'Support', 'Custom'].map((t, i) => (
           <button
             key={t}
             onClick={() => setTab(i)}
             className={`text-sm py-2 border-b-2 ${
-              tab === i ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'
+              tab === i ? 'border-fg-strong text-fg-strong font-medium' : 'border-transparent text-fg-strong/50 hover:text-fg-strong'
             }`}
           >
             {t}
@@ -1241,7 +1276,7 @@ function Dashboard({
         <Card className="p-5">
           <SectionTitle
             action={
-              <button onClick={() => setTab(1)} className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => setTab(1)} className="text-xs text-fg-strong/50 hover:text-fg-strong">
                 View report →
               </button>
             }
@@ -1261,20 +1296,20 @@ function Dashboard({
                     .join(', ')})`,
                 }}
               />
-              <div className="absolute inset-4 bg-black rounded-full flex flex-col items-center justify-center">
-                <p className="text-lg font-semibold text-white">
+              <div className="absolute inset-4 bg-bg rounded-full flex flex-col items-center justify-center">
+                <p className="text-lg font-semibold text-fg-strong">
                   {d.distribution.reduce((a, b) => a + b.count, 0).toLocaleString()}
                 </p>
-                <p className="text-[10px] text-white/50 uppercase tracking-wider">Total</p>
+                <p className="text-[10px] text-fg-strong/50 uppercase tracking-wider">Total</p>
               </div>
             </div>
             <div className="flex-1 space-y-2">
               {d.distribution.map((seg) => (
                 <div key={seg.label} className="flex items-center gap-2 text-xs">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ background: seg.color }} />
-                  <span className="text-white/70 flex-1">{seg.label}</span>
-                  <span className="text-white font-medium">{seg.count}</span>
-                  <span className="text-white/50">({seg.value}%)</span>
+                  <span className="text-fg-strong/70 flex-1">{seg.label}</span>
+                  <span className="text-fg-strong font-medium">{seg.count}</span>
+                  <span className="text-fg-strong/50">({seg.value}%)</span>
                 </div>
               ))}
             </div>
@@ -1283,8 +1318,8 @@ function Dashboard({
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-white">Trend</p>
-            <select className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white">
+            <p className="text-sm font-medium text-fg-strong">Trend</p>
+            <select className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong">
               <option>Last 30 Days</option>
               <option>Last 90 Days</option>
             </select>
@@ -1301,7 +1336,7 @@ function Dashboard({
               <circle key={i} cx={x} cy={[110, 105, 98, 80, 70, 55, 42, 38][i]} r="3" fill="var(--gd-primary)" />
             ))}
           </svg>
-          <div className="flex justify-between text-[10px] text-white/50 mt-2">
+          <div className="flex justify-between text-[10px] text-fg-strong/50 mt-2">
             <span>Day 1</span>
             <span>Day 15</span>
             <span>Today</span>
@@ -1311,7 +1346,7 @@ function Dashboard({
         <Card className="p-5">
           <SectionTitle
             action={
-              <button onClick={() => setTab(5)} className="text-xs text-white/50 hover:text-white">
+              <button onClick={() => setTab(5)} className="text-xs text-fg-strong/50 hover:text-fg-strong">
                 View segments →
               </button>
             }
@@ -1326,10 +1361,10 @@ function Dashboard({
             ].map((s) => (
               <div key={s.label}>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-white">{s.label}</span>
-                  <span className="text-white font-medium">{s.amount}</span>
+                  <span className="text-fg-strong">{s.label}</span>
+                  <span className="text-fg-strong font-medium">{s.amount}</span>
                 </div>
-                <div className="h-2 bg-black/5 rounded overflow-hidden">
+                <div className="h-2 bg-bg/5 rounded overflow-hidden">
                   <div className="h-full" style={{ width: `${s.value}%`, background: 'var(--gd-danger)' }} />
                 </div>
               </div>
@@ -1342,14 +1377,14 @@ function Dashboard({
       <Card className="p-5">
         <SectionTitle
           action={
-            <button onClick={() => setTab(1)} className="text-xs text-white/50 hover:text-white">
+            <button onClick={() => setTab(1)} className="text-xs text-fg-strong/50 hover:text-fg-strong">
               View all at-risk →
             </button>
           }
         >
           Top At-Risk
         </SectionTitle>
-        <div className="grid grid-cols-12 gap-3 pb-3 border-b border-white/5 text-[10px] tracking-widest text-white/50 uppercase">
+        <div className="grid grid-cols-12 gap-3 pb-3 border-b border-fg-strong/5 text-[10px] tracking-widest text-fg-strong/50 uppercase">
           <span className="col-span-5">Account</span>
           <span className="col-span-2 text-right">Health</span>
           <span className="col-span-3 text-right">Risk</span>
@@ -1359,15 +1394,15 @@ function Dashboard({
           <button
             key={a.code}
             onClick={() => onOpenTrace(a.name)}
-            className="w-full grid grid-cols-12 gap-3 py-3 border-b border-white/5 last:border-0 items-center hover:bg-white/[0.02] rounded transition-colors text-left"
+            className="w-full grid grid-cols-12 gap-3 py-3 border-b border-fg-strong/5 last:border-0 items-center hover:bg-fg-strong/[0.02] rounded transition-colors text-left"
           >
             <div className="col-span-5 flex items-center gap-3">
               <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
                 {a.code}
               </span>
-              <span className="text-sm text-white">{a.name}</span>
+              <span className="text-sm text-fg-strong">{a.name}</span>
             </div>
-            <span className="col-span-2 text-right text-sm text-white">{a.health}</span>
+            <span className="col-span-2 text-right text-sm text-fg-strong">{a.health}</span>
             <span className="col-span-3 text-right text-sm" style={{ color: 'var(--gd-danger)' }}>{a.risk}</span>
             <span className="col-span-2 text-right">
               <svg width="40" height="16" viewBox="0 0 40 16">
@@ -1476,7 +1511,7 @@ function Dashboard({
             onChange={(e) => setWQuery(e.target.value)}
             placeholder="Describe what this widget should show…"
             rows={2}
-            className="w-full text-sm px-3 py-2 rounded bg-transparent text-white placeholder:text-white/40 outline-none focus:border-white/40"
+            className="w-full text-sm px-3 py-2 rounded bg-transparent text-fg-strong placeholder:text-fg-strong/40 outline-none focus:border-fg-strong/40"
             style={{ border: '1px solid var(--gd-border)' }}
           />
         </Field>
@@ -1486,7 +1521,7 @@ function Dashboard({
             value={wTaskId}
             onChange={(e) => setWTaskId(e.target.value)}
             placeholder="ObjectId of the analytics task"
-            className="w-full text-sm px-3 py-2 rounded bg-transparent text-white placeholder:text-white/40 outline-none focus:border-white/40 font-mono"
+            className="w-full text-sm px-3 py-2 rounded bg-transparent text-fg-strong placeholder:text-fg-strong/40 outline-none focus:border-fg-strong/40 font-mono"
             style={{ border: '1px solid var(--gd-border)' }}
           />
         </Field>
@@ -1501,7 +1536,7 @@ function Dashboard({
             </Select>
           </Field>
           <Field label="Force refresh">
-            <label className="flex items-center gap-2 pt-2 text-sm text-white cursor-pointer">
+            <label className="flex items-center gap-2 pt-2 text-sm text-fg-strong cursor-pointer">
               <input
                 type="checkbox"
                 checked={wForceRefresh}
@@ -1641,16 +1676,16 @@ function Ask({
   return (
     <div className="grid grid-cols-12 gap-6">
       <div className="col-span-9">
-        <h1 className="text-xl font-semibold text-white mb-4">AI Agent</h1>
+        <h1 className="text-xl font-semibold text-fg-strong mb-4">AI Agent</h1>
 
         <div ref={scrollRef} className="max-h-[70vh] overflow-y-auto pr-1 space-y-4">
           {messages.map((m, idx) => {
             if (m.role === 'user') {
               return (
                 <div key={idx} className="flex justify-end">
-                  <div className="rounded-2xl px-4 py-3 max-w-xl text-white" style={{ background: 'var(--gd-primary)' }}>
+                  <div className="rounded-2xl px-4 py-3 max-w-xl text-fg-strong" style={{ background: 'var(--gd-primary)' }}>
                     <p className="text-sm">{m.text}</p>
-                    <p className="text-[10px] text-white/70 mt-1">{m.ts}</p>
+                    <p className="text-[10px] text-fg-strong/70 mt-1">{m.ts}</p>
                   </div>
                 </div>
               );
@@ -1665,20 +1700,20 @@ function Ask({
         <Card className="p-3 mt-4 flex items-center gap-3">
           <button
             onClick={() => onToast('Attach file: coming soon')}
-            className="text-white/40 hover:text-white p-1"
+            className="text-fg-strong/40 hover:text-fg-strong p-1"
             title="Attach file"
           >
             <Paperclip className="w-4 h-4" />
           </button>
           <button
             onClick={() => onToast('Voice input: coming soon')}
-            className="text-white/40 hover:text-white p-1"
+            className="text-fg-strong/40 hover:text-fg-strong p-1"
             title="Dictate"
           >
             <Mic className="w-4 h-4" />
           </button>
           <input
-            className="flex-1 outline-none text-sm placeholder:text-white/40 bg-transparent text-white"
+            className="flex-1 outline-none text-sm placeholder:text-fg-strong/40 bg-transparent text-fg-strong"
             placeholder="Ask anything about your business…"
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -1688,7 +1723,7 @@ function Ask({
           />
           <button
             onClick={() => submit(input)}
-            className="w-8 h-8 rounded flex items-center justify-center text-white hover:brightness-110"
+            className="w-8 h-8 rounded flex items-center justify-center text-fg-strong hover:brightness-110"
             style={{ background: 'var(--gd-primary)' }}
           >
             <Send className="w-3.5 h-3.5" />
@@ -1700,14 +1735,14 @@ function Ask({
       <div className="col-span-3 space-y-4">
         {railInsights && (
           <Card className="p-4">
-            <p className="text-sm font-medium text-white mb-3">Key Insights</p>
+            <p className="text-sm font-medium text-fg-strong mb-3">Key Insights</p>
             {railInsights.map((i) => (
-              <div key={i.label} className="py-2 border-b border-white/5 last:border-0">
+              <div key={i.label} className="py-2 border-b border-fg-strong/5 last:border-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-white/50 text-xs">{i.icon}</span>
-                  <p className="text-[10px] uppercase tracking-wider text-white/50">{i.label}</p>
+                  <span className="text-fg-strong/50 text-xs">{i.icon}</span>
+                  <p className="text-[10px] uppercase tracking-wider text-fg-strong/50">{i.label}</p>
                 </div>
-                <p className="text-xl font-semibold text-white">{i.value}</p>
+                <p className="text-xl font-semibold text-fg-strong">{i.value}</p>
                 <p className="text-[10px] text-green-400 mt-0.5">{i.delta}</p>
               </div>
             ))}
@@ -1716,11 +1751,11 @@ function Ask({
 
         {railActions && (
           <Card className="p-4">
-            <p className="text-sm font-medium text-white mb-3">Recommended Actions</p>
+            <p className="text-sm font-medium text-fg-strong mb-3">Recommended Actions</p>
             {railActions.map((a, i) => (
-              <div key={i} className="py-3 border-b border-white/5 last:border-0">
-                <p className="text-sm text-white mb-1">{a.title}</p>
-                <p className="text-xs text-white/60 leading-relaxed mb-2">{a.sub}</p>
+              <div key={i} className="py-3 border-b border-fg-strong/5 last:border-0">
+                <p className="text-sm text-fg-strong mb-1">{a.title}</p>
+                <p className="text-xs text-fg-strong/60 leading-relaxed mb-2">{a.sub}</p>
                 <div className="flex items-center justify-between">
                   <Pill tone={a.priority === 'high' ? 'red' : 'yellow'}>{a.priority} priority</Pill>
                   <button onClick={() => onNavigate('trace')} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
@@ -1754,27 +1789,27 @@ function BotCard({
   return (
     <Card className="p-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="w-6 h-6 rounded flex items-center justify-center text-white text-xs" style={{ background: 'var(--gd-primary)' }}>
+        <span className="w-6 h-6 rounded flex items-center justify-center text-fg-strong text-xs" style={{ background: 'var(--gd-primary)' }}>
           ✦
         </span>
-        <span className="text-sm font-medium text-white">GenX Copilot</span>
+        <span className="text-sm font-medium text-fg-strong">GenX Copilot</span>
         {a.table && <Pill tone="neutral">TABLE</Pill>}
-        <span className="ml-auto text-xs text-white/50">{ts}</span>
+        <span className="ml-auto text-xs text-fg-strong/50">{ts}</span>
       </div>
 
       {/* Direct answer */}
       <div className="rounded-lg p-4 mb-4" style={{ background: 'var(--gd-primary-soft)' }}>
-        <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-2">✦ Direct Answer</p>
-        <p className="text-sm font-medium text-white">{a.direct.headline}</p>
-        <p className="text-sm text-white/70 mt-1">{a.direct.sub}</p>
+        <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase mb-2">✦ Direct Answer</p>
+        <p className="text-sm font-medium text-fg-strong">{a.direct.headline}</p>
+        <p className="text-sm text-fg-strong/70 mt-1">{a.direct.sub}</p>
       </div>
 
       {/* Bullets (compact answers) */}
       {a.bullets && (
         <ul className="space-y-2 mb-6">
           {a.bullets.map((b) => (
-            <li key={b} className="text-sm text-white/80 flex gap-2">
-              <span className="text-white/40 mt-0.5">·</span>
+            <li key={b} className="text-sm text-fg-strong/80 flex gap-2">
+              <span className="text-fg-strong/40 mt-0.5">·</span>
               <span>{b}</span>
             </li>
           ))}
@@ -1784,7 +1819,7 @@ function BotCard({
       {/* Insights */}
       {a.insights && (
         <>
-          <p className="text-sm font-medium text-white mb-3">Key insights</p>
+          <p className="text-sm font-medium text-fg-strong mb-3">Key insights</p>
           <div className="grid grid-cols-4 gap-3 mb-6">
             {a.insights.map((i) => (
               <div
@@ -1792,8 +1827,8 @@ function BotCard({
                 className="rounded-lg p-3"
                 style={{ background: 'var(--gd-muted-2)', border: '1px solid var(--gd-border)' }}
               >
-                <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">{i.label}</p>
-                <p className="text-xl font-semibold text-white">{i.value}</p>
+                <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mb-1">{i.label}</p>
+                <p className="text-xl font-semibold text-fg-strong">{i.value}</p>
                 <p className="text-[10px] text-green-400 mt-1">{i.delta}</p>
               </div>
             ))}
@@ -1805,10 +1840,10 @@ function BotCard({
       {a.table && (
         <>
           <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-medium text-white">Top At-Risk</p>
-            <span className="text-xs text-white/50">{a.table.length} rows</span>
+            <p className="text-sm font-medium text-fg-strong">Top At-Risk</p>
+            <span className="text-xs text-fg-strong/50">{a.table.length} rows</span>
           </div>
-          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-white/5 text-[10px] uppercase tracking-wider text-white/50">
+          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
             <span className="col-span-3">Account</span>
             <span className="col-span-1 text-right">Health</span>
             <span className="col-span-2 text-center">Risk</span>
@@ -1820,21 +1855,21 @@ function BotCard({
             <button
               key={r.name}
               onClick={() => onOpenTrace(r.name)}
-              className="w-full grid grid-cols-12 gap-2 py-2 border-b border-white/5 last:border-0 items-center hover:bg-white/[0.02] rounded transition-colors text-left"
+              className="w-full grid grid-cols-12 gap-2 py-2 border-b border-fg-strong/5 last:border-0 items-center hover:bg-fg-strong/[0.02] rounded transition-colors text-left"
             >
               <div className="col-span-3 flex items-center gap-2">
                 <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'var(--gd-muted)' }}>
                   {r.code}
                 </span>
-                <span className="text-sm text-white">{r.name}</span>
+                <span className="text-sm text-fg-strong">{r.name}</span>
               </div>
-              <span className="col-span-1 text-right text-sm text-white">{r.health}</span>
+              <span className="col-span-1 text-right text-sm text-fg-strong">{r.health}</span>
               <span className="col-span-2 text-center">
                 <Pill tone={r.risk === 'High' || r.risk === 'P0' || r.risk === 'Delay' || r.risk === 'M3 slip' || r.risk === 'Go-live risk' ? 'red' : r.risk === 'Medium' || r.risk === 'P1 Reopen' || r.risk === 'Hold' ? 'yellow' : 'green'}>
                   {r.risk}
                 </Pill>
               </span>
-              <span className="col-span-1 text-right text-sm text-white">{r.arr}</span>
+              <span className="col-span-1 text-right text-sm text-fg-strong">{r.arr}</span>
               <span className="col-span-3 flex flex-wrap gap-1">
                 {r.factors.map((f) => (
                   <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--gd-muted)' }}>
@@ -1842,7 +1877,7 @@ function BotCard({
                   </span>
                 ))}
               </span>
-              <span className="col-span-2 text-xs text-white/70">{r.owner}</span>
+              <span className="col-span-2 text-xs text-fg-strong/70">{r.owner}</span>
             </button>
           ))}
           <button onClick={() => onNavigate('dashboard')} className="text-xs mt-3 inline-block" style={{ color: 'var(--gd-primary)' }}>
@@ -1855,13 +1890,13 @@ function BotCard({
       {a.reasoning && (
         <div className="rounded-lg p-4 mt-6" style={{ background: 'var(--gd-muted-2)', border: '1px solid var(--gd-border)' }}>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-white/50">ⓘ</span>
-            <p className="text-sm font-medium text-white">Reasoning</p>
+            <span className="text-fg-strong/50">ⓘ</span>
+            <p className="text-sm font-medium text-fg-strong">Reasoning</p>
           </div>
-          <p className="text-xs text-white/60 mb-3">{a.reasoning.summary}</p>
+          <p className="text-xs text-fg-strong/60 mb-3">{a.reasoning.summary}</p>
           <div className="flex flex-wrap gap-2">
             {a.reasoning.factors.map((f) => (
-              <span key={f} className="text-[10px] px-2 py-1 rounded border border-white/10 text-white">
+              <span key={f} className="text-[10px] px-2 py-1 rounded border border-fg-strong/10 text-fg-strong">
                 {f}
               </span>
             ))}
@@ -1872,13 +1907,13 @@ function BotCard({
       {/* Followups — only on the most recent bot message */}
       {isLast && a.followups.length > 0 && (
         <>
-          <p className="text-[10px] uppercase tracking-wider text-white/50 mt-6 mb-3">You might also ask</p>
+          <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mt-6 mb-3">You might also ask</p>
           <div className="flex flex-wrap gap-2">
             {a.followups.map((f) => (
               <button
                 key={f}
                 onClick={() => onFollowup(f)}
-                className="text-xs px-3 py-1.5 border border-white/10 rounded-full hover:bg-white/5 text-white bg-transparent"
+                className="text-xs px-3 py-1.5 border border-fg-strong/10 rounded-full hover:bg-fg-strong/5 text-fg-strong bg-transparent"
               >
                 {f}
               </button>
@@ -1970,19 +2005,19 @@ function Trace({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-white">Trace / Audit</h1>
-          <p className="text-sm text-white/50 mt-1">View system memory, decisions, actions, and audit trails.</p>
+          <h1 className="text-2xl font-semibold text-fg-strong">Trace / Audit</h1>
+          <p className="text-sm text-fg-strong/50 mt-1">View system memory, decisions, actions, and audit trails.</p>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setFiltersOpen(true)}
-            className="text-xs px-3 py-1.5 border border-white/10 rounded text-white bg-transparent hover:bg-white/5"
+            className="text-xs px-3 py-1.5 border border-fg-strong/10 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5"
           >
             Filters
           </button>
           <button
             onClick={exportOutcomes}
-            className="text-xs px-3 py-1.5 rounded text-white font-medium hover:brightness-110"
+            className="text-xs px-3 py-1.5 rounded text-fg-strong font-medium hover:brightness-110"
             style={{ background: 'var(--gd-primary)' }}
           >
             Export
@@ -1998,13 +2033,13 @@ function Trace({
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-white/10">
+      <div className="flex gap-6 border-b border-fg-strong/10">
         {['Memory Explorer', 'Decision Log', 'Audit Trail', 'Data Lineage', 'Access History', 'Retention & Policies'].map((t, i) => (
           <button
             key={t}
             onClick={() => setActiveTab(i)}
             className={`text-sm py-2 border-b-2 ${
-              activeTab === i ? 'border-white text-white font-medium' : 'border-transparent text-white/50 hover:text-white'
+              activeTab === i ? 'border-fg-strong text-fg-strong font-medium' : 'border-transparent text-fg-strong/50 hover:text-fg-strong'
             }`}
           >
             {t}
@@ -2016,18 +2051,18 @@ function Trace({
       <div className="grid lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-white">Recent Outcomes ({filteredOutcomes.length})</p>
+            <p className="text-sm font-medium text-fg-strong">Recent Outcomes ({filteredOutcomes.length})</p>
             <div className="flex items-center gap-2">
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="text-xs border border-white/10 rounded px-3 py-1 w-56 bg-transparent text-white placeholder:text-white/40"
+                className="text-xs border border-fg-strong/10 rounded px-3 py-1 w-56 bg-transparent text-fg-strong placeholder:text-fg-strong/40"
                 placeholder="Search outcomes..."
               />
               <select
                 value={scenarioFilter}
                 onChange={(e) => setScenarioFilter(e.target.value)}
-                className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white"
+                className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong"
               >
                 <option value="all">All Types</option>
                 {Array.from(new Set(d.outcomes.map((o) => o.scenario))).map((s) => (
@@ -2036,7 +2071,7 @@ function Trace({
               </select>
               <select
                 onChange={(e) => onToast(`Time range: ${e.target.value}`)}
-                className="text-xs border border-white/10 rounded px-2 py-1 bg-black text-white"
+                className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong"
               >
                 <option value="all">All time</option>
                 <option value="24h">Last 24h</option>
@@ -2045,7 +2080,7 @@ function Trace({
               </select>
             </div>
           </div>
-          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-white/5 text-[10px] uppercase tracking-wider text-white/50">
+          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
             <span className="col-span-4">User Message</span>
             <span className="col-span-1">Scenario</span>
             <span className="col-span-2">Product</span>
@@ -2056,54 +2091,54 @@ function Trace({
             <span className="col-span-1 text-right">When</span>
           </div>
           {filteredOutcomes.length === 0 && (
-            <p className="text-sm text-white/50 py-8 text-center">No outcomes match filters</p>
+            <p className="text-sm text-fg-strong/50 py-8 text-center">No outcomes match filters</p>
           )}
           {filteredOutcomes.map((o, i) => (
             <button
               key={i}
               onClick={() => setSelected(o)}
-              className="grid grid-cols-12 gap-2 py-3 border-b border-white/5 last:border-0 items-start text-xs w-full text-left hover:bg-white/[0.02] transition-colors"
+              className="grid grid-cols-12 gap-2 py-3 border-b border-fg-strong/5 last:border-0 items-start text-xs w-full text-left hover:bg-fg-strong/[0.02] transition-colors"
             >
-              <span className="col-span-4 text-white">{o.user}</span>
+              <span className="col-span-4 text-fg-strong">{o.user}</span>
               <span className="col-span-1">
                 <Pill tone={o.tone === 'green' ? 'green' : o.tone === 'blue' ? 'blue' : o.tone === 'yellow' ? 'yellow' : 'neutral'}>
                   {o.scenario}
                 </Pill>
               </span>
-              <span className="col-span-2 text-white">
+              <span className="col-span-2 text-fg-strong">
                 {o.product}
                 <br />
-                <span className="text-white/50">{o.platform}</span>
+                <span className="text-fg-strong/50">{o.platform}</span>
               </span>
-              <span className="col-span-1 text-right text-white font-mono">{o.confidence}%</span>
-              <span className="col-span-1 text-white font-mono">{o.ticket || '—'}</span>
+              <span className="col-span-1 text-right text-fg-strong font-mono">{o.confidence}%</span>
+              <span className="col-span-1 text-fg-strong font-mono">{o.ticket || '—'}</span>
               <span className="col-span-1">
-                <span className="text-white">{o.status}</span>
+                <span className="text-fg-strong">{o.status}</span>
               </span>
               <span className="col-span-1">
-                {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-white/40">—</span>}
+                {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-fg-strong/40">—</span>}
               </span>
-              <span className="col-span-1 text-right text-white/50">{o.when.split(' ')[0]}<br /><span className="text-white/40">{o.when.split(' ').slice(1).join(' ')}</span></span>
+              <span className="col-span-1 text-right text-fg-strong/50">{o.when.split(' ')[0]}<br /><span className="text-fg-strong/40">{o.when.split(' ').slice(1).join(' ')}</span></span>
             </button>
           ))}
         </Card>
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-white">Audit Trail (Latest)</p>
+            <p className="text-sm font-medium text-fg-strong">Audit Trail (Latest)</p>
             <button onClick={() => setActiveTab(2)} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
               View all →
             </button>
           </div>
           {d.audit.map((a, i) => (
-            <div key={i} className="py-3 border-b border-white/5 last:border-0">
+            <div key={i} className="py-3 border-b border-fg-strong/5 last:border-0">
               <div className="flex items-start gap-2">
-                <span className="text-white/40 text-xs mt-0.5">⓪</span>
+                <span className="text-fg-strong/40 text-xs mt-0.5">⓪</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-semibold text-white/50 tracking-widest uppercase mb-1">{a.type}</p>
-                  <p className="text-sm text-white leading-tight">{a.title}</p>
-                  <p className="text-xs text-white/50 mt-1">{a.who}</p>
-                  <p className="text-[10px] text-white/40 mt-0.5">{a.when}</p>
+                  <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase mb-1">{a.type}</p>
+                  <p className="text-sm text-fg-strong leading-tight">{a.title}</p>
+                  <p className="text-xs text-fg-strong/50 mt-1">{a.who}</p>
+                  <p className="text-[10px] text-fg-strong/40 mt-0.5">{a.when}</p>
                 </div>
               </div>
             </div>
@@ -2117,7 +2152,7 @@ function Trace({
       {/* Bottom row: donut + retention + sources + compliance */}
       <div className="grid lg:grid-cols-4 gap-6">
         <Card className="p-5">
-          <p className="text-sm font-medium text-white mb-4">Outcomes by Scenario</p>
+          <p className="text-sm font-medium text-fg-strong mb-4">Outcomes by Scenario</p>
           <div className="relative w-32 h-32 mx-auto">
             <div
               className="w-full h-full rounded-full"
@@ -2131,17 +2166,17 @@ function Trace({
                   .join(', ')})`,
               }}
             />
-            <div className="absolute inset-4 bg-black rounded-full flex flex-col items-center justify-center">
-              <p className="text-lg font-semibold text-white">{donutTotal.toLocaleString()}</p>
-              <p className="text-[10px] text-white/50 uppercase tracking-wider">Total</p>
+            <div className="absolute inset-4 bg-bg rounded-full flex flex-col items-center justify-center">
+              <p className="text-lg font-semibold text-fg-strong">{donutTotal.toLocaleString()}</p>
+              <p className="text-[10px] text-fg-strong/50 uppercase tracking-wider">Total</p>
             </div>
           </div>
           <div className="mt-4 space-y-2">
             {d.donut.map((x) => (
               <div key={x.label} className="flex items-center gap-2 text-xs">
                 <span className="w-2 h-2 rounded-full shrink-0" style={{ background: x.color }} />
-                <span className="text-white/70 flex-1">{x.label}</span>
-                <span className="text-white font-medium">{x.value}</span>
+                <span className="text-fg-strong/70 flex-1">{x.label}</span>
+                <span className="text-fg-strong font-medium">{x.value}</span>
               </div>
             ))}
           </div>
@@ -2149,35 +2184,35 @@ function Trace({
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-white">Memory Retention</p>
+            <p className="text-sm font-medium text-fg-strong">Memory Retention</p>
             <button onClick={() => setActiveTab(5)} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
               Manage →
             </button>
           </div>
-          <p className="text-[10px] uppercase tracking-wider text-white/50 mb-1">Average retention period</p>
-          <p className="text-4xl font-semibold text-white">180</p>
-          <p className="text-xs text-white/50 mb-4">days</p>
+          <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mb-1">Average retention period</p>
+          <p className="text-4xl font-semibold text-fg-strong">180</p>
+          <p className="text-xs text-fg-strong/50 mb-4">days</p>
           <div className="text-xs space-y-2">
-            <div className="flex justify-between border-b border-white/5 pb-2">
-              <span className="text-white/50">Oldest memory</span>
-              <span className="text-white">Mar 14, 2026</span>
+            <div className="flex justify-between border-b border-fg-strong/5 pb-2">
+              <span className="text-fg-strong/50">Oldest memory</span>
+              <span className="text-fg-strong">Mar 14, 2026</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-white/50">Retention policy</span>
-              <span className="text-white">Standard (180 days)</span>
+              <span className="text-fg-strong/50">Retention policy</span>
+              <span className="text-fg-strong">Standard (180 days)</span>
             </div>
           </div>
         </Card>
 
         <Card className="p-5">
-          <p className="text-sm font-medium text-white mb-4">Top Data Sources</p>
+          <p className="text-sm font-medium text-fg-strong mb-4">Top Data Sources</p>
           {d.sources.map((s) => (
             <div key={s.name} className="mb-3">
               <div className="flex justify-between text-xs mb-1">
-                <span className="text-white">{s.name}</span>
-                <span className="text-white font-medium">{s.pct}%</span>
+                <span className="text-fg-strong">{s.name}</span>
+                <span className="text-fg-strong font-medium">{s.pct}%</span>
               </div>
-              <div className="h-1.5 bg-black/5 rounded overflow-hidden">
+              <div className="h-1.5 bg-bg/5 rounded overflow-hidden">
                 <div className="h-full" style={{ width: `${s.pct * 2}%`, background: 'var(--gd-primary)' }} />
               </div>
             </div>
@@ -2186,7 +2221,7 @@ function Trace({
 
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-white">Compliance &amp; Security</p>
+            <p className="text-sm font-medium text-fg-strong">Compliance &amp; Security</p>
             <button onClick={() => setActiveTab(4)} className="text-[10px]" style={{ color: 'var(--gd-primary)' }}>
               View →
             </button>
@@ -2198,10 +2233,10 @@ function Trace({
             { name: 'Audit Logging', status: 'Enabled', tone: 'green' as const },
             { name: 'Data Retention', status: 'Policy enforced', tone: 'green' as const },
           ].map((c) => (
-            <div key={c.name} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+            <div key={c.name} className="flex items-center justify-between py-2 border-b border-fg-strong/5 last:border-0">
               <div className="flex items-center gap-2">
                 <span className="text-green-400 text-xs">✓</span>
-                <span className="text-sm text-white">{c.name}</span>
+                <span className="text-sm text-fg-strong">{c.name}</span>
               </div>
               <Pill tone={c.tone}>{c.status}</Pill>
             </div>
@@ -2284,23 +2319,23 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg/70" onClick={onClose}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-black border border-white/20 rounded-lg max-w-4xl w-full max-h-[85vh] overflow-y-auto"
+        className="bg-bg border border-fg-strong/20 rounded-lg max-w-4xl w-full max-h-[85vh] overflow-y-auto"
       >
-        <div className="p-6 border-b border-white/10 flex items-start justify-between">
+        <div className="p-6 border-b border-fg-strong/10 flex items-start justify-between">
           <div>
-            <p className="text-[10px] tracking-widest text-white/50 uppercase mb-2 font-mono">
+            <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-2 font-mono">
               trace · {outcome.ticket || 'unassigned'}
             </p>
-            <h2 className="text-lg font-semibold text-white">{outcome.user}</h2>
-            <p className="text-sm text-white/60 mt-1">
+            <h2 className="text-lg font-semibold text-fg-strong">{outcome.user}</h2>
+            <p className="text-sm text-fg-strong/60 mt-1">
               {outcome.scenario} · {outcome.product} · {outcome.platform} · confidence{' '}
               <span className="font-mono">{outcome.confidence}%</span>
             </p>
           </div>
-          <button onClick={onClose} className="text-white/60 hover:text-white text-xl">
+          <button onClick={onClose} className="text-fg-strong/60 hover:text-fg-strong text-xl">
             ×
           </button>
         </div>
@@ -2315,22 +2350,22 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
               { l: 'Trace ID', v: `t_${(outcome.ticket || 'auto').toLowerCase().replace(/-/g, '_')}` },
             ].map((x) => (
               <div key={x.l}>
-                <p className="text-[10px] tracking-widest text-white/50 uppercase mb-1">{x.l}</p>
-                <p className="text-sm text-white">{x.v}</p>
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">{x.l}</p>
+                <p className="text-sm text-fg-strong">{x.v}</p>
               </div>
             ))}
           </div>
 
           {/* Weighted signals */}
           <div>
-            <p className="text-sm font-medium text-white mb-4">Weighted signals</p>
+            <p className="text-sm font-medium text-fg-strong mb-4">Weighted signals</p>
             {signals.map((s) => (
               <div key={s.label} className="mb-3">
                 <div className="flex justify-between mb-1">
-                  <p className="text-sm text-white">{s.label}</p>
-                  <p className="font-mono text-xs text-white">{s.weight.toFixed(2)}</p>
+                  <p className="text-sm text-fg-strong">{s.label}</p>
+                  <p className="font-mono text-xs text-fg-strong">{s.weight.toFixed(2)}</p>
                 </div>
-                <div className="h-1 bg-white/10 rounded overflow-hidden">
+                <div className="h-1 bg-surface-2 rounded overflow-hidden">
                   <div className="h-full" style={{ width: `${s.weight * 100}%`, background: 'var(--gd-primary)' }} />
                 </div>
               </div>
@@ -2339,23 +2374,23 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
 
           {/* Evidence rows */}
           <div>
-            <p className="text-sm font-medium text-white mb-4">Evidence rows</p>
+            <p className="text-sm font-medium text-fg-strong mb-4">Evidence rows</p>
             <div className="space-y-3">
               {evidence.map((e) => (
-                <div key={e.id} className="border-b border-white/5 pb-3 last:border-0">
+                <div key={e.id} className="border-b border-fg-strong/5 pb-3 last:border-0">
                   <div className="flex justify-between mb-1">
-                    <span className="font-mono text-xs text-white/50">{e.id}</span>
-                    <span className="text-xs text-white/50">{e.src}</span>
+                    <span className="font-mono text-xs text-fg-strong/50">{e.id}</span>
+                    <span className="text-xs text-fg-strong/50">{e.src}</span>
                   </div>
-                  <p className="font-mono text-sm text-white mb-1">{e.ref}</p>
-                  <p className="text-xs text-white/60">{e.d}</p>
+                  <p className="font-mono text-sm text-fg-strong mb-1">{e.ref}</p>
+                  <p className="text-xs text-fg-strong/60">{e.d}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="pt-4 border-t border-white/10 flex justify-end gap-2">
-            <button onClick={onClose} className="text-xs px-4 py-2 border border-white/10 rounded text-white bg-transparent hover:bg-white/5">
+          <div className="pt-4 border-t border-fg-strong/10 flex justify-end gap-2">
+            <button onClick={onClose} className="text-xs px-4 py-2 border border-fg-strong/10 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5">
               Close
             </button>
             <button
@@ -2369,7 +2404,7 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
                 a.click();
                 URL.revokeObjectURL(url);
               }}
-              className="text-xs px-4 py-2 rounded text-white font-medium hover:brightness-110"
+              className="text-xs px-4 py-2 rounded text-fg-strong font-medium hover:brightness-110"
               style={{ background: 'var(--gd-primary)' }}
             >
               Export trace

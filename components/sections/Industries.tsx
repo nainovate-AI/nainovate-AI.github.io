@@ -37,14 +37,14 @@ export function Industries() {
   ];
 
   return (
-    <section className="py-16 md:py-32 border-t border-white/10">
+    <section className="py-8 md:py-12 border-t border-border">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-        <div className="mb-10 md:mb-20 max-w-4xl">
-          <p className="text-xs sm:text-sm font-medium tracking-widest text-gray uppercase mb-4 md:mb-8">
+        <div className="mb-10 md:mb-14 max-w-3xl">
+          <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
             USE CASES
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.95] md:leading-[0.9] tracking-[-0.03em] md:tracking-[-0.04em]">
-            <span className="text-gray">CROSS-FUNCTIONAL</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight">
+            <span>CROSS-FUNCTIONAL</span>
             <br />
             <span>WORKFLOWS.</span>
           </h2>
@@ -54,22 +54,22 @@ export function Industries() {
           {useCases.map((u, i) => (
             <div
               key={i}
-              className="group border-t border-white/10 hover:bg-white hover:text-black transition-all duration-500 cursor-pointer"
+              className="group border-t border-border hover:bg-fg-strong hover:text-fg-invert transition-all duration-500 cursor-pointer"
               onClick={() => router.push(u.link)}
             >
-              <div className="py-6 md:py-12 grid md:grid-cols-3 gap-3 md:gap-8 md:items-center">
-                <div className="flex items-center gap-3 md:gap-4">
-                  <span className="text-4xl md:text-6xl font-bold text-gray group-hover:text-black/30">
+              <div className="py-4 md:py-6 grid md:grid-cols-3 gap-3 md:gap-6 md:items-center">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl md:text-3xl font-bold text-fg-muted group-hover:text-black/40 tabular-nums">
                     {u.number}
                   </span>
-                  <h3 className="text-lg md:text-2xl font-medium">{u.name}</h3>
+                  <h3 className="text-sm md:text-base font-medium tracking-wide">{u.name}</h3>
                 </div>
-                <p className="text-2xl md:text-4xl font-bold">{u.metric}</p>
-                <p className="text-sm md:text-base text-gray group-hover:text-black/60">{u.description}</p>
+                <p className="text-lg md:text-xl font-bold leading-snug">{u.metric}</p>
+                <p className="text-sm md:text-base text-fg-muted group-hover:text-black/60 leading-relaxed">{u.description}</p>
               </div>
             </div>
           ))}
-          <div className="border-t border-white/10" />
+          <div className="border-t border-border" />
         </div>
       </div>
     </section>
