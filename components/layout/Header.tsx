@@ -509,7 +509,7 @@ export function Header() {
                     ) : item.isSolutionsMega ? (
                       /* SOLUTIONS MEGA DROPDOWN - SIMPLE 3 COLUMN LAYOUT */
                       <div
-                        className={`absolute left-1/2 -translate-x-1/2 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
+                        className={`absolute right-0 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
                           }`}
                         onMouseEnter={() => setActiveDropdown(item.name)}
                         onMouseLeave={() => setActiveDropdown(null)}
