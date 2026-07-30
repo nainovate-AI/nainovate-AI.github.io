@@ -199,18 +199,18 @@ export default function AIImplementationIndexPage() {
                 <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-12">
                     {/* Header */}
                     <AnimatedSection>
-                        <div className="mb-8 md:mb-16">
+                        <div className="mb-6 md:mb-8">
                             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-4">
                                 2025 AI IMPLEMENTATION INDEX
                             </p>
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,6vw,4rem)] font-bold mb-4">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold mb-4">
                                 Your AI pilots are dying. Here&apos;s why.
                             </h1>
                         </div>
                     </AnimatedSection>
 
                     {/* Live Dashboard Grid */}
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8 md:mb-16">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-6 md:mb-8">
                         {dashboardStats.map((stat, idx) => (
                             <AnimatedSection key={stat.id} delay={idx * 0.1}>
                                 <div
@@ -287,7 +287,7 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Maturity Distribution */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12 text-center">Where Companies Get Stuck</h2>
@@ -334,7 +334,7 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Four Pillars - Visual Only */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12 text-center">Implementation Pillars</h2>
@@ -344,7 +344,7 @@ export default function AIImplementationIndexPage() {
                         {implementationPillars.map((pillar, idx) => (
                             <AnimatedSection key={pillar.name} delay={idx * 0.1}>
                                 <div className="text-center group cursor-pointer">
-                                    <div className="text-4xl md:text-6xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity">
+                                    <div className="text-3xl sm:text-4xl md:text-5xl mb-4 opacity-60 group-hover:opacity-100 transition-opacity">
                                         {pillar.icon}
                                     </div>
                                     <h3 className="font-medium mb-2">{pillar.name}</h3>
@@ -359,11 +359,11 @@ export default function AIImplementationIndexPage() {
             </section>
 
             {/* Final CTA */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[600px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
                         <div className="mb-8">
-                            <div className="text-4xl md:text-6xl font-bold mb-4">90</div>
+                            <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">90</div>
                             <p className="text-base sm:text-lg md:text-xl">days to production-ready AI</p>
                         </div>
 

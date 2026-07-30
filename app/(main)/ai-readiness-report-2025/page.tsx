@@ -173,7 +173,7 @@ export default function AIReadinessReport2025Page() {
                                 <span className="text-sm tracking-wider">2025 OFFICIAL REPORT</span>
                             </div>
 
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,7vw,5rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-6">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6">
                                 <span className="block">AI READINESS</span>
                                 <span className="block">REPORT 2025</span>
                             </h1>
@@ -219,7 +219,7 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Global Readiness Map */}
-            <section className="py-12 md:py-20">
+            <section className="py-8 md:py-12">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Global AI Readiness Landscape</h2>
@@ -276,7 +276,7 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Five Pillars */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-12 text-center">The Five Pillars of AI Readiness</h2>
@@ -316,7 +316,7 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Compliance Requirements Visual */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <div className="text-center mb-6 md:mb-12">
@@ -381,11 +381,11 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* Building Trust in AI */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-12 text-center">The Trust Framework</h2>
-                        <p className="text-fg-muted text-center mb-8 md:mb-16 max-w-2xl mx-auto">
+                        <p className="text-fg-muted text-center mb-6 md:mb-8 max-w-2xl mx-auto">
                             Successful AI deployment requires three foundational elements of trust
                         </p>
                     </AnimatedSection>
@@ -425,7 +425,7 @@ export default function AIReadinessReport2025Page() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
                         <div className="mb-6 md:mb-12">

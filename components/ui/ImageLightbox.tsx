@@ -34,10 +34,10 @@ export function ImageLightbox({ src, alt = '', onClose }: Props) {
       className="fixed inset-0 z-[100] flex items-center justify-center animate-fade-in"
       onClick={onClose}
     >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/95 backdrop-blur-md" />
+      {/* Backdrop — white in light theme, black in dark */}
+      <div className="absolute inset-0 bg-bg/95 backdrop-blur-md" />
 
-      {/* Close button */}
+      {/* Close button — icon dark in light theme, white in dark */}
       <button
         type="button"
         onClick={(e) => {
@@ -45,7 +45,7 @@ export function ImageLightbox({ src, alt = '', onClose }: Props) {
           onClose();
         }}
         aria-label="Close preview"
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 rounded-full bg-fg-strong/10 hover:bg-fg-strong/20 text-fg-strong flex items-center justify-center transition-colors"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 rounded-full bg-surface-2 hover:bg-surface-hover text-fg-strong flex items-center justify-center transition-colors"
       >
         <X className="w-5 h-5" />
       </button>

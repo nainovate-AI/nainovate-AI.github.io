@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import '../globals.css';
 import { inter } from '../fonts';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { DemoGuard } from '@/components/ui/DemoGuard';
 
 export const metadata: Metadata = {
   title: 'Building Permits Portal - Interactive Demo | Nainovate',
@@ -21,10 +22,10 @@ export default function DemoLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="dark" data-theme="dark" suppressHydrationWarning>
       <body className={`${inter.className} antialiased bg-bg`} suppressHydrationWarning>
         <CustomCursor />
-        {children}
+        <DemoGuard>{children}</DemoGuard>
       </body>
     </html>
   );

@@ -13,7 +13,7 @@ export function Category() {
   ];
 
   return (
-    <section className="pt-20 md:pt-28 pb-8 md:pb-12 border-t border-border scroll-mt-24">
+    <section className="py-8 md:py-12 border-t border-border scroll-mt-24">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-6 md:mb-8">
           <div className="max-w-2xl">

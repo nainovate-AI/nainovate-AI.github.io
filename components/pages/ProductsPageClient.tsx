@@ -42,7 +42,7 @@ export default function ProductsPageClient() {
             <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-bg via-surface to-bg" />
 
-                <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-14 md:py-20 text-center">
+                <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16 text-center">
                     <AnimatedSection>
                         <div className="mb-6">
                             <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">
@@ -50,12 +50,12 @@ export default function ProductsPageClient() {
                             </span>
                         </div>
 
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
                             THE GENX<br />
                             <span>PLATFORM</span>
                         </h1>
 
-                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-fg-muted max-w-3xl mx-auto mb-6 md:mb-12">
+                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted max-w-3xl mx-auto mb-6 md:mb-8">
                             Build, Deploy, and Scale AI Responsibly with Governance and Trust Built Into Every Workflow
                         </p>
 
@@ -91,13 +91,13 @@ export default function ProductsPageClient() {
                 </div>
             </section>
 
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6 text-center">
                             WHAT MAKES GENX DIFFERENT?
                         </h2>
-                        <p className="text-base sm:text-lg md:text-xl text-fg-muted text-center mb-10 md:mb-20 max-w-2xl mx-auto">
+                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted text-center mb-6 md:mb-10 max-w-2xl mx-auto">
                             Drag the slider to see the transformation from generic AI tools to a complete platform with governance.
                         </p>
                     </AnimatedSection>
@@ -118,37 +118,37 @@ export default function ProductsPageClient() {
                                     className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800"
                                     style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                                 >
-                                    <div className="flex flex-col items-center justify-center h-full px-8 py-8">
-                                        <div className="text-fg-muted mb-4">
+                                    <div className="flex flex-col items-start justify-center h-full pl-10 md:pl-16 pr-8 py-8 w-1/2">
+                                        <div className="text-white/60 mb-4">
                                             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                             </svg>
                                         </div>
-                                        <h3 className="text-3xl font-bold mb-4 text-fg-mid">OTHER PLATFORMS</h3>
+                                        <h3 className="text-3xl font-bold mb-4 text-white/70">OTHER PLATFORMS</h3>
                                         <div className="space-y-3 text-left max-w-md">
                                             <div className="flex items-start gap-3">
                                                 <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-fg-muted">Just AI tools, no framework</p>
+                                                <p className="text-white/70">Just AI tools, no framework</p>
                                             </div>
                                             <div className="flex items-start gap-3">
                                                 <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-fg-muted">Black box solutions</p>
+                                                <p className="text-white/70">Black box solutions</p>
                                             </div>
                                             <div className="flex items-start gap-3">
                                                 <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-fg-muted">You rent it, they own it</p>
+                                                <p className="text-white/70">You rent it, they own it</p>
                                             </div>
                                             <div className="flex items-start gap-3">
                                                 <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-fg-muted">Hope for the best approach</p>
+                                                <p className="text-white/70">Hope for the best approach</p>
                                             </div>
                                             <div className="flex items-start gap-3">
                                                 <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-fg-muted">No governance or best practices</p>
+                                                <p className="text-white/70">No governance or best practices</p>
                                             </div>
                                             <div className="flex items-start gap-3">
                                                 <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-fg-muted">Long implementation timelines</p>
+                                                <p className="text-white/70">Long implementation timelines</p>
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@ export default function ProductsPageClient() {
                                     className="absolute inset-0 bg-gradient-to-br from-surface-hover to-surface-2"
                                     style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
                                 >
-                                    <div className="flex flex-col items-center justify-center h-full px-8 py-8">
+                                    <div className="flex flex-col items-start justify-center h-full pl-10 md:pl-16 pr-8 py-8 w-1/2 ml-auto">
                                         <div className="text-fg-strong mb-4">
                                             <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -203,7 +203,7 @@ export default function ProductsPageClient() {
                                     onTouchStart={handleMouseDown}
                                 >
                                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-fg-strong rounded-full shadow-2xl flex items-center justify-center cursor-ew-resize">
-                                        <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-6 h-6 text-fg-invert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
                                         </svg>
                                     </div>
@@ -231,7 +231,7 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 3: FOUR CORE CAPABILITIES */}
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
@@ -323,13 +323,13 @@ export default function ProductsPageClient() {
                 </div>
             </section>
 
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6 text-center">
                             AI CENTER OF EXCELLENCE
                         </h2>
-                        <p className="text-base sm:text-lg md:text-xl text-fg-muted text-center mb-10 md:mb-20 max-w-3xl mx-auto">
+                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted text-center mb-6 md:mb-10 max-w-3xl mx-auto">
                             GenX at the core. AI CoE as the governance layer. McKinsey&apos;s 6 principles guiding every decision.
                         </p>
                     </AnimatedSection>
@@ -339,7 +339,7 @@ export default function ProductsPageClient() {
                         {/* LEFT: SVG Diagram */}
                         <AnimatedSection delay={0.2}>
                             <div className="relative">
-                                <svg width="500" height="500" viewBox="0 0 500 500" className="w-full h-full">
+                                <svg width="500" height="500" viewBox="0 0 500 500" className="w-full h-full text-fg-strong">
 
                                     {/* Outer rotating ring */}
                                     <circle
@@ -347,8 +347,9 @@ export default function ProductsPageClient() {
                                         cy={centerY}
                                         r={spokeRadius + 40}
                                         fill="none"
-                                        stroke="rgba(255,255,255,0.05)"
-                                        strokeWidth="1"
+                                        stroke="currentColor"
+                                        strokeOpacity={0.5}
+                                        strokeWidth="1.5"
                                         strokeDasharray="5,5"
                                         className="animate-spin-slow"
                                     />
@@ -359,7 +360,8 @@ export default function ProductsPageClient() {
                                         cy={centerY}
                                         r={spokeRadius - 30}
                                         fill="none"
-                                        stroke="rgba(255,255,255,0.1)"
+                                        stroke="currentColor"
+                                        strokeOpacity={0.7}
                                         strokeWidth="2"
                                     />
 
@@ -368,6 +370,7 @@ export default function ProductsPageClient() {
                                         const angleRad = (spoke.angle - 90) * (Math.PI / 180);
                                         const x = centerX + spokeRadius * Math.cos(angleRad);
                                         const y = centerY + spokeRadius * Math.sin(angleRad);
+                                        const isActive = activeSpoke === spoke.id;
 
                                         return (
                                             <line
@@ -376,8 +379,9 @@ export default function ProductsPageClient() {
                                                 y1={centerY}
                                                 x2={x}
                                                 y2={y}
-                                                stroke={activeSpoke === spoke.id ? spoke.color : "rgba(255,255,255,0.1)"}
-                                                strokeWidth={activeSpoke === spoke.id ? "3" : "1"}
+                                                stroke={isActive ? spoke.color : "currentColor"}
+                                                strokeOpacity={isActive ? 1 : 0.7}
+                                                strokeWidth={isActive ? "3" : "1.5"}
                                                 className="transition-all duration-300"
                                             />
                                         );
@@ -389,15 +393,18 @@ export default function ProductsPageClient() {
                                             cx={centerX}
                                             cy={centerY}
                                             r="60"
-                                            fill="rgba(255,255,255,0.05)"
-                                            stroke="rgba(255,255,255,0.2)"
-                                            strokeWidth="2"
+                                            fill="currentColor"
+                                            fillOpacity={0.1}
+                                            stroke="currentColor"
+                                            strokeOpacity={1}
+                                            strokeWidth="2.5"
                                         />
                                         <text
                                             x={centerX}
                                             y={centerY + 5}
                                             textAnchor="middle"
-                                            className="fill-white text-2xl font-bold"
+                                            fill="currentColor"
+                                            className="text-2xl font-bold"
                                         >
                                             GenX
                                         </text>
@@ -408,7 +415,9 @@ export default function ProductsPageClient() {
                                         x={centerX}
                                         y={centerY + 95}
                                         textAnchor="middle"
-                                        className="fill-gray text-xs"
+                                        fill="currentColor"
+                                        fillOpacity={0.7}
+                                        className="text-xs"
                                     >
                                         AI Center of Excellence
                                     </text>
@@ -418,6 +427,7 @@ export default function ProductsPageClient() {
                                         const angleRad = (spoke.angle - 90) * (Math.PI / 180);
                                         const x = centerX + spokeRadius * Math.cos(angleRad);
                                         const y = centerY + spokeRadius * Math.sin(angleRad);
+                                        const isActive = activeSpoke === spoke.id;
 
                                         return (
                                             <g
@@ -431,8 +441,10 @@ export default function ProductsPageClient() {
                                                     cx={x}
                                                     cy={y}
                                                     r="30"
-                                                    fill={activeSpoke === spoke.id ? `${spoke.color}40` : "rgba(255,255,255,0.1)"}
-                                                    stroke={activeSpoke === spoke.id ? spoke.color : "rgba(255,255,255,0.2)"}
+                                                    fill={isActive ? `${spoke.color}40` : "currentColor"}
+                                                    fillOpacity={isActive ? 1 : 0.12}
+                                                    stroke={isActive ? spoke.color : "currentColor"}
+                                                    strokeOpacity={1}
                                                     strokeWidth="2"
                                                     className="transition-all duration-300"
                                                 />
@@ -442,7 +454,8 @@ export default function ProductsPageClient() {
                                                     x={x}
                                                     y={y + 8}
                                                     textAnchor="middle"
-                                                    className="fill-white text-2xl pointer-events-none"
+                                                    fill="currentColor"
+                                                    className="text-2xl pointer-events-none"
                                                 >
                                                     {spoke.icon}
                                                 </text>
@@ -529,7 +542,7 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 5: PLATFORM FEATURES */}
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
@@ -653,10 +666,10 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 6: COMPONENT DEEP DIVE (KEEP EXISTING) */}
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(2.5rem,6vw,5rem)] font-bold mb-10 md:mb-20">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-8 md:mb-12">
                             <span>EXPLORE</span><br />
                             <span>COMPONENTS</span>
                         </h2>
@@ -730,7 +743,7 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 7: ENTERPRISE FEATURES (MOVED DOWN) */}
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
@@ -787,7 +800,7 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 8: SOCIAL PROOF */}
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
@@ -797,7 +810,7 @@ export default function ProductsPageClient() {
 
                     <AnimatedSection delay={0.2}>
                         <div className="text-center max-w-3xl mx-auto">
-                            <p className="text-xl md:text-2xl text-fg-muted italic mb-8">
+                            <p className="text-base sm:text-lg lg:text-xl text-fg-muted italic mb-8">
                                 &quot;GenX Platform + AI CoE transformed how we approach AI adoption.
                                 The built-in governance framework gave us the confidence to scale AI responsibly across our organization.&quot;
                             </p>
@@ -810,14 +823,14 @@ export default function ProductsPageClient() {
             </section>
 
             {/* SECTION 9: FINAL CTA */}
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
-                        <h2 className="text-4xl md:text-6xl font-bold mb-8">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
                             READY TO TRANSFORM YOUR AI OPERATIONS?
                         </h2>
 
-                        <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12">
+                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted mb-6 md:mb-8">
                             See how GenX Platform + AI CoE can help you scale AI responsibly
                         </p>
 

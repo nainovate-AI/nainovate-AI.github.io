@@ -52,7 +52,7 @@ export default function FlowPage() {
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               GENX FLOW • ORCHESTRATE WITH FLOW
             </p>
-            <h1 className="text-[clamp(4rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.04em] mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
               <span className="block">AI</span>
               <span className="block">WORKFLOWS</span>
             </h1>
@@ -77,9 +77,9 @@ export default function FlowPage() {
       </section>
 
       {/* Workflow Types */}
-      <section className="py-32 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">WORKFLOW PATTERNS</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6 md:mb-10">WORKFLOW PATTERNS</h2>
 
           <div className="space-y-16">
             <AnimatedSection>
@@ -172,9 +172,9 @@ export default function FlowPage() {
       </section>
 
       {/* Features */}
-      <section className="py-32 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20 text-center">POWERFUL FEATURES</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6 md:mb-10 text-center">POWERFUL FEATURES</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -224,9 +224,9 @@ export default function FlowPage() {
       </section>
 
       {/* Templates */}
-      <section id="templates" className="py-32 border-t border-border">
+      <section id="templates" className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-5xl font-bold mb-20">START WITH TEMPLATES</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6 md:mb-10">START WITH TEMPLATES</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="border border-border rounded-lg p-6 hover:border-border-strong transition-colors">
@@ -271,9 +271,9 @@ export default function FlowPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-6xl font-bold mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             ORCHESTRATE YOUR AI
           </h2>
           <p className="text-xl text-fg-muted mb-12 max-w-2xl mx-auto">

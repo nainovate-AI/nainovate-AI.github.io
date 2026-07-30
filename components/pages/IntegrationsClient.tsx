@@ -24,7 +24,7 @@ export default function IntegrationsClient() {
               <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">GenX Platform / Integrations</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
               100+ PRE-BUILT<br />
               INTEGRATIONS
             </h1>
@@ -49,10 +49,10 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Core Capabilities Overview */}
-      <section className="py-12 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">INTEGRATION CAPABILITIES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">INTEGRATION CAPABILITIES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -108,7 +108,7 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 1: Pre-Built Connectors */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Content */}
@@ -218,7 +218,7 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 2: Custom Integration Framework (Reversed Layout) */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Visual */}
@@ -293,7 +293,7 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 3: API Management & Orchestration */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Content */}
@@ -368,7 +368,7 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Section 4: Enterprise System Support (Reversed Layout) */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left: Visual */}
@@ -443,7 +443,7 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Built with AI CoE Governance */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
             <div className="mb-6 md:mb-12">
@@ -453,7 +453,7 @@ export default function IntegrationsClient() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
             </div>
 
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-8 md:mb-16">
+            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-6 md:mb-8">
               Every integration respects AI CoE governance policies. Data access controls,
               audit trails, and compliance validation are enforced automatically.
             </p>
@@ -494,10 +494,10 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Integration Categories Grid */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">INTEGRATION CATEGORIES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">INTEGRATION CATEGORIES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -577,10 +577,10 @@ export default function IntegrationsClient() {
       </section>
 
       {/* Platform Features Grid */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">EXPLORE MORE PLATFORM FEATURES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -644,7 +644,7 @@ export default function IntegrationsClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">

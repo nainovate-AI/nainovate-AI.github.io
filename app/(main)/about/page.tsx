@@ -101,7 +101,7 @@ export default function AboutPage() {
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               ABOUT
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
               <span className="block">BUILDING THE</span>
               <span className="block">FUTURE OF AI</span>
             </h1>
@@ -114,7 +114,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             <div>
@@ -143,13 +143,13 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">OUR STORY</h2>
 
           <div className="space-y-8 md:space-y-16">
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-4xl md:text-6xl font-bold text-fg-muted">2023</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg-muted">2023</div>
               <div className="lg:col-span-2">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">BUILDING IN STEALTH</h3>
                 <p className="text-fg-muted">
@@ -160,7 +160,7 @@ export default function AboutPage() {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-4xl md:text-6xl font-bold text-fg-muted">2024</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg-muted">2024</div>
               <div className="lg:col-span-2">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">PROVING THE CONCEPT</h3>
                 <p className="text-fg-muted">
@@ -171,7 +171,7 @@ export default function AboutPage() {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="text-4xl md:text-6xl font-bold text-fg-muted">2025</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg-muted">2025</div>
               <div className="lg:col-span-2">
                 <h3 className="text-xl md:text-2xl font-bold mb-4">SCALING GLOBALLY</h3>
                 <ul className="text-fg-muted text-base md:text-lg space-y-2">
@@ -186,7 +186,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">OUR VALUES</h2>
 
@@ -224,7 +224,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team
-      <section className="py-32 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-8">
           <h2 className="text-5xl font-bold mb-20">LEADERSHIP</h2>
           
@@ -252,7 +252,7 @@ export default function AboutPage() {
       </section> */}
 
       {/* Partners */}
-      <section className="py-14 md:py-20 border-t border-border" id="partners">
+      <section className="py-8 md:py-12 border-t border-border" id="partners">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">PARTNERS & INVESTORS</h2>
 
@@ -278,9 +278,9 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             JOIN OUR MISSION
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12 max-w-2xl mx-auto">

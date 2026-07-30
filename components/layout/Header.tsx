@@ -261,7 +261,7 @@ export function Header() {
                 {item.isDropdown ? (
                   <>
                     <button
-                      className="text-[14px] font-medium text-fg hover:text-brand transition-colors py-2 uppercase tracking-[0.03em] flex items-center gap-1"
+                      className="text-[14px] font-medium text-fg hover:text-[#e0e1ff] transition-colors py-2 uppercase tracking-[0.03em] flex items-center gap-1"
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onClick={() => {
                         if (item.name === 'Platform') window.location.href = item.href;
@@ -437,7 +437,7 @@ export function Header() {
 
                               <Link
                                 href="/ai-center-of-excellence"
-                                className="block text-xs font-medium text-fg-strong hover:text-brand transition-colors"
+                                className="block text-xs font-medium text-fg-strong hover:text-[#e0e1ff] transition-colors"
                                 onClick={() => setActiveDropdown(null)}
                               >
                                 Learn More About AI CoE →
@@ -732,7 +732,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-[14px] font-medium text-fg hover:text-brand transition-colors py-2 uppercase tracking-[0.03em]"
+                    className="text-[14px] font-medium text-fg hover:text-[#e0e1ff] transition-colors py-2 uppercase tracking-[0.03em]"
                   >
                     {item.name}
                   </Link>
@@ -810,7 +810,7 @@ export function Header() {
                           <Link
                             key={dropdownItem.name}
                             href={dropdownItem.href}
-                            className="block py-2 text-sm text-fg hover:text-brand transition-colors"
+                            className="block py-2 text-sm text-fg hover:text-[#e0e1ff] transition-colors"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             {dropdownItem.name}
@@ -820,7 +820,7 @@ export function Header() {
                           <Link
                             key={card.title}
                             href={card.href}
-                            className="block py-2 text-sm text-fg hover:text-brand transition-colors"
+                            className="block py-2 text-sm text-fg hover:text-[#e0e1ff] transition-colors"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             {card.title}
@@ -841,7 +841,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="block py-2 text-sm text-fg hover:text-brand transition-colors uppercase tracking-wider"
+                    className="block py-2 text-sm text-fg hover:text-[#e0e1ff] transition-colors uppercase tracking-wider"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}

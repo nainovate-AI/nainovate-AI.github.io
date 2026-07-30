@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export function Footer() {
   return (
@@ -105,16 +106,19 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Section - Copyright + QR on shared axis */}
+        {/* Bottom Section - Copyright + Theme + QR on shared axis */}
         <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-fg-muted">
             © 2025 Nainovate. All rights reserved.
           </p>
-          <img
-            src="/images/QR Code.png"
-            alt="Nainovate QR Code"
-            className="w-16 h-16 bg-fg-strong p-1 rounded"
-          />
+          <div className="flex items-center gap-6">
+            <ThemeToggle />
+            <img
+              src="/images/QR Code.png"
+              alt="Nainovate QR Code"
+              className="w-16 h-16 bg-fg-strong p-1 rounded"
+            />
+          </div>
         </div>
       </div>
     </footer>

@@ -28,13 +28,13 @@ export default function EngagementPageClient() {
       <JsonLd data={engagementSchema} />
 
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-border py-12 md:py-20">
+      <section className="min-h-[70vh] flex items-center border-b border-border py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-3xl">
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">
               AI FOR ENGAGEMENT
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
               <span className="block">SCALE</span>
               <span className="block">CUSTOMER</span>
               <span className="block">INTERACTIONS</span>
@@ -55,7 +55,7 @@ export default function EngagementPageClient() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 md:py-20 border-b border-border">
+      <section className="py-8 md:py-12 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
@@ -79,9 +79,9 @@ export default function EngagementPageClient() {
       </section>
 
       {/* Use Cases */}
-      <section id="use-cases" className="py-14 md:py-20">
+      <section id="use-cases" className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <div className="text-center mb-8 md:mb-16">
+          <div className="text-center mb-6 md:mb-8">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">USE CASES</h2>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto">
               Transform how you engage with customers and citizens
@@ -89,7 +89,7 @@ export default function EngagementPageClient() {
           </div>
 
           {/* Use Case Tabs */}
-          <div className="flex justify-center gap-2 mb-8 md:mb-16 flex-wrap">
+          <div className="flex justify-center gap-2 mb-6 md:mb-8 flex-wrap">
             <button
               onClick={() => setActiveUseCase('customer')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'customer'
@@ -185,7 +185,7 @@ export default function EngagementPageClient() {
       </section>
 
       {/* How It Works */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">HOW IT WORKS</h2>
 
@@ -224,7 +224,7 @@ export default function EngagementPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             READY TO SCALE YOUR ENGAGEMENT?

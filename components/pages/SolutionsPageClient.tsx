@@ -128,7 +128,7 @@ export default function SolutionsPageClient() {
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">
               AI SOLUTIONS
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3.5rem,8vw,7rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
               <span className="block">ENTERPRISE AI</span>
               <span className="block">SOLUTIONS</span>
             </h1>
@@ -141,11 +141,11 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Tabbed Solution Cards */}
-      <section className="py-14 md:py-20">
+      <section className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Tabs */}
-          <div className="flex justify-center gap-2 mb-8 md:mb-16">
+          <div className="flex justify-center gap-2 mb-6 md:mb-8">
             <button
               onClick={() => setActiveTab('operations')}
               className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeTab === 'operations'
@@ -253,9 +253,9 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Delivery Formats - EXPANDING CARDS */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-10 md:mb-20">
+          <div className="max-w-3xl mx-auto text-center mb-4 md:mb-6">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               CHOOSE YOUR DELIVERY FORMAT
             </h2>
@@ -402,9 +402,9 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* Try It Yourself Section */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
-          <div className="text-center mb-8 md:mb-16">
+          <div className="text-center mb-6 md:mb-8">
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-4">
               INTERACTIVE DEMO
             </p>
@@ -457,7 +457,7 @@ export default function SolutionsPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
             READY TO DEPLOY AI SOLUTIONS?

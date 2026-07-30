@@ -25,7 +25,7 @@ export default function AIEngineeringToolsClient() {
               <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">GenX Platform / AI Engineering</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
               AI ENGINEERING<br />
               TOOLS
             </h1>
@@ -47,10 +47,10 @@ export default function AIEngineeringToolsClient() {
       </section>
 
       {/* Core Capabilities Overview */}
-      <section className="py-12 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">CORE CAPABILITIES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">CORE CAPABILITIES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -139,7 +139,7 @@ export default function AIEngineeringToolsClient() {
       })}
 
       {/* Built with AI CoE Governance */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
             <div className="mb-6 md:mb-12">
@@ -149,7 +149,7 @@ export default function AIEngineeringToolsClient() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
             </div>
 
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-8 md:mb-16">
+            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-6 md:mb-8">
               Every AI engineering tool integrates with our Center of Excellence framework. This means
               quality, ethical compliance, validation, and ethical guardrails are built-in—not bolted on.
             </p>
@@ -172,10 +172,10 @@ export default function AIEngineeringToolsClient() {
       </section>
 
       {/* Platform Features Grid */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">EXPLORE MORE PLATFORM FEATURES</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -199,7 +199,7 @@ export default function AIEngineeringToolsClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">

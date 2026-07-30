@@ -100,7 +100,7 @@ export default function CorePageClient() {
                         <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
                             GENX CORE • AI ENGINE
                         </p>
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
                             <span className="block">CREATE AI</span>
                             <span className="block">AGENTS</span>
                         </h1>
@@ -120,7 +120,7 @@ export default function CorePageClient() {
             </section>
 
             {/* CORE Modules */}
-            <section className="py-14 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">CORE MODULES</h2>
 
@@ -145,14 +145,14 @@ export default function CorePageClient() {
             </section>
 
             {/* Build Agents for Any Use Case */}
-            <section className="py-14 md:py-20 border-y border-border">
+            <section className="py-8 md:py-12 border-y border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,5rem)] font-bold mb-8 leading-[0.9]">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold mb-8 leading-[0.9]">
                         <span className="block">BUILD AGENTS FOR</span>
                         <span className="block">ANY USE CASE</span>
                     </h2>
 
-                    <div className="max-w-3xl mb-10 md:mb-20">
+                    <div className="max-w-3xl mb-4 md:mb-6">
                         <p className="text-base sm:text-lg md:text-xl text-fg-muted leading-relaxed">
                             Create specialized AI agents tailored to your exact business needs.
                             CORE empowers you to build intelligent agents that understand your
@@ -212,7 +212,7 @@ export default function CorePageClient() {
             </section>
 
             {/* CTA */}
-            <section className="py-14 md:py-20">
+            <section className="py-8 md:py-12">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">START BUILDING TODAY</h2>
                     <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-10">

@@ -13,7 +13,7 @@ export default function DeliverySolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SOLUTION • DELIVERY
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
             <span className="block">DELIVERY.</span>
             <span className="block">RESCUED.</span>
           </h1>
@@ -31,7 +31,7 @@ export default function DeliverySolutionClient() {
       </section>
 
       {/* Account A Phase 2 rescue */}
-      <section className="py-14 md:py-20">
+      <section className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             ACCOUNT A PHASE 2 — RESCUE PLAN
@@ -40,7 +40,7 @@ export default function DeliverySolutionClient() {
             Milestone slip spotted 21 days before steering.
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 mb-8 md:mb-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 mb-6 md:mb-8">
             <div className="space-y-6 text-fg-muted text-lg leading-relaxed">
               <p>
                 <span className="text-fg-strong">Account A Phase 2</span> was scoped 8 weeks, kicked
@@ -84,7 +84,7 @@ export default function DeliverySolutionClient() {
       </section>
 
       {/* Portfolio */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             PORTFOLIO VIEW
@@ -109,7 +109,7 @@ export default function DeliverySolutionClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             Never learn about a slip at steering again.

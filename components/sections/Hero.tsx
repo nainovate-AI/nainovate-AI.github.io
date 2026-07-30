@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { HeroSlideshow } from '@/components/ui/HeroSlideshow';
 import { DemoGateModal } from '@/components/ui/DemoGateModal';
 import { useDemoAccess } from '@/hooks/useDemoAccess';
 
@@ -21,47 +20,38 @@ export function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 pt-28 sm:pt-32 lg:pt-40">
-        <div className="grid lg:grid-cols-[2fr_3fr] gap-8 lg:gap-12 items-center">
-          {/* Left: Content */}
-          <div className="space-y-6 md:space-y-10 min-w-0">
-            <div>
-              <h1 className="text-4xl sm:text-5xl md:text-[clamp(2.5rem,4vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.02em]">
-                <span className="block">DECISION</span>
-                <span className="block">INTELLIGENCE.</span>
-              </h1>
-            </div>
+    <section className="relative overflow-hidden">
+      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
+        <div className="text-center space-y-8 md:space-y-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight">
+            <span className="block">DECISION</span>
+            <span className="block">INTELLIGENCE.</span>
+          </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl text-fg-mid max-w-lg leading-[1.6]">
-              Detect signals across business functions. Propagate insights
-              cross-functionally. Orchestrate intelligent responses in real-time.
-            </p>
+          <p className="text-base sm:text-lg lg:text-xl text-fg-mid max-w-2xl mx-auto leading-[1.6]">
+            Detect signals across business functions. Propagate insights
+            cross-functionally. Orchestrate intelligent responses in real-time.
+          </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-              <button
-                type="button"
-                onClick={handleWatchDemo}
-                className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold tracking-wide border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all"
-              >
-                WATCH DEMO
+          <div className="flex flex-col sm:flex-row justify-center flex-wrap gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={handleWatchDemo}
+              className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold tracking-wide border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all"
+            >
+              WATCH DEMO
+            </button>
+
+            <a href="https://calendly.com/naveen-nainovate/30min" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold tracking-wide border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all">
+                SCHEDULE DEMO
               </button>
-
-              <a href="https://calendly.com/naveen-nainovate/30min" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <button className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold tracking-wide border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all">
-                  SCHEDULE DEMO
-                </button>
-              </a>
-            </div>
-          </div>
-
-          <div className="relative w-full min-w-0 aspect-video max-w-[900px] mx-auto lg:mx-0 lg:ml-auto">
-            <HeroSlideshow />
+            </a>
           </div>
         </div>
 
         {/* Stat strip */}
-        <div className="mt-12 md:mt-24 grid grid-cols-2 md:grid-cols-4 border-t border-border pt-8 md:pt-10">
+        <div className="mt-10 md:mt-14 grid grid-cols-2 md:grid-cols-4 border-t border-border pt-8 md:pt-10">
           {[
             { n: '99.9%', l: 'Accuracy' },
             { n: '50ms', l: 'Response Time' },
@@ -77,11 +67,6 @@ export function Hero() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Bottom scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="w-[1px] h-20 bg-gradient-to-b from-fg-strong to-transparent"></div>
       </div>
 
       <DemoGateModal

@@ -65,6 +65,87 @@
   /* Logo variants — both logos hidden fallback; only .logo-dark shown */
   .logo-light { display: none; }
   .logo-dark { display: block; }
+
+  /* -----------------------------------------------------------
+     LIGHT MODE — activated by (a) OS preference when no explicit
+     data-theme attr is set, or (b) explicit data-theme="light".
+     Same tokens flip; brand purple stays.
+     ----------------------------------------------------------- */
+  html[data-theme="light"] {
+    --bg: #fbfaff;
+    --bg-elevated: #ffffff;
+    --surface: rgba(99, 102, 241, 0.06);
+    --surface-2: rgba(99, 102, 241, 0.10);
+    --surface-hover: rgba(99, 102, 241, 0.14);
+
+    --fg: #1a1830;
+    --fg-strong: #0a0a1f;
+    --fg-mid: rgba(26, 24, 48, 0.78);
+    --fg-muted: rgba(26, 24, 48, 0.62);
+    --fg-subtle: rgba(26, 24, 48, 0.5);
+    --fg-faint: rgba(26, 24, 48, 0.38);
+    --fg-invert: #ffffff;
+
+    --border: rgba(99, 102, 241, 0.18);
+    --border-strong: rgba(99, 102, 241, 0.35);
+    --border-active: rgba(99, 102, 241, 0.65);
+
+    --brand: #6366f1;
+    --brand-hover: #4f52d9;
+    --brand-fg: #ffffff;
+    --brand-soft: rgba(99, 102, 241, 0.12);
+    --brand-2: #8b5cf6;
+    --brand-2-soft: rgba(139, 92, 246, 0.12);
+
+    color-scheme: light;
+  }
+
+  html[data-theme="light"] body {
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(139, 92, 246, 0.06), transparent 60%),
+      radial-gradient(ellipse 50% 30% at 80% 100%, rgba(99, 102, 241, 0.05), transparent 60%),
+      var(--bg);
+  }
+
+  html[data-theme="light"] .logo-light { display: block; }
+  html[data-theme="light"] .logo-dark  { display: none; }
+
+  /* System-preference light — only when no explicit override */
+  @media (prefers-color-scheme: light) {
+    html:not([data-theme]) {
+      --bg: #fbfaff;
+      --bg-elevated: #ffffff;
+      --surface: rgba(99, 102, 241, 0.06);
+      --surface-2: rgba(99, 102, 241, 0.10);
+      --surface-hover: rgba(99, 102, 241, 0.14);
+
+      --fg: #1a1830;
+      --fg-strong: #0a0a1f;
+      --fg-mid: rgba(26, 24, 48, 0.78);
+      --fg-muted: rgba(26, 24, 48, 0.62);
+      --fg-subtle: rgba(26, 24, 48, 0.5);
+      --fg-faint: rgba(26, 24, 48, 0.38);
+      --fg-invert: #ffffff;
+
+      --border: rgba(99, 102, 241, 0.18);
+      --border-strong: rgba(99, 102, 241, 0.35);
+      --border-active: rgba(99, 102, 241, 0.65);
+
+      --brand-hover: #4f52d9;
+
+      color-scheme: light;
+    }
+
+    html:not([data-theme]) body {
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 0%, rgba(139, 92, 246, 0.06), transparent 60%),
+        radial-gradient(ellipse 50% 30% at 80% 100%, rgba(99, 102, 241, 0.05), transparent 60%),
+        var(--bg);
+    }
+
+    html:not([data-theme]) .logo-light { display: block; }
+    html:not([data-theme]) .logo-dark  { display: none; }
+  }
 }
 
 /* ---------------------------------------------------------------
@@ -75,7 +156,26 @@
    text-[var(--gd-fg)], border-[var(--gd-border)], etc.
    -------------------------------------------------------------- */
 .theme-genx-decision {
-  /* Surfaces */
+  /* Force semantic tokens to dark values — demo hubs are dark-only,
+     never flip with OS light preference or user theme toggle. */
+  --bg: #000000;
+  --bg-elevated: #0a0a0a;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --fg: #ffffff;
+  --fg-strong: #ffffff;
+  --fg-mid: rgba(255, 255, 255, 0.7);
+  --fg-muted: rgba(255, 255, 255, 0.6);
+  --fg-subtle: rgba(255, 255, 255, 0.5);
+  --fg-faint: rgba(255, 255, 255, 0.4);
+  --fg-invert: #0a0a0a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-active: rgba(255, 255, 255, 0.4);
+  color-scheme: dark;
+
+  /* Legacy workspace-specific tokens */
   --gd-bg: #000000;
   --gd-fg: #ffffff;
   --gd-card: rgba(255, 255, 255, 0.03);
@@ -158,48 +258,6 @@ body {
   font-family: 'Inter', -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: 'ss01' 1, 'ss02' 1;
-}
-
-/* Hide default cursor */
-@media (hover: hover) and (pointer: fine) {
-  html, body, * {
-    cursor: none !important;
-  }
-
-  /* Custom cursor container */
-  .custom-cursor {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-  }
-
-  /* Cursor dot — theme-aware */
-  .custom-cursor-dot {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 8px;
-    height: 8px;
-    background-color: var(--fg-strong);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 20px var(--fg-strong),
-                0 0 40px color-mix(in srgb, var(--fg-strong) 50%, transparent);
-  }
-
-  /* Make links and buttons react */
-  a:hover ~ .custom-cursor,
-  button:hover ~ .custom-cursor {
-    transform: translate(-50%, -50%) scale(1.5);
-  }
-}
-
-@media (hover: none), (pointer: coarse) {
-  .custom-cursor { display: none !important; }
 }
 
 /* Header glass — semi-transparent theme bg + backdrop blur so
@@ -400,6 +458,16 @@ body {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
   filter: blur(40px);
   pointer-events: none;
+}
+
+html[data-theme="light"] .neural-network-container::before {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
+}
+
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) .neural-network-container::before {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
+  }
 }
 
 

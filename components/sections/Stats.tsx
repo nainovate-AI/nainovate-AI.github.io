@@ -23,7 +23,7 @@ export function Stats() {
             { number: '85%', label: 'SIGNAL DETECTION', sub: 'Accuracy in pilot data' },
           ].map((stat, i) => (
             <div key={i} className="text-center">
-              <div className="text-4xl md:text-6xl font-bold mb-2 md:mb-4">{stat.number}</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 md:mb-4">{stat.number}</div>
               <div className="text-xs md:text-sm text-fg-strong font-medium tracking-widest mb-1 md:mb-2">
                 {stat.label}
               </div>

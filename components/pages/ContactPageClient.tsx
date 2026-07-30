@@ -146,7 +146,7 @@ export default function ContactPageClient() {
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               CONTACT
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
               <span className="block">LET&apos;S</span>
               <span className="block">CONNECT</span>
             </h1>
@@ -159,7 +159,7 @@ export default function ContactPageClient() {
       </section>
 
       {/* Contact Options */}
-      <section className="py-14 md:py-20">
+      <section className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-32">
             {/* Contact Form */}
@@ -317,7 +317,7 @@ export default function ContactPageClient() {
       </section>
 
       {/* FAQ */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">FREQUENTLY ASKED</h2>
 

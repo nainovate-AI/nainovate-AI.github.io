@@ -12,14 +12,14 @@ export default function ReportsPage() {
     return (
         <main className="bg-bg min-h-screen pt-20">
             {/* Hero */}
-            <section className="py-12 md:py-20">
+            <section className="py-8 md:py-12">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <div className="text-center mb-8 md:mb-16">
+                        <div className="text-center mb-6 md:mb-8">
                             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-4">
                                 NAINOVATE RESEARCH
                             </p>
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,6vw,5rem)] font-bold mb-6">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold mb-6">
                                 <span className="block">2025 AI REPORTS</span>
                             </h1>
                             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto">
@@ -47,7 +47,7 @@ export default function ReportsPage() {
                                         {/* Key stat - visual focus */}
                                         <div className="mb-8 py-8 border-y border-border">
                                             <div className="text-center">
-                                                <div className="text-4xl md:text-6xl font-bold mb-2">77%</div>
+                                                <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">77%</div>
                                                 <p className="text-base md:text-lg">of AI pilots never reach production</p>
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@ export default function ReportsPage() {
                                         {/* Key stat - visual focus */}
                                         <div className="mb-8 py-8 border-y border-border">
                                             <div className="text-center">
-                                                <div className="text-4xl md:text-6xl font-bold mb-2">20%</div>
+                                                <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">20%</div>
                                                 <p className="text-base md:text-lg">achieve full compliance readiness</p>
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@ export default function ReportsPage() {
             </section>
 
             {/* Value Props Section */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1000px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12 text-center">Why These Reports Matter Now</h2>
@@ -176,7 +176,7 @@ export default function ReportsPage() {
             </section>
 
             {/* Next Steps */}
-            <section className="py-12 md:py-20 border-t border-border">
+            <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
                         <h2 className="text-2xl md:text-3xl font-bold mb-8">

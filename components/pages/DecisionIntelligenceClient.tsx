@@ -25,7 +25,7 @@ export default function DecisionIntelligenceClient() {
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               NIA • DECISION INTELLIGENCE
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
               <span className="block">DECISION</span>
               <span className="block">INTELLIGENCE.</span>
               <span className="block">EXPLAINED.</span>
@@ -52,7 +52,7 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Story — the 5:45 AM problem */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             THE 5:45 AM PROBLEM
@@ -100,7 +100,7 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Four pillars */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FOUR PILLARS
@@ -169,7 +169,7 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Persona matrix */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             PERSONA × WORKSPACE
@@ -220,7 +220,7 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* Results */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SIX WEEKS AT ACME
@@ -244,9 +244,9 @@ export default function DecisionIntelligenceClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             Ready to see nia decide on your data?
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">

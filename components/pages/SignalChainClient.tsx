@@ -12,7 +12,7 @@ export default function SignalChainClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             PILLAR 02 • SIGNAL → ACTION CHAIN
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
             <span className="block">WATCH.</span>
             <span className="block">RECOMMEND.</span>
             <span className="block">EXECUTE.</span>
@@ -26,7 +26,7 @@ export default function SignalChainClient() {
       </section>
 
       {/* FD-2104 walkthrough */}
-      <section className="py-14 md:py-20">
+      <section className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FD-2104 WALKTHROUGH
@@ -180,7 +180,7 @@ export default function SignalChainClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             Every step needs to be explainable. Open the trace.

@@ -88,13 +88,13 @@ export default function AICenterOfExcellencePage() {
                   <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-4">
                     CENTER OF EXCELLENCE
                   </p>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+                  <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
                     <span className="block">AI CoE</span>
                     <span className="block">AS A SERVICE</span>
                   </h1>
                 </div>
 
-                <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-lg">
+                <p className="text-sm sm:text-base md:text-xl text-fg-muted max-w-lg">
                   Scale AI responsibly with governance, orchestration, and trust built into every workflow.
                 </p>
 
@@ -124,10 +124,10 @@ export default function AICenterOfExcellencePage() {
       </section>
 
       {/* What It Delivers Section */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-4xl md:text-5xl lg:text-[clamp(3rem,6vw,5rem)] font-bold mb-10 md:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
               <span>WHAT IT</span> DELIVERS
             </h2>
           </AnimatedSection>
@@ -136,15 +136,15 @@ export default function AICenterOfExcellencePage() {
             <AnimatedSection delay={0.1}>
               <div className="space-y-6 md:space-y-12">
                 <div className="border-l-2 border-border-strong pl-6 md:pl-8">
-                  <h3 className="text-xl md:text-2xl font-bold mb-4">Scalable AI Adoption</h3>
-                  <p className="text-fg-muted">
+                  <h3 className="text-lg md:text-2xl font-bold mb-4">Scalable AI Adoption</h3>
+                  <p className="text-sm md:text-base text-fg-muted">
                     Execute multiple AI programs with consistent standards across organizations or government agencies.
                   </p>
                 </div>
 
                 <div className="border-l-2 border-border-strong pl-6 md:pl-8">
-                  <h3 className="text-xl md:text-2xl font-bold mb-4">Ethical & Compliant by Design</h3>
-                  <p className="text-fg-muted">
+                  <h3 className="text-lg md:text-2xl font-bold mb-4">Ethical & Compliant by Design</h3>
+                  <p className="text-sm md:text-base text-fg-muted">
                     Embeds regulatory, ethical, and trust frameworks into every AI workflow.
                   </p>
                 </div>
@@ -154,15 +154,15 @@ export default function AICenterOfExcellencePage() {
             <AnimatedSection delay={0.2}>
               <div className="space-y-6 md:space-y-12">
                 <div className="border-l-2 border-border-strong pl-6 md:pl-8">
-                  <h3 className="text-xl md:text-2xl font-bold mb-4">Human-Centric Intelligence</h3>
-                  <p className="text-fg-muted">
+                  <h3 className="text-lg md:text-2xl font-bold mb-4">Human-Centric Intelligence</h3>
+                  <p className="text-sm md:text-base text-fg-muted">
                     Human-Machine Interaction keeps people at the center of AI-driven decisions.
                   </p>
                 </div>
 
                 <div className="border-l-2 border-border-strong pl-6 md:pl-8">
-                  <h3 className="text-xl md:text-2xl font-bold mb-4">Operational Excellence</h3>
-                  <p className="text-fg-muted">
+                  <h3 className="text-lg md:text-2xl font-bold mb-4">Operational Excellence</h3>
+                  <p className="text-sm md:text-base text-fg-muted">
                     GenX orchestrates AI capabilities, workflows, and continuous improvement for measurable outcomes.
                   </p>
                 </div>
@@ -173,23 +173,23 @@ export default function AICenterOfExcellencePage() {
       </section>
 
       {/* Framework Deep Dive */}
-      <section id="framework" className="py-14 md:py-20 border-t border-border">
+      <section id="framework" className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-4xl md:text-5xl lg:text-[clamp(3rem,6vw,5rem)] font-bold mb-10 md:mb-20 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6 text-center">
               <span>THE COE</span> FRAMEWORK
             </h2>
           </AnimatedSection>
 
-          <div className="grid lg:grid-cols-3 gap-8 mb-10 md:mb-20">
+          <div className="grid lg:grid-cols-3 gap-8 mb-4 md:mb-6">
             {/* Core */}
             <AnimatedSection delay={0.1}>
               <div className="bg-fg-strong/50 backdrop-blur-sm border border-border rounded-2xl p-5 md:p-8 text-center">
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-white/20 to-surface-hover rounded-full flex items-center justify-center">
-                  <span className="text-xl md:text-2xl font-bold">GX</span>
+                  <span className="text-lg md:text-2xl font-bold">GX</span>
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">GenX Platform</h3>
-                <p className="text-fg-muted">The Intelligence Engine</p>
+                <h3 className="text-sm sm:text-base md:text-xl font-bold mb-2">GenX Platform</h3>
+                <p className="text-xs md:text-base text-fg-muted">The Intelligence Engine</p>
               </div>
             </AnimatedSection>
 
@@ -197,10 +197,10 @@ export default function AICenterOfExcellencePage() {
             <AnimatedSection delay={0.2}>
               <div className="bg-gradient-to-br from-surface-2 to-surface-hover backdrop-blur-sm border border-border-strong rounded-2xl p-5 md:p-8 text-center">
                 <div className="w-20 h-20 mx-auto mb-6 bg-surface-hover rounded-full flex items-center justify-center">
-                  <span className="text-xl md:text-2xl">🏛️</span>
+                  <span className="text-lg md:text-2xl">🏛️</span>
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">AI Center of Excellence</h3>
-                <p className="text-fg-muted">Governance & Orchestration Layer</p>
+                <h3 className="text-sm sm:text-base md:text-xl font-bold mb-2">AI Center of Excellence</h3>
+                <p className="text-xs md:text-base text-fg-muted">Governance & Orchestration Layer</p>
               </div>
             </AnimatedSection>
 
@@ -208,10 +208,10 @@ export default function AICenterOfExcellencePage() {
             <AnimatedSection delay={0.3}>
               <div className="bg-fg-strong/50 backdrop-blur-sm border border-border rounded-2xl p-5 md:p-8 text-center">
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-white/20 to-surface-hover rounded-full flex items-center justify-center">
-                  <span className="text-xl md:text-2xl">◆</span>
+                  <span className="text-lg md:text-2xl">◆</span>
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">McKinsey Best Practices</h3>
-                <p className="text-fg-muted">6 Proven AI Scaling Lessons</p>
+                <h3 className="text-sm sm:text-base md:text-xl font-bold mb-2">McKinsey Best Practices</h3>
+                <p className="text-xs md:text-base text-fg-muted">6 Proven AI Scaling Lessons</p>
               </div>
             </AnimatedSection>
           </div>
@@ -226,9 +226,9 @@ export default function AICenterOfExcellencePage() {
                   onMouseEnter={() => setActiveSpoke(spoke.id)}
                   onMouseLeave={() => setActiveSpoke(null)}
                 >
-                  <div className="text-2xl md:text-3xl mb-4">{spoke.icon}</div>
-                  <h4 className="font-bold mb-2">{spoke.title}</h4>
-                  <p className="text-sm text-fg-muted">{spoke.description}</p>
+                  <div className="text-xl md:text-3xl mb-4">{spoke.icon}</div>
+                  <h4 className="text-sm md:text-base font-bold mb-2">{spoke.title}</h4>
+                  <p className="text-xs md:text-sm text-fg-muted">{spoke.description}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -237,14 +237,14 @@ export default function AICenterOfExcellencePage() {
       </section>
 
       {/* Why Nainovate Section */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <div className="text-center mb-10 md:mb-20">
-              <h2 className="text-4xl md:text-5xl lg:text-[clamp(3rem,6vw,5rem)] font-bold mb-8">
+            <div className="text-center mb-6 md:mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
                 <span>WHY</span> NAINOVATE?
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mx-auto">
+              <p className="text-sm sm:text-base lg:text-xl text-fg-muted max-w-3xl mx-auto">
                 With Nainovate.ai, organizations don&apos;t just adopt AI — they operationalize
                 intelligence responsibly, turning complexity into clarity and delivering real-world impact.
               </p>
@@ -254,29 +254,29 @@ export default function AICenterOfExcellencePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <AnimatedSection delay={0.1}>
               <div>
-                <div className="text-3xl md:text-4xl font-bold mb-2">100%</div>
-                <p className="text-fg-muted">Compliance Ready</p>
+                <div className="text-2xl md:text-4xl font-bold mb-2">100%</div>
+                <p className="text-xs md:text-base text-fg-muted">Compliance Ready</p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
               <div>
-                <div className="text-3xl md:text-4xl font-bold mb-2">3X</div>
-                <p className="text-fg-muted">Faster Deployment</p>
+                <div className="text-2xl md:text-4xl font-bold mb-2">3X</div>
+                <p className="text-xs md:text-base text-fg-muted">Faster Deployment</p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
               <div>
-                <div className="text-3xl md:text-4xl font-bold mb-2">50%</div>
-                <p className="text-fg-muted">Cost Reduction</p>
+                <div className="text-2xl md:text-4xl font-bold mb-2">50%</div>
+                <p className="text-xs md:text-base text-fg-muted">Cost Reduction</p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.4}>
               <div>
-                <div className="text-3xl md:text-4xl font-bold mb-2">24/7</div>
-                <p className="text-fg-muted">Expert Support</p>
+                <div className="text-2xl md:text-4xl font-bold mb-2">24/7</div>
+                <p className="text-xs md:text-base text-fg-muted">Expert Support</p>
               </div>
             </AnimatedSection>
           </div>
@@ -284,14 +284,14 @@ export default function AICenterOfExcellencePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
               READY TO BUILD YOUR AI COE?
             </h2>
 
-            <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-10">
+            <p className="text-sm sm:text-base lg:text-xl text-fg-muted mb-6 md:mb-8">
               Transform your AI initiatives with a proven framework for scale, governance, and trust.
             </p>
 
@@ -333,15 +333,16 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke, setIsHovering }: Hub
   const spokeDistance = 180;
 
   return (
-    <svg viewBox="0 0 700 600" className="w-full h-full max-w-[700px]">
+    <svg viewBox="0 0 700 600" className="w-full h-full max-w-[700px] text-fg-strong">
       {/* Outer ring */}
       <circle
         cx={centerX}
         cy={centerY}
         r={spokeDistance}
         fill="none"
-        stroke="rgba(255,255,255,0.15)"
-        strokeWidth="1"
+        stroke="currentColor"
+        strokeOpacity={1}
+        strokeWidth="2"
       />
 
       {/* Connection lines */}
@@ -357,8 +358,9 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke, setIsHovering }: Hub
             y1={centerY}
             x2={x}
             y2={y}
-            stroke={activeSpoke === spoke.id ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.1)"}
-            strokeWidth={activeSpoke === spoke.id ? "2" : "1"}
+            stroke="currentColor"
+            strokeOpacity={1}
+            strokeWidth={activeSpoke === spoke.id ? "2.5" : "1.5"}
             className="transition-all duration-500"
           />
         );
@@ -370,15 +372,19 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke, setIsHovering }: Hub
           cx={centerX}
           cy={centerY}
           r="75"
-          fill="rgba(255,255,255,0.05)"
-          stroke="rgba(255,255,255,0.2)"
-          strokeWidth="1"
+          fill="currentColor"
+          fillOpacity={0.12}
+          stroke="currentColor"
+          strokeOpacity={1}
+          strokeWidth="2.5"
         />
         <text
           x={centerX}
           y={centerY + 10}
           textAnchor="middle"
-          style={{ fontSize: '28px', fontWeight: 'bold', fill: 'white' }}
+          fill="currentColor"
+          fillOpacity={1}
+          style={{ fontSize: '28px', fontWeight: 'bold' }}
         >
           GenX
         </text>
@@ -442,7 +448,8 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke, setIsHovering }: Hub
                 cx={x}
                 cy={y}
                 r="50"
-                fill="rgba(255,255,255,0.08)"
+                fill="currentColor"
+                fillOpacity={0.15}
                 className="transition-all duration-500"
               />
             )}
@@ -452,9 +459,11 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke, setIsHovering }: Hub
               cx={x}
               cy={y}
               r="38"
-              fill={isActive ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}
-              stroke={isActive ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.15)"}
-              strokeWidth={isActive ? "2" : "1"}
+              fill="currentColor"
+              fillOpacity={isActive ? 0.22 : 0.1}
+              stroke="currentColor"
+              strokeOpacity={1}
+              strokeWidth={isActive ? "2.5" : "1.5"}
               className="transition-all duration-500"
             />
 
@@ -463,10 +472,9 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke, setIsHovering }: Hub
               x={x}
               y={y + 7}
               textAnchor="middle"
-              style={{
-                fill: isActive ? 'white' : 'rgba(255,255,255,0.7)',
-                fontSize: '20px'
-              }}
+              fill="currentColor"
+              fillOpacity={1}
+              style={{ fontSize: '20px' }}
               className="transition-all duration-500"
             >
               {spoke.icon}
@@ -477,8 +485,9 @@ function HubAndSpoke({ spokes, activeSpoke, setActiveSpoke, setIsHovering }: Hub
               x={labelX}
               y={labelY}
               textAnchor={textAnchor}
+              fill="currentColor"
+              fillOpacity={1}
               style={{
-                fill: isActive ? 'white' : 'rgba(255,255,255,0.5)',
                 fontSize: '13px',
                 fontWeight: isActive ? '600' : '400'
               }}

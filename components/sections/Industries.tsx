@@ -59,13 +59,13 @@ export function Industries() {
             >
               <div className="py-4 md:py-6 grid md:grid-cols-3 gap-3 md:gap-6 md:items-center">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl md:text-3xl font-bold text-fg-muted group-hover:text-black/40 tabular-nums">
+                  <span className="text-2xl md:text-3xl font-bold text-fg-muted group-hover:text-[color-mix(in_oklab,var(--fg-invert)_55%,transparent)] tabular-nums">
                     {u.number}
                   </span>
                   <h3 className="text-sm md:text-base font-medium tracking-wide">{u.name}</h3>
                 </div>
                 <p className="text-lg md:text-xl font-bold leading-snug">{u.metric}</p>
-                <p className="text-sm md:text-base text-fg-muted group-hover:text-black/60 leading-relaxed">{u.description}</p>
+                <p className="text-sm md:text-base text-fg-muted group-hover:text-[color-mix(in_oklab,var(--fg-invert)_75%,transparent)] leading-relaxed">{u.description}</p>
               </div>
             </div>
           ))}

@@ -81,7 +81,7 @@ export default function CoordinationClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             PILLAR 04 • COORDINATION CENTER
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
             <span className="block">FOUR</span>
             <span className="block">LENSES.</span>
             <span className="block">ONE CUSTOMER.</span>
@@ -95,7 +95,7 @@ export default function CoordinationClient() {
       </section>
 
       {/* Initiatives */}
-      <section className="py-14 md:py-20">
+      <section className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             LIVE INITIATIVES
@@ -159,7 +159,7 @@ export default function CoordinationClient() {
       </section>
 
       {/* Why it works */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             WHY COORDINATION MATTERS
@@ -191,7 +191,7 @@ export default function CoordinationClient() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 md:py-20 border-t border-border">
+      <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
             See how the four pillars land in your teams.
