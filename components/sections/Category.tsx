@@ -21,7 +21,7 @@ export function Category() {
             <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
               DECISION INTELLIGENCE
             </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
+            <h2 className="heading-primary mb-4 md:mb-6">
               <span className="block">SIX FEATURES.</span>
               <span className="block">SEVEN CAPABILITIES.</span>
               <span className="block">ONE INTELLIGENCE LAYER.</span>
@@ -32,9 +32,9 @@ export function Category() {
             </p>
             <Link
               href="/decision-intelligence"
-              className="inline-flex items-center gap-2 text-sm font-medium text-fg-strong border border-border-strong hover:border-fg-strong px-6 py-3 rounded-md transition-colors"
+              className="inline-block text-[14px] font-semibold px-6 py-2.5 border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all tracking-wide uppercase"
             >
-              Explore Decision Intelligence →
+              Explore Decision Intelligence
             </Link>
           </div>
           <div className="relative h-[220px] sm:h-[280px] lg:h-[360px]">

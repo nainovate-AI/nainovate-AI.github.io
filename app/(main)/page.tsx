@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { HeroSlideshowFull } from '@/components/sections/HeroSlideshowFull';
-import { Hero } from '@/components/sections/Hero';
+import { HeroCinematic } from '@/components/sections/HeroCinematic/HeroCinematic';
 import { ProofStrip } from '@/components/sections/ProofStrip';
 import { LensPicker } from '@/components/sections/LensPicker';
 import { Problem } from '@/components/sections/Problem';
@@ -80,8 +79,7 @@ export default function Home() {
     <main className="bg-bg">
       <JsonLd data={homepageSchema} />
       <JsonLd data={heroSchema} />
-      <HeroSlideshowFull />
-      <Hero />
+      <HeroCinematic />
       <ProofStrip />
       <LensPicker />
       <Problem />

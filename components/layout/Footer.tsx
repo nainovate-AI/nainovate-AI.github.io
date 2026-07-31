@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
+// import { ThemeToggle } from '@/components/ui/ThemeToggle';
+// ThemeToggle temporarily hidden — dark theme only for now.
+// Re-enable by uncommenting the import + <ThemeToggle /> below.
 
 export function Footer() {
   return (
@@ -100,31 +102,29 @@ export function Footer() {
         </div>
 
         {/* Middle Section - Logo + tagline */}
-        <div className="flex flex-col md:flex-row items-center justify-between py-8 border-t border-border-strong">
-          <div className="flex items-center gap-4">
-            <img
-              src="/images/Nainovate_Dark_Mode.svg"
-              alt="Nainovate Logo"
-              className="h-8 logo-dark"
-            />
-            <img
-              src="/images/Nainovate_Genx_Light_Mode.svg"
-              alt="Nainovate Logo"
-              className="h-8 logo-light"
-            />
-            <p className="text-sm text-fg-muted">
-              Enterprise AI agents that deliver results. Built with GenX.
-            </p>
-          </div>
+        <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 py-6 md:py-8 border-t border-border-strong">
+          <img
+            src="/images/Nainovate_Dark_Mode.svg"
+            alt="Nainovate Logo"
+            className="h-8 logo-dark"
+          />
+          <img
+            src="/images/Nainovate_Genx_Light_Mode.svg"
+            alt="Nainovate Logo"
+            className="h-8 logo-light"
+          />
+          <p className="text-sm text-fg-muted">
+            Enterprise AI agents that deliver results. Built with GenX.
+          </p>
         </div>
 
-        {/* Bottom Section - Copyright + Theme + QR on shared axis */}
-        <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+        {/* Bottom Section - Copyright + QR on shared axis */}
+        <div className="pt-6 border-t border-border flex flex-col-reverse md:flex-row md:justify-between md:items-center gap-4">
           <p className="text-xs text-fg-muted">
             © 2025 Nainovate. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <ThemeToggle />
+          <div className="flex items-center">
+            {/* <ThemeToggle /> */}
             <img
               src="/images/QR Code.png"
               alt="Nainovate QR Code"

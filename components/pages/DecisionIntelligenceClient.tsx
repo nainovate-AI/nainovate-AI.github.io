@@ -25,7 +25,7 @@ export default function DecisionIntelligenceClient() {
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               NIA • DECISION INTELLIGENCE
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="heading-primary mb-8">
               DECISION INTELLIGENCE.
               <span className="block">EXPLAINED.</span>
             </h1>
@@ -56,7 +56,7 @@ export default function DecisionIntelligenceClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             THE 5:45 AM PROBLEM
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-4xl leading-tight">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
             One ticket. Four teams. Zero handoffs.
           </h2>
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
@@ -104,7 +104,7 @@ export default function DecisionIntelligenceClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FEATURES
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">Six features. Seven capabilities.</h2>
+          <h2 className="heading-primary mb-6 md:mb-10">Six features. Seven capabilities.</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Ask */}
@@ -213,7 +213,7 @@ export default function DecisionIntelligenceClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FEATURE × CAPABILITY
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-4xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
             Features are what we ship. Capabilities are what they deliver.
           </h2>
           <div className="border border-border rounded-lg overflow-x-auto">
@@ -261,7 +261,7 @@ export default function DecisionIntelligenceClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             PERSONA × WORKSPACE
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-4xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
             Right surface for the right person.
           </h2>
 
@@ -312,7 +312,7 @@ export default function DecisionIntelligenceClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SIX WEEKS AT ACME
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">What changed.</h2>
+          <h2 className="heading-primary mb-6 md:mb-10">What changed.</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { label: 'AI deflection rate', value: '41%' },
@@ -333,7 +333,7 @@ export default function DecisionIntelligenceClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
             Ready to see nia decide on your data?
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">

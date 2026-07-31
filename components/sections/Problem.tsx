@@ -6,21 +6,38 @@ export function Problem() {
       title: 'Independent Institutions',
       desc: 'Decisions remain isolated.',
       Icon: Building2,
+      // Deep blue — institutional silo, dark authoritative tone.
+      color: '#3b82f6',
+      border: 'rgba(59, 130, 246, 0.55)',
+      bg: 'rgba(59, 130, 246, 0.12)',
     },
     {
       title: 'Fragmented Knowledge',
       desc: 'No shared intelligence.',
       Icon: Users,
+      // Deep amber — gap/warning, dark saturated.
+      color: '#f59e0b',
+      border: 'rgba(245, 158, 11, 0.55)',
+      bg: 'rgba(245, 158, 11, 0.12)',
     },
     {
       title: 'Disconnected Capabilities',
       desc: 'AI investments lack orchestration.',
       Icon: Network,
+      // Deep purple — brand tech, disconnected capabilities.
+      color: '#8b5cf6',
+      border: 'rgba(139, 92, 246, 0.55)',
+      bg: 'rgba(139, 92, 246, 0.12)',
     },
     {
       title: 'Limited Outcomes',
       desc: 'Transformation never scales.',
       Icon: Target,
+      // Deep pink — flags stalled outcome, attention-grabbing without
+      // the red-alert aggression. Distinct from blue/amber/purple.
+      color: '#ec4899',
+      border: 'rgba(236, 72, 153, 0.55)',
+      bg: 'rgba(236, 72, 153, 0.12)',
     },
   ];
 
@@ -31,7 +48,7 @@ export function Problem() {
           <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
             THE AI REALITY
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
+          <h2 className="heading-primary mb-4 md:mb-6">
             <span className="block">WHY MOST AI</span>
             <span className="block">INITIATIVES STRUGGLE.</span>
           </h2>
@@ -51,13 +68,23 @@ export function Problem() {
               return (
                 <div
                   key={p.title}
-                  className="border border-border rounded-lg p-6 md:p-8 hover:border-border-strong transition-colors"
+                  className="rounded-lg p-6 md:p-8 border transition-transform hover:-translate-y-0.5"
+                  style={{
+                    borderColor: p.border,
+                    background: p.bg,
+                  }}
                 >
-                  <div className="w-10 h-10 rounded-md bg-surface-2 border border-border flex items-center justify-center text-fg-strong mb-4">
+                  <div
+                    className="w-10 h-10 rounded-md flex items-center justify-center mb-4"
+                    style={{
+                      background: p.color,
+                      color: '#fff',
+                    }}
+                  >
                     <Icon className="w-5 h-5" />
                   </div>
-                  <p className="text-base md:text-lg font-semibold mb-2">{p.title}</p>
-                  <p className="text-sm text-fg-muted leading-relaxed">{p.desc}</p>
+                  <p className="text-base md:text-lg font-semibold mb-2 text-fg-strong">{p.title}</p>
+                  <p className="text-sm text-fg-mid leading-relaxed">{p.desc}</p>
                 </div>
               );
             })}

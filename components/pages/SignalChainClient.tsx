@@ -12,7 +12,7 @@ export default function SignalChainClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FEATURE 02 • SIGNAL → ACTION CHAIN
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="heading-primary mb-8">
             <span className="block">WATCH.</span>
             <span className="block">RECOMMEND.</span>
             <span className="block">EXECUTE.</span>
@@ -31,7 +31,7 @@ export default function SignalChainClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FD-2104 WALKTHROUGH
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             One ticket. Three surfaces. Full lineage.
           </h2>
 
@@ -182,7 +182,7 @@ export default function SignalChainClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
             Every step needs to be explainable. Open the trace.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">

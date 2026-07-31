@@ -60,7 +60,7 @@ export default function AIAgentClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FEATURE 01 • AI AGENT — ASK
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="heading-primary mb-8">
             L1 SUPPORT NO HUMAN.
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
@@ -77,7 +77,7 @@ export default function AIAgentClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FOUR SCENARIOS
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             Every customer question falls into one of four shapes.
           </h2>
 
@@ -140,7 +140,7 @@ export default function AIAgentClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             UNDER THE HOOD
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             Every reply lineage-linked. Every decision explainable.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -175,7 +175,7 @@ export default function AIAgentClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-8 max-w-3xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-3xl mx-auto">
             Follow FD-2104 into the Signal Chain.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">

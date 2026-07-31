@@ -13,7 +13,7 @@ export default function CustomerSupportSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SOLUTION • CUSTOMER SUPPORT
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="heading-primary mb-8">
             <span className="block">SUPPORT.</span>
             <span className="block">RESOLVED.</span>
           </h1>
@@ -43,7 +43,7 @@ export default function CustomerSupportSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             ONE MORNING AT ACME
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-4xl leading-tight">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
             FD-2104 lands at 5:45 AM. By 5:47, everything moves.
           </h2>
 
@@ -65,7 +65,7 @@ export default function CustomerSupportSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             RIGHT SURFACE FOR EACH ROLE
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">Nia meets each persona where they work.</h2>
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">Nia meets each persona where they work.</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {mockData.personas.map((p) => (
               <div key={p.who} className="border border-border rounded-lg p-5 md:p-8">
@@ -86,7 +86,7 @@ export default function CustomerSupportSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SIX WEEKS AT ACME
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">Numbers.</h2>
+          <h2 className="heading-primary mb-6 md:mb-10">Numbers.</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {mockData.metrics.map((r) => (
               <div key={r.label} className="border border-border rounded-lg p-5 md:p-8">
@@ -102,7 +102,7 @@ export default function CustomerSupportSolutionClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
             Ready to deflect L1 without hiring?
           </h2>
           <Link href="/contact">

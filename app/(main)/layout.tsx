@@ -95,7 +95,11 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('nainovate-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`,
+            // Theme switching disabled — dark theme only for now.
+            // Restore by uncommenting the original detection line below and
+            // deleting the forced setAttribute line.
+            // __html: `(function(){try{var t=localStorage.getItem('nainovate-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`,
+            __html: `document.documentElement.setAttribute('data-theme','dark');`,
           }}
         />
       </head>

@@ -143,6 +143,55 @@
 }
 
 /* ---------------------------------------------------------------
+   Heading scale — two tiers.
+   .heading-primary  → page/hero h1     (kept as before)
+   .heading-section  → section h2 titles (~70% of h1, industry norm)
+   Applied globally. Only sizing/weight — casing left to component.
+   -------------------------------------------------------------- */
+.heading-primary {
+  font-size: clamp(1.375rem, 3vw, 2.5rem);   /* 22px → 40px */
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+.heading-section {
+  font-size: clamp(1.125rem, 2.2vw, 1.75rem); /* 18px → 28px */
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------
+   Hero cinematic — Ken Burns drift on the active slide.
+   Subtle scale so the visual never feels static.
+   Disabled for prefers-reduced-motion.
+   -------------------------------------------------------------- */
+.hero-kenburns {
+  animation: hero-kenburns 9s ease-out forwards;
+}
+@keyframes hero-kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.035); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns { animation: none; }
+}
+
+/* WhatsApp-style status fill on active hero slide bar */
+.hero-status-fill {
+  transform-origin: left center;
+  animation: hero-status-fill var(--hero-status-duration, 4s) linear forwards;
+  will-change: transform;
+}
+.hero-status-fill.is-paused {
+  animation-play-state: paused;
+}
+@keyframes hero-status-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ---------------------------------------------------------------
    Decision NIA workspace theme tokens
    Scoped to .theme-genx-decision — never global. Applied only to
    /demo/decision-nia so it can't leak into the rest of the site.

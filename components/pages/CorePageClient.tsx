@@ -100,7 +100,7 @@ export default function CorePageClient() {
                         <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
                             GENX CORE • AI ENGINE
                         </p>
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+                        <h1 className="heading-primary mb-8">
                             <span className="block">CREATE AI</span>
                             <span className="block">AGENTS</span>
                         </h1>
@@ -122,7 +122,7 @@ export default function CorePageClient() {
             {/* CORE Modules */}
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">CORE MODULES</h2>
+                    <h2 className="heading-primary mb-6 md:mb-10">CORE MODULES</h2>
 
                     <div className="grid md:grid-cols-2 gap-8 md:gap-16">
                         {mockData.modules.map((mod, i) => (
@@ -147,7 +147,7 @@ export default function CorePageClient() {
             {/* Build Agents for Any Use Case */}
             <section className="py-8 md:py-12 border-y border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold mb-8 leading-[0.9]">
+                    <h2 className="heading-primary mb-8">
                         <span className="block">BUILD AGENTS FOR</span>
                         <span className="block">ANY USE CASE</span>
                     </h2>
@@ -204,7 +204,7 @@ export default function CorePageClient() {
             {/* CTA */}
             <section className="py-8 md:py-12">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">START BUILDING TODAY</h2>
+                    <h2 className="heading-primary mb-8">START BUILDING TODAY</h2>
                     <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-10">
                         Transform your business with AI agents designed for your specific needs.
                     </p>

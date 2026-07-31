@@ -23,7 +23,7 @@ export function Hero() {
     <section className="relative overflow-hidden">
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
         <div className="text-center space-y-8 md:space-y-10">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight">
+          <h1 className="heading-primary">
             <span className="block">DECISION</span>
             <span className="block">INTELLIGENCE.</span>
           </h1>

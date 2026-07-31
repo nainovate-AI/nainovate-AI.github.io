@@ -41,7 +41,7 @@ export function Features() {
           <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
             HOW IT WORKS
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
+          <h2 className="heading-primary mb-4 md:mb-6">
             <span className="block">ONE ENTERPRISE.</span>
             <span className="block">ONE DECISION</span>
             <span className="block">INTELLIGENCE PLATFORM.</span>

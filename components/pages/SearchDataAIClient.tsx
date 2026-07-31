@@ -25,7 +25,7 @@ export default function SearchDataAIClient() {
               <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">GenX Platform / Search + Data</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="heading-primary mb-8">
               SEARCH + DATA AI
             </h1>
 
@@ -51,7 +51,7 @@ export default function SearchDataAIClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">CORE CAPABILITIES</h2>
+            <h2 className="heading-primary text-center mb-6 md:mb-8">CORE CAPABILITIES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -81,7 +81,7 @@ export default function SearchDataAIClient() {
           <AnimatedSection delay={visualLeft ? 0.2 : 0}>
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">{section.title}</h2>
+                <h2 className="heading-primary mb-6">{section.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-fg-mid">
                   {section.description}
                 </p>
@@ -143,7 +143,7 @@ export default function SearchDataAIClient() {
               <svg className="w-16 h-16 mx-auto mb-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
+              <h2 className="heading-primary mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
             </div>
 
             <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-6 md:mb-8">
@@ -172,7 +172,7 @@ export default function SearchDataAIClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
+            <h2 className="heading-primary text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -201,7 +201,7 @@ export default function SearchDataAIClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
+            <h2 className="heading-primary mb-8">
               READY TO UNIFY YOUR KNOWLEDGE?
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-fg-mid mb-6 md:mb-12">

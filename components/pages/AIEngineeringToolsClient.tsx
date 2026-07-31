@@ -25,7 +25,7 @@ export default function AIEngineeringToolsClient() {
               <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">GenX Platform / AI Engineering</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="heading-primary mb-8">
               AI ENGINEERING<br />
               TOOLS
             </h1>
@@ -50,7 +50,7 @@ export default function AIEngineeringToolsClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">CORE CAPABILITIES</h2>
+            <h2 className="heading-primary text-center mb-6 md:mb-8">CORE CAPABILITIES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -78,7 +78,7 @@ export default function AIEngineeringToolsClient() {
           <AnimatedSection delay={section.mockupPosition === 'left' ? 0.2 : 0}>
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">{section.title}</h2>
+                <h2 className="heading-primary mb-6">{section.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-fg-mid">
                   {section.description}
                 </p>
@@ -146,7 +146,7 @@ export default function AIEngineeringToolsClient() {
               <svg className="w-16 h-16 mx-auto mb-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
+              <h2 className="heading-primary mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
             </div>
 
             <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-6 md:mb-8">
@@ -175,7 +175,7 @@ export default function AIEngineeringToolsClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
+            <h2 className="heading-primary text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -202,7 +202,7 @@ export default function AIEngineeringToolsClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
+            <h2 className="heading-primary mb-8">
               READY TO BUILD WITH GenX?
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-fg-mid mb-6 md:mb-12">

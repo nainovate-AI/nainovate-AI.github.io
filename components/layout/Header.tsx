@@ -772,86 +772,104 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden pb-6">
-            {navigation.map((item) => (
-              <div key={item.name}>
-                {item.isDropdown ? (
-                  <div>
-                    <p className="text-sm font-medium text-fg-muted uppercase tracking-wider py-2">
+          <div className="md:hidden pb-8 pt-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <ul className="divide-y divide-border">
+              {navigation.map((item) => (
+                <li key={item.name} className="py-4">
+                  {item.isDropdown ? (
+                    <div>
+                      <p className="text-[11px] font-semibold text-fg-muted uppercase tracking-[0.18em] mb-3">
+                        {item.name}
+                      </p>
+                      {item.isDIMega ? (
+                        <ul className="space-y-0.5">
+                          <li><Link href="/decision-intelligence" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Overview</Link></li>
+                          <li><Link href="/decision-intelligence/ai-agent" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>AI Agent — Ask</Link></li>
+                          <li><Link href="/decision-intelligence/signal-chain" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Signal → Action Chain</Link></li>
+                          <li><Link href="/decision-intelligence/trace-audit" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Trace & Audit</Link></li>
+                          <li><Link href="/decision-intelligence/coordination" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Coordination Center</Link></li>
+                        </ul>
+                      ) : item.isPlatformMega ? (
+                        <div className="space-y-5">
+                          <div>
+                            <p className="text-[10px] font-semibold text-fg-faint uppercase tracking-[0.2em] mb-2">Products</p>
+                            <ul className="space-y-0.5">
+                              <li><Link href="/platform" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>GenX Platform</Link></li>
+                              <li><Link href="/platform/core" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>CORE — AI Engine</Link></li>
+                              <li><Link href="/platform/nia" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>NIA — Interface</Link></li>
+                              <li><Link href="/platform/flow" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>FLOW — Automation</Link></li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-semibold text-fg-faint uppercase tracking-[0.2em] mb-2">Features</p>
+                            <ul className="space-y-0.5">
+                              <li><Link href="/platform/ai-engineering-tools" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>AI Engineering Tools</Link></li>
+                              <li><Link href="/platform/search-data-ai" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Search + Data AI</Link></li>
+                              <li><Link href="/platform/security-governance" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Security + Governance</Link></li>
+                              <li><Link href="/platform/development-tools" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>No-Code + Pro-Code</Link></li>
+                              <li><Link href="/platform/integrations" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Integrations</Link></li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-semibold text-fg-faint uppercase tracking-[0.2em] mb-2">Center of Excellence</p>
+                            <ul className="space-y-0.5">
+                              <li><Link href="/ai-center-of-excellence" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>AI CoE</Link></li>
+                            </ul>
+                          </div>
+                        </div>
+                      ) : (
+                        <ul className="space-y-0.5">
+                          {item.dropdownItems?.map((dropdownItem) => (
+                            <li key={dropdownItem.name}>
+                              <Link
+                                href={dropdownItem.href}
+                                className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {dropdownItem.name}
+                              </Link>
+                            </li>
+                          ))}
+                          {item.solutionCards?.map((card) => (
+                            <li key={card.title}>
+                              <Link
+                                href={card.href}
+                                className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {card.title}
+                              </Link>
+                            </li>
+                          ))}
+                          {item.isSolutionsMega && (
+                            <li className="pt-3">
+                              <p className="text-[10px] font-semibold text-fg-faint uppercase tracking-[0.2em] mb-2">By Team</p>
+                              <ul className="space-y-0.5">
+                                <li><Link href="/solutions/customer-support" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Customer Support</Link></li>
+                                <li><Link href="/solutions/customer-success" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Customer Success</Link></li>
+                                <li><Link href="/solutions/sales" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Sales</Link></li>
+                                <li><Link href="/solutions/delivery" className="block py-2.5 text-[15px] text-fg hover:text-brand transition-colors" onClick={() => setIsMenuOpen(false)}>Delivery</Link></li>
+                              </ul>
+                            </li>
+                          )}
+                        </ul>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="block text-[13px] font-semibold text-fg-strong hover:text-brand transition-colors uppercase tracking-[0.18em]"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       {item.name}
-                    </p>
-                    {item.isDIMega ? (
-                      <div className="pl-4">
-                        <Link href="/decision-intelligence" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Overview</Link>
-                        <Link href="/decision-intelligence/ai-agent" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>AI Agent — Ask</Link>
-                        <Link href="/decision-intelligence/signal-chain" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Signal → Action Chain</Link>
-                        <Link href="/decision-intelligence/trace-audit" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Trace & Audit</Link>
-                        <Link href="/decision-intelligence/coordination" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Coordination Center</Link>
-                      </div>
-                    ) : item.isPlatformMega ? (
-                      <div className="pl-4">
-                        <p className="text-xs text-fg-muted uppercase pt-3">Products</p>
-                        <Link href="/platform" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>GenX Platform</Link>
-                        <Link href="/platform/core" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>CORE - AI Engine</Link>
-                        <Link href="/platform/nia" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>NIA - Interface</Link>
-                        <Link href="/platform/flow" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>FLOW - Automation</Link>
-                        <p className="text-xs text-fg-muted uppercase pt-3">Features</p>
-                        <Link href="/platform/ai-engineering-tools" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>AI Engineering Tools</Link>
-                        <Link href="/platform/search-data-ai" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Search + Data AI</Link>
-                        <Link href="/platform/security-governance" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Security + Governance</Link>
-                        <Link href="/platform/development-tools" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>No-Code + Pro-Code</Link>
-                        <Link href="/platform/integrations" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Integrations</Link>
-                        <p className="text-xs text-fg-muted uppercase pt-3">Center of Excellence</p>
-                        <Link href="/ai-center-of-excellence" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>AI CoE</Link>
-                      </div>
-                    ) : (
-                      <div className="pl-4">
-                        {item.dropdownItems?.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.name}
-                            href={dropdownItem.href}
-                            className="block py-2 text-sm text-fg hover:text-[#e0e1ff] transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {dropdownItem.name}
-                          </Link>
-                        ))}
-                        {item.solutionCards?.map((card) => (
-                          <Link
-                            key={card.title}
-                            href={card.href}
-                            className="block py-2 text-sm text-fg hover:text-[#e0e1ff] transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {card.title}
-                          </Link>
-                        ))}
-                        {item.isSolutionsMega && (
-                          <>
-                            <p className="text-xs text-fg-muted uppercase pt-3">By Team</p>
-                            <Link href="/solutions/customer-support" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Customer Support</Link>
-                            <Link href="/solutions/customer-success" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Customer Success</Link>
-                            <Link href="/solutions/sales" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Sales</Link>
-                            <Link href="/solutions/delivery" className="block py-1 text-sm" onClick={() => setIsMenuOpen(false)}>Delivery</Link>
-                          </>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="block py-2 text-sm text-fg hover:text-[#e0e1ff] transition-colors uppercase tracking-wider"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
             <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-              <button className="text-sm font-medium px-6 py-2 border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all mt-4 w-full">
-                GET STARTED
+              <button className="text-sm font-semibold tracking-[0.12em] uppercase px-6 py-3 border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all mt-6 w-full">
+                Get Started
               </button>
             </Link>
           </div>

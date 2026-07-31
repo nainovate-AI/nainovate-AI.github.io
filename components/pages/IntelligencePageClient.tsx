@@ -36,7 +36,7 @@ export default function IntelligencePageClient() {
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">
               AI FOR INTELLIGENCE
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+            <h1 className="heading-primary mb-8">
               <span className="block">TRANSFORM</span>
               <span className="block">DATA INTO</span>
               <span className="block">INSIGHTS</span>
@@ -84,7 +84,7 @@ export default function IntelligencePageClient() {
       <section id="use-cases" className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="text-center mb-6 md:mb-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">USE CASES</h2>
+            <h2 className="heading-primary mb-6">USE CASES</h2>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto">
               Turn your data into competitive advantage
             </p>
@@ -189,7 +189,7 @@ export default function IntelligencePageClient() {
       {/* How It Works */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">HOW IT WORKS</h2>
+          <h2 className="heading-primary mb-6 md:mb-10 text-center">HOW IT WORKS</h2>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-12">
             <div className="text-center">
@@ -228,7 +228,7 @@ export default function IntelligencePageClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
+          <h2 className="heading-primary mb-8">
             READY TO UNLOCK YOUR DATA?
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12">

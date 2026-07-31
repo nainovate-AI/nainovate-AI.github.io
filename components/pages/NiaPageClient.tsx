@@ -135,7 +135,7 @@ export default function NiaPageClient() {
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
               GENX NIA • INTERFACE
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+            <h1 className="heading-primary mb-8">
               <span className="block">WHERE AGENTS</span>
               <span className="block">COME TO LIFE</span>
             </h1>
@@ -157,7 +157,7 @@ export default function NiaPageClient() {
       {/* Live Demo Section */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">SEE NIA IN ACTION</h2>
+          <h2 className="heading-primary mb-6 md:mb-10">SEE NIA IN ACTION</h2>
 
           {/* First Demo - HR Agent */}
           <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center mb-16 md:mb-32">
@@ -383,7 +383,7 @@ export default function NiaPageClient() {
       {/* Features */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">THE NIA ADVANTAGE</h2>
+          <h2 className="heading-primary mb-6 md:mb-10">THE NIA ADVANTAGE</h2>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-24">
             <div className="space-y-6 md:space-y-12">
@@ -443,7 +443,7 @@ export default function NiaPageClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
+          <h2 className="heading-primary mb-8">
             EXPERIENCE NIA TODAY
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12 max-w-2xl mx-auto">

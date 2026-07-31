@@ -50,7 +50,7 @@ export default function ProductsPageClient() {
                             </span>
                         </div>
 
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
+                        <h1 className="heading-primary mb-4 md:mb-6">
                             THE GENX<br />
                             <span>PLATFORM</span>
                         </h1>
@@ -94,7 +94,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6 text-center">
+                        <h2 className="heading-primary mb-4 md:mb-6 text-center">
                             WHAT MAKES GENX DIFFERENT?
                         </h2>
                         <p className="text-base sm:text-lg lg:text-xl text-fg-muted text-center mb-6 md:mb-10 max-w-2xl mx-auto">
@@ -234,7 +234,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
+                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
                             FOUR INTEGRATED CAPABILITIES
                         </h2>
                     </AnimatedSection>
@@ -326,7 +326,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6 text-center">
+                        <h2 className="heading-primary mb-4 md:mb-6 text-center">
                             AI CENTER OF EXCELLENCE
                         </h2>
                         <p className="text-base sm:text-lg lg:text-xl text-fg-muted text-center mb-6 md:mb-10 max-w-3xl mx-auto">
@@ -545,7 +545,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
+                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
                             PLATFORM FEATURES
                         </h2>
                     </AnimatedSection>
@@ -669,7 +669,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-8 md:mb-12">
+                        <h2 className="heading-primary mb-8 md:mb-12">
                             <span>EXPLORE</span><br />
                             <span>COMPONENTS</span>
                         </h2>
@@ -746,7 +746,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
+                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
                             BUILT FOR ENTERPRISE
                         </h2>
                     </AnimatedSection>
@@ -803,7 +803,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 text-center">
+                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
                             TRUSTED BY LEADING ORGANIZATIONS
                         </h2>
                     </AnimatedSection>
@@ -826,7 +826,7 @@ export default function ProductsPageClient() {
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
                     <AnimatedSection>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
+                        <h2 className="heading-primary mb-4 md:mb-6">
                             READY TO TRANSFORM YOUR AI OPERATIONS?
                         </h2>
 

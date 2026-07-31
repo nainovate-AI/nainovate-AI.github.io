@@ -13,7 +13,7 @@ export default function SalesSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SOLUTION • SALES
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="heading-primary mb-8">
             <span className="block">PIPELINE.</span>
             <span className="block">HONEST.</span>
           </h1>
@@ -35,7 +35,7 @@ export default function SalesSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             PIPELINE VIEW — Q3 2026
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             Every deal, in context.
           </h2>
 
@@ -85,7 +85,7 @@ export default function SalesSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             REP BRIEFING
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             Every meeting starts with the full picture.
           </h2>
           <div className="border border-border rounded-lg p-5 md:p-8">
@@ -118,7 +118,7 @@ export default function SalesSolutionClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
             Stop pitching expansion into broken deployments.
           </h2>
           <Link href="/contact">

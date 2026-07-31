@@ -81,7 +81,7 @@ export default function CoordinationClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FEATURE 04 • COORDINATION CENTER
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="heading-primary mb-8">
             <span className="block">FOUR</span>
             <span className="block">LENSES.</span>
             <span className="block">ONE CUSTOMER.</span>
@@ -100,7 +100,7 @@ export default function CoordinationClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             LIVE INITIATIVES
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             Every initiative starts with a signal. Ends with an outcome.
           </h2>
 
@@ -164,7 +164,7 @@ export default function CoordinationClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             WHY COORDINATION MATTERS
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             The ticket is a symptom. The initiative is the cure.
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -193,7 +193,7 @@ export default function CoordinationClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
             See how the six features land in your teams.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">

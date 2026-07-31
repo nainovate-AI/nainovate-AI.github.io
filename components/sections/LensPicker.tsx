@@ -8,12 +8,12 @@ export function LensPicker() {
           <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
             PICK YOUR LENS
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
+          <h2 className="heading-primary mb-4 md:mb-6">
             <span className="block">TWO WORLDS.</span>
             <span className="block">ONE PLATFORM.</span>
           </h2>
           <p className="text-base md:text-lg text-fg-muted leading-relaxed">
-            Same decision intelligence. Different context. Pick where you work — see how GenX propagates signals across your teams.
+            Same platform. Different world. Pick where you work and see how GenX moves information across your teams — in real time.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export function LensPicker() {
               </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Government &amp; Public Services</h3>
               <p className="text-sm md:text-base text-fg-muted leading-relaxed mb-6">
-                Building permits, citizen requests, inter-department approvals. See how a single permit application flows across Planning, Fire, Water, and Revenue in one signal chain.
+                Building permits, citizen requests, inter-department approvals. Watch a single permit move automatically through Planning, Fire, Water, and Revenue — with full audit trail.
               </p>
             </div>
             <div className="border-t border-border pt-4 md:pt-6 grid grid-cols-3 gap-4">
@@ -79,7 +79,7 @@ export function LensPicker() {
               </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Enterprise Business Functions</h3>
               <p className="text-sm md:text-base text-fg-muted leading-relaxed mb-6">
-                Customer Success, Support, Sales, Delivery. Cross-functional decision intelligence — a health drop in Success surfaces in Sales, Support, and Finance in one hop.
+                Customer Success, Support, Sales, Delivery. When a customer health score drops, Sales, Support, and Finance see it instantly — and know what to do next.
               </p>
             </div>
             <div className="border-t border-border pt-4 md:pt-6 grid grid-cols-3 gap-4">

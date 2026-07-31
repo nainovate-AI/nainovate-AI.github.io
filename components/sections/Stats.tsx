@@ -6,7 +6,7 @@ export function Stats() {
           <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
             TRACTION
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
+          <h2 className="heading-primary mb-4 md:mb-6">
             EARLY VALIDATION
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted leading-relaxed">
@@ -23,7 +23,7 @@ export function Stats() {
             { number: '85%', label: 'SIGNAL DETECTION', sub: 'Accuracy in pilot data' },
           ].map((stat, i) => (
             <div key={i} className="text-center">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 md:mb-4">{stat.number}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 md:mb-4">{stat.number}</div>
               <div className="text-xs md:text-sm text-fg-strong font-medium tracking-widest mb-1 md:mb-2">
                 {stat.label}
               </div>
@@ -39,7 +39,7 @@ export function Stats() {
             { n: '90%', l: 'Pilot-to-paid conversion' },
           ].map((s, i) => (
             <div key={i}>
-              <div className="text-2xl md:text-3xl font-bold">{s.n}</div>
+              <div className="text-xl md:text-2xl font-bold">{s.n}</div>
               <div className="text-[10px] md:text-xs tracking-widest uppercase text-fg-muted mt-1 md:mt-2">
                 {s.l}
               </div>

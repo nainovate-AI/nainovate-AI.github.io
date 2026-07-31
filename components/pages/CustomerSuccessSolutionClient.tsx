@@ -13,7 +13,7 @@ export default function CustomerSuccessSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SOLUTION • CUSTOMER SUCCESS
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="heading-primary mb-8">
             <span className="block">HEALTH.</span>
             <span className="block">WATCHED.</span>
           </h1>
@@ -37,7 +37,7 @@ export default function CustomerSuccessSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             ACCOUNT VIEW — ACCOUNT A
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             One account. Every lens. One CSM view.
           </h2>
 
@@ -113,7 +113,7 @@ export default function CustomerSuccessSolutionClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             CSM WATCHLISTS
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             The signals that matter to renewal.
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -138,7 +138,7 @@ export default function CustomerSuccessSolutionClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
             Never learn about a churn from the QBR again.
           </h2>
           <Link href="/contact">

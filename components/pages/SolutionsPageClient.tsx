@@ -128,7 +128,7 @@ export default function SolutionsPageClient() {
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">
               AI SOLUTIONS
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
+            <h1 className="heading-primary mb-8">
               <span className="block">ENTERPRISE AI</span>
               <span className="block">SOLUTIONS</span>
             </h1>
@@ -213,7 +213,7 @@ export default function SolutionsPageClient() {
 
             {/* Right: Content */}
             <div className="lg:col-span-3">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">{currentSolution.title}</h2>
+              <h2 className="heading-primary mb-6">{currentSolution.title}</h2>
               <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-10 leading-relaxed">
                 {currentSolution.subtitle}
               </p>
@@ -256,7 +256,7 @@ export default function SolutionsPageClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-3xl mx-auto text-center mb-4 md:mb-6">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="heading-primary mb-6">
               CHOOSE YOUR DELIVERY FORMAT
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted">
@@ -408,7 +408,7 @@ export default function SolutionsPageClient() {
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-4">
               INTERACTIVE DEMO
             </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="heading-primary mb-6">
               TRY IT YOURSELF
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto leading-relaxed">
@@ -459,7 +459,7 @@ export default function SolutionsPageClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
+          <h2 className="heading-primary mb-8">
             READY TO DEPLOY AI SOLUTIONS?
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12 leading-relaxed">

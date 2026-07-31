@@ -12,7 +12,7 @@ export default function TraceAuditClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             FEATURE 03 • TRACE &amp; AUDIT
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+          <h1 className="heading-primary mb-8">
             <span className="block">ZERO</span>
             <span className="block">BLACK</span>
             <span className="block">BOX.</span>
@@ -31,7 +31,7 @@ export default function TraceAuditClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             TRACE trace_acme_p0_2104
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             Open a trace. See the whole decision.
           </h2>
 
@@ -147,7 +147,7 @@ export default function TraceAuditClient() {
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             WHY IT MATTERS
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-3xl">
+          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
             Explainability is not a feature. It is the contract.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -168,7 +168,7 @@ export default function TraceAuditClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
             One ticket triggered four teams. See how they land.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
