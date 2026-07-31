@@ -198,16 +198,6 @@ export default function CorePageClient() {
                             ))}
                         </div>
                     </div>
-                    <div className="mt-8 md:mt-16 flex flex-col sm:flex-row gap-4 sm:gap-8">
-                        <Link href="/contact" className="w-full sm:w-auto">
-                            <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4">
-                                Start Building
-                            </Button>
-                        </Link>
-                        {/* <Button className="px-8 py-4">
-                View Documentation
-            </Button> */}
-                    </div>
                 </div>
             </section>
 

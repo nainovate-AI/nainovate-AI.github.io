@@ -72,7 +72,7 @@
      Same tokens flip; brand purple stays.
      ----------------------------------------------------------- */
   html[data-theme="light"] {
-    --bg: #fbfaff;
+    --bg: #ffffff;
     --bg-elevated: #ffffff;
     --surface: rgba(99, 102, 241, 0.06);
     --surface-2: rgba(99, 102, 241, 0.10);
@@ -101,10 +101,7 @@
   }
 
   html[data-theme="light"] body {
-    background:
-      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(139, 92, 246, 0.06), transparent 60%),
-      radial-gradient(ellipse 50% 30% at 80% 100%, rgba(99, 102, 241, 0.05), transparent 60%),
-      var(--bg);
+    background: var(--bg);
   }
 
   html[data-theme="light"] .logo-light { display: block; }
@@ -113,7 +110,7 @@
   /* System-preference light — only when no explicit override */
   @media (prefers-color-scheme: light) {
     html:not([data-theme]) {
-      --bg: #fbfaff;
+      --bg: #ffffff;
       --bg-elevated: #ffffff;
       --surface: rgba(99, 102, 241, 0.06);
       --surface-2: rgba(99, 102, 241, 0.10);
@@ -137,10 +134,7 @@
     }
 
     html:not([data-theme]) body {
-      background:
-        radial-gradient(ellipse 60% 40% at 20% 0%, rgba(139, 92, 246, 0.06), transparent 60%),
-        radial-gradient(ellipse 50% 30% at 80% 100%, rgba(99, 102, 241, 0.05), transparent 60%),
-        var(--bg);
+      background: var(--bg);
     }
 
     html:not([data-theme]) .logo-light { display: block; }
@@ -263,9 +257,9 @@ body {
 /* Header glass — semi-transparent theme bg + backdrop blur so
    scrolled content blurs under nav without occlusion collision. */
 .nav-glass {
-  background: color-mix(in oklab, var(--bg) 82%, transparent);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: color-mix(in oklab, var(--bg) 65%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
 }
 @supports not (backdrop-filter: blur(1px)) {
   .nav-glass { background: var(--bg); }

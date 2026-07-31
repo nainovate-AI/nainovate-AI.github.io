@@ -26,8 +26,7 @@ export default function DecisionIntelligenceClient() {
               NIA • DECISION INTELLIGENCE
             </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
-              <span className="block">DECISION</span>
-              <span className="block">INTELLIGENCE.</span>
+              DECISION INTELLIGENCE.
               <span className="block">EXPLAINED.</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
@@ -99,13 +98,13 @@ export default function DecisionIntelligenceClient() {
         </div>
       </section>
 
-      {/* Four pillars */}
+      {/* Features */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            FOUR PILLARS
+            FEATURES
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">Same nia. Different lens.</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10">Six features. Seven capabilities.</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Ask */}
@@ -113,7 +112,10 @@ export default function DecisionIntelligenceClient() {
               href="/decision-intelligence/ai-agent"
               className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
             >
-              <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">01</p>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs tracking-widest text-fg-muted uppercase">01</p>
+                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Understand</span>
+              </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">AI Agent — Ask</h3>
               <p className="text-fg-muted mb-6">
                 Customer-facing chat inside Incident Management Tool. Handles L1 without a human.
@@ -128,7 +130,10 @@ export default function DecisionIntelligenceClient() {
               href="/decision-intelligence/signal-chain"
               className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
             >
-              <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">02</p>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs tracking-widest text-fg-muted uppercase">02</p>
+                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Observe + Recommend</span>
+              </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Signal → Action Chain</h3>
               <p className="text-fg-muted mb-6">
                 Watchlists spot risk. Recommendations propose action. Workflows
@@ -142,7 +147,10 @@ export default function DecisionIntelligenceClient() {
               href="/decision-intelligence/trace-audit"
               className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
             >
-              <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">03</p>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs tracking-widest text-fg-muted uppercase">03</p>
+                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Monitor</span>
+              </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Trace &amp; Audit</h3>
               <p className="text-fg-muted mb-6">
                 Every AI decision logged with agent confidence, weighted signals,
@@ -156,7 +164,10 @@ export default function DecisionIntelligenceClient() {
               href="/decision-intelligence/coordination"
               className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
             >
-              <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">04</p>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs tracking-widest text-fg-muted uppercase">04</p>
+                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Coordinate</span>
+              </div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Coordination Center</h3>
               <p className="text-fg-muted mb-6">
                 Cross-team initiatives. Support → CSM → Sales → Delivery. One
@@ -164,6 +175,82 @@ export default function DecisionIntelligenceClient() {
               </p>
               <span className="text-sm text-fg-strong group-hover:underline">See initiatives →</span>
             </Link>
+
+            {/* Workflow */}
+            <div className="group border border-border rounded-lg p-6 md:p-10 block opacity-90">
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs tracking-widest text-fg-muted uppercase">05</p>
+                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Execute</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Workflow</h3>
+              <p className="text-fg-muted mb-6">
+                Turn recommendations into orchestrated action. Multi-agent execution
+                across CRM, ERP, ITSM, and beyond — with policy guardrails on every step.
+              </p>
+              <span className="text-sm text-fg-muted">Coming soon</span>
+            </div>
+
+            {/* Learning Loop */}
+            <div className="group border border-border rounded-lg p-6 md:p-10 block opacity-90">
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs tracking-widest text-fg-muted uppercase">06</p>
+                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Learn</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Learning Loop</h3>
+              <p className="text-fg-muted mb-6">
+                Every decision feeds the next. Governed feedback loops improve
+                agent accuracy, prompt quality, and recommendation ranking over time.
+              </p>
+              <span className="text-sm text-fg-muted">Coming soon</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature → Capability Crosswalk */}
+      <section className="py-8 md:py-12 border-t border-border">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
+          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
+            FEATURE × CAPABILITY
+          </p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-10 max-w-4xl">
+            Features are what we ship. Capabilities are what they deliver.
+          </h2>
+          <div className="border border-border rounded-lg overflow-x-auto">
+            <table className="w-full text-left">
+              <thead className="bg-surface-2">
+                <tr>
+                  <th className="p-6 text-sm uppercase tracking-widest text-fg-muted">Feature</th>
+                  <th className="p-6 text-sm uppercase tracking-widest text-fg-muted">Capability it delivers</th>
+                </tr>
+              </thead>
+              <tbody className="text-fg-muted">
+                <tr className="border-t border-border">
+                  <td className="p-6 text-fg-strong">AI Agent — Ask</td>
+                  <td className="p-6">Understand</td>
+                </tr>
+                <tr className="border-t border-border">
+                  <td className="p-6 text-fg-strong">Signal → Action Chain</td>
+                  <td className="p-6">Observe + Recommend</td>
+                </tr>
+                <tr className="border-t border-border">
+                  <td className="p-6 text-fg-strong">Trace &amp; Audit</td>
+                  <td className="p-6">Monitor</td>
+                </tr>
+                <tr className="border-t border-border">
+                  <td className="p-6 text-fg-strong">Coordination Center</td>
+                  <td className="p-6">Coordinate</td>
+                </tr>
+                <tr className="border-t border-border">
+                  <td className="p-6 text-fg-strong">Workflow</td>
+                  <td className="p-6">Execute</td>
+                </tr>
+                <tr className="border-t border-border">
+                  <td className="p-6 text-fg-strong">Learning Loop</td>
+                  <td className="p-6">Learn</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

@@ -135,16 +135,16 @@ export default function ContactPageClient() {
   };
 
   return (
-    <main className="bg-bg pt-20">
+    <main className="bg-bg pt-16 md:pt-20">
       <JsonLd data={faqSchema} />
       <JsonLd data={contactSchema} />
 
       {/* Hero */}
-      <section className="min-h-[60vh] flex items-center">
+      <section className="py-12 md:py-16">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-              CONTACT
+            CONTACT
             </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
               <span className="block">LET&apos;S</span>
@@ -161,7 +161,7 @@ export default function ContactPageClient() {
       {/* Contact Options */}
       <section className="py-8 md:py-12">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-32">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
             {/* Contact Form */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-12">GET IN TOUCH</h2>

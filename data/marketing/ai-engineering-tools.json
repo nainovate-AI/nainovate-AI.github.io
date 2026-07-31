@@ -28,7 +28,7 @@
       "description": "Experiment with and refine prompts across multiple AI models to achieve optimal performance and business outcomes.",
       "mockup": "PromptWorkshopMockup",
       "mockupPosition": "right",
-      "sectionClass": "py-16 md:py-32 border-t border-white/10",
+      "sectionClass": "",
       "accentBg": "bg-blue-500/20",
       "accentText": "text-blue-400",
       "features": [
@@ -52,7 +52,7 @@
       "description": "Empower your team to easily integrate, manage, and connect multiple AI models, whether commercial, fine-tuned, or open source, within a single agentic workflow.",
       "mockup": "ModelOrchestratorMockup",
       "mockupPosition": "left",
-      "sectionClass": "py-16 md:py-32 border-t border-white/10 bg-white/[0.02]",
+      "sectionClass": "",
       "accentBg": "bg-purple-500/20",
       "accentText": "text-purple-400",
       "features": [
@@ -76,7 +76,7 @@
       "description": "Assess the performance of both AI models and agentic applications to ensure quality, accurate, less biased, compliant, and reliable AI agent responses before and after deployment.",
       "mockup": "QualityAssuranceLabMockup",
       "mockupPosition": "right",
-      "sectionClass": "py-16 md:py-32 border-t border-white/10",
+      "sectionClass": "",
       "accentBg": "bg-green-500/20",
       "accentText": "text-green-400",
       "features": [

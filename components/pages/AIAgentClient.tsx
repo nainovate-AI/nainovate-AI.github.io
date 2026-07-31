@@ -55,14 +55,13 @@ export default function AIAgentClient() {
   return (
     <main className="pt-20 relative z-10 bg-bg">
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-border">
+      <section className="py-12 md:py-16 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            PILLAR 01 • AI AGENT — ASK
+            FEATURE 01 • AI AGENT — ASK
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
-            <span className="block">L1 SUPPORT.</span>
-            <span className="block">NO HUMAN.</span>
+            L1 SUPPORT NO HUMAN.
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
             Customer-facing chat embedded in the Incident Management Tool Help Center. Four canonical
@@ -176,7 +175,7 @@ export default function AIAgentClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-8 max-w-3xl mx-auto leading-tight">
             Follow FD-2104 into the Signal Chain.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">

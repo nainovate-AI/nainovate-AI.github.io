@@ -118,11 +118,11 @@ export default function SolutionsPageClient() {
   const currentSolution = solutionTabs[activeTab];
 
   return (
-    <main className="pt-20 relative z-10">
+    <main className="pt-16 md:pt-20 relative z-10">
       <JsonLd data={solutionsSchema} />
 
       {/* Hero - CENTERED */}
-      <section className="min-h-[70vh] flex items-center border-b border-border">
+      <section className="py-12 md:py-16 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">

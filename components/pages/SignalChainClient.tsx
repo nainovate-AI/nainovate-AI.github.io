@@ -10,7 +10,7 @@ export default function SignalChainClient() {
       <section className="min-h-[70vh] flex items-center border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            PILLAR 02 • SIGNAL → ACTION CHAIN
+            FEATURE 02 • SIGNAL → ACTION CHAIN
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
             <span className="block">WATCH.</span>

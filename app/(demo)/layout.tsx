@@ -22,8 +22,15 @@ export default function DemoLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" data-theme="dark" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased bg-bg`} suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('nainovate-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`,
+          }}
+        />
+      </head>
+      <body className={`${inter.className} antialiased bg-bg text-fg`} suppressHydrationWarning>
         <CustomCursor />
         <DemoGuard>{children}</DemoGuard>
       </body>

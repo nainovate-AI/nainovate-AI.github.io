@@ -79,7 +79,7 @@ export default function CoordinationClient() {
       <section className="min-h-[70vh] flex items-center border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            PILLAR 04 • COORDINATION CENTER
+            FEATURE 04 • COORDINATION CENTER
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
             <span className="block">FOUR</span>
@@ -194,12 +194,12 @@ export default function CoordinationClient() {
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 max-w-4xl mx-auto leading-tight">
-            See how the four pillars land in your teams.
+            See how the six features land in your teams.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
-            <Link href="/solutions/customer-support" className="w-full sm:w-auto">
+            <Link href="/decision-intelligence" className="w-full sm:w-auto">
               <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
-                Customer Support →
+                Back to overview
               </Button>
             </Link>
             <Link href="/contact" className="w-full sm:w-auto">

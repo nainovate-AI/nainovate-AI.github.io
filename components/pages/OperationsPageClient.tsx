@@ -26,20 +26,19 @@ export default function OperationsPageClient() {
     const currentCase = useCases[activeUseCase];
 
     return (
-        <main className="pt-4 relative z-10">
+        <main className="pt-16 md:pt-20 relative z-10">
             <JsonLd data={operationsSchema} />
 
             {/* Hero */}
-            <section className="min-h-[70vh] flex items-center border-b border-border py-8 md:py-12">
+            <section className="py-12 md:py-16 border-b border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
                     <div className="max-w-3xl">
                         <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">
                             AI FOR OPERATIONS
                         </p>
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[0.9] tracking-[-0.02em] mb-8">
-                            <span className="block">AUTOMATE</span>
-                            <span className="block">INTERNAL</span>
-                            <span className="block">WORKFLOWS</span>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
+                            <span className="block">AUTOMATE INTERNAL.</span>
+                            <span className="block">WORKFLOWS.</span>
                         </h1>
                         <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl leading-relaxed mb-6 md:mb-12">
                             Deploy AI agents that handle HR screening, document processing, BOQ generation,

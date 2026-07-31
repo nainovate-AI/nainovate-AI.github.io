@@ -28,8 +28,7 @@ export default function SecurityGovernanceClient() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-tight mb-8">
-              SECURITY &<br />
-              GOVERNANCE
+              SECURITY & GOVERNANCE
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mb-6 md:mb-12">

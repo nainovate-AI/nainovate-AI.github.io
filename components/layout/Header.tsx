@@ -465,7 +465,7 @@ export function Header() {
                             >
                               <span className="text-xs text-fg-muted uppercase tracking-widest">Overview</span>
                               <span className="text-lg text-fg-strong font-bold">Decision Intelligence.</span>
-                              <span className="text-xs text-fg-subtle">Explainable AI decision layer on top of Freshdesk, CRM, and knowledge bases.</span>
+                              <span className="text-xs text-fg-subtle">Explainable AI decision layer on top of the Incident Management Tool, CRM, and knowledge bases.</span>
                             </Link>
                             <Link
                               href="/decision-intelligence/ai-agent"
@@ -474,7 +474,7 @@ export function Header() {
                             >
                               <span className="text-xs text-fg-muted uppercase tracking-widest">01</span>
                               <span className="text-sm text-fg-strong font-medium">AI Agent — Ask</span>
-                              <span className="text-xs text-fg-subtle">Customer-facing chat in Freshdesk. Four scenarios.</span>
+                              <span className="text-xs text-fg-subtle">Customer-facing chat in the Incident Management Tool. Four scenarios.</span>
                             </Link>
                             <Link
                               href="/decision-intelligence/signal-chain"

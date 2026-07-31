@@ -12,9 +12,9 @@ import { CTA } from '@/components/sections/CTA';
 import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Enterprise AI Platform - Build & Deploy AI Agents in Days',
-  description: 'Transform your business with Nainovate. Build AI agents without coding, deploy instantly, orchestrate workflows. 500+ agents deployed. 99.9% uptime. Start free trial today.',
-  keywords: 'AI platform, enterprise AI, AI agents, no-code AI development, GenX platform, NIA chatbot, AI workflow automation'
+  title: 'Decision Intelligence Platform — Enterprise AI Agents & Explainable Automation',
+  description: 'Nainovate is the Decision Intelligence platform for enterprise. Connect signals, decisions, and actions across support, success, sales, and delivery. Build AI agents, orchestrate workflows, and trace every outcome — no code required.',
+  keywords: 'decision intelligence, enterprise AI, AI agents, explainable AI, GenX platform, NIA, AI workflow automation, no-code AI, signal chain, trace and audit, coordination center'
 };
 
 //test comment for starting a publish

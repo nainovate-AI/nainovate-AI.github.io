@@ -6,9 +6,9 @@ import mockData from '@/data/marketing/customer-success.json';
 
 export default function CustomerSuccessSolutionClient() {
   return (
-    <main className="pt-20 relative z-10 bg-bg">
+    <main className="pt-16 md:pt-20 relative z-10 bg-bg">
       {/* Hero */}
-      <section className="min-h-[80vh] flex items-center border-b border-border">
+      <section className="py-12 md:py-16 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
             SOLUTION • CUSTOMER SUCCESS

@@ -118,7 +118,7 @@ export default function AIEngineeringToolsClient() {
         );
 
         return (
-          <section key={section.id} className={section.sectionClass}>
+          <section key={section.id} className={`py-8 md:py-12 ${section.sectionClass ?? ''}`}>
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
               <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
                 {section.mockupPosition === 'left' ? (

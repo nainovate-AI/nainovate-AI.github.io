@@ -24,11 +24,11 @@ export default function EngagementPageClient() {
   const currentCase = mockData.useCases[activeUseCase];
 
   return (
-    <main className="pt-4 relative z-10">
+    <main className="pt-16 md:pt-20 relative z-10">
       <JsonLd data={engagementSchema} />
 
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-border py-8 md:py-12">
+      <section className="py-12 md:py-16 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-3xl">
             <p className="text-sm font-medium tracking-[0.2em] text-fg-muted uppercase mb-8">

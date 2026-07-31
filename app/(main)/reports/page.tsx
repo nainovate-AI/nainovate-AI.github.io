@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function ReportsPage() {
     return (
-        <main className="bg-bg min-h-screen pt-20">
+        <main className="bg-bg min-h-screen pt-16 md:pt-20">
             {/* Hero */}
-            <section className="py-8 md:py-12">
+            <section className="py-12 md:py-16">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <AnimatedSection>
                         <div className="text-center mb-6 md:mb-8">

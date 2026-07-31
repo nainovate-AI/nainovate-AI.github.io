@@ -6,8 +6,8 @@ export function Footer() {
     <footer className="border-t border-border-strong">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-16">
         {/* Top Section - Multi-Column Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-10 mb-10 md:mb-16">
-          
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-6 md:gap-10 mb-10 md:mb-16">
+
           {/* COLUMN 1: SOLUTIONS */}
           <div>
             <h4 className="font-medium mb-4 md:mb-6 text-sm">SOLUTIONS</h4>
@@ -19,7 +19,19 @@ export function Footer() {
             </div>
           </div>
 
-          {/* COLUMN 2: PLATFORM */}
+          {/* COLUMN 2: DECISION INTELLIGENCE */}
+          <div>
+            <h4 className="font-medium mb-4 md:mb-6 text-sm">DECISION INTELLIGENCE</h4>
+            <div className="space-y-3">
+              <Link href="/decision-intelligence" className="block text-fg-muted hover:text-fg-strong transition-colors text-sm">Overview</Link>
+              <Link href="/decision-intelligence/ai-agent" className="block text-fg-muted hover:text-fg-strong transition-colors text-sm">AI Agent — Ask</Link>
+              <Link href="/decision-intelligence/signal-chain" className="block text-fg-muted hover:text-fg-strong transition-colors text-sm">Signal → Action Chain</Link>
+              <Link href="/decision-intelligence/trace-audit" className="block text-fg-muted hover:text-fg-strong transition-colors text-sm">Trace &amp; Audit</Link>
+              <Link href="/decision-intelligence/coordination" className="block text-fg-muted hover:text-fg-strong transition-colors text-sm">Coordination Center</Link>
+            </div>
+          </div>
+
+          {/* COLUMN 3: PLATFORM */}
           <div>
             <h4 className="font-medium mb-4 md:mb-6 text-sm">PLATFORM</h4>
             <div className="space-y-3">
@@ -79,8 +91,8 @@ export function Footer() {
               Get answers and a customized quote for your projects
             </p>
             <Link href="/contact">
-              <button className="w-full text-xs font-medium px-4 py-2 border border-fg-strong hover:bg-fg-strong hover:text-fg-invert transition-all">
-                CONTACT SALES →
+              <button className="w-full text-xs font-medium px-4 py-3 border border-fg-strong hover:bg-fg-strong hover:text-fg-invert transition-all">
+                CONTACT SALES
               </button>
             </Link>
           </div>
