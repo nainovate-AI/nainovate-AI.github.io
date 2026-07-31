@@ -137,7 +137,7 @@ export default function NiaPageClient() {
             </p>
             <h1 className="heading-primary mb-8">
               <span className="block">WHERE AGENTS</span>
-              <span className="block">COME TO LIFE</span>
+              <span className="block text-gradient-aurora">COME TO LIFE</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
               NIA is the conversational interface where your CORE-built agents

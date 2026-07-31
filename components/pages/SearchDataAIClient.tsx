@@ -1,12 +1,15 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
 import { EnterpriseSearchMockup } from '../mockups/EnterpriseSearchMockup';
 import { UniversalConnectorsMockup } from '../mockups/UniversalConnectorsMockup';
 import { IntelligentDataProcessingMockup } from '../mockups/IntelligentDataProcessingMockup';
 import mockData from '@/data/marketing/search-data-ai.json';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
 
 const mockupRegistry: Record<string, React.ComponentType> = {
   EnterpriseSearchMockup,
@@ -14,212 +17,246 @@ const mockupRegistry: Record<string, React.ComponentType> = {
   IntelligentDataProcessingMockup,
 };
 
+type Capability = { title: string; description: string; iconPath: string };
+type Pillar = { title: string; description: string; iconPath: string };
+type PlatformFeature = { title: string; description: string; href: string; iconPaths: string[] };
+type DetailFeature = { title: string; description: string };
+type Detail = {
+  id: string;
+  title: string;
+  description: string;
+  mockup: string;
+  visualPosition: 'left' | 'right';
+  features: DetailFeature[];
+  accentBg?: string;
+  accentText?: string;
+  sectionBg?: string;
+};
+
 export default function SearchDataAIClient() {
+  const coreCapabilities = mockData.coreCapabilities as Capability[];
+  const detailSections = mockData.detailSections as Detail[];
+  const governancePillars = mockData.governancePillars as Pillar[];
+  const platformFeatures = mockData.platformFeatures as PlatformFeature[];
+
   return (
-    <main className="bg-bg min-h-screen text-fg-strong">
-      {/* Hero Section */}
-      <section className="pt-16 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 md:px-8">
-        <div className="max-w-[1400px] mx-auto">
-          <AnimatedSection>
-            <div className="mb-6">
-              <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">GenX Platform / Search + Data</span>
-            </div>
-
-            <h1 className="heading-primary mb-8">
-              SEARCH + DATA AI
-            </h1>
-
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mb-6 md:mb-12">
-              Retrieve accurate, real-time insights with agentic RAG, hybrid vector search,
-              and 100+ enterprise connectors. Transform scattered data into unified knowledge.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 flex-wrap">
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                  Schedule Demo
-                </Button>
-              </Link>
-              <Link href="/platform">
-              </Link>
-            </div>
-          </AnimatedSection>
+    <main className="pt-20 bg-bg">
+      {/* Hero */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
-
-      {/* Core Capabilities Overview */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <AnimatedSection>
-            <h2 className="heading-primary text-center mb-6 md:mb-8">CORE CAPABILITIES</h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {mockData.coreCapabilities.map((cap, i) => (
-              <AnimatedSection key={cap.title} delay={(i + 1) * 0.1}>
-                <div className="p-6 border border-border rounded-lg hover:border-border-strong transition-colors min-h-[200px]">
-                  <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={cap.iconPath} />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">{cap.title}</h3>
-                  <p className="text-sm text-fg-muted">{cap.description}</p>
-                </div>
-              </AnimatedSection>
-            ))}
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">
+                GenX Platform · Search + Data
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-display text-fg-strong mb-10">
+                <span className="block">Search +</span>
+                <span className="block text-gradient-aurora">Data AI.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-12 leading-relaxed">
+                Retrieve accurate, real-time insights with agentic RAG, hybrid vector search,
+                and 100+ enterprise connectors. Transform scattered data into unified knowledge.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <CTALink href="/contact" variant="solid" size="lg" arrow>
+                Schedule Demo
+              </CTALink>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* Detail Sections */}
-      {mockData.detailSections.map((section) => {
+      {/* Core Capabilities */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Capabilities</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Core</span>
+                  <span className="block text-gradient-aurora">capabilities.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {coreCapabilities.map((cap, i) => (
+              <RevealItem key={cap.title} className="group bg-bg p-8 transition-colors duration-500 hover:bg-bg-elevated">
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="text-eyebrow text-fg-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  <span aria-hidden="true" className="h-px flex-1 bg-border" />
+                </div>
+                <svg className="w-10 h-10 text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d={cap.iconPath} />
+                </svg>
+                <h3 className="text-h4 text-fg-strong mb-3">{cap.title}</h3>
+                <p className="text-body-sm text-fg-mid leading-relaxed">{cap.description}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* Detail sections */}
+      {detailSections.map((section, sIdx) => {
         const Mockup = mockupRegistry[section.mockup];
         const visualLeft = section.visualPosition === 'left';
-        const sectionBg = section.sectionBg ? ` ${section.sectionBg}` : '';
         const content = (
-          <AnimatedSection delay={visualLeft ? 0.2 : 0}>
-            <div className="space-y-8">
-              <div>
-                <h2 className="heading-primary mb-6">{section.title}</h2>
-                <p className="text-base sm:text-lg md:text-xl text-fg-mid">
-                  {section.description}
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                {section.features.map((feature, fi) => (
-                  <div key={feature.title} className="flex gap-4">
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-full ${section.accentBg} flex items-center justify-center`}>
-                      <span className={`${section.accentText} font-bold`}>{fi + 1}</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                      <p className="text-fg-muted">
-                        {feature.description}
-                      </p>
-                    </div>
+          <div className="space-y-8">
+            <div>
+              <Eyebrow tone="muted" withDot className="mb-5">Section 0{sIdx + 1}</Eyebrow>
+              <h2 className="text-h1 text-fg-strong mb-6">{section.title}</h2>
+              <p className="text-body-lg text-fg-mid leading-relaxed">{section.description}</p>
+            </div>
+            <div className="space-y-6">
+              {section.features.map((feature, fi) => (
+                <div key={feature.title} className="flex gap-5">
+                  <span className="flex-shrink-0 w-9 h-9 rounded-full border border-fg-strong text-fg-strong flex items-center justify-center text-body-sm font-medium tabular-nums">
+                    {fi + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-h4 text-fg-strong mb-2">{feature.title}</h3>
+                    <p className="text-body-md text-fg-mid leading-relaxed">{feature.description}</p>
                   </div>
-                ))}
-              </div>
-
-              <div>
-                <Link href="/contact">
-                  <Button className="px-6 py-3">
-                    Learn More →
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </AnimatedSection>
-        );
-        const visual = <div>{Mockup && <Mockup />}</div>;
-        return (
-          <section key={section.id} className={`py-8 md:py-12 border-t border-border${sectionBg}`}>
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-                {visualLeft ? (
-                  <>
-                    {visual}
-                    {content}
-                  </>
-                ) : (
-                  <>
-                    {content}
-                    {visual}
-                  </>
-                )}
-              </div>
-            </div>
-          </section>
-        );
-      })}
-
-      {/* Built with AI CoE Governance */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <AnimatedSection>
-            <div className="mb-6 md:mb-12">
-              <svg className="w-16 h-16 mx-auto mb-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <h2 className="heading-primary mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
-            </div>
-
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-6 md:mb-8">
-              Every search query and data access integrates with our Center of Excellence framework.
-              Quality, compliance, and audit trails are built-in—not bolted on.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {mockData.governancePillars.map((pillar) => (
-                <div key={pillar.title} className="p-6">
-                  <div className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={pillar.iconPath} />
-                    </svg>
-                  </div>
-                  <h3 className="font-bold mb-2">{pillar.title}</h3>
-                  <p className="text-sm text-fg-muted">{pillar.description}</p>
                 </div>
               ))}
             </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Platform Features Grid */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <AnimatedSection>
-            <h2 className="heading-primary text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mockData.platformFeatures.map((feat, i) => (
-              <AnimatedSection key={feat.title} delay={(i + 1) * 0.1}>
-                <Link href={feat.href}>
-                  <div className="p-6 border border-border rounded-lg hover:border-border-strong transition-all h-full">
-                    <div className="mb-4">
-                      <svg className="w-8 h-8 text-fg-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {feat.iconPaths.map((d, di) => (
-                          <path key={di} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={d} />
-                        ))}
-                      </svg>
-                    </div>
-                    <h3 className="font-bold mb-2">{feat.title}</h3>
-                    <p className="text-sm text-fg-muted">{feat.description}</p>
-                  </div>
-                </Link>
-              </AnimatedSection>
-            ))}
+            <CTALink href="/contact" variant="outline" size="md" arrow>
+              Learn More
+            </CTALink>
           </div>
-        </div>
-      </section>
+        );
+        return (
+          <Section key={section.id} spacing="lg">
+            <Container size="wide">
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                {visualLeft ? (
+                  <>
+                    <Reveal className="lg:col-span-6">{Mockup && <Mockup />}</Reveal>
+                    <Reveal delay={0.1} className="lg:col-span-6">{content}</Reveal>
+                  </>
+                ) : (
+                  <>
+                    <Reveal className="lg:col-span-6">{content}</Reveal>
+                    <Reveal delay={0.1} className="lg:col-span-6">{Mockup && <Mockup />}</Reveal>
+                  </>
+                )}
+              </div>
+            </Container>
+          </Section>
+        );
+      })}
 
-      {/* CTA Section */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <AnimatedSection>
-            <h2 className="heading-primary mb-8">
-              READY TO UNIFY YOUR KNOWLEDGE?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid mb-6 md:mb-12">
-              See how Search + Data AI can transform scattered data into actionable intelligence
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center flex-wrap">
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">                  Schedule Demo
-                </Button>
-              </Link>
-              <Link href="/demo" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">                  Try Interactive Demo
-                </Button>
-              </Link>
+      {/* AI CoE Governance */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="max-w-4xl mx-auto text-center mb-14 md:mb-20">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-6 justify-center">AI CoE Governance</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="text-h1 text-fg-strong mb-8">
+                <span className="block">Built with</span>
+                <span className="block text-gradient-aurora">CoE governance.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid leading-relaxed">
+                Every search query and data access integrates with our Center of Excellence framework.
+                Quality, compliance, and audit trails are built-in—not bolted on.
+              </p>
+            </Reveal>
+          </div>
+          <RevealGroup className="grid md:grid-cols-3 gap-px bg-border border border-border rounded-xl2 overflow-hidden max-w-5xl mx-auto">
+            {governancePillars.map((pillar) => (
+              <RevealItem key={pillar.title} className="group bg-bg p-8 md:p-10 text-center transition-colors duration-500 hover:bg-bg-elevated">
+                <svg className="w-9 h-9 mx-auto text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d={pillar.iconPath} />
+                </svg>
+                <h3 className="text-h4 text-fg-strong mb-3">{pillar.title}</h3>
+                <p className="text-body-sm text-fg-mid leading-relaxed">{pillar.description}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* Platform Features */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Explore more</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">More platform</span>
+                  <span className="block text-gradient-aurora">features.</span>
+                </h2>
+              </Reveal>
             </div>
-          </AnimatedSection>
+          </div>
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {platformFeatures.map((feat) => (
+              <RevealItem key={feat.title}>
+                <Link href={feat.href} className="group block h-full bg-bg p-8 transition-colors duration-500 hover:bg-bg-elevated">
+                  <svg className="w-9 h-9 text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {feat.iconPaths.map((d, di) => (
+                      <path key={di} d={d} />
+                    ))}
+                  </svg>
+                  <h3 className="text-h4 text-fg-strong mb-3">{feat.title}</h3>
+                  <p className="text-body-sm text-fg-mid leading-relaxed">{feat.description}</p>
+                </Link>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* CTA */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-4xl">
+            <Reveal>
+              <h2 className="text-display text-fg-strong mb-8">
+                <span className="block">Ready to unify</span>
+                <span className="block text-gradient-aurora">your knowledge?</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-14 leading-relaxed">
+                See how Search + Data AI can transform scattered data into actionable intelligence.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>
+                  Schedule Demo
+                </CTALink>
+                <CTALink href="/demo" variant="outline" size="lg" arrow>
+                  Try Interactive Demo
+                </CTALink>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }

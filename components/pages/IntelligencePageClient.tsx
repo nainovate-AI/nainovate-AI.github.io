@@ -39,7 +39,7 @@ export default function IntelligencePageClient() {
             <h1 className="heading-primary mb-8">
               <span className="block">TRANSFORM</span>
               <span className="block">DATA INTO</span>
-              <span className="block">INSIGHTS</span>
+              <span className="block text-gradient-aurora">INSIGHTS</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl leading-relaxed mb-6 md:mb-12">
               Deploy AI agents that analyze data, ensure compliance, monitor quality, and optimize processes.

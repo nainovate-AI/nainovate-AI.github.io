@@ -1,7 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
 
 const scenarios = [
   {
@@ -51,147 +54,176 @@ const scenarios = [
   },
 ];
 
+const steps = [
+  { num: '01', title: 'Intent + retrieval', body: 'Classify question intent. Retrieve KB, past tickets, incident registry, product roadmap. Confidence-scored candidates ranked.' },
+  { num: '02', title: 'Respond or escalate', body: 'If confidence > 0.75 and citation exists → answer with source. Below threshold → auto-create engineering ticket, escalate with full context.' },
+  { num: '03', title: 'Trace + coordinate', body: 'Every action logged in Trace & Audit. If pattern emerges, watchlist fires and Coordination Center opens a cross-team initiative.' },
+];
+
 export default function AIAgentClient() {
   return (
-    <main className="pt-20 relative z-10 bg-bg">
+    <main className="pt-20 bg-bg">
       {/* Hero */}
-      <section className="py-12 md:py-16 border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            FEATURE 01 • AI AGENT — ASK
-          </p>
-          <h1 className="heading-primary mb-8">
-            L1 SUPPORT NO HUMAN.
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
-            Customer-facing chat embedded in the Incident Management Tool Help Center. Four canonical
-            scenarios — doc-based, known issue, new bug, feature request — resolved,
-            deflected, or escalated with full context in seconds.
-          </p>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">
+                Feature 01 · AI Agent — Ask
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-display text-fg-strong mb-10">
+                <span className="block">L1 support.</span>
+                <span className="block text-gradient-aurora">No human.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl leading-relaxed">
+                Customer-facing chat embedded in the Incident Management Tool Help Center. Four canonical
+                scenarios — doc-based, known issue, new bug, feature request — resolved,
+                deflected, or escalated with full context in seconds.
+              </p>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
 
       {/* Scenarios */}
-      <section className="py-8 md:py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            FOUR SCENARIOS
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
-            Every customer question falls into one of four shapes.
-          </h2>
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Four scenarios</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Every question</span>
+                  <span className="block text-gradient-aurora">falls into four shapes.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
 
-          <div className="space-y-10 md:space-y-16">
+          <RevealGroup className="space-y-14 md:space-y-20">
             {scenarios.map((s) => (
-              <div key={s.id} className="grid lg:grid-cols-12 gap-6 md:gap-12 border-t border-border pt-8 md:pt-16">
-                <div className="lg:col-span-4">
-                  <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">
-                    {s.id} • {s.ticket}
-                  </p>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4">{s.title}</h3>
-                  <p className="text-sm text-fg-muted mb-2">{s.customer}</p>
-                  <p className="text-sm text-fg-mid mt-8">Signals</p>
-                  <ul className="mt-3 space-y-2">
-                    {s.signals.map((sig) => (
-                      <li key={sig} className="text-sm text-fg-muted">
-                        · {sig}
-                      </li>
-                    ))}
-                  </ul>
+              <RevealItem key={s.id}>
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 border-t border-border-strong pt-10 md:pt-14">
+                  {/* Meta column */}
+                  <div className="lg:col-span-4">
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="text-eyebrow text-fg-faint tabular-nums">{s.id}</span>
+                      <span aria-hidden="true" className="h-px flex-1 bg-border" />
+                      <span className="text-eyebrow text-fg-mid">{s.ticket}</span>
+                    </div>
+                    <h3 className="text-h3 text-fg-strong mb-3">{s.title}</h3>
+                    <p className="text-body-sm text-fg-muted mb-10">{s.customer}</p>
+                    <p className="text-eyebrow text-fg-strong mb-4">Signals</p>
+                    <ul className="space-y-2.5">
+                      {s.signals.map((sig) => (
+                        <li key={sig} className="flex items-start gap-3 text-body-sm text-fg-mid">
+                          <span aria-hidden="true" className="text-fg-faint mt-2">·</span>
+                          <span>{sig}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Dialog + outcome */}
+                  <div className="lg:col-span-8 space-y-6">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 rounded-full bg-surface-2 border border-border flex items-center justify-center text-body-sm font-medium text-fg-mid shrink-0">
+                        C
+                      </div>
+                      <div className="border border-border rounded-xl2 p-6 flex-1">
+                        <p className="text-eyebrow text-fg-mid mb-3">Customer</p>
+                        <p className="text-body-md text-fg-strong">{s.question}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 rounded-full bg-fg-strong text-fg-invert flex items-center justify-center text-body-sm font-medium shrink-0">
+                        AI
+                      </div>
+                      <div className="border border-border-active rounded-xl2 p-6 flex-1 bg-surface-2">
+                        <p className="text-eyebrow text-fg-mid mb-3">Nia AI Agent</p>
+                        <p className="text-body-md text-fg-strong leading-relaxed">{s.agent_reply}</p>
+                      </div>
+                    </div>
+
+                    <div className="border-l-2 border-fg-strong pl-6 mt-4">
+                      <p className="text-eyebrow text-fg-strong mb-3">Outcome</p>
+                      <p className="text-body-md text-fg-strong leading-relaxed">{s.outcome}</p>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="lg:col-span-8 space-y-6">
-                  {/* Customer bubble */}
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-surface-2 flex items-center justify-center text-xs font-medium shrink-0">
-                      C
-                    </div>
-                    <div className="border border-border rounded-lg p-4 md:p-6 flex-1">
-                      <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Customer</p>
-                      <p className="text-fg-strong">{s.question}</p>
-                    </div>
-                  </div>
-
-                  {/* Agent bubble */}
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-fg-strong text-black flex items-center justify-center text-xs font-medium shrink-0">
-                      AI
-                    </div>
-                    <div className="border border-border-active rounded-lg p-4 md:p-6 flex-1 bg-surface-2">
-                      <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Nia AI Agent</p>
-                      <p className="text-fg-strong leading-relaxed">{s.agent_reply}</p>
-                    </div>
-                  </div>
-
-                  <div className="border-l-2 border-fg-strong pl-6 mt-6">
-                    <p className="text-sm text-fg-muted uppercase tracking-wider mb-2">Outcome</p>
-                    <p className="text-fg-strong">{s.outcome}</p>
-                  </div>
-                </div>
-              </div>
+              </RevealItem>
             ))}
-          </div>
-        </div>
-      </section>
+          </RevealGroup>
+        </Container>
+      </Section>
 
-      {/* How it works */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            UNDER THE HOOD
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
-            Every reply lineage-linked. Every decision explainable.
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="border border-border rounded-lg p-5 md:p-8">
-              <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">STEP 1</p>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Intent + retrieval</h3>
-              <p className="text-fg-muted text-sm">
-                Classify question intent. Retrieve KB, past tickets, incident registry,
-                product roadmap. Confidence-scored candidates ranked.
-              </p>
-            </div>
-            <div className="border border-border rounded-lg p-5 md:p-8">
-              <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">STEP 2</p>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Respond or escalate</h3>
-              <p className="text-fg-muted text-sm">
-                If confidence &gt; 0.75 and citation exists → answer with source. Below
-                threshold → auto-create engineering ticket, escalate with full context.
-              </p>
-            </div>
-            <div className="border border-border rounded-lg p-5 md:p-8">
-              <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">STEP 3</p>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">Trace + coordinate</h3>
-              <p className="text-fg-muted text-sm">
-                Every action logged in Trace &amp; Audit. If pattern emerges, watchlist
-                fires and Coordination Center opens a cross-team initiative.
-              </p>
+      {/* Under the hood */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Under the hood</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Every reply</span>
+                  <span className="block">lineage-linked.</span>
+                  <span className="block text-gradient-aurora">Every decision explainable.</span>
+                </h2>
+              </Reveal>
             </div>
           </div>
-        </div>
-      </section>
+          <RevealGroup className="grid md:grid-cols-3 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {steps.map((step) => (
+              <RevealItem key={step.num} className="group bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-eyebrow text-fg-faint tabular-nums">{step.num}</span>
+                  <span aria-hidden="true" className="h-px flex-1 bg-border" />
+                </div>
+                <h3 className="text-h4 text-fg-strong mb-3">{step.title}</h3>
+                <p className="text-body-md text-fg-mid leading-relaxed">{step.body}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
       {/* CTA */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="heading-primary mb-8 max-w-3xl mx-auto">
-            Follow FD-2104 into the Signal Chain.
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
-            <Link href="/decision-intelligence/signal-chain" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
-                See what happens next →
-              </Button>
-            </Link>
-            <Link href="/decision-intelligence" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
-                Back to overview
-              </Button>
-            </Link>
-          </div>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-4xl">
+            <Reveal>
+              <h2 className="text-display text-fg-strong mb-10">
+                Follow FD-2104 into <span className="text-fg-mid">the Signal Chain.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/decision-intelligence/signal-chain" variant="solid" size="lg" arrow>
+                  See what happens next
+                </CTALink>
+                <CTALink href="/decision-intelligence" variant="outline" size="lg" arrow>
+                  Back to overview
+                </CTALink>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }

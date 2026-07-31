@@ -20,7 +20,7 @@ export default function ReportsPage() {
                                 NAINOVATE RESEARCH
                             </p>
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold mb-6">
-                                <span className="block">2025 AI REPORTS</span>
+                                <span className="block">2025 AI <span className="text-gradient-aurora">REPORTS</span></span>
                             </h1>
                             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto">
                                 Two perspectives on enterprise AI success: Implementation reality and compliance readiness

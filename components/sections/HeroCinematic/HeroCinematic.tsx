@@ -89,12 +89,12 @@ export function HeroCinematic() {
       tabIndex={-1}
       aria-roledescription="carousel"
       aria-label="Nainovate hero"
-      className="relative bg-bg overflow-hidden pt-16 md:pt-20 focus:outline-none"
+      className="relative overflow-hidden pt-24 md:pt-28 min-h-screen flex flex-col focus:outline-none"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <div className="mx-auto w-full max-w-[1600px] px-[clamp(1rem,3vw,3rem)]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-[clamp(1rem,2.4vw,2rem)] items-center py-[clamp(1rem,2vw,1.5rem)] lg:pt-[clamp(1rem,2vw,2rem)] lg:pb-[clamp(3.5rem,6vw,5.5rem)]">
+      <div className="mx-auto w-full max-w-[1600px] px-[clamp(1rem,3vw,3rem)] flex-1 flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-[clamp(1rem,2.4vw,2rem)] items-center w-full pb-6 md:pb-10">
           {/* LEFT — copy */}
           <div className="lg:col-span-5 lg:pr-4 order-3 lg:order-1">
             <HeroContent
@@ -104,20 +104,21 @@ export function HeroCinematic() {
             />
           </div>
 
-          {/* RIGHT — cinematic visual */}
-          <div className="lg:col-span-7 order-1 lg:order-2 relative">
-            <div className="relative w-full aspect-[3/2] max-h-[min(72vh,720px)]">
-              <HeroVisual
-                slides={HERO_SLIDES}
-                active={active}
-                onImageTap={openLightbox}
-              />
+          {/* RIGHT — cinematic visual + controls under it */}
+          <div className="lg:col-span-7 order-1 lg:order-2 relative flex flex-col gap-4">
+            {/* 16:9 padding-based aspect wrapper — no aspect-ratio utility */}
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <div className="absolute inset-0">
+                <HeroVisual
+                  slides={HERO_SLIDES}
+                  active={active}
+                  onImageTap={openLightbox}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* MOBILE controls — under image, above copy (order-2) */}
-          <div className="lg:hidden order-2 pt-1 pb-1">
-            <div className="flex justify-center">
+            {/* Centered small controls under image */}
+            <div className="pt-3 md:pt-4 flex justify-center">
               <HeroControls
                 active={active}
                 total={HERO_SLIDES.length}
@@ -132,24 +133,6 @@ export function HeroCinematic() {
               />
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* DESKTOP controls — anchored to hero bottom */}
-      <div className="hidden lg:block lg:absolute lg:bottom-6 lg:left-0 lg:right-0 lg:px-12 z-30 pointer-events-none">
-        <div className="mx-auto w-full max-w-[1600px] flex justify-center pointer-events-auto">
-          <HeroControls
-            active={active}
-            total={HERO_SLIDES.length}
-            paused={paused}
-            resetKey={resetKey}
-            durationMs={AUTOPLAY_DURATION_MS}
-            onFillEnd={onFillEnd}
-            onPrev={prev}
-            onNext={next}
-            onSelect={goTo}
-            showArrows={false}
-          />
         </div>
       </div>
 

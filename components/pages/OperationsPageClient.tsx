@@ -38,7 +38,7 @@ export default function OperationsPageClient() {
                         </p>
                         <h1 className="heading-primary mb-8">
                             <span className="block">AUTOMATE INTERNAL.</span>
-                            <span className="block">WORKFLOWS.</span>
+                            <span className="block text-gradient-aurora">WORKFLOWS.</span>
                         </h1>
                         <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl leading-relaxed mb-6 md:mb-12">
                             Deploy AI agents that handle HR screening, document processing, BOQ generation,

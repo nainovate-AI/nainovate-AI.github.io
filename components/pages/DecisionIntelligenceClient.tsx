@@ -1,8 +1,98 @@
 'use client';
 
 import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
 import JsonLd from '@/components/seo/JsonLd';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
+
+type FeatureCard = {
+  index: string;
+  capability: string;
+  title: string;
+  description: string;
+  href?: string;
+  cta?: string;
+};
+
+const features: FeatureCard[] = [
+  {
+    index: '01',
+    capability: 'Understand',
+    title: 'AI Agent — Ask',
+    description:
+      'Customer-facing chat inside Incident Management Tool. Handles L1 without a human. 4 canonical scenarios: doc-based, known issue, new bug, feature request.',
+    href: '/decision-intelligence/ai-agent',
+    cta: 'Read the flow',
+  },
+  {
+    index: '02',
+    capability: 'Observe + Recommend',
+    title: 'Signal → Action Chain',
+    description:
+      'Watchlists spot risk. Recommendations propose action. Workflows execute across teams. Every step lineage-linked.',
+    href: '/decision-intelligence/signal-chain',
+    cta: 'See FD-2104 walkthrough',
+  },
+  {
+    index: '03',
+    capability: 'Monitor',
+    title: 'Trace & Audit',
+    description:
+      'Every AI decision logged with agent confidence, weighted signals, and evidence rows. Legal-audit ready. Zero black box.',
+    href: '/decision-intelligence/trace-audit',
+    cta: 'Open a trace',
+  },
+  {
+    index: '04',
+    capability: 'Coordinate',
+    title: 'Coordination Center',
+    description:
+      'Cross-team initiatives. Support → CSM → Sales → Delivery. One shared surface where the four lenses converge on the same customer.',
+    href: '/decision-intelligence/coordination',
+    cta: 'See initiatives',
+  },
+  {
+    index: '05',
+    capability: 'Execute',
+    title: 'Workflow',
+    description:
+      'Turn recommendations into orchestrated action. Multi-agent execution across CRM, ERP, ITSM, and beyond — with policy guardrails on every step.',
+  },
+  {
+    index: '06',
+    capability: 'Learn',
+    title: 'Learning Loop',
+    description:
+      'Every decision feeds the next. Governed feedback loops improve agent accuracy, prompt quality, and recommendation ranking over time.',
+  },
+];
+
+const crosswalk: [string, string][] = [
+  ['AI Agent — Ask', 'Understand'],
+  ['Signal → Action Chain', 'Observe + Recommend'],
+  ['Trace & Audit', 'Monitor'],
+  ['Coordination Center', 'Coordinate'],
+  ['Workflow', 'Execute'],
+  ['Learning Loop', 'Learn'],
+];
+
+const personas: [string, string, string][] = [
+  ['Customer', 'Incident Management Tool Help Center', 'Embedded AI Agent only — never leaves the portal'],
+  ['L1 / L2 Agent', 'Incident Management Tool Agent UI', 'Ticket-sidebar Co-Pilot, summaries, draft replies'],
+  ['Support Lead / Head', 'Nia (native)', 'Dashboards, watchlists, coordination, trace'],
+  ['CSM / Sales / Delivery', 'Nia (native)', 'Cross-space account view, decision surface'],
+  ['Knowledge Manager / AI Admin', 'Nia (native)', 'Governance, prompts, agent tuning, audit logs'],
+];
+
+const results = [
+  { label: 'AI deflection rate', value: '41%' },
+  { label: 'MTTR', value: '4.1h', sub: 'from 8.4h' },
+  { label: 'Root causes surfaced', value: '3', sub: 'from reopen patterns' },
+  { label: 'L1 headcount', value: '4', sub: 'from 12 investigators' },
+];
 
 export default function DecisionIntelligenceClient() {
   const schema = {
@@ -18,49 +108,67 @@ export default function DecisionIntelligenceClient() {
     <main className="pt-20 relative z-10 bg-bg">
       <JsonLd data={schema} />
 
-      {/* Hero */}
-      <section className="min-h-[80vh] flex items-center">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
-          <div className="max-w-4xl">
-            <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-              NIA • DECISION INTELLIGENCE
-            </p>
-            <h1 className="heading-primary mb-8">
-              DECISION INTELLIGENCE.
-              <span className="block">EXPLAINED.</span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
-              Turn every ticket, signal, and AI decision into explainable outcomes.
-              Nia sits on top of your Incident Management Tool, CRM, and knowledge base — customers
-              self-serve, agents deflect, leaders decide.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 flex-wrap">
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4">
-                  Book a demo
-                </Button>
-              </Link>
-              <Link href="/demo" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4">
-                  Watch it in action
-                </Button>
-              </Link>
-            </div>
-          </div>
+      {/* Hero — display-scale editorial */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">
+                Nia · Decision Intelligence
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-display text-fg-strong mb-10">
+                <span className="block">Decision intelligence.</span>
+                <span className="block text-gradient-aurora">Explained.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-14 leading-relaxed">
+                Turn every ticket, signal, and AI decision into explainable outcomes.
+                Nia sits on top of your Incident Management Tool, CRM, and knowledge base — customers
+                self-serve, agents deflect, leaders decide.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>
+                  Book a demo
+                </CTALink>
+                <CTALink href="/demo" variant="outline" size="lg" arrow>
+                  Watch it in action
+                </CTALink>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
 
       {/* Story — the 5:45 AM problem */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            THE 5:45 AM PROBLEM
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
-            One ticket. Four teams. Zero handoffs.
-          </h2>
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
-            <div className="space-y-6 text-fg-muted text-lg leading-relaxed">
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-6">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">
+                  The 5:45 AM Problem
+                </Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">One ticket.</span>
+                  <span className="block">Four teams.</span>
+                  <span className="block text-gradient-aurora">Zero handoffs.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+          <RevealGroup className="grid lg:grid-cols-2 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            <RevealItem className="bg-bg p-8 md:p-12 space-y-6 text-body-lg text-fg-mid leading-relaxed">
+              <Eyebrow tone="muted" className="mb-2">Before</Eyebrow>
               <p>
                 End User, maintenance engineer at Account A, opens Product X on
                 her Android to sync 47 rounds from her morning shift. Sync hangs.
@@ -77,8 +185,9 @@ export default function DecisionIntelligenceClient() {
                 Traditional support: 4 tools, 4 dashboards, 4 conversations, 4
                 handoffs. Hours lost. Blame games.
               </p>
-            </div>
-            <div className="space-y-6 text-fg-muted text-lg leading-relaxed">
+            </RevealItem>
+            <RevealItem className="bg-bg p-8 md:p-12 space-y-6 text-body-lg text-fg-mid leading-relaxed">
+              <Eyebrow tone="muted" className="mb-2">With Nia</Eyebrow>
               <p>
                 <span className="text-fg-strong">Nia turns FD-2104 into a decision loop.</span>
               </p>
@@ -93,258 +202,194 @@ export default function DecisionIntelligenceClient() {
                 with confidence scores, weighted signals, and evidence rows. No
                 black box. Legal-audit ready.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            </RevealItem>
+          </RevealGroup>
+        </Container>
+      </Section>
 
       {/* Features */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            FEATURES
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10">Six features. Seven capabilities.</h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Ask */}
-            <Link
-              href="/decision-intelligence/ai-agent"
-              className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs tracking-widest text-fg-muted uppercase">01</p>
-                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Understand</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">AI Agent — Ask</h3>
-              <p className="text-fg-muted mb-6">
-                Customer-facing chat inside Incident Management Tool. Handles L1 without a human.
-                4 canonical scenarios: doc-based, known issue, new bug, feature
-                request.
-              </p>
-              <span className="text-sm text-fg-strong group-hover:underline">Read the flow →</span>
-            </Link>
-
-            {/* Signal Chain */}
-            <Link
-              href="/decision-intelligence/signal-chain"
-              className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs tracking-widest text-fg-muted uppercase">02</p>
-                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Observe + Recommend</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Signal → Action Chain</h3>
-              <p className="text-fg-muted mb-6">
-                Watchlists spot risk. Recommendations propose action. Workflows
-                execute across teams. Every step lineage-linked.
-              </p>
-              <span className="text-sm text-fg-strong group-hover:underline">See FD-2104 walkthrough →</span>
-            </Link>
-
-            {/* Trace */}
-            <Link
-              href="/decision-intelligence/trace-audit"
-              className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs tracking-widest text-fg-muted uppercase">03</p>
-                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Monitor</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Trace &amp; Audit</h3>
-              <p className="text-fg-muted mb-6">
-                Every AI decision logged with agent confidence, weighted signals,
-                and evidence rows. Legal-audit ready. Zero black box.
-              </p>
-              <span className="text-sm text-fg-strong group-hover:underline">Open a trace →</span>
-            </Link>
-
-            {/* Coordination */}
-            <Link
-              href="/decision-intelligence/coordination"
-              className="group border border-border rounded-lg p-6 md:p-10 hover:border-border-active transition-colors block"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs tracking-widest text-fg-muted uppercase">04</p>
-                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Coordinate</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Coordination Center</h3>
-              <p className="text-fg-muted mb-6">
-                Cross-team initiatives. Support → CSM → Sales → Delivery. One
-                shared surface where the four lenses converge on the same customer.
-              </p>
-              <span className="text-sm text-fg-strong group-hover:underline">See initiatives →</span>
-            </Link>
-
-            {/* Workflow */}
-            <div className="group border border-border rounded-lg p-6 md:p-10 block opacity-90">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs tracking-widest text-fg-muted uppercase">05</p>
-                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Execute</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">Workflow</h3>
-              <p className="text-fg-muted mb-6">
-                Turn recommendations into orchestrated action. Multi-agent execution
-                across CRM, ERP, ITSM, and beyond — with policy guardrails on every step.
-              </p>
-              <span className="text-sm text-fg-muted">Coming soon</span>
-            </div>
-
-            {/* Learning Loop */}
-            <div className="group border border-border rounded-lg p-6 md:p-10 block opacity-90">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs tracking-widest text-fg-muted uppercase">06</p>
-                <span className="text-[10px] tracking-widest text-fg-subtle uppercase border border-border rounded-full px-3 py-1">Learn</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">Learning Loop</h3>
-              <p className="text-fg-muted mb-6">
-                Every decision feeds the next. Governed feedback loops improve
-                agent accuracy, prompt quality, and recommendation ranking over time.
-              </p>
-              <span className="text-sm text-fg-muted">Coming soon</span>
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">
+                  Features
+                </Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Six features.</span>
+                  <span className="block text-gradient-aurora">Seven capabilities.</span>
+                </h2>
+              </Reveal>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Feature → Capability Crosswalk */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            FEATURE × CAPABILITY
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
-            Features are what we ship. Capabilities are what they deliver.
-          </h2>
-          <div className="border border-border rounded-lg overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-surface-2">
-                <tr>
-                  <th className="p-6 text-sm uppercase tracking-widest text-fg-muted">Feature</th>
-                  <th className="p-6 text-sm uppercase tracking-widest text-fg-muted">Capability it delivers</th>
-                </tr>
-              </thead>
-              <tbody className="text-fg-muted">
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">AI Agent — Ask</td>
-                  <td className="p-6">Understand</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Signal → Action Chain</td>
-                  <td className="p-6">Observe + Recommend</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Trace &amp; Audit</td>
-                  <td className="p-6">Monitor</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Coordination Center</td>
-                  <td className="p-6">Coordinate</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Workflow</td>
-                  <td className="p-6">Execute</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Learning Loop</td>
-                  <td className="p-6">Learn</td>
-                </tr>
-              </tbody>
-            </table>
+          <RevealGroup className="grid md:grid-cols-2 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {features.map((f) => {
+              const isLive = Boolean(f.href);
+              const Body = (
+                <div className="group relative flex flex-col h-full bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated">
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-eyebrow text-fg-faint tabular-nums">{f.index}</span>
+                    <span className="text-eyebrow text-fg-mid border border-border px-3 py-1.5 rounded-full">
+                      {f.capability}
+                    </span>
+                  </div>
+                  <h3 className="text-h3 text-fg-strong mb-4">{f.title}</h3>
+                  <p className="text-body-md text-fg-mid leading-relaxed mb-8 flex-1">{f.description}</p>
+                  {isLive ? (
+                    <span className="inline-flex items-center gap-2 text-body-sm text-fg-strong">
+                      <span>{f.cta}</span>
+                      <svg aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                    </span>
+                  ) : (
+                    <span className="text-eyebrow text-fg-subtle">Coming soon</span>
+                  )}
+                </div>
+              );
+              return (
+                <RevealItem key={f.index}>
+                  {isLive ? <Link href={f.href!} className="block h-full">{Body}</Link> : Body}
+                </RevealItem>
+              );
+            })}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* Feature × Capability Crosswalk */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-8">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">
+                  Feature × Capability
+                </Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Features are what we ship.</span>
+                  <span className="block text-gradient-aurora">Capabilities are what they deliver.</span>
+                </h2>
+              </Reveal>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Persona matrix */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            PERSONA × WORKSPACE
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
-            Right surface for the right person.
-          </h2>
-
-          <div className="border border-border rounded-lg overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-surface-2">
-                <tr>
-                  <th className="p-6 text-sm uppercase tracking-widest text-fg-muted">Persona</th>
-                  <th className="p-6 text-sm uppercase tracking-widest text-fg-muted">Primary workspace</th>
-                  <th className="p-6 text-sm uppercase tracking-widest text-fg-muted">Nia presentation</th>
-                </tr>
-              </thead>
-              <tbody className="text-fg-muted">
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Customer</td>
-                  <td className="p-6">Incident Management Tool Help Center</td>
-                  <td className="p-6">Embedded AI Agent only — never leaves the portal</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">L1 / L2 Agent</td>
-                  <td className="p-6">Incident Management Tool Agent UI</td>
-                  <td className="p-6">Ticket-sidebar Co-Pilot, summaries, draft replies</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Support Lead / Head</td>
-                  <td className="p-6">Nia (native)</td>
-                  <td className="p-6">Dashboards, watchlists, coordination, trace</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">CSM / Sales / Delivery</td>
-                  <td className="p-6">Nia (native)</td>
-                  <td className="p-6">Cross-space account view, decision surface</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="p-6 text-fg-strong">Knowledge Manager / AI Admin</td>
-                  <td className="p-6">Nia (native)</td>
-                  <td className="p-6">Governance, prompts, agent tuning, audit logs</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Results */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            SIX WEEKS AT ACME
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10">What changed.</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { label: 'AI deflection rate', value: '41%' },
-              { label: 'MTTR', value: '4.1h', sub: 'from 8.4h' },
-              { label: 'Root causes surfaced', value: '3', sub: 'from reopen patterns' },
-              { label: 'L1 headcount', value: '4', sub: 'from 12 investigators' },
-            ].map((r) => (
-              <div key={r.label} className="border border-border rounded-lg p-5 md:p-8">
-                <p className="text-sm text-fg-muted uppercase tracking-wider mb-4">{r.label}</p>
-                <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">{r.value}</p>
-                {r.sub && <p className="text-sm text-fg-muted">{r.sub}</p>}
+          <Reveal>
+            <div className="border border-border rounded-xl2 overflow-hidden">
+              <div className="grid grid-cols-2 border-b border-border bg-surface">
+                <div className="p-5 md:p-6 text-eyebrow text-fg-mid">Feature</div>
+                <div className="p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Capability it delivers</div>
               </div>
+              {crosswalk.map(([feat, cap], i) => (
+                <div
+                  key={feat}
+                  className={`grid grid-cols-2 ${i > 0 ? 'border-t border-border' : ''} hover:bg-surface transition-colors`}
+                >
+                  <div className="p-5 md:p-6 text-body-md text-fg-strong">{feat}</div>
+                  <div className="p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{cap}</div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* Persona × Workspace */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-8">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">
+                  Persona × Workspace
+                </Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  Right surface for <span className="text-fg-mid">the right person.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+          <Reveal>
+            <div className="border border-border rounded-xl2 overflow-hidden">
+              <div className="grid grid-cols-12 border-b border-border bg-surface">
+                <div className="col-span-4 p-5 md:p-6 text-eyebrow text-fg-mid">Persona</div>
+                <div className="col-span-3 p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Primary workspace</div>
+                <div className="col-span-5 p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Nia presentation</div>
+              </div>
+              {personas.map(([persona, workspace, presentation], i) => (
+                <div
+                  key={persona}
+                  className={`grid grid-cols-12 ${i > 0 ? 'border-t border-border' : ''} hover:bg-surface transition-colors`}
+                >
+                  <div className="col-span-4 p-5 md:p-6 text-body-md text-fg-strong">{persona}</div>
+                  <div className="col-span-3 p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{workspace}</div>
+                  <div className="col-span-5 p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{presentation}</div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* Results — Six weeks at Acme */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-8">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">
+                  Six weeks at Acme
+                </Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">What changed.</h2>
+              </Reveal>
+            </div>
+          </div>
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 border-y border-border-strong">
+            {results.map((r, i) => (
+              <RevealItem
+                key={r.label}
+                className={`py-10 md:py-14 px-2 md:px-6 ${i > 0 ? 'lg:border-l lg:border-border' : ''} ${i % 2 === 1 ? 'border-l border-border lg:border-l' : ''} ${i >= 2 ? 'border-t border-border lg:border-t-0' : ''}`}
+              >
+                <div className="text-display text-fg-strong tabular-nums leading-none mb-6">
+                  {r.value}
+                </div>
+                <div className="text-eyebrow text-fg-strong mb-2">{r.label}</div>
+                {r.sub && <div className="text-body-sm text-fg-muted">{r.sub}</div>}
+              </RevealItem>
             ))}
-          </div>
-        </div>
-      </section>
+          </RevealGroup>
+        </Container>
+      </Section>
 
-      {/* CTA */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
-            Ready to see nia decide on your data?
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
-                Book a 30-min demo
-              </Button>
-            </Link>
-          </div>
+      {/* Final CTA */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <h2 className="text-display text-fg-strong mb-10">
+                Ready to see nia decide <span className="text-fg-mid">on your data?</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>
+                  Book a 30-min demo
+                </CTALink>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }

@@ -25,7 +25,7 @@ export default function IntegrationsClient() {
             </div>
 
             <h1 className="heading-primary mb-8">
-              100+ PRE-BUILT INTEGRATIONS
+              100+ PRE-BUILT <span className="text-gradient-aurora">INTEGRATIONS</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mb-6 md:mb-12">

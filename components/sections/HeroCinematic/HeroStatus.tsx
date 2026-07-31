@@ -20,7 +20,7 @@ export function HeroStatus({
   onSelect,
 }: Props) {
   return (
-    <div className="flex items-center gap-1.5 md:gap-2 w-[220px] md:w-[320px]">
+    <div className="flex items-center gap-1.5 md:gap-2 w-[140px] md:w-[180px]">
       {Array.from({ length: total }).map((_, i) => {
         const isActive = i === active;
         const isFilled = i < active;
@@ -30,7 +30,7 @@ export function HeroStatus({
             type="button"
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => onSelect(i)}
-            className="flex-1 h-[3px] rounded-full bg-white/20 overflow-hidden cursor-pointer group"
+            className="flex-1 h-[2px] rounded-full bg-white/15 overflow-hidden cursor-pointer group"
           >
             {isFilled && (
               <div className="h-full w-full bg-white rounded-full" />

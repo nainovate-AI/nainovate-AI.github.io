@@ -1,28 +1,23 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import Link from 'next/link';
 import { VisualBuilderMockup } from '../mockups/VisualBuilderMockup';
 import { SDKsMockup } from '../mockups/SDKsMockup';
 import { TestingDebuggingMockup } from '../mockups/TestingDebuggingMockup';
 import { DeploymentMockup } from '../mockups/DeploymentMockup';
 import mockData from '@/data/marketing/development-tools.json';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
 
-const coreCapabilityIcons = [
-  <svg key="0" className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-  </svg>,
-  <svg key="1" className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-  </svg>,
-  <svg key="2" className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-  </svg>,
-  <svg key="3" className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-  </svg>,
-];
+type Capability = { title: string; description: string };
+type Governance = { title: string; description: string };
+type PlatformFeature = { title: string; description: string; href: string };
+type Path = { title: string; steps: string[]; time: string };
+type DetailFeature = { title: string; description: string };
+type Detail = { heading: string; description: string; accentColor?: string; features: DetailFeature[] };
 
 const detailedSectionMockups = [
   <VisualBuilderMockup key="0" />,
@@ -31,265 +26,291 @@ const detailedSectionMockups = [
   <DeploymentMockup key="3" />,
 ];
 
-const accentClassMap: Record<string, { bg: string; text: string }> = {
-  blue: { bg: 'bg-blue-500/20', text: 'text-blue-400' },
-  green: { bg: 'bg-green-500/20', text: 'text-green-400' },
-  purple: { bg: 'bg-purple-500/20', text: 'text-purple-400' },
-  orange: { bg: 'bg-orange-500/20', text: 'text-orange-400' },
-};
+const svgFor = (paths: string[], className = 'w-9 h-9') => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {paths.map((d, i) => <path key={i} d={d} />)}
+  </svg>
+);
+
+const coreCapabilityIcons = [
+  ['M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z'],
+  ['M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'],
+  ['M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z'],
+  ['M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'],
+];
 
 const governanceIcons = [
-  <svg key="0" className="w-8 h-8 mx-auto text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-  </svg>,
-  <svg key="1" className="w-8 h-8 mx-auto text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-  </svg>,
-  <svg key="2" className="w-8 h-8 mx-auto text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-  </svg>,
+  ['M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'],
+  ['M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'],
+  ['M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
 ];
 
 const developmentPathIcons = [
-  <svg key="0" className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-  </svg>,
-  <svg key="1" className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-  </svg>,
-  <svg key="2" className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-  </svg>,
+  ['M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z'],
+  ['M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'],
+  ['M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z'],
 ];
 
 const platformFeatureIcons = [
-  <svg key="0" className="w-8 h-8 text-fg-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-  </svg>,
-  <svg key="1" className="w-8 h-8 text-fg-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-  </svg>,
-  <svg key="2" className="w-8 h-8 text-fg-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-  </svg>,
-  <svg key="3" className="w-8 h-8 text-fg-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
-  </svg>,
+  ['M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z'],
+  ['M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'],
+  ['M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'],
+  ['M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z'],
 ];
 
 export default function DevelopmentToolsClient() {
+  const coreCapabilities = mockData.coreCapabilities as Capability[];
+  const detailedSections = mockData.detailedSections as Detail[];
+  const governanceItems = mockData.governanceItems as Governance[];
+  const developmentPaths = mockData.developmentPaths as Path[];
+  const platformFeatures = mockData.platformFeatures as PlatformFeature[];
+
   return (
-    <main className="bg-bg min-h-screen text-fg-strong">
-      {/* Hero Section */}
-      <section className="pt-16 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 md:px-8">
-        <div className="max-w-[1400px] mx-auto">
-          <AnimatedSection>
-            <div className="mb-6">
-              <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">GenX Platform / Development Tools</span>
-            </div>
-
-            <h1 className="heading-primary mb-8">
-              NO-CODE + PRO-CODE TOOLS
-            </h1>
-
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mb-6 md:mb-12">
-              Build AI agents your way. Visual drag-and-drop for business users. Comprehensive
-              SDKs for developers. One unified platform with integrated testing and deployment.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 flex-wrap">
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                  Start Building
-                </Button>
-              </Link>
-            </div>
-          </AnimatedSection>
+    <main className="pt-20 bg-bg">
+      {/* Hero */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
-
-      {/* Core Capabilities Overview */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <AnimatedSection>
-            <h2 className="heading-primary text-center mb-6 md:mb-8">CORE DEVELOPMENT CAPABILITIES</h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {mockData.coreCapabilities.map((cap, i) => (
-              <AnimatedSection key={cap.title} delay={0.1 * (i + 1)}>
-                <div className="p-6 border border-border rounded-lg hover:border-border-strong transition-colors min-h-[200px]">
-                  <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-4">
-                    {coreCapabilityIcons[i]}
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">{cap.title}</h3>
-                  <p className="text-sm text-fg-muted">{cap.description}</p>
-                </div>
-              </AnimatedSection>
-            ))}
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">
+                GenX Platform · Development Tools
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-display text-fg-strong mb-10">
+                <span className="block">No-Code +</span>
+                <span className="block text-gradient-aurora">Pro-Code Tools.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-12 leading-relaxed">
+                Build AI agents your way. Visual drag-and-drop for business users. Comprehensive
+                SDKs for developers. One unified platform with integrated testing and deployment.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <CTALink href="/contact" variant="solid" size="lg" arrow>
+                Start Building
+              </CTALink>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* Detailed Sections (alternating layout) */}
-      {mockData.detailedSections.map((sec, i) => {
+      {/* Core Capabilities */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Capabilities</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Core development</span>
+                  <span className="block text-gradient-aurora">capabilities.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {coreCapabilities.map((cap, i) => (
+              <RevealItem key={cap.title} className="group bg-bg p-8 transition-colors duration-500 hover:bg-bg-elevated">
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="text-eyebrow text-fg-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  <span aria-hidden="true" className="h-px flex-1 bg-border" />
+                </div>
+                <div className="text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-6">
+                  {svgFor(coreCapabilityIcons[i] || coreCapabilityIcons[0], 'w-10 h-10')}
+                </div>
+                <h3 className="text-h4 text-fg-strong mb-3">{cap.title}</h3>
+                <p className="text-body-sm text-fg-mid leading-relaxed">{cap.description}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* Detailed sections */}
+      {detailedSections.map((sec, i) => {
         const reversed = i % 2 === 1;
-        const accent = accentClassMap[sec.accentColor] ?? accentClassMap.blue;
         const mockup = detailedSectionMockups[i];
         const content = (
-          <AnimatedSection delay={reversed ? 0.2 : 0}>
-            <div className="space-y-8">
-              <div>
-                <h2 className="heading-primary mb-6">{sec.heading}</h2>
-                <p className="text-base sm:text-lg md:text-xl text-fg-mid">{sec.description}</p>
-              </div>
-
-              <div className="space-y-6">
-                {sec.features.map((feat, fi) => (
-                  <div key={feat.title} className="flex gap-4">
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-full ${accent.bg} flex items-center justify-center`}>
-                      <span className={`${accent.text} font-bold`}>{fi + 1}</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold mb-2">{feat.title}</h3>
-                      <p className="text-fg-muted">{feat.description}</p>
-                    </div>
+          <div className="space-y-8">
+            <div>
+              <Eyebrow tone="muted" withDot className="mb-5">Section 0{i + 1}</Eyebrow>
+              <h2 className="text-h1 text-fg-strong mb-6">{sec.heading}</h2>
+              <p className="text-body-lg text-fg-mid leading-relaxed">{sec.description}</p>
+            </div>
+            <div className="space-y-6">
+              {sec.features.map((feat, fi) => (
+                <div key={feat.title} className="flex gap-5">
+                  <span className="flex-shrink-0 w-9 h-9 rounded-full border border-fg-strong text-fg-strong flex items-center justify-center text-body-sm font-medium tabular-nums">
+                    {fi + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-h4 text-fg-strong mb-2">{feat.title}</h3>
+                    <p className="text-body-md text-fg-mid leading-relaxed">{feat.description}</p>
                   </div>
-                ))}
-              </div>
-
-              <div>
-                <Link href="/contact">
-                  <Button className="px-6 py-3">
-                    Learn More →
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </AnimatedSection>
-        );
-
-        return (
-          <section key={sec.heading} className="py-8 md:py-12 border-t border-border">
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
-                {reversed ? (
-                  <>
-                    <div>{mockup}</div>
-                    {content}
-                  </>
-                ) : (
-                  <>
-                    {content}
-                    <div>{mockup}</div>
-                  </>
-                )}
-              </div>
-            </div>
-          </section>
-        );
-      })}
-
-      {/* Built with AI CoE Governance */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <AnimatedSection>
-            <div className="mb-6 md:mb-12">
-              <svg className="w-16 h-16 mx-auto mb-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <h2 className="heading-primary mb-4">BUILT WITH AI CoE GOVERNANCE</h2>
-            </div>
-
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid max-w-3xl mx-auto mb-6 md:mb-8">
-              Whether you build with no-code or pro-code, AI CoE governance is automatically
-              enforced. Quality, security, and compliance from development to production.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {mockData.governanceItems.map((item, i) => (
-                <div key={item.title}>
-                  <div className="mb-4">{governanceIcons[i]}</div>
-                  <h3 className="font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm text-fg-muted">{item.description}</p>
                 </div>
               ))}
             </div>
-          </AnimatedSection>
-        </div>
-      </section>
+            <CTALink href="/contact" variant="outline" size="md" arrow>
+              Learn More
+            </CTALink>
+          </div>
+        );
+        return (
+          <Section key={sec.heading} spacing="lg">
+            <Container size="wide">
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                {reversed ? (
+                  <>
+                    <Reveal className="lg:col-span-6">{mockup}</Reveal>
+                    <Reveal delay={0.1} className="lg:col-span-6">{content}</Reveal>
+                  </>
+                ) : (
+                  <>
+                    <Reveal className="lg:col-span-6">{content}</Reveal>
+                    <Reveal delay={0.1} className="lg:col-span-6">{mockup}</Reveal>
+                  </>
+                )}
+              </div>
+            </Container>
+          </Section>
+        );
+      })}
 
-      {/* Development Paths Comparison */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <AnimatedSection>
-            <h2 className="heading-primary text-center mb-6 md:mb-8">CHOOSE YOUR DEVELOPMENT PATH</h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {mockData.developmentPaths.map((path, i) => (
-              <AnimatedSection key={path.title} delay={0.1 * (i + 1)}>
-                <div className="p-5 md:p-8 border border-border rounded-lg hover:border-border-strong transition-colors">
-                  <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-4">
-                    {developmentPathIcons[i]}
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold mb-4">{path.title}</h3>
-                  <div className="space-y-3 text-sm text-fg-muted mb-6">
-                    {path.steps.map((step) => (
-                      <p key={step}>{step}</p>
-                    ))}
-                  </div>
-                  <p className="text-lg font-bold text-fg-strong">{path.time}</p>
+      {/* AI CoE Governance */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="max-w-4xl mx-auto text-center mb-14 md:mb-20">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-6 justify-center">AI CoE Governance</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="text-h1 text-fg-strong mb-8">
+                <span className="block">Built with</span>
+                <span className="block text-gradient-aurora">CoE governance.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid leading-relaxed">
+                Whether you build with no-code or pro-code, AI CoE governance is automatically
+                enforced. Quality, security, and compliance from development to production.
+              </p>
+            </Reveal>
+          </div>
+          <RevealGroup className="grid md:grid-cols-3 gap-px bg-border border border-border rounded-xl2 overflow-hidden max-w-5xl mx-auto">
+            {governanceItems.map((item, i) => (
+              <RevealItem key={item.title} className="group bg-bg p-8 md:p-10 text-center transition-colors duration-500 hover:bg-bg-elevated">
+                <div className="text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-6 flex justify-center">
+                  {svgFor(governanceIcons[i] || governanceIcons[0], 'w-9 h-9')}
                 </div>
-              </AnimatedSection>
+                <h3 className="text-h4 text-fg-strong mb-3">{item.title}</h3>
+                <p className="text-body-sm text-fg-mid leading-relaxed">{item.description}</p>
+              </RevealItem>
             ))}
-          </div>
-        </div>
-      </section>
+          </RevealGroup>
+        </Container>
+      </Section>
 
-      {/* Platform Features Grid */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <AnimatedSection>
-            <h2 className="heading-primary text-center mb-6 md:mb-8">EXPLORE MORE PLATFORM FEATURES</h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mockData.platformFeatures.map((feat, i) => (
-              <AnimatedSection key={feat.title} delay={0.1 * (i + 1)}>
-                <Link href={feat.href}>
-                  <div className="p-6 border border-border rounded-lg hover:border-border-strong transition-all h-full">
-                    <div className="mb-4">{platformFeatureIcons[i]}</div>
-                    <h3 className="font-bold mb-2">{feat.title}</h3>
-                    <p className="text-sm text-fg-muted">{feat.description}</p>
-                  </div>
-                </Link>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <AnimatedSection>
-            <h2 className="heading-primary mb-8">
-              START BUILDING TODAY
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-fg-mid mb-6 md:mb-12">
-              Choose your path: No-code simplicity or pro-code power. Or both.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center flex-wrap">
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                  Try No-Code Builder
-                </Button>
-              </Link>
+      {/* Development Paths */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Path</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Choose your</span>
+                  <span className="block text-gradient-aurora">development path.</span>
+                </h2>
+              </Reveal>
             </div>
-          </AnimatedSection>
+          </div>
+          <RevealGroup className="grid md:grid-cols-3 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {developmentPaths.map((path, i) => (
+              <RevealItem key={path.title} className="group bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated">
+                <div className="text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-6">
+                  {svgFor(developmentPathIcons[i] || developmentPathIcons[0], 'w-10 h-10')}
+                </div>
+                <h3 className="text-h3 text-fg-strong mb-5">{path.title}</h3>
+                <div className="space-y-3 text-body-sm text-fg-mid mb-8">
+                  {path.steps.map((step) => (
+                    <p key={step}>{step}</p>
+                  ))}
+                </div>
+                <p className="text-h4 text-fg-strong tabular-nums">{path.time}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* Platform Features */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Explore more</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">More platform</span>
+                  <span className="block text-gradient-aurora">features.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {platformFeatures.map((feat, i) => (
+              <RevealItem key={feat.title}>
+                <Link href={feat.href} className="group block h-full bg-bg p-8 transition-colors duration-500 hover:bg-bg-elevated">
+                  <div className="text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-6">
+                    {svgFor(platformFeatureIcons[i] || platformFeatureIcons[0], 'w-9 h-9')}
+                  </div>
+                  <h3 className="text-h4 text-fg-strong mb-3">{feat.title}</h3>
+                  <p className="text-body-sm text-fg-mid leading-relaxed">{feat.description}</p>
+                </Link>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* CTA */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-4xl">
+            <Reveal>
+              <h2 className="text-display text-fg-strong mb-8">
+                <span className="block">Start</span>
+                <span className="block text-gradient-aurora">building today.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-14 leading-relaxed">
+                Choose your path: No-code simplicity or pro-code power. Or both.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <CTALink href="/contact" variant="solid" size="lg" arrow>
+                Try No-Code Builder
+              </CTALink>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }

@@ -1,7 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
 
 const initiatives = [
   {
@@ -72,144 +75,202 @@ const initiatives = [
   },
 ];
 
+const before = [
+  '4 tools, 4 dashboards, 4 conversations per account',
+  'Support closes ticket → CSM finds out a week later',
+  'Sales pitches expansion into a broken deployment',
+  'Delivery slip discovered at QBR, not before',
+];
+
+const after = [
+  'One shared surface for every team on every account',
+  'CSM sees FD-2104 the moment wl_001 fires',
+  'Sales sees renewal risk before pitching expansion',
+  'Delivery slip surfaces at trigger, not at review',
+];
+
 export default function CoordinationClient() {
   return (
-    <main className="pt-20 relative z-10 bg-bg">
+    <main className="pt-20 bg-bg">
       {/* Hero */}
-      <section className="min-h-[70vh] flex items-center border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            FEATURE 04 • COORDINATION CENTER
-          </p>
-          <h1 className="heading-primary mb-8">
-            <span className="block">FOUR</span>
-            <span className="block">LENSES.</span>
-            <span className="block">ONE CUSTOMER.</span>
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
-            Support, CSM, Sales, Delivery — four teams, one shared surface. Every
-            initiative anchored to the ticket, watchlist, or account it came from. No
-            more Chat archaeology to piece together what happened.
-          </p>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">
+                Feature 04 · Coordination Center
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-display text-fg-strong mb-10">
+                <span className="block">Four lenses.</span>
+                <span className="block text-gradient-aurora">One customer.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl leading-relaxed">
+                Support, CSM, Sales, Delivery — four teams, one shared surface. Every
+                initiative anchored to the ticket, watchlist, or account it came from. No
+                more Chat archaeology to piece together what happened.
+              </p>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
 
-      {/* Initiatives */}
-      <section className="py-8 md:py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            LIVE INITIATIVES
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
-            Every initiative starts with a signal. Ends with an outcome.
-          </h2>
+      {/* Live initiatives */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Live initiatives</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">Every initiative starts with a signal.</span>
+                  <span className="block text-gradient-aurora">Ends with an outcome.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
 
-          <div className="space-y-8">
+          <RevealGroup className="space-y-6">
             {initiatives.map((it) => (
-              <div key={it.id} className="border border-border rounded-lg overflow-hidden">
-                <div className="p-5 md:p-8 border-b border-border bg-surface-2">
-                  <div className="flex items-start justify-between flex-wrap gap-6">
-                    <div>
-                      <p className="text-xs text-fg-muted uppercase tracking-widest mb-2 font-mono">{it.id}</p>
-                      <h3 className="text-xl md:text-2xl font-bold mb-2">{it.title}</h3>
-                      <p className="text-fg-muted text-sm">Trigger: {it.trigger}</p>
-                    </div>
-                    <div className="flex items-center gap-8">
+              <RevealItem key={it.id}>
+                <div className="border border-border rounded-xl2 overflow-hidden">
+                  <div className="p-6 md:p-8 border-b border-border bg-surface">
+                    <div className="flex items-start justify-between flex-wrap gap-6">
                       <div>
-                        <p className="text-xs text-fg-muted uppercase tracking-wider mb-1">Status</p>
-                        <p className="text-fg-strong text-sm">{it.status}</p>
+                        <p className="text-eyebrow text-fg-faint mb-2 font-mono">{it.id}</p>
+                        <h3 className="text-h3 text-fg-strong mb-2">{it.title}</h3>
+                        <p className="text-body-sm text-fg-mid">Trigger: {it.trigger}</p>
                       </div>
-                      <div className="w-40">
-                        <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Progress</p>
-                        <div className="h-2 bg-surface-2 rounded overflow-hidden">
-                          <div className="h-full bg-fg-strong" style={{ width: `${it.progress}%` }} />
+                      <div className="flex items-center gap-8">
+                        <div>
+                          <Eyebrow tone="muted" className="mb-2">Status</Eyebrow>
+                          <p className="text-body-md text-fg-strong">{it.status}</p>
                         </div>
-                        <p className="text-xs text-fg-muted mt-1 font-mono">{it.progress}%</p>
+                        <div className="w-40">
+                          <Eyebrow tone="muted" className="mb-2">Progress</Eyebrow>
+                          <div className="h-1.5 bg-surface-2 rounded-full overflow-hidden">
+                            <div className="h-full bg-fg-strong" style={{ width: `${it.progress}%` }} />
+                          </div>
+                          <p className="text-body-sm text-fg-muted mt-2 font-mono tabular-nums">{it.progress}%</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid lg:grid-cols-12 gap-8 p-6 md:p-8">
+                    <div className="lg:col-span-3">
+                      <Eyebrow tone="muted" className="mb-4">Teams</Eyebrow>
+                      <div className="flex flex-wrap gap-2">
+                        {it.teams.map((t) => (
+                          <span key={t} className="text-body-sm border border-border rounded-full px-3 py-1.5 text-fg-mid">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="lg:col-span-9">
+                      <Eyebrow tone="muted" className="mb-4">Milestones</Eyebrow>
+                      <div className="space-y-3">
+                        {it.milestones.map((m) => (
+                          <div key={m.d} className="flex gap-6 text-body-sm">
+                            <span className="text-fg-faint font-mono tabular-nums shrink-0 w-44">{m.d}</span>
+                            <span className="text-fg-strong">{m.e}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="grid lg:grid-cols-12 gap-8 p-5 md:p-8">
-                  <div className="lg:col-span-3">
-                    <p className="text-xs text-fg-muted uppercase tracking-wider mb-3">Teams</p>
-                    <div className="flex flex-wrap gap-2">
-                      {it.teams.map((t) => (
-                        <span key={t} className="text-xs border border-border-strong px-3 py-1 rounded">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="lg:col-span-9">
-                    <p className="text-xs text-fg-muted uppercase tracking-wider mb-3">Milestones</p>
-                    <div className="space-y-2">
-                      {it.milestones.map((m) => (
-                        <div key={m.d} className="flex gap-6 text-sm">
-                          <span className="text-fg-muted font-mono shrink-0 w-40">{m.d}</span>
-                          <span className="text-fg-strong">{m.e}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </RevealItem>
             ))}
-          </div>
-        </div>
-      </section>
+          </RevealGroup>
+        </Container>
+      </Section>
 
-      {/* Why it works */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            WHY COORDINATION MATTERS
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">
-            The ticket is a symptom. The initiative is the cure.
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="border border-border rounded-lg p-5 md:p-8">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">Before Nia</h3>
-              <ul className="space-y-3 text-fg-muted">
-                <li>· 4 tools, 4 dashboards, 4 conversations per account</li>
-                <li>· Support closes ticket → CSM finds out a week later</li>
-                <li>· Sales pitches expansion into a broken deployment</li>
-                <li>· Delivery slip discovered at QBR, not before</li>
-              </ul>
-            </div>
-            <div className="border border-border-active rounded-lg p-5 md:p-8 bg-surface-2">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">With Coordination Center</h3>
-              <ul className="space-y-3 text-fg-strong">
-                <li>✓ One shared surface for every team on every account</li>
-                <li>✓ CSM sees FD-2104 the moment wl_001 fires</li>
-                <li>✓ Sales sees renewal risk before pitching expansion</li>
-                <li>✓ Delivery slip surfaces at trigger, not at review</li>
-              </ul>
+      {/* Before / After */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Why coordination matters</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h1 text-fg-strong">
+                  <span className="block">The ticket is a symptom.</span>
+                  <span className="block text-gradient-aurora">The initiative is the cure.</span>
+                </h2>
+              </Reveal>
             </div>
           </div>
-        </div>
-      </section>
+
+          <div className="grid lg:grid-cols-2 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            <Reveal>
+              <div className="bg-bg p-8 md:p-10 h-full">
+                <Eyebrow tone="muted" className="mb-5">Before Nia</Eyebrow>
+                <h3 className="text-h3 text-fg-strong mb-6">Fragmented signals.</h3>
+                <ul className="space-y-3">
+                  {before.map((line) => (
+                    <li key={line} className="flex items-start gap-3 text-body-md text-fg-mid">
+                      <span aria-hidden="true" className="text-fg-faint mt-2">·</span>
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="bg-bg-elevated p-8 md:p-10 h-full">
+                <Eyebrow tone="accent" className="mb-5">With Coordination Center</Eyebrow>
+                <h3 className="text-h3 text-fg-strong mb-6">One surface.</h3>
+                <ul className="space-y-3">
+                  {after.map((line) => (
+                    <li key={line} className="flex items-start gap-3 text-body-md text-fg-strong">
+                      <span aria-hidden="true" className="text-fg-strong mt-1 shrink-0">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
+                      </span>
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
 
       {/* CTA */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
-            See how the six features land in your teams.
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center flex-wrap">
-            <Link href="/decision-intelligence" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
-                Back to overview
-              </Button>
-            </Link>
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 md:px-10">
-                Book a demo
-              </Button>
-            </Link>
-          </div>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-4xl">
+            <Reveal>
+              <h2 className="text-display text-fg-strong mb-10">
+                See how the six features <span className="text-fg-mid">land in your teams.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>
+                  Book a demo
+                </CTALink>
+                <CTALink href="/decision-intelligence" variant="outline" size="lg" arrow>
+                  Back to overview
+                </CTALink>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }
