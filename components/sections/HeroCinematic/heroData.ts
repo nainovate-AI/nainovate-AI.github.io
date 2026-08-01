@@ -20,14 +20,14 @@ export const HERO_SLIDES: HeroSlide[] = [
     alt: 'Aerial view of government and enterprise buildings connected through Nainovate',
   },
   {
-    id: 'seven-capabilities',
-    eyebrow: 'GENX FRAMEWORK',
-    titleLines: ['ONE ENTERPRISE.', 'SEVEN CAPABILITIES.'],
-    highlight: 'One workflow. Start to finish.',
+    id: 'public-sector',
+    eyebrow: 'PUBLIC SECTOR',
+    titleLines: ['ONE GOVERNMENT.', 'ONE DECISION CENTRE.'],
+    highlight: 'From policy to citizen outcome.',
     description:
-      'Observe. Understand. Recommend. Coordinate. Execute. Monitor. Learn. Every step in one place — so every decision has context.',
-    image: '/hero-slides/hero-slide-2.png',
-    alt: 'GenX seven-capability framework wheel',
+      'Decision support, coordinated public services and real-time operations in a single centre — so every policy reaches the citizens it was written for.',
+    image: '/hero-slides/hero-slide-4.png',
+    alt: 'A government decision centre linking decision support, coordinated public services, coordinated execution and citizen outcomes, with operators monitoring national service-delivery dashboards',
   },
   {
     id: 'signal-chain',
@@ -40,14 +40,14 @@ export const HERO_SLIDES: HeroSlide[] = [
     alt: 'Enterprise campus with signal arcs connecting Finance, HR, Operations, Sales, and Supply Chain',
   },
   {
-    id: 'public-sector',
-    eyebrow: 'PUBLIC SECTOR',
-    titleLines: ['ONE GOVERNMENT.', 'ONE DECISION CENTRE.'],
-    highlight: 'From policy to citizen outcome.',
+    id: 'seven-capabilities',
+    eyebrow: 'GENX FRAMEWORK',
+    titleLines: ['ONE ENTERPRISE.', 'SEVEN CAPABILITIES.'],
+    highlight: 'One workflow. Start to finish.',
     description:
-      'Decision support, coordinated public services and real-time operations in a single centre — so every policy reaches the citizens it was written for.',
-    image: '/hero-slides/hero-slide-4.png',
-    alt: 'A government decision centre linking decision support, coordinated public services, coordinated execution and citizen outcomes, with operators monitoring national service-delivery dashboards',
+      'Observe. Understand. Recommend. Coordinate. Execute. Monitor. Learn. Every step in one place — so every decision has context.',
+    image: '/hero-slides/hero-slide-2.png',
+    alt: 'GenX seven-capability framework wheel',
   },
 ];
 
