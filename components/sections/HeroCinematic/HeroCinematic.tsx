@@ -96,7 +96,7 @@ export function HeroCinematic() {
       <div className="mx-auto w-full max-w-[1600px] px-[clamp(1rem,3vw,3rem)]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-[clamp(1rem,2.4vw,2rem)] items-center py-[clamp(1rem,2vw,1.5rem)] lg:pt-[clamp(1rem,2vw,2rem)] lg:pb-[clamp(3.5rem,6vw,5.5rem)]">
           {/* LEFT — copy */}
-          <div className="lg:col-span-5 lg:pr-4 order-3 lg:order-1">
+          <div className="lg:col-span-4 lg:pr-4 order-3 lg:order-1">
             <HeroContent
               slides={HERO_SLIDES}
               active={active}
@@ -104,9 +104,9 @@ export function HeroCinematic() {
             />
           </div>
 
-          {/* RIGHT — cinematic visual */}
-          <div className="lg:col-span-7 order-1 lg:order-2 relative">
-            <div className="relative w-full aspect-[3/2] max-h-[min(72vh,720px)]">
+          {/* RIGHT — cinematic visual (larger footprint) */}
+          <div className="lg:col-span-8 order-1 lg:order-2 relative">
+            <div className="relative w-full aspect-[3/2] max-h-[min(85vh,860px)]">
               <HeroVisual
                 slides={HERO_SLIDES}
                 active={active}
