@@ -7,6 +7,7 @@ import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
 import { CTALink } from '@/components/ui/CTA';
+import { GatedDemoLink } from '@/components/ui/DemoGate';
 
 type FeatureCard = {
   index: string;
@@ -121,8 +122,8 @@ export default function DecisionIntelligenceClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Decision intelligence.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Decision intelligence.</span>
                 <span className="block text-gradient-aurora">Explained.</span>
               </h1>
             </Reveal>
@@ -138,9 +139,9 @@ export default function DecisionIntelligenceClient() {
                 <CTALink href="/contact" variant="solid" size="lg" arrow>
                   Book a demo
                 </CTALink>
-                <CTALink href="/demo" variant="outline" size="lg" arrow>
+                <GatedDemoLink href="/demo" variant="outline" size="lg" arrow>
                   Watch it in action
-                </CTALink>
+                </GatedDemoLink>
               </div>
             </Reveal>
           </div>
@@ -158,9 +159,9 @@ export default function DecisionIntelligenceClient() {
                 </Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">One ticket.</span>
-                  <span className="block">Four teams.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">One ticket.</span>
+                  <span className="block text-fg-strong">Four teams.</span>
                   <span className="block text-gradient-aurora">Zero handoffs.</span>
                 </h2>
               </Reveal>
@@ -218,8 +219,8 @@ export default function DecisionIntelligenceClient() {
                 </Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Six features.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Six features.</span>
                   <span className="block text-gradient-aurora">Seven capabilities.</span>
                 </h2>
               </Reveal>
@@ -270,8 +271,8 @@ export default function DecisionIntelligenceClient() {
                 </Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Features are what we ship.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Features are what we ship.</span>
                   <span className="block text-gradient-aurora">Capabilities are what they deliver.</span>
                 </h2>
               </Reveal>
@@ -308,7 +309,7 @@ export default function DecisionIntelligenceClient() {
                 </Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
+                <h2 className="text-h2 text-gradient-aurora">
                   Right surface for <span className="text-fg-mid">the right person.</span>
                 </h2>
               </Reveal>
@@ -347,7 +348,7 @@ export default function DecisionIntelligenceClient() {
                 </Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">What changed.</h2>
+                <h2 className="text-h2 text-gradient-aurora">What changed.</h2>
               </Reveal>
             </div>
           </div>
@@ -357,7 +358,7 @@ export default function DecisionIntelligenceClient() {
                 key={r.label}
                 className={`py-10 md:py-14 px-2 md:px-6 ${i > 0 ? 'lg:border-l lg:border-border' : ''} ${i % 2 === 1 ? 'border-l border-border lg:border-l' : ''} ${i >= 2 ? 'border-t border-border lg:border-t-0' : ''}`}
               >
-                <div className="text-display text-fg-strong tabular-nums leading-none mb-6">
+                <div className="text-h1 text-fg-strong tabular-nums leading-none mb-6">
                   {r.value}
                 </div>
                 <div className="text-eyebrow text-fg-strong mb-2">{r.label}</div>
@@ -376,7 +377,7 @@ export default function DecisionIntelligenceClient() {
         <Container size="wide" className="relative">
           <div className="max-w-5xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 Ready to see nia decide <span className="text-fg-mid">on your data?</span>
               </h2>
             </Reveal>

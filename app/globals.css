@@ -68,23 +68,24 @@
     --accent-orange: #fb923c;
     --accent-emerald: #10b981;
 
-    /* Aurora gradient stops — reusable across hero glows, big numerals, buttons */
-    --aurora-a: #8b5cf6;   /* violet */
-    --aurora-b: #ec4899;   /* pink */
-    --aurora-c: #22d3ee;   /* cyan */
-    --aurora-d: #6366f1;   /* indigo */
+    /* Aurora gradient stops — smooth pastel from Nainovate "N" logo
+       (light lavender → violet → soft cool blue). No dark indigo. */
+    --aurora-a: #a78bfa;   /* light violet */
+    --aurora-b: #b8a5f5;   /* lavender */
+    --aurora-c: #c4b5fd;   /* pale lavender */
+    --aurora-d: #a5c4e8;   /* soft cool blue (logo bottom-right tip) */
 
     /* Gradient tokens — for backgrounds, borders, text */
-    --grad-aurora: linear-gradient(135deg, var(--aurora-a) 0%, var(--aurora-b) 35%, var(--aurora-d) 70%, var(--aurora-c) 100%);
-    --grad-aurora-soft: linear-gradient(135deg, rgba(139,92,246,0.18) 0%, rgba(236,72,153,0.14) 50%, rgba(34,211,238,0.14) 100%);
-    --grad-violet-pink: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-    --grad-indigo-cyan: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+    --grad-aurora: linear-gradient(135deg, var(--aurora-a) 0%, var(--aurora-b) 35%, var(--aurora-c) 70%, var(--aurora-d) 100%);
+    --grad-aurora-soft: linear-gradient(135deg, rgba(167,139,250,0.18) 0%, rgba(196,181,253,0.14) 50%, rgba(165,196,232,0.14) 100%);
+    --grad-violet-pink: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+    --grad-indigo-cyan: linear-gradient(135deg, #a78bfa 0%, #a5c4e8 100%);
     --grad-mono: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
 
     /* Ambient glow overlays — sit behind hero + CTA sections */
-    --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(139,92,246,0.22), transparent 55%);
-    --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(34,211,238,0.18), transparent 55%);
-    --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(236,72,153,0.14), transparent 55%);
+    --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(167,139,250,0.22), transparent 55%);
+    --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(196,181,253,0.18), transparent 55%);
+    --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(165,196,232,0.14), transparent 55%);
 
     /* Transparent-black / transparent-white utility scale (needed for theme-aware opacity
        on giant background numerals — Tailwind arbitrary opacity syntax doesn't work
@@ -142,7 +143,7 @@
     /* Type scale — fluid. Consumed by .text-display / .text-h1 / etc. */
     --text-display: clamp(2.75rem, 6.5vw, 5.5rem);   /* 44 → 88 */
     --text-h1:      clamp(2rem, 4.4vw, 3.5rem);      /* 32 → 56 */
-    --text-h2:      clamp(1.625rem, 3vw, 2.5rem);    /* 26 → 40 */
+    --text-h2:      clamp(1.875rem, 3.4vw, 2.875rem); /* 30 → 46 */
     --text-h3:      clamp(1.25rem, 1.9vw, 1.5rem);   /* 20 → 24 */
     --text-h4:      clamp(1.0625rem, 1.4vw, 1.25rem);/* 17 → 20 */
     --text-body-lg: 1.0625rem;                       /* 17 */
@@ -198,11 +199,11 @@
     --shadow-lg: 0 24px 60px -20px rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.05);
     --shadow-glow: 0 0 40px -8px rgba(0,0,0,0.08);
 
-    /* Accent palette — softer on light theme */
-    --grad-aurora-soft: linear-gradient(135deg, rgba(139,92,246,0.10) 0%, rgba(236,72,153,0.08) 50%, rgba(34,211,238,0.08) 100%);
-    --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(139,92,246,0.14), transparent 55%);
-    --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(34,211,238,0.12), transparent 55%);
-    --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(236,72,153,0.10), transparent 55%);
+    /* Accent palette — soft logo lavender/blue, gentler on light theme */
+    --grad-aurora-soft: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(196,181,253,0.08) 50%, rgba(165,196,232,0.08) 100%);
+    --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(167,139,250,0.12), transparent 55%);
+    --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(196,181,253,0.10), transparent 55%);
+    --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(165,196,232,0.10), transparent 55%);
 
     /* Light-theme tints (inverted) */
     --tint-fg-2: rgba(0,0,0,0.03);
@@ -249,10 +250,10 @@
       --shadow-lg: 0 24px 60px -20px rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.05);
       --shadow-glow: 0 0 40px -8px rgba(0,0,0,0.08);
 
-      --grad-aurora-soft: linear-gradient(135deg, rgba(139,92,246,0.10) 0%, rgba(236,72,153,0.08) 50%, rgba(34,211,238,0.08) 100%);
-      --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(139,92,246,0.14), transparent 55%);
-      --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(34,211,238,0.12), transparent 55%);
-      --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(236,72,153,0.10), transparent 55%);
+      --grad-aurora-soft: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(196,181,253,0.08) 50%, rgba(165,196,232,0.08) 100%);
+      --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(167,139,250,0.12), transparent 55%);
+      --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(196,181,253,0.10), transparent 55%);
+      --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(165,196,232,0.10), transparent 55%);
       --tint-fg-2: rgba(0,0,0,0.03);
       --tint-fg-4: rgba(0,0,0,0.05);
       --tint-fg-8: rgba(0,0,0,0.09);
@@ -366,8 +367,14 @@
    Apply to the .overflow-hidden wrapper that surrounds a display line.
    0.32em covers most sans-serif descenders + gradient text bounding-box overflow. */
 .line-crop-safe {
-  padding-bottom: 0.32em;
-  margin-bottom: -0.12em; /* pull following line closer so extra padding doesn't add visible gap */
+  /* SplitLines siblings apply `overflow-hidden` for a slide-up mask, but
+     the mask container IS the element that animates y — so the mask
+     effect never applies. All overflow-hidden does here is clip descenders
+     (g, y, p, j, q) at the baseline. Force visible + a bit of pad so
+     descenders always render, on every heading size, across every page. */
+  overflow: visible !important;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.1em;
 }
 
 /* ---------------------------------------------------------------
@@ -382,12 +389,17 @@
    Color utilities — gradient text + aurora glow surfaces + 3D
    -------------------------------------------------------------- */
 .text-gradient-aurora {
-  background: var(--grad-aurora);
+  /* Unified heading gradient — matches hero CTA button.
+     Deep indigo → violet → lavender. Applied to every h1/h2 site-wide. */
+  background: linear-gradient(135deg, #3730a3 0%, #6d28d9 35%, #8b5cf6 70%, #c4b5fd 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  background-size: 200% 200%;
-  animation: gradient-drift 12s ease-in-out infinite;
+  /* Descender safety — background-clip:text can clip g/y/p descenders. */
+  display: inline-block;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.12em;
+  line-height: 1.1;
 }
 .text-gradient-violet-pink {
   background: var(--grad-violet-pink);
@@ -509,6 +521,20 @@ html[data-theme="light"] .grain::after { opacity: 0.05; mix-blend-mode: multiply
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-kenburns { animation: none; }
+}
+
+/* CapabilityWheel — halo pulse behind each satellite node */
+.cw-halo {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: cw-halo-pulse 3.6s ease-in-out infinite;
+}
+@keyframes cw-halo-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%      { opacity: 0.6;  transform: scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cw-halo { animation: none; opacity: 0.4; }
 }
 
 /* WhatsApp-style status fill on active hero slide bar */

@@ -6,6 +6,7 @@ import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
 import { CTALink } from '@/components/ui/CTA';
+import { GatedDemoLink } from '@/components/ui/DemoGate';
 
 type TimelineRow = { t: string; who: string; what: string };
 type Persona = { who: string; surface: string; what: string };
@@ -29,8 +30,8 @@ export default function CustomerSupportSolutionClient() {
               <Eyebrow tone="muted" withDot className="mb-8">Solution · Customer Support</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Support.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Support.</span>
                 <span className="block text-gradient-aurora">Resolved.</span>
               </h1>
             </Reveal>
@@ -44,7 +45,7 @@ export default function CustomerSupportSolutionClient() {
             <Reveal delay={0.15}>
               <div className="flex flex-col sm:flex-row gap-4">
                 <CTALink href="/contact" variant="solid" size="lg" arrow>Book a demo</CTALink>
-                <CTALink href="/demo" variant="outline" size="lg" arrow>See it live</CTALink>
+                <GatedDemoLink href="/demo" variant="outline" size="lg" arrow>See it live</GatedDemoLink>
               </div>
             </Reveal>
           </div>
@@ -60,8 +61,8 @@ export default function CustomerSupportSolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">One morning at Acme</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">FD-2104 lands at 5:45 AM.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">FD-2104 lands at 5:45 AM.</span>
                   <span className="block text-gradient-aurora">By 5:47, everything moves.</span>
                 </h2>
               </Reveal>
@@ -91,8 +92,8 @@ export default function CustomerSupportSolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Right surface for each role</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Nia meets each persona</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Nia meets each persona</span>
                   <span className="block text-gradient-aurora">where they work.</span>
                 </h2>
               </Reveal>
@@ -121,7 +122,7 @@ export default function CustomerSupportSolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Six weeks at Acme</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
+                <h2 className="text-h2 text-gradient-aurora">
                   <span className="block">Numbers.</span>
                 </h2>
               </Reveal>
@@ -133,7 +134,7 @@ export default function CustomerSupportSolutionClient() {
                 key={r.label}
                 className={`py-10 md:py-14 px-2 md:px-6 ${i > 0 ? 'lg:border-l lg:border-border' : ''} ${i % 2 === 1 ? 'border-l border-border lg:border-l' : ''} ${i >= 2 ? 'border-t border-border lg:border-t-0' : ''}`}
               >
-                <div className="text-display text-fg-strong tabular-nums leading-none mb-6">{r.value}</div>
+                <div className="text-h1 text-fg-strong tabular-nums leading-none mb-6">{r.value}</div>
                 <div className="text-eyebrow text-fg-strong mb-2">{r.label}</div>
                 {r.sub && <div className="text-body-sm text-fg-muted">{r.sub}</div>}
               </RevealItem>
@@ -150,7 +151,7 @@ export default function CustomerSupportSolutionClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 Ready to deflect L1 <span className="text-fg-mid">without hiring?</span>
               </h2>
             </Reveal>

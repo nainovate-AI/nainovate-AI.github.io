@@ -76,8 +76,8 @@ export default function AIAgentClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">L1 support.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">L1 support.</span>
                 <span className="block text-gradient-aurora">No human.</span>
               </h1>
             </Reveal>
@@ -101,8 +101,8 @@ export default function AIAgentClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Four scenarios</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Every question</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Every question</span>
                   <span className="block text-gradient-aurora">falls into four shapes.</span>
                 </h2>
               </Reveal>
@@ -176,9 +176,9 @@ export default function AIAgentClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Under the hood</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Every reply</span>
-                  <span className="block">lineage-linked.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Every reply</span>
+                  <span className="block text-fg-strong">lineage-linked.</span>
                   <span className="block text-gradient-aurora">Every decision explainable.</span>
                 </h2>
               </Reveal>
@@ -207,7 +207,7 @@ export default function AIAgentClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 Follow FD-2104 into <span className="text-fg-mid">the Signal Chain.</span>
               </h2>
             </Reveal>

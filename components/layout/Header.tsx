@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useDemoGate } from '@/components/ui/DemoGate';
 
 // Icon components (keeping existing ones)
 const PlatformIcon = () => (
@@ -134,6 +135,7 @@ interface NavItem {
 export function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { requestDemo, gateModal } = useDemoGate();
 
   const navigation: NavItem[] = [
     {
@@ -519,17 +521,20 @@ export function Header() {
                         <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 shadow-lg overflow-hidden">
 
                           {/* TRY DEMO BANNER */}
-                          <Link
-                            href="/demo"
-                            className="flex items-center justify-center gap-3 px-6 py-4 border-b border-border hover:bg-surface-2 transition-all group"
-                            onClick={() => setActiveDropdown(null)}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setActiveDropdown(null);
+                              requestDemo('/demo');
+                            }}
+                            className="flex items-center justify-center gap-3 px-6 py-4 border-b border-border hover:bg-surface-2 transition-all group w-full"
                           >
                             <span className="text-lg">🖐️</span>
                             <span className="text-sm text-fg-muted group-hover:text-fg-strong transition-colors">
                               Try it Live — Experience our AI solutions hands-on
                             </span>
                             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                          </Link>
+                          </button>
 
                           <div className="flex">
                             {/* AI FOR OPERATIONS Column */}
@@ -876,6 +881,7 @@ export function Header() {
           </div>
         )}
       </nav>
+      {gateModal}
     </header>
   );
 }

@@ -27,18 +27,18 @@ export function CTA() {
               <Eyebrow tone="muted" withDot className="mb-8">The Vision</Eyebrow>
             </Reveal>
 
-            <SplitLines className="text-display leading-[0.98] mb-10" stagger={0.14}>
+            <SplitLines className="text-h2 leading-[1.1] mb-10" stagger={0.14}>
               <motion.span
-                className="block overflow-hidden line-crop-safe text-fg-strong"
+                className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">When one function</span>
+                <span className="block text-fg-strong">When one function</span>
               </motion.span>
               <motion.span
-                className="block overflow-hidden line-crop-safe text-fg-strong"
+                className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">detects a signal,</span>
+                <span className="block text-fg-strong">detects a signal,</span>
               </motion.span>
               <motion.span
                 className="block overflow-hidden line-crop-safe"

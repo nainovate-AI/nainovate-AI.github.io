@@ -10,6 +10,7 @@ import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
 import { CTALink } from '@/components/ui/CTA';
+import { GatedDemoLink } from '@/components/ui/DemoGate';
 
 const mockupRegistry: Record<string, React.ComponentType> = {
   EnterpriseSearchMockup,
@@ -54,8 +55,8 @@ export default function SearchDataAIClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Search +</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Search +</span>
                 <span className="block text-gradient-aurora">Data AI.</span>
               </h1>
             </Reveal>
@@ -83,8 +84,8 @@ export default function SearchDataAIClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Capabilities</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Core</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Core</span>
                   <span className="block text-gradient-aurora">capabilities.</span>
                 </h2>
               </Reveal>
@@ -116,7 +117,7 @@ export default function SearchDataAIClient() {
           <div className="space-y-8">
             <div>
               <Eyebrow tone="muted" withDot className="mb-5">Section 0{sIdx + 1}</Eyebrow>
-              <h2 className="text-h1 text-fg-strong mb-6">{section.title}</h2>
+              <h2 className="text-h2 text-gradient-aurora mb-6">{section.title}</h2>
               <p className="text-body-lg text-fg-mid leading-relaxed">{section.description}</p>
             </div>
             <div className="space-y-6">
@@ -166,8 +167,8 @@ export default function SearchDataAIClient() {
               <Eyebrow tone="muted" withDot className="mb-6 justify-center">AI CoE Governance</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-h1 text-fg-strong mb-8">
-                <span className="block">Built with</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Built with</span>
                 <span className="block text-gradient-aurora">CoE governance.</span>
               </h2>
             </Reveal>
@@ -201,8 +202,8 @@ export default function SearchDataAIClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Explore more</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">More platform</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">More platform</span>
                   <span className="block text-gradient-aurora">features.</span>
                 </h2>
               </Reveal>
@@ -234,8 +235,8 @@ export default function SearchDataAIClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Ready to unify</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Ready to unify</span>
                 <span className="block text-gradient-aurora">your knowledge?</span>
               </h2>
             </Reveal>
@@ -249,9 +250,9 @@ export default function SearchDataAIClient() {
                 <CTALink href="/contact" variant="solid" size="lg" arrow>
                   Schedule Demo
                 </CTALink>
-                <CTALink href="/demo" variant="outline" size="lg" arrow>
+                <GatedDemoLink href="/demo" variant="outline" size="lg" arrow>
                   Try Interactive Demo
-                </CTALink>
+                </GatedDemoLink>
               </div>
             </Reveal>
           </div>

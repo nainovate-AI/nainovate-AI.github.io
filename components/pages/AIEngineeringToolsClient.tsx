@@ -54,8 +54,8 @@ export default function AIEngineeringToolsClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">AI Engineering</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">AI Engineering</span>
                 <span className="block text-gradient-aurora">Tools.</span>
               </h1>
             </Reveal>
@@ -83,8 +83,8 @@ export default function AIEngineeringToolsClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Capabilities</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Core</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Core</span>
                   <span className="block text-gradient-aurora">capabilities.</span>
                 </h2>
               </Reveal>
@@ -115,7 +115,7 @@ export default function AIEngineeringToolsClient() {
           <div className="space-y-8">
             <div>
               <Eyebrow tone="muted" withDot className="mb-5">Section 0{sIdx + 1}</Eyebrow>
-              <h2 className="text-h1 text-fg-strong mb-6">{section.title}</h2>
+              <h2 className="text-h2 text-gradient-aurora mb-6">{section.title}</h2>
               <p className="text-body-lg text-fg-mid leading-relaxed">
                 {section.description}
               </p>
@@ -169,8 +169,8 @@ export default function AIEngineeringToolsClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-h1 text-fg-strong mb-8">
-                <span className="block">Built with</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Built with</span>
                 <span className="block text-gradient-aurora">CoE governance.</span>
               </h2>
             </Reveal>
@@ -205,8 +205,8 @@ export default function AIEngineeringToolsClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Explore more</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">More platform</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">More platform</span>
                   <span className="block text-gradient-aurora">features.</span>
                 </h2>
               </Reveal>
@@ -236,8 +236,8 @@ export default function AIEngineeringToolsClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Ready to build</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Ready to build</span>
                 <span className="block text-gradient-aurora">with GenX?</span>
               </h2>
             </Reveal>

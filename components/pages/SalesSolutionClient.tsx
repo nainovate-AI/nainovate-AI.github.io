@@ -33,8 +33,8 @@ export default function SalesSolutionClient() {
               <Eyebrow tone="muted" withDot className="mb-8">Solution · Sales</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Pipeline.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Pipeline.</span>
                 <span className="block text-gradient-aurora">Honest.</span>
               </h1>
             </Reveal>
@@ -60,8 +60,8 @@ export default function SalesSolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Pipeline view · Q3 2026</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Every deal,</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Every deal,</span>
                   <span className="block text-gradient-aurora">in context.</span>
                 </h2>
               </Reveal>
@@ -118,8 +118,8 @@ export default function SalesSolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Rep briefing</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Every meeting starts</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Every meeting starts</span>
                   <span className="block text-gradient-aurora">with the full picture.</span>
                 </h2>
               </Reveal>
@@ -162,7 +162,7 @@ export default function SalesSolutionClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 Stop pitching expansion <span className="text-fg-mid">into broken deployments.</span>
               </h2>
             </Reveal>

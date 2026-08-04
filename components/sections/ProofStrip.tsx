@@ -36,7 +36,7 @@ export function ProofStrip() {
               delay={i * 0.06}
               className={`text-center md:text-left ${i > 0 ? 'md:pl-12 md:border-l md:border-border' : ''} ${i > 0 ? 'md:pr-8' : 'md:pr-8'}`}
             >
-              <div className="text-display text-fg-strong leading-none mb-3">
+              <div className="text-h1 text-fg-strong leading-none mb-3">
                 <CountUp value={s.n} />
               </div>
               <p className="text-eyebrow text-fg-muted">{s.l}</p>

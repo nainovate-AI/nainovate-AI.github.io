@@ -44,9 +44,9 @@ export default function SignalChainClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Watch.</span>
-                <span className="block">Recommend.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Watch.</span>
+                <span className="block text-fg-strong">Recommend.</span>
                 <span className="block text-gradient-aurora">Execute.</span>
               </h1>
             </Reveal>
@@ -70,8 +70,8 @@ export default function SignalChainClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">FD-2104 Walkthrough</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">One ticket. Three surfaces.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">One ticket. Three surfaces.</span>
                   <span className="block text-gradient-aurora">Full lineage.</span>
                 </h2>
               </Reveal>
@@ -221,7 +221,7 @@ export default function SignalChainClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 Every step needs to be explainable. <span className="text-fg-mid">Open the trace.</span>
               </h2>
             </Reveal>

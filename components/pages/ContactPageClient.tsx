@@ -132,8 +132,8 @@ export default function ContactPageClient() {
               <Eyebrow tone="muted" withDot className="mb-8">Contact</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Let&apos;s</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Let&apos;s</span>
                 <span className="block text-gradient-aurora">connect.</span>
               </h1>
             </Reveal>
@@ -157,8 +157,8 @@ export default function ContactPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Get in touch</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong mb-10 md:mb-14">
-                  <span className="block">Tell us about</span>
+                <h2 className="text-h2 mb-10 md:mb-14">
+                  <span className="block text-fg-strong">Tell us about</span>
                   <span className="block text-gradient-aurora">your project.</span>
                 </h2>
               </Reveal>
@@ -243,7 +243,7 @@ export default function ContactPageClient() {
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121826.27689281755!2d78.27798406762885!3d17.408372669616604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb952200059677%3A0xac28e1d107bc3e57!2sAVK%20SRI%20Harsha%20Icon!5e0!3m2!1sen!2sin!4v1753865250238!5m2!1sen!2sin"
                       width="100%"
                       height="100%"
-                      style={{ border: 0, filter: 'grayscale(1) contrast(1.1)' }}
+                      style={{ border: 0 }}
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
@@ -270,8 +270,8 @@ export default function ContactPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">FAQ</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Frequently</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Frequently</span>
                   <span className="block text-gradient-aurora">asked.</span>
                 </h2>
               </Reveal>

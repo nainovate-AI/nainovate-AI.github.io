@@ -28,8 +28,8 @@ export default function CustomerSuccessSolutionClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Health.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Health.</span>
                 <span className="block text-gradient-aurora">Watched.</span>
               </h1>
             </Reveal>
@@ -57,8 +57,8 @@ export default function CustomerSuccessSolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Account view · Account A</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">One account.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">One account.</span>
                   <span className="block text-gradient-aurora">Every lens. One view.</span>
                 </h2>
               </Reveal>
@@ -140,8 +140,8 @@ export default function CustomerSuccessSolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">CSM watchlists</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">The signals</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">The signals</span>
                   <span className="block text-gradient-aurora">that matter to renewal.</span>
                 </h2>
               </Reveal>
@@ -176,7 +176,7 @@ export default function CustomerSuccessSolutionClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 Never learn about a churn <span className="text-fg-mid">from the QBR again.</span>
               </h2>
             </Reveal>

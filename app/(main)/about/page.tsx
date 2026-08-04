@@ -96,8 +96,8 @@ export default function AboutPage() {
               <Eyebrow tone="muted" withDot className="mb-8">About</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Building the</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Building the</span>
                 <span className="block text-gradient-aurora">future of AI.</span>
               </h1>
             </Reveal>
@@ -120,8 +120,8 @@ export default function AboutPage() {
                 <Eyebrow tone="muted" withDot className="mb-5">Our Mission</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong mb-8">
-                  <span className="block">Democratize</span>
+                <h2 className="text-h2 mb-8">
+                  <span className="block text-fg-strong">Democratize</span>
                   <span className="block text-gradient-aurora">AI.</span>
                 </h2>
               </Reveal>
@@ -160,8 +160,8 @@ export default function AboutPage() {
                 <Eyebrow tone="muted" withDot className="mb-5">Our Story</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Three chapters.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Three chapters.</span>
                   <span className="block text-gradient-aurora">One trajectory.</span>
                 </h2>
               </Reveal>
@@ -205,8 +205,8 @@ export default function AboutPage() {
                 <Eyebrow tone="muted" withDot className="mb-5">Our Values</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Four principles.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Four principles.</span>
                   <span className="block text-gradient-aurora">Shipped every day.</span>
                 </h2>
               </Reveal>
@@ -239,8 +239,8 @@ export default function AboutPage() {
                 <Eyebrow tone="muted" withDot className="mb-5">Partners & Investors</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Backed by</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Backed by</span>
                   <span className="block text-gradient-aurora">the right people.</span>
                 </h2>
               </Reveal>
@@ -268,8 +268,8 @@ export default function AboutPage() {
         <Container size="wide" className="relative">
           <div className="max-w-5xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Join our</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Join our</span>
                 <span className="block text-gradient-aurora">mission.</span>
               </h2>
             </Reveal>

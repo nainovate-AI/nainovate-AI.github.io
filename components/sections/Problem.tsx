@@ -80,12 +80,12 @@ export function Problem() {
             <Reveal>
               <Eyebrow tone="muted" withDot className="mb-6">The AI Reality</Eyebrow>
             </Reveal>
-            <SplitLines className="text-display text-fg-strong leading-[0.98]">
+            <SplitLines className="text-h2 leading-[1.1]">
               <motion.span
                 className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">Why most AI</span>
+                <span className="block text-fg-strong">Why most AI</span>
               </motion.span>
               <motion.span
                 className="block overflow-hidden line-crop-safe"
@@ -157,20 +157,30 @@ export function Problem() {
               <Reveal>
                 <Eyebrow tone="muted" className="mb-6">The Challenge</Eyebrow>
               </Reveal>
-              <SplitLines className="text-h1 text-fg-strong">
+              <SplitLines className="text-h2">
                 <motion.span
                   className="block overflow-hidden line-crop-safe"
                   variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
                 >
-                  <span className="block">The challenge is <span className="text-fg-faint">not AI.</span></span>
+                  <span className="block text-fg-strong">The challenge is</span>
                 </motion.span>
                 <motion.span
                   className="block overflow-hidden line-crop-safe"
                   variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
                 >
-                  <span className="block">
-                    The challenge is <span className="text-gradient-aurora">fragmentation.</span>
-                  </span>
+                  <span className="block text-gradient-aurora">not AI.</span>
+                </motion.span>
+                <motion.span
+                  className="block overflow-hidden line-crop-safe"
+                  variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
+                >
+                  <span className="block text-fg-strong">The challenge is</span>
+                </motion.span>
+                <motion.span
+                  className="block overflow-hidden line-crop-safe"
+                  variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
+                >
+                  <span className="block text-gradient-aurora">fragmentation.</span>
                 </motion.span>
               </SplitLines>
             </div>

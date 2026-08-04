@@ -54,9 +54,9 @@ export default function TraceAuditClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Zero</span>
-                <span className="block">black</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Zero</span>
+                <span className="block text-fg-strong">black</span>
                 <span className="block text-gradient-aurora">box.</span>
               </h1>
             </Reveal>
@@ -80,8 +80,8 @@ export default function TraceAuditClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Trace trace_acme_p0_2104</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Open a trace.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Open a trace.</span>
                   <span className="block text-gradient-aurora">See the whole decision.</span>
                 </h2>
               </Reveal>
@@ -184,8 +184,8 @@ export default function TraceAuditClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Why it matters</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Explainability is not a feature.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Explainability is not a feature.</span>
                   <span className="block text-gradient-aurora">It is the contract.</span>
                 </h2>
               </Reveal>
@@ -210,7 +210,7 @@ export default function TraceAuditClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 One ticket triggered four teams. <span className="text-fg-mid">See how they land.</span>
               </h2>
             </Reveal>

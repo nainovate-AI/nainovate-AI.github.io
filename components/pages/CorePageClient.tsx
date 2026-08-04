@@ -79,8 +79,8 @@ export default function CorePageClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Create AI</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Create AI</span>
                 <span className="block text-gradient-aurora">Agents.</span>
               </h1>
             </Reveal>
@@ -108,8 +108,8 @@ export default function CorePageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Modules</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">CORE</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">CORE</span>
                   <span className="block text-gradient-aurora">modules.</span>
                 </h2>
               </Reveal>
@@ -146,8 +146,8 @@ export default function CorePageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Any use case</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Build agents for</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Build agents for</span>
                   <span className="block text-gradient-aurora">any use case.</span>
                 </h2>
               </Reveal>
@@ -192,7 +192,7 @@ export default function CorePageClient() {
               <div className="grid md:grid-cols-3">
                 {buildProcess.map((step, i) => (
                   <div key={step.number} className={`p-8 md:p-12 ${i > 0 ? 'md:border-l md:border-border border-t md:border-t-0 border-border' : ''}`}>
-                    <div className="text-display text-fg-strong tabular-nums leading-none mb-8">{step.number}</div>
+                    <div className="text-h1 text-fg-strong tabular-nums leading-none mb-8">{step.number}</div>
                     <h3 className="text-h4 text-fg-strong mb-4">{step.title}</h3>
                     <p className="text-body-md text-fg-mid leading-relaxed">{step.description}</p>
                   </div>
@@ -211,8 +211,8 @@ export default function CorePageClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Start</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Start</span>
                 <span className="block text-gradient-aurora">building today.</span>
               </h2>
             </Reveal>

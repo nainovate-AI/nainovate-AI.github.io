@@ -85,18 +85,18 @@ export function Category() {
             <Reveal>
               <Eyebrow tone="muted" withDot className="mb-6">Decision Intelligence</Eyebrow>
             </Reveal>
-            <SplitLines className="text-display leading-[0.98] mb-10">
+            <SplitLines className="text-h2 leading-[1.1] mb-10">
               <motion.span
-                className="block overflow-hidden line-crop-safe text-fg-strong"
+                className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">Six features.</span>
+                <span className="block text-fg-strong">Six features.</span>
               </motion.span>
               <motion.span
-                className="block overflow-hidden line-crop-safe text-fg-strong"
+                className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">Seven capabilities.</span>
+                <span className="block text-fg-strong">Seven capabilities.</span>
               </motion.span>
               <motion.span
                 className="block overflow-hidden line-crop-safe"
@@ -132,19 +132,6 @@ export function Category() {
               <div className="relative aspect-square rounded-2xl2 border border-border bg-black/50 backdrop-blur-xl overflow-hidden shadow-lg">
                 {/* Aurora gradient border ring */}
                 <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-2xl2 border-aurora opacity-70" />
-                {/* Corner LIVE badge */}
-                <div className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-eyebrow text-white/90 bg-black/40 backdrop-blur border border-white/10">
-                  <span className="relative inline-flex w-1.5 h-1.5">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-[color:var(--accent-cyan)] opacity-70 animate-ping" />
-                    <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-[color:var(--accent-cyan)]" />
-                  </span>
-                  <span>Neural mesh · Live</span>
-                </div>
-                {/* Corner meta */}
-                <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between text-eyebrow text-white/60">
-                  <span>26 nodes · 78 edges</span>
-                  <span className="font-mono">rotate · hover</span>
-                </div>
                 <NeuralNetwork />
               </div>
             </TiltCard>

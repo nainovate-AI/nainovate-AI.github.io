@@ -123,8 +123,8 @@ export default function FlowPage() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">AI</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">AI</span>
                 <span className="block text-gradient-aurora">Workflows.</span>
               </h1>
             </Reveal>
@@ -157,8 +157,8 @@ export default function FlowPage() {
                 <Eyebrow tone="muted" withDot className="mb-5">Patterns</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Workflow</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Workflow</span>
                   <span className="block text-gradient-aurora">patterns.</span>
                 </h2>
               </Reveal>
@@ -203,8 +203,8 @@ export default function FlowPage() {
                 <Eyebrow tone="muted" withDot className="mb-5">Features</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Powerful</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Powerful</span>
                   <span className="block text-gradient-aurora">features.</span>
                 </h2>
               </Reveal>
@@ -234,8 +234,8 @@ export default function FlowPage() {
                 <Eyebrow tone="muted" withDot className="mb-5">Templates</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Start with</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Start with</span>
                   <span className="block text-gradient-aurora">templates.</span>
                 </h2>
               </Reveal>
@@ -267,8 +267,8 @@ export default function FlowPage() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Orchestrate</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Orchestrate</span>
                 <span className="block text-gradient-aurora">your AI.</span>
               </h2>
             </Reveal>

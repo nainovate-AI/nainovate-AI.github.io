@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { CTALink } from '@/components/ui/CTA';
+import { GatedDemoLink, useDemoGate } from '@/components/ui/DemoGate';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 type LinkGroup = {
@@ -79,6 +80,7 @@ const groups: LinkGroup[] = [
 ];
 
 export function Footer() {
+  const { requestDemo, gateModal } = useDemoGate();
   return (
     <footer className="relative border-t border-border-strong overflow-hidden">
       {/* Aurora ambient backdrop */}
@@ -99,7 +101,7 @@ export function Footer() {
             <Eyebrow tone="muted" withDot className="mb-6">
               Let&apos;s work together
             </Eyebrow>
-            <p className="text-display leading-[0.98] tracking-[-0.035em]">
+            <p className="text-h2 leading-[1.1] tracking-[-0.02em]">
               <span className="block text-fg-strong">Build enterprise AI</span>
               <span className="block text-gradient-aurora">that actually ships.</span>
             </p>
@@ -112,9 +114,9 @@ export function Footer() {
               <CTALink href="/contact" variant="solid" size="md" arrow>
                 Contact Sales
               </CTALink>
-              <CTALink href="/demo" variant="outline" size="md" arrow>
+              <GatedDemoLink href="/demo" variant="outline" size="md" arrow>
                 Try Demo
-              </CTALink>
+              </GatedDemoLink>
             </div>
           </div>
         </div>
@@ -136,21 +138,18 @@ export function Footer() {
                   <h3 className="text-eyebrow text-fg-strong">{group.heading}</h3>
                 </div>
                 <ul className="space-y-3">
-                  {group.items.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="group inline-flex items-center gap-2 text-body-sm text-fg-muted transition-colors duration-300"
-                        style={{
-                          // Hover color set via CSS var trick — Tailwind can't do accent per group
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLElement).style.color = `rgb(${group.accent})`;
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLElement).style.color = '';
-                        }}
-                      >
+                  {group.items.map((item) => {
+                    const isDemo = item.href.startsWith('/demo');
+                    const linkClass =
+                      'group inline-flex items-center gap-2 text-body-sm text-fg-muted transition-colors duration-300';
+                    const onEnter = (e: React.MouseEvent | React.FocusEvent) => {
+                      (e.currentTarget as HTMLElement).style.color = `rgb(${group.accent})`;
+                    };
+                    const onLeave = (e: React.MouseEvent | React.FocusEvent) => {
+                      (e.currentTarget as HTMLElement).style.color = '';
+                    };
+                    const inner = (
+                      <>
                         <span>{item.label}</span>
                         {item.badge === 'live' && (
                           <span className="relative inline-flex w-1.5 h-1.5">
@@ -161,9 +160,34 @@ export function Footer() {
                         <span aria-hidden="true" className="opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1 group-hover:translate-x-0">
                           →
                         </span>
-                      </Link>
-                    </li>
-                  ))}
+                      </>
+                    );
+
+                    return (
+                      <li key={item.href}>
+                        {isDemo ? (
+                          <button
+                            type="button"
+                            onClick={() => requestDemo(item.href)}
+                            className={linkClass}
+                            onMouseEnter={onEnter}
+                            onMouseLeave={onLeave}
+                          >
+                            {inner}
+                          </button>
+                        ) : (
+                          <Link
+                            href={item.href}
+                            className={linkClass}
+                            onMouseEnter={onEnter}
+                            onMouseLeave={onLeave}
+                          >
+                            {inner}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
@@ -204,6 +228,7 @@ export function Footer() {
           </div>
         </div>
       </Container>
+      {gateModal}
     </footer>
   );
 }

@@ -55,8 +55,8 @@ export default function SecurityGovernanceClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Security &</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Security &</span>
                 <span className="block text-gradient-aurora">Governance.</span>
               </h1>
             </Reveal>
@@ -84,8 +84,8 @@ export default function SecurityGovernanceClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Security</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Core security</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Core security</span>
                   <span className="block text-gradient-aurora">capabilities.</span>
                 </h2>
               </Reveal>
@@ -116,7 +116,7 @@ export default function SecurityGovernanceClient() {
           <div className="space-y-8">
             <div>
               <Eyebrow tone="muted" withDot className="mb-5">Section 0{sIdx + 1}</Eyebrow>
-              <h2 className="text-h1 text-fg-strong mb-6">{section.title}</h2>
+              <h2 className="text-h2 text-gradient-aurora mb-6">{section.title}</h2>
               <p className="text-body-lg text-fg-mid leading-relaxed">{section.description}</p>
             </div>
             <div className="space-y-6">
@@ -166,8 +166,8 @@ export default function SecurityGovernanceClient() {
               <Eyebrow tone="muted" withDot className="mb-6 justify-center">AI CoE Governance</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-h1 text-fg-strong mb-8">
-                <span className="block">Built with</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Built with</span>
                 <span className="block text-gradient-aurora">CoE governance.</span>
               </h2>
             </Reveal>
@@ -201,8 +201,8 @@ export default function SecurityGovernanceClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Explore more</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">More platform</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">More platform</span>
                   <span className="block text-gradient-aurora">features.</span>
                 </h2>
               </Reveal>
@@ -232,8 +232,8 @@ export default function SecurityGovernanceClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Ready to deploy</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Ready to deploy</span>
                 <span className="block text-gradient-aurora">securely?</span>
               </h2>
             </Reveal>

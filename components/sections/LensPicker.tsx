@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
@@ -11,6 +10,7 @@ import { SplitLines } from '@/components/ui/motion/SplitText';
 import { TiltCard } from '@/components/ui/motion/TiltCard';
 import { Magnetic } from '@/components/ui/motion/Magnetic';
 import { MouseSpotlight } from '@/components/ui/motion/MouseSpotlight';
+import { useDemoGate } from '@/components/ui/DemoGate';
 
 type Lens = {
   index: string;
@@ -72,6 +72,7 @@ const lenses: Lens[] = [
 ];
 
 export function LensPicker() {
+  const { requestDemo, gateModal } = useDemoGate();
   return (
     <Section spacing="xl" className="relative overflow-hidden">
       {/* Ambient grid backdrop */}
@@ -91,12 +92,12 @@ export function LensPicker() {
             <Reveal>
               <Eyebrow tone="muted" withDot className="mb-5">Pick your lens</Eyebrow>
             </Reveal>
-            <SplitLines className="text-h1 text-fg-strong">
+            <SplitLines className="text-h2">
               <motion.span
                 className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">Two worlds.</span>
+                <span className="block text-fg-strong">Two worlds.</span>
               </motion.span>
               <motion.span
                 className="block overflow-hidden line-crop-safe"
@@ -120,10 +121,18 @@ export function LensPicker() {
           {lenses.map((lens, idx) => (
             <Reveal key={lens.index} delay={idx * 0.1}>
               <TiltCard className="h-full" intensity={5}>
-                <Link
-                  href={lens.href}
+                <div
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => requestDemo(lens.href)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      requestDemo(lens.href);
+                    }
+                  }}
                   aria-label={lens.ariaLabel}
-                  className="group relative block h-full rounded-xl2 border border-border overflow-hidden bg-bg-elevated"
+                  className="group relative block h-full rounded-xl2 border border-border overflow-hidden bg-bg-elevated cursor-pointer"
                 >
                   <MouseSpotlight size={480} intensity={0.05} className="h-full">
                     <div className="relative p-8 md:p-12 lg:p-14 flex flex-col h-full">
@@ -199,12 +208,13 @@ export function LensPicker() {
                       />
                     </div>
                   </MouseSpotlight>
-                </Link>
+                </div>
               </TiltCard>
             </Reveal>
           ))}
         </div>
       </Container>
+      {gateModal}
     </Section>
   );
 }

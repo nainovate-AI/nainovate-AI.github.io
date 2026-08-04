@@ -105,8 +105,8 @@ export default function CoordinationClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Four lenses.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Four lenses.</span>
                 <span className="block text-gradient-aurora">One customer.</span>
               </h1>
             </Reveal>
@@ -130,8 +130,8 @@ export default function CoordinationClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Live initiatives</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Every initiative starts with a signal.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Every initiative starts with a signal.</span>
                   <span className="block text-gradient-aurora">Ends with an outcome.</span>
                 </h2>
               </Reveal>
@@ -203,8 +203,8 @@ export default function CoordinationClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Why coordination matters</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">The ticket is a symptom.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">The ticket is a symptom.</span>
                   <span className="block text-gradient-aurora">The initiative is the cure.</span>
                 </h2>
               </Reveal>
@@ -254,7 +254,7 @@ export default function CoordinationClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 See how the six features <span className="text-fg-mid">land in your teams.</span>
               </h2>
             </Reveal>

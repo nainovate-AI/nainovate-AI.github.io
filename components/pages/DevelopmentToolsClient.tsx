@@ -80,8 +80,8 @@ export default function DevelopmentToolsClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">No-Code +</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">No-Code +</span>
                 <span className="block text-gradient-aurora">Pro-Code Tools.</span>
               </h1>
             </Reveal>
@@ -109,8 +109,8 @@ export default function DevelopmentToolsClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Capabilities</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Core development</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Core development</span>
                   <span className="block text-gradient-aurora">capabilities.</span>
                 </h2>
               </Reveal>
@@ -142,7 +142,7 @@ export default function DevelopmentToolsClient() {
           <div className="space-y-8">
             <div>
               <Eyebrow tone="muted" withDot className="mb-5">Section 0{i + 1}</Eyebrow>
-              <h2 className="text-h1 text-fg-strong mb-6">{sec.heading}</h2>
+              <h2 className="text-h2 text-gradient-aurora mb-6">{sec.heading}</h2>
               <p className="text-body-lg text-fg-mid leading-relaxed">{sec.description}</p>
             </div>
             <div className="space-y-6">
@@ -192,8 +192,8 @@ export default function DevelopmentToolsClient() {
               <Eyebrow tone="muted" withDot className="mb-6 justify-center">AI CoE Governance</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-h1 text-fg-strong mb-8">
-                <span className="block">Built with</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Built with</span>
                 <span className="block text-gradient-aurora">CoE governance.</span>
               </h2>
             </Reveal>
@@ -227,8 +227,8 @@ export default function DevelopmentToolsClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Path</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Choose your</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Choose your</span>
                   <span className="block text-gradient-aurora">development path.</span>
                 </h2>
               </Reveal>
@@ -262,8 +262,8 @@ export default function DevelopmentToolsClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Explore more</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">More platform</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">More platform</span>
                   <span className="block text-gradient-aurora">features.</span>
                 </h2>
               </Reveal>
@@ -293,8 +293,8 @@ export default function DevelopmentToolsClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Start</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Start</span>
                 <span className="block text-gradient-aurora">building today.</span>
               </h2>
             </Reveal>

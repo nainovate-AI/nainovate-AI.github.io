@@ -58,7 +58,7 @@ function SolidBody({ children, arrow }: { children: ReactNode; arrow?: boolean }
       <span
         aria-hidden="true"
         className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: 'linear-gradient(135deg, #22d3ee 0%, #8b5cf6 50%, #ec4899 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 35%, #6d28d9 70%, #3730a3 100%)' }}
       />
       <span className="relative">{children}</span>
       {arrow && <ArrowIcon />}
@@ -94,7 +94,12 @@ function computeClasses(variant: Variant, size: Size, fullWidth: boolean, extra:
 }
 
 function solidStyle(): React.CSSProperties {
-  return { background: 'var(--grad-aurora)', backgroundSize: '200% 200%' };
+  // Deep-indigo logo palette — buttons override the soft aurora tokens.
+  // Use backgroundImage (non-shorthand) to avoid React warning with backgroundSize.
+  return {
+    backgroundImage: 'linear-gradient(135deg, #3730a3 0%, #6d28d9 35%, #8b5cf6 70%, #c4b5fd 100%)',
+    backgroundSize: '200% 200%',
+  };
 }
 
 export const CTA = forwardRef<HTMLButtonElement, ButtonProps>(function CTA(

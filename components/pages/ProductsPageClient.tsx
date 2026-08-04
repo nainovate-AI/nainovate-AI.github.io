@@ -139,8 +139,8 @@ export default function ProductsPageClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">The GenX</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">The GenX</span>
                 <span className="block text-gradient-aurora">Platform.</span>
               </h1>
             </Reveal>
@@ -182,8 +182,8 @@ export default function ProductsPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Comparison</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">What makes</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">What makes</span>
                   <span className="block text-gradient-aurora">GenX different?</span>
                 </h2>
               </Reveal>
@@ -291,8 +291,8 @@ export default function ProductsPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Architecture</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Four integrated</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Four integrated</span>
                   <span className="block text-gradient-aurora">capabilities.</span>
                 </h2>
               </Reveal>
@@ -338,8 +338,8 @@ export default function ProductsPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">AI Center of Excellence</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">GenX at the core.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">GenX at the core.</span>
                   <span className="block text-gradient-aurora">CoE as the layer.</span>
                 </h2>
               </Reveal>
@@ -649,8 +649,8 @@ export default function ProductsPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Platform</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Six feature groups.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Six feature groups.</span>
                   <span className="block text-gradient-aurora">One unified platform.</span>
                 </h2>
               </Reveal>
@@ -688,8 +688,8 @@ export default function ProductsPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Deep dive</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Explore</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Explore</span>
                   <span className="block text-gradient-aurora">components.</span>
                 </h2>
               </Reveal>
@@ -703,7 +703,7 @@ export default function ProductsPageClient() {
                   <span aria-hidden="true" className="absolute inset-0 origin-left scale-x-0 bg-fg-strong transition-transform duration-500 ease-out-quart group-hover:scale-x-100" />
                   <div className="relative py-8 md:py-12 flex items-center justify-between gap-6 transition-colors duration-500 group-hover:text-fg-invert">
                     <div className="flex items-center gap-6 md:gap-10">
-                      <span className="text-display text-fg-faint group-hover:text-fg-invert tabular-nums leading-none transition-colors duration-500" style={{}}>
+                      <span className="text-h1 text-fg-faint group-hover:text-fg-invert tabular-nums leading-none transition-colors duration-500" style={{}}>
                         {c.num}
                       </span>
                       <div>
@@ -733,8 +733,8 @@ export default function ProductsPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Enterprise</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Built for</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Built for</span>
                   <span className="block text-gradient-aurora">enterprise.</span>
                 </h2>
               </Reveal>
@@ -788,8 +788,8 @@ export default function ProductsPageClient() {
         <Container size="wide" className="relative">
           <div className="max-w-5xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Ready to transform</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Ready to transform</span>
                 <span className="block text-gradient-aurora">your AI operations?</span>
               </h2>
             </Reveal>

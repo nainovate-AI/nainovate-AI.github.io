@@ -10,6 +10,7 @@ import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
 import { CTALink } from '@/components/ui/CTA';
+import { GatedDemoLink } from '@/components/ui/DemoGate';
 
 type TabKey = 'operations' | 'engagement' | 'intelligence';
 
@@ -150,8 +151,8 @@ export default function SolutionsPageClient() {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Enterprise AI</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Enterprise AI</span>
                 <span className="block text-gradient-aurora">Solutions.</span>
               </h1>
             </Reveal>
@@ -224,7 +225,7 @@ export default function SolutionsPageClient() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h2 className="text-h1 text-fg-strong mb-6">{currentSolution.title}</h2>
+                  <h2 className="text-h2 text-gradient-aurora mb-6">{currentSolution.title}</h2>
                   <p className="text-body-lg text-fg-mid mb-10 leading-relaxed max-w-2xl">
                     {currentSolution.subtitle}
                   </p>
@@ -271,8 +272,8 @@ export default function SolutionsPageClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Delivery formats</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong mb-6">
-                  <span className="block">Choose your</span>
+                <h2 className="text-h2 mb-6">
+                  <span className="block text-fg-strong">Choose your</span>
                   <span className="block text-gradient-aurora">delivery format.</span>
                 </h2>
               </Reveal>
@@ -345,8 +346,8 @@ export default function SolutionsPageClient() {
               <Eyebrow tone="muted" withDot className="mb-5">Interactive demo</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-h1 text-fg-strong mb-6">
-                <span className="block">Try it</span>
+              <h2 className="text-h2 mb-6">
+                <span className="block text-fg-strong">Try it</span>
                 <span className="block text-gradient-aurora">yourself.</span>
               </h2>
             </Reveal>
@@ -370,9 +371,9 @@ export default function SolutionsPageClient() {
 
           <Reveal>
             <div className="flex justify-center">
-              <CTALink href="/demo" variant="solid" size="lg" arrow>
+              <GatedDemoLink href="/demo" variant="solid" size="lg" arrow>
                 Launch Interactive Demo
-              </CTALink>
+              </GatedDemoLink>
             </div>
           </Reveal>
         </Container>
@@ -386,8 +387,8 @@ export default function SolutionsPageClient() {
         <Container size="wide" className="relative">
           <div className="max-w-5xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-8">
-                <span className="block">Ready to deploy</span>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Ready to deploy</span>
                 <span className="block text-gradient-aurora">AI solutions?</span>
               </h2>
             </Reveal>

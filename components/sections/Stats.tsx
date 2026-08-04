@@ -41,12 +41,12 @@ export function Stats() {
             <Reveal>
               <Eyebrow tone="muted" withDot className="mb-6">Traction</Eyebrow>
             </Reveal>
-            <SplitLines className="text-display leading-[0.98]">
+            <SplitLines className="text-h2 leading-[1.1]">
               <motion.span
-                className="block overflow-hidden line-crop-safe text-fg-strong"
+                className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">Early</span>
+                <span className="block text-fg-strong">Early</span>
               </motion.span>
               <motion.span
                 className="block overflow-hidden line-crop-safe"
@@ -86,7 +86,7 @@ export function Stats() {
                   style={{ filter: 'blur(60px)' }}
                 />
                 <div className="relative">
-                  <div className={`text-display leading-none mb-6 md:mb-8 bg-gradient-to-br ${gradient} bg-clip-text text-transparent tabular-nums`}>
+                  <div className={`text-h1 leading-none mb-6 md:mb-8 bg-gradient-to-br ${gradient} bg-clip-text text-transparent tabular-nums`}>
                     <CountUp value={s.number} suffix={s.suffix} duration={1.8} />
                   </div>
                   <div className="text-eyebrow text-fg-strong mb-2">{s.label}</div>

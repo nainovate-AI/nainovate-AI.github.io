@@ -27,8 +27,8 @@ export default function DeliverySolutionClient() {
               <Eyebrow tone="muted" withDot className="mb-8">Solution · Delivery</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="text-display text-fg-strong mb-10">
-                <span className="block">Delivery.</span>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Delivery.</span>
                 <span className="block text-gradient-aurora">Rescued.</span>
               </h1>
             </Reveal>
@@ -55,8 +55,8 @@ export default function DeliverySolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Account A Phase 2 · Rescue plan</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Milestone slip spotted</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Milestone slip spotted</span>
                   <span className="block text-gradient-aurora">21 days before steering.</span>
                 </h2>
               </Reveal>
@@ -119,8 +119,8 @@ export default function DeliverySolutionClient() {
                 <Eyebrow tone="muted" withDot className="mb-5">Portfolio view</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="text-h1 text-fg-strong">
-                  <span className="block">Every project. Every milestone.</span>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Every project. Every milestone.</span>
                   <span className="block text-gradient-aurora">One dashboard.</span>
                 </h2>
               </Reveal>
@@ -152,7 +152,7 @@ export default function DeliverySolutionClient() {
         <Container size="wide" className="relative">
           <div className="max-w-4xl">
             <Reveal>
-              <h2 className="text-display text-fg-strong mb-10">
+              <h2 className="text-h2 text-gradient-aurora mb-10">
                 Never learn about a slip <span className="text-fg-mid">at steering again.</span>
               </h2>
             </Reveal>

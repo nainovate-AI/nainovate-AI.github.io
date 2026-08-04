@@ -86,18 +86,18 @@ export function Features() {
             <Reveal>
               <Eyebrow tone="muted" withDot className="mb-6">How it works</Eyebrow>
             </Reveal>
-            <SplitLines className="text-display leading-[0.98]">
+            <SplitLines className="text-h2 leading-[1.1]">
               <motion.span
-                className="block overflow-hidden line-crop-safe text-fg-strong"
+                className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">One enterprise.</span>
+                <span className="block text-fg-strong">One enterprise.</span>
               </motion.span>
               <motion.span
-                className="block overflow-hidden line-crop-safe text-fg-strong"
+                className="block overflow-hidden line-crop-safe"
                 variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
               >
-                <span className="block">One decision</span>
+                <span className="block text-fg-strong">One decision</span>
               </motion.span>
               <motion.span
                 className="block overflow-hidden line-crop-safe"
