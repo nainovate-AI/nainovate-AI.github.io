@@ -135,8 +135,8 @@ export function LensPicker() {
                   className="group relative block h-full rounded-xl2 border border-border overflow-hidden bg-bg-elevated cursor-pointer"
                 >
                   <MouseSpotlight size={480} intensity={0.05} className="h-full">
-                    <div className="relative p-8 md:p-12 lg:p-14 flex flex-col h-full">
-                      <div className="flex items-start justify-between mb-10 md:mb-14">
+                    <div className="relative p-6 md:p-8 lg:p-10 flex flex-col h-full">
+                      <div className="flex items-start justify-between mb-7 md:mb-10">
                         <div className="flex items-center gap-4">
                           <span className="text-eyebrow text-fg-faint tabular-nums">{lens.index}</span>
                           <span className="text-eyebrow text-fg-mid">{lens.kicker}</span>
@@ -170,23 +170,23 @@ export function LensPicker() {
                       </div>
 
                       <motion.div
-                        className="mb-10 md:mb-14"
+                        className="mb-6 md:mb-8"
                         initial={{ opacity: 0, scale: 0.85, rotate: -6 }}
                         whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                         viewport={{ once: true, margin: '-80px' }}
                         transition={{ duration: 0.9, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                       >
-                        <lens.Icon className="w-16 h-16 md:w-20 md:h-20 text-fg-mid group-hover:text-fg-strong transition-colors duration-500" />
+                        <lens.Icon className="w-11 h-11 md:w-14 md:h-14 text-fg-mid group-hover:text-fg-strong transition-colors duration-500" />
                       </motion.div>
 
-                      <h3 className="text-h2 text-fg-strong mb-5">
+                      <h3 className="text-h4 text-fg-strong mb-3">
                         {lens.title}
                       </h3>
-                      <p className="text-body-lg text-fg-mid leading-relaxed max-w-lg">
+                      <p className="text-body-md text-fg-mid leading-relaxed max-w-lg">
                         {lens.description}
                       </p>
 
-                      <div className="mt-12 md:mt-16 pt-8 border-t border-border grid grid-cols-3 gap-4">
+                      <div className="mt-8 md:mt-10 pt-6 border-t border-border grid grid-cols-3 gap-4">
                         {lens.metrics.map((m, mi) => (
                           <motion.div
                             key={m.label}

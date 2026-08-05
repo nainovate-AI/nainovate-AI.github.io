@@ -131,7 +131,7 @@ export function Industries() {
                   </div>
                   <div className="md:col-span-3">
                     <p
-                      className="text-h2 text-fg-strong transition-all duration-500 group-hover:translate-x-2"
+                      className="text-h4 text-fg-strong transition-all duration-500 group-hover:translate-x-2"
                       style={{ textShadow: undefined }}
                     >
                       {u.metric}
