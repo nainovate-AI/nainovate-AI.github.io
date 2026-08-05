@@ -144,7 +144,7 @@ export function Features() {
             </svg>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-16 lg:gap-x-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-6 gap-y-12 md:gap-y-16">
             {steps.map((s, i) => {
               const rgb = accentHex[s.accent];
               const gradient = accentGradient[s.accent];

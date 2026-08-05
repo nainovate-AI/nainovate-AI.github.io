@@ -83,7 +83,7 @@ export default function PublicSectorHub() {
             ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
             md:translate-x-0
             ${sidebarCollapsed ? 'md:w-16' : 'md:w-[260px]'}
-            w-[260px]`}
+            w-[min(85vw,260px)]`}
           style={{ background: 'var(--gd-bg)' }}
         >
           {/* Brand */}

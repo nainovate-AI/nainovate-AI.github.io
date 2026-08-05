@@ -279,20 +279,22 @@ export default function DecisionIntelligenceClient() {
             </div>
           </div>
           <Reveal>
-            <div className="border border-border rounded-xl2 overflow-hidden">
-              <div className="grid grid-cols-2 border-b border-border bg-surface">
-                <div className="p-5 md:p-6 text-eyebrow text-fg-mid">Feature</div>
-                <div className="p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Capability it delivers</div>
-              </div>
-              {crosswalk.map(([feat, cap], i) => (
-                <div
-                  key={feat}
-                  className={`grid grid-cols-2 ${i > 0 ? 'border-t border-border' : ''} hover:bg-surface transition-colors`}
-                >
-                  <div className="p-5 md:p-6 text-body-md text-fg-strong">{feat}</div>
-                  <div className="p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{cap}</div>
+            <div className="border border-border rounded-xl2 overflow-x-auto">
+              <div className="min-w-[520px]">
+                <div className="grid grid-cols-2 border-b border-border bg-surface">
+                  <div className="p-5 md:p-6 text-eyebrow text-fg-mid">Feature</div>
+                  <div className="p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Capability it delivers</div>
                 </div>
-              ))}
+                {crosswalk.map(([feat, cap], i) => (
+                  <div
+                    key={feat}
+                    className={`grid grid-cols-2 ${i > 0 ? 'border-t border-border' : ''} hover:bg-surface transition-colors`}
+                  >
+                    <div className="p-5 md:p-6 text-body-md text-fg-strong">{feat}</div>
+                    <div className="p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{cap}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </Container>
@@ -316,22 +318,24 @@ export default function DecisionIntelligenceClient() {
             </div>
           </div>
           <Reveal>
-            <div className="border border-border rounded-xl2 overflow-hidden">
-              <div className="grid grid-cols-12 border-b border-border bg-surface">
-                <div className="col-span-4 p-5 md:p-6 text-eyebrow text-fg-mid">Persona</div>
-                <div className="col-span-3 p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Primary workspace</div>
-                <div className="col-span-5 p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Nia presentation</div>
-              </div>
-              {personas.map(([persona, workspace, presentation], i) => (
-                <div
-                  key={persona}
-                  className={`grid grid-cols-12 ${i > 0 ? 'border-t border-border' : ''} hover:bg-surface transition-colors`}
-                >
-                  <div className="col-span-4 p-5 md:p-6 text-body-md text-fg-strong">{persona}</div>
-                  <div className="col-span-3 p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{workspace}</div>
-                  <div className="col-span-5 p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{presentation}</div>
+            <div className="border border-border rounded-xl2 overflow-x-auto">
+              <div className="min-w-[720px]">
+                <div className="grid grid-cols-12 border-b border-border bg-surface">
+                  <div className="col-span-4 p-5 md:p-6 text-eyebrow text-fg-mid">Persona</div>
+                  <div className="col-span-3 p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Primary workspace</div>
+                  <div className="col-span-5 p-5 md:p-6 text-eyebrow text-fg-mid border-l border-border">Nia presentation</div>
                 </div>
-              ))}
+                {personas.map(([persona, workspace, presentation], i) => (
+                  <div
+                    key={persona}
+                    className={`grid grid-cols-12 ${i > 0 ? 'border-t border-border' : ''} hover:bg-surface transition-colors`}
+                  >
+                    <div className="col-span-4 p-5 md:p-6 text-body-md text-fg-strong">{persona}</div>
+                    <div className="col-span-3 p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{workspace}</div>
+                    <div className="col-span-5 p-5 md:p-6 text-body-md text-fg-mid border-l border-border">{presentation}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </Container>

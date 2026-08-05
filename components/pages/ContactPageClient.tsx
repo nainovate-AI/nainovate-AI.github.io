@@ -165,7 +165,7 @@ export default function ContactPageClient() {
 
               <Reveal delay={0.1}>
                 <form className="space-y-8" onSubmit={handleSubmit}>
-                  <div className="grid md:grid-cols-2 gap-8">
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     <div>
                       <label className="block text-eyebrow text-fg-mid mb-3">First Name</label>
                       <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required className={inputClass} placeholder="John" />
@@ -237,7 +237,7 @@ export default function ContactPageClient() {
               <Reveal delay={0.15}>
                 <div className="border-t border-border pt-8">
                   <h3 className="text-eyebrow text-fg-strong mb-5">Visit us</h3>
-                  <div className="rounded-xl2 border border-border mb-5 overflow-hidden h-[240px]">
+                  <div className="rounded-xl2 border border-border mb-5 overflow-hidden aspect-[16/10] sm:aspect-video min-h-[220px]">
                     <iframe
                       title="Nainovate Hyderabad office location"
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121826.27689281755!2d78.27798406762885!3d17.408372669616604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb952200059677%3A0xac28e1d107bc3e57!2sAVK%20SRI%20Harsha%20Icon!5e0!3m2!1sen!2sin!4v1753865250238!5m2!1sen!2sin"

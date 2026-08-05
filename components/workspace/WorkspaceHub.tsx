@@ -240,7 +240,7 @@ export default function WorkspaceHub() {
             ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
             md:translate-x-0
             ${sidebarCollapsed ? 'md:w-16' : 'md:w-[260px]'}
-            w-[260px]`}
+            w-[min(85vw,260px)]`}
           style={{ borderColor: 'var(--gd-border)', background: 'var(--gd-bg)' }}
         >
           {/* Brand */}
@@ -293,7 +293,7 @@ export default function WorkspaceHub() {
 
             {/* Popover */}
             {pickerOpen && (
-              <div className="absolute top-0 left-full ml-2 z-50 w-[260px] bg-bg border border-fg-strong/20 rounded-lg shadow-2xl overflow-hidden">
+              <div className="absolute top-0 left-full ml-2 z-50 w-[min(260px,calc(100vw-2rem))] bg-bg border border-fg-strong/20 rounded-lg shadow-2xl overflow-hidden">
                 <div className="px-4 py-2 border-b border-fg-strong/5">
                   <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase">
                     Enterprise Demo

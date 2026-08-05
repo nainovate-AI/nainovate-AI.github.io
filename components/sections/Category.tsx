@@ -139,7 +139,7 @@ export function Category() {
         </div>
 
         {/* Capabilities — colored 3D cards with layered depth */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
           {capabilities.map((c, i) => {
             const rgb = accentHex[c.accent];
             const gradient = accentGradient[c.accent];

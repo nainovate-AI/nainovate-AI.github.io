@@ -71,7 +71,7 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
           onClose();
         }}
         aria-label="Close preview"
-        className="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+        className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
       >
         <X className="w-5 h-5" />
       </button>
@@ -84,7 +84,7 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
           onPrev();
         }}
         aria-label="Previous slide"
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
@@ -97,7 +97,7 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
           onNext();
         }}
         aria-label="Next slide"
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
