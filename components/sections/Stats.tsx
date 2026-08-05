@@ -9,19 +9,12 @@ import { SplitLines } from '@/components/ui/motion/SplitText';
 import { CountUp } from '@/components/ui/motion/CountUp';
 
 type Headline = { number: number; label: string; sub: string; suffix?: string; accent?: 'violet' | 'cyan' | 'pink' | 'emerald' };
-type Secondary = { number: number; prefix?: string; suffix?: string; l: string };
 
 const headline: Headline[] = [
   { number: 12, label: 'Design Partners', sub: 'Enterprise engagements', accent: 'violet' },
   { number: 3, label: 'Active Pilots', sub: 'Cross-functional deployments', accent: 'cyan' },
   { number: 1, label: 'LOI Signed', sub: 'Vista Equity portfolio company', accent: 'pink' },
   { number: 85, suffix: '%', label: 'Signal Detection', sub: 'Accuracy in pilot data', accent: 'emerald' },
-];
-
-const secondary: Secondary[] = [
-  { number: 1, prefix: '$', suffix: 'M', l: 'ARR target — Q4 2026' },
-  { number: 18, suffix: 'mo', l: 'Runway on $2.5M seed' },
-  { number: 90, suffix: '%', l: 'Pilot-to-paid conversion' },
 ];
 
 const accentGradient = {
@@ -97,24 +90,6 @@ export function Stats() {
           })}
         </div>
 
-        {/* Secondary metrics */}
-        <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {secondary.map((s, i) => (
-            <motion.div
-              key={s.l}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className={`md:pl-8 ${i > 0 ? 'md:border-l md:border-border' : ''}`}
-            >
-              <div className="text-h1 text-fg-strong mb-3">
-                <CountUp value={s.number} prefix={s.prefix} suffix={s.suffix} duration={1.6} />
-              </div>
-              <div className="text-eyebrow text-fg-muted">{s.l}</div>
-            </motion.div>
-          ))}
-        </div>
       </Container>
     </Section>
   );

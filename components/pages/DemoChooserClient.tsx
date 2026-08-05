@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import { X } from 'lucide-react';
+import { useDemoGate } from '@/components/ui/DemoGate';
 
 export default function DemoChooserClient() {
+  const { requestDemo, gateModal } = useDemoGate();
   return (
     <main className="relative z-10 bg-bg min-h-screen">
       <Link
@@ -30,9 +32,10 @@ export default function DemoChooserClient() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <Link
-              href="/demo/public-sector"
-              className="group border border-border-strong rounded-lg p-6 md:p-8 hover:border-fg-strong transition-colors block bg-surface-2"
+            <button
+              type="button"
+              onClick={() => requestDemo('/demo/public-sector')}
+              className="group text-left border border-border-strong rounded-lg p-6 md:p-8 hover:border-fg-strong transition-colors block bg-surface-2 cursor-pointer w-full"
             >
               <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">01 • PUBLIC SECTOR</p>
               <h2 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Government &amp; Public Services</h2>
@@ -46,11 +49,12 @@ export default function DemoChooserClient() {
                 <p>· Workflow orchestration</p>
               </div>
               <span className="text-sm text-fg-strong group-hover:underline">Open Public Sector demo →</span>
-            </Link>
+            </button>
 
-            <Link
-              href="/demo/decision-nia"
-              className="group border border-border-strong rounded-lg p-6 md:p-8 hover:border-fg-strong transition-colors block bg-surface-2"
+            <button
+              type="button"
+              onClick={() => requestDemo('/demo/decision-nia')}
+              className="group text-left border border-border-strong rounded-lg p-6 md:p-8 hover:border-fg-strong transition-colors block bg-surface-2 cursor-pointer w-full"
             >
               <p className="text-xs tracking-widest text-fg-muted uppercase mb-4">02 • ENTERPRISE</p>
               <h2 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-fg-strong">Enterprise Business Functions</h2>
@@ -65,10 +69,12 @@ export default function DemoChooserClient() {
                 <p>· Delivery</p>
               </div>
               <span className="text-sm text-fg-strong group-hover:underline">Open Enterprise demo →</span>
-            </Link>
+            </button>
           </div>
         </div>
       </section>
+
+      {gateModal}
     </main>
   );
 }
