@@ -6,7 +6,9 @@ import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { CTALink } from '@/components/ui/CTA';
 import { GatedDemoLink, useDemoGate } from '@/components/ui/DemoGate';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
+// import { ThemeToggle } from '@/components/ui/ThemeToggle';
+// ThemeToggle temporarily hidden — dark theme only for now.
+// Re-enable by uncommenting the import + <ThemeToggle /> below.
 
 type LinkGroup = {
   heading: string;
@@ -214,7 +216,7 @@ export function Footer() {
             </p>
           </div>
           <div className="flex items-center gap-6">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <p className="text-body-sm text-fg-muted">
               © 2025 Nainovate. All rights reserved.
             </p>
