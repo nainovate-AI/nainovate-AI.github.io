@@ -59,6 +59,98 @@
     --warning: #f59e0b;
     --info: #3b82f6;
 
+    /* Accent palette — aurora colors used selectively for depth + highlight.
+       Kept bright on dark, softened on light. Applied via gradient tokens below. */
+    --accent-violet: #8b5cf6;
+    --accent-indigo: #6366f1;
+    --accent-cyan: #22d3ee;
+    --accent-pink: #ec4899;
+    --accent-orange: #fb923c;
+    --accent-emerald: #10b981;
+
+    /* Aurora gradient stops — smooth pastel from Nainovate "N" logo
+       (light lavender → violet → soft cool blue). No dark indigo. */
+    --aurora-a: #a78bfa;   /* light violet */
+    --aurora-b: #b8a5f5;   /* lavender */
+    --aurora-c: #c4b5fd;   /* pale lavender */
+    --aurora-d: #a5c4e8;   /* soft cool blue (logo bottom-right tip) */
+
+    /* Gradient tokens — for backgrounds, borders, text */
+    --grad-aurora: linear-gradient(135deg, var(--aurora-a) 0%, var(--aurora-b) 35%, var(--aurora-c) 70%, var(--aurora-d) 100%);
+    --grad-aurora-soft: linear-gradient(135deg, rgba(167,139,250,0.18) 0%, rgba(196,181,253,0.14) 50%, rgba(165,196,232,0.14) 100%);
+    --grad-violet-pink: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+    --grad-indigo-cyan: linear-gradient(135deg, #a78bfa 0%, #a5c4e8 100%);
+    --grad-mono: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+
+    /* Ambient glow overlays — sit behind hero + CTA sections */
+    --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(167,139,250,0.22), transparent 55%);
+    --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(196,181,253,0.18), transparent 55%);
+    --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(165,196,232,0.14), transparent 55%);
+
+    /* Transparent-black / transparent-white utility scale (needed for theme-aware opacity
+       on giant background numerals — Tailwind arbitrary opacity syntax doesn't work
+       with var(--fg-strong)). Use text-[color:var(--tint-...)] pattern. */
+    --tint-fg-2: rgba(255,255,255,0.02);
+    --tint-fg-4: rgba(255,255,255,0.04);
+    --tint-fg-8: rgba(255,255,255,0.08);
+    --tint-fg-14: rgba(255,255,255,0.14);
+
+    /* Spacing scale — 4px base. Reference these in Tailwind arbitrary values or via extended spacing tokens. */
+    --space-1: 0.25rem;   /*  4px */
+    --space-2: 0.5rem;    /*  8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.25rem;   /* 20px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    --space-20: 5rem;     /* 80px */
+    --space-24: 6rem;     /* 96px */
+    --space-32: 8rem;     /* 128px */
+    /* Legacy aliases consumed by tailwind.config.ts */
+    --space-xs: var(--space-2);
+    --space-sm: var(--space-3);
+    --space-md: var(--space-4);
+    --space-lg: var(--space-6);
+    --space-xl: var(--space-8);
+    --space-2xl: var(--space-12);
+    --space-3xl: var(--space-16);
+
+    /* Radii — restrained. Nothing bigger than 24px on cards, full only on pills. */
+    --radius-xs: 2px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    --radius-2xl: 28px;
+    --radius-full: 999px;
+
+    /* Elevation — subtle, theme-aware. Dark uses inner light; light uses fine grey. */
+    --shadow-xs: 0 1px 0 rgba(255,255,255,0.02);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.02);
+    --shadow-md: 0 6px 24px -6px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03);
+    --shadow-lg: 0 24px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+    --shadow-glow: 0 0 40px -8px rgba(255,255,255,0.08);
+
+    /* Easings — used by motion primitives & CSS transitions. */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Type scale — fluid. Consumed by .text-display / .text-h1 / etc. */
+    --text-display: clamp(2.75rem, 6.5vw, 5.5rem);   /* 44 → 88 */
+    --text-h1:      clamp(2rem, 4.4vw, 3.5rem);      /* 32 → 56 */
+    --text-h2:      clamp(1.875rem, 3.4vw, 2.875rem); /* 30 → 46 */
+    --text-h3:      clamp(1.25rem, 1.9vw, 1.5rem);   /* 20 → 24 */
+    --text-h4:      clamp(1.0625rem, 1.4vw, 1.25rem);/* 17 → 20 */
+    --text-body-lg: 1.0625rem;                       /* 17 */
+    --text-body:    0.9375rem;                       /* 15 */
+    --text-body-sm: 0.8125rem;                       /* 13 */
+    --text-label:   0.6875rem;                       /* 11 */
+
     color-scheme: dark;
   }
 
@@ -72,30 +164,52 @@
      Same tokens flip; brand purple stays.
      ----------------------------------------------------------- */
   html[data-theme="light"] {
+    /* True monochrome light theme — no color tint. Deep contrast, editorial. */
     --bg: #ffffff;
-    --bg-elevated: #ffffff;
-    --surface: rgba(99, 102, 241, 0.06);
-    --surface-2: rgba(99, 102, 241, 0.10);
-    --surface-hover: rgba(99, 102, 241, 0.14);
+    --bg-elevated: #fafafa;
+    --surface: rgba(10, 10, 10, 0.03);
+    --surface-2: rgba(10, 10, 10, 0.05);
+    --surface-hover: rgba(10, 10, 10, 0.08);
 
-    --fg: #1a1830;
-    --fg-strong: #0a0a1f;
-    --fg-mid: rgba(26, 24, 48, 0.78);
-    --fg-muted: rgba(26, 24, 48, 0.62);
-    --fg-subtle: rgba(26, 24, 48, 0.5);
-    --fg-faint: rgba(26, 24, 48, 0.38);
+    --fg: #0a0a0a;
+    --fg-strong: #000000;
+    --fg-mid: rgba(10, 10, 10, 0.72);
+    --fg-muted: rgba(10, 10, 10, 0.58);
+    --fg-subtle: rgba(10, 10, 10, 0.46);
+    --fg-faint: rgba(10, 10, 10, 0.32);
     --fg-invert: #ffffff;
 
-    --border: rgba(99, 102, 241, 0.18);
-    --border-strong: rgba(99, 102, 241, 0.35);
-    --border-active: rgba(99, 102, 241, 0.65);
+    /* Stronger borders on light theme so cards read clearly */
+    --border: #e5e7eb;
+    --border-strong: rgba(10, 10, 10, 0.28);
+    --border-active: rgba(10, 10, 10, 0.55);
 
+    /* Brand kept for accent-critical surfaces (focus ring, demo workspace) */
     --brand: #6366f1;
     --brand-hover: #4f52d9;
     --brand-fg: #ffffff;
-    --brand-soft: rgba(99, 102, 241, 0.12);
+    --brand-soft: rgba(99, 102, 241, 0.10);
     --brand-2: #8b5cf6;
-    --brand-2-soft: rgba(139, 92, 246, 0.12);
+    --brand-2-soft: rgba(139, 92, 246, 0.10);
+
+    /* Elevation rebalanced for light surfaces */
+    --shadow-xs: 0 1px 0 rgba(0,0,0,0.02);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
+    --shadow-md: 0 6px 24px -6px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.04);
+    --shadow-lg: 0 24px 60px -20px rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.05);
+    --shadow-glow: 0 0 40px -8px rgba(0,0,0,0.08);
+
+    /* Accent palette — soft logo lavender/blue, gentler on light theme */
+    --grad-aurora-soft: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(196,181,253,0.08) 50%, rgba(165,196,232,0.08) 100%);
+    --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(167,139,250,0.12), transparent 55%);
+    --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(196,181,253,0.10), transparent 55%);
+    --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(165,196,232,0.10), transparent 55%);
+
+    /* Light-theme tints (inverted) */
+    --tint-fg-2: rgba(0,0,0,0.03);
+    --tint-fg-4: rgba(0,0,0,0.05);
+    --tint-fg-8: rgba(0,0,0,0.09);
+    --tint-fg-14: rgba(0,0,0,0.14);
 
     color-scheme: light;
   }
@@ -111,24 +225,39 @@
   @media (prefers-color-scheme: light) {
     html:not([data-theme]) {
       --bg: #ffffff;
-      --bg-elevated: #ffffff;
-      --surface: rgba(99, 102, 241, 0.06);
-      --surface-2: rgba(99, 102, 241, 0.10);
-      --surface-hover: rgba(99, 102, 241, 0.14);
+      --bg-elevated: #fafafa;
+      --surface: rgba(10, 10, 10, 0.03);
+      --surface-2: rgba(10, 10, 10, 0.05);
+      --surface-hover: rgba(10, 10, 10, 0.08);
 
-      --fg: #1a1830;
-      --fg-strong: #0a0a1f;
-      --fg-mid: rgba(26, 24, 48, 0.78);
-      --fg-muted: rgba(26, 24, 48, 0.62);
-      --fg-subtle: rgba(26, 24, 48, 0.5);
-      --fg-faint: rgba(26, 24, 48, 0.38);
+      --fg: #0a0a0a;
+      --fg-strong: #000000;
+      --fg-mid: rgba(10, 10, 10, 0.72);
+      --fg-muted: rgba(10, 10, 10, 0.58);
+      --fg-subtle: rgba(10, 10, 10, 0.46);
+      --fg-faint: rgba(10, 10, 10, 0.32);
       --fg-invert: #ffffff;
 
-      --border: rgba(99, 102, 241, 0.18);
-      --border-strong: rgba(99, 102, 241, 0.35);
-      --border-active: rgba(99, 102, 241, 0.65);
+      --border: #e5e7eb;
+      --border-strong: rgba(10, 10, 10, 0.28);
+      --border-active: rgba(10, 10, 10, 0.55);
 
       --brand-hover: #4f52d9;
+
+      --shadow-xs: 0 1px 0 rgba(0,0,0,0.02);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
+      --shadow-md: 0 6px 24px -6px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.04);
+      --shadow-lg: 0 24px 60px -20px rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.05);
+      --shadow-glow: 0 0 40px -8px rgba(0,0,0,0.08);
+
+      --grad-aurora-soft: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(196,181,253,0.08) 50%, rgba(165,196,232,0.08) 100%);
+      --glow-aurora-1: radial-gradient(600px circle at 20% 20%, rgba(167,139,250,0.12), transparent 55%);
+      --glow-aurora-2: radial-gradient(600px circle at 80% 80%, rgba(196,181,253,0.10), transparent 55%);
+      --glow-aurora-3: radial-gradient(500px circle at 50% 100%, rgba(165,196,232,0.10), transparent 55%);
+      --tint-fg-2: rgba(0,0,0,0.03);
+      --tint-fg-4: rgba(0,0,0,0.05);
+      --tint-fg-8: rgba(0,0,0,0.09);
+      --tint-fg-14: rgba(0,0,0,0.14);
 
       color-scheme: light;
     }
@@ -143,11 +272,63 @@
 }
 
 /* ---------------------------------------------------------------
-   Heading scale — two tiers.
-   .heading-primary  → page/hero h1     (kept as before)
-   .heading-section  → section h2 titles (~70% of h1, industry norm)
-   Applied globally. Only sizing/weight — casing left to component.
+   Typography scale — semantic classes consumed across the site.
+   Fluid via clamp(). Weight/casing left to component.
+   Legacy .heading-primary / .heading-section preserved for compat.
    -------------------------------------------------------------- */
+.text-display {
+  font-size: var(--text-display);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+.text-h1 {
+  font-size: var(--text-h1);
+  line-height: 1.03;
+  letter-spacing: -0.028em;
+  font-weight: 600;
+}
+.text-h2 {
+  font-size: var(--text-h2);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+}
+.text-h3 {
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  letter-spacing: -0.014em;
+  font-weight: 600;
+}
+.text-h4 {
+  font-size: var(--text-h4);
+  line-height: 1.3;
+  letter-spacing: -0.008em;
+  font-weight: 600;
+}
+.text-body-lg {
+  font-size: var(--text-body-lg);
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+}
+.text-body-md {
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+.text-body-sm {
+  font-size: var(--text-body-sm);
+  line-height: 1.55;
+}
+.text-eyebrow {
+  font-size: var(--text-label);
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Legacy heading classes — preserved so existing pages continue rendering
+   at their approved sizes. New sections should use .text-h1 / .text-h2. */
 .heading-primary {
   font-size: clamp(1.375rem, 3vw, 2.5rem);   /* 22px → 40px */
   line-height: 1.05;
@@ -160,6 +341,171 @@
   letter-spacing: -0.015em;
   font-weight: 700;
 }
+
+/* ---------------------------------------------------------------
+   Accessibility — visible focus ring, reduced-motion safety net.
+   -------------------------------------------------------------- */
+:where(a, button, [role="button"], input, select, textarea):focus-visible {
+  outline: 2px solid var(--fg-strong);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Descender-safe crop — prevents overflow-hidden from clipping g/p/y/j
+   when using tight line-height with kinetic word-stagger reveals.
+   Apply to the .overflow-hidden wrapper that surrounds a display line.
+   0.32em covers most sans-serif descenders + gradient text bounding-box overflow. */
+.line-crop-safe {
+  /* SplitLines siblings apply `overflow-hidden` for a slide-up mask, but
+     the mask container IS the element that animates y — so the mask
+     effect never applies. All overflow-hidden does here is clip descenders
+     (g, y, p, j, q) at the baseline. Force visible + a bit of pad so
+     descenders always render, on every heading size, across every page. */
+  overflow: visible !important;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.1em;
+}
+
+/* ---------------------------------------------------------------
+   Fine hairline utilities — used for editorial section dividers.
+   Both are theme-aware via border tokens.
+   -------------------------------------------------------------- */
+.hairline-t { border-top: 1px solid var(--border); }
+.hairline-b { border-bottom: 1px solid var(--border); }
+.hairline-strong-t { border-top: 1px solid var(--border-strong); }
+
+/* ---------------------------------------------------------------
+   Color utilities — gradient text + aurora glow surfaces + 3D
+   -------------------------------------------------------------- */
+.text-gradient-aurora {
+  /* Unified heading gradient — matches hero CTA button.
+     Deep indigo → violet → lavender. Applied to every h1/h2 site-wide. */
+  background: linear-gradient(135deg, #3730a3 0%, #6d28d9 35%, #8b5cf6 70%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Descender safety — background-clip:text can clip g/y/p descenders. */
+  display: inline-block;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.12em;
+  line-height: 1.1;
+}
+.text-gradient-violet-pink {
+  background: var(--grad-violet-pink);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient-indigo-cyan {
+  background: var(--grad-indigo-cyan);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bg-aurora {
+  background: var(--grad-aurora);
+  background-size: 200% 200%;
+  animation: gradient-drift 12s ease-in-out infinite;
+}
+.bg-aurora-soft { background: var(--grad-aurora-soft); }
+
+.glow-aurora {
+  position: relative;
+}
+.glow-aurora::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    var(--glow-aurora-1),
+    var(--glow-aurora-2),
+    var(--glow-aurora-3);
+  z-index: 0;
+}
+.glow-aurora > * { position: relative; z-index: 1; }
+
+/* Ring border with aurora gradient using mask trick */
+.border-aurora {
+  position: relative;
+  isolation: isolate;
+}
+.border-aurora::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--grad-aurora);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@keyframes gradient-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes aurora-shift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33%      { transform: translate3d(4%, -3%, 0) rotate(2deg); }
+  66%      { transform: translate3d(-3%, 4%, 0) rotate(-2deg); }
+}
+
+/* 3D perspective helpers */
+.perspective-lg { perspective: 1400px; }
+.preserve-3d   { transform-style: preserve-3d; }
+
+/* Floating breathing 3D animation for orbs / decorative shapes */
+@keyframes float-3d-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg); }
+  50%      { transform: translate3d(2%, -3%, 40px) rotateX(6deg) rotateY(-4deg); }
+}
+@keyframes float-3d-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg); }
+  50%      { transform: translate3d(-3%, 2%, 30px) rotateX(-4deg) rotateY(6deg); }
+}
+@keyframes float-3d-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate3d(1, 1, 0, 0deg); }
+  50%      { transform: translate3d(3%, 3%, 50px) rotate3d(1, 1, 0, 8deg); }
+}
+.float-3d-1 { animation: float-3d-1 14s ease-in-out infinite; }
+.float-3d-2 { animation: float-3d-2 18s ease-in-out infinite; }
+.float-3d-3 { animation: float-3d-3 22s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-3d-1, .float-3d-2, .float-3d-3,
+  .text-gradient-aurora, .bg-aurora {
+    animation: none !important;
+  }
+}
+
+/* Editorial grain overlay — near-invisible, adds tactile depth to hero surfaces. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html[data-theme="light"] .grain::after { opacity: 0.05; mix-blend-mode: multiply; }
 
 /* ---------------------------------------------------------------
    Hero cinematic — Ken Burns drift on the active slide.
@@ -175,6 +521,20 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-kenburns { animation: none; }
+}
+
+/* CapabilityWheel — halo pulse behind each satellite node */
+.cw-halo {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: cw-halo-pulse 3.6s ease-in-out infinite;
+}
+@keyframes cw-halo-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%      { opacity: 0.6;  transform: scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cw-halo { animation: none; opacity: 0.4; }
 }
 
 /* WhatsApp-style status fill on active hero slide bar */

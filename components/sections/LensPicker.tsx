@@ -1,104 +1,220 @@
-import Link from 'next/link';
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal } from '@/components/ui/Reveal';
+import { SplitLines } from '@/components/ui/motion/SplitText';
+import { TiltCard } from '@/components/ui/motion/TiltCard';
+import { Magnetic } from '@/components/ui/motion/Magnetic';
+import { MouseSpotlight } from '@/components/ui/motion/MouseSpotlight';
+import { useDemoGate } from '@/components/ui/DemoGate';
+
+type Lens = {
+  index: string;
+  kicker: string;
+  title: string;
+  description: string;
+  href: string;
+  ariaLabel: string;
+  metrics: { value: string; label: string }[];
+  Icon: (props: { className?: string }) => React.ReactElement;
+};
+
+const IconGov = ({ className = '' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M6 42h36M6 21h36M9 13l15-6 15 6M8 21v21m32-21v21M17 27v9m7-9v9m7-9v9" />
+  </svg>
+);
+const IconEnterprise = ({ className = '' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="24" cy="14" r="5" />
+    <circle cx="10" cy="34" r="4.5" />
+    <circle cx="38" cy="34" r="4.5" />
+    <path d="M24 19v7M14 32l6-4M34 32l-6-4M14 34h20" />
+    <path d="M5 44a5 5 0 0110 0M19 44a5 5 0 0110 0M33 44a5 5 0 0110 0" />
+  </svg>
+);
+
+const lenses: Lens[] = [
+  {
+    index: '01',
+    kicker: 'Public Sector',
+    title: 'Government & Public Services',
+    description:
+      'Building permits, citizen requests, inter-department approvals. Watch a single permit move automatically through Planning, Fire, Water, and Revenue — with full audit trail.',
+    href: '/demo/public-sector?from=home',
+    ariaLabel: 'Launch Public Sector demo — Government and Public Services',
+    metrics: [
+      { value: '1', label: 'Department' },
+      { value: 'Live', label: 'Ask' },
+      { value: '3-pack', label: 'Capabilities' },
+    ],
+    Icon: IconGov,
+  },
+  {
+    index: '02',
+    kicker: 'Enterprise',
+    title: 'Enterprise Business Functions',
+    description:
+      'Customer Success, Support, Sales, Delivery. When a customer health score drops, Sales, Support, and Finance see it instantly — and know what to do next.',
+    href: '/demo/decision-nia?from=home',
+    ariaLabel: 'Launch Enterprise demo — Customer Success, Support, Sales, Delivery',
+    metrics: [
+      { value: '4', label: 'Spaces' },
+      { value: 'Live', label: 'Chat + Trace' },
+      { value: '4-pack', label: 'Capabilities' },
+    ],
+    Icon: IconEnterprise,
+  },
+];
 
 export function LensPicker() {
+  const { requestDemo, gateModal } = useDemoGate();
   return (
-    <section className="py-8 md:py-12 border-t border-border">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8">
-        <div className="text-center mb-10 md:mb-14 max-w-3xl mx-auto">
-          <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
-            PICK YOUR LENS
-          </p>
-          <h2 className="heading-primary mb-4 md:mb-6">
-            <span className="block">TWO WORLDS.</span>
-            <span className="block">ONE PLATFORM.</span>
-          </h2>
-          <p className="text-base md:text-lg text-fg-muted leading-relaxed">
-            Same platform. Different world. Pick where you work and see how GenX moves information across your teams — in real time.
-          </p>
+    <Section spacing="xl" className="relative overflow-hidden">
+      {/* Ambient grid backdrop */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-40">
+        <div className="absolute inset-0" style={{
+          backgroundImage:
+            'linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
+          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 75%)',
+        }} />
+      </div>
+
+      <Container size="full" className="relative">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-10 md:mb-14">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-5">Pick your lens</Eyebrow>
+            </Reveal>
+            <SplitLines className="text-h2">
+              <motion.span
+                className="block overflow-hidden line-crop-safe"
+                variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
+              >
+                <span className="block text-fg-strong">Two worlds.</span>
+              </motion.span>
+              <motion.span
+                className="block overflow-hidden line-crop-safe"
+                variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
+              >
+                <span className="block text-gradient-aurora">One platform.</span>
+              </motion.span>
+            </SplitLines>
+          </div>
+          <div className="lg:col-span-5">
+            <Reveal delay={0.15}>
+              <p className="text-body-lg text-fg-mid leading-relaxed">
+                Same platform. Different world. Pick where you work and see how GenX moves
+                information across your teams — in real time.
+              </p>
+            </Reveal>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-          {/* Public Sector Lens */}
-          <Link
-            href="/demo/public-sector?from=home"
-            className="group block border border-border hover:border-border-active rounded-lg p-6 md:p-10 bg-surface hover:bg-surface-2 transition-all"
-          >
-            <div className="flex items-start justify-between mb-6 md:mb-8">
-              <span className="inline-block px-3 py-1 text-[10px] tracking-widest uppercase border border-border-strong rounded-full text-fg-muted">
-                Public Sector
-              </span>
-              <svg className="w-5 h-5 text-fg-faint group-hover:text-fg-strong group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-            <div className="mb-6 md:mb-8">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg border border-border flex items-center justify-center mb-4 md:mb-6 group-hover:border-border-active transition-colors">
-                <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3" />
-                </svg>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Government &amp; Public Services</h3>
-              <p className="text-sm md:text-base text-fg-muted leading-relaxed mb-6">
-                Building permits, citizen requests, inter-department approvals. Watch a single permit move automatically through Planning, Fire, Water, and Revenue — with full audit trail.
-              </p>
-            </div>
-            <div className="border-t border-border pt-4 md:pt-6 grid grid-cols-3 gap-4">
-              <div>
-                <div className="text-lg md:text-xl font-bold">1</div>
-                <div className="text-[10px] tracking-widest uppercase text-fg-muted mt-1">Department</div>
-              </div>
-              <div>
-                <div className="text-lg md:text-xl font-bold">Live</div>
-                <div className="text-[10px] tracking-widest uppercase text-fg-muted mt-1">Ask</div>
-              </div>
-              <div>
-                <div className="text-lg md:text-xl font-bold">3-pack</div>
-                <div className="text-[10px] tracking-widest uppercase text-fg-muted mt-1">Capabilities</div>
-              </div>
-            </div>
-          </Link>
+          {lenses.map((lens, idx) => (
+            <Reveal key={lens.index} delay={idx * 0.1}>
+              <TiltCard className="h-full" intensity={5}>
+                <div
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => requestDemo(lens.href)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      requestDemo(lens.href);
+                    }
+                  }}
+                  aria-label={lens.ariaLabel}
+                  className="group relative block h-full rounded-xl2 border border-border overflow-hidden bg-bg-elevated cursor-pointer"
+                >
+                  <MouseSpotlight size={480} intensity={0.05} className="h-full">
+                    <div className="relative p-6 md:p-8 lg:p-10 flex flex-col h-full">
+                      <div className="flex items-start justify-between mb-7 md:mb-10">
+                        <div className="flex items-center gap-4">
+                          <span className="text-eyebrow text-fg-faint tabular-nums">{lens.index}</span>
+                          <span className="text-eyebrow text-fg-mid">{lens.kicker}</span>
+                        </div>
+                        <Magnetic strength={0.4} radius={100}>
+                          <motion.span
+                            className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border-strong text-fg-mid group-hover:text-fg-invert group-hover:bg-fg-strong group-hover:border-fg-strong transition-colors duration-500"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ type: 'spring', stiffness: 380, damping: 20 }}
+                            aria-hidden="true"
+                          >
+                            <motion.svg
+                              className="w-4 h-4"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <motion.path
+                                d="M5 12h14M13 6l6 6-6 6"
+                                initial={{ pathLength: 0.85 }}
+                                whileInView={{ pathLength: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.2, delay: 0.4 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                              />
+                            </motion.svg>
+                          </motion.span>
+                        </Magnetic>
+                      </div>
 
-          {/* Enterprise Lens */}
-          <Link
-            href="/demo/decision-nia?from=home"
-            className="group block border border-border hover:border-border-active rounded-lg p-6 md:p-10 bg-surface hover:bg-surface-2 transition-all"
-          >
-            <div className="flex items-start justify-between mb-6 md:mb-8">
-              <span className="inline-block px-3 py-1 text-[10px] tracking-widest uppercase border border-border-strong rounded-full text-fg-muted">
-                Enterprise
-              </span>
-              <svg className="w-5 h-5 text-fg-faint group-hover:text-fg-strong group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-            <div className="mb-6 md:mb-8">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg border border-border flex items-center justify-center mb-4 md:mb-6 group-hover:border-border-active transition-colors">
-                <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Enterprise Business Functions</h3>
-              <p className="text-sm md:text-base text-fg-muted leading-relaxed mb-6">
-                Customer Success, Support, Sales, Delivery. When a customer health score drops, Sales, Support, and Finance see it instantly — and know what to do next.
-              </p>
-            </div>
-            <div className="border-t border-border pt-4 md:pt-6 grid grid-cols-3 gap-4">
-              <div>
-                <div className="text-lg md:text-xl font-bold">4</div>
-                <div className="text-[10px] tracking-widest uppercase text-fg-muted mt-1">Spaces</div>
-              </div>
-              <div>
-                <div className="text-lg md:text-xl font-bold">Live</div>
-                <div className="text-[10px] tracking-widest uppercase text-fg-muted mt-1">Chat + Trace</div>
-              </div>
-              <div>
-                <div className="text-lg md:text-xl font-bold">4-pack</div>
-                <div className="text-[10px] tracking-widest uppercase text-fg-muted mt-1">Capabilities</div>
-              </div>
-            </div>
-          </Link>
+                      <motion.div
+                        className="mb-6 md:mb-8"
+                        initial={{ opacity: 0, scale: 0.85, rotate: -6 }}
+                        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.9, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        <lens.Icon className="w-11 h-11 md:w-14 md:h-14 text-fg-mid group-hover:text-fg-strong transition-colors duration-500" />
+                      </motion.div>
+
+                      <h3 className="text-h4 text-fg-strong mb-3">
+                        {lens.title}
+                      </h3>
+                      <p className="text-body-md text-fg-mid leading-relaxed max-w-lg">
+                        {lens.description}
+                      </p>
+
+                      <div className="mt-8 md:mt-10 pt-6 border-t border-border grid grid-cols-3 gap-4">
+                        {lens.metrics.map((m, mi) => (
+                          <motion.div
+                            key={m.label}
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.5 + mi * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                          >
+                            <div className="text-h4 text-fg-strong tabular-nums">{m.value}</div>
+                            <div className="text-eyebrow text-fg-muted mt-2">{m.label}</div>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* Sweep highlight on hover */}
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-fg-strong transition-transform duration-700 ease-out-quart group-hover:scale-x-100"
+                      />
+                    </div>
+                  </MouseSpotlight>
+                </div>
+              </TiltCard>
+            </Reveal>
+          ))}
         </div>
-      </div>
-    </section>
+      </Container>
+      {gateModal}
+    </Section>
   );
 }

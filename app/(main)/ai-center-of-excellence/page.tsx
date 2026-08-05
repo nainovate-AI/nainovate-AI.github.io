@@ -90,7 +90,7 @@ export default function AICenterOfExcellencePage() {
                   </p>
                   <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
                     <span className="block">AI CoE</span>
-                    <span className="block">AS A SERVICE</span>
+                    <span className="block text-gradient-aurora">AS A SERVICE</span>
                   </h1>
                 </div>
 

@@ -1,855 +1,816 @@
 'use client';
 
-import { Button } from '@/components/ui/Button';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import { useState } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
 import mockData from '@/data/marketing/platform.json';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
+
+type Spoke = {
+  id: number;
+  angle: number;
+  color: string;
+  icon: string;
+  title: string;
+  description: string;
+};
+
+const beforeItems = [
+  'Just AI tools, no framework',
+  'Black box solutions',
+  'You rent it, they own it',
+  'Hope for the best approach',
+  'No governance or best practices',
+  'Long implementation timelines',
+];
+
+const afterItems = [
+  'AI + Complete CoE Framework',
+  'Full transparency & control',
+  'You OWN the solution',
+  'McKinsey best practices built-in',
+  'Governance from day one',
+  '30-day delivery guarantee',
+];
+
+const capabilities = [
+  {
+    name: 'CORE',
+    label: 'AI Engine',
+    body: 'Build intelligent agents for any task with advanced RAG pipelines and fine-tuning capabilities.',
+    href: '/platform/core',
+    Glyph: () => (
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22h8M14 26h4M10 14a6 6 0 1112 0c0 3-2 4-2 6H12c0-2-2-3-2-6z" /></svg>
+    ),
+  },
+  {
+    name: 'FLOW',
+    label: 'Automation Engine',
+    body: 'Automate complex workflows with multi-agent orchestration and seamless integrations.',
+    href: '/platform/flow',
+    Glyph: () => (
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 4L6 18h9l-1 10 12-14h-9z" /></svg>
+    ),
+  },
+  {
+    name: 'NIA',
+    label: 'Interface Layer',
+    body: 'Talk to your AI agents through conversational interfaces. Multi-channel, multi-lingual support.',
+    href: '/platform/nia',
+    Glyph: () => (
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M28 15c0 5.9-5.4 10.7-12 10.7a13 13 0 01-5.7-1.3L4 26.5l1.9-5A9.5 9.5 0 014 15C4 9.1 9.4 4.3 16 4.3s12 4.8 12 10.7z" /><circle cx="10" cy="15" r="1" fill="currentColor" /><circle cx="16" cy="15" r="1" fill="currentColor" /><circle cx="22" cy="15" r="1" fill="currentColor" /></svg>
+    ),
+  },
+  {
+    name: 'AI CoE',
+    label: 'Governance Framework',
+    body: 'Scale AI responsibly with built-in governance, ethics, and McKinsey best practices.',
+    href: '/ai-center-of-excellence',
+    Glyph: () => (
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 3l11 4v9c0 6.7-4.9 12.6-11 14-6.1-1.4-11-7.3-11-14V7l11-4z" /><path d="M11 16l3.5 3.5L21 13" /></svg>
+    ),
+    highlight: true,
+  },
+];
+
+const features = [
+  { title: 'AI Engineering Tools', items: ['RAG pipeline builder', 'RLHF fine-tuning', 'Model evaluation', 'A/B testing framework'] },
+  { title: 'Search + Data AI', items: ['Vector search engine', 'Data preparation tools', 'Real-time analytics', 'Knowledge graph builder'] },
+  { title: 'Security + Governance', items: ['Role-based access control', 'Audit logging', 'Compliance frameworks', 'Data privacy tools'] },
+  { title: 'No-Code + Pro-Code', items: ['Visual workflow builder', 'Python SDK', 'REST APIs', 'Custom code execution'] },
+  { title: 'Integrations', items: ['100+ pre-built connectors', 'CRM & ERP systems', 'Data warehouses', 'Communication platforms'] },
+  { title: 'Enterprise Support', items: ['24/7 technical support', 'Dedicated account manager', 'Training & onboarding', 'Custom SLAs'] },
+];
+
+const components = [
+  { num: '01', title: 'CORE - AI Engine', subtitle: 'Create intelligent agents for any task', href: '/platform/core' },
+  { num: '02', title: 'NIA - Interface', subtitle: 'Deploy conversational AI at scale', href: '/platform/nia' },
+  { num: '03', title: 'FLOW - Automation Engine', subtitle: 'Orchestrate complex workflows', href: '/platform/flow' },
+];
+
+const enterprisePoints = [
+  { title: 'Production Ready', body: 'Deploy confidently with 99.9% uptime SLA and enterprise-grade infrastructure.' },
+  { title: 'Enterprise Scale', body: 'Handle millions of requests per day. Built for the demands of large organizations.' },
+  { title: 'Security & Compliance', body: 'SOC 2, GDPR, HIPAA compliant. Your data stays yours.' },
+  { title: 'Continuous Learning', body: 'Agents improve over time with RLHF and real-world feedback loops.' },
+];
 
 export default function ProductsPageClient() {
-    const [activeSpoke, setActiveSpoke] = useState<number | null>(null);
-    const [sliderPosition, setSliderPosition] = useState(50);
-    const [isDragging, setIsDragging] = useState(false);
+  const [activeSpoke, setActiveSpoke] = useState<number | null>(null);
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
-    const handleMouseDown = () => setIsDragging(true);
-    const handleMouseUp = () => setIsDragging(false);
+  const spokes = mockData.spokes as Spoke[];
+  const centerX = 250;
+  const centerY = 250;
+  const spokeRadius = 160;
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!isDragging) return;
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const percentage = (x / rect.width) * 100;
-        setSliderPosition(Math.max(0, Math.min(100, percentage)));
-    };
+  const handleMouseDown = () => setIsDragging(true);
+  const handleMouseUp = () => setIsDragging(false);
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const percentage = ((e.clientX - rect.left) / rect.width) * 100;
+    setSliderPosition(Math.max(0, Math.min(100, percentage)));
+  };
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const percentage = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
+    setSliderPosition(Math.max(0, Math.min(100, percentage)));
+  };
 
-    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-        if (!isDragging) return;
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = e.touches[0].clientX - rect.left;
-        const percentage = (x / rect.width) * 100;
-        setSliderPosition(Math.max(0, Math.min(100, percentage)));
-    };
-    const spokes = mockData.spokes;
-    // define SVG center and radius values for the AI CoE diagram
-    const centerX = 250;
-    const centerY = 250;
-    const spokeRadius = 160;
+  return (
+    <main className="pt-20 bg-bg">
+      {/* Hero */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.02] blur-[120px]" />
+        </div>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">
+                One Platform · Complete Center of Excellence
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">The GenX</span>
+                <span className="block text-gradient-aurora">Platform.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-12 leading-relaxed">
+                Build, Deploy, and Scale AI Responsibly with Governance and Trust Built Into Every Workflow.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="flex flex-col sm:flex-row gap-4 mb-14">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>
+                  Schedule Demo
+                </CTALink>
+                <CTALink href="/ai-center-of-excellence" variant="outline" size="lg" arrow>
+                  Explore AI CoE
+                </CTALink>
+              </div>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <div className="flex flex-wrap gap-x-10 gap-y-4 pt-8 border-t border-border">
+                {['30-Day Delivery', 'Fixed Pricing', 'You Own It'].map((b) => (
+                  <span key={b} className="inline-flex items-center gap-3 text-eyebrow text-fg-mid">
+                    <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-fg-strong" />
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
 
-    return (
-        <main className="bg-bg min-h-screen pt-10">
+      {/* Before/After Slider — monochrome */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Comparison</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">What makes</span>
+                  <span className="block text-gradient-aurora">GenX different?</span>
+                </h2>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-5 lg:pt-4">
+              <Reveal delay={0.1}>
+                <p className="text-body-lg text-fg-mid leading-relaxed">
+                  Drag the slider to see the transformation from generic AI tools to a complete platform with governance.
+                </p>
+              </Reveal>
+            </div>
+          </div>
 
-            {/* SECTION 1: HERO */}
-            <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-bg via-surface to-bg" />
+          <Reveal>
+            <div
+              className="relative w-full h-[520px] md:h-[560px] rounded-xl2 overflow-hidden border border-border-strong bg-bg-elevated select-none grain"
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleMouseUp}
+            >
+              {/* BEFORE — monochrome dim */}
+              <div
+                className="absolute inset-0 bg-bg"
+                style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+              >
+                <div className="flex flex-col items-start justify-center h-full pl-8 md:pl-16 pr-6 py-8 w-1/2">
+                  <div className="text-fg-muted mb-6">
+                    <svg className="w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <Eyebrow tone="muted" className="mb-3">Other Platforms</Eyebrow>
+                  <h3 className="text-h3 text-fg-mid mb-6">Rented tooling.</h3>
+                  <ul className="space-y-3 max-w-md">
+                    {beforeItems.map((line) => (
+                      <li key={line} className="flex items-start gap-3">
+                        <span aria-hidden="true" className="w-4 h-4 rounded-full border border-fg-faint mt-0.5 shrink-0 flex items-center justify-center">
+                          <svg className="w-2.5 h-2.5 text-fg-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                        </span>
+                        <span className="text-body-md text-fg-mid">{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
 
-                <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16 text-center">
-                    <AnimatedSection>
-                        <div className="mb-6">
-                            <span className="text-fg-muted uppercase tracking-[0.2em] text-sm">
-                                ONE PLATFORM • COMPLETE CENTER OF EXCELLENCE
+              {/* AFTER — monochrome inverse */}
+              <div
+                className="absolute inset-0 bg-fg-strong text-fg-invert"
+                style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
+              >
+                <div className="flex flex-col items-start justify-center h-full pl-8 md:pl-16 pr-6 py-8 w-1/2 ml-auto">
+                  <div className="text-fg-invert mb-6">
+                    <svg className="w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.2" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <p className="text-eyebrow text-fg-invert mb-3 opacity-70">GenX Platform</p>
+                  <h3 className="text-h3 mb-6">Owned intelligence.</h3>
+                  <ul className="space-y-3 max-w-md">
+                    {afterItems.map((line) => (
+                      <li key={line} className="flex items-start gap-3">
+                        <span aria-hidden="true" className="w-4 h-4 rounded-full border border-fg-invert mt-0.5 shrink-0 flex items-center justify-center">
+                          <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7" /></svg>
+                        </span>
+                        <span className="text-body-md">{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Slider handle */}
+              <div
+                className="absolute top-0 bottom-0 w-px bg-fg-strong cursor-ew-resize"
+                style={{ left: `${sliderPosition}%` }}
+                onMouseDown={handleMouseDown}
+                onTouchStart={handleMouseDown}
+              >
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-fg-strong rounded-full shadow-lg flex items-center justify-center cursor-ew-resize border-2 border-bg">
+                  <svg className="w-5 h-5 text-fg-invert" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <p className="text-center text-body-sm text-fg-muted mt-8">
+              Drag the slider left and right to compare
+            </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* Four Integrated Capabilities */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-8">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Architecture</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Four integrated</span>
+                  <span className="block text-gradient-aurora">capabilities.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {capabilities.map((c) => {
+              const Body = (
+                <div className={`group relative flex flex-col h-full bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated ${c.highlight ? 'bg-bg-elevated' : ''}`}>
+                  <div className="w-10 h-10 text-fg-mid group-hover:text-fg-strong transition-colors duration-500 mb-8">
+                    <c.Glyph />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-h3 text-fg-strong mb-2">{c.name}</h3>
+                    <p className="text-eyebrow text-fg-muted mb-5">{c.label}</p>
+                    <p className="text-body-md text-fg-mid leading-relaxed">{c.body}</p>
+                  </div>
+                  {c.href && (
+                    <div className="mt-6 inline-flex items-center gap-2 text-eyebrow text-fg-strong">
+                      <span>Learn more</span>
+                      <svg aria-hidden="true" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                    </div>
+                  )}
+                </div>
+              );
+              return (
+                <RevealItem key={c.name}>
+                  {c.href ? <Link href={c.href} className="block h-full">{Body}</Link> : Body}
+                </RevealItem>
+              );
+            })}
+          </RevealGroup>
+        </Container>
+      </Section>
+
+      {/* AI Center of Excellence — SVG diagram, monochrome */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-6">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">AI Center of Excellence</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">GenX at the core.</span>
+                  <span className="block text-gradient-aurora">CoE as the layer.</span>
+                </h2>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
+              <Reveal delay={0.1}>
+                <p className="text-body-lg text-fg-mid leading-relaxed">
+                  GenX at the core. AI CoE as the governance layer. McKinsey&apos;s 6 principles guiding every decision.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+            {/* Premium 3D SVG diagram — colored spokes + aurora core + glow */}
+            <div className="lg:col-span-6">
+              <Reveal>
+                <div className="relative aspect-square rounded-2xl2 border border-border bg-black/50 backdrop-blur-xl overflow-hidden shadow-lg perspective-lg">
+                  {/* Aurora ring border */}
+                  <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-2xl2 border-aurora opacity-60" />
+
+                  {/* Corner LIVE badge */}
+                  <div className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-eyebrow text-white/90 bg-black/40 backdrop-blur border border-white/10">
+                    <span className="relative inline-flex w-1.5 h-1.5">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-[color:var(--accent-cyan)] opacity-70 animate-ping" />
+                      <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-[color:var(--accent-cyan)]" />
+                    </span>
+                    <span>McKinsey · 6 principles</span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between text-eyebrow text-white/60">
+                    <span>Governance mesh</span>
+                    <span className="font-mono">hover · explore</span>
+                  </div>
+
+                  {/* Ambient inner glow */}
+                  <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
+                    background: 'radial-gradient(ellipse at 50% 50%, rgba(139,92,246,0.18), transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(34,211,238,0.12), transparent 55%), radial-gradient(ellipse at 30% 70%, rgba(236,72,153,0.12), transparent 55%)',
+                  }} />
+
+                  <svg viewBox="0 0 500 500" className="absolute inset-0 w-full h-full">
+                    <defs>
+                      {/* Aurora gradient for outer ring */}
+                      <linearGradient id="coe-ring" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                        <stop offset="35%" stopColor="#ec4899" stopOpacity="0.7" />
+                        <stop offset="70%" stopColor="#22d3ee" stopOpacity="0.7" />
+                        <stop offset="100%" stopColor="#6366f1" stopOpacity="0.8" />
+                      </linearGradient>
+                      {/* Center core radial gradient */}
+                      <radialGradient id="coe-core" cx="0.35" cy="0.35" r="0.65">
+                        <stop offset="0%" stopColor="#ffffff" />
+                        <stop offset="30%" stopColor="#c4b5fd" />
+                        <stop offset="60%" stopColor="#8b5cf6" />
+                        <stop offset="100%" stopColor="#4c1d95" />
+                      </radialGradient>
+                      {/* Per-spoke gradients */}
+                      {spokes.map((s, i) => {
+                        const colors = [
+                          ['#a78bfa', '#8b5cf6', '#6d28d9'], // violet
+                          ['#67e8f9', '#22d3ee', '#0891b2'], // cyan
+                          ['#fbcfe8', '#ec4899', '#be185d'], // pink
+                          ['#6ee7b7', '#10b981', '#047857'], // emerald
+                          ['#a5b4fc', '#6366f1', '#4338ca'], // indigo
+                          ['#fed7aa', '#fb923c', '#c2410c'], // orange
+                        ][i % 6];
+                        return (
+                          <radialGradient key={`grad-${s.id}`} id={`spoke-${s.id}`} cx="0.35" cy="0.35" r="0.75">
+                            <stop offset="0%" stopColor={colors[0]} />
+                            <stop offset="50%" stopColor={colors[1]} />
+                            <stop offset="100%" stopColor={colors[2]} />
+                          </radialGradient>
+                        );
+                      })}
+                      {/* Glow filter */}
+                      <filter id="coe-glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="6" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                      <filter id="coe-glow-strong" x="-100%" y="-100%" width="300%" height="300%">
+                        <feGaussianBlur stdDeviation="12" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+
+                    {/* Outer rotating dashed ring */}
+                    <g style={{ transformOrigin: '250px 250px' }} className="animate-spin-slow">
+                      <circle cx={centerX} cy={centerY} r={spokeRadius + 60} fill="none" stroke="url(#coe-ring)" strokeWidth="1" strokeDasharray="2 8" opacity="0.6" />
+                    </g>
+
+                    {/* Middle static ring — subtle */}
+                    <circle cx={centerX} cy={centerY} r={spokeRadius + 30} fill="none" stroke="url(#coe-ring)" strokeWidth="0.6" opacity="0.35" />
+                    <circle cx={centerX} cy={centerY} r={spokeRadius - 20} fill="none" stroke="url(#coe-ring)" strokeWidth="0.6" opacity="0.25" />
+
+                    {/* Connection lines — colored per spoke */}
+                    {spokes.map((spoke) => {
+                      const angleRad = (spoke.angle - 90) * (Math.PI / 180);
+                      const x = centerX + spokeRadius * Math.cos(angleRad);
+                      const y = centerY + spokeRadius * Math.sin(angleRad);
+                      const isActive = activeSpoke === spoke.id;
+                      return (
+                        <line
+                          key={`line-${spoke.id}`}
+                          x1={centerX}
+                          y1={centerY}
+                          x2={x}
+                          y2={y}
+                          stroke={`url(#spoke-${spoke.id})`}
+                          strokeOpacity={isActive ? 0.95 : 0.4}
+                          strokeWidth={isActive ? 2 : 1}
+                          className="transition-all duration-300"
+                          filter={isActive ? 'url(#coe-glow)' : undefined}
+                        />
+                      );
+                    })}
+
+                    {/* Center core — aurora orb with strong glow */}
+                    <g filter="url(#coe-glow-strong)">
+                      <circle cx={centerX} cy={centerY} r="70" fill="url(#coe-core)" opacity="0.98" />
+                    </g>
+                    {/* Highlight ring around center */}
+                    <circle cx={centerX} cy={centerY} r="70" fill="none" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1" />
+                    <circle cx={centerX} cy={centerY} r="78" fill="none" stroke="#ffffff" strokeOpacity="0.12" strokeWidth="1" />
+                    <text x={centerX} y={centerY + 8} textAnchor="middle" fill="#ffffff" className="text-2xl font-bold" style={{ filter: 'drop-shadow(0 0 8px rgba(139,92,246,0.6))' }}>
+                      GenX
+                    </text>
+
+                    {/* CoE label ring text */}
+                    <text x={centerX} y={centerY + 110} textAnchor="middle" fill="#ffffff" fillOpacity="0.5" className="text-[11px] tracking-[0.2em] uppercase font-medium">
+                      AI Center of Excellence
+                    </text>
+
+                    {/* Spoke nodes — colored with halos */}
+                    {spokes.map((spoke) => {
+                      const angleRad = (spoke.angle - 90) * (Math.PI / 180);
+                      const x = centerX + spokeRadius * Math.cos(angleRad);
+                      const y = centerY + spokeRadius * Math.sin(angleRad);
+                      const isActive = activeSpoke === spoke.id;
+                      return (
+                        <g
+                          key={spoke.id}
+                          onMouseEnter={() => setActiveSpoke(spoke.id)}
+                          onMouseLeave={() => setActiveSpoke(null)}
+                          className="cursor-pointer transition-all duration-300"
+                          style={{ transformOrigin: `${x}px ${y}px`, transform: isActive ? 'scale(1.15)' : 'scale(1)' }}
+                        >
+                          {/* Outer glow halo */}
+                          <circle
+                            cx={x}
+                            cy={y}
+                            r={isActive ? 48 : 38}
+                            fill={`url(#spoke-${spoke.id})`}
+                            opacity={isActive ? 0.4 : 0.18}
+                            filter="url(#coe-glow-strong)"
+                            className="transition-all duration-300"
+                          />
+                          {/* Main circle */}
+                          <circle
+                            cx={x}
+                            cy={y}
+                            r="30"
+                            fill={`url(#spoke-${spoke.id})`}
+                            opacity="0.95"
+                            filter={isActive ? 'url(#coe-glow)' : undefined}
+                          />
+                          {/* Inner highlight */}
+                          <circle
+                            cx={x - 8}
+                            cy={y - 8}
+                            r="8"
+                            fill="#ffffff"
+                            opacity="0.35"
+                          />
+                          {/* Icon */}
+                          <text
+                            x={x}
+                            y={y + 8}
+                            textAnchor="middle"
+                            fill="#ffffff"
+                            className="text-xl pointer-events-none font-semibold"
+                            style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))' }}
+                          >
+                            {spoke.icon}
+                          </text>
+                        </g>
+                      );
+                    })}
+                  </svg>
+
+                  {/* Center pulsing glow behind everything */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full blur-3xl animate-pulse pointer-events-none"
+                    style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.35), transparent 70%)' }}
+                  />
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Spoke list — colored per-spoke accents matching diagram */}
+            <div className="lg:col-span-6">
+              <Reveal>
+                <h3 className="text-h4 text-fg-strong mb-6">
+                  McKinsey&apos;s 6 AI Scaling <span className="text-gradient-aurora">Principles</span>
+                </h3>
+              </Reveal>
+              <div className="space-y-3">
+                {spokes.map((spoke, i) => {
+                  const rgb = [
+                    '139, 92, 246',  // violet
+                    '34, 211, 238',  // cyan
+                    '236, 72, 153',  // pink
+                    '16, 185, 129',  // emerald
+                    '99, 102, 241',  // indigo
+                    '251, 146, 60',  // orange
+                  ][i % 6];
+                  const isActive = activeSpoke === spoke.id;
+                  return (
+                    <div
+                      key={spoke.id}
+                      className="group relative border rounded-lg2 p-5 transition-all duration-300 cursor-pointer overflow-hidden"
+                      style={{
+                        borderColor: isActive ? `rgba(${rgb},0.6)` : 'var(--border)',
+                        background: isActive
+                          ? `linear-gradient(135deg, rgba(${rgb},0.10), rgba(${rgb},0.02))`
+                          : 'transparent',
+                        transform: isActive ? 'translateX(6px)' : 'translateX(0)',
+                      }}
+                      onMouseEnter={() => setActiveSpoke(spoke.id)}
+                      onMouseLeave={() => setActiveSpoke(null)}
+                    >
+                      {/* Colored left-edge indicator */}
+                      <span
+                        aria-hidden="true"
+                        className="absolute left-0 top-0 bottom-0 w-[3px] origin-top transition-transform duration-500 ease-out-quart"
+                        style={{
+                          background: `linear-gradient(180deg, rgb(${rgb}), rgba(${rgb},0.3))`,
+                          transform: isActive ? 'scaleY(1)' : 'scaleY(0)',
+                        }}
+                      />
+                      {/* Corner halo */}
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full transition-opacity duration-500"
+                        style={{
+                          background: `radial-gradient(circle, rgba(${rgb},0.5), transparent 70%)`,
+                          filter: 'blur(40px)',
+                          opacity: isActive ? 1 : 0,
+                        }}
+                      />
+
+                      <div className="relative flex items-start gap-4">
+                        {/* Icon in colored bordered circle */}
+                        <div
+                          className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-xl transition-all duration-300 border"
+                          style={{
+                            borderColor: `rgba(${rgb},${isActive ? 0.7 : 0.35})`,
+                            background: `linear-gradient(135deg, rgba(${rgb},0.15), rgba(${rgb},0.03))`,
+                            color: `rgb(${rgb})`,
+                            transform: isActive ? 'scale(1.1) rotate(-6deg)' : 'scale(1)',
+                            boxShadow: isActive ? `0 0 20px rgba(${rgb},0.4)` : 'none',
+                          }}
+                        >
+                          {spoke.icon}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-3 mb-1">
+                            <span className="text-eyebrow tabular-nums" style={{ color: `rgb(${rgb})` }}>
+                              {String(i + 1).padStart(2, '0')}
                             </span>
+                            <h4 className="text-body-md font-semibold text-fg-strong">{spoke.title}</h4>
+                          </div>
+                          <p className="text-body-sm text-fg-mid leading-relaxed">{spoke.description}</p>
                         </div>
-
-                        <h1 className="heading-primary mb-4 md:mb-6">
-                            THE GENX<br />
-                            <span>PLATFORM</span>
-                        </h1>
-
-                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted max-w-3xl mx-auto mb-6 md:mb-8">
-                            Build, Deploy, and Scale AI Responsibly with Governance and Trust Built Into Every Workflow
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-6 md:mb-12">
-                            <Link href="/contact" className="w-full sm:w-auto">
-                                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                                    Schedule Demo →
-                                </Button>
-                            </Link>
-                            <Link href="/ai-center-of-excellence" className="w-full sm:w-auto">
-                                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                                    Explore AI CoE
-                                </Button>
-                            </Link>
-                        </div>
-
-                        {/* Trust Badges */}
-                        <div className="flex flex-wrap justify-center gap-8 text-sm text-fg-muted">
-                            <div className="flex items-center gap-2">
-                                <span className="text-fg-strong">✓</span>
-                                <span>30-Day Delivery</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-fg-strong">✓</span>
-                                <span>Fixed Pricing</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-fg-strong">✓</span>
-                                <span>You Own It</span>
-                            </div>
-                        </div>
-                    </AnimatedSection>
-                </div>
-            </section>
-
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-4 md:mb-6 text-center">
-                            WHAT MAKES GENX DIFFERENT?
-                        </h2>
-                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted text-center mb-6 md:mb-10 max-w-2xl mx-auto">
-                            Drag the slider to see the transformation from generic AI tools to a complete platform with governance.
-                        </p>
-                    </AnimatedSection>
-
-                    <AnimatedSection delay={0.2}>
-                        <div className="max-w-5xl mx-auto">
-                            <div
-                                className="relative w-full h-[450px] rounded-2xl overflow-hidden border border-border-strong select-none"
-                                onMouseMove={handleMouseMove}
-                                onMouseUp={handleMouseUp}
-                                onMouseLeave={handleMouseUp}
-                                onTouchMove={handleTouchMove}
-                                onTouchEnd={handleMouseUp}
-                            >
-
-                                {/* BEFORE (Other Platforms) - LEFT SIDE */}
-                                <div
-                                    className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800"
-                                    style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-                                >
-                                    <div className="flex flex-col items-start justify-center h-full pl-10 md:pl-16 pr-8 py-8 w-1/2">
-                                        <div className="text-white/60 mb-4">
-                                            <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                            </svg>
-                                        </div>
-                                        <h3 className="text-3xl font-bold mb-4 text-white/70">OTHER PLATFORMS</h3>
-                                        <div className="space-y-3 text-left max-w-md">
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-white/70">Just AI tools, no framework</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-white/70">Black box solutions</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-white/70">You rent it, they own it</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-white/70">Hope for the best approach</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-white/70">No governance or best practices</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-red-400 text-xl">✗</span>
-                                                <p className="text-white/70">Long implementation timelines</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* AFTER (GenX Platform) - RIGHT SIDE */}
-                                <div
-                                    className="absolute inset-0 bg-gradient-to-br from-surface-hover to-surface-2"
-                                    style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
-                                >
-                                    <div className="flex flex-col items-start justify-center h-full pl-10 md:pl-16 pr-8 py-8 w-1/2 ml-auto">
-                                        <div className="text-fg-strong mb-4">
-                                            <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                            </svg>
-                                        </div>
-                                        <h3 className="text-3xl font-bold mb-4">GENX PLATFORM</h3>
-                                        <div className="space-y-3 text-left max-w-md">
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-green-400 text-xl">✓</span>
-                                                <p className="text-fg-strong">AI + Complete CoE Framework</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-green-400 text-xl">✓</span>
-                                                <p className="text-fg-strong">Full transparency & control</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-green-400 text-xl">✓</span>
-                                                <p className="text-fg-strong">You OWN the solution</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-green-400 text-xl">✓</span>
-                                                <p className="text-fg-strong">McKinsey best practices built-in</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-green-400 text-xl">✓</span>
-                                                <p className="text-fg-strong">Governance from day one</p>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-green-400 text-xl">✓</span>
-                                                <p className="text-fg-strong">30-day delivery guarantee</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* SLIDER HANDLE */}
-                                <div
-                                    className="absolute top-0 bottom-0 w-1 bg-fg-strong cursor-ew-resize"
-                                    style={{ left: `${sliderPosition}%` }}
-                                    onMouseDown={handleMouseDown}
-                                    onTouchStart={handleMouseDown}
-                                >
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-fg-strong rounded-full shadow-2xl flex items-center justify-center cursor-ew-resize">
-                                        <svg className="w-6 h-6 text-fg-invert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                                        </svg>
-                                    </div>
-                                </div>
-
-                                {/* LABELS */}
-                                <div className="absolute top-8 left-8 text-sm font-bold text-fg-muted uppercase tracking-wider">
-                                    Other Platforms
-                                </div>
-                                <div className="absolute top-8 right-8 text-sm font-bold uppercase tracking-wider">
-                                    GenX Platform
-                                </div>
-
-                            </div>
-                        </div>
-                    </AnimatedSection>
-
-                    {/* Instructions */}
-                    <AnimatedSection delay={0.3}>
-                        <p className="text-center text-fg-muted text-sm mt-8">
-                            👆 Drag the slider left and right to compare
-                        </p>
-                    </AnimatedSection>
-                </div>
-            </section>
-
-            {/* SECTION 3: FOUR CORE CAPABILITIES */}
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
-                            FOUR INTEGRATED CAPABILITIES
-                        </h2>
-                    </AnimatedSection>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                        {/* CORE */}
-                        <AnimatedSection delay={0.1}>
-                            <div className="group border border-border rounded-lg p-5 md:p-8 hover:border-border-strong transition-all cursor-pointer h-full flex flex-col">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-xl md:text-2xl font-bold mb-2">CORE</h3>
-                                    <p className="text-sm text-fg-muted mb-4">AI Engine</p>
-                                    <p className="text-fg-muted leading-relaxed">
-                                        Build intelligent agents for any task with advanced RAG pipelines and fine-tuning capabilities.
-                                    </p>
-                                </div>
-                            </div>
-                        </AnimatedSection>
-
-                        
-                        {/* FLOW */}
-                        <AnimatedSection delay={0.3}>
-                            <div className="group border border-border rounded-lg p-5 md:p-8 hover:border-border-strong transition-all cursor-pointer h-full flex flex-col">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-xl md:text-2xl font-bold mb-2">FLOW</h3>
-                                    <p className="text-sm text-fg-muted mb-4">Automation Engine</p>
-                                    <p className="text-fg-muted leading-relaxed">
-                                        Automate complex workflows with multi-agent orchestration and seamless integrations.
-                                    </p>
-                                </div>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* NIA */}
-                        <AnimatedSection delay={0.2}>
-                            <div className="group border border-border rounded-lg p-5 md:p-8 hover:border-border-strong transition-all cursor-pointer h-full flex flex-col">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                    </svg>
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-xl md:text-2xl font-bold mb-2">NIA</h3>
-                                    <p className="text-sm text-fg-muted mb-4">Interface Layer</p>
-                                    <p className="text-fg-muted leading-relaxed">
-                                        Talk to your AI agents through conversational interfaces. Multi-channel, multi-lingual support.
-                                    </p>
-                                </div>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* AI CoE - HIGHLIGHTED */}
-                        <AnimatedSection delay={0.4}>
-                            <Link href="/ai-center-of-excellence">
-                                <div className="group border-2 border-border-strong rounded-lg p-5 md:p-8 bg-gradient-to-br from-surface-hover to-surface-2 hover:border-border-active transition-all cursor-pointer h-full flex flex-col">
-                                    <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                        <svg className="w-6 h-6 text-fg-strong" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                        </svg>
-                                    </div>
-                                    <div className="flex-1 flex flex-col">
-                                        <h3 className="text-xl md:text-2xl font-bold mb-2">AI CoE</h3>
-                                        <p className="text-sm text-fg-muted mb-4">Governance Framework</p>
-                                        <p className="text-fg-muted leading-relaxed mb-4 flex-1">
-                                            Scale AI responsibly with built-in governance, ethics, and McKinsey best practices.
-                                        </p>
-                                        <div className="flex items-center text-sm font-medium text-fg-strong mt-auto group-hover:translate-x-1 transition-transform">
-                                            <span>Learn More</span>
-                                            <span className="ml-2">→</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </AnimatedSection>
+                      </div>
                     </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <Reveal>
+            <div className="mt-14 md:mt-20 flex flex-col items-center gap-6">
+              <p className="text-body-sm text-fg-muted text-center max-w-2xl">
+                Hover over any spoke to see how McKinsey&apos;s principles integrate with GenX and the AI CoE layer.
+              </p>
+              <CTALink href="/ai-center-of-excellence" variant="outline" size="md" arrow>
+                Explore the Complete AI CoE Framework
+              </CTALink>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* Platform Features grid */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Platform</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Six feature groups.</span>
+                  <span className="block text-gradient-aurora">One unified platform.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {features.map((f, i) => (
+              <RevealItem key={f.title} className="group bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated">
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="text-eyebrow text-fg-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  <span aria-hidden="true" className="h-px flex-1 bg-border" />
                 </div>
-            </section>
+                <h3 className="text-h4 text-fg-strong mb-5">{f.title}</h3>
+                <ul className="space-y-3">
+                  {f.items.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-body-md text-fg-mid">
+                      <span aria-hidden="true" className="text-fg-faint mt-2">·</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-4 md:mb-6 text-center">
-                            AI CENTER OF EXCELLENCE
-                        </h2>
-                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted text-center mb-6 md:mb-10 max-w-3xl mx-auto">
-                            GenX at the core. AI CoE as the governance layer. McKinsey&apos;s 6 principles guiding every decision.
-                        </p>
-                    </AnimatedSection>
+      {/* Components — editorial hairline rows */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Deep dive</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Explore</span>
+                  <span className="block text-gradient-aurora">components.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
 
-                    <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center max-w-6xl mx-auto">
-
-                        {/* LEFT: SVG Diagram */}
-                        <AnimatedSection delay={0.2}>
-                            <div className="relative">
-                                <svg width="500" height="500" viewBox="0 0 500 500" className="w-full h-full text-fg-strong">
-
-                                    {/* Outer rotating ring */}
-                                    <circle
-                                        cx={centerX}
-                                        cy={centerY}
-                                        r={spokeRadius + 40}
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeOpacity={0.5}
-                                        strokeWidth="1.5"
-                                        strokeDasharray="5,5"
-                                        className="animate-spin-slow"
-                                    />
-
-                                    {/* Middle ring - CoE */}
-                                    <circle
-                                        cx={centerX}
-                                        cy={centerY}
-                                        r={spokeRadius - 30}
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeOpacity={0.7}
-                                        strokeWidth="2"
-                                    />
-
-                                    {/* Connection lines from center to spokes */}
-                                    {spokes.map((spoke) => {
-                                        const angleRad = (spoke.angle - 90) * (Math.PI / 180);
-                                        const x = centerX + spokeRadius * Math.cos(angleRad);
-                                        const y = centerY + spokeRadius * Math.sin(angleRad);
-                                        const isActive = activeSpoke === spoke.id;
-
-                                        return (
-                                            <line
-                                                key={`line-${spoke.id}`}
-                                                x1={centerX}
-                                                y1={centerY}
-                                                x2={x}
-                                                y2={y}
-                                                stroke={isActive ? spoke.color : "currentColor"}
-                                                strokeOpacity={isActive ? 1 : 0.7}
-                                                strokeWidth={isActive ? "3" : "1.5"}
-                                                className="transition-all duration-300"
-                                            />
-                                        );
-                                    })}
-
-                                    {/* Center circle - GenX */}
-                                    <g>
-                                        <circle
-                                            cx={centerX}
-                                            cy={centerY}
-                                            r="60"
-                                            fill="currentColor"
-                                            fillOpacity={0.1}
-                                            stroke="currentColor"
-                                            strokeOpacity={1}
-                                            strokeWidth="2.5"
-                                        />
-                                        <text
-                                            x={centerX}
-                                            y={centerY + 5}
-                                            textAnchor="middle"
-                                            fill="currentColor"
-                                            className="text-2xl font-bold"
-                                        >
-                                            GenX
-                                        </text>
-                                    </g>
-
-                                    {/* Middle ring label */}
-                                    <text
-                                        x={centerX}
-                                        y={centerY + 95}
-                                        textAnchor="middle"
-                                        fill="currentColor"
-                                        fillOpacity={0.7}
-                                        className="text-xs"
-                                    >
-                                        AI Center of Excellence
-                                    </text>
-
-                                    {/* Spoke nodes */}
-                                    {spokes.map((spoke) => {
-                                        const angleRad = (spoke.angle - 90) * (Math.PI / 180);
-                                        const x = centerX + spokeRadius * Math.cos(angleRad);
-                                        const y = centerY + spokeRadius * Math.sin(angleRad);
-                                        const isActive = activeSpoke === spoke.id;
-
-                                        return (
-                                            <g
-                                                key={spoke.id}
-                                                onMouseEnter={() => setActiveSpoke(spoke.id)}
-                                                onMouseLeave={() => setActiveSpoke(null)}
-                                                className="cursor-pointer"
-                                            >
-                                                {/* Spoke circle */}
-                                                <circle
-                                                    cx={x}
-                                                    cy={y}
-                                                    r="30"
-                                                    fill={isActive ? `${spoke.color}40` : "currentColor"}
-                                                    fillOpacity={isActive ? 1 : 0.12}
-                                                    stroke={isActive ? spoke.color : "currentColor"}
-                                                    strokeOpacity={1}
-                                                    strokeWidth="2"
-                                                    className="transition-all duration-300"
-                                                />
-
-                                                {/* Spoke icon */}
-                                                <text
-                                                    x={x}
-                                                    y={y + 8}
-                                                    textAnchor="middle"
-                                                    fill="currentColor"
-                                                    className="text-2xl pointer-events-none"
-                                                >
-                                                    {spoke.icon}
-                                                </text>
-                                            </g>
-                                        );
-                                    })}
-
-                                </svg>
-
-                                {/* Pulsing center glow */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* RIGHT: Spoke Details */}
-                        <AnimatedSection delay={0.3}>
-                            <div className="space-y-4">
-                                <h3 className="text-xl md:text-2xl font-bold mb-6">McKinsey&apos;s 6 AI Scaling Principles</h3>
-
-                                {spokes.map((spoke) => (
-                                    <div
-                                        key={spoke.id}
-                                        className={`border rounded-lg p-5 transition-all cursor-pointer ${activeSpoke === spoke.id
-                                            ? 'border-border-active bg-surface-2 scale-[1.02]'
-                                            : 'border-border hover:border-border-strong hover:bg-surface-2'
-                                            }`}
-                                        onMouseEnter={() => setActiveSpoke(spoke.id)}
-                                        onMouseLeave={() => setActiveSpoke(null)}
-                                        style={{
-                                            borderColor: activeSpoke === spoke.id ? spoke.color : undefined
-                                        }}
-                                    >
-                                        <div className="flex items-start gap-4">
-                                            <div
-                                                className="text-3xl flex-shrink-0 transition-transform duration-300"
-                                                style={{
-                                                    transform: activeSpoke === spoke.id ? 'scale(1.2)' : 'scale(1)'
-                                                }}
-                                            >
-                                                {spoke.icon}
-                                            </div>
-                                            <div className="flex-1">
-                                                <h4 className="font-bold mb-1">{spoke.title}</h4>
-                                                <p className="text-sm text-fg-muted">{spoke.description}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </AnimatedSection>
-
+          <RevealGroup className="border-t border-border-strong">
+            {components.map((c) => (
+              <RevealItem key={c.num}>
+                <Link href={c.href} className="group block relative overflow-hidden border-b border-border">
+                  <span aria-hidden="true" className="absolute inset-0 origin-left scale-x-0 bg-fg-strong transition-transform duration-500 ease-out-quart group-hover:scale-x-100" />
+                  <div className="relative py-8 md:py-12 flex items-center justify-between gap-6 transition-colors duration-500 group-hover:text-fg-invert">
+                    <div className="flex items-center gap-6 md:gap-10">
+                      <span className="text-h1 text-fg-faint group-hover:text-fg-invert tabular-nums leading-none transition-colors duration-500" style={{}}>
+                        {c.num}
+                      </span>
+                      <div>
+                        <h3 className="text-h3 text-fg-strong group-hover:text-fg-invert transition-colors duration-500 mb-2">{c.title}</h3>
+                        <p className="text-body-md text-fg-mid group-hover:text-fg-invert transition-colors duration-500">{c.subtitle}</p>
+                      </div>
                     </div>
+                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-border-strong group-hover:border-fg-invert shrink-0 transition-all duration-500">
+                      <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
-                    {/* Bottom CTA */}
-                    <AnimatedSection delay={0.4}>
-                        <div className="max-w-3xl mx-auto mt-10 md:mt-20 text-center">
-                            <p className="text-fg-muted mb-8">
-                                👆 Hover over any spoke to see how McKinsey&apos;s principles integrate with GenX and the AI CoE layer
-                            </p>
-                            <Link href="/ai-center-of-excellence">
-                                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                                    Explore the Complete AI CoE Framework →
-                                </Button>
-                            </Link>
-                        </div>
-                    </AnimatedSection>
-
+      {/* Enterprise */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Enterprise</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Built for</span>
+                  <span className="block text-gradient-aurora">enterprise.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 border-t border-border">
+            {enterprisePoints.map((e, i) => (
+              <RevealItem
+                key={e.title}
+                className={`py-10 md:py-12 lg:pr-8 ${i > 0 ? 'lg:pl-8 lg:border-l lg:border-border' : ''} border-b border-border lg:[&:nth-child(-n+4)]:border-b-0`}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-eyebrow text-fg-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  <span aria-hidden="true" className="h-px flex-1 bg-border" />
                 </div>
+                <h3 className="text-h4 text-fg-strong mb-3">{e.title}</h3>
+                <p className="text-body-sm text-fg-mid leading-relaxed">{e.body}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
-                {/* Custom Animations */}
-                <style jsx>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
-            </section>
+      {/* Social Proof */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="max-w-4xl mx-auto text-center">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8 justify-center">
+                Trusted by leading organizations
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <blockquote className="text-h2 text-fg-strong leading-tight mb-10 italic">
+                &ldquo;GenX Platform + AI CoE transformed how we approach AI adoption.
+                The built-in governance framework gave us the confidence to scale AI responsibly across our organization.&rdquo;
+              </blockquote>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-eyebrow text-fg-mid">— Enterprise Technology Leader</p>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
 
-            {/* SECTION 5: PLATFORM FEATURES */}
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
-                            PLATFORM FEATURES
-                        </h2>
-                    </AnimatedSection>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                        {/* Feature 1: AI Engineering Tools */}
-                        <AnimatedSection delay={0.1}>
-                            <div className="border border-border rounded-lg p-5 md:p-8 hover:border-border-strong hover:bg-surface-2 transition-all">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">AI Engineering Tools</h3>
-                                <ul className="space-y-2 text-fg-muted text-sm">
-                                    <li>• RAG pipeline builder</li>
-                                    <li>• RLHF fine-tuning</li>
-                                    <li>• Model evaluation</li>
-                                    <li>• A/B testing framework</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* Feature 2: Search + Data AI */}
-                        <AnimatedSection delay={0.2}>
-                            <div className="border border-border rounded-lg p-5 md:p-8 hover:border-border-strong hover:bg-surface-2 transition-all">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Search + Data AI</h3>
-                                <ul className="space-y-2 text-fg-muted text-sm">
-                                    <li>• Vector search engine</li>
-                                    <li>• Data preparation tools</li>
-                                    <li>• Real-time analytics</li>
-                                    <li>• Knowledge graph builder</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* Feature 3: Security + Governance */}
-                        <AnimatedSection delay={0.3}>
-                            <div className="border border-border rounded-lg p-5 md:p-8 hover:border-border-strong hover:bg-surface-2 transition-all">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Security + Governance</h3>
-                                <ul className="space-y-2 text-fg-muted text-sm">
-                                    <li>• Role-based access control</li>
-                                    <li>• Audit logging</li>
-                                    <li>• Compliance frameworks</li>
-                                    <li>• Data privacy tools</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* Feature 4: No-Code + Pro-Code */}
-                        <AnimatedSection delay={0.4}>
-                            <div className="border border-border rounded-lg p-5 md:p-8 hover:border-border-strong hover:bg-surface-2 transition-all">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">No-Code + Pro-Code</h3>
-                                <ul className="space-y-2 text-fg-muted text-sm">
-                                    <li>• Visual workflow builder</li>
-                                    <li>• Python SDK</li>
-                                    <li>• REST APIs</li>
-                                    <li>• Custom code execution</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* Feature 5: Integrations */}
-                        <AnimatedSection delay={0.5}>
-                            <div className="border border-border rounded-lg p-5 md:p-8 hover:border-border-strong hover:bg-surface-2 transition-all">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Integrations</h3>
-                                <ul className="space-y-2 text-fg-muted text-sm">
-                                    <li>• 100+ pre-built connectors</li>
-                                    <li>• CRM & ERP systems</li>
-                                    <li>• Data warehouses</li>
-                                    <li>• Communication platforms</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
-
-                        {/* Feature 6: Enterprise Support */}
-                        <AnimatedSection delay={0.6}>
-                            <div className="border border-border rounded-lg p-5 md:p-8 hover:border-border-strong hover:bg-surface-2 transition-all">
-                                <div className="w-12 h-12 rounded-lg bg-surface-2 flex items-center justify-center mb-6">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Enterprise Support</h3>
-                                <ul className="space-y-2 text-fg-muted text-sm">
-                                    <li>• 24/7 technical support</li>
-                                    <li>• Dedicated account manager</li>
-                                    <li>• Training & onboarding</li>
-                                    <li>• Custom SLAs</li>
-                                </ul>
-                            </div>
-                        </AnimatedSection>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* SECTION 6: COMPONENT DEEP DIVE (KEEP EXISTING) */}
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-8 md:mb-12">
-                            <span>EXPLORE</span><br />
-                            <span>COMPONENTS</span>
-                        </h2>
-                    </AnimatedSection>
-
-                    <div className="space-y-0">
-                        <AnimatedSection delay={0.1}>
-                            <Link href="/platform/core" className="block group">
-                                <div className="border-t border-border-strong py-6 md:py-12 hover:bg-fg-strong hover:text-fg-invert transition-all duration-500">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-4 md:gap-8">
-                                            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg-muted group-hover:text-fg-invert transition-colors">01</span>
-                                            <div>
-                                                <h3 className="text-2xl md:text-3xl font-bold mb-2">CORE - AI Engine</h3>
-                                                <p className="text-fg-muted group-hover:text-fg-invert transition-colors">
-                                                    Create intelligent agents for any task
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <svg className="w-8 h-8 text-fg-muted group-hover:text-fg-invert transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </Link>
-                        </AnimatedSection>
-
-                        <AnimatedSection delay={0.2}>
-                            <Link href="/platform/nia" className="block group">
-                                <div className="border-t border-border-strong py-6 md:py-12 hover:bg-fg-strong hover:text-fg-invert transition-all duration-500">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-4 md:gap-8">
-                                            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg-muted group-hover:text-fg-invert transition-colors">02</span>
-                                            <div>
-                                                <h3 className="text-2xl md:text-3xl font-bold mb-2">NIA - Interface</h3>
-                                                <p className="text-fg-muted group-hover:text-fg-invert transition-colors">
-                                                    Deploy conversational AI at scale
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <svg className="w-8 h-8 text-fg-muted group-hover:text-fg-invert transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </Link>
-                        </AnimatedSection>
-
-                        <AnimatedSection delay={0.3}>
-                            <Link href="/platform/flow" className="block group">
-                                <div className="border-t border-b border-border-strong py-6 md:py-12 hover:bg-fg-strong hover:text-fg-invert transition-all duration-500">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-4 md:gap-8">
-                                            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg-muted group-hover:text-fg-invert transition-colors">03</span>
-                                            <div>
-                                                <h3 className="text-2xl md:text-3xl font-bold mb-2">FLOW - Automation Engine</h3>
-                                                <p className="text-fg-muted group-hover:text-fg-invert transition-colors">
-                                                    Orchestrate complex workflows
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <svg className="w-8 h-8 text-fg-muted group-hover:text-fg-invert transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </Link>
-                        </AnimatedSection>
-                    </div>
-                </div>
-            </section>
-
-            {/* SECTION 7: ENTERPRISE FEATURES (MOVED DOWN) */}
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
-                            BUILT FOR ENTERPRISE
-                        </h2>
-                    </AnimatedSection>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                        <AnimatedSection delay={0.1}>
-                            <div className="text-center">
-                                <div className="w-16 h-16 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                                    <span className="text-3xl">✓</span>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Production Ready</h3>
-                                <p className="text-fg-muted">Deploy confidently with 99.9% uptime SLA and enterprise-grade infrastructure.</p>
-                            </div>
-                        </AnimatedSection>
-
-                        <AnimatedSection delay={0.2}>
-                            <div className="text-center">
-                                <div className="w-16 h-16 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                                    <span className="text-3xl">↑</span>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Enterprise Scale</h3>
-                                <p className="text-fg-muted">Handle millions of requests per day. Built for the demands of large organizations.</p>
-                            </div>
-                        </AnimatedSection>
-
-                        <AnimatedSection delay={0.3}>
-                            <div className="text-center">
-                                <div className="w-16 h-16 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                                    <svg className="w-8 h-8 text-fg-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                    </svg>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Security & Compliance</h3>
-                                <p className="text-fg-muted">SOC 2, GDPR, HIPAA compliant. Your data stays yours.</p>
-                            </div>
-                        </AnimatedSection>
-
-                        <AnimatedSection delay={0.4}>
-                            <div className="text-center">
-                                <div className="w-16 h-16 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                                    <span className="text-3xl">⟲</span>
-                                </div>
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2">Continuous Learning</h3>
-                                <p className="text-fg-muted">Agents improve over time with RLHF and real-world feedback loops.</p>
-                            </div>
-                        </AnimatedSection>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* SECTION 8: SOCIAL PROOF */}
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-6 md:mb-10 text-center">
-                            TRUSTED BY LEADING ORGANIZATIONS
-                        </h2>
-                    </AnimatedSection>
-
-                    <AnimatedSection delay={0.2}>
-                        <div className="text-center max-w-3xl mx-auto">
-                            <p className="text-base sm:text-lg lg:text-xl text-fg-muted italic mb-8">
-                                &quot;GenX Platform + AI CoE transformed how we approach AI adoption.
-                                The built-in governance framework gave us the confidence to scale AI responsibly across our organization.&quot;
-                            </p>
-                            <p className="text-fg-muted">
-                                — Enterprise Technology Leader
-                            </p>
-                        </div>
-                    </AnimatedSection>
-                </div>
-            </section>
-
-            {/* SECTION 9: FINAL CTA */}
-            <section className="py-8 md:py-12 border-t border-border">
-                <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-                    <AnimatedSection>
-                        <h2 className="heading-primary mb-4 md:mb-6">
-                            READY TO TRANSFORM YOUR AI OPERATIONS?
-                        </h2>
-
-                        <p className="text-base sm:text-lg lg:text-xl text-fg-muted mb-6 md:mb-8">
-                            See how GenX Platform + AI CoE can help you scale AI responsibly
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-                            <Link href="/contact" className="w-full sm:w-auto">
-                                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                                    Schedule Demo →
-                                </Button>
-                            </Link>
-                            <Link href="/platform/core" className="w-full sm:w-auto">
-                                <Button className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 text-lg">
-                                    Explore CORE
-                                </Button>
-                            </Link>
-                        </div>
-                    </AnimatedSection>
-                </div>
-            </section>
-
-        </main>
-    );
+      {/* Final CTA */}
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
+        </div>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Ready to transform</span>
+                <span className="block text-gradient-aurora">your AI operations?</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-14 leading-relaxed">
+                See how GenX Platform + AI CoE can help you scale AI responsibly.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>
+                  Schedule Demo
+                </CTALink>
+                <CTALink href="/platform/core" variant="outline" size="lg" arrow>
+                  Explore CORE
+                </CTALink>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+    </main>
+  );
 }

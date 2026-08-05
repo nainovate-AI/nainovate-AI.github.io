@@ -175,7 +175,7 @@ export default function AIReadinessReport2025Page() {
 
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6">
                                 <span className="block">AI READINESS</span>
-                                <span className="block">REPORT 2025</span>
+                                <span className="block text-gradient-aurora">REPORT 2025</span>
                             </h1>
 
                             <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-12 max-w-3xl">

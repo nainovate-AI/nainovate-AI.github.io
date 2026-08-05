@@ -1,74 +1,73 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/Button';
 import JsonLd from '@/components/seo/JsonLd';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTA } from '@/components/ui/CTA';
 
+const faqs = [
+  {
+    q: 'How quickly can I get started with GenX?',
+    a: 'Most customers are up and running within days. Our onboarding team will guide you through setup and initial agent creation.',
+  },
+  {
+    q: 'Do I need technical expertise?',
+    a: 'No. GenX is designed for business users. Our visual workflow builder requires no coding knowledge.',
+  },
+  {
+    q: 'Are you AI compliance ready?',
+    a: 'Yes. Designed with compliance at its core. We are AI compliance ready and adhere to enterprise-grade security and governance standards.',
+  },
+  {
+    q: 'Can I try before buying?',
+    a: 'Yes. We offer personalized demos and proof-of-concept projects for qualified enterprises.',
+  },
+];
+
+const highlights = [
+  { label: '24-hour response time' },
+  { label: 'Free initial consultation' },
+  { label: '100% confidential' },
+];
 
 export default function ContactPageClient() {
   const contactSchema = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Nainovate Technologies",
-      "url": "https://www.nainovate.ai",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "Sales",
-        "email": "info@nainovate.ai",
-        "url": "https://www.nainovate.ai/contact",
-        "availableLanguage": ["English", "Hindi"],
-        "areaServed": "Global"
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Nainovate Technologies',
+      url: 'https://www.nainovate.ai',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'Sales',
+        email: 'info@nainovate.ai',
+        url: 'https://www.nainovate.ai/contact',
+        availableLanguage: ['English', 'Hindi'],
+        areaServed: 'Global',
       },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "HITEC City, Cyberabad",
-        "addressLocality": "Hyderabad",
-        "addressRegion": "Telangana",
-        "postalCode": "500081",
-        "addressCountry": "IN"
-      }
-    }
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'HITEC City, Cyberabad',
+        addressLocality: 'Hyderabad',
+        addressRegion: 'Telangana',
+        postalCode: '500081',
+        addressCountry: 'IN',
+      },
+    },
   };
 
   const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How quickly can I get started with GenX?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Most customers are up and running within days. Our onboarding team will guide you through setup and initial agent creation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I need technical expertise?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. GenX is designed for business users. Our visual workflow builder requires no coding knowledge."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are you AI compliance ready?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Designed with compliance at its core. We are AI compliance ready and adhere to enterprise-grade security and governance standards."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I try before buying?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We offer personalized demos and proof-of-concept projects for qualified enterprises."
-        }
-      }
-    ]
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   };
 
   const [formData, setFormData] = useState({
@@ -77,25 +76,21 @@ export default function ContactPageClient() {
     email: '',
     company: '',
     interest: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNhq4W7yQo7TinavOG9KlIkd1-j-zjf310CdErCRTsw_pinsfIQNrIy4Wuy0JXV46k/exec';
-
       const form = new FormData();
       form.append('formGoogleSheetName', 'Sheet1');
       form.append('formGoogleSendEmail', 'info@nainovate.ai');
@@ -104,27 +99,11 @@ export default function ContactPageClient() {
       form.append('company', formData.company);
       form.append('interest', formData.interest);
       form.append('message', formData.message);
-      form.append('formDataNameOrder', JSON.stringify([
-        "name", "email", "company", "interest", "message"
-      ]));
-
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: form,
-      });
-
+      form.append('formDataNameOrder', JSON.stringify(['name', 'email', 'company', 'interest', 'message']));
+      await fetch(SCRIPT_URL, { method: 'POST', body: form });
       setSubmitStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        company: '',
-        interest: '',
-        message: ''
-      });
-
+      setFormData({ firstName: '', lastName: '', email: '', company: '', interest: '', message: '' });
       setTimeout(() => setSubmitStatus('idle'), 5000);
-
     } catch (error) {
       console.error('Submission error:', error);
       setSubmitStatus('error');
@@ -134,228 +113,205 @@ export default function ContactPageClient() {
     }
   };
 
+  const inputClass =
+    'w-full px-0 py-3 bg-transparent border-b border-border focus:border-fg-strong outline-none transition-colors duration-300 text-body-md text-fg-strong placeholder:text-fg-faint';
+
   return (
-    <main className="bg-bg pt-16 md:pt-20">
+    <main className="pt-20 bg-bg">
       <JsonLd data={faqSchema} />
       <JsonLd data={contactSchema} />
 
       {/* Hero */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
-          <div className="max-w-4xl">
-            <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            CONTACT
-            </p>
-            <h1 className="heading-primary mb-8">
-              <span className="block">LET&apos;S</span>
-              <span className="block">CONNECT</span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl">
-              Ready to transform your business with AI? Our team is here to help
-              you get started.
-            </p>
-          </div>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">Contact</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Let&apos;s</span>
+                <span className="block text-gradient-aurora">connect.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl leading-relaxed">
+                Ready to transform your business with AI? Our team is here to help
+                you get started.
+              </p>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
 
-      {/* Contact Options */}
-      <section className="py-8 md:py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-16">
-            {/* Contact Form */}
-            <div>
-              <h2 className="heading-primary mb-6 md:mb-12">GET IN TOUCH</h2>
+      {/* Form + Info */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
+            {/* Form */}
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Get in touch</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2 mb-10 md:mb-14">
+                  <span className="block text-fg-strong">Tell us about</span>
+                  <span className="block text-gradient-aurora">your project.</span>
+                </h2>
+              </Reveal>
 
-              <form className="space-y-5 md:space-y-8" onSubmit={handleSubmit}>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <label className="block text-sm font-medium mb-3">First Name</label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
-                      placeholder="John"
-                    />
+              <Reveal delay={0.1}>
+                <form className="space-y-8" onSubmit={handleSubmit}>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <label className="block text-eyebrow text-fg-mid mb-3">First Name</label>
+                      <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required className={inputClass} placeholder="John" />
+                    </div>
+                    <div>
+                      <label className="block text-eyebrow text-fg-mid mb-3">Last Name</label>
+                      <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required className={inputClass} placeholder="Doe" />
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-3">Last Name</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
-                      placeholder="Doe"
-                    />
+                    <label className="block text-eyebrow text-fg-mid mb-3">Email</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required className={inputClass} placeholder="john@company.com" />
                   </div>
-                </div>
+                  <div>
+                    <label className="block text-eyebrow text-fg-mid mb-3">Company</label>
+                    <input type="text" name="company" value={formData.company} onChange={handleChange} required className={inputClass} placeholder="Company Name" />
+                  </div>
+                  <div>
+                    <label className="block text-eyebrow text-fg-mid mb-3">Interest</label>
+                    <select name="interest" value={formData.interest} onChange={handleChange} required className={`${inputClass} cursor-pointer`}>
+                      <option value="" className="bg-bg">Select your interest</option>
+                      <option value="demo" className="bg-bg">Product Demo</option>
+                      <option value="pricing" className="bg-bg">Pricing Information</option>
+                      <option value="partnership" className="bg-bg">Partnership</option>
+                      <option value="support" className="bg-bg">Technical Support</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-eyebrow text-fg-mid mb-3">Message</label>
+                    <textarea name="message" value={formData.message} onChange={handleChange} required rows={4} className={`${inputClass} resize-none`} placeholder="Tell us about your project..." />
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-3">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
-                    placeholder="john@company.com"
-                  />
-                </div>
+                  {submitStatus === 'success' && (
+                    <p className="text-body-md text-success">Thank you! Your message has been sent successfully.</p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-body-md text-danger">Something went wrong. Please try again.</p>
+                  )}
 
-                <div>
-                  <label className="block text-sm font-medium mb-3">Company</label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors"
-                    placeholder="Company Name"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-3">Interest</label>
-                  <select
-                    name="interest"
-                    value={formData.interest}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors cursor-pointer"
-                  >
-                    <option value="" className="bg-bg">Select your interest</option>
-                    <option value="demo" className="bg-bg">Product Demo</option>
-                    <option value="pricing" className="bg-bg">Pricing Information</option>
-                    <option value="partnership" className="bg-bg">Partnership</option>
-                    <option value="support" className="bg-bg">Technical Support</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-3">Message</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className="w-full px-0 py-3 bg-transparent border-b border-border-strong focus:border-fg-strong outline-none transition-colors resize-none"
-                    placeholder="Tell us about your project..."
-                  />
-                </div>
-
-                {submitStatus === 'success' && (
-                  <p className="text-green-500">Thank you! Your message has been sent successfully.</p>
-                )}
-
-                {submitStatus === 'error' && (
-                  <p className="text-red-500">Something went wrong. Please try again.</p>
-                )}
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-8 py-4"
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message →'}
-                </Button>
-              </form>
+                  <CTA type="submit" disabled={isSubmitting} variant="solid" size="lg" arrow>
+                    {isSubmitting ? 'Sending…' : 'Send Message'}
+                  </CTA>
+                </form>
+              </Reveal>
             </div>
 
-            {/* Contact Info */}
-            <div className="space-y-8 md:space-y-16">
-              <div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-6">LET&apos;S CONNECT</h3>
-                <p className="text-fg-muted mb-8">
+            {/* Info sidebar */}
+            <aside className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-border">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Let&apos;s connect</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <p className="text-body-lg text-fg-mid mb-10 leading-relaxed">
                   Ready to explore how AI can transform your business? Let&apos;s discuss your needs.
                 </p>
+              </Reveal>
 
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="flex items-center gap-3">
-                    <span className="w-6 flex items-center justify-center text-base leading-none text-fg-muted">🗲</span>
-                    <p className="text-sm text-fg-muted leading-none">24-hour response time</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-6 flex items-center justify-center text-base leading-none text-fg-muted">◉</span>
-                    <p className="text-sm text-fg-muted leading-none">Free initial consultation</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="w-6 flex items-center justify-center text-base leading-none text-fg-muted">◈</span>
-                    <p className="text-sm text-fg-muted leading-none">100% confidential</p>
-                  </div>
+              <Reveal delay={0.1}>
+                <div className="border-t border-border py-8 space-y-4">
+                  {highlights.map((h) => (
+                    <div key={h.label} className="flex items-center gap-4">
+                      <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-fg-strong" />
+                      <p className="text-body-md text-fg-mid">{h.label}</p>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              </Reveal>
 
-              <div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-6">VISIT US</h3>
-                <div className="rounded-lg mb-4 overflow-hidden h-[250px]">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121826.27689281755!2d78.27798406762885!3d17.408372669616604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb952200059677%3A0xac28e1d107bc3e57!2sAVK%20SRI%20Harsha%20Icon!5e0!3m2!1sen!2sin!4v1753865250238!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+              <Reveal delay={0.15}>
+                <div className="border-t border-border pt-8">
+                  <h3 className="text-eyebrow text-fg-strong mb-5">Visit us</h3>
+                  <div className="rounded-xl2 border border-border mb-5 overflow-hidden h-[240px]">
+                    <iframe
+                      title="Nainovate Hyderabad office location"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121826.27689281755!2d78.27798406762885!3d17.408372669616604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb952200059677%3A0xac28e1d107bc3e57!2sAVK%20SRI%20Harsha%20Icon!5e0!3m2!1sen!2sin!4v1753865250238!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                  <address className="not-italic text-body-sm text-fg-mid">
+                    <strong className="text-fg-strong text-body-md block mb-1">Nainovate Technologies</strong>
+                    HITEC City, Cyberabad<br />
+                    Hyderabad, Telangana 500081
+                  </address>
                 </div>
-                <address className="not-italic text-sm text-fg-muted">
-                  <strong className="text-fg-strong">Nainovate Technologies</strong><br />
-                  HITEC City, Cyberabad<br />
-                  Hyderabad, Telangana 500081
-                </address>
-              </div>
-            </div>
+              </Reveal>
+            </aside>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
       {/* FAQ */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="heading-primary mb-6 md:mb-10">FREQUENTLY ASKED</h2>
-
-          <div className="space-y-5 md:space-y-8">
-            <div className="border-b border-border pb-8">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">How quickly can I get started with GenX?</h3>
-              <p className="text-fg-muted">
-                Most customers are up and running within days. Our onboarding team
-                will guide you through setup and initial agent creation.
-              </p>
-            </div>
-
-            <div className="border-b border-border pb-8">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Do I need technical expertise?</h3>
-              <p className="text-fg-muted">
-                No. GenX is designed for business users. Our visual workflow builder
-                requires no coding knowledge.
-              </p>
-            </div>
-
-            <div className="border-b border-border pb-8">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Are you AI compliance ready?</h3>
-              <p className="text-fg-muted">
-                Yes. Designed with compliance at its core.
-                We are AI compliance ready and adhere to enterprise-grade security and governance standards.
-              </p>
-            </div>
-
-            <div className="border-b border-border pb-8">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-4">Can I try before buying?</h3>
-              <p className="text-fg-muted">
-                Yes. We offer personalized demos and proof-of-concept projects
-                for qualified enterprises.
-              </p>
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-6">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">FAQ</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Frequently</span>
+                  <span className="block text-gradient-aurora">asked.</span>
+                </h2>
+              </Reveal>
             </div>
           </div>
-        </div>
-      </section>
+
+          <RevealGroup className="border-t border-border-strong">
+            {faqs.map((f, i) => {
+              const isOpen = openFaq === i;
+              return (
+                <RevealItem key={f.q}>
+                  <div className="border-b border-border">
+                    <button
+                      onClick={() => setOpenFaq(isOpen ? null : i)}
+                      className="w-full py-6 md:py-8 flex items-center justify-between gap-6 text-left group focus-visible:outline-none"
+                      aria-expanded={isOpen}
+                    >
+                      <h3 className="text-h4 text-fg-strong">{f.q}</h3>
+                      <span aria-hidden="true" className={`shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full border border-border-strong text-fg-mid group-hover:text-fg-strong group-hover:border-fg-strong transition-all duration-300 ${isOpen ? 'rotate-45' : ''}`}>
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 5v14M5 12h14" />
+                        </svg>
+                      </span>
+                    </button>
+                    <div
+                      className={`grid overflow-hidden transition-all duration-500 ease-out-quart ${isOpen ? 'grid-rows-[1fr] pb-8 md:pb-10 opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                    >
+                      <div className="min-h-0">
+                        <p className="text-body-lg text-fg-mid leading-relaxed max-w-3xl">
+                          {f.a}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </RevealItem>
+              );
+            })}
+          </RevealGroup>
+        </Container>
+      </Section>
     </main>
   );
 }

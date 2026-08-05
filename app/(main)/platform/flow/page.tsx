@@ -1,8 +1,10 @@
-import { Button } from '@/components/ui/Button';
-import { AnimatedSection } from '@/components/ui/AnimatedSection';
-import Link from 'next/link';
-import JsonLd from '@/components/seo/JsonLd';
 import { Metadata } from 'next';
+import JsonLd from '@/components/seo/JsonLd';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
 
 export const metadata: Metadata = {
   title: 'FLOW - AI Workflow Automation Engine | Nainovate GenX',
@@ -15,277 +17,274 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FlowPage() {
-  const flowSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "GenX FLOW",
-    "alternateName": "FLOW Automation Engine",
-    "applicationCategory": "Workflow Automation Platform",
-    "description": "AI workflow automation engine for orchestrating complex multi-agent processes",
-    "url": "https://www.nainovate.ai/platform/flow",
-    "featureList": [
-      "Sequential Workflows",
-      "Parallel Processing",
-      "Conditional Logic",
-      "Multi-agent Orchestration",
-      "Real-time Monitoring",
-      "Enterprise Integrations",
-      "Pre-built Templates"
-    ],
-    "offers": {
-      "@type": "Offer",
-      "price": "Contact for pricing",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    }
-  };
+const flowSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'GenX FLOW',
+  alternateName: 'FLOW Automation Engine',
+  applicationCategory: 'Workflow Automation Platform',
+  description: 'AI workflow automation engine for orchestrating complex multi-agent processes',
+  url: 'https://www.nainovate.ai/platform/flow',
+  featureList: [
+    'Sequential Workflows', 'Parallel Processing', 'Conditional Logic',
+    'Multi-agent Orchestration', 'Real-time Monitoring', 'Enterprise Integrations', 'Pre-built Templates',
+  ],
+  offers: { '@type': 'Offer', price: 'Contact for pricing', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+};
 
+const patterns = [
+  {
+    name: 'Sequential',
+    body: 'Chain multiple AI agents in sequence. Output from one becomes input for the next. Perfect for multi-step processes.',
+    bullets: ['Document processing pipelines', 'Multi-stage analysis', 'Approval workflows'],
+    Visual: () => (
+      <div className="flex items-center gap-4 w-full">
+        <div className="w-12 h-12 rounded-lg border border-fg-strong flex items-center justify-center text-fg-strong font-semibold sequential-fade-1">1</div>
+        <div className="flex-1 h-px bg-border-strong" />
+        <div className="w-12 h-12 rounded-lg border border-fg-strong flex items-center justify-center text-fg-strong font-semibold sequential-fade-2">2</div>
+        <div className="flex-1 h-px bg-border-strong" />
+        <div className="w-12 h-12 rounded-lg border border-fg-strong flex items-center justify-center text-fg-strong font-semibold sequential-fade-3">3</div>
+      </div>
+    ),
+  },
+  {
+    name: 'Parallel',
+    body: 'Run multiple agents simultaneously. Aggregate results for comprehensive analysis and faster processing.',
+    bullets: ['Multi-source data gathering', 'Comparative analysis', 'Load distribution'],
+    Visual: () => (
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-12 h-12 rounded-lg border border-fg-strong flex items-center justify-center text-fg-strong text-body-sm">IN</div>
+        <div className="w-px h-3 bg-border-strong" />
+        <div className="flex gap-4">
+          <div className="w-10 h-10 rounded-lg border border-fg-strong parallel-pulse-1" />
+          <div className="w-10 h-10 rounded-lg border border-fg-strong parallel-pulse-2" />
+          <div className="w-10 h-10 rounded-lg border border-fg-strong parallel-pulse-3" />
+        </div>
+        <div className="w-px h-3 bg-border-strong" />
+        <div className="w-12 h-12 rounded-lg border border-fg-strong flex items-center justify-center text-fg-strong text-body-sm">OUT</div>
+      </div>
+    ),
+  },
+  {
+    name: 'Conditional',
+    body: 'Dynamic workflows that adapt based on conditions. Different paths for different scenarios.',
+    bullets: ['Decision trees', 'Error handling', 'Personalized flows'],
+    Visual: () => (
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-12 rounded-full border border-fg-strong flex items-center justify-center text-fg-strong font-semibold">?</div>
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-16 h-px bg-border-strong" />
+            <div className="w-10 h-10 rounded-lg border border-fg-strong conditional-path-1" />
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-16 h-px bg-border-strong" />
+            <div className="w-10 h-10 rounded-lg border border-fg-strong conditional-path-2" />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+];
+
+const features = [
+  { title: 'Loops & Iteration', body: 'Process lists and datasets with intelligent loops' },
+  { title: 'Scheduling', body: 'Run workflows on schedule or trigger by events' },
+  { title: 'Integrations', body: 'Connect to any API or database' },
+  { title: 'Monitoring', body: 'Real-time insights and debugging' },
+  { title: 'Security', body: 'Enterprise-grade access control' },
+  { title: 'Scalability', body: 'Handle millions of executions' },
+];
+
+const templates = [
+  { title: 'BOQ Generation', body: 'Automatically generate Bills of Quantities from architectural drawings and specifications' },
+  { title: 'RFP Generation', body: 'Create comprehensive Request for Proposals with all technical specifications' },
+  { title: 'Purchase Order', body: 'Generate purchase orders with item validation from descriptions and pricing' },
+  { title: 'Vendor Evaluation', body: 'Compare and score vendors based on multiple criteria and past performance' },
+  { title: 'Contract Analysis', body: 'Extract key terms, identify risks, and summarize complex legal documents' },
+  { title: 'Cost Estimation', body: 'Generate detailed cost breakdowns for projects with market rates' },
+];
+
+export default function FlowPage() {
   return (
-    <main className="pt-20 relative z-10">
+    <main className="pt-20 bg-bg">
       <JsonLd data={flowSchema} />
-      
+
       {/* Hero */}
-      <section className="min-h-[80vh] flex items-center">
-        <div className="max-w-[1400px] mx-auto px-8 w-full">
-          <div className="max-w-4xl">
-            <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-              GENX FLOW • ORCHESTRATE WITH FLOW
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-4 md:mb-6">
-              <span className="block">AI</span>
-              <span className="block">WORKFLOWS</span>
-            </h1>
-            <p className="text-xl text-fg-muted max-w-3xl mb-12">
-              Design complex AI workflows that connect multiple agents. Integrate your
-              systems, and automate entire business processes.
-            </p>
-            <div className="flex gap-8">
-              <Link href="/contact">
-                <Button className="px-8 py-4">
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
+        </div>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">
+                GenX FLOW · Orchestrate with FLOW
+              </Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">AI</span>
+                <span className="block text-gradient-aurora">Workflows.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-12 leading-relaxed">
+                Design complex AI workflows that connect multiple agents. Integrate your
+                systems, and automate entire business processes.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>
                   Create Workflow
-                </Button>
-              </Link>
-              <a href="#templates">
-                <Button className="px-8 py-4">
+                </CTALink>
+                <CTALink href="#templates" variant="outline" size="lg" arrow>
                   Browse Templates
-                </Button>
-              </a>
+                </CTALink>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Workflow Patterns */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Patterns</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Workflow</span>
+                  <span className="block text-gradient-aurora">patterns.</span>
+                </h2>
+              </Reveal>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Workflow Types */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6 md:mb-10">WORKFLOW PATTERNS</h2>
-
-          <div className="space-y-16">
-            <AnimatedSection>
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-3xl font-bold mb-4">SEQUENTIAL</h3>
-                  <p className="text-fg-muted mb-6">
-                    Chain multiple AI agents in sequence. Output from one becomes
-                    input for the next. Perfect for multi-step processes.
-                  </p>
-                  <ul className="text-sm text-fg-muted space-y-2">
-                    <li>→ Document processing pipelines</li>
-                    <li>→ Multi-stage analysis</li>
-                    <li>→ Approval workflows</li>
-                  </ul>
-                </div>
-                <div className="h-[200px] bg-gradient-to-br from-surface-2 to-surface-hover rounded-lg flex items-center justify-center p-8">
-                  <div className="flex items-center gap-4 w-full">
-                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-1">1</div>
-                    <div className="flex-1 h-0.5 bg-cyan-500/20"></div>
-                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-2">2</div>
-                    <div className="flex-1 h-0.5 bg-cyan-500/20"></div>
-                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold sequential-fade-3">3</div>
+          <RevealGroup className="space-y-16 md:space-y-24">
+            {patterns.map((p, i) => (
+              <RevealItem key={p.name}>
+                <div className={`grid lg:grid-cols-12 gap-8 lg:gap-16 items-center ${i % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}>
+                  <div className="lg:col-span-6 [direction:ltr]">
+                    <Eyebrow tone="muted" className="mb-4">Pattern 0{i + 1}</Eyebrow>
+                    <h3 className="text-h2 text-fg-strong mb-5">{p.name}</h3>
+                    <p className="text-body-lg text-fg-mid mb-6 leading-relaxed">{p.body}</p>
+                    <ul className="space-y-2.5">
+                      {p.bullets.map((b) => (
+                        <li key={b} className="flex items-start gap-3 text-body-md text-fg-mid">
+                          <span aria-hidden="true" className="text-fg-faint">→</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.1}>
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div className="h-[200px] bg-gradient-to-br from-surface-2 to-surface-hover rounded-lg flex items-center justify-center p-8">
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold">IN</div>
-                    <div className="flex gap-4">
-                      <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-1"></div>
-                      <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-2"></div>
-                      <div className="w-10 h-10 bg-cyan-500/20 rounded-lg parallel-pulse-3"></div>
-                    </div>
-                    <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-500 font-bold">OUT</div>
-                  </div>
-                </div>
-                <div className="order-1 lg:order-2">
-                  <h3 className="text-3xl font-bold mb-4">PARALLEL</h3>
-                  <p className="text-fg-muted mb-6">
-                    Run multiple agents simultaneously. Aggregate results for
-                    comprehensive analysis and faster processing.
-                  </p>
-                  <ul className="text-sm text-fg-muted space-y-2">
-                    <li>→ Multi-source data gathering</li>
-                    <li>→ Comparative analysis</li>
-                    <li>→ Load distribution</li>
-                  </ul>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.2}>
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-3xl font-bold mb-4">CONDITIONAL</h3>
-                  <p className="text-fg-muted mb-6">
-                    Dynamic workflows that adapt based on conditions. Different
-                    paths for different scenarios.
-                  </p>
-                  <ul className="text-sm text-fg-muted space-y-2">
-                    <li>→ Decision trees</li>
-                    <li>→ Error handling</li>
-                    <li>→ Personalized flows</li>
-                  </ul>
-                </div>
-                <div className="h-[200px] bg-gradient-to-br from-surface-2 to-surface-hover rounded-lg flex items-center justify-center p-8">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center text-cyan-500 font-bold">?</div>
-                    <div className="flex flex-col gap-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 h-0.5 bg-cyan-500/20"></div>
-                        <div className="w-10 h-10 bg-cyan-500/20 rounded-lg conditional-path-1"></div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 h-0.5 bg-cyan-500/20"></div>
-                        <div className="w-10 h-10 bg-cyan-500/20 rounded-lg conditional-path-2"></div>
-                      </div>
+                  <div className="lg:col-span-6 [direction:ltr]">
+                    <div className="h-[260px] border border-border rounded-xl2 bg-bg-elevated flex items-center justify-center p-10 grain">
+                      <p.Visual />
                     </div>
                   </div>
                 </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
       {/* Features */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6 md:mb-10 text-center">POWERFUL FEATURES</h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                <span className="text-3xl text-fg-muted">⟲</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">LOOPS & ITERATION</h3>
-              <p className="text-fg-muted">Process lists and datasets with intelligent loops</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                <span className="text-3xl text-fg-muted">◷</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">SCHEDULING</h3>
-              <p className="text-fg-muted">Run workflows on schedule or trigger by events</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                <span className="text-3xl text-fg-muted">🗲</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">INTEGRATIONS</h3>
-              <p className="text-fg-muted">Connect to any API or database</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                <span className="text-3xl text-fg-muted">◉</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">MONITORING</h3>
-              <p className="text-fg-muted">Real-time insights and debugging</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                <span className="text-3xl text-fg-muted">◈</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">SECURITY</h3>
-              <p className="text-fg-muted">Enterprise-grade access control</p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-6 bg-surface-2 rounded-full flex items-center justify-center">
-                <span className="text-3xl text-fg-muted">▲</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2">SCALABILITY</h3>
-              <p className="text-fg-muted">Handle millions of executions</p>
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Features</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Powerful</span>
+                  <span className="block text-gradient-aurora">features.</span>
+                </h2>
+              </Reveal>
             </div>
           </div>
-        </div>
-      </section>
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {features.map((f, i) => (
+              <RevealItem key={f.title} className="group bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated">
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="text-eyebrow text-fg-faint tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  <span aria-hidden="true" className="h-px flex-1 bg-border" />
+                </div>
+                <h3 className="text-h4 text-fg-strong mb-3">{f.title}</h3>
+                <p className="text-body-md text-fg-mid leading-relaxed">{f.body}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
       {/* Templates */}
-      <section id="templates" className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight mb-6 md:mb-10">START WITH TEMPLATES</h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="border border-border rounded-lg p-6 hover:border-border-strong transition-colors">
-              <h3 className="text-xl font-bold mb-2">BOQ Generation</h3>
-              <p className="text-sm text-fg-muted mb-4">Automatically generate Bills of Quantities from architectural drawings and specifications</p>
-            </div>
-
-            <div className="border border-border rounded-lg p-6 hover:border-border-strong transition-colors">
-              <h3 className="text-xl font-bold mb-2">RFP Generation</h3>
-              <p className="text-sm text-fg-muted mb-4">Create comprehensive Request for Proposals with all technical specifications</p>
-            </div>
-
-            <div className="border border-border rounded-lg p-6 hover:border-border-strong transition-colors">
-              <h3 className="text-xl font-bold mb-2">Purchase Order</h3>
-              <p className="text-sm text-fg-muted mb-4">Generate purchase orders with item validation from descriptions and pricing</p>
-            </div>
-
-            <div className="border border-border rounded-lg p-6 hover:border-border-strong transition-colors">
-              <h3 className="text-xl font-bold mb-2">Vendor Evaluation</h3>
-              <p className="text-sm text-fg-muted mb-4">Compare and score vendors based on multiple criteria and past performance</p>
-            </div>
-
-            <div className="border border-border rounded-lg p-6 hover:border-border-strong transition-colors">
-              <h3 className="text-xl font-bold mb-2">Contract Analysis</h3>
-              <p className="text-sm text-fg-muted mb-4">Extract key terms, identify risks, and summarize complex legal documents</p>
-            </div>
-
-            <div className="border border-border rounded-lg p-6 hover:border-border-strong transition-colors">
-              <h3 className="text-xl font-bold mb-2">Cost Estimation</h3>
-              <p className="text-sm text-fg-muted mb-4">Generate detailed cost breakdowns for projects with market rates</p>
+      <Section id="templates" spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Templates</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Start with</span>
+                  <span className="block text-gradient-aurora">templates.</span>
+                </h2>
+              </Reveal>
             </div>
           </div>
-
-          <div className="text-center mt-12">
-            <Link href="/contact">
-              <Button className="px-8 py-4">
+          <RevealGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-xl2 overflow-hidden mb-14">
+            {templates.map((t) => (
+              <RevealItem key={t.title} className="group bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated">
+                <h3 className="text-h4 text-fg-strong mb-3">{t.title}</h3>
+                <p className="text-body-md text-fg-mid leading-relaxed">{t.body}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+          <Reveal>
+            <div className="flex justify-center">
+              <CTALink href="/contact" variant="outline" size="md" arrow>
                 Request Custom Template
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+              </CTALink>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
 
       {/* CTA */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
-            ORCHESTRATE YOUR AI
-          </h2>
-          <p className="text-xl text-fg-muted mb-12 max-w-2xl mx-auto">
-            Build workflows that transform how your business operates.
-          </p>
-          <Link href="/contact">
-            <Button className="px-12 py-6 text-lg">
-              Start Building Workflows →
-            </Button>
-          </Link>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-4xl">
+            <Reveal>
+              <h2 className="text-h2 mb-8">
+                <span className="block text-fg-strong">Orchestrate</span>
+                <span className="block text-gradient-aurora">your AI.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-14 leading-relaxed">
+                Build workflows that transform how your business operates.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <CTALink href="/contact" variant="solid" size="lg" arrow>
+                Start Building Workflows
+              </CTALink>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }

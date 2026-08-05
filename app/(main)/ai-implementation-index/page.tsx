@@ -204,7 +204,7 @@ export default function AIImplementationIndexPage() {
                                 2025 AI IMPLEMENTATION INDEX
                             </p>
                             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2rem,4vw,3rem)] font-bold mb-4">
-                                Your AI pilots are dying. Here&apos;s why.
+                                Your AI pilots are dying. <span className="text-gradient-aurora">Here&apos;s why.</span>
                             </h1>
                         </div>
                     </AnimatedSection>

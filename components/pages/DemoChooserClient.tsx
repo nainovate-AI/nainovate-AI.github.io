@@ -20,8 +20,8 @@ export default function DemoChooserClient() {
             TRY DEMO
           </p>
           <h1 className="heading-primary mb-4 md:mb-6">
-            <span className="block">PICK YOUR</span>
-            <span className="block">LENS.</span>
+            <span className="block text-fg-strong">PICK YOUR</span>
+            <span className="block text-gradient-aurora">LENS.</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-8 md:mb-12 leading-relaxed">
             Same platform. Two lenses. Government &amp; Public Services runs building

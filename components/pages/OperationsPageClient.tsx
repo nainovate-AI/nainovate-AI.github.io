@@ -37,8 +37,8 @@ export default function OperationsPageClient() {
                             AI FOR OPERATIONS
                         </p>
                         <h1 className="heading-primary mb-8">
-                            <span className="block">AUTOMATE INTERNAL.</span>
-                            <span className="block">WORKFLOWS.</span>
+                            <span className="block text-fg-strong">AUTOMATE INTERNAL.</span>
+                            <span className="block text-gradient-aurora">WORKFLOWS.</span>
                         </h1>
                         <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl leading-relaxed mb-6 md:mb-12">
                             Deploy AI agents that handle HR screening, document processing, BOQ generation,
@@ -83,7 +83,7 @@ export default function OperationsPageClient() {
             <section id="use-cases" className="py-8 md:py-12">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
                     <div className="text-center mb-6 md:mb-8">
-                        <h2 className="heading-primary mb-6">USE CASES</h2>
+                        <h2 className="heading-primary text-gradient-aurora mb-6">USE CASES</h2>
                         <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-2xl mx-auto">
                             Real-world applications that transform how your operations team works
                         </p>
@@ -188,7 +188,7 @@ export default function OperationsPageClient() {
             {/* How It Works */}
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-                    <h2 className="heading-primary mb-6 md:mb-10 text-center">HOW IT WORKS</h2>
+                    <h2 className="heading-primary text-gradient-aurora mb-6 md:mb-10 text-center">HOW IT WORKS</h2>
 
                     <div className="grid md:grid-cols-3 gap-6 md:gap-12">
                         <div className="text-center">
@@ -227,7 +227,7 @@ export default function OperationsPageClient() {
             {/* CTA */}
             <section className="py-8 md:py-12 border-t border-border">
                 <div className="max-w-[800px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-                    <h2 className="heading-primary mb-8">
+                    <h2 className="heading-primary text-gradient-aurora mb-8">
                         READY TO AUTOMATE YOUR OPERATIONS?
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12">

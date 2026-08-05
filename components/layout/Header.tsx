@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useDemoGate } from '@/components/ui/DemoGate';
 
 // Icon components (keeping existing ones)
 const PlatformIcon = () => (
@@ -134,6 +135,7 @@ interface NavItem {
 export function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { requestDemo, gateModal } = useDemoGate();
 
   const navigation: NavItem[] = [
     {
@@ -261,7 +263,7 @@ export function Header() {
                 {item.isDropdown ? (
                   <>
                     <button
-                      className="text-[14px] font-medium text-fg hover:text-[#e0e1ff] transition-colors py-2 uppercase tracking-[0.03em] flex items-center gap-1"
+                      className="text-[12.5px] font-medium text-fg-mid hover:text-fg-strong transition-colors duration-300 py-2 uppercase tracking-[0.14em] flex items-center gap-1"
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onClick={() => {
                         if (item.name === 'Platform') window.location.href = item.href;
@@ -285,7 +287,7 @@ export function Header() {
                       >
                         <div className="absolute -top-2 left-0 right-0 h-2" />
 
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-2xl border-2 border-border rounded-lg p-8 w-[900px]">
+                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 p-8 w-[900px]">
                           <div className="grid grid-cols-3 gap-8">
 
                             {/* COLUMN 1: PRODUCTS */}
@@ -437,7 +439,7 @@ export function Header() {
 
                               <Link
                                 href="/ai-center-of-excellence"
-                                className="block text-xs font-medium text-fg-strong hover:text-[#e0e1ff] transition-colors"
+                                className="block text-xs font-medium text-fg-strong hover:text-fg-strong transition-colors"
                                 onClick={() => setActiveDropdown(null)}
                               >
                                 Learn More About AI CoE →
@@ -456,7 +458,7 @@ export function Header() {
                         onMouseLeave={() => setActiveDropdown(null)}
                       >
                         <div className="absolute -top-2 left-0 right-0 h-2" />
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-2xl border-2 border-border rounded-lg p-8 w-[720px]">
+                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 p-8 w-[720px]">
                           <div className="grid grid-cols-2 gap-6">
                             <Link
                               href="/decision-intelligence"
@@ -516,20 +518,23 @@ export function Header() {
                       >
                         <div className="absolute -top-2 left-0 right-0 h-2" />
 
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-2xl border-2 border-border rounded-lg shadow-2xl overflow-hidden">
+                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 shadow-lg overflow-hidden">
 
                           {/* TRY DEMO BANNER */}
-                          <Link
-                            href="/demo"
-                            className="flex items-center justify-center gap-3 px-6 py-4 border-b border-border hover:bg-surface-2 transition-all group"
-                            onClick={() => setActiveDropdown(null)}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setActiveDropdown(null);
+                              requestDemo('/demo');
+                            }}
+                            className="flex items-center justify-center gap-3 px-6 py-4 border-b border-border hover:bg-surface-2 transition-all group w-full"
                           >
                             <span className="text-lg">🖐️</span>
                             <span className="text-sm text-fg-muted group-hover:text-fg-strong transition-colors">
                               Try it Live — Experience our AI solutions hands-on
                             </span>
                             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                          </Link>
+                          </button>
 
                           <div className="flex">
                             {/* AI FOR OPERATIONS Column */}
@@ -700,7 +705,7 @@ export function Header() {
                       >
                         <div className="absolute -top-2 left-0 right-0 h-2" />
 
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-2xl border-2 border-border rounded-lg py-2 min-w-[250px]">
+                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 py-2 min-w-[250px]">
                           {item.dropdownItems?.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
@@ -732,7 +737,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-[14px] font-medium text-fg hover:text-[#e0e1ff] transition-colors py-2 uppercase tracking-[0.03em]"
+                    className="text-[12.5px] font-medium text-fg-mid hover:text-fg-strong transition-colors duration-300 py-2 uppercase tracking-[0.14em]"
                   >
                     {item.name}
                   </Link>
@@ -741,8 +746,9 @@ export function Header() {
             ))}
 
             <Link href="/contact">
-              <button className="text-[14px] font-semibold px-6 py-2.5 border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all tracking-wide">
-                GET STARTED
+              <button className="group inline-flex items-center gap-2 text-[12.5px] font-semibold px-5 py-2.5 rounded-full bg-fg-strong text-fg-invert border border-fg-strong hover:bg-transparent hover:text-fg-strong transition-all duration-300 tracking-[0.14em] uppercase">
+                <span>Get Started</span>
+                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
               </button>
             </Link>
           </div>
@@ -875,6 +881,7 @@ export function Header() {
           </div>
         )}
       </nav>
+      {gateModal}
     </header>
   );
 }

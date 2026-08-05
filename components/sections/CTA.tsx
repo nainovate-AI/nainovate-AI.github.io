@@ -1,56 +1,105 @@
-import Link from 'next/link';
+'use client';
+
+import { motion } from 'framer-motion';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
+import { SplitLines } from '@/components/ui/motion/SplitText';
+import { MouseSpotlight } from '@/components/ui/motion/MouseSpotlight';
+import { Magnetic } from '@/components/ui/motion/Magnetic';
+
+const proofPoints = [
+  'Enterprise Ready',
+  'SOC 2 Compliant',
+  '12 Design Partners',
+  '3 Active Pilots',
+];
 
 export function CTA() {
   return (
-    <section className="py-12 md:py-16 border-t border-border">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
-        <div className="max-w-5xl">
-          <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-3">
-            THE VISION
-          </p>
-          <h2 className="heading-primary mb-4 md:mb-6">
-            <span className="block">WHEN ONE FUNCTION DETECTS A SIGNAL,</span>
-            <span className="block">THE ORGANIZATION RESPONDS.</span>
-          </h2>
+    <Section spacing="xl" className="relative overflow-hidden">
+      <MouseSpotlight size={600} intensity={0.06} className="w-full">
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">The Vision</Eyebrow>
+            </Reveal>
 
-          <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-8 md:mb-12 leading-relaxed">
-            Partner with us to define the Decision Intelligence category and lead
-            the next generation of enterprise operations.
-          </p>
+            <SplitLines className="text-h2 leading-[1.1] mb-10" stagger={0.14}>
+              <motion.span
+                className="block overflow-hidden line-crop-safe"
+                variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+              >
+                <span className="block text-fg-strong">When one function</span>
+              </motion.span>
+              <motion.span
+                className="block overflow-hidden line-crop-safe"
+                variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+              >
+                <span className="block text-fg-strong">detects a signal,</span>
+              </motion.span>
+              <motion.span
+                className="block overflow-hidden line-crop-safe"
+                variants={{ hidden: { opacity: 0, y: '110%' }, visible: { opacity: 1, y: '0%', transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+              >
+                <span className="block text-gradient-aurora">the organization responds.</span>
+              </motion.span>
+            </SplitLines>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 md:mb-14">
-            <Link href="/contact" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 text-sm sm:text-base font-semibold tracking-wide border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all">
-                GET STARTED
-              </button>
-            </Link>
-            <a href="https://calendly.com/naveen-nainovate/30min" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 text-sm sm:text-base font-semibold tracking-wide border-2 border-fg-strong text-fg hover:bg-fg-strong hover:text-fg-invert transition-all">
-                SCHEDULE DEMO
-              </button>
-            </a>
+            <Reveal delay={0.4}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-12 md:mb-16 leading-relaxed">
+                Partner with us to define the Decision Intelligence category and lead
+                the next generation of enterprise operations.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.5}>
+              <div className="flex flex-col sm:flex-row gap-5 mb-14 md:mb-20">
+                <Magnetic strength={0.4}>
+                  <CTALink href="/contact" variant="solid" size="lg" arrow>
+                    GET STARTED
+                  </CTALink>
+                </Magnetic>
+                <Magnetic strength={0.3}>
+                  <CTALink
+                    href="https://calendly.com/naveen-nainovate/30min"
+                    variant="outline"
+                    size="lg"
+                    arrow
+                  >
+                    SCHEDULE DEMO
+                  </CTALink>
+                </Magnetic>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.6}>
+              <div className="border-t border-border pt-8 md:pt-10 flex flex-wrap gap-x-10 gap-y-4">
+                {proofPoints.map((p, i) => (
+                  <motion.span
+                    key={p}
+                    className="inline-flex items-center gap-3 text-eyebrow text-fg-mid"
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.7 + i * 0.06 }}
+                  >
+                    <motion.span
+                      aria-hidden="true"
+                      className="w-1.5 h-1.5 rounded-full bg-fg-strong/70"
+                      animate={{ scale: [1, 1.4, 1], opacity: [0.7, 1, 0.7] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.4, ease: 'easeInOut' }}
+                    />
+                    {p}
+                  </motion.span>
+                ))}
+              </div>
+            </Reveal>
           </div>
-
-          <div className="border-t border-border pt-6 md:pt-8 flex flex-wrap gap-6 text-xs tracking-[0.08em] uppercase text-fg-muted">
-            <span className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-fg-strong/70" />
-              Enterprise Ready
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-fg-strong/70" />
-              SOC 2 Compliant
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-fg-strong/70" />
-              12 Design Partners
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-fg-strong/70" />
-              3 Active Pilots
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
+        </Container>
+      </MouseSpotlight>
+    </Section>
   );
 }

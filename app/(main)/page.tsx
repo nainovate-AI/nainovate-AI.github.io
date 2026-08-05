@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { HeroCinematic } from '@/components/sections/HeroCinematic/HeroCinematic';
-import { ProofStrip } from '@/components/sections/ProofStrip';
 import { LensPicker } from '@/components/sections/LensPicker';
 import { Problem } from '@/components/sections/Problem';
 import { Features } from '@/components/sections/Features';
@@ -8,6 +7,7 @@ import { Industries } from '@/components/sections/Industries';
 import { Category } from '@/components/sections/Category';
 import { Stats } from '@/components/sections/Stats';
 import { CTA } from '@/components/sections/CTA';
+import { HomeBackdrop } from '@/components/ui/motion/HomeBackdrop';
 import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
@@ -76,18 +76,25 @@ export default function Home() {
   };
   
   return (
-    <main className="bg-bg">
+    <main className="relative bg-bg overflow-hidden">
       <JsonLd data={homepageSchema} />
       <JsonLd data={heroSchema} />
-      <HeroCinematic />
-      <ProofStrip />
-      <LensPicker />
-      <Problem />
-      <Industries />
-      <Features />
-      <Category />
-      <Stats />
-      <CTA />
+
+      {/* Global aurora backdrop — spans full page height, orbs distributed
+          at scroll milestones. Sits behind all sections. */}
+      <HomeBackdrop />
+
+      {/* Sections stack above backdrop */}
+      <div className="relative">
+        <HeroCinematic />
+        <LensPicker />
+        <Problem />
+        <Industries />
+        <Features />
+        <Category />
+        <Stats />
+        <CTA />
+      </div>
     </main>
   );
 }

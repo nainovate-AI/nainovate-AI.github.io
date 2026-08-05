@@ -1,117 +1,168 @@
 'use client';
 
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
 import mockData from '@/data/marketing/customer-support.json';
+import { Container } from '@/components/ui/Container';
+import { Section } from '@/components/ui/Section';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { CTALink } from '@/components/ui/CTA';
+import { GatedDemoLink } from '@/components/ui/DemoGate';
+
+type TimelineRow = { t: string; who: string; what: string };
+type Persona = { who: string; surface: string; what: string };
+type Metric = { label: string; value: string; sub?: string };
 
 export default function CustomerSupportSolutionClient() {
+  const timeline = mockData.timeline as TimelineRow[];
+  const personas = mockData.personas as Persona[];
+  const metrics = mockData.metrics as Metric[];
+
   return (
-    <main className="pt-16 md:pt-20 relative z-10 bg-bg">
+    <main className="pt-20 bg-bg">
       {/* Hero */}
-      <section className="py-12 md:py-16 border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            SOLUTION • CUSTOMER SUPPORT
-          </p>
-          <h1 className="heading-primary mb-8">
-            <span className="block">SUPPORT.</span>
-            <span className="block">RESOLVED.</span>
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
-            L1 deflection without a human. L2 with full context. Support Heads with root
-            cause, not reopen counts. Nia sits inside Incident Management Tool — customers self-serve,
-            agents deflect, leaders decide.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 flex-wrap">
-            <Link href="/contact">
-              <Button className="px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
-                Book a demo
-              </Button>
-            </Link>
-            <Link href="/demo">
-              <Button className="px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto">
-                See it live
-              </Button>
-            </Link>
-          </div>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 right-1/4 w-[42vw] h-[42vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
-
-      {/* Story */}
-      <section className="py-8 md:py-12">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            ONE MORNING AT ACME
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-4xl">
-            FD-2104 lands at 5:45 AM. By 5:47, everything moves.
-          </h2>
-
-          <div className="space-y-8">
-            {mockData.timeline.map((row, i) => (
-              <div key={i} className="grid grid-cols-12 gap-4 border-t border-border pt-4 items-start">
-                <span className="col-span-2 text-fg-muted font-mono text-sm">{row.t}</span>
-                <span className="col-span-3 text-fg-strong text-sm">{row.who}</span>
-                <span className="col-span-7 text-fg-muted text-sm leading-relaxed">{row.what}</span>
+        <Container size="wide" className="relative">
+          <div className="max-w-5xl">
+            <Reveal>
+              <Eyebrow tone="muted" withDot className="mb-8">Solution · Customer Support</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="text-h2 mb-10">
+                <span className="block text-fg-strong">Support.</span>
+                <span className="block text-gradient-aurora">Resolved.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-body-lg text-fg-mid max-w-3xl mb-10 md:mb-12 leading-relaxed">
+                L1 deflection without a human. L2 with full context. Support Heads with root
+                cause, not reopen counts. Nia sits inside Incident Management Tool — customers self-serve,
+                agents deflect, leaders decide.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <CTALink href="/contact" variant="solid" size="lg" arrow>Book a demo</CTALink>
+                <GatedDemoLink href="/demo" variant="outline" size="lg" arrow>See it live</GatedDemoLink>
               </div>
-            ))}
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
+
+      {/* Timeline */}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-8">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">One morning at Acme</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">FD-2104 lands at 5:45 AM.</span>
+                  <span className="block text-gradient-aurora">By 5:47, everything moves.</span>
+                </h2>
+              </Reveal>
+            </div>
+          </div>
+
+          <RevealGroup className="border-t border-border-strong">
+            {timeline.map((row, i) => (
+              <RevealItem key={`${row.t}-${i}`}>
+                <div className="border-b border-border py-6 md:py-8 grid grid-cols-12 gap-4 md:gap-6 items-start hover:bg-surface transition-colors">
+                  <span className="col-span-3 md:col-span-2 text-body-sm text-fg-faint font-mono tabular-nums">{row.t}</span>
+                  <span className="col-span-9 md:col-span-3 text-body-md text-fg-strong">{row.who}</span>
+                  <span className="col-span-12 md:col-span-7 text-body-md text-fg-mid leading-relaxed">{row.what}</span>
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
       {/* Personas */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            RIGHT SURFACE FOR EACH ROLE
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10 max-w-3xl">Nia meets each persona where they work.</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {mockData.personas.map((p) => (
-              <div key={p.who} className="border border-border rounded-lg p-5 md:p-8">
-                <h3 className="text-base sm:text-lg md:text-xl font-bold mb-3">{p.who}</h3>
-                <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">Primary surface</p>
-                <p className="text-fg-strong mb-4">{p.surface}</p>
-                <p className="text-xs text-fg-muted uppercase tracking-wider mb-2">What they see</p>
-                <p className="text-fg-muted text-sm leading-relaxed">{p.what}</p>
-              </div>
-            ))}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Right surface for each role</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2">
+                  <span className="block text-fg-strong">Nia meets each persona</span>
+                  <span className="block text-gradient-aurora">where they work.</span>
+                </h2>
+              </Reveal>
+            </div>
           </div>
-        </div>
-      </section>
+          <RevealGroup className="grid md:grid-cols-2 gap-px bg-border border border-border rounded-xl2 overflow-hidden">
+            {personas.map((p) => (
+              <RevealItem key={p.who} className="group bg-bg p-8 md:p-10 transition-colors duration-500 hover:bg-bg-elevated">
+                <h3 className="text-h3 text-fg-strong mb-6">{p.who}</h3>
+                <Eyebrow tone="muted" className="mb-2">Primary surface</Eyebrow>
+                <p className="text-body-md text-fg-strong mb-5">{p.surface}</p>
+                <Eyebrow tone="muted" className="mb-2">What they see</Eyebrow>
+                <p className="text-body-md text-fg-mid leading-relaxed">{p.what}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
       {/* Metrics */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
-            SIX WEEKS AT ACME
-          </p>
-          <h2 className="heading-primary mb-6 md:mb-10">Numbers.</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {mockData.metrics.map((r) => (
-              <div key={r.label} className="border border-border rounded-lg p-5 md:p-8">
-                <p className="text-sm text-fg-muted uppercase tracking-wider mb-4">{r.label}</p>
-                <p className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">{r.value}</p>
-                {r.sub && <p className="text-sm text-fg-muted">{r.sub}</p>}
-              </div>
-            ))}
+      <Section spacing="lg">
+        <Container size="wide">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-14 md:mb-20">
+            <div className="lg:col-span-7">
+              <Reveal>
+                <Eyebrow tone="muted" withDot className="mb-5">Six weeks at Acme</Eyebrow>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="text-h2 text-gradient-aurora">
+                  <span className="block">Numbers.</span>
+                </h2>
+              </Reveal>
+            </div>
           </div>
-        </div>
-      </section>
+          <RevealGroup className="grid grid-cols-2 lg:grid-cols-4 border-y border-border-strong">
+            {metrics.map((r, i) => (
+              <RevealItem
+                key={r.label}
+                className={`py-10 md:py-14 px-2 md:px-6 ${i > 0 ? 'lg:border-l lg:border-border' : ''} ${i % 2 === 1 ? 'border-l border-border lg:border-l' : ''} ${i >= 2 ? 'border-t border-border lg:border-t-0' : ''}`}
+              >
+                <div className="text-h1 text-fg-strong tabular-nums leading-none mb-6">{r.value}</div>
+                <div className="text-eyebrow text-fg-strong mb-2">{r.label}</div>
+                {r.sub && <div className="text-body-sm text-fg-muted">{r.sub}</div>}
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </Section>
 
       {/* CTA */}
-      <section className="py-8 md:py-12 border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="heading-primary mb-8 max-w-4xl mx-auto">
-            Ready to deflect L1 without hiring?
-          </h2>
-          <Link href="/contact">
-            <Button className="px-6 py-3 sm:px-10 sm:py-4 w-full sm:w-auto">
-              Book a 30-min demo
-            </Button>
-          </Link>
+      <Section spacing="xl" className="relative overflow-hidden grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-40 left-1/4 w-[38vw] h-[38vw] rounded-full bg-fg-strong/[0.03] blur-[120px]" />
         </div>
-      </section>
+        <Container size="wide" className="relative">
+          <div className="max-w-4xl">
+            <Reveal>
+              <h2 className="text-h2 text-gradient-aurora mb-10">
+                Ready to deflect L1 <span className="text-fg-mid">without hiring?</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <CTALink href="/contact" variant="solid" size="lg" arrow>
+                Book a 30-min demo
+              </CTALink>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }

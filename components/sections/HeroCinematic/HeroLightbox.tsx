@@ -55,12 +55,13 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
       role="dialog"
       aria-modal="true"
       aria-label="Hero image preview"
-      className="fixed inset-0 z-[100] flex items-center justify-center"
+      className="fixed inset-0 z-[200] flex items-center justify-center pt-24 md:pt-28 pb-16"
       onClick={onClose}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      <div className="absolute inset-0 bg-black/95 backdrop-blur-md" />
+      {/* Light backdrop — forces light theme for popup regardless of page theme */}
+      <div className="absolute inset-0 bg-white/97 backdrop-blur-md" />
 
       {/* Close */}
       <button
@@ -70,9 +71,9 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
           onClose();
         }}
         aria-label="Close preview"
-        className="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+        className="fixed top-5 right-5 md:top-8 md:right-8 z-[210] w-12 h-12 md:w-14 md:h-14 rounded-full bg-black text-white hover:bg-black/90 hover:scale-105 shadow-lg border-2 border-black flex items-center justify-center transition-all"
       >
-        <X className="w-5 h-5" />
+        <X className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.4} />
       </button>
 
       {/* Prev */}
@@ -83,7 +84,7 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
           onPrev();
         }}
         aria-label="Previous slide"
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/10 hover:bg-black/20 text-black flex items-center justify-center transition-colors"
       >
         <ChevronLeft className="w-5 h-5" />
       </button>
@@ -96,14 +97,14 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
           onNext();
         }}
         aria-label="Next slide"
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/10 hover:bg-black/20 text-black flex items-center justify-center transition-colors"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
 
       {/* Image */}
       <div
-        className="relative w-[92vw] h-[80vh] flex items-center justify-center"
+        className="relative w-[88vw] h-[70vh] max-w-6xl flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
         <Image
@@ -118,7 +119,7 @@ export function HeroLightbox({ open, slides, active, onClose, onPrev, onNext }: 
       </div>
 
       {/* Counter */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 text-white/70 text-xs font-mono tracking-widest">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 text-black/70 text-xs font-mono tracking-widest">
         {String(active + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
       </div>
     </div>

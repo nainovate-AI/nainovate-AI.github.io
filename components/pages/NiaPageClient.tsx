@@ -136,8 +136,8 @@ export default function NiaPageClient() {
               GENX NIA • INTERFACE
             </p>
             <h1 className="heading-primary mb-8">
-              <span className="block">WHERE AGENTS</span>
-              <span className="block">COME TO LIFE</span>
+              <span className="block text-fg-strong">WHERE AGENTS</span>
+              <span className="block text-gradient-aurora">COME TO LIFE</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-fg-muted max-w-3xl mb-6 md:mb-12">
               NIA is the conversational interface where your CORE-built agents
@@ -157,7 +157,7 @@ export default function NiaPageClient() {
       {/* Live Demo Section */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="heading-primary mb-6 md:mb-10">SEE NIA IN ACTION</h2>
+          <h2 className="heading-primary text-gradient-aurora mb-6 md:mb-10">SEE NIA IN ACTION</h2>
 
           {/* First Demo - HR Agent */}
           <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center mb-16 md:mb-32">
@@ -383,7 +383,7 @@ export default function NiaPageClient() {
       {/* Features */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
-          <h2 className="heading-primary mb-6 md:mb-10">THE NIA ADVANTAGE</h2>
+          <h2 className="heading-primary text-gradient-aurora mb-6 md:mb-10">THE NIA ADVANTAGE</h2>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-24">
             <div className="space-y-6 md:space-y-12">
@@ -443,7 +443,7 @@ export default function NiaPageClient() {
       {/* CTA */}
       <section className="py-8 md:py-12 border-t border-border">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 text-center">
-          <h2 className="heading-primary mb-8">
+          <h2 className="heading-primary text-gradient-aurora mb-8">
             EXPERIENCE NIA TODAY
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-fg-muted mb-6 md:mb-12 max-w-2xl mx-auto">
