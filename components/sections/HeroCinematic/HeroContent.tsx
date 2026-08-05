@@ -68,12 +68,20 @@ export function HeroContent({ slides, active, onWatchDemo }: Props) {
             </span>
             <span className="block overflow-hidden line-crop-safe">
               <motion.span
-                className="block text-gradient-aurora"
+                className="block"
                 initial={titleInitial}
                 animate={{ y: '0%' }}
                 exit={{ y: '-110%' }}
                 transition={{ duration: 0.9, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-                style={{ willChange: 'transform' }}
+                style={{
+                  willChange: 'transform',
+                  // Clean blue.
+                  color: '#3b82f6',
+                  display: 'inline-block',
+                  paddingBottom: '0.18em',
+                  marginBottom: '-0.12em',
+                  lineHeight: '1.1',
+                }}
               >
                 {slide.titleLines[1]}
               </motion.span>

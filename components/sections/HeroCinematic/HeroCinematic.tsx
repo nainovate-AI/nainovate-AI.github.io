@@ -31,8 +31,20 @@ export function HeroCinematic() {
     setResetKey((k) => k + 1);
   }, []);
 
-  const next = useCallback(() => goTo(active + 1), [active, goTo]);
-  const prev = useCallback(() => goTo(active - 1), [active, goTo]);
+  /*
+    next/prev use functional setState so keyboard/arrow events always advance
+    from the *current* slide, not the value captured when the callback was
+    first bound. Old version used `goTo(active + 1)`, whose stale closure
+    caused rapid keystrokes to skip slides (e.g. only every other image).
+  */
+  const next = useCallback(() => {
+    setActive((i) => (i + 1) % HERO_SLIDES.length);
+    setResetKey((k) => k + 1);
+  }, []);
+  const prev = useCallback(() => {
+    setActive((i) => (i - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+    setResetKey((k) => k + 1);
+  }, []);
 
   const advancedForSlideRef = useRef<number>(-1);
   const onFillEnd = useCallback(() => {
@@ -44,8 +56,19 @@ export function HeroCinematic() {
   const pause = useCallback(() => setPaused(true), []);
   const resume = useCallback(() => setPaused(false), []);
 
+  // Keep lightboxOpen in a ref so keyboard-listener useEffect has a stable
+  // deps array. Avoids "size of deps changed between renders" HMR error.
+  const lightboxOpenRef = useRef(false);
+  useEffect(() => {
+    lightboxOpenRef.current = lightboxOpen;
+  }, [lightboxOpen]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // Skip when lightbox is open — HeroLightbox has its own window keydown
+      // listener; running both fires next/prev twice per keystroke and makes
+      // the lightbox skip every other slide.
+      if (lightboxOpenRef.current) return;
       if (e.key === 'ArrowRight') next();
       else if (e.key === 'ArrowLeft') prev();
     };
@@ -143,6 +166,7 @@ export function HeroCinematic() {
         onClose={closeLightbox}
         onPrev={prev}
         onNext={next}
+        onSelect={goTo}
       />
 
       <DemoGateModal
