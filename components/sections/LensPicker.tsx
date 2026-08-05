@@ -117,7 +117,7 @@ export function LensPicker() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           {lenses.map((lens, idx) => (
             <Reveal key={lens.index} delay={idx * 0.1}>
               <TiltCard className="h-full" intensity={5}>

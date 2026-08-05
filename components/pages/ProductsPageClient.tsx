@@ -199,7 +199,7 @@ export default function ProductsPageClient() {
 
           <Reveal>
             <div
-              className="relative w-full h-[520px] md:h-[560px] rounded-xl2 overflow-hidden border border-border-strong bg-bg-elevated select-none grain"
+              className="relative w-full h-[520px] md:h-[560px] rounded-xl2 overflow-hidden border border-border-strong bg-bg-elevated select-none grain hidden md:block"
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}

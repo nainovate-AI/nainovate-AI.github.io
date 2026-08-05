@@ -187,7 +187,7 @@ export default function AIImplementationIndexPage() {
                 </Link>
             </div>
             {/* Hero Dashboard Section */}
-            <section className="min-h-[90vh] relative overflow-hidden">
+            <section className="min-h-[90svh] relative overflow-hidden">
                 {/* Subtle grid background */}
                 <div className="absolute inset-0 opacity-[0.02]">
                     <div className="absolute inset-0" style={{

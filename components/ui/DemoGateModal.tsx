@@ -125,7 +125,7 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
       />
 
       {/* Modal card */}
-      <div className="relative w-full max-w-lg bg-bg border border-border-strong rounded-lg shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-[min(32rem,calc(100vw-2rem))] max-h-[calc(100vh-2rem)] overflow-y-auto bg-bg border border-border-strong rounded-lg shadow-2xl">
         <button
           type="button"
           onClick={onClose}

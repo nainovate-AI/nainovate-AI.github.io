@@ -138,7 +138,7 @@ export function Industries() {
                     </p>
                   </div>
                   <div className="md:col-span-5">
-                    <p className="text-body-md text-fg-mid group-hover:text-fg-strong leading-relaxed transition-colors duration-500">
+                    <p className="text-body-md text-fg-mid group-hover:text-fg-strong leading-relaxed transition-colors duration-500 max-w-prose">
                       {u.description}
                     </p>
                   </div>

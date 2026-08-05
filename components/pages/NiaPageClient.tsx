@@ -129,7 +129,7 @@ export default function NiaPageClient() {
       <JsonLd data={chatActionSchema} />
       
       {/* Hero */}
-      <section className="min-h-[80vh] flex items-center">
+      <section className="min-h-[80svh] flex items-center">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 w-full">
           <div className="max-w-4xl">
             <p className="text-sm font-medium tracking-widest text-fg-muted uppercase mb-8">
@@ -416,21 +416,21 @@ export default function NiaPageClient() {
               <div className="w-full">
                 <div className="grid grid-cols-2 gap-8 mb-8">
                   <div>
-                    <p className="text-4xl font-bold mb-2">50M+</p>
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">50M+</p>
                     <p className="text-fg-muted">Daily conversations</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold mb-2">&lt;100ms</p>
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">&lt;100ms</p>
                     <p className="text-fg-muted">Response time</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                    <p className="text-4xl font-bold mb-2">99.9%</p>
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">99.9%</p>
                     <p className="text-fg-muted">Uptime SLA</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold mb-2">25+</p>
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">25+</p>
                     <p className="text-fg-muted">Languages</p>
                   </div>
                 </div>

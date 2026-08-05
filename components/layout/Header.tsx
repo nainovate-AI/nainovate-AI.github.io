@@ -287,8 +287,8 @@ export function Header() {
                       >
                         <div className="absolute -top-2 left-0 right-0 h-2" />
 
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 p-8 w-[900px]">
-                          <div className="grid grid-cols-3 gap-8">
+                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 p-6 md:p-8 w-[min(900px,calc(100vw-2rem))]">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 
                             {/* COLUMN 1: PRODUCTS */}
                             <div>
@@ -458,8 +458,8 @@ export function Header() {
                         onMouseLeave={() => setActiveDropdown(null)}
                       >
                         <div className="absolute -top-2 left-0 right-0 h-2" />
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 p-8 w-[720px]">
-                          <div className="grid grid-cols-2 gap-6">
+                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 p-6 md:p-8 w-[min(720px,calc(100vw-2rem))]">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <Link
                               href="/decision-intelligence"
                               className="flex flex-col gap-2 p-4 rounded-lg hover:bg-surface-2 transition-colors group border border-border col-span-2"
@@ -536,9 +536,9 @@ export function Header() {
                             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                           </button>
 
-                          <div className="flex">
+                          <div className="flex flex-wrap">
                             {/* AI FOR OPERATIONS Column */}
-                            <div className="min-w-[280px] relative">
+                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2"></div>
                               <div className="py-2">
                                 <Link
@@ -576,7 +576,7 @@ export function Header() {
                             </div>
 
                             {/* AI FOR ENGAGEMENT Column */}
-                            <div className="min-w-[280px] relative">
+                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2"></div>
                               <div className="py-2">
                                 <Link
@@ -614,7 +614,7 @@ export function Header() {
                             </div>
 
                             {/* AI FOR INTELLIGENCE Column */}
-                            <div className="min-w-[280px] relative">
+                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2 hidden"></div>
                               <div className="py-2">
                                 <Link

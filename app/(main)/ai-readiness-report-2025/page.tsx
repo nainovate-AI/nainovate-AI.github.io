@@ -155,7 +155,7 @@ export default function AIReadinessReport2025Page() {
                 </Link>
             </div>
             {/* Hero Section - Authoritative */}
-            <section className="min-h-[70vh] flex items-center relative overflow-hidden">
+            <section className="min-h-[70svh] flex items-center relative overflow-hidden">
                 {/* Subtle grid pattern */}
                 <div className="absolute inset-0 opacity-[0.02]">
                     <div className="absolute inset-0" style={{

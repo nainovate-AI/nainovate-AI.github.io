@@ -32,7 +32,7 @@ export function DemoGuard({ children }: { children: React.ReactNode }) {
         >
           <X className="w-5 h-5" />
         </Link>
-        <section className="min-h-[90vh] flex items-center justify-center">
+        <section className="min-h-[90svh] flex items-center justify-center">
           <div className="text-center px-4">
             <p className="text-xs sm:text-sm font-medium tracking-widest text-fg-muted uppercase mb-4">
               DEMO ACCESS
