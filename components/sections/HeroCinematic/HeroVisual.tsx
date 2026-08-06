@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
 import type { HeroSlide } from './heroData';
 import { TiltCard } from '@/components/ui/motion/TiltCard';
 
@@ -12,8 +11,6 @@ type Props = {
 };
 
 export function HeroVisual({ slides, active, onImageTap }: Props) {
-  const slide = slides[active];
-
   return (
     <div className="relative w-full h-full perspective-lg">
       {/* Glass framed product panel with 3D tilt */}
@@ -60,27 +57,6 @@ export function HeroVisual({ slides, active, onImageTap }: Props) {
               );
             })}
           </div>
-
-          {/* Overlaid metric card — glass */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`meta-${slide.id}`}
-              initial={{ opacity: 0, y: 20, filter: 'blur(6px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute left-4 right-4 md:left-6 md:right-6 bottom-4 md:bottom-6 z-20"
-            >
-              <div className="relative flex items-center gap-4 p-4 md:p-5 rounded-xl2 border border-white/10 bg-black/45 backdrop-blur-xl">
-                <div className="min-w-0">
-                  <p className="text-eyebrow text-white/70 mb-1">Current scene</p>
-                  <p className="text-body-md text-white font-medium truncate">
-                    {slide.titleLines[0]} <span className="text-white/60">{slide.titleLines[1]}</span>
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
 
           {/* Tap-to-expand */}
           {onImageTap && (

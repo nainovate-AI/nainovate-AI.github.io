@@ -139,7 +139,7 @@ export default function OperationsPageClient() {
 
                         {/* Right: Details */}
                         <div className="order-1 lg:order-2">
-                            <h3 className="text-3xl md:text-4xl font-bold mb-6">{currentCase.title}</h3>
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">{currentCase.title}</h3>
 
                             <div className="mb-8">
                                 <div className="text-sm font-semibold text-red-400 mb-2">THE PROBLEM</div>

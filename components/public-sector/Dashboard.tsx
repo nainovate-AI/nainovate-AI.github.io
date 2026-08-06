@@ -319,7 +319,7 @@ function AssistantChatPopup({
   const remainingPrompts = a.quickPrompts.filter((q) => !usedPrompts.has(q));
 
   return (
-    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] sm:h-[500px] max-h-[500px] bg-bg border border-fg-strong/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[300px] xl:w-[360px] h-[65vh] sm:h-[480px] max-h-[calc(100vh-2rem)] bg-bg border border-fg-strong/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-fg-strong/10">
         <div className="flex items-center gap-2">
@@ -448,18 +448,20 @@ export default function PublicSectorDashboard() {
         </div>
 
         {/* Charts — single responsive grid (2/3 per row, wrap) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4">
           {isShown('byType') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
               <CloseX onClose={() => hide('byType')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byBuildingType.title}</p>
-              <div className="flex items-center gap-5">
-                <Donut
-                  items={data.byBuildingType.items}
-                  centerTop={data.byBuildingType.total.toLocaleString()}
-                  centerBottom="Total"
-                  size={170}
-                />
+              <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 min-w-0">
+                <div className="shrink-0">
+                  <Donut
+                    items={data.byBuildingType.items}
+                    centerTop={data.byBuildingType.total.toLocaleString()}
+                    centerBottom="Total"
+                    size={170}
+                  />
+                </div>
                 <div className="flex-1 min-w-0">
                   <LegendRows items={data.byBuildingType.items} />
                 </div>
@@ -474,7 +476,7 @@ export default function PublicSectorDashboard() {
           )}
 
           {isShown('byDepartment') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
               <CloseX onClose={() => hide('byDepartment')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byDepartment.title}</p>
               <div className="flex items-center gap-5">
@@ -493,7 +495,7 @@ export default function PublicSectorDashboard() {
           )}
 
           {isShown('byZone') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
               <CloseX onClose={() => hide('byZone')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byZone.title}</p>
               <div className="flex items-center gap-5">
@@ -512,7 +514,7 @@ export default function PublicSectorDashboard() {
           )}
 
           {isShown('avgTime') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 flex flex-col">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 flex flex-col min-w-0 overflow-hidden">
               <CloseX onClose={() => hide('avgTime')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.avgProcessingTime.title}</p>
               <BarList items={data.avgProcessingTime.items} max={maxProcTime + 8} />
@@ -538,7 +540,7 @@ export default function PublicSectorDashboard() {
           )}
 
           {isShown('monthlyTrends') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
+            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
               <CloseX onClose={() => hide('monthlyTrends')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.monthlyTrends.title}</p>
               <LineChart labels={data.monthlyTrends.labels} values={data.monthlyTrends.values} />

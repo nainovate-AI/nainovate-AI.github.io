@@ -112,7 +112,7 @@ export function HeroCinematic() {
       tabIndex={-1}
       aria-roledescription="carousel"
       aria-label="Nainovate hero"
-      className="relative overflow-hidden pt-24 md:pt-28 min-h-screen flex flex-col focus:outline-none"
+      className="relative overflow-hidden pt-24 md:pt-28 min-h-[600px] md:min-h-svh flex flex-col focus:outline-none"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >

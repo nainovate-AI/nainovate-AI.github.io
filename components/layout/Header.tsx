@@ -236,12 +236,13 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="Nainovate GenX">
             <Image
-              src="/images/Nainovate_GenX_Dark_Mode.svg"
+              src="/images/Nainovate_Dark_Mode.svg"
               alt="Nainovate GenX"
               width={150}
               height={40}
               className="h-8 w-auto logo-dark"
               priority
+              unoptimized
             />
             <Image
               src="/images/Nainovate_Genx_Light_Mode.svg"
@@ -249,6 +250,7 @@ export function Header() {
               width={150}
               height={40}
               className="h-8 w-auto logo-light"
+              unoptimized
             />
           </Link>
 
@@ -518,7 +520,7 @@ export function Header() {
                       >
                         <div className="absolute -top-2 left-0 right-0 h-2" />
 
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 shadow-lg overflow-hidden">
+                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 shadow-lg overflow-hidden w-[min(1120px,calc(100vw-2rem))]">
 
                           {/* TRY DEMO BANNER */}
                           <button
@@ -536,9 +538,9 @@ export function Header() {
                             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                           </button>
 
-                          <div className="flex flex-wrap">
+                          <div className="flex flex-wrap lg:flex-nowrap">
                             {/* AI FOR OPERATIONS Column */}
-                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
+                            <div className="min-w-0 md:min-w-[240px] lg:min-w-[260px] flex-1 md:flex-none md:basis-[240px] lg:basis-auto relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2"></div>
                               <div className="py-2">
                                 <Link
@@ -576,7 +578,7 @@ export function Header() {
                             </div>
 
                             {/* AI FOR ENGAGEMENT Column */}
-                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
+                            <div className="min-w-0 md:min-w-[240px] lg:min-w-[260px] flex-1 md:flex-none md:basis-[240px] lg:basis-auto relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2"></div>
                               <div className="py-2">
                                 <Link
@@ -614,7 +616,7 @@ export function Header() {
                             </div>
 
                             {/* AI FOR INTELLIGENCE Column */}
-                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
+                            <div className="min-w-0 md:min-w-[240px] lg:min-w-[260px] flex-1 md:flex-none md:basis-[240px] lg:basis-auto relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2 hidden"></div>
                               <div className="py-2">
                                 <Link
@@ -652,7 +654,7 @@ export function Header() {
                             </div>
 
                             {/* BY TEAM Column */}
-                            <div className="min-w-[240px]">
+                            <div className="min-w-0 md:min-w-[220px] lg:min-w-[240px] flex-1 md:flex-none">
                               <div className="py-2">
                                 <div className="px-6 py-3">
                                   <p className="text-xs font-medium text-fg-strong uppercase tracking-widest mb-1">By Team</p>
