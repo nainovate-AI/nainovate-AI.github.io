@@ -509,16 +509,15 @@ export function Header() {
                         </div>
                       </div>
                     ) : item.isSolutionsMega ? (
-                      /* SOLUTIONS MEGA DROPDOWN - SIMPLE 3 COLUMN LAYOUT */
+                      /* SOLUTIONS MEGA DROPDOWN - anchored to the nav band, right-aligned */
                       <div
-                        className={`absolute right-0 top-full pt-2 ${activeDropdown === item.name ? 'block' : 'hidden'
+                        className={`fixed left-0 right-0 top-[72px] z-50 px-6 md:px-12 pt-2 justify-center ${activeDropdown === item.name ? 'flex' : 'hidden'
                           }`}
                         onMouseEnter={() => setActiveDropdown(item.name)}
                         onMouseLeave={() => setActiveDropdown(null)}
                       >
-                        <div className="absolute -top-2 left-0 right-0 h-2" />
-
-                        <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 shadow-lg overflow-hidden">
+                        <div className="w-full max-w-[1400px] flex justify-end">
+                          <div className="bg-bg-elevated backdrop-blur-md shadow-lg border border-border rounded-xl2 overflow-y-auto w-[1080px] max-w-full max-h-[calc(100vh-88px)]">
 
                           {/* TRY DEMO BANNER */}
                           <button
@@ -536,10 +535,10 @@ export function Header() {
                             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
                           </button>
 
-                          <div className="flex flex-wrap">
+                          <div className="grid grid-cols-2 xl:grid-cols-4">
                             {/* AI FOR OPERATIONS Column */}
-                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
-                              <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2"></div>
+                            <div className="min-w-0 relative">
+                              <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2 hidden xl:block"></div>
                               <div className="py-2">
                                 <Link
                                   href="/solutions/operations"
@@ -576,8 +575,8 @@ export function Header() {
                             </div>
 
                             {/* AI FOR ENGAGEMENT Column */}
-                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
-                              <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2"></div>
+                            <div className="min-w-0 relative">
+                              <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2 hidden xl:block"></div>
                               <div className="py-2">
                                 <Link
                                   href="/solutions/engagement"
@@ -614,7 +613,7 @@ export function Header() {
                             </div>
 
                             {/* AI FOR INTELLIGENCE Column */}
-                            <div className="min-w-0 md:min-w-[280px] flex-1 md:flex-none relative">
+                            <div className="min-w-0 relative">
                               <div className="absolute right-0 top-6 bottom-6 w-[2px] bg-surface-2 hidden"></div>
                               <div className="py-2">
                                 <Link
@@ -652,7 +651,7 @@ export function Header() {
                             </div>
 
                             {/* BY TEAM Column */}
-                            <div className="min-w-[240px]">
+                            <div className="min-w-0">
                               <div className="py-2">
                                 <div className="px-6 py-3">
                                   <p className="text-xs font-medium text-fg-strong uppercase tracking-widest mb-1">By Team</p>
@@ -692,6 +691,7 @@ export function Header() {
                                 </Link>
                               </div>
                             </div>
+                          </div>
                           </div>
                         </div>
                       </div>
