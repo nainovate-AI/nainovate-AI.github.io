@@ -72,7 +72,7 @@ export default function AICenterOfExcellencePage() {
   return (
     <main className="bg-bg min-h-screen pt-20">
       {/* Hero Section with Hub-and-Spoke Visualization */}
-      <section className="min-h-screen flex items-center relative overflow-hidden">
+      <section className="min-h-[600px] md:min-h-svh flex items-center relative overflow-hidden">
         {/* Subtle Background */}
         <div className="absolute inset-0">
           <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-surface-2 rounded-full blur-3xl"></div>

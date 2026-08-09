@@ -96,7 +96,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             // Theme switching disabled — dark only for now.
-            // Restore by uncommenting original detection line and
+            // Restore by uncommenting the original detection line and
             // deleting the forced setAttribute line.
             // __html: `(function(){try{var t=localStorage.getItem('nainovate-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}else if(t==='system'||!t){document.documentElement.setAttribute('data-theme',window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`,
             __html: `document.documentElement.setAttribute('data-theme','dark');`,

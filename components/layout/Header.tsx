@@ -236,12 +236,13 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="Nainovate GenX">
             <Image
-              src="/images/Nainovate_GenX_Dark_Mode.svg"
+              src="/images/Nainovate_Dark_Mode.svg"
               alt="Nainovate GenX"
               width={150}
               height={40}
               className="h-8 w-auto logo-dark"
               priority
+              unoptimized
             />
             <Image
               src="/images/Nainovate_Genx_Light_Mode.svg"
@@ -249,6 +250,7 @@ export function Header() {
               width={150}
               height={40}
               className="h-8 w-auto logo-light"
+              unoptimized
             />
           </Link>
 
