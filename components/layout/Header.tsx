@@ -513,7 +513,7 @@ export function Header() {
                     ) : item.isSolutionsMega ? (
                       /* SOLUTIONS MEGA DROPDOWN - anchored to the nav band, right-aligned */
                       <div
-                        className={`fixed left-0 right-0 top-[72px] z-50 px-6 md:px-12 pt-2 justify-center ${activeDropdown === item.name ? 'flex' : 'hidden'
+                        className={`fixed left-0 right-0 top-[44px] z-50 px-6 md:px-12 pt-9 justify-center ${activeDropdown === item.name ? 'flex' : 'hidden'
                           }`}
                         onMouseEnter={() => setActiveDropdown(item.name)}
                         onMouseLeave={() => setActiveDropdown(null)}
