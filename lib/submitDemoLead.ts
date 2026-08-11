@@ -8,6 +8,11 @@ export type DemoLead = {
   company: string;
   interest: 'Public Sector' | 'Enterprise' | '';
   message?: string;
+  // Bot-check fields — verified server-side by the Apps Script, same as the
+  // contact form. Without these the shared endpoint would reject demo leads
+  // once verification is live. See docs/contact-form-apps-script.md.
+  turnstileToken: string;
+  honeypot: string;
 };
 
 export async function submitDemoLead(lead: DemoLead): Promise<{ ok: boolean }> {
@@ -29,6 +34,8 @@ export async function submitDemoLead(lead: DemoLead): Promise<{ ok: boolean }> {
       'formDataNameOrder',
       JSON.stringify(['name', 'email', 'company', 'interest', 'message']),
     );
+    form.append('turnstileToken', lead.turnstileToken);
+    form.append('honeypot', lead.honeypot);
 
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',

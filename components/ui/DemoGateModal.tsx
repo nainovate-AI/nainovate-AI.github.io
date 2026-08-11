@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import Script from 'next/script';
 import { X, Loader2, Shield } from 'lucide-react';
 import { submitDemoLead } from '@/lib/submitDemoLead';
 import { useDemoAccess } from '@/hooks/useDemoAccess';
+import { TURNSTILE_SITE_KEY } from '@/lib/turnstile';
 
 type Props = {
   open: boolean;
@@ -37,6 +39,42 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const { grantAccess } = useDemoAccess();
+
+  // Cloudflare Turnstile — bot check. Same protection as the contact form,
+  // required because this modal posts to the same Apps Script endpoint.
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState('');
+
+  // Render the widget when the modal opens; remove it when it closes so a
+  // fresh challenge appears on the next open. (The modal unmounts on close.)
+  useEffect(() => {
+    if (!open) return;
+    let cancelled = false;
+    const render = () => {
+      if (cancelled || !turnstileRef.current || !window.turnstile || turnstileWidgetId.current !== null) return;
+      turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: 'dark',
+        callback: (token: string) => setTurnstileToken(token),
+        'error-callback': () => setTurnstileToken(''),
+        'expired-callback': () => setTurnstileToken(''),
+      });
+    };
+    let poll: ReturnType<typeof setInterval> | null = null;
+    if (window.turnstile) render();
+    else poll = setInterval(() => { if (window.turnstile) { if (poll) clearInterval(poll); render(); } }, 200);
+    return () => {
+      cancelled = true;
+      if (poll) clearInterval(poll);
+      if (window.turnstile && turnstileWidgetId.current !== null) {
+        window.turnstile.remove(turnstileWidgetId.current);
+      }
+      turnstileWidgetId.current = null;
+      setTurnstileToken('');
+    };
+  }, [open]);
 
   useEffect(() => {
     if (open) {
@@ -74,6 +112,16 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+
+    // Honeypot — hidden field only bots fill. Silently ignore.
+    if (honeypotRef.current?.value) return;
+
+    // Require a Turnstile token; the Apps Script verifies it server-side.
+    if (!turnstileToken) {
+      setStatus('error');
+      return;
+    }
+
     setSubmitting(true);
     setStatus('idle');
     const result = await submitDemoLead({
@@ -83,6 +131,8 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
       company: form.company.trim(),
       interest: form.interest,
       message: form.message.trim() || undefined,
+      turnstileToken,
+      honeypot: honeypotRef.current?.value || '',
     });
     setSubmitting(false);
     if (result.ok) {
@@ -116,6 +166,13 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
       aria-modal="true"
       aria-labelledby="demo-gate-title"
     >
+      {/* Turnstile script travels with the modal so the widget works in any
+          layout — including the /demo route group, which has its own layout
+          that doesn't load site-wide scripts. next/script dedupes by src. */}
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+        strategy="afterInteractive"
+      />
       {/* Backdrop */}
       <button
         type="button"
@@ -135,18 +192,18 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="p-6 sm:p-8">
+        <div className="p-5 sm:p-6">
           <h2
             id="demo-gate-title"
-            className="text-xl sm:text-2xl font-bold tracking-tight mb-2"
+            className="text-xl sm:text-2xl font-bold tracking-tight mb-1.5"
           >
             Access the Demo
           </h2>
-          <p className="text-sm text-fg-muted mb-6">
+          <p className="text-sm text-fg-muted mb-4">
             Share a few details and we&apos;ll tailor the experience.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <Field
                 label="First name"
@@ -219,9 +276,22 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
               />
             </div>
 
+            {/* Honeypot — invisible to humans, off-screen. Bots fill it. */}
+            <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
+              <label>
+                Website
+                <input ref={honeypotRef} type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+              </label>
+            </div>
+
+            {/* Cloudflare Turnstile bot-check widget */}
+            <div ref={turnstileRef} className="min-h-[65px]" />
+
             {status === 'error' && (
               <p className="text-sm text-danger">
-                Something went wrong. Try again or contact info@nainovate.ai
+                {turnstileToken
+                  ? 'Something went wrong. Try again or contact info@nainovate.ai'
+                  : 'Please complete the verification above, then try again.'}
               </p>
             )}
 

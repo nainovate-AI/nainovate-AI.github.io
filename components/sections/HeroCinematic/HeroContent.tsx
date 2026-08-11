@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { HeroSlide } from './heroData';
 import { Magnetic } from '@/components/ui/motion/Magnetic';
+import { trackEvent } from '@/lib/analytics';
 
 type Props = {
   slides: HeroSlide[];
@@ -95,7 +96,7 @@ export function HeroContent({ slides, active, onWatchDemo }: Props) {
         <Magnetic strength={0.35}>
           <button
             type="button"
-            onClick={onWatchDemo}
+            onClick={() => { trackEvent('hero_watch_demo', { slide: slide.id }); onWatchDemo(); }}
             className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 text-body-sm font-semibold tracking-[0.14em] uppercase rounded-full text-white overflow-hidden isolate"
             style={{ backgroundImage: 'linear-gradient(135deg, #3730a3 0%, #6d28d9 35%, #8b5cf6 70%, #c4b5fd 100%)', backgroundSize: '200% 200%' }}
           >
@@ -116,6 +117,7 @@ export function HeroContent({ slides, active, onWatchDemo }: Props) {
             href="https://calendly.com/naveen-nainovate/30min"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('hero_schedule_demo', { slide: slide.id })}
             className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 text-body-sm font-semibold tracking-[0.14em] uppercase rounded-full text-fg-strong border border-border-strong hover:border-fg-strong bg-bg-elevated/40 backdrop-blur transition-colors duration-300"
           >
             <span>Schedule Demo</span>

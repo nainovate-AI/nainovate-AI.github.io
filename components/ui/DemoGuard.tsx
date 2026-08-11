@@ -11,6 +11,11 @@ export function DemoGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { ready, hasAccess } = useDemoAccess();
   const [modalOpen, setModalOpen] = useState(false);
+  // Bridges the gap between granting access and the hook re-reading
+  // localStorage. router.refresh() alone doesn't re-run this component's
+  // mount effect, so without this the gate would linger until a manual
+  // reload even though access was just granted.
+  const [justGranted, setJustGranted] = useState(false);
 
   useEffect(() => {
     if (ready && !hasAccess) {
@@ -22,7 +27,7 @@ export function DemoGuard({ children }: { children: React.ReactNode }) {
     return <div className="min-h-screen bg-bg" />;
   }
 
-  if (!hasAccess) {
+  if (!hasAccess && !justGranted) {
     return (
       <main className="pt-16 sm:pt-20 relative z-10 bg-bg min-h-screen">
         <Link
@@ -58,6 +63,7 @@ export function DemoGuard({ children }: { children: React.ReactNode }) {
           onClose={() => setModalOpen(false)}
           onSuccess={() => {
             setModalOpen(false);
+            setJustGranted(true); // show the demo immediately, no manual reload
             router.refresh();
           }}
         />

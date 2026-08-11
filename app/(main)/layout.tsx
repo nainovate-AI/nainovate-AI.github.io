@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import Script from "next/script";
 import { PageTracker } from "@/components/tracking/PageTracker";
+import { ClickTracker } from "@/components/tracking/ClickTracker";
 import { Suspense } from "react";
 import { inter } from "../fonts";
 import JsonLd from '@/components/seo/JsonLd';
@@ -120,10 +121,18 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Cloudflare Turnstile — loaded once, used by the contact form and the
+            demo-gate modal (both post to the same Apps Script endpoint). */}
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          strategy="afterInteractive"
+        />
+
         <JsonLd data={organizationSchema} />
         <Suspense fallback={<></>}>
           <PageTracker />
         </Suspense>
+        <ClickTracker />
         <Header />
         {children}
         <Footer />

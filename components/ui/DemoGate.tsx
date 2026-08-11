@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { CTA } from '@/components/ui/CTA';
 import { DemoGateModal } from '@/components/ui/DemoGateModal';
 import { useDemoAccess } from '@/hooks/useDemoAccess';
+import { trackEvent } from '@/lib/analytics';
 
 /*
   Demo gate — enforces the lead-capture form before ANY link that lands on
@@ -28,6 +29,7 @@ export function useDemoGate() {
     (href: string) => {
       if (!ready) return;
       setPending(href);
+      trackEvent('demo_request', { href, gated: !hasAccess });
       if (hasAccess) {
         router.push(href);
       } else {
@@ -43,6 +45,7 @@ export function useDemoGate() {
       onClose={() => setOpen(false)}
       onSuccess={() => {
         setOpen(false);
+        trackEvent('demo_lead_captured', { href: pending });
         router.push(pending);
       }}
     />

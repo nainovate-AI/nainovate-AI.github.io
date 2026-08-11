@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import JsonLd from '@/components/seo/JsonLd';
+import { trackEvent } from '@/lib/analytics';
+import { TURNSTILE_SITE_KEY } from '@/lib/turnstile';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { Eyebrow } from '@/components/ui/Eyebrow';
@@ -82,12 +84,69 @@ export default function ContactPageClient() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  // Cloudflare Turnstile — bot check. Explicit render so it plays nicely with
+  // React and gives us a widget id to read/reset. The token is single-use and
+  // expires, so we read it at submit time and reset after each send.
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState('');
+
+  useEffect(() => {
+    const render = () => {
+      if (!turnstileRef.current || !window.turnstile || turnstileWidgetId.current !== null) return;
+      turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: 'dark',
+        callback: (token: string) => setTurnstileToken(token),
+        'error-callback': () => setTurnstileToken(''),
+        'expired-callback': () => setTurnstileToken(''),
+      });
+    };
+    if (window.turnstile) {
+      render();
+      return;
+    }
+    // Script loads async via next/script; poll briefly until the API is ready.
+    const poll = setInterval(() => {
+      if (window.turnstile) {
+        clearInterval(poll);
+        render();
+      }
+    }, 200);
+    return () => clearInterval(poll);
+  }, []);
+
+  const resetTurnstile = () => {
+    setTurnstileToken('');
+    if (window.turnstile && turnstileWidgetId.current !== null) {
+      window.turnstile.reset(turnstileWidgetId.current);
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot: a hidden field no human fills. If it has a value, it's a bot —
+    // drop it silently (pretend success so the bot gets no signal to adapt).
+    if (honeypotRef.current?.value) {
+      setSubmitStatus('success');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+      return;
+    }
+
+    // Require a Turnstile token before sending. The Apps Script verifies it
+    // server-side — the real gate — but blocking here avoids a wasted request.
+    if (!turnstileToken) {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNhq4W7yQo7TinavOG9KlIkd1-j-zjf310CdErCRTsw_pinsfIQNrIy4Wuy0JXV46k/exec';
@@ -100,13 +159,19 @@ export default function ContactPageClient() {
       form.append('interest', formData.interest);
       form.append('message', formData.message);
       form.append('formDataNameOrder', JSON.stringify(['name', 'email', 'company', 'interest', 'message']));
+      // Bot-check fields — the Apps Script verifies these before saving.
+      form.append('turnstileToken', turnstileToken);
+      form.append('honeypot', honeypotRef.current?.value || '');
       await fetch(SCRIPT_URL, { method: 'POST', body: form });
+      trackEvent('contact_submit', { interest: formData.interest || 'unspecified' });
       setSubmitStatus('success');
       setFormData({ firstName: '', lastName: '', email: '', company: '', interest: '', message: '' });
+      resetTurnstile();
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
       console.error('Submission error:', error);
       setSubmitStatus('error');
+      resetTurnstile();
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
       setIsSubmitting(false);
@@ -198,11 +263,32 @@ export default function ContactPageClient() {
                     <textarea name="message" value={formData.message} onChange={handleChange} required rows={4} className={`${inputClass} resize-none`} placeholder="Tell us about your project..." />
                   </div>
 
+                  {/* Honeypot — invisible to humans, off-screen (not display:none,
+                      which some bots skip). If filled, the submit is dropped. */}
+                  <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
+                    <label>
+                      Website
+                      <input
+                        ref={honeypotRef}
+                        type="text"
+                        name="website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        defaultValue=""
+                      />
+                    </label>
+                  </div>
+
+                  {/* Cloudflare Turnstile bot-check widget */}
+                  <div ref={turnstileRef} className="min-h-[65px]" />
+
                   {submitStatus === 'success' && (
                     <p className="text-body-md text-success">Thank you! Your message has been sent successfully.</p>
                   )}
                   {submitStatus === 'error' && (
-                    <p className="text-body-md text-danger">Something went wrong. Please try again.</p>
+                    <p className="text-body-md text-danger">
+                      {turnstileToken ? 'Something went wrong. Please try again.' : 'Please complete the verification below, then try again.'}
+                    </p>
                   )}
 
                   <CTA type="submit" disabled={isSubmitting} variant="solid" size="lg" arrow>
