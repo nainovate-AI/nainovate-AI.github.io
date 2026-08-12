@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useDemoScreenTracking } from '@/hooks/useDemoScreenTracking';
 import {
   Home,
   BarChart3,
@@ -176,6 +177,7 @@ export default function WorkspaceHub() {
   const closeHref = searchParams.get('from') === 'home' ? '/' : '/demo';
   const [activeSpace, setActiveSpace] = useState<SpaceKey>('customer-success');
   const [activeFeature, setActiveFeature] = useState<FeatureKey>('command-center');
+  useDemoScreenTracking('enterprise', activeFeature);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [pendingTraceId, setPendingTraceId] = useState<string | null>(null);
@@ -1250,12 +1252,12 @@ function Dashboard({
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-fg-strong/10">
+      <div className="flex gap-6 border-b border-fg-strong/10 overflow-x-auto">
         {['Overview', 'Health', 'Renewals', 'Adoption', 'Engagement', 'Revenue', 'Support', 'Custom'].map((t, i) => (
           <button
             key={t}
             onClick={() => setTab(i)}
-            className={`text-sm py-2 border-b-2 ${
+            className={`text-sm py-2 border-b-2 whitespace-nowrap shrink-0 ${
               tab === i ? 'border-fg-strong text-fg-strong font-medium' : 'border-transparent text-fg-strong/50 hover:text-fg-strong'
             }`}
           >
@@ -1384,6 +1386,8 @@ function Dashboard({
         >
           Top At-Risk
         </SectionTitle>
+        <div className="overflow-x-auto">
+        <div className="min-w-[440px]">
         <div className="grid grid-cols-12 gap-3 pb-3 border-b border-fg-strong/5 text-[10px] tracking-widest text-fg-strong/50 uppercase">
           <span className="col-span-5">Account</span>
           <span className="col-span-2 text-right">Health</span>
@@ -1416,6 +1420,8 @@ function Dashboard({
             </span>
           </button>
         ))}
+        </div>
+        </div>
       </Card>
 
       {/* Filters dialog */}
@@ -1674,8 +1680,8 @@ function Ask({
   const railActions = currentAnswer?.recommendedActions ?? seed.recommendedActions;
 
   return (
-    <div className="grid grid-cols-12 gap-6">
-      <div className="col-span-9">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="lg:col-span-9">
         <h1 className="text-xl font-semibold text-fg-strong mb-4">AI Agent</h1>
 
         <div ref={scrollRef} className="max-h-[70vh] overflow-y-auto pr-1 space-y-4">
@@ -1820,7 +1826,7 @@ function BotCard({
       {a.insights && (
         <>
           <p className="text-sm font-medium text-fg-strong mb-3">Key insights</p>
-          <div className="grid grid-cols-4 gap-3 mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             {a.insights.map((i) => (
               <div
                 key={i.label}
@@ -1843,6 +1849,8 @@ function BotCard({
             <p className="text-sm font-medium text-fg-strong">Top At-Risk</p>
             <span className="text-xs text-fg-strong/50">{a.table.length} rows</span>
           </div>
+          <div className="overflow-x-auto">
+          <div className="min-w-[620px]">
           <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
             <span className="col-span-3">Account</span>
             <span className="col-span-1 text-right">Health</span>
@@ -1880,6 +1888,8 @@ function BotCard({
               <span className="col-span-2 text-xs text-fg-strong/70">{r.owner}</span>
             </button>
           ))}
+          </div>
+          </div>
           <button onClick={() => onNavigate('dashboard')} className="text-xs mt-3 inline-block" style={{ color: 'var(--gd-primary)' }}>
             View all at-risk customers →
           </button>
@@ -2033,12 +2043,12 @@ function Trace({
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-fg-strong/10">
+      <div className="flex gap-6 border-b border-fg-strong/10 overflow-x-auto">
         {['Memory Explorer', 'Decision Log', 'Audit Trail', 'Data Lineage', 'Access History', 'Retention & Policies'].map((t, i) => (
           <button
             key={t}
             onClick={() => setActiveTab(i)}
-            className={`text-sm py-2 border-b-2 ${
+            className={`text-sm py-2 border-b-2 whitespace-nowrap shrink-0 ${
               activeTab === i ? 'border-fg-strong text-fg-strong font-medium' : 'border-transparent text-fg-strong/50 hover:text-fg-strong'
             }`}
           >
@@ -2080,6 +2090,8 @@ function Trace({
               </select>
             </div>
           </div>
+          <div className="overflow-x-auto">
+          <div className="min-w-[760px]">
           <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
             <span className="col-span-4">User Message</span>
             <span className="col-span-1">Scenario</span>
@@ -2121,6 +2133,8 @@ function Trace({
               <span className="col-span-1 text-right text-fg-strong/50">{o.when.split(' ')[0]}<br /><span className="text-fg-strong/40">{o.when.split(' ').slice(1).join(' ')}</span></span>
             </button>
           ))}
+        </div>
+        </div>
         </Card>
 
         <Card className="p-5">
@@ -2342,7 +2356,7 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
 
         <div className="p-6 space-y-6">
           {/* Meta */}
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
               { l: 'Status', v: outcome.status },
               { l: 'Feedback', v: outcome.feedback === '—' ? 'not rated' : outcome.feedback },

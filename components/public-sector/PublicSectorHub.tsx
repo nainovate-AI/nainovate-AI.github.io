@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useDemoScreenTracking } from '@/hooks/useDemoScreenTracking';
 import {
   BarChart3,
   MessageSquare,
@@ -39,7 +40,9 @@ const FEATURES: { key: FeatureKey; label: string; Icon: React.ComponentType<{ cl
 export default function PublicSectorHub() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const [activeFeature, setActiveFeature] = useState<FeatureKey>('dashboards');
+  useDemoScreenTracking(pathname?.includes('operations') ? 'operations' : 'public-sector', activeFeature);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
