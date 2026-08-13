@@ -65,7 +65,6 @@ export default function RootLayout({
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-XXXXXXXXXX", // Add your phone number
       "contactType": "Sales",
       "email": "info@nainovate.ai",
       "availableLanguage": ["English", "Hindi"]

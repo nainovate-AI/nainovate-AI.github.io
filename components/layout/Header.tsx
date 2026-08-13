@@ -759,6 +759,9 @@ export function Header() {
           <button
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
           >
             <svg
               className="h-6 w-6"
@@ -780,7 +783,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden pb-8 pt-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <div id="mobile-nav" className="md:hidden pb-8 pt-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
             <ul className="divide-y divide-border">
               {navigation.map((item) => (
                 <li key={item.name} className="py-4">

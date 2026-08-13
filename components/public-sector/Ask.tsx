@@ -511,7 +511,7 @@ function FeesCardView({ block }: { block: FeesCard }) {
         <p className="text-sm font-semibold text-fg-strong">{block.title}</p>
       </div>
 
-      {/* TODO(mobile): consider card variant for narrow viewports (3-col table) */}
+      {/* 3-col fees table — narrow enough to keep horizontal scroll on <sm */}
       <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
         <div className="min-w-[320px]">
           <div className="grid grid-cols-3 gap-2 text-xs pb-2 border-b" style={{ borderColor: 'var(--gd-border)' }}>
@@ -752,10 +752,18 @@ export default function PublicSectorAsk() {
   const [isTyping, setIsTyping] = useState(false);
   const [followups, setFollowups] = useState<Chip[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const sendTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    // Only auto-scroll once a conversation exists — on the welcome view we want the
+    // user to see the intro card at the top, not be scrolled to the suggestions below.
+    if (messages.length === 0) return;
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, isTyping]);
+
+  useEffect(() => () => {
+    if (sendTimerRef.current) clearTimeout(sendTimerRef.current);
+  }, []);
 
   const send = (raw?: string) => {
     const text = (raw ?? input).trim();
@@ -765,7 +773,9 @@ export default function PublicSectorAsk() {
     setInput('');
     setIsTyping(true);
     setFollowups([]);
-    setTimeout(() => {
+    if (sendTimerRef.current) clearTimeout(sendTimerRef.current);
+    sendTimerRef.current = setTimeout(() => {
+      sendTimerRef.current = null;
       setIsTyping(false);
       setMessages((prev) => [
         ...prev,

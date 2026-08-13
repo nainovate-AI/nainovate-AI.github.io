@@ -27,8 +27,11 @@ export function useDemoGate() {
 
   const requestDemo = useCallback(
     (href: string) => {
-      if (!ready) return;
       setPending(href);
+      if (!ready) {
+        setOpen(true);
+        return;
+      }
       trackEvent('demo_request', { href, gated: !hasAccess });
       if (hasAccess) {
         router.push(href);

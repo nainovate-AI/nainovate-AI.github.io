@@ -25,20 +25,29 @@ export function useDemoAccess() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as DemoAccessRecord;
-        if (parsed.granted && !isExpired(parsed)) {
-          setRecord(parsed);
-        } else {
+    const load = () => {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw) as DemoAccessRecord;
+          if (parsed.granted && !isExpired(parsed)) {
+            setRecord(parsed);
+            return;
+          }
           localStorage.removeItem(STORAGE_KEY);
         }
+        setRecord(null);
+      } catch {
+        setRecord(null);
       }
-    } catch {
-      /* ignore */
-    }
+    };
+    load();
     setReady(true);
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY) load();
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
   }, []);
 
   const grantAccess = useCallback((data: Omit<DemoAccessRecord, 'granted' | 'timestamp'>) => {

@@ -99,7 +99,13 @@ test('all internal hrefs point to routes that exist in the build', () => {
         const matches = html.matchAll(/href="(\/[^"#]+)"/g);
         for (const m of matches) {
           const href = m[1];
-          if (href.startsWith('/_next') || href.startsWith('/images') || href.startsWith('/icon') || href.startsWith('/kb')) continue;
+          if (
+            href.startsWith('/_next') ||
+            href.startsWith('/images') ||
+            href.startsWith('/icon') ||
+            href.startsWith('/kb') ||
+            href.startsWith('/hero-slides')
+          ) continue;
           if (seen.has(href)) continue;
           seen.add(href);
           const normalized = href.endsWith('/') ? href.slice(0, -1) : href;

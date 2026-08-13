@@ -243,10 +243,27 @@ export default function WorkspaceHub() {
     update();
     window.addEventListener('resize', update);
     window.addEventListener('scroll', update, true);
+    const ro = typeof ResizeObserver !== 'undefined' && pickerBtnRef.current
+      ? new ResizeObserver(update)
+      : null;
+    if (ro && pickerBtnRef.current) ro.observe(pickerBtnRef.current);
     return () => {
       window.removeEventListener('resize', update);
       window.removeEventListener('scroll', update, true);
+      ro?.disconnect();
     };
+  }, [pickerOpen, sidebarCollapsed, mobileOpen]);
+
+  useEffect(() => {
+    if (!pickerOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setPickerOpen(false);
+        pickerBtnRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
   }, [pickerOpen]);
 
   useEffect(() => {
@@ -257,7 +274,7 @@ export default function WorkspaceHub() {
   }, [mobileOpen]);
 
   useEffect(() => {
-    function onClickOutside(e: MouseEvent) {
+    function onClickOutside(e: Event) {
       const target = e.target as Node;
       // Popover is portaled to <body>, not inside pickerRef container. Also
       // treat clicks inside any element with data-picker-popover as inside so
@@ -270,8 +287,8 @@ export default function WorkspaceHub() {
       }
     }
     if (pickerOpen) {
-      document.addEventListener('mousedown', onClickOutside);
-      return () => document.removeEventListener('mousedown', onClickOutside);
+      document.addEventListener('pointerdown', onClickOutside);
+      return () => document.removeEventListener('pointerdown', onClickOutside);
     }
   }, [pickerOpen]);
 
@@ -350,6 +367,9 @@ export default function WorkspaceHub() {
               ref={pickerBtnRef}
               onClick={() => setPickerOpen(!pickerOpen)}
               title={space.label}
+              aria-label={`Switch space (current: ${space.label})`}
+              aria-haspopup="menu"
+              aria-expanded={pickerOpen}
               className={`w-full flex items-center rounded-lg border transition-colors ${
                 sidebarCollapsed ? 'justify-center py-2.5' : 'gap-3 px-3 py-2.5'
               } ${pickerOpen ? 'border-fg-strong' : 'border-fg-strong/20 hover:border-fg-strong/40'}`}
@@ -380,7 +400,7 @@ export default function WorkspaceHub() {
               />
               {/* Mobile: centered overlay */}
               <div
-                style={{ maxWidth: 'calc(100vw - 2rem)', background: '#000000', color: '#ffffff' }}
+                style={{ maxWidth: 'calc(100vw - 2rem)', background: 'var(--gd-bg)', color: 'var(--gd-fg)' }}
                 className="md:hidden fixed left-1/2 top-20 -translate-x-1/2 z-[110] w-[320px] border border-white/20 rounded-lg shadow-2xl overflow-hidden"
               >
                 <PickerContent
@@ -396,8 +416,8 @@ export default function WorkspaceHub() {
               {pickerPos && (
                 <div
                   style={{
-                    background: '#000000',
-                    color: '#ffffff',
+                    background: 'var(--gd-bg)',
+                    color: 'var(--gd-fg)',
                     top: `${pickerPos.top}px`,
                     left: `${pickerPos.left}px`,
                   }}
@@ -1769,6 +1789,8 @@ function Ask({
   ]);
   const [input, setInput] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
+  const prevMessagesLenRef = useRef<number>(0);
+  const isSeedRef = useRef<boolean>(true);
 
   useEffect(() => {
     // Reset on space change
@@ -1777,12 +1799,21 @@ function Ask({
       { role: 'user', text: s.question, ts: s.timestamp || nowLabel() },
       { role: 'bot', text: '', answer: s, ts: s.timestamp || nowLabel() },
     ]);
+    isSeedRef.current = true;
+    prevMessagesLenRef.current = 2;
   }, [space]);
 
   useEffect(() => {
-    if (scrollRef.current) {
+    if (!scrollRef.current) return;
+    if (isSeedRef.current) {
+      // Initial seed conversation — land at TOP so user sees question + answer
+      scrollRef.current.scrollTop = 0;
+      isSeedRef.current = false;
+    } else if (messages.length > prevMessagesLenRef.current) {
+      // New message appended — scroll to bottom
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
+    prevMessagesLenRef.current = messages.length;
   }, [messages.length]);
 
   function submit(text: string) {
