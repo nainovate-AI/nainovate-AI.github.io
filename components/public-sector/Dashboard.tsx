@@ -92,7 +92,7 @@ function KpiTile({ tile, onClose }: { tile: (typeof data.kpiTiles)[number]; onCl
   return (
     <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
       <CloseX onClose={onClose} />
-      <div className="flex items-start gap-4 pr-6">
+      <div className="flex items-start gap-4 pr-6 min-w-0">
         <div
           className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0"
           style={{ background: `${tile.color}22`, color: tile.color }}
@@ -100,17 +100,17 @@ function KpiTile({ tile, onClose }: { tile: (typeof data.kpiTiles)[number]; onCl
           <IconFor name={tile.icon} className="w-5 h-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-xs text-fg-strong/60">{tile.label}</p>
-          <p className="text-2xl font-semibold text-fg-strong leading-tight">{tile.value}</p>
+          <p className="text-xs text-fg-strong/60 break-words">{tile.label}</p>
+          <p className="text-2xl font-semibold text-fg-strong leading-tight break-words">{tile.value}</p>
         </div>
       </div>
-      <div className="mt-3 flex items-center gap-3">
-        <span className={`inline-flex items-center gap-1 text-xs ${isUp ? 'text-emerald-400' : 'text-amber-400'}`}>
+      <div className="mt-3 flex items-center gap-3 min-w-0">
+        <span className={`inline-flex items-center gap-1 text-xs shrink-0 ${isUp ? 'text-emerald-400' : 'text-amber-400'}`}>
           {isUp ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />}
           {tile.delta}
         </span>
-        <span className="text-xs text-fg-strong/50">{tile.deltaNote}</span>
-        <div className="ml-auto w-24">
+        <span className="text-xs text-fg-strong/50 min-w-0 truncate">{tile.deltaNote}</span>
+        <div className="ml-auto w-24 shrink-0">
           <Sparkline values={tile.spark} color={tile.color} variant={isBar ? 'bar' : 'line'} />
         </div>
       </div>
@@ -175,11 +175,11 @@ function LegendRows({ items }: { items: { label: string; value: number; percent:
   return (
     <ul className="space-y-2.5">
       {items.map((it) => (
-        <li key={it.label} className="flex items-center gap-3 text-sm">
+        <li key={it.label} className="flex items-center gap-3 text-sm min-w-0">
           <span className="w-2 h-2 rounded-full shrink-0" style={{ background: it.color }} />
-          <span className="text-fg-strong/80 flex-1">{it.label}</span>
-          <span className="text-fg-strong font-medium tabular-nums">{it.value.toLocaleString()}</span>
-          <span className="text-fg-strong/50 tabular-nums text-xs">({it.percent}%)</span>
+          <span className="text-fg-strong/80 flex-1 min-w-0 truncate">{it.label}</span>
+          <span className="text-fg-strong font-medium tabular-nums shrink-0">{it.value.toLocaleString()}</span>
+          <span className="text-fg-strong/50 tabular-nums text-xs shrink-0">({it.percent}%)</span>
         </li>
       ))}
     </ul>
@@ -191,9 +191,9 @@ function BarList({ items, max }: { items: { label: string; value: number; color:
   return (
     <ul className="space-y-3">
       {items.map((it) => (
-        <li key={it.label} className="grid grid-cols-[80px_1fr_40px] items-center gap-3 text-sm">
-          <span className="text-fg-strong/80">{it.label}</span>
-          <div className="h-2 rounded-full bg-surface-2 overflow-hidden">
+        <li key={it.label} className="grid grid-cols-[64px_1fr_40px] sm:grid-cols-[80px_1fr_40px] items-center gap-3 text-sm min-w-0">
+          <span className="text-fg-strong/80 min-w-0 break-words">{it.label}</span>
+          <div className="h-2 rounded-full bg-surface-2 overflow-hidden min-w-0">
             <div
               className="h-full rounded-full"
               style={{ width: `${(it.value / max) * 100}%`, background: it.color }}
@@ -321,14 +321,14 @@ function AssistantChatPopup({
   return (
     <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[300px] xl:w-[360px] h-[65vh] sm:h-[480px] max-h-[calc(100vh-2rem)] bg-bg border border-fg-strong/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-fg-strong/10">
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-violet-400" />
-          <span className="text-sm font-medium text-fg-strong">{a.title}</span>
+      <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-fg-strong/10">
+        <div className="flex items-center gap-2 min-w-0">
+          <Sparkles className="w-4 h-4 text-violet-400 shrink-0" />
+          <span className="text-sm font-medium text-fg-strong min-w-0 truncate">{a.title}</span>
         </div>
         <button
           onClick={onClose}
-          className="w-8 h-8 rounded-full hover:bg-fg-strong/10 flex items-center justify-center text-fg-muted hover:text-fg-strong transition-colors"
+          className="w-8 h-8 shrink-0 rounded-full hover:bg-fg-strong/10 flex items-center justify-center text-fg-muted hover:text-fg-strong transition-colors"
           aria-label="Close chat"
         >
           <X className="w-4 h-4" />
@@ -340,13 +340,13 @@ function AssistantChatPopup({
         {messages.map((m, i) =>
           m.role === 'user' ? (
             <div key={i} className="flex justify-end">
-              <div className="max-w-[85%] rounded-2xl bg-[#6366F1] text-fg-strong text-xs px-4 py-2">
+              <div className="max-w-[85%] rounded-2xl bg-[#6366F1] text-fg-strong text-xs px-4 py-2 break-words min-w-0">
                 {m.content}
               </div>
             </div>
           ) : (
             <div key={i} className="flex justify-start">
-              <div className="max-w-[85%] rounded-xl bg-surface-2 text-fg-strong text-sm px-3 py-2">
+              <div className="max-w-[85%] rounded-xl bg-surface-2 text-fg-strong text-sm px-3 py-2 break-words min-w-0">
                 {m.content}
               </div>
             </div>
@@ -466,9 +466,9 @@ export default function PublicSectorDashboard() {
                   <LegendRows items={data.byBuildingType.items} />
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between text-xs">
-                <span className="text-fg-strong/60">{data.byBuildingType.totalLabel}</span>
-                <span className="text-fg-strong font-medium tabular-nums">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
+                <span className="text-fg-strong/60 min-w-0 truncate">{data.byBuildingType.totalLabel}</span>
+                <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
                   {data.byBuildingType.totalValue.toLocaleString()}
                 </span>
               </div>
@@ -479,15 +479,17 @@ export default function PublicSectorDashboard() {
             <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
               <CloseX onClose={() => hide('byDepartment')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byDepartment.title}</p>
-              <div className="flex items-center gap-5">
-                <Donut items={data.byDepartment.items} centerTop="" centerBottom="" size={170} ring={16} />
-                <div className="flex-1 min-w-0">
+              <div className="flex flex-col sm:flex-row items-center gap-5 min-w-0">
+                <div className="shrink-0">
+                  <Donut items={data.byDepartment.items} centerTop="" centerBottom="" size={170} ring={16} />
+                </div>
+                <div className="flex-1 min-w-0 w-full">
                   <LegendRows items={data.byDepartment.items} />
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between text-xs">
-                <span className="text-fg-strong/60">{data.byDepartment.totalLabel}</span>
-                <span className="text-fg-strong font-medium tabular-nums">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
+                <span className="text-fg-strong/60 min-w-0 truncate">{data.byDepartment.totalLabel}</span>
+                <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
                   {data.byDepartment.totalValue.toLocaleString()}
                 </span>
               </div>
@@ -498,15 +500,17 @@ export default function PublicSectorDashboard() {
             <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
               <CloseX onClose={() => hide('byZone')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byZone.title}</p>
-              <div className="flex items-center gap-5">
-                <Donut items={data.byZone.items} centerTop="" centerBottom="" size={170} />
-                <div className="flex-1 min-w-0">
+              <div className="flex flex-col sm:flex-row items-center gap-5 min-w-0">
+                <div className="shrink-0">
+                  <Donut items={data.byZone.items} centerTop="" centerBottom="" size={170} />
+                </div>
+                <div className="flex-1 min-w-0 w-full">
                   <LegendRows items={data.byZone.items} />
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between text-xs">
-                <span className="text-fg-strong/60">{data.byZone.totalLabel}</span>
-                <span className="text-fg-strong font-medium tabular-nums">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
+                <span className="text-fg-strong/60 min-w-0 truncate">{data.byZone.totalLabel}</span>
+                <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
                   {data.byZone.totalValue.toLocaleString()}
                 </span>
               </div>
@@ -518,22 +522,22 @@ export default function PublicSectorDashboard() {
               <CloseX onClose={() => hide('avgTime')} />
               <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.avgProcessingTime.title}</p>
               <BarList items={data.avgProcessingTime.items} max={maxProcTime + 8} />
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center gap-3">
+              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center gap-3 min-w-0">
                 <div className="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[11px] text-fg-strong/50">{data.avgProcessingTime.overall.label}</p>
-                  <p className="text-lg font-semibold text-fg-strong leading-tight">
+                  <p className="text-[11px] text-fg-strong/50 break-words">{data.avgProcessingTime.overall.label}</p>
+                  <p className="text-lg font-semibold text-fg-strong leading-tight break-words">
                     {data.avgProcessingTime.overall.value}
                   </p>
                 </div>
-                <div className="text-right">
-                  <p className="inline-flex items-center gap-1 text-xs text-amber-400">
+                <div className="text-right shrink-0">
+                  <p className="inline-flex items-center gap-1 text-xs text-amber-400 whitespace-nowrap">
                     <ArrowDown className="w-3 h-3" />
                     {data.avgProcessingTime.overall.delta}
                   </p>
-                  <p className="text-[10px] text-fg-strong/50">{data.avgProcessingTime.overall.deltaNote}</p>
+                  <p className="text-[10px] text-fg-strong/50 whitespace-nowrap">{data.avgProcessingTime.overall.deltaNote}</p>
                 </div>
               </div>
             </div>
