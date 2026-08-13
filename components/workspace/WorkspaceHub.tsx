@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useDemoScreenTracking } from '@/hooks/useDemoScreenTracking';
 import {
@@ -149,6 +150,48 @@ const TRACE_DATA: Record<SpaceKey, TraceData> = {
   delivery: delTrace as TraceData,
 };
 
+/* Shared picker list content — rendered inside desktop popover + mobile portal */
+type SpaceMeta = { key: SpaceKey; label: string; letter: string; persona: string; role: string };
+function PickerContent({ spaces, activeSpace, onSelect }: {
+  spaces: SpaceMeta[];
+  activeSpace: SpaceKey;
+  onSelect: (key: SpaceKey) => void;
+}) {
+  return (
+    <>
+      <div className="px-4 py-2 border-b border-fg-strong/5">
+        <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase">
+          Enterprise Demo
+        </p>
+      </div>
+      <div className="p-2">
+        {spaces.map((s) => {
+          const isActive = s.key === activeSpace;
+          return (
+            <button
+              key={s.key}
+              onClick={() => onSelect(s.key)}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+                isActive ? 'text-fg-strong' : 'hover:bg-fg-strong/5 text-fg-strong'
+              }`}
+              style={isActive ? { background: 'var(--gd-primary)' } : undefined}
+            >
+              <span
+                className={`w-6 h-6 rounded flex items-center justify-center text-xs font-medium shrink-0 ${
+                  isActive ? 'bg-surface-hover text-fg-strong' : 'border border-fg-strong/20 text-fg-strong'
+                }`}
+              >
+                {s.letter}
+              </span>
+              <span className="text-sm">{s.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
 /* ---------- metadata (kept inline, not "mock" content) ---------- */
 
 const SPACES: {
@@ -184,6 +227,27 @@ export default function WorkspaceHub() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
+  const pickerBtnRef = useRef<HTMLButtonElement>(null);
+  const [pickerPos, setPickerPos] = useState<{ top: number; left: number } | null>(null);
+
+  // Compute popover position from trigger's viewport rect each time picker opens.
+  // Portal to body escapes sidebar's translate transform which would otherwise
+  // confine `fixed` children to the sidebar's containing block.
+  useEffect(() => {
+    if (!pickerOpen) return;
+    const update = () => {
+      const rect = pickerBtnRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      setPickerPos({ top: rect.top, left: rect.right + 8 });
+    };
+    update();
+    window.addEventListener('resize', update);
+    window.addEventListener('scroll', update, true);
+    return () => {
+      window.removeEventListener('resize', update);
+      window.removeEventListener('scroll', update, true);
+    };
+  }, [pickerOpen]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -194,7 +258,14 @@ export default function WorkspaceHub() {
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
-      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      // Popover is portaled to <body>, not inside pickerRef container. Also
+      // treat clicks inside any element with data-picker-popover as inside so
+      // selecting a space isn't swallowed as an "outside" click.
+      const popoverEl = document.querySelector('[data-picker-popover]');
+      const insideTrigger = pickerRef.current?.contains(target);
+      const insidePopover = popoverEl?.contains(target);
+      if (!insideTrigger && !insidePopover) {
         setPickerOpen(false);
       }
     }
@@ -236,8 +307,8 @@ export default function WorkspaceHub() {
         )}
         {/* Sidebar */}
         <aside
-          className={`flex flex-col shrink-0 h-screen overflow-hidden border-r transition-[width,transform] duration-300
-            md:sticky md:top-0
+          className={`flex flex-col shrink-0 h-screen border-r transition-[width,transform] duration-300
+            md:sticky md:top-0 md:overflow-hidden overflow-y-auto
             fixed inset-y-0 left-0 z-50
             ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
             md:translate-x-0
@@ -276,6 +347,7 @@ export default function WorkspaceHub() {
             ref={pickerRef}
           >
             <button
+              ref={pickerBtnRef}
               onClick={() => setPickerOpen(!pickerOpen)}
               title={space.label}
               className={`w-full flex items-center rounded-lg border transition-colors ${
@@ -293,44 +365,57 @@ export default function WorkspaceHub() {
               )}
             </button>
 
-            {/* Popover */}
-            {pickerOpen && (
-              <div className="absolute top-0 left-full ml-2 z-50 w-[min(260px,calc(100vw-2rem))] bg-bg border border-fg-strong/20 rounded-lg shadow-2xl overflow-hidden">
-                <div className="px-4 py-2 border-b border-fg-strong/5">
-                  <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase">
-                    Enterprise Demo
-                  </p>
-                </div>
-                <div className="p-2">
-                  {SPACES.map((s) => {
-                    const isActive = s.key === activeSpace;
-                    return (
-                      <button
-                        key={s.key}
-                        onClick={() => {
-                          setActiveSpace(s.key);
-                          setPickerOpen(false);
-                        }}
-                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                          isActive ? 'text-fg-strong' : 'hover:bg-fg-strong/5 text-fg-strong'
-                        }`}
-                        style={isActive ? { background: 'var(--gd-primary)' } : undefined}
-                      >
-                        <span
-                          className={`w-6 h-6 rounded flex items-center justify-center text-xs font-medium shrink-0 ${
-                            isActive ? 'bg-surface-hover text-fg-strong' : 'border border-fg-strong/20 text-fg-strong'
-                          }`}
-                        >
-                          {s.letter}
-                        </span>
-                        <span className="text-sm">{s.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
           </div>
+
+          {/* Space picker popover — portaled to body (escapes sidebar's translate
+              transform + overflow-hidden). Mobile: centered overlay + backdrop.
+              Desktop (md+): positioned via computed rect right of trigger button. */}
+          {pickerOpen && typeof document !== 'undefined' && createPortal(
+            <div className="theme-genx-decision" data-picker-popover>
+              {/* Mobile backdrop only */}
+              <div
+                className="md:hidden fixed inset-0 z-[100] bg-black/60"
+                onClick={() => setPickerOpen(false)}
+                aria-hidden="true"
+              />
+              {/* Mobile: centered overlay */}
+              <div
+                style={{ maxWidth: 'calc(100vw - 2rem)', background: '#000000', color: '#ffffff' }}
+                className="md:hidden fixed left-1/2 top-20 -translate-x-1/2 z-[110] w-[320px] border border-white/20 rounded-lg shadow-2xl overflow-hidden"
+              >
+                <PickerContent
+                  spaces={SPACES}
+                  activeSpace={activeSpace}
+                  onSelect={(key) => {
+                    setActiveSpace(key);
+                    setPickerOpen(false);
+                  }}
+                />
+              </div>
+              {/* Desktop: positioned right of trigger via computed rect */}
+              {pickerPos && (
+                <div
+                  style={{
+                    background: '#000000',
+                    color: '#ffffff',
+                    top: `${pickerPos.top}px`,
+                    left: `${pickerPos.left}px`,
+                  }}
+                  className="hidden md:block fixed z-[110] w-[260px] border border-white/20 rounded-lg shadow-2xl overflow-hidden"
+                >
+                  <PickerContent
+                    spaces={SPACES}
+                    activeSpace={activeSpace}
+                    onSelect={(key) => {
+                      setActiveSpace(key);
+                      setPickerOpen(false);
+                    }}
+                  />
+                </div>
+              )}
+            </div>,
+            document.body
+          )}
 
           {/* Feature nav */}
           <nav className={`p-2 flex-1 flex flex-col ${sidebarCollapsed ? 'items-center' : ''}`}>
