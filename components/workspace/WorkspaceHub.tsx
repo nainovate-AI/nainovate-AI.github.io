@@ -529,7 +529,12 @@ function Dialog({
     return () => document.removeEventListener('keydown', onKey);
   }, [open, onClose]);
   if (!open) return null;
-  const w = width === 'sm' ? 'max-w-md' : width === 'lg' ? 'max-w-3xl' : 'max-w-xl';
+  const w =
+    width === 'sm'
+      ? 'max-w-[calc(100vw-2rem)] md:max-w-md'
+      : width === 'lg'
+      ? 'max-w-[calc(100vw-2rem)] md:max-w-3xl'
+      : 'max-w-[calc(100vw-2rem)] md:max-w-xl';
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -541,9 +546,9 @@ function Dialog({
         className={`${w} w-full rounded-lg overflow-hidden`}
         style={{ background: 'var(--gd-bg)', border: '1px solid var(--gd-border-strong)' }}
       >
-        <div className="p-5 border-b flex items-start justify-between" style={{ borderColor: 'var(--gd-border)' }}>
-          <h2 className="text-base font-semibold text-fg-strong">{title}</h2>
-          <button onClick={onClose} className="text-fg-strong/60 hover:text-fg-strong text-xl leading-none">
+        <div className="p-5 border-b flex items-start justify-between gap-3" style={{ borderColor: 'var(--gd-border)' }}>
+          <h2 className="text-base font-semibold text-fg-strong min-w-0 break-words">{title}</h2>
+          <button onClick={onClose} className="shrink-0 text-fg-strong/60 hover:text-fg-strong text-xl leading-none">
             ×
           </button>
         </div>
@@ -655,9 +660,9 @@ function KpiTile({
 
 function SectionTitle({ children, action }: { children: React.ReactNode; action?: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between mb-4">
-      <p className="text-sm font-medium text-fg-strong">{children}</p>
-      {action}
+    <div className="flex items-center justify-between gap-3 mb-4">
+      <p className="text-sm font-medium text-fg-strong min-w-0">{children}</p>
+      {action && <div className="shrink-0 whitespace-nowrap">{action}</div>}
     </div>
   );
 }
@@ -749,22 +754,22 @@ function CommandCenter({
       </div>
 
       {/* Summary banner */}
-      <div className="border rounded-lg p-5 flex items-start justify-between" style={{ background: 'var(--gd-primary-soft)', borderColor: 'var(--gd-primary-outline)' }}>
-        <div className="flex gap-3">
+      <div className="border rounded-lg p-5 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3" style={{ background: 'var(--gd-primary-soft)', borderColor: 'var(--gd-primary-outline)' }}>
+        <div className="flex gap-3 min-w-0 flex-1">
           <span className="w-6 h-6 rounded flex items-center justify-center text-fg-strong text-xs shrink-0" style={{ background: 'var(--gd-primary)' }}>
             ✦
           </span>
-          <div>
+          <div className="min-w-0">
             <p className="text-[10px] font-semibold text-fg-strong/50 tracking-widest uppercase mb-1">
               GenX Summary · as of today
             </p>
-            <p className="text-sm font-medium text-fg-strong">{d.summary.headline}</p>
-            <p className="text-sm text-fg-strong/60 mt-1">{d.summary.sub}</p>
+            <p className="text-sm font-medium text-fg-strong break-words">{d.summary.headline}</p>
+            <p className="text-sm text-fg-strong/60 mt-1 break-words">{d.summary.sub}</p>
           </div>
         </div>
         <button
           onClick={() => onNavigate('trace')}
-          className="text-xs px-3 py-1.5 border border-fg-strong/10 rounded bg-transparent text-fg-strong hover:bg-fg-strong/5"
+          className="shrink-0 whitespace-nowrap text-xs px-3 py-1.5 border border-fg-strong/10 rounded bg-transparent text-fg-strong hover:bg-fg-strong/5 self-start"
         >
           View full summary →
         </button>
@@ -782,7 +787,7 @@ function CommandCenter({
           Priority Actions <span className="text-fg-strong/40">({d.actions.length})</span>{' '}
           <span className="text-xs text-fg-strong/50 font-normal">Needs your attention</span>
         </SectionTitle>
-        <div className="grid lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {d.actions.map((a, i) => {
             const tone: PillTone = a.risk === 'high' ? 'red' : a.risk === 'medium' ? 'yellow' : 'green';
             const barColor = a.risk === 'high' ? 'var(--gd-danger)' : a.risk === 'medium' ? 'var(--gd-warning)' : 'var(--gd-success)';
@@ -794,12 +799,12 @@ function CommandCenter({
                   <p className="text-base font-medium text-fg-strong mt-3">{a.title}</p>
                   <p className="text-xs text-fg-strong/50 mt-1">{a.account}</p>
                   <div className="mt-4">
-                    <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mb-1">{a.metric.label}</p>
-                    <div className="flex items-end justify-between">
-                      <p className="text-2xl font-semibold text-fg-strong">{a.metric.value}</p>
-                      <div className="text-right">
+                    <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mb-1 break-words">{a.metric.label}</p>
+                    <div className="flex items-end justify-between gap-3 min-w-0">
+                      <p className="text-2xl font-semibold text-fg-strong min-w-0 break-words">{a.metric.value}</p>
+                      <div className="text-right shrink-0">
                         <p className="text-[10px] uppercase tracking-wider text-fg-strong/50">Status</p>
-                        <p className="text-xs text-fg-strong">{a.status}</p>
+                        <p className="text-xs text-fg-strong break-words">{a.status}</p>
                       </div>
                     </div>
                   </div>
@@ -887,10 +892,10 @@ function CommandCenter({
                 className="w-full text-left p-4 rounded hover:brightness-125 transition"
                 style={{ background: 'var(--gd-muted-2)' }}
               >
-                <p className="text-xs text-fg-strong/50 mb-1">{c.team}</p>
-                <div className="flex items-baseline justify-between">
-                  <p className="text-xs text-fg-strong">{c.label}</p>
-                  <p className="text-sm font-medium text-fg-strong">{c.value}</p>
+                <p className="text-xs text-fg-strong/50 mb-1 break-words">{c.team}</p>
+                <div className="flex items-baseline justify-between gap-3">
+                  <p className="text-xs text-fg-strong min-w-0 break-words">{c.label}</p>
+                  <p className="text-sm font-medium text-fg-strong shrink-0 whitespace-nowrap">{c.value}</p>
                 </div>
               </button>
             ))}
@@ -926,10 +931,12 @@ function CommandCenter({
               <button
                 key={w.name}
                 onClick={() => setDetailWorkflow(w)}
-                className="w-full flex items-center justify-between text-xs py-1.5 px-2 -mx-2 rounded hover:bg-fg-strong/5 text-left"
+                className="w-full flex items-center justify-between gap-3 text-xs py-1.5 px-2 -mx-2 rounded hover:bg-fg-strong/5 text-left"
               >
-                <span className="text-fg-strong">{w.name}</span>
-                <Pill tone={w.tone === 'blue' ? 'blue' : w.tone === 'yellow' ? 'yellow' : 'green'}>{w.status}</Pill>
+                <span className="text-fg-strong min-w-0 break-words flex-1">{w.name}</span>
+                <span className="shrink-0">
+                  <Pill tone={w.tone === 'blue' ? 'blue' : w.tone === 'yellow' ? 'yellow' : 'green'}>{w.status}</Pill>
+                </span>
               </button>
             ))}
           </div>
@@ -952,13 +959,13 @@ function CommandCenter({
             <button
               key={i}
               onClick={() => onOpenTrace(r.title)}
-              className="w-full flex items-start justify-between py-3 border-b border-fg-strong/5 last:border-0 hover:bg-fg-strong/[0.02] px-2 -mx-2 rounded text-left transition-colors"
+              className="w-full flex items-start justify-between gap-3 py-3 border-b border-fg-strong/5 last:border-0 hover:bg-fg-strong/[0.02] px-2 -mx-2 rounded text-left transition-colors"
             >
-              <div>
-                <p className="text-sm text-fg-strong">{r.title}</p>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm text-fg-strong break-words">{r.title}</p>
                 <p className="text-[10px] text-fg-strong/50 mt-0.5">{r.when}</p>
               </div>
-              <p className={`text-xs font-medium ${r.tone === 'green' ? 'text-green-400' : 'text-fg-strong/60'}`}>{r.impact}</p>
+              <p className={`text-xs font-medium shrink-0 text-right whitespace-nowrap ${r.tone === 'green' ? 'text-green-400' : 'text-fg-strong/60'}`}>{r.impact}</p>
             </button>
           ))}
         </Card>
@@ -977,20 +984,20 @@ function CommandCenter({
             <button
               key={w.code}
               onClick={() => setDetailWatchlist(w)}
-              className="w-full flex items-center justify-between py-2.5 border-b border-fg-strong/5 last:border-0 hover:bg-fg-strong/[0.02] px-2 -mx-2 rounded text-left transition-colors"
+              className="w-full flex items-center justify-between gap-3 py-2.5 border-b border-fg-strong/5 last:border-0 hover:bg-fg-strong/[0.02] px-2 -mx-2 rounded text-left transition-colors"
             >
-              <div className="flex items-center gap-3">
-                <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium shrink-0" style={{ background: 'var(--gd-muted)' }}>
                   {w.code}
                 </span>
-                <div>
-                  <p className="text-sm text-fg-strong">{w.name}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm text-fg-strong truncate">{w.name}</p>
                   <Pill tone={w.risk === 'high' ? 'red' : w.risk === 'medium' ? 'yellow' : 'green'}>
                     {w.risk} risk
                   </Pill>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-right shrink-0 whitespace-nowrap">
                 <p className="text-[10px] uppercase text-fg-strong/50 tracking-wider">Score</p>
                 <p className="text-sm font-medium text-fg-strong">{w.score}</p>
               </div>
@@ -1057,24 +1064,24 @@ function CommandCenter({
       >
         {detailAction && (
           <div className="space-y-4 text-sm">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Account</p>
-                <p className="text-fg-strong">{detailAction.account}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="min-w-0">
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1 break-words">Account</p>
+                <p className="text-fg-strong break-words">{detailAction.account}</p>
               </div>
-              <div>
-                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Risk</p>
+              <div className="min-w-0">
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1 break-words">Risk</p>
                 <Pill tone={detailAction.risk === 'high' ? 'red' : detailAction.risk === 'medium' ? 'yellow' : 'green'}>
                   {detailAction.risk}
                 </Pill>
               </div>
-              <div>
-                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">{detailAction.metric.label}</p>
-                <p className="text-fg-strong font-medium">{detailAction.metric.value}</p>
+              <div className="min-w-0">
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1 break-words">{detailAction.metric.label}</p>
+                <p className="text-fg-strong font-medium break-words">{detailAction.metric.value}</p>
               </div>
-              <div>
-                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Status</p>
-                <p className="text-fg-strong">{detailAction.status}</p>
+              <div className="min-w-0">
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1 break-words">Status</p>
+                <p className="text-fg-strong break-words">{detailAction.status}</p>
               </div>
             </div>
             <div className="pt-3 border-t border-fg-strong/10">
@@ -1143,13 +1150,13 @@ function CommandCenter({
       >
         {detailWatchlist && (
           <div className="space-y-3 text-sm">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Health score</p>
-                <p className="text-3xl font-semibold text-fg-strong">{detailWatchlist.score}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="min-w-0">
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1 break-words">Health score</p>
+                <p className="text-3xl font-semibold text-fg-strong break-words">{detailWatchlist.score}</p>
               </div>
-              <div>
-                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1">Risk</p>
+              <div className="min-w-0">
+                <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-1 break-words">Risk</p>
                 <Pill tone={detailWatchlist.risk === 'high' ? 'red' : detailWatchlist.risk === 'medium' ? 'yellow' : 'green'}>
                   {detailWatchlist.risk} risk
                 </Pill>
@@ -1222,14 +1229,14 @@ function Dashboard({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <div className="min-w-0">
           <h1 className="text-2xl font-semibold text-fg-strong">Dashboards</h1>
-          <p className="text-sm text-fg-strong/50 mt-1">Real-time views of your customers, health, and actions — {spaceLabel}</p>
+          <p className="text-sm text-fg-strong/50 mt-1 break-words">Real-time views of your customers, health, and actions — {spaceLabel}</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
           <input
-            className="text-xs border border-fg-strong/10 rounded px-3 py-1.5 w-56 bg-transparent text-fg-strong placeholder:text-fg-strong/40"
+            className="text-xs border border-fg-strong/10 rounded px-3 py-1.5 w-full sm:w-56 bg-transparent text-fg-strong placeholder:text-fg-strong/40"
             placeholder="Search dashboards..."
             onKeyDown={(e) => {
               if (e.key === 'Enter') onToast('Search: coming soon');
@@ -1237,13 +1244,13 @@ function Dashboard({
           />
           <button
             onClick={() => setFiltersOpen(true)}
-            className="text-xs px-3 py-1.5 border border-fg-strong/10 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5"
+            className="shrink-0 whitespace-nowrap text-xs px-3 py-1.5 border border-fg-strong/10 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5"
           >
             Filters
           </button>
           <button
             onClick={() => setWidgetOpen(true)}
-            className="text-xs px-3 py-1.5 rounded text-fg-strong font-medium hover:brightness-110"
+            className="shrink-0 whitespace-nowrap text-xs px-3 py-1.5 rounded text-fg-strong font-medium hover:brightness-110"
             style={{ background: 'var(--gd-primary)' }}
           >
             + Add Widget
@@ -1267,7 +1274,7 @@ function Dashboard({
       </div>
 
       {/* KPI grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {d.kpis.map((k) => (
           <KpiTile key={k.label} icon="◆" label={k.label} value={k.value} delta={k.delta} tone={k.tone} />
         ))}
@@ -1285,7 +1292,7 @@ function Dashboard({
           >
             Distribution
           </SectionTitle>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-6 min-w-0">
             <div className="relative w-32 h-32 shrink-0">
               <div
                 className="w-full h-full rounded-full"
@@ -1305,13 +1312,13 @@ function Dashboard({
                 <p className="text-[10px] text-fg-strong/50 uppercase tracking-wider">Total</p>
               </div>
             </div>
-            <div className="flex-1 space-y-2">
+            <div className="flex-1 min-w-0 space-y-2 w-full">
               {d.distribution.map((seg) => (
-                <div key={seg.label} className="flex items-center gap-2 text-xs">
+                <div key={seg.label} className="flex items-center gap-2 text-xs min-w-0">
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ background: seg.color }} />
-                  <span className="text-fg-strong/70 flex-1">{seg.label}</span>
-                  <span className="text-fg-strong font-medium">{seg.count}</span>
-                  <span className="text-fg-strong/50">({seg.value}%)</span>
+                  <span className="text-fg-strong/70 flex-1 min-w-0 truncate">{seg.label}</span>
+                  <span className="text-fg-strong font-medium shrink-0">{seg.count}</span>
+                  <span className="text-fg-strong/50 shrink-0">({seg.value}%)</span>
                 </div>
               ))}
             </div>
@@ -1319,9 +1326,9 @@ function Dashboard({
         </Card>
 
         <Card className="p-5">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-fg-strong">Trend</p>
-            <select className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong">
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <p className="text-sm font-medium text-fg-strong min-w-0">Trend</p>
+            <select className="shrink-0 text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong">
               <option>Last 30 Days</option>
               <option>Last 90 Days</option>
             </select>
@@ -1362,9 +1369,9 @@ function Dashboard({
               { label: 'Strategic', value: 18, amount: '$350K' },
             ].map((s) => (
               <div key={s.label}>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-fg-strong">{s.label}</span>
-                  <span className="text-fg-strong font-medium">{s.amount}</span>
+                <div className="flex justify-between gap-2 text-xs mb-1 min-w-0">
+                  <span className="text-fg-strong min-w-0 truncate">{s.label}</span>
+                  <span className="text-fg-strong font-medium shrink-0">{s.amount}</span>
                 </div>
                 <div className="h-2 bg-bg/5 rounded overflow-hidden">
                   <div className="h-full" style={{ width: `${s.value}%`, background: 'var(--gd-danger)' }} />
@@ -1386,41 +1393,74 @@ function Dashboard({
         >
           Top At-Risk
         </SectionTitle>
-        <div className="overflow-x-auto">
-        <div className="min-w-[440px]">
-        <div className="grid grid-cols-12 gap-3 pb-3 border-b border-fg-strong/5 text-[10px] tracking-widest text-fg-strong/50 uppercase">
-          <span className="col-span-5">Account</span>
-          <span className="col-span-2 text-right">Health</span>
-          <span className="col-span-3 text-right">Risk</span>
-          <span className="col-span-2 text-right">Trend</span>
-        </div>
-        {d.atRisk.map((a) => (
-          <button
-            key={a.code}
-            onClick={() => onOpenTrace(a.name)}
-            className="w-full grid grid-cols-12 gap-3 py-3 border-b border-fg-strong/5 last:border-0 items-center hover:bg-fg-strong/[0.02] rounded transition-colors text-left"
-          >
-            <div className="col-span-5 flex items-center gap-3">
-              <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
-                {a.code}
-              </span>
-              <span className="text-sm text-fg-strong">{a.name}</span>
+        {/* Desktop table */}
+        <div className="hidden sm:block overflow-x-auto">
+          <div className="min-w-[440px]">
+            <div className="grid grid-cols-12 gap-3 pb-3 border-b border-fg-strong/5 text-[10px] tracking-widest text-fg-strong/50 uppercase">
+              <span className="col-span-5">Account</span>
+              <span className="col-span-2 text-right">Health</span>
+              <span className="col-span-3 text-right">Risk</span>
+              <span className="col-span-2 text-right">Trend</span>
             </div>
-            <span className="col-span-2 text-right text-sm text-fg-strong">{a.health}</span>
-            <span className="col-span-3 text-right text-sm" style={{ color: 'var(--gd-danger)' }}>{a.risk}</span>
-            <span className="col-span-2 text-right">
-              <svg width="40" height="16" viewBox="0 0 40 16">
-                <path
-                  d={a.trend === 'down' ? 'M2,4 L14,7 L26,10 L38,13' : a.trend === 'up' ? 'M2,13 L14,10 L26,6 L38,3' : 'M2,8 L14,7 L26,9 L38,8'}
-                  stroke={a.trend === 'down' ? 'var(--gd-danger)' : a.trend === 'up' ? 'var(--gd-success)' : 'var(--gd-fg-muted)'}
-                  strokeWidth="1.5"
-                  fill="none"
-                />
-              </svg>
-            </span>
-          </button>
-        ))}
+            {d.atRisk.map((a) => (
+              <button
+                key={a.code}
+                onClick={() => onOpenTrace(a.name)}
+                className="w-full grid grid-cols-12 gap-3 py-3 border-b border-fg-strong/5 last:border-0 items-center hover:bg-fg-strong/[0.02] rounded transition-colors text-left"
+              >
+                <div className="col-span-5 flex items-center gap-3">
+                  <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium" style={{ background: 'var(--gd-muted)' }}>
+                    {a.code}
+                  </span>
+                  <span className="text-sm text-fg-strong">{a.name}</span>
+                </div>
+                <span className="col-span-2 text-right text-sm text-fg-strong">{a.health}</span>
+                <span className="col-span-3 text-right text-sm" style={{ color: 'var(--gd-danger)' }}>{a.risk}</span>
+                <span className="col-span-2 text-right">
+                  <svg width="40" height="16" viewBox="0 0 40 16">
+                    <path
+                      d={a.trend === 'down' ? 'M2,4 L14,7 L26,10 L38,13' : a.trend === 'up' ? 'M2,13 L14,10 L26,6 L38,3' : 'M2,8 L14,7 L26,9 L38,8'}
+                      stroke={a.trend === 'down' ? 'var(--gd-danger)' : a.trend === 'up' ? 'var(--gd-success)' : 'var(--gd-fg-muted)'}
+                      strokeWidth="1.5"
+                      fill="none"
+                    />
+                  </svg>
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
+
+        {/* Mobile card list — < sm */}
+        <div className="sm:hidden flex flex-col gap-3">
+          {d.atRisk.map((a) => (
+            <button
+              key={a.code}
+              onClick={() => onOpenTrace(a.name)}
+              className="text-left w-full rounded-lg border border-fg-strong/10 bg-fg-strong/[0.02] hover:bg-fg-strong/[0.04] transition-colors p-4"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-7 h-7 rounded flex items-center justify-center text-[10px] font-medium shrink-0" style={{ background: 'var(--gd-muted)' }}>
+                  {a.code}
+                </span>
+                <span className="text-sm text-fg-strong flex-1 truncate">{a.name}</span>
+                <svg width="40" height="16" viewBox="0 0 40 16" className="shrink-0">
+                  <path
+                    d={a.trend === 'down' ? 'M2,4 L14,7 L26,10 L38,13' : a.trend === 'up' ? 'M2,13 L14,10 L26,6 L38,3' : 'M2,8 L14,7 L26,9 L38,8'}
+                    stroke={a.trend === 'down' ? 'var(--gd-danger)' : a.trend === 'up' ? 'var(--gd-success)' : 'var(--gd-fg-muted)'}
+                    strokeWidth="1.5"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+              <dl className="grid grid-cols-2 gap-y-1 text-xs">
+                <dt className="text-fg-strong/50">Health</dt>
+                <dd className="text-fg-strong text-right">{a.health}</dd>
+                <dt className="text-fg-strong/50">Risk</dt>
+                <dd className="text-right" style={{ color: 'var(--gd-danger)' }}>{a.risk}</dd>
+              </dl>
+            </button>
+          ))}
         </div>
       </Card>
 
@@ -1738,7 +1778,7 @@ function Ask({
       </div>
 
       {/* Right rail */}
-      <div className="col-span-3 space-y-4">
+      <div className="lg:col-span-3 space-y-4">
         {railInsights && (
           <Card className="p-4">
             <p className="text-sm font-medium text-fg-strong mb-3">Key Insights</p>
@@ -1760,11 +1800,11 @@ function Ask({
             <p className="text-sm font-medium text-fg-strong mb-3">Recommended Actions</p>
             {railActions.map((a, i) => (
               <div key={i} className="py-3 border-b border-fg-strong/5 last:border-0">
-                <p className="text-sm text-fg-strong mb-1">{a.title}</p>
-                <p className="text-xs text-fg-strong/60 leading-relaxed mb-2">{a.sub}</p>
-                <div className="flex items-center justify-between">
+                <p className="text-sm text-fg-strong mb-1 break-words">{a.title}</p>
+                <p className="text-xs text-fg-strong/60 leading-relaxed mb-2 break-words">{a.sub}</p>
+                <div className="flex items-center justify-between gap-2">
                   <Pill tone={a.priority === 'high' ? 'red' : 'yellow'}>{a.priority} priority</Pill>
-                  <button onClick={() => onNavigate('trace')} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
+                  <button onClick={() => onNavigate('trace')} className="shrink-0 whitespace-nowrap text-xs" style={{ color: 'var(--gd-primary)' }}>
                     View
                   </button>
                 </div>
@@ -1794,13 +1834,13 @@ function BotCard({
 }) {
   return (
     <Card className="p-6">
-      <div className="flex items-center gap-2 mb-4">
-        <span className="w-6 h-6 rounded flex items-center justify-center text-fg-strong text-xs" style={{ background: 'var(--gd-primary)' }}>
+      <div className="flex items-center gap-2 mb-4 min-w-0">
+        <span className="w-6 h-6 rounded flex items-center justify-center text-fg-strong text-xs shrink-0" style={{ background: 'var(--gd-primary)' }}>
           ✦
         </span>
-        <span className="text-sm font-medium text-fg-strong">GenX Copilot</span>
-        {a.table && <Pill tone="neutral">TABLE</Pill>}
-        <span className="ml-auto text-xs text-fg-strong/50">{ts}</span>
+        <span className="text-sm font-medium text-fg-strong min-w-0 truncate">GenX Copilot</span>
+        {a.table && <span className="shrink-0"><Pill tone="neutral">TABLE</Pill></span>}
+        <span className="ml-auto text-xs text-fg-strong/50 shrink-0 whitespace-nowrap">{ts}</span>
       </div>
 
       {/* Direct answer */}
@@ -1826,16 +1866,16 @@ function BotCard({
       {a.insights && (
         <>
           <p className="text-sm font-medium text-fg-strong mb-3">Key insights</p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             {a.insights.map((i) => (
               <div
                 key={i.label}
-                className="rounded-lg p-3"
+                className="rounded-lg p-3 min-w-0"
                 style={{ background: 'var(--gd-muted-2)', border: '1px solid var(--gd-border)' }}
               >
-                <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mb-1">{i.label}</p>
-                <p className="text-xl font-semibold text-fg-strong">{i.value}</p>
-                <p className="text-[10px] text-green-400 mt-1">{i.delta}</p>
+                <p className="text-[10px] uppercase tracking-wider text-fg-strong/50 mb-1 break-words">{i.label}</p>
+                <p className="text-xl font-semibold text-fg-strong break-words">{i.value}</p>
+                <p className="text-[10px] text-green-400 mt-1 break-words">{i.delta}</p>
               </div>
             ))}
           </div>
@@ -1845,50 +1885,89 @@ function BotCard({
       {/* Table */}
       {a.table && (
         <>
-          <div className="flex items-center justify-between mb-3">
-            <p className="text-sm font-medium text-fg-strong">Top At-Risk</p>
-            <span className="text-xs text-fg-strong/50">{a.table.length} rows</span>
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <p className="text-sm font-medium text-fg-strong min-w-0">Top At-Risk</p>
+            <span className="text-xs text-fg-strong/50 shrink-0 whitespace-nowrap">{a.table.length} rows</span>
           </div>
-          <div className="overflow-x-auto">
-          <div className="min-w-[620px]">
-          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
-            <span className="col-span-3">Account</span>
-            <span className="col-span-1 text-right">Health</span>
-            <span className="col-span-2 text-center">Risk</span>
-            <span className="col-span-1 text-right">ARR</span>
-            <span className="col-span-3">Factors</span>
-            <span className="col-span-2">Owner</span>
-          </div>
-          {a.table.map((r) => (
-            <button
-              key={r.name}
-              onClick={() => onOpenTrace(r.name)}
-              className="w-full grid grid-cols-12 gap-2 py-2 border-b border-fg-strong/5 last:border-0 items-center hover:bg-fg-strong/[0.02] rounded transition-colors text-left"
-            >
-              <div className="col-span-3 flex items-center gap-2">
-                <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'var(--gd-muted)' }}>
-                  {r.code}
-                </span>
-                <span className="text-sm text-fg-strong">{r.name}</span>
+          {/* Desktop table */}
+          <div className="hidden md:block overflow-x-auto">
+            <div className="min-w-[620px]">
+              <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
+                <span className="col-span-3">Account</span>
+                <span className="col-span-1 text-right">Health</span>
+                <span className="col-span-2 text-center">Risk</span>
+                <span className="col-span-1 text-right">ARR</span>
+                <span className="col-span-3">Factors</span>
+                <span className="col-span-2">Owner</span>
               </div>
-              <span className="col-span-1 text-right text-sm text-fg-strong">{r.health}</span>
-              <span className="col-span-2 text-center">
-                <Pill tone={r.risk === 'High' || r.risk === 'P0' || r.risk === 'Delay' || r.risk === 'M3 slip' || r.risk === 'Go-live risk' ? 'red' : r.risk === 'Medium' || r.risk === 'P1 Reopen' || r.risk === 'Hold' ? 'yellow' : 'green'}>
-                  {r.risk}
-                </Pill>
-              </span>
-              <span className="col-span-1 text-right text-sm text-fg-strong">{r.arr}</span>
-              <span className="col-span-3 flex flex-wrap gap-1">
-                {r.factors.map((f) => (
-                  <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--gd-muted)' }}>
-                    {f}
+              {a.table.map((r) => (
+                <button
+                  key={r.name}
+                  onClick={() => onOpenTrace(r.name)}
+                  className="w-full grid grid-cols-12 gap-2 py-2 border-b border-fg-strong/5 last:border-0 items-center hover:bg-fg-strong/[0.02] rounded transition-colors text-left"
+                >
+                  <div className="col-span-3 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded flex items-center justify-center text-[10px]" style={{ background: 'var(--gd-muted)' }}>
+                      {r.code}
+                    </span>
+                    <span className="text-sm text-fg-strong">{r.name}</span>
+                  </div>
+                  <span className="col-span-1 text-right text-sm text-fg-strong">{r.health}</span>
+                  <span className="col-span-2 text-center">
+                    <Pill tone={r.risk === 'High' || r.risk === 'P0' || r.risk === 'Delay' || r.risk === 'M3 slip' || r.risk === 'Go-live risk' ? 'red' : r.risk === 'Medium' || r.risk === 'P1 Reopen' || r.risk === 'Hold' ? 'yellow' : 'green'}>
+                      {r.risk}
+                    </Pill>
                   </span>
-                ))}
-              </span>
-              <span className="col-span-2 text-xs text-fg-strong/70">{r.owner}</span>
-            </button>
-          ))}
+                  <span className="col-span-1 text-right text-sm text-fg-strong">{r.arr}</span>
+                  <span className="col-span-3 flex flex-wrap gap-1">
+                    {r.factors.map((f) => (
+                      <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--gd-muted)' }}>
+                        {f}
+                      </span>
+                    ))}
+                  </span>
+                  <span className="col-span-2 text-xs text-fg-strong/70">{r.owner}</span>
+                </button>
+              ))}
+            </div>
           </div>
+
+          {/* Mobile card list */}
+          <div className="md:hidden flex flex-col gap-3">
+            {a.table.map((r) => (
+              <button
+                key={r.name}
+                onClick={() => onOpenTrace(r.name)}
+                className="text-left w-full rounded-lg border border-fg-strong/10 bg-fg-strong/[0.02] hover:bg-fg-strong/[0.04] transition-colors p-4"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded flex items-center justify-center text-[10px] shrink-0" style={{ background: 'var(--gd-muted)' }}>
+                    {r.code}
+                  </span>
+                  <span className="text-sm text-fg-strong font-medium flex-1">{r.name}</span>
+                  <Pill tone={r.risk === 'High' || r.risk === 'P0' || r.risk === 'Delay' || r.risk === 'M3 slip' || r.risk === 'Go-live risk' ? 'red' : r.risk === 'Medium' || r.risk === 'P1 Reopen' || r.risk === 'Hold' ? 'yellow' : 'green'}>
+                    {r.risk}
+                  </Pill>
+                </div>
+                <dl className="grid grid-cols-2 gap-y-1.5 text-xs mb-3">
+                  <dt className="text-fg-strong/50">Health</dt>
+                  <dd className="text-fg-strong text-right">{r.health}</dd>
+                  <dt className="text-fg-strong/50">ARR</dt>
+                  <dd className="text-fg-strong text-right">{r.arr}</dd>
+                  <dt className="text-fg-strong/50">Owner</dt>
+                  <dd className="text-fg-strong text-right">{r.owner}</dd>
+                </dl>
+                {r.factors.length > 0 && (
+                  <div className="flex flex-wrap gap-1 pt-2 border-t border-fg-strong/5">
+                    {r.factors.map((f) => (
+                      <span key={f} className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'var(--gd-muted)' }}>
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </button>
+            ))}
           </div>
           <button onClick={() => onNavigate('dashboard')} className="text-xs mt-3 inline-block" style={{ color: 'var(--gd-primary)' }}>
             View all at-risk customers →
@@ -2013,21 +2092,21 @@ function Trace({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="min-w-0">
           <h1 className="text-2xl font-semibold text-fg-strong">Trace / Audit</h1>
-          <p className="text-sm text-fg-strong/50 mt-1">View system memory, decisions, actions, and audit trails.</p>
+          <p className="text-sm text-fg-strong/50 mt-1 break-words">View system memory, decisions, actions, and audit trails.</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => setFiltersOpen(true)}
-            className="text-xs px-3 py-1.5 border border-fg-strong/10 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5"
+            className="shrink-0 whitespace-nowrap text-xs px-3 py-1.5 border border-fg-strong/10 rounded text-fg-strong bg-transparent hover:bg-fg-strong/5"
           >
             Filters
           </button>
           <button
             onClick={exportOutcomes}
-            className="text-xs px-3 py-1.5 rounded text-fg-strong font-medium hover:brightness-110"
+            className="shrink-0 whitespace-nowrap text-xs px-3 py-1.5 rounded text-fg-strong font-medium hover:brightness-110"
             style={{ background: 'var(--gd-primary)' }}
           >
             Export
@@ -2036,7 +2115,7 @@ function Trace({
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {d.kpis.map((k) => (
           <KpiTile key={k.label} icon={k.icon} label={k.label} value={k.value} />
         ))}
@@ -2060,87 +2139,127 @@ function Trace({
       {/* Outcomes + Audit rail */}
       <div className="grid lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 p-5">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
             <p className="text-sm font-medium text-fg-strong">Recent Outcomes ({filteredOutcomes.length})</p>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="text-xs border border-fg-strong/10 rounded px-3 py-1 w-56 bg-transparent text-fg-strong placeholder:text-fg-strong/40"
+                className="text-xs border border-fg-strong/10 rounded px-3 py-1.5 sm:py-1 w-full sm:w-56 bg-transparent text-fg-strong placeholder:text-fg-strong/40"
                 placeholder="Search outcomes..."
               />
-              <select
-                value={scenarioFilter}
-                onChange={(e) => setScenarioFilter(e.target.value)}
-                className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong"
-              >
-                <option value="all">All Types</option>
-                {Array.from(new Set(d.outcomes.map((o) => o.scenario))).map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-              <select
-                onChange={(e) => onToast(`Time range: ${e.target.value}`)}
-                className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong"
-              >
-                <option value="all">All time</option>
-                <option value="24h">Last 24h</option>
-                <option value="7d">Last 7 days</option>
-                <option value="30d">Last 30 days</option>
-              </select>
+              <div className="flex items-center gap-2">
+                <select
+                  value={scenarioFilter}
+                  onChange={(e) => setScenarioFilter(e.target.value)}
+                  className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong flex-1 sm:flex-none"
+                >
+                  <option value="all">All Types</option>
+                  {Array.from(new Set(d.outcomes.map((o) => o.scenario))).map((s) => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
+                </select>
+                <select
+                  onChange={(e) => onToast(`Time range: ${e.target.value}`)}
+                  className="text-xs border border-fg-strong/10 rounded px-2 py-1 bg-bg text-fg-strong flex-1 sm:flex-none"
+                >
+                  <option value="all">All time</option>
+                  <option value="24h">Last 24h</option>
+                  <option value="7d">Last 7 days</option>
+                  <option value="30d">Last 30 days</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div className="overflow-x-auto">
-          <div className="min-w-[760px]">
-          <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
-            <span className="col-span-4">User Message</span>
-            <span className="col-span-1">Scenario</span>
-            <span className="col-span-2">Product</span>
-            <span className="col-span-1 text-right">Conf.</span>
-            <span className="col-span-1">Ticket</span>
-            <span className="col-span-1">Status</span>
-            <span className="col-span-1">Feedback</span>
-            <span className="col-span-1 text-right">When</span>
           </div>
           {filteredOutcomes.length === 0 && (
             <p className="text-sm text-fg-strong/50 py-8 text-center">No outcomes match filters</p>
           )}
-          {filteredOutcomes.map((o, i) => (
-            <button
-              key={i}
-              onClick={() => setSelected(o)}
-              className="grid grid-cols-12 gap-2 py-3 border-b border-fg-strong/5 last:border-0 items-start text-xs w-full text-left hover:bg-fg-strong/[0.02] transition-colors"
-            >
-              <span className="col-span-4 text-fg-strong">{o.user}</span>
-              <span className="col-span-1">
-                <Pill tone={o.tone === 'green' ? 'green' : o.tone === 'blue' ? 'blue' : o.tone === 'yellow' ? 'yellow' : 'neutral'}>
-                  {o.scenario}
-                </Pill>
-              </span>
-              <span className="col-span-2 text-fg-strong">
-                {o.product}
-                <br />
-                <span className="text-fg-strong/50">{o.platform}</span>
-              </span>
-              <span className="col-span-1 text-right text-fg-strong font-mono">{o.confidence}%</span>
-              <span className="col-span-1 text-fg-strong font-mono">{o.ticket || '—'}</span>
-              <span className="col-span-1">
-                <span className="text-fg-strong">{o.status}</span>
-              </span>
-              <span className="col-span-1">
-                {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-fg-strong/40">—</span>}
-              </span>
-              <span className="col-span-1 text-right text-fg-strong/50">{o.when.split(' ')[0]}<br /><span className="text-fg-strong/40">{o.when.split(' ').slice(1).join(' ')}</span></span>
-            </button>
-          ))}
-        </div>
-        </div>
+
+          {/* Desktop table — hidden < md, no forced min-width scroll on mobile */}
+          <div className="hidden md:block overflow-x-auto">
+            <div className="min-w-[760px]">
+              <div className="grid grid-cols-12 gap-2 pb-2 border-b border-fg-strong/5 text-[10px] uppercase tracking-wider text-fg-strong/50">
+                <span className="col-span-4">User Message</span>
+                <span className="col-span-1">Scenario</span>
+                <span className="col-span-2">Product</span>
+                <span className="col-span-1 text-right">Conf.</span>
+                <span className="col-span-1">Ticket</span>
+                <span className="col-span-1">Status</span>
+                <span className="col-span-1">Feedback</span>
+                <span className="col-span-1 text-right">When</span>
+              </div>
+              {filteredOutcomes.map((o, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSelected(o)}
+                  className="grid grid-cols-12 gap-2 py-3 border-b border-fg-strong/5 last:border-0 items-start text-xs w-full text-left hover:bg-fg-strong/[0.02] transition-colors"
+                >
+                  <span className="col-span-4 text-fg-strong">{o.user}</span>
+                  <span className="col-span-1">
+                    <Pill tone={o.tone === 'green' ? 'green' : o.tone === 'blue' ? 'blue' : o.tone === 'yellow' ? 'yellow' : 'neutral'}>
+                      {o.scenario}
+                    </Pill>
+                  </span>
+                  <span className="col-span-2 text-fg-strong">
+                    {o.product}
+                    <br />
+                    <span className="text-fg-strong/50">{o.platform}</span>
+                  </span>
+                  <span className="col-span-1 text-right text-fg-strong font-mono">{o.confidence}%</span>
+                  <span className="col-span-1 text-fg-strong font-mono">{o.ticket || '—'}</span>
+                  <span className="col-span-1">
+                    <span className="text-fg-strong">{o.status}</span>
+                  </span>
+                  <span className="col-span-1">
+                    {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-fg-strong/40">—</span>}
+                  </span>
+                  <span className="col-span-1 text-right text-fg-strong/50">{o.when.split(' ')[0]}<br /><span className="text-fg-strong/40">{o.when.split(' ').slice(1).join(' ')}</span></span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile card list — < md */}
+          <div className="md:hidden flex flex-col gap-3">
+            {filteredOutcomes.map((o, i) => (
+              <button
+                key={i}
+                onClick={() => setSelected(o)}
+                className="text-left w-full rounded-lg border border-fg-strong/10 bg-fg-strong/[0.02] hover:bg-fg-strong/[0.04] transition-colors p-4"
+              >
+                <p className="text-sm text-fg-strong font-medium mb-3 leading-snug">{o.user}</p>
+
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
+                  <Pill tone={o.tone === 'green' ? 'green' : o.tone === 'blue' ? 'blue' : o.tone === 'yellow' ? 'yellow' : 'neutral'}>
+                    {o.scenario}
+                  </Pill>
+                  <span className="text-xs text-fg-strong/60">{o.product}</span>
+                  <span className="text-xs text-fg-strong/40">· {o.platform}</span>
+                </div>
+
+                <dl className="grid grid-cols-2 gap-y-1.5 text-xs mb-3">
+                  <dt className="text-fg-strong/50">Confidence</dt>
+                  <dd className="text-fg-strong font-mono text-right">{o.confidence}%</dd>
+                  <dt className="text-fg-strong/50">Ticket</dt>
+                  <dd className="text-fg-strong font-mono text-right">{o.ticket || '—'}</dd>
+                  <dt className="text-fg-strong/50">Status</dt>
+                  <dd className="text-fg-strong text-right">{o.status}</dd>
+                  <dt className="text-fg-strong/50">Feedback</dt>
+                  <dd className="text-right">
+                    {o.feedback === 'satisfied' ? <Pill tone="green">satisfied</Pill> : <span className="text-fg-strong/40">—</span>}
+                  </dd>
+                </dl>
+
+                <p className="text-[10px] text-fg-strong/40 pt-2 border-t border-fg-strong/5">{o.when}</p>
+              </button>
+            ))}
+          </div>
         </Card>
 
         <Card className="p-5">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-fg-strong">Audit Trail (Latest)</p>
-            <button onClick={() => setActiveTab(2)} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <p className="text-sm font-medium text-fg-strong min-w-0">Audit Trail (Latest)</p>
+            <button onClick={() => setActiveTab(2)} className="shrink-0 whitespace-nowrap text-xs" style={{ color: 'var(--gd-primary)' }}>
               View all →
             </button>
           </div>
@@ -2164,7 +2283,7 @@ function Trace({
       </div>
 
       {/* Bottom row: donut + retention + sources + compliance */}
-      <div className="grid lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="p-5">
           <p className="text-sm font-medium text-fg-strong mb-4">Outcomes by Scenario</p>
           <div className="relative w-32 h-32 mx-auto">
@@ -2187,19 +2306,19 @@ function Trace({
           </div>
           <div className="mt-4 space-y-2">
             {d.donut.map((x) => (
-              <div key={x.label} className="flex items-center gap-2 text-xs">
+              <div key={x.label} className="flex items-center gap-2 text-xs min-w-0">
                 <span className="w-2 h-2 rounded-full shrink-0" style={{ background: x.color }} />
-                <span className="text-fg-strong/70 flex-1">{x.label}</span>
-                <span className="text-fg-strong font-medium">{x.value}</span>
+                <span className="text-fg-strong/70 flex-1 min-w-0 truncate">{x.label}</span>
+                <span className="text-fg-strong font-medium shrink-0">{x.value}</span>
               </div>
             ))}
           </div>
         </Card>
 
         <Card className="p-5">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-fg-strong">Memory Retention</p>
-            <button onClick={() => setActiveTab(5)} className="text-xs" style={{ color: 'var(--gd-primary)' }}>
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <p className="text-sm font-medium text-fg-strong min-w-0">Memory Retention</p>
+            <button onClick={() => setActiveTab(5)} className="shrink-0 whitespace-nowrap text-xs" style={{ color: 'var(--gd-primary)' }}>
               Manage →
             </button>
           </div>
@@ -2207,13 +2326,13 @@ function Trace({
           <p className="text-4xl font-semibold text-fg-strong">180</p>
           <p className="text-xs text-fg-strong/50 mb-4">days</p>
           <div className="text-xs space-y-2">
-            <div className="flex justify-between border-b border-fg-strong/5 pb-2">
-              <span className="text-fg-strong/50">Oldest memory</span>
-              <span className="text-fg-strong">Mar 14, 2026</span>
+            <div className="flex justify-between gap-2 border-b border-fg-strong/5 pb-2">
+              <span className="text-fg-strong/50 shrink-0">Oldest memory</span>
+              <span className="text-fg-strong text-right">Mar 14, 2026</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-fg-strong/50">Retention policy</span>
-              <span className="text-fg-strong">Standard (180 days)</span>
+            <div className="flex justify-between gap-2">
+              <span className="text-fg-strong/50 shrink-0">Retention policy</span>
+              <span className="text-fg-strong text-right">Standard (180 days)</span>
             </div>
           </div>
         </Card>
@@ -2222,9 +2341,9 @@ function Trace({
           <p className="text-sm font-medium text-fg-strong mb-4">Top Data Sources</p>
           {d.sources.map((s) => (
             <div key={s.name} className="mb-3">
-              <div className="flex justify-between text-xs mb-1">
-                <span className="text-fg-strong">{s.name}</span>
-                <span className="text-fg-strong font-medium">{s.pct}%</span>
+              <div className="flex justify-between gap-2 text-xs mb-1 min-w-0">
+                <span className="text-fg-strong min-w-0 truncate">{s.name}</span>
+                <span className="text-fg-strong font-medium shrink-0">{s.pct}%</span>
               </div>
               <div className="h-1.5 bg-bg/5 rounded overflow-hidden">
                 <div className="h-full" style={{ width: `${s.pct * 2}%`, background: 'var(--gd-primary)' }} />
@@ -2234,9 +2353,9 @@ function Trace({
         </Card>
 
         <Card className="p-5">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-medium text-fg-strong">Compliance &amp; Security</p>
-            <button onClick={() => setActiveTab(4)} className="text-[10px]" style={{ color: 'var(--gd-primary)' }}>
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <p className="text-sm font-medium text-fg-strong min-w-0">Compliance &amp; Security</p>
+            <button onClick={() => setActiveTab(4)} className="shrink-0 whitespace-nowrap text-[10px]" style={{ color: 'var(--gd-primary)' }}>
               View →
             </button>
           </div>
@@ -2247,12 +2366,14 @@ function Trace({
             { name: 'Audit Logging', status: 'Enabled', tone: 'green' as const },
             { name: 'Data Retention', status: 'Policy enforced', tone: 'green' as const },
           ].map((c) => (
-            <div key={c.name} className="flex items-center justify-between py-2 border-b border-fg-strong/5 last:border-0">
-              <div className="flex items-center gap-2">
-                <span className="text-green-400 text-xs">✓</span>
-                <span className="text-sm text-fg-strong">{c.name}</span>
+            <div key={c.name} className="flex items-center justify-between gap-3 py-2 border-b border-fg-strong/5 last:border-0">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="text-green-400 text-xs shrink-0">✓</span>
+                <span className="text-sm text-fg-strong min-w-0 truncate">{c.name}</span>
               </div>
-              <Pill tone={c.tone}>{c.status}</Pill>
+              <span className="shrink-0">
+                <Pill tone={c.tone}>{c.status}</Pill>
+              </span>
             </div>
           ))}
         </Card>
@@ -2336,20 +2457,20 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg/70" onClick={onClose}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-bg border border-fg-strong/20 rounded-lg max-w-4xl w-full max-h-[85vh] overflow-y-auto"
+        className="bg-bg border border-fg-strong/20 rounded-lg max-w-[calc(100vw-2rem)] md:max-w-4xl w-full max-h-[85vh] overflow-y-auto"
       >
-        <div className="p-6 border-b border-fg-strong/10 flex items-start justify-between">
-          <div>
+        <div className="p-6 border-b border-fg-strong/10 flex items-start justify-between gap-3">
+          <div className="min-w-0">
             <p className="text-[10px] tracking-widest text-fg-strong/50 uppercase mb-2 font-mono">
               trace · {outcome.ticket || 'unassigned'}
             </p>
-            <h2 className="text-lg font-semibold text-fg-strong">{outcome.user}</h2>
-            <p className="text-sm text-fg-strong/60 mt-1">
+            <h2 className="text-lg font-semibold text-fg-strong break-words">{outcome.user}</h2>
+            <p className="text-sm text-fg-strong/60 mt-1 break-words">
               {outcome.scenario} · {outcome.product} · {outcome.platform} · confidence{' '}
               <span className="font-mono">{outcome.confidence}%</span>
             </p>
           </div>
-          <button onClick={onClose} className="text-fg-strong/60 hover:text-fg-strong text-xl">
+          <button onClick={onClose} className="shrink-0 text-fg-strong/60 hover:text-fg-strong text-xl">
             ×
           </button>
         </div>
@@ -2375,9 +2496,9 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
             <p className="text-sm font-medium text-fg-strong mb-4">Weighted signals</p>
             {signals.map((s) => (
               <div key={s.label} className="mb-3">
-                <div className="flex justify-between mb-1">
-                  <p className="text-sm text-fg-strong">{s.label}</p>
-                  <p className="font-mono text-xs text-fg-strong">{s.weight.toFixed(2)}</p>
+                <div className="flex justify-between gap-2 mb-1 min-w-0">
+                  <p className="text-sm text-fg-strong min-w-0 break-words">{s.label}</p>
+                  <p className="font-mono text-xs text-fg-strong shrink-0">{s.weight.toFixed(2)}</p>
                 </div>
                 <div className="h-1 bg-surface-2 rounded overflow-hidden">
                   <div className="h-full" style={{ width: `${s.weight * 100}%`, background: 'var(--gd-primary)' }} />
@@ -2392,12 +2513,12 @@ function OutcomeDetailModal({ outcome, onClose }: { outcome: TraceOutcome; onClo
             <div className="space-y-3">
               {evidence.map((e) => (
                 <div key={e.id} className="border-b border-fg-strong/5 pb-3 last:border-0">
-                  <div className="flex justify-between mb-1">
-                    <span className="font-mono text-xs text-fg-strong/50">{e.id}</span>
-                    <span className="text-xs text-fg-strong/50">{e.src}</span>
+                  <div className="flex justify-between gap-2 mb-1 min-w-0">
+                    <span className="font-mono text-xs text-fg-strong/50 shrink-0">{e.id}</span>
+                    <span className="text-xs text-fg-strong/50 text-right min-w-0 break-words">{e.src}</span>
                   </div>
-                  <p className="font-mono text-sm text-fg-strong mb-1">{e.ref}</p>
-                  <p className="text-xs text-fg-strong/60">{e.d}</p>
+                  <p className="font-mono text-sm text-fg-strong mb-1 break-words">{e.ref}</p>
+                  <p className="text-xs text-fg-strong/60 break-words">{e.d}</p>
                 </div>
               ))}
             </div>

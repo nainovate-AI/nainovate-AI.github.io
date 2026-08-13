@@ -315,23 +315,23 @@ function StatusCardView({ block }: { block: StatusCard }) {
 
       <div className="space-y-2 mb-4">
         {block.fields.map(({ Icon, label, value }) => (
-          <div key={label} className="flex items-center text-sm">
+          <div key={label} className="flex items-center text-sm min-w-0">
             <Icon className="w-4 h-4 text-fg-strong/40 mr-3 shrink-0" />
-            <span className="text-fg-strong/60 w-32 shrink-0">{label}</span>
-            <span className="text-fg-strong/90">{value}</span>
+            <span className="text-fg-strong/60 w-24 sm:w-32 shrink-0">{label}</span>
+            <span className="text-fg-strong/90 min-w-0 break-words">{value}</span>
           </div>
         ))}
       </div>
 
       <div className="border-t pt-4 mb-4" style={{ borderColor: 'var(--gd-border)' }}>
-        <div className="flex items-center gap-3 mb-4">
-          <FileText className="w-4 h-4 text-fg-strong/40" />
-          <span className="text-sm text-fg-strong/60">Current Status</span>
+        <div className="flex items-center gap-3 mb-4 flex-wrap min-w-0">
+          <FileText className="w-4 h-4 text-fg-strong/40 shrink-0" />
+          <span className="text-sm text-fg-strong/60 shrink-0">Current Status</span>
           <span
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-fg-strong"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium text-fg-strong min-w-0 break-words"
             style={{ background: 'var(--gd-primary)' }}
           >
-            <Hourglass className="w-3 h-3" />
+            <Hourglass className="w-3 h-3 shrink-0" />
             {block.currentStatus}
           </span>
         </div>
@@ -418,15 +418,15 @@ function TimelineCardView({ block }: { block: TimelineCard }) {
 
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-5">
         <div>
-          <div className="grid grid-cols-2 text-xs pb-2 border-b" style={{ borderColor: 'var(--gd-border)' }}>
+          <div className="grid grid-cols-2 gap-3 text-xs pb-2 border-b" style={{ borderColor: 'var(--gd-border)' }}>
             <span style={{ color: 'var(--gd-primary)' }}>Permit Type</span>
             <span style={{ color: 'var(--gd-primary)' }}>Duration</span>
           </div>
           <div className="divide-y" style={{ borderColor: 'var(--gd-border)' }}>
             {block.rows.map((r) => (
-              <div key={r.type} className="grid grid-cols-2 py-2.5 text-sm">
-                <span className="text-fg-strong/80">{r.type}</span>
-                <span className="text-fg-strong/80">{r.duration}</span>
+              <div key={r.type} className="grid grid-cols-2 gap-3 py-2.5 text-sm min-w-0">
+                <span className="text-fg-strong/80 break-words">{r.type}</span>
+                <span className="text-fg-strong/80 break-words">{r.duration}</span>
               </div>
             ))}
           </div>
@@ -511,32 +511,37 @@ function FeesCardView({ block }: { block: FeesCard }) {
         <p className="text-sm font-semibold text-fg-strong">{block.title}</p>
       </div>
 
-      <div className="grid grid-cols-3 text-xs pb-2 border-b" style={{ borderColor: 'var(--gd-border)' }}>
-        <span style={{ color: 'var(--gd-primary)' }}>Permit Type</span>
-        <span style={{ color: 'var(--gd-primary)' }}>Base Fee</span>
-        <span style={{ color: 'var(--gd-primary)' }}>Per sq ft</span>
-      </div>
-      <div>
-        {block.rows.map((r) => (
-          <div
-            key={r.type}
-            className="grid grid-cols-3 py-2.5 text-sm border-b last:border-b-0"
-            style={{ borderColor: 'var(--gd-border)' }}
-          >
-            <span className="text-fg-strong/80">{r.type}</span>
-            <span className="text-fg-strong/80">{r.baseFee}</span>
-            <span className="text-fg-strong/80">{r.perSqFt}</span>
+      {/* TODO(mobile): consider card variant for narrow viewports (3-col table) */}
+      <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+        <div className="min-w-[320px]">
+          <div className="grid grid-cols-3 gap-2 text-xs pb-2 border-b" style={{ borderColor: 'var(--gd-border)' }}>
+            <span style={{ color: 'var(--gd-primary)' }}>Permit Type</span>
+            <span style={{ color: 'var(--gd-primary)' }}>Base Fee</span>
+            <span style={{ color: 'var(--gd-primary)' }}>Per sq ft</span>
           </div>
-        ))}
+          <div>
+            {block.rows.map((r) => (
+              <div
+                key={r.type}
+                className="grid grid-cols-3 gap-2 py-2.5 text-sm border-b last:border-b-0"
+                style={{ borderColor: 'var(--gd-border)' }}
+              >
+                <span className="text-fg-strong/80 break-words">{r.type}</span>
+                <span className="text-fg-strong/80 break-words">{r.baseFee}</span>
+                <span className="text-fg-strong/80 break-words">{r.perSqFt}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="mt-4 pt-4 border-t" style={{ borderColor: 'var(--gd-border)' }}>
         <p className="text-xs uppercase tracking-wide text-fg-strong/50 mb-2">Add-ons</p>
         <ul className="space-y-1.5 text-sm text-fg-strong/80">
           {block.addons.map((a) => (
-            <li key={a.label} className="flex items-center justify-between">
-              <span>{a.label}</span>
-              <span className="text-fg-strong">{a.value}</span>
+            <li key={a.label} className="flex items-center justify-between gap-3 min-w-0">
+              <span className="min-w-0 break-words">{a.label}</span>
+              <span className="text-fg-strong shrink-0 whitespace-nowrap">{a.value}</span>
             </li>
           ))}
         </ul>
@@ -648,18 +653,15 @@ function BarChartView({ block }: { block: BarChart }) {
 
 function MetricGridView({ block }: { block: MetricGrid }) {
   return (
-    <div
-      className="grid grid-cols-1 gap-3 sm:grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"
-      style={{ gridTemplateColumns: `repeat(${block.metrics.length}, minmax(0, 1fr))` }}
-    >
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-3">
       {block.metrics.map((m) => (
         <div
           key={m.label}
-          className="rounded-xl border p-4"
+          className="rounded-xl border p-4 min-w-0"
           style={{ borderColor: 'var(--gd-border)', background: 'rgba(139,92,246,0.05)' }}
         >
-          <p className="text-xs text-fg-strong/50">{m.label}</p>
-          <p className="text-xl font-semibold text-fg-strong mt-1">{m.value}</p>
+          <p className="text-xs text-fg-strong/50 break-words">{m.label}</p>
+          <p className="text-xl font-semibold text-fg-strong mt-1 break-words">{m.value}</p>
           {m.delta && (
             <p
               className="text-xs mt-1"
@@ -915,9 +917,9 @@ export default function PublicSectorAsk() {
             <div className="space-y-6">
               {messages.map((m, i) =>
                 m.role === 'user' ? (
-                  <div key={i} className="flex flex-col items-end">
+                  <div key={i} className="flex flex-col items-end max-w-full">
                     <div
-                      className="rounded-2xl px-4 py-2.5 max-w-xl text-fg-strong text-sm"
+                      className="rounded-2xl px-4 py-2.5 max-w-[85%] sm:max-w-xl text-fg-strong text-sm break-words min-w-0"
                       style={{ background: 'var(--gd-primary)' }}
                     >
                       {m.content}
@@ -937,8 +939,8 @@ export default function PublicSectorAsk() {
                     </div>
                     <div className="flex-1 min-w-0 space-y-3">
                       {m.response.intro ? (
-                        <div className="flex items-start justify-between gap-3">
-                          <p className="text-sm text-fg-strong/90 leading-relaxed">
+                        <div className="flex items-start justify-between gap-3 min-w-0">
+                          <p className="text-sm text-fg-strong/90 leading-relaxed min-w-0 break-words">
                             {m.response.intro.slice(0, m.charsShown)}
                             {m.charsShown < m.response.intro.length && (
                               <span
@@ -947,7 +949,7 @@ export default function PublicSectorAsk() {
                               />
                             )}
                           </p>
-                          <span className="text-[11px] text-fg-strong/40 shrink-0">{m.time}</span>
+                          <span className="text-[11px] text-fg-strong/40 shrink-0 whitespace-nowrap">{m.time}</span>
                         </div>
                       ) : (
                         <div className="flex justify-end">

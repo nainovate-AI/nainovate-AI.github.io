@@ -232,11 +232,11 @@ export default function SolutionsPageClient() {
 
                   <div className="mb-10">
                     <Eyebrow tone="muted" className="mb-5">Features</Eyebrow>
-                    <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
                       {currentSolution.features.map((feature) => (
-                        <div key={feature} className="flex items-start gap-3">
-                          <span aria-hidden="true" className="text-fg-faint mt-1">→</span>
-                          <span className="text-body-md text-fg-mid">{feature}</span>
+                        <div key={feature} className="flex items-start gap-3 min-w-0">
+                          <span aria-hidden="true" className="text-fg-faint mt-1 shrink-0">→</span>
+                          <span className="text-body-md text-fg-mid break-words min-w-0">{feature}</span>
                         </div>
                       ))}
                     </div>

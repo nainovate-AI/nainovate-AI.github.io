@@ -93,7 +93,7 @@ export default function OperationsPageClient() {
                     <div className="flex justify-center gap-2 mb-6 md:mb-8 flex-wrap">
                         <button
                             onClick={() => setActiveUseCase('hr')}
-                            className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'hr'
+                            className={`px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-medium tracking-wider transition-all ${activeUseCase === 'hr'
                                 ? 'text-fg-strong border-b-2 border-fg-strong'
                                 : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                                 }`}
@@ -102,7 +102,7 @@ export default function OperationsPageClient() {
                         </button>
                         <button
                             onClick={() => setActiveUseCase('boq')}
-                            className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'boq'
+                            className={`px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-medium tracking-wider transition-all ${activeUseCase === 'boq'
                                 ? 'text-fg-strong border-b-2 border-fg-strong'
                                 : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                                 }`}
@@ -111,7 +111,7 @@ export default function OperationsPageClient() {
                         </button>
                         <button
                             onClick={() => setActiveUseCase('document')}
-                            className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'document'
+                            className={`px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-medium tracking-wider transition-all ${activeUseCase === 'document'
                                 ? 'text-fg-strong border-b-2 border-fg-strong'
                                 : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                                 }`}
@@ -120,7 +120,7 @@ export default function OperationsPageClient() {
                         </button>
                         <button
                             onClick={() => setActiveUseCase('search')}
-                            className={`px-8 py-4 text-sm font-medium tracking-wider transition-all ${activeUseCase === 'search'
+                            className={`px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-medium tracking-wider transition-all ${activeUseCase === 'search'
                                 ? 'text-fg-strong border-b-2 border-fg-strong'
                                 : 'text-fg-muted hover:text-fg-strong border-b-2 border-transparent'
                                 }`}
@@ -153,11 +153,11 @@ export default function OperationsPageClient() {
 
                             <div className="mb-8">
                                 <div className="text-sm font-semibold text-fg-muted mb-4">KEY FEATURES</div>
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                     {currentCase.features.map((feature, idx) => (
-                                        <div key={idx} className="flex items-center gap-2">
-                                            <span className="text-fg-faint">✓</span>
-                                            <span className="text-fg-muted text-sm">{feature}</span>
+                                        <div key={idx} className="flex items-start gap-2 min-w-0">
+                                            <span className="text-fg-faint shrink-0 mt-0.5">✓</span>
+                                            <span className="text-fg-muted text-sm break-words min-w-0">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
