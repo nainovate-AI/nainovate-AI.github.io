@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import data from '@/data/demo/public-sector/building-permits/dashboard.json';
 
-type Msg = { role: 'user' | 'assistant'; content: string };
+type Msg = { role: 'user' | 'assistant'; content: string; widgetIds?: string[] };
 
 const IconFor = ({ name, className }: { name: string; className?: string }) => {
   const map: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -86,11 +86,26 @@ function Sparkline({ values, color, variant = 'line' }: { values: number[]; colo
 }
 
 /* ── KPI tile ───────────────────────────────────────────────────────── */
-function KpiTile({ tile, onClose }: { tile: (typeof data.kpiTiles)[number]; onClose: () => void }) {
+function KpiTile({
+  tile,
+  onClose,
+  id,
+  highlightedId,
+}: {
+  tile: (typeof data.kpiTiles)[number];
+  onClose: () => void;
+  id: string;
+  highlightedId: string | null;
+}) {
   const isUp = tile.deltaDir === 'up';
   const isBar = tile.icon === 'trend';
+  const isHighlighted = highlightedId === id;
   return (
-    <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5">
+    <div
+      data-widget-id={id}
+      data-highlight={isHighlighted ? 'true' : undefined}
+      className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5"
+    >
       <CloseX onClose={onClose} />
       <div className="flex items-start gap-4 pr-6 min-w-0">
         <div
@@ -281,18 +296,63 @@ function SummaryTile({ tile }: { tile: { label: string; value: string; icon: str
   );
 }
 
+/* ── Bot reply renderer — makes quoted widget-name a clickable link ─── */
+function BotReply({
+  content,
+  widgetIds,
+  onWidgetLink,
+}: {
+  content: string;
+  widgetIds?: string[];
+  onWidgetLink: (id: string) => void;
+}) {
+  // Extract phrase inside first pair of straight/curly quotes; link to first widget id.
+  const match = widgetIds && widgetIds.length > 0
+    ? content.match(/["“]([^"”]+)["”]/)
+    : null;
+  if (!match) return <>{content}</>;
+  const [full, phrase] = match;
+  const start = content.indexOf(full);
+  const before = content.slice(0, start);
+  const after = content.slice(start + full.length);
+  const targetId = widgetIds![0];
+  return (
+    <>
+      {before}
+      <button
+        type="button"
+        onClick={() => onWidgetLink(targetId)}
+        className="underline decoration-dotted underline-offset-2 text-[#a78bfa] hover:text-[#c4b5fd] transition-colors font-medium"
+      >
+        {phrase}
+      </button>
+      {after}
+    </>
+  );
+}
+
 /* ── Assistant chat popup (old-style floating) ──────────────────────── */
 function AssistantChatPopup({
   onClose,
   onReveal,
+  onWidgetLink,
+  messages,
+  setMessages,
+  usedPrompts,
+  setUsedPrompts,
+  onActivity,
 }: {
   onClose: () => void;
   onReveal: (ids: string[]) => void;
+  onWidgetLink: (id: string) => void;
+  messages: Msg[];
+  setMessages: React.Dispatch<React.SetStateAction<Msg[]>>;
+  usedPrompts: Set<string>;
+  setUsedPrompts: React.Dispatch<React.SetStateAction<Set<string>>>;
+  onActivity: () => void;
 }) {
   const a = data.assistant;
-  const [messages, setMessages] = useState<Msg[]>(a.seedConversation as Msg[]);
   const [input, setInput] = useState('');
-  const [usedPrompts, setUsedPrompts] = useState<Set<string>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -307,19 +367,27 @@ function AssistantChatPopup({
       "Try one of the quick prompts below — I'll surface the matching chart.";
     const targets = (a.widgetMap as Record<string, string[]>)[text] || [];
     if (targets.length > 0) onReveal(targets);
-    setMessages((prev) => [...prev, { role: 'user', content: text }, { role: 'assistant', content: reply }]);
+    setMessages((prev) => [
+      ...prev,
+      { role: 'user', content: text },
+      { role: 'assistant', content: reply, widgetIds: targets },
+    ]);
     setUsedPrompts((prev) => {
       const next = new Set(prev);
       next.add(text);
       return next;
     });
     setInput('');
+    onActivity();
   };
 
   const remainingPrompts = a.quickPrompts.filter((q) => !usedPrompts.has(q));
 
   return (
-    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[300px] xl:w-[360px] h-[65vh] sm:h-[480px] max-h-[calc(100vh-2rem)] bg-bg border border-fg-strong/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden">
+    <div
+      data-chat-popup
+      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-[300px] xl:w-[360px] h-[65vh] sm:h-[480px] max-h-[calc(100vh-2rem)] bg-bg border border-fg-strong/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden"
+    >
       {/* Header */}
       <div className="flex items-center justify-between gap-2 px-4 py-3 border-b border-fg-strong/10">
         <div className="flex items-center gap-2 min-w-0">
@@ -347,7 +415,7 @@ function AssistantChatPopup({
           ) : (
             <div key={i} className="flex justify-start">
               <div className="max-w-[85%] rounded-xl bg-surface-2 text-fg-strong text-sm px-3 py-2 break-words min-w-0">
-                {m.content}
+                <BotReply content={m.content} widgetIds={m.widgetIds} onWidgetLink={onWidgetLink} />
               </div>
             </div>
           ),
@@ -413,20 +481,76 @@ const DEFAULT_VISIBLE: WidgetId[] = ['kpi-total', 'kpi-approval', 'byType', 'mon
 
 export default function PublicSectorDashboard() {
   const [chatOpen, setChatOpen] = useState(false);
-  const [visible, setVisible] = useState<Set<WidgetId>>(new Set(DEFAULT_VISIBLE));
-  const isShown = (id: WidgetId) => visible.has(id);
+  // Ordered list — position in array = render position on dashboard.
+  // Newly-added widgets append to the end so users see them added in chat-ask order.
+  const [visible, setVisible] = useState<WidgetId[]>(DEFAULT_VISIBLE);
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
+  const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Chat state lifted so it survives popup unmount. 3-min TTL — reopening
+  // after 3+ min of inactivity resets to a fresh conversation.
+  const CHAT_TTL_MS = 3 * 60 * 1000;
+  const [messages, setMessages] = useState<Msg[]>(data.assistant.seedConversation as Msg[]);
+  const [usedPrompts, setUsedPrompts] = useState<Set<string>>(new Set());
+  const [lastActivity, setLastActivity] = useState<number | null>(null);
+  const bumpChatActivity = () => setLastActivity(Date.now());
+
+  useEffect(() => () => {
+    if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current);
+  }, []);
+
+  // TTL check on reopen: wipe history if last activity > 3 min ago.
+  useEffect(() => {
+    if (!chatOpen) return;
+    if (lastActivity && Date.now() - lastActivity > CHAT_TTL_MS) {
+      setMessages(data.assistant.seedConversation as Msg[]);
+      setUsedPrompts(new Set());
+      setLastActivity(null);
+    }
+  }, [chatOpen, lastActivity, CHAT_TTL_MS]);
+
+  // Outside-click on the dashboard closes the chat popup.
+  // Clicks inside popup (or on links inside it) don't count as outside.
+  useEffect(() => {
+    if (!chatOpen) return;
+    const onOutsidePointerdown = (e: PointerEvent) => {
+      const popup = document.querySelector('[data-chat-popup]');
+      if (popup && !popup.contains(e.target as Node)) {
+        setChatOpen(false);
+      }
+    };
+    document.addEventListener('pointerdown', onOutsidePointerdown);
+    return () => document.removeEventListener('pointerdown', onOutsidePointerdown);
+  }, [chatOpen]);
   const hide = (id: WidgetId) =>
-    setVisible((prev) => {
-      const next = new Set(prev);
-      next.delete(id);
-      return next;
-    });
+    setVisible((prev) => prev.filter((w) => w !== id));
   const reveal = (ids: string[]) =>
     setVisible((prev) => {
-      const next = new Set(prev);
-      ids.forEach((id) => next.add(id as WidgetId));
+      const next = [...prev];
+      for (const raw of ids) {
+        const id = raw as WidgetId;
+        if (!next.includes(id)) next.push(id);
+      }
       return next;
     });
+  // Called from chat when user taps the widget-name link in bot reply.
+  // Closes chat, ensures widget is visible, scrolls it into view, flashes highlight.
+  // Bumps chat activity so the 3-min TTL restarts — reopening chat preserves history.
+  const jumpToWidget = (widgetId: string) => {
+    reveal([widgetId]);
+    bumpChatActivity();
+    setChatOpen(false);
+    // Wait a tick so the widget mounts (if it was hidden) before scrolling.
+    setTimeout(() => {
+      const el = document.querySelector<HTMLElement>(`[data-widget-id="${widgetId}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      setHighlightedId(widgetId);
+      if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current);
+      highlightTimerRef.current = setTimeout(() => setHighlightedId(null), 2400);
+    }, 60);
+  };
 
   const maxProcTime = useMemo(
     () => Math.max(...data.avgProcessingTime.items.map((i) => i.value)),
@@ -434,133 +558,190 @@ export default function PublicSectorDashboard() {
   );
 
   const kpiIds: WidgetId[] = ['kpi-total', 'kpi-time', 'kpi-approval', 'kpi-vs', 'kpi-pending', 'kpi-approved', 'kpi-rejected'];
+  const KPI_SET = new Set<WidgetId>(kpiIds);
+  const CHART_SET = new Set<WidgetId>(['byType', 'byDepartment', 'byZone', 'avgTime', 'monthlyTrends']);
+
+  // Ordered lists — position matches user's chat-ask insertion order.
+  const visibleKpis = visible.filter((id) => KPI_SET.has(id));
+  const visibleCharts = visible.filter((id) => CHART_SET.has(id));
+
+  const renderChart = (id: WidgetId) => {
+    switch (id) {
+      case 'byType':
+        return (
+          <div
+            key={id}
+            data-widget-id="byType"
+            data-highlight={highlightedId === 'byType' ? 'true' : undefined}
+            className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden"
+          >
+            <CloseX onClose={() => hide('byType')} />
+            <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byBuildingType.title}</p>
+            <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 min-w-0">
+              <div className="shrink-0">
+                <Donut
+                  items={data.byBuildingType.items}
+                  centerTop={data.byBuildingType.total.toLocaleString()}
+                  centerBottom="Total"
+                  size={170}
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <LegendRows items={data.byBuildingType.items} />
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
+              <span className="text-fg-strong/60 min-w-0 truncate">{data.byBuildingType.totalLabel}</span>
+              <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
+                {data.byBuildingType.totalValue.toLocaleString()}
+              </span>
+            </div>
+          </div>
+        );
+      case 'byDepartment':
+        return (
+          <div
+            key={id}
+            data-widget-id="byDepartment"
+            data-highlight={highlightedId === 'byDepartment' ? 'true' : undefined}
+            className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden"
+          >
+            <CloseX onClose={() => hide('byDepartment')} />
+            <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byDepartment.title}</p>
+            <div className="flex flex-col sm:flex-row items-center gap-5 min-w-0">
+              <div className="shrink-0">
+                <Donut items={data.byDepartment.items} centerTop="" centerBottom="" size={170} ring={16} />
+              </div>
+              <div className="flex-1 min-w-0 w-full">
+                <LegendRows items={data.byDepartment.items} />
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
+              <span className="text-fg-strong/60 min-w-0 truncate">{data.byDepartment.totalLabel}</span>
+              <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
+                {data.byDepartment.totalValue.toLocaleString()}
+              </span>
+            </div>
+          </div>
+        );
+      case 'byZone':
+        return (
+          <div
+            key={id}
+            data-widget-id="byZone"
+            data-highlight={highlightedId === 'byZone' ? 'true' : undefined}
+            className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden"
+          >
+            <CloseX onClose={() => hide('byZone')} />
+            <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byZone.title}</p>
+            <div className="flex flex-col sm:flex-row items-center gap-5 min-w-0">
+              <div className="shrink-0">
+                <Donut items={data.byZone.items} centerTop="" centerBottom="" size={170} />
+              </div>
+              <div className="flex-1 min-w-0 w-full">
+                <LegendRows items={data.byZone.items} />
+              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
+              <span className="text-fg-strong/60 min-w-0 truncate">{data.byZone.totalLabel}</span>
+              <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
+                {data.byZone.totalValue.toLocaleString()}
+              </span>
+            </div>
+          </div>
+        );
+      case 'avgTime':
+        return (
+          <div
+            key={id}
+            data-widget-id="avgTime"
+            data-highlight={highlightedId === 'avgTime' ? 'true' : undefined}
+            className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 flex flex-col min-w-0 overflow-hidden"
+          >
+            <CloseX onClose={() => hide('avgTime')} />
+            <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.avgProcessingTime.title}</p>
+            <BarList items={data.avgProcessingTime.items} max={maxProcTime + 8} />
+            <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                <Clock className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[11px] text-fg-strong/50 break-words">{data.avgProcessingTime.overall.label}</p>
+                <p className="text-lg font-semibold text-fg-strong leading-tight break-words">
+                  {data.avgProcessingTime.overall.value}
+                </p>
+              </div>
+              <div className="text-right shrink-0">
+                <p className="inline-flex items-center gap-1 text-xs text-amber-400 whitespace-nowrap">
+                  <ArrowDown className="w-3 h-3" />
+                  {data.avgProcessingTime.overall.delta}
+                </p>
+                <p className="text-[10px] text-fg-strong/50 whitespace-nowrap">{data.avgProcessingTime.overall.deltaNote}</p>
+              </div>
+            </div>
+          </div>
+        );
+      case 'monthlyTrends':
+        return (
+          <div
+            key={id}
+            data-widget-id="monthlyTrends"
+            data-highlight={highlightedId === 'monthlyTrends' ? 'true' : undefined}
+            className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden"
+          >
+            <CloseX onClose={() => hide('monthlyTrends')} />
+            <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.monthlyTrends.title}</p>
+            <LineChart labels={data.monthlyTrends.labels} values={data.monthlyTrends.values} />
+            <div className="mt-3 flex items-center justify-center gap-2 text-xs text-fg-strong/60">
+              <span className="w-2 h-2 rounded-full bg-violet-500" />
+              {data.monthlyTrends.seriesLabel}
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="w-full min-h-[calc(100vh-56px)]">
       <div className="p-4 md:p-6 overflow-y-auto">
-        {/* KPI row */}
+        {/* KPI row — rendered in chat-ask insertion order */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-          {data.kpiTiles.map((t, i) => {
-            const id = kpiIds[i];
-            if (!isShown(id)) return null;
-            return <KpiTile key={id} tile={t} onClose={() => hide(id)} />;
+          {visibleKpis.map((id) => {
+            const idx = kpiIds.indexOf(id);
+            const t = data.kpiTiles[idx];
+            if (!t) return null;
+            return (
+              <KpiTile
+                key={id}
+                tile={t}
+                onClose={() => hide(id)}
+                id={id}
+                highlightedId={highlightedId}
+              />
+            );
           })}
         </div>
 
-        {/* Charts — single responsive grid (2/3 per row, wrap) */}
+        {/* Charts — rendered in chat-ask insertion order */}
         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4">
-          {isShown('byType') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
-              <CloseX onClose={() => hide('byType')} />
-              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byBuildingType.title}</p>
-              <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 min-w-0">
-                <div className="shrink-0">
-                  <Donut
-                    items={data.byBuildingType.items}
-                    centerTop={data.byBuildingType.total.toLocaleString()}
-                    centerBottom="Total"
-                    size={170}
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <LegendRows items={data.byBuildingType.items} />
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
-                <span className="text-fg-strong/60 min-w-0 truncate">{data.byBuildingType.totalLabel}</span>
-                <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
-                  {data.byBuildingType.totalValue.toLocaleString()}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {isShown('byDepartment') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
-              <CloseX onClose={() => hide('byDepartment')} />
-              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byDepartment.title}</p>
-              <div className="flex flex-col sm:flex-row items-center gap-5 min-w-0">
-                <div className="shrink-0">
-                  <Donut items={data.byDepartment.items} centerTop="" centerBottom="" size={170} ring={16} />
-                </div>
-                <div className="flex-1 min-w-0 w-full">
-                  <LegendRows items={data.byDepartment.items} />
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
-                <span className="text-fg-strong/60 min-w-0 truncate">{data.byDepartment.totalLabel}</span>
-                <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
-                  {data.byDepartment.totalValue.toLocaleString()}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {isShown('byZone') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
-              <CloseX onClose={() => hide('byZone')} />
-              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.byZone.title}</p>
-              <div className="flex flex-col sm:flex-row items-center gap-5 min-w-0">
-                <div className="shrink-0">
-                  <Donut items={data.byZone.items} centerTop="" centerBottom="" size={170} />
-                </div>
-                <div className="flex-1 min-w-0 w-full">
-                  <LegendRows items={data.byZone.items} />
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center justify-between gap-2 text-xs min-w-0">
-                <span className="text-fg-strong/60 min-w-0 truncate">{data.byZone.totalLabel}</span>
-                <span className="text-fg-strong font-medium tabular-nums shrink-0 whitespace-nowrap">
-                  {data.byZone.totalValue.toLocaleString()}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {isShown('avgTime') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 flex flex-col min-w-0 overflow-hidden">
-              <CloseX onClose={() => hide('avgTime')} />
-              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.avgProcessingTime.title}</p>
-              <BarList items={data.avgProcessingTime.items} max={maxProcTime + 8} />
-              <div className="mt-4 pt-4 border-t border-fg-strong/10 flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[11px] text-fg-strong/50 break-words">{data.avgProcessingTime.overall.label}</p>
-                  <p className="text-lg font-semibold text-fg-strong leading-tight break-words">
-                    {data.avgProcessingTime.overall.value}
-                  </p>
-                </div>
-                <div className="text-right shrink-0">
-                  <p className="inline-flex items-center gap-1 text-xs text-amber-400 whitespace-nowrap">
-                    <ArrowDown className="w-3 h-3" />
-                    {data.avgProcessingTime.overall.delta}
-                  </p>
-                  <p className="text-[10px] text-fg-strong/50 whitespace-nowrap">{data.avgProcessingTime.overall.deltaNote}</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {isShown('monthlyTrends') && (
-            <div className="relative rounded-xl border border-fg-strong/10 bg-white/[0.02] p-5 min-w-0 overflow-hidden">
-              <CloseX onClose={() => hide('monthlyTrends')} />
-              <p className="text-sm font-medium text-fg-strong mb-4 pr-6">{data.monthlyTrends.title}</p>
-              <LineChart labels={data.monthlyTrends.labels} values={data.monthlyTrends.values} />
-              <div className="mt-3 flex items-center justify-center gap-2 text-xs text-fg-strong/60">
-                <span className="w-2 h-2 rounded-full bg-violet-500" />
-                {data.monthlyTrends.seriesLabel}
-              </div>
-            </div>
-          )}
-
+          {visibleCharts.map((id) => renderChart(id))}
         </div>
       </div>
 
       {/* Chat: floating popup + FAB (old style) */}
       {chatOpen ? (
-        <AssistantChatPopup onClose={() => setChatOpen(false)} onReveal={reveal} />
+        <AssistantChatPopup
+          onClose={() => setChatOpen(false)}
+          onReveal={reveal}
+          onWidgetLink={jumpToWidget}
+          messages={messages}
+          setMessages={setMessages}
+          usedPrompts={usedPrompts}
+          setUsedPrompts={setUsedPrompts}
+          onActivity={bumpChatActivity}
+        />
       ) : (
         <button
           onClick={() => setChatOpen(true)}

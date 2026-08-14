@@ -1032,6 +1032,39 @@ html[data-theme="light"] .neural-network-container::before {
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out;
 }
+/* ---------------------------------------------------------------
+   Widget spotlight — used by [data-widget-id][data-highlight="true"]
+   for the "jump-from-chat" flow. Bright ring + soft glow pulse twice,
+   then fades. No layout shift (ring is via box-shadow, not border).
+   -------------------------------------------------------------- */
+@keyframes widget-spotlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99,102,241,0), 0 0 0 0 rgba(99,102,241,0);
+  }
+  20% {
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.65), 0 0 40px 6px rgba(99,102,241,0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.55), 0 0 30px 4px rgba(99,102,241,0.25);
+  }
+  80% {
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.45), 0 0 20px 2px rgba(99,102,241,0.15);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99,102,241,0), 0 0 0 0 rgba(99,102,241,0);
+  }
+}
+[data-widget-id][data-highlight="true"] {
+  animation: widget-spotlight 2.4s ease-in-out;
+  scroll-margin-top: 80px;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-widget-id][data-highlight="true"] {
+    animation: none;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.55);
+  }
+}
+
 /* Image lightbox animations */
 @keyframes lightbox-fade {
   from { opacity: 0; }
