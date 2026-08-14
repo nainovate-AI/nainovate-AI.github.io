@@ -31,6 +31,9 @@
     --surface-2: rgba(255, 255, 255, 0.05);
     --surface-hover: rgba(255, 255, 255, 0.08);
 
+    /* Modal / dialog input fill — warm charcoal, opaque */
+    --elephant: #282826;        /* input fill inside dark modals */
+
     /* Text */
     --fg: #ffffff;
     --fg-strong: #ffffff;

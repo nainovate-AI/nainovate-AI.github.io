@@ -181,8 +181,11 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
         className="absolute inset-0 bg-bg/80 backdrop-blur-sm"
       />
 
-      {/* Modal card */}
-      <div className="relative w-full max-w-[min(32rem,calc(100vw-2rem))] max-h-[calc(100vh-2rem)] overflow-y-auto bg-bg border border-border-strong rounded-lg shadow-2xl">
+      {/* Modal card — pure black bg, elephant-grey input fills */}
+      <div
+        style={{ background: '#000000' }}
+        className="relative w-full max-w-[min(32rem,calc(100vw-2rem))] max-h-[calc(100vh-2rem)] overflow-y-auto border border-border-strong rounded-lg shadow-2xl"
+      >
         <button
           type="button"
           onClick={onClose}
@@ -250,6 +253,7 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
                       key={option}
                       type="button"
                       onClick={() => set('interest', option)}
+                      style={active ? undefined : { background: 'var(--elephant)' }}
                       className={`px-4 py-2.5 text-sm font-medium border-2 transition-all ${
                         active
                           ? 'border-fg-strong bg-fg-strong text-fg-invert'
@@ -271,7 +275,8 @@ export function DemoGateModal({ open, onClose, onSuccess }: Props) {
                 value={form.message}
                 onChange={(e) => set('message', e.target.value)}
                 rows={2}
-                className="w-full px-3 py-2 bg-transparent border border-border rounded-none text-sm text-fg placeholder-fg-faint focus:outline-none focus:border-border-active resize-none"
+                style={{ background: 'var(--elephant)' }}
+                className="w-full px-3 py-2 border border-border rounded-none text-sm text-fg placeholder-fg-faint focus:outline-none focus:border-border-active resize-none"
                 placeholder="What are you hoping to see?"
               />
             </div>
@@ -347,7 +352,8 @@ function Field({
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full px-3 py-2 bg-transparent border rounded-none text-sm text-fg placeholder-fg-faint focus:outline-none focus:border-border-active transition-colors ${
+        style={{ background: 'var(--elephant)' }}
+        className={`w-full px-3 py-2 border rounded-none text-sm text-fg placeholder-fg-faint focus:outline-none focus:border-border-active transition-colors ${
           error ? 'border-danger' : 'border-border'
         }`}
       />
