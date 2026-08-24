@@ -19,6 +19,7 @@
     "next": "^15.5.22",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-qr-code": "^2.2.0",
     "schema-dts": "^1.1.5"
   },
   "devDependencies": {

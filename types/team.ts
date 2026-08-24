@@ -22,6 +22,12 @@ export type TeamMember = {
   focus: string[];
   detail: TeamMemberDetail;
   links?: TeamMemberLinks;
+  /** QR value (e.g. a vCard string or profile URL) shown in the collapsed-state Scanner block. */
+  qrValue?: string | null;
+  /** Pre-made QR code image under /public — takes priority over qrValue when set. */
+  qrImage?: string | null;
+  /** Booking link (Calendly etc.) shown in the collapsed-state Calendar block. */
+  bookingUrl?: string | null;
 };
 
 export type TeamGroup = {
@@ -62,6 +68,15 @@ export type TeamContent = {
     ctaHref: string;
   };
   groups: TeamGroup[];
+  /** Roles-only band (no photos/bios) — signals real engineering depth without naming individuals. */
+  engineering: {
+    id: string;
+    number: string;
+    eyebrow: string;
+    headingTop: string;
+    headingAccent: string;
+    roles: string[];
+  };
   howWeWork: {
     eyebrow: string;
     headingTop: string;

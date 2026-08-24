@@ -1,7 +1,9 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { MapPin, LayoutGrid, Linkedin, Mail, X } from 'lucide-react';
+import Image from 'next/image';
+import { MapPin, LayoutGrid, Linkedin, Mail, X, QrCode, CalendarDays, Video } from 'lucide-react';
+import QRCode from 'react-qr-code';
 import { TeamAvatar } from '@/components/sections/TeamAvatar';
 import type { TeamMember } from '@/types/team';
 
@@ -82,15 +84,9 @@ export function TeamMemberCard({
             onClick={onToggle}
             aria-expanded={isOpen}
             aria-controls={panelId}
-            className="inline-flex items-center gap-2 text-body-sm text-fg-mid hover:text-fg-strong transition-colors"
+            className="inline-flex items-center gap-2 text-body-sm text-fg-mid underline underline-offset-4 hover:text-fg-strong transition-colors"
           >
-            {isOpen ? 'Hide profile' : 'Read profile'}
-            <span
-              aria-hidden="true"
-              className={`transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}
-            >
-              →
-            </span>
+            {isOpen ? 'Hide profile' : 'More details'}
           </button>
 
           {(member.links?.linkedin || member.links?.email) && (
@@ -106,7 +102,7 @@ export function TeamMemberCard({
                   <Linkedin className="w-4 h-4" aria-hidden="true" />
                 </a>
               )}
-              {member.links?.email && (
+              {member.links?.email ? (
                 <a
                   href={`mailto:${member.links.email}`}
                   aria-label={`Email ${member.name}`}
@@ -114,6 +110,14 @@ export function TeamMemberCard({
                 >
                   <Mail className="w-4 h-4" aria-hidden="true" />
                 </a>
+              ) : (
+                <span
+                  aria-label="Email coming soon"
+                  title="Email coming soon"
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-sm2 border border-border text-fg-faint opacity-50 cursor-not-allowed"
+                >
+                  <Mail className="w-4 h-4" aria-hidden="true" />
+                </span>
               )}
             </div>
           )}
@@ -121,6 +125,46 @@ export function TeamMemberCard({
 
         {/* Detail panel — occupies the otherwise-empty right column */}
         <div className="md:col-span-4">
+          {!isOpen && (member.qrImage || member.qrValue || member.bookingUrl) && (
+            <div className="space-y-4">
+              {(member.qrImage || member.qrValue) && (
+                <div className="rounded-md2 border border-border bg-bg-elevated p-5">
+                  <div className="flex items-center gap-2 mb-4 text-eyebrow text-fg-faint">
+                    <QrCode className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Scan to connect</span>
+                  </div>
+                  <div className="flex items-center justify-center rounded-sm2 bg-white p-3 w-fit mx-auto">
+                    {member.qrImage ? (
+                      <Image src={member.qrImage} alt={`${member.name} QR code`} width={128} height={128} />
+                    ) : (
+                      <QRCode value={member.qrValue as string} size={128} />
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="rounded-md2 border border-border bg-bg-elevated p-5">
+                <div className="flex items-center gap-2 mb-4 text-eyebrow text-fg-faint">
+                  <CalendarDays className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span>Book time</span>
+                </div>
+                {member.bookingUrl ? (
+                  <a
+                    href={member.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-fg-strong text-fg-invert border border-fg-strong px-5 py-2.5 text-[12.5px] font-semibold uppercase tracking-[0.14em] transition-all duration-300 hover:bg-transparent hover:text-fg-strong"
+                  >
+                    <Video className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Schedule a call</span>
+                  </a>
+                ) : (
+                  <p className="text-body-sm text-fg-faint">Booking link coming soon.</p>
+                )}
+              </div>
+            </div>
+          )}
+
           <AnimatePresence initial={false}>
             {isOpen && (
               <motion.div
@@ -149,26 +193,32 @@ export function TeamMemberCard({
                   {member.detail.background}
                 </p>
 
-                <p className="text-eyebrow text-fg-faint mb-4">What they own</p>
-                <ul className="border-t border-border mb-8">
-                  {member.detail.owns.map((item) => (
-                    <li
-                      key={item}
-                      className="border-b border-border py-3 text-body-sm text-fg-mid"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                {member.detail.owns.length > 0 && (
+                  <>
+                    <p className="text-eyebrow text-fg-faint mb-4">What they own</p>
+                    <ul className="border-t border-border mb-8">
+                      {member.detail.owns.map((item) => (
+                        <li
+                          key={item}
+                          className="border-b border-border py-3 text-body-sm text-fg-mid"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
 
-                <dl className="space-y-3">
-                  {member.detail.facts.map((fact) => (
-                    <div key={fact.label} className="flex flex-wrap gap-x-3 gap-y-1">
-                      <dt className="text-eyebrow text-fg-faint min-w-[88px]">{fact.label}</dt>
-                      <dd className="text-body-sm text-fg-mid flex-1">{fact.value}</dd>
-                    </div>
-                  ))}
-                </dl>
+                {member.detail.facts.length > 0 && (
+                  <dl className="space-y-3">
+                    {member.detail.facts.map((fact) => (
+                      <div key={fact.label} className="flex flex-wrap gap-x-3 gap-y-1">
+                        <dt className="text-eyebrow text-fg-faint min-w-[88px]">{fact.label}</dt>
+                        <dd className="text-body-sm text-fg-mid flex-1">{fact.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
               </motion.div>
             )}
           </AnimatePresence>

@@ -6,6 +6,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Reveal } from '@/components/ui/Reveal';
 import { CTALink } from '@/components/ui/CTA';
 import { TeamGroupSection } from '@/components/sections/TeamGroupSection';
+import { TeamEngineeringSection } from '@/components/sections/TeamEngineeringSection';
 import { TeamPrinciples } from '@/components/sections/TeamPrinciples';
 import { TeamMarkets } from '@/components/sections/TeamMarkets';
 import teamData from '@/data/marketing/team.json';
@@ -68,10 +69,13 @@ export default function TeamsPage() {
         </Container>
       </Section>
 
-      {/* 01 / 02 / 03 — Leadership, Advisors, Engineering */}
+      {/* 01 / 02 — Leadership, Advisors */}
       {team.groups.map((group) => (
         <TeamGroupSection key={group.id} group={group} />
       ))}
+
+      {/* 03 — Engineering (roles only, no photos/bios) */}
+      <TeamEngineeringSection content={team.engineering} />
 
       <TeamPrinciples content={team.howWeWork} />
       <TeamMarkets content={team.markets} />

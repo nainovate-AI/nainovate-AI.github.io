@@ -26,7 +26,15 @@ export function TeamMarkets({ content }: { content: TeamContent['markets'] }) {
           </div>
         </div>
 
-        <RevealGroup className="grid grid-cols-2 lg:grid-cols-4 border-t border-border-strong">
+        <RevealGroup
+          className={`grid grid-cols-2 border-t border-border-strong ${
+            content.locations.length >= 4
+              ? 'lg:grid-cols-4'
+              : content.locations.length === 3
+                ? 'lg:grid-cols-3'
+                : 'lg:grid-cols-2'
+          }`}
+        >
           {content.locations.map((location, i) => (
             <RevealItem
               key={location.name}

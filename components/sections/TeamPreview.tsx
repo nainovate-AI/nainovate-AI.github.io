@@ -50,7 +50,11 @@ export function TeamPreview() {
         {/* Cards — columns track the member count so the row never leaves a hole */}
         <RevealGroup
           className={`grid gap-5 md:gap-6 sm:grid-cols-2 ${
-            members.length >= 4 ? 'lg:grid-cols-4' : members.length === 3 ? 'lg:grid-cols-3' : 'lg:max-w-4xl'
+            members.length >= 4
+              ? 'lg:grid-cols-4'
+              : members.length === 3
+                ? 'lg:grid-cols-3'
+                : 'max-w-xl sm:max-w-2xl mx-auto'
           }`}
         >
           {members.map((member) => (
@@ -86,8 +90,18 @@ export function TeamPreview() {
                     <span>{member.focus.slice(0, 2).join(' · ')}</span>
                   </div>
 
-                  {member.links?.linkedin && (
-                    <div className="mt-auto pt-5">
+                  <div className="mt-auto pt-5 flex items-center justify-between gap-3">
+                    <Link
+                      href={homePreview.ctaHref}
+                      className="group/more inline-flex items-center gap-1.5 text-body-sm text-fg-mid hover:text-fg-strong transition-colors"
+                    >
+                      More
+                      <span aria-hidden="true" className="transition-transform duration-200 group-hover/more:translate-x-1">
+                        →
+                      </span>
+                    </Link>
+
+                    {member.links?.linkedin && (
                       <a
                         href={member.links.linkedin}
                         target="_blank"
@@ -97,8 +111,8 @@ export function TeamPreview() {
                       >
                         <Linkedin className="w-4 h-4" aria-hidden="true" />
                       </a>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </article>
             </RevealItem>
