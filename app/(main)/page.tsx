@@ -6,6 +6,7 @@ import { Features } from '@/components/sections/Features';
 import { Industries } from '@/components/sections/Industries';
 import { Category } from '@/components/sections/Category';
 import { Stats } from '@/components/sections/Stats';
+import { TeamPreview } from '@/components/sections/TeamPreview';
 import { CTA } from '@/components/sections/CTA';
 import { HomeBackdrop } from '@/components/ui/motion/HomeBackdrop';
 import JsonLd from '@/components/seo/JsonLd';
@@ -93,6 +94,9 @@ export default function Home() {
         <Features />
         <Category />
         <Stats />
+        {/* Team sits after proof and before the CTA — supports the product,
+            never competes with it. Teaser only; depth lives on /teams. */}
+        <TeamPreview />
         <CTA />
       </div>
     </main>

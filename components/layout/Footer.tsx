@@ -64,7 +64,8 @@ const groups: LinkGroup[] = [
     accent: '99, 102, 241',
     items: [
       { label: 'About Nainovate', href: '/about' },
-      { label: 'Leadership', href: '/about#leadership' },
+      { label: 'Teams', href: '/teams' },
+      { label: 'Leadership', href: '/teams#leadership' },
       { label: 'Partners', href: '/about#partners' },
       { label: 'Contact Us', href: '/contact' },
     ],

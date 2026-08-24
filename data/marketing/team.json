@@ -1,0 +1,265 @@
+{
+  "hero": {
+    "eyebrow": "Our Team",
+    "headingTop": "The people",
+    "headingAccent": "behind GenX.",
+    "intro": "A focused team building production-grade decision intelligence for enterprises and governments."
+  },
+  "homePreview": {
+    "eyebrow": "Our Team",
+    "headingTop": "The people",
+    "headingAccent": "behind GenX.",
+    "intro": "A focused team building production-grade decision intelligence for enterprises and governments.",
+    "memberIds": [
+      "naveen-kumar",
+      "suhaas",
+      "pranay-raavi",
+      "dhanesh"
+    ],
+    "ctaLabel": "Meet the team",
+    "ctaHref": "/teams"
+  },
+  "groups": [
+    {
+      "id": "leadership",
+      "number": "01",
+      "eyebrow": "Leadership",
+      "headingTop": "Founder who",
+      "headingAccent": "ships.",
+      "members": [
+        {
+          "id": "naveen-kumar",
+          "name": "Naveen Kumar",
+          "role": "Founder",
+          "location": "Hyderabad, India",
+          "image": "/images/team/naveen-kumar.jpg",
+          "initials": "NK",
+          "bio": "Founded Nainovate to make enterprise AI deployable in weeks, not quarters. Leads product direction and the partnerships that put GenX into regulated environments across India and the GCC.",
+          "focus": [
+            "Product strategy",
+            "Enterprise partnerships",
+            "Go-to-market"
+          ],
+          "links": {
+            "linkedin": "https://www.linkedin.com/in/naveen-kumar-nainovate",
+            "email": "naveen@nainovate.ai"
+          },
+          "detail": {
+            "background": "Fifteen years across enterprise software and data platforms before Nainovate, most of it spent close to the customers who had to run the thing after go-live. That shaped the product bet: decision intelligence that survives audit, procurement and a change of government.",
+            "owns": [
+              "Product direction and the GenX roadmap",
+              "Enterprise and government partnerships",
+              "Pricing, commercial structure and delivery commitments"
+            ],
+            "facts": [
+              {
+                "label": "Previously",
+                "value": "Enterprise data platforms, delivery leadership"
+              },
+              {
+                "label": "Based in",
+                "value": "Hyderabad, India"
+              },
+              {
+                "label": "Works with",
+                "value": "India, GCC, North America"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "advisors",
+      "number": "02",
+      "eyebrow": "Advisors",
+      "headingTop": "Guidance from",
+      "headingAccent": "operators.",
+      "members": [
+        {
+          "id": "suhaas",
+          "name": "Suhaas",
+          "role": "Advisor",
+          "location": "Bengaluru, India",
+          "image": "/images/team/suhaas.jpg",
+          "initials": "SU",
+          "bio": "Two decades across enterprise software and large-scale delivery. Advises Nainovate on AI governance, security posture, and the operating discipline needed to scale from proof-of-concept to production.",
+          "focus": [
+            "Enterprise AI strategy",
+            "Governance & compliance",
+            "Scale-up operations"
+          ],
+          "links": {
+            "linkedin": "https://www.linkedin.com/in/suhaas-nainovate",
+            "email": "advisors@nainovate.ai"
+          },
+          "detail": {
+            "background": "Two decades running large-scale software delivery inside regulated organisations. Has taken more than one AI pilot through the gap between a working demo and a system a risk committee will sign off on — the gap where most of them die.",
+            "owns": [
+              "AI governance and security posture",
+              "Enterprise readiness reviews before deployment",
+              "Operating discipline as the team scales"
+            ],
+            "facts": [
+              {
+                "label": "Previously",
+                "value": "Enterprise software, large-scale delivery"
+              },
+              {
+                "label": "Based in",
+                "value": "Bengaluru, India"
+              },
+              {
+                "label": "Advises on",
+                "value": "Governance, compliance, scale-up"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "number": "03",
+      "eyebrow": "Engineering",
+      "headingTop": "Built by",
+      "headingAccent": "the builders.",
+      "members": [
+        {
+          "id": "pranay-raavi",
+          "name": "Pranay Raavi",
+          "role": "Developer",
+          "location": "Hyderabad, India",
+          "image": "/images/team/pranay-raavi.jpg",
+          "initials": "PR",
+          "bio": "Full-stack and AI developer on the GenX platform. Works across agent orchestration, the workspace experience, and the public web surface that puts the product in front of customers.",
+          "focus": [
+            "Platform engineering",
+            "Agent orchestration",
+            "Web experience"
+          ],
+          "links": {
+            "linkedin": "https://www.linkedin.com/in/pranay-raavi",
+            "email": "pranay@nainovate.ai"
+          },
+          "detail": {
+            "background": "Full-stack and AI developer working across the whole surface of GenX — the agent runtime underneath, the workspace people actually use, and the public web presence that gets them there. Prefers shipping a narrow thing that works to a broad thing that demos.",
+            "owns": [
+              "Agent orchestration and the platform runtime",
+              "Workspace experience and interface systems",
+              "Public web surface and performance"
+            ],
+            "facts": [
+              {
+                "label": "Stack",
+                "value": "TypeScript, Next.js, Python"
+              },
+              {
+                "label": "Based in",
+                "value": "Hyderabad, India"
+              },
+              {
+                "label": "Focus",
+                "value": "Platform engineering"
+              }
+            ]
+          }
+        },
+        {
+          "id": "dhanesh",
+          "name": "Dhanesh",
+          "role": "Developer",
+          "location": "Hyderabad, India",
+          "image": "/images/team/dhanesh.jpg",
+          "initials": "DH",
+          "bio": "Developer on the GenX platform, focused on the data and retrieval layer. Builds the pipelines, integrations and evaluation tooling that keep agent output grounded in enterprise systems.",
+          "focus": [
+            "Data pipelines",
+            "Retrieval & RAG",
+            "Integrations"
+          ],
+          "links": {
+            "linkedin": "https://www.linkedin.com/in/dhanesh-nainovate",
+            "email": "dhanesh@nainovate.ai"
+          },
+          "detail": {
+            "background": "Developer on the data and retrieval layer — the part that decides whether an agent answer is grounded in the enterprise systems of record or quietly invented. Builds the pipelines, connectors and evaluation harnesses that keep that honest.",
+            "owns": [
+              "Data pipelines and enterprise connectors",
+              "Retrieval and RAG quality",
+              "Evaluation tooling and regression harnesses"
+            ],
+            "facts": [
+              {
+                "label": "Stack",
+                "value": "Python, vector stores, SQL"
+              },
+              {
+                "label": "Based in",
+                "value": "Hyderabad, India"
+              },
+              {
+                "label": "Focus",
+                "value": "Retrieval & data"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "howWeWork": {
+    "eyebrow": "How We Work",
+    "headingTop": "Small team.",
+    "headingAccent": "Serious execution.",
+    "principles": [
+      {
+        "number": "01",
+        "title": "Small teams",
+        "body": "We keep teams deliberately small so decisions stay close to the work."
+      },
+      {
+        "number": "02",
+        "title": "Production first",
+        "body": "We design for deployment, observability, security and operational ownership — not just demos."
+      },
+      {
+        "number": "03",
+        "title": "Enterprise by default",
+        "body": "Governance, security and auditability are part of the architecture from the start, not added later."
+      }
+    ]
+  },
+  "markets": {
+    "eyebrow": "Footprint",
+    "headingTop": "Built across",
+    "headingAccent": "markets.",
+    "locations": [
+      {
+        "name": "Hyderabad",
+        "note": "Engineering & product"
+      },
+      {
+        "name": "Bengaluru",
+        "note": "Advisory"
+      },
+      {
+        "name": "GCC",
+        "note": "Enterprise deployments"
+      },
+      {
+        "name": "North America",
+        "note": "Partnerships"
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Work With Us",
+    "headingTop": "Build enterprise AI",
+    "headingAccent": "that actually ships.",
+    "body": "Bring us a decision that is slow, manual or unauditable today. We will show you what GenX does with it in production.",
+    "ctaLabel": "Let's work together",
+    "ctaHref": "/contact",
+    "hiringNote": "Hiring selectively. If decision intelligence is the problem you want to work on, start a conversation."
+  }
+}

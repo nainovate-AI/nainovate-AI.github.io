@@ -46,6 +46,7 @@ const routes: Array<{ path: string; priority: number; changeFrequency: 'daily' |
 
   // Marketing / trust
   { path: 'about', priority: 0.6, changeFrequency: 'monthly' },
+  { path: 'teams', priority: 0.6, changeFrequency: 'monthly' },
   { path: 'contact', priority: 0.6, changeFrequency: 'monthly' },
   { path: 'ai-center-of-excellence', priority: 0.6, changeFrequency: 'monthly' },
 
