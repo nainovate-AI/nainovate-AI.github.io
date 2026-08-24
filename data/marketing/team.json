@@ -24,21 +24,22 @@
       "id": "leadership",
       "number": "01",
       "eyebrow": "Leadership",
-      "headingTop": "Founder who",
+      "headingTop": "AI leadership that",
       "headingAccent": "ships.",
       "members": [
         {
           "id": "naveen-kumar",
           "name": "Naveen Kumar",
-          "role": "Founder",
+          "role": "Chief AI Officer (CAIO)",
           "location": "Hyderabad, India",
           "image": "/images/team/naveen-kumar.jpg",
           "initials": "NK",
           "bio": "Founded Nainovate to make enterprise AI deployable in weeks, not quarters. Leads product direction and the partnerships that put GenX into regulated environments across India and the GCC.",
           "focus": [
-            "Product strategy",
-            "Enterprise partnerships",
-            "Go-to-market"
+            "AI & Decision Intelligence",
+            "Product Strategy",
+            "Enterprise AI",
+            "Strategic Partnerships"
           ],
           "links": {
             "linkedin": "https://www.linkedin.com/in/naveen-kumar-nainovate",
