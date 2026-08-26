@@ -222,7 +222,7 @@ export function Footer() {
               © 2025 Nainovate. All rights reserved.
             </p>
             <motion.img
-              src="/images/QR Code.png"
+              src="/images/team/naveen-kumar-qr.png"
               alt="Nainovate QR Code"
               className="w-14 h-14 bg-fg-strong p-1 rounded-md"
               whileHover={{ scale: 1.06, rotate: 3 }}
